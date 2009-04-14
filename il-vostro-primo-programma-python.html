@@ -16,11 +16,11 @@ th{text-align:left}
 <p>Voi siete qui: <a href=index.html>Home</a> <span>&#8227;</span> <a href=table-of-contents.html#il-vostro-primo-programma-python>Dive Into Python 3</a> <span>&#8227;</span>
 <h1>Il vostro primo programma Python</h1>
 <blockquote class=q>
-<p><span>&#x275D;</span> Non nascondere le tue pene dietro un pio silenzio. Hai un problema? Ottimo. Rallegrati, immergiti e investiga. <span>&#x275E;</span><br>&mdash; <a href=http://en.wikiquote.org/wiki/Buddhism>Venerabile Henepola Gunaratana</a>
+<p><span>&#x275D;</span> Non nascondere le tue difficoltà dietro un silenzio da santo. Hai un problema? Ottimo. Rallegrati, immergiti e investiga. <span>&#x275E;</span><br>&mdash; <a href=http://en.wikiquote.org/wiki/Buddhism>Ven. Henepola Gunaratana</a>
 </blockquote>
 <p id=toc>&nbsp;
 <h2 id=divingin>Immersione!</h2>
-<p class=f>I libri di programmazione normalmente cominciano con un gruppo di noiosi capitoli sui fondamentali e solo alla fine lavorano per costruire qualcosa di utile. Saltiamo tutto questo. Qui c'è un programma Python completo e funzionante. Probabilmente non ha alcun senso per voi. Non preoccupatevi, perché lo analizzerete riga per riga. Ma leggete attraverso di esso prima e vedete se riuscite a farne qualcosa.
+<p class=f>Di solito, i libri di programmazione cominciano con una serie di capitoli noiosi sui fondamentali, e solo verso la fine arrivano a costruire qualcosa di utile. Noi ci risparmieremo tutto questo. Qui di seguito troverete subito un programma Python completo e funzionante. Probabilmente ora non ha alcun senso per voi, ma non preoccupatevi perché lo analizzerete riga per riga. Provate comunque a leggerlo, come prima cosa, per vedere se riuscite a ricavarne qualcosa.
 <p class=d>[<a href=esempi/humansize.py>scarica <code>humansize.py</code></a>]
 <pre><code>SUFFIXES = {1000: ['KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
             1024: ['KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB']}
@@ -62,45 +62,45 @@ if __name__ == "__main__":
 931.3 GiB</samp></pre>
 <p class=fixme>FIXME: this would be a good place to explain what the program, you know, actually does.
 <h2 id=declaringfunctions>Dichiarare funzioni</h2>
-<p>Python ha funzioni come la maggior parte degli altri linguaggi, ma non ha file di intestazione separati come <abbr>C++</abbr> o sezioni di <code>interface</code>/<code>implementation</code> come Pascal. Quando avete bisogno di una funzione, semplicemente dichiaratela, in questo modo:  
+<p>Python vi permette di definire funzioni come la maggior parte degli altri linguaggi, ma non utilizza file di intestazione separati come il <abbr>C++</abbr> o sezioni di <code>interface</code>/<code>implementation</code> come il Pascal. Quando avete bisogno di una funzione, vi basta dichiararla, in questo modo:  
 <pre><code>def approximate_size(size, a_kilobyte_is_1024_bytes=True):</code></pre>
-<aside>Quando avete bisogno di una funzione, semplicemente dichiaratela.</aside>
+<aside>Quando avete bisogno di una funzione, vi basta dichiararla.</aside>
 <p>La parola chiave <code>def</code> inizia la dichiarazione di funzione, seguita dal nome della funzione, seguito dagli argomenti della funzione racchiusi tra parentesi. Argomenti multipli sono separati da virgole.
-<p>Notate anche che la funzione non definisce un tipo di dato di ritorno. Le funzioni Python non specificano il tipo di dato del loro valore di ritorno; non specificano nemmeno se restituiscono o no un valore. (In effetti, ogni funzione Python restituisce un valore; se la funzione esegue mai una istruzione di <code>return</code>, restituirà quel valore, altrimenti restituirà <code>None</code>, il valore nullo di Python.)
+<p>Notate anche che la funzione non definisce un tipo di dato di ritorno. Le funzioni Python non specificano il tipo di dato del loro valore di ritorno; non specificano nemmeno se restituiscono o no un valore. (In effetti, ogni funzione Python restituisce un valore; se la funzione esegue una istruzione di <code>return</code>, restituirà quel valore, altrimenti restituirà <code>None</code>, il valore nullo di Python.)
 <blockquote class=note>
-<p><span>&#x261E;</span>In alcuni linguaggi, funzioni (che restituiscono un valore) cominciano con <code>function</code>, e procedure (che non restituiscono un valore) cominciano con <code>sub</code>. Non ci sono procedure in Python. Ogni cosa è una funzione, tutte le funzioni ritornano un valore (anche se è <code>None</code>) e tutte le funzioni cominciano con <code>def</code>.
+<p><span>&#x261E;</span>In alcuni linguaggi, le funzioni (che restituiscono un valore) cominciano con <code>function</code>, e le procedure (che non restituiscono un valore) cominciano con <code>sub</code>. Non ci sono procedure in Python. Ci sono solo funzioni, tutte le funzioni ritornano un valore (anche se è <code>None</code>) e tutte le funzioni cominciano con <code>def</code>.
 </blockquote>
-<p>La funzione <code>approximate_size</code> accetta due argomenti &mdash; <var>size</var> e <var>a_kilobyte_is_1024_bytes</var> &mdash; ma nessun argomento specifica un tipo di dato. (Come avreste potuto indovinare dalla sintassi <code>=True</code>, il secondo argomento è di tipo boolean. Imparerete cosa fa quella sintassi in <span class=fixme>[FIXME xref-was-#apihelper]</span>.)  In Python, le variabili non sono mai esplicitamente tipate. Python capisce di che tipo è una variable e ne tiene traccia internamente.
+<p>La funzione <code>approximate_size</code> accetta due argomenti &mdash; <var>size</var> e <var>a_kilobyte_is_1024_bytes</var> &mdash; ma nessun argomento specifica il proprio tipo. (Come avreste potuto indovinare dalla sintassi <code>=True</code>, il secondo argomento è di tipo boolean. Imparerete cosa fa quella sintassi in <span class=fixme>[FIXME xref-was-#apihelper]</span>.) In Python, le variabili non sono mai esplicitamente tipate. L'interprete Python capisce da solo qual è il tipo di una variable e ne tiene traccia internamente.
 <blockquote class="note compare java">
-<p><span>&#x261E;</span>In Java e in altri linguaggi staticamente tipati, dovete specificare il tipo di dato del valore di ritorno e di ogni argomento della funzione. In Python, non viene mai specificato il tipo di dato di nulla. Sulla base del valore che viene assegnato, Python tiene traccia del tipo di dato internamente.
+<p><span>&#x261E;</span>In Java e in altri linguaggi staticamente tipati, dovete specificare il tipo del valore di ritorno e di ogni argomento della funzione. In Python, i tipi non vengono mai specificati. Sulla base del valore che viene assegnato, Python tiene traccia del tipo di dato internamente.
 </blockquote>
 <h3 id=datatypes>Come confrontare i tipi di dato Python con gli altri linguaggi di programmazione</h3>
 <p>Un lettore erudito mi ha mandato questa spiegazione su come confrontare Python con altri linguaggi di programmazione:
 <dl>
 <dt>linguaggio staticamente tipato</dt>
-<dd>Un linguaggio in cui i tipi sono fissati a tempo di compilazione. La maggior parte dei linguaggi staticamente tipati impone questo obbligandovi a dichiarare tutte le variabili con i loro tipi di dato prima di usarle. Java e <abbr>C</abbr> sono linguaggi staticamente tipati.
+<dd>Un linguaggio in cui i tipi sono fissati a tempo di compilazione. La maggior parte dei linguaggi staticamente tipati impone questo vincolo obbligandovi a dichiarare tutte le variabili con i loro tipi prima che possiate usarle. Java e <abbr>C</abbr> sono linguaggi staticamente tipati.
 </dd>
 <dt>linguaggio dinamicamente tipato</dt>
 <dd>Un linguaggio in cui i tipi sono scoperti a tempo di esecuzione; l'opposto di staticamente tipato. JavaScript e Python sono dinamicamente tipati, perché capiscono qual è il tipo di una variabile quando le viene assegnato un valore per la prima volta.
 </dd>
 <dt>linguaggio fortemente tipato</dt>
-<dd>Un linguaggio in cui i tipi sono sempre rispettati. Java e Python sono fortemente tipati. Se avete un intero, non potete trattarlo come una stringa senza convertirlo esplicitamente.
+<dd>Un linguaggio in cui i tipi sono sempre rispettati. Java e Python sono fortemente tipati. Se avete un intero, non potete trattarlo come una stringa senza prima convertirlo esplicitamente.
 </dd>
 <dt>linguaggio debolmente tipato</dt>
-<dd>Un linguaggio in cui i tipi sono &#8220;automagicamente&#8221; forzati ad altri tipi alla bisogna; l'opposto di fortemente tipato. <abbr>PHP</abbr> è debolmente tipato. In <abbr>PHP</abbr>, potete concatenare la stringa <code>'12'</code> and l'intero <code>3</code> per ottenere la stringa <code>'123'</code>, e successivamente trattarla come l'intero <code>123</code>, il tutto senza conversioni esplicite.
+<dd>Un linguaggio in cui i tipi sono &#8220;automagicamente&#8221; forzati ad altri tipi su necessità; l'opposto di fortemente tipato. <abbr>PHP</abbr> è debolmente tipato. In <abbr>PHP</abbr>, potete concatenare la stringa <code>'12'</code> e l'intero <code>3</code> per ottenere la stringa <code>'123'</code>, e successivamente trattarla come l'intero <code>123</code>, il tutto senza conversioni esplicite.
 </dd>
 </dl>
-<p>Quindi Python è sia <em>dinamicamente tipato</em> (perché non utilizza dichiarazioni di tipo di dato esplicite) e <em>fortemente tipato</em> (perché una volta che una variabile ha un tipo di dato, esso ha effettivamente importanza).
-<p>Se avete esperienza con altri linguaggi di programmazione, questa tabella potrebbe aiutarvi a visualizzare il modo in cui Python può essere confrontato con loro:
+<p>Quindi Python è sia <em>dinamicamente tipato</em> (perché non utilizza dichiarazioni di tipo esplicite) e <em>fortemente tipato</em> (perché una volta che una variabile ha un tipo, esso ha effettivamente importanza).
+<p>Se avete esperienza con altri linguaggi di programmazione, questa tabella potrebbe aiutarvi a visualizzare il modo in cui Python può essere confrontato con essi:
 <table>
 <tr><th></th><th>Staticamente tipato</th><th>Dinamicamente tipato</th></tr>
 <tr><th>Debolmente tipato</th><td>C, Objective-C</td><td>JavaScript, Perl 5, <abbr>PHP</abbr></td></tr>
 <tr><th>Fortemente tipato</th><td>Pascal, Java</td><td>Python, Ruby</td></tr>
 </table>
 <h2 id=readability>Scrivere codice leggibile</h2>
-<p>Non vi annoierò con un lungo e <span class=wtf>finger-wagging</span> discorso sull'importanza di documentare il vostro codice. Vi basti sapere che il codice viene scritto una volta sola ma letto molte volte, e che l'audience più importante del vostro codice siete voi stessi, sei mesi dopo averlo scritto (cioè dopo che vi siete dimenticati tutto ma avete bisogno di aggiustare qualcosa). Python rende facile la scrittura di codice leggibile, perciò avantaggiatevene. Mi ringrazierete fra sei mesi.
+<p>Non vi annoierò con un lungo e <span class=wtf>finger-wagging</span> discorso sull'importanza di documentare il vostro codice. Vi basti sapere che il codice viene scritto una volta sola ma letto molte volte, e che l'audience più importante del vostro codice siete voi stessi, sei mesi dopo averlo scritto (cioè dopo che vi siete dimenticati tutto ma avete bisogno di aggiustare qualcosa). Python rende facile la scrittura di codice leggibile, perciò avantaggiatevene. Fra sei mesi mi ringrazierete.
 <h3 id=docstrings>Stringhe di documentazione</h3>
-<p>Potete documentare una funzione Python dandole una stringa di documentazione (chiamate <code>docstring</code> per brevità). In questo programma, la funzione <code>approximate_size</code> ha una <code>docstring</code>:
+<p>Potete documentare una funzione Python aggiungendole una stringa di documentazione (chiamata <code>docstring</code> per brevità). Nel nostro programma, la funzione <code>approximate_size</code> è stata dotata di una <code>docstring</code>:
 <pre><code>def approximate_size(size, a_kilobyte_is_1024_bytes=True):
     """Convert a file size to human-readable form.
 
@@ -113,13 +113,13 @@ if __name__ == "__main__":
 
     """</code></pre>
 <aside>Ogni funzione merita una docstring decente.</aside>
-<p>Le triple virgolette significano una stringa su più righe. Ogni cosa tra le virgolette di inizio e di fine è parte di una singola stringa, inclusi i ritorni a capo, gli spazi bianchi all'inizio di una riga, e altri caratteri di virgolette. Si possono usare dappertutto, ma le vedrete usate più spesso nella definizione di una <code>docstring</code>.
+<p>Le triple virgolette significano una stringa su più righe. Ogni cosa tra le virgolette di inizio e di fine è parte di una singola stringa, inclusi i ritorni a capo, gli spazi bianchi all'inizio di una riga, e altri caratteri di virgolette. Le triple virgolette si possono usare dovunque, ma le vedrete usate soprattutto nella definizione di una <code>docstring</code>.
 <blockquote class="note compare perl5">
-<p><span>&#x261E;</span>Le triple virgolette sono anche un modo failce per definire una stringa che contiene sia apici che virgolette, come <code>qq/.../</code> in Perl 5.
+<p><span>&#x261E;</span>Le triple virgolette sono anche un modo facile per definire una stringa che contiene sia apici che virgolette, come <code>qq/.../</code> in Perl 5.
 </blockquote>
-<p>Ogni cosa tra le triple virgolette è la <code>docstring</code> della funzione, che documenta quello che la funzione fa. Una <code>docstring</code>, se esiste, deve essere la prima cosa definita in una funzione (cioè, sulla riga seguente subito dopo la dichiarazione di funzione). Non avete tecnicamente bisogno di dotare la vostra funzione di una <code>docstring</code>, ma dovreste sempre farlo. So che lo avete sentito in ogni corso di programmazione che avete seguito, ma Python vi dà un incentivo aggiuntivo: la <code>docstring</code> è disponibile a tempo di esecuzione come proprietà della funzione.
+<p>Tutto quello che si trova tra le triple virgolette rappresenta la <code>docstring</code> della funzione, che documenta quello che la funzione fa. Una <code>docstring</code>, se esiste, deve essere la prima cosa definita in una funzione (cioè, nella riga subito dopo la dichiarazione di funzione). Non avete tecnicamente bisogno di dotare la vostra funzione di una <code>docstring</code>, ma dovreste sempre farlo. So che lo avete sentito in ogni corso di programmazione che avete seguito, ma Python vi dà un incentivo aggiuntivo: la <code>docstring</code> è disponibile a tempo di esecuzione sotto forma di proprietà della funzione.
 <blockquote class=note>
-<p><span>&#x261E;</span>Molti <abbr>IDE</abbr> per Python usano le <code>docstring</code> per fornire documentazione sensibile al contesto, in modo che quando scrivete il nome di una funzione, la sua <code>docstring</code> appare sotto forma di tooltip. Questo può essere incredibilmente utile, ma è solamente tanto buono quanto le <code>docstring</code> che scrivete.
+<p><span>&#x261E;</span>Molti <abbr>IDE</abbr> per Python usano le <code>docstring</code> per fornire documentazione sensibile al contesto, in modo che quando scrivete il nome di una funzione la sua <code>docstring</code> appaia sotto forma di tooltip. Questa cosa può essere incredibilmente utile, ma lo è solamente tanto quanto le <code>docstring</code> che scrivete.
 </blockquote>
 <!--
 <h3 id=functionannotations>Function Annotations</h3>
@@ -128,7 +128,7 @@ if __name__ == "__main__":
 <p>FIXME
 -->
 <h2 id=everythingisanobject>Ogni cosa è un oggetto</h2>
-<p>Nel caso vi fosse sfuggito, ho appena detto che le funzioni Python hanno proprietà, e che quelle proprietà sono disponibili a tempo di esecuzione. Una funzione, come ogni altra cosa in Python, è un oggetto.
+<p>Nel caso vi fosse sfuggito, ho appena detto che le funzioni Python hanno delle proprietà, e che quelle proprietà sono disponibili a tempo di esecuzione. Una funzione, come ogni altra cosa in Python, è un oggetto.
 <p>Lanciate la shell interattiva Python e seguitemi attraverso questa serie di istruzioni:
 <pre class=screen>
 <a><samp class=p>>>> </samp><kbd>import humansize</kbd>                               <span>&#x2460;</span></a>
@@ -146,15 +146,15 @@ if __name__ == "__main__":
 
 </samp></pre>
 <ol>
-<li>La prima riga importa il programma <code>humansize</code> come un modulo -- un pezzo di codice che potete usare interattivamente, o da un programma Python più grande. (Vedrete esempi di programmi Python distribuiti in più moduli in <span class=fixme>[FIXME xref]</span>.) Una volta importato un modulo, potete fare riferimento a ognuna delle sue funzioni, classi, o proprietà pubbliche. I moduli possono fare questo per accedere alle funzionalità di altri moduli, e voi potete farlo anche nella shell interattiva di Python. Questo è un concetto importante, e lo vedrete più volte nel seguito di questo libro.
-<li>Quando volete usare funzioni definite in moduli importati, avete bisogno di includere il nome del modulo. Quindi non potete semplicemente dire <code>approximate_size</code>; deve essere <code>humansize.approximate_size</code>. Se avete usato le classi in Java, questo dovrebbe risultarvi vagamente familiare.
-<li>Invece di chiamare la funzione come vi aspettereste, avete chiesto una delle proprietà della funzione, <code>__doc__</code>.
+<li>La prima riga importa il programma <code>humansize</code> come un modulo &ndash; un pezzo di codice che potete usare interattivamente, o da un programma Python più grande. (Vedrete esempi di programmi Python distribuiti su più moduli in <span class=fixme>[FIXME xref]</span>.) Una volta importato un modulo, potete fare riferimento a ognuna delle sue funzioni, classi, o proprietà pubbliche. I moduli possono sfruttare questa loro caratteristica per accedere alle funzionalità di altri moduli, e voi potete farlo anche nella shell interattiva di Python. Questo è un concetto importante, e lo vedrete ribadito più volte nel seguito di questo libro.
+<li>Quando volete usare funzioni definite in moduli importati, avete bisogno di includere il nome del modulo. Quindi non potete semplicemente dire <code>approximate_size</code>; deve essere <code>humansize.approximate_size</code>. Se avete usato le classi in Java, la sintassi dovrebbe risultarvi vagamente familiare.
+<li>Invece di invocare la funzione, avete richiesto una delle sue proprietà, <code>__doc__</code>.
 </ol>
 <blockquote class="note compare perl5">
 <p><span>&#x261E;</span><code>import</code> in Python è come <code>require</code> in Perl. Una volta che avete importato un modulo Python tramite <code>import</code>, potete accedere alle sue funzioni con la sintassi <code><var>modulo</var>.<var>funzione</var></code>; una volta che avete richiesto un modulo Perl tramite <code>require</code>, potete accedere alle sue funzioni con la sintassi <code><var>modulo</var>::<var>funzione</var></code>.
 </blockquote>
 <h3 id=importsearchpath>Il percorso di ricerca di <code>import</code></h3>
-<p>Prima di proseguire, voglio menzionare brevemente il percorso di ricerca delle librerie. Python guarda in diversi posti quando provate a importare un modulo. Nello specifico, guarda in tutte le directory definite in <code>sys.path</code>. Questo è semplicemente una lista, e potete facilmente vederla o modificarla con i metodi standard per le liste. (Imparerete di più sulle liste più in là in questo capitolo.)
+<p>Prima di proseguire, voglio menzionare brevemente il percorso di ricerca delle librerie. Python guarda in diversi posti quando provate a importare un modulo. Nello specifico, guarda in tutte le directory definite in <code>sys.path</code>. Questa proprietà è semplicemente una lista, e potete facilmente vederla o modificarla con i metodi standard per le liste. (Imparerete di più sulle liste più in là in questo capitolo.)
 <pre class=screen>
 <a><samp class=p>>>> </samp><kbd>import sys</kbd>                       <span>&#x2460;</span></a>
 <a><samp class=p>>>> </samp><kbd>sys.path</kbd>                         <span>&#x2461;</span></a>
@@ -164,16 +164,16 @@ if __name__ == "__main__":
 <a><samp class=p>>>> </samp><kbd>sys.path.append('/un/nuovo/percorso')</kbd>  <span>&#x2463;</span></a></pre>
 <ol>
 <li>Importare il modulo <code>sys</code> rende disponibili tutte le sue funzioni e proprietà.
-<li><code>sys.path</code> è una lista di nomi di directory che costituiscono il percorso di ricerca corrente.  (Il vostro apparirà diverso, a seconda del vostro sistema operativo, della versione di Python che state eseguendo e di dove è stata originariamente installata.)  Python guarderà attraverso queste directory (in questo ordine) per un file con estensione <code>.py</code> il cui nome corrisponda a quello che state cercando di importare.
-<li>In realtà, ho mentito; la verità è più complicata di così, perché non tutti i moduli sono memorizzati come file <code>.py</code>. Alcuni, come il modulo <code>sys</code> sono moduli &#8220;built-in&#8221;; essi sono effettivamente cotti direttamente in Python stesso. I moduli built-in si comportano esattamente come moduli regolari, ma il loro codice sorgente Python non è disponibile, perché non sono scritti in Python! (Il modulo <code>sys</code> è scritto in <abbr>C</abbr>.)
-<li>Potete aggiungere una nuova directory al percorso di ricerca di Python a tempo di esecuzione appendendo il nome della directory a <code>sys.path</code>, e poi Python guarderà anche in quella directory ogni volta che provate a importare un modulo. L'effetto dura fino a quando Python è in esecuzione. (Imparerete di più su <code>append()</code> e altri metodi delle liste in <span class=fixme>[FIXME xref-was-#datatypes]</span>.)
+<li><code>sys.path</code> è una lista di nomi di directory che costituiscono il percorso di ricerca corrente. (Il vostro apparirà diverso, a seconda del vostro sistema operativo, della versione di Python che state eseguendo e di dove è stata originariamente installata.) Python cercherà attraverso queste directory (in questo ordine) un file con estensione <code>.py</code> il cui nome corrisponda a quello che state cercando di importare.
+<li>In realtà, ho mentito; la verità è più complicata di così, perché non tutti i moduli sono memorizzati come file <code>.py</code>. Alcuni, come il modulo <code>sys</code>, sono moduli &#8220;built-in&#8221;, integrati direttamente all'interno dell'interprete Python. I moduli built-in si comportano esattamente come gli altri moduli, ma il loro codice sorgente Python non è disponibile, perché non sono scritti in Python! (Il modulo <code>sys</code> è scritto in <abbr>C</abbr>.)
+<li>Potete aggiungere a tempo di esecuzione una nuova directory al percorso di ricerca di Python appendendo il nome della directory a <code>sys.path</code>; successivamente, Python guarderà anche in quella directory ogni volta che provate a importare un modulo. L'effetto dura fino a quando l'interprete Python è in esecuzione. (Imparerete di più su <code>append()</code> e altri metodi delle liste in <span class=fixme>[FIXME xref-was-#datatypes]</span>.)
 </ol>
 <h3 id=whatsanobject>Che cos'è un oggetto?</h3>
-<p>Ogni cosa in Python è un oggetto, e quasi ogni cosa ha proprietà e metodi. Tutte le funzioni hanno una proprietà built-in <code>__doc__</code>, che restituisce la <var>docstring</var> definita nel codice sorgente della funzione. Il modulo <code>sys</code> è un oggetto che ha (tra le altre cose) una proprietà chiamata <var>path</var>. E così via.
+<p>Ogni cosa in Python è un oggetto, e quasi ogni cosa possiede proprietà e metodi. Tutte le funzioni hanno una proprietà built-in <code>__doc__</code>, che restituisce la <var>docstring</var> definita nel codice sorgente della funzione. Il modulo <code>sys</code> è un oggetto che ha (tra le altre cose) una proprietà chiamata <var>path</var>. E così via.
 <p>Tuttavia, questo non risponde alla domanda fondamentale: che cos'è un oggetto? Linguaggi di programmazione differenti definiscono &#8220;oggetto&#8221; in modi differenti. In alcuni, significa che <em>tutti</em> gli oggetti <em>devono</em> avere proprietà e metodi; in altri, significa che tutti gli oggetti sono estendibili. In Python, la definizione è più lasca; alcuni oggetti non hanno attributi né metodi (per maggiori dettagli vedi <span class=fixme>[FIXME xref-was-#datatypes]</span>), e non tutti gli oggetti sono estendibili (per maggiori dettagli vedi <span class=fixme>[FIXME xref-was-#fileinfo]</span>). Ma ogni cosa è un oggetto nel senso che può essere assegnata a una variabile o passata come argomento a una funzione (per maggiori dettagli vedi <span class=fixme>[FIXME xref-was-#apihelp]</span>).
-<p>Questo è così importante che lo ripeterò nel caso vi fosse sfuggito le prime volte: <em>ogni cosa in Python è un oggetto</em>. Le strighe sono oggetti. Le liste sono oggetti. Le funzioni sono oggetti. Persino i moduli sono oggetti.
+<p>Questo concetto è così importante che lo ripeterò nel caso vi fosse sfuggito le prime volte: <em>ogni cosa in Python è un oggetto</em>. Le strighe sono oggetti. Le liste sono oggetti. Le funzioni sono oggetti. Persino i moduli sono oggetti.
 <h2 id=indentingcode>Indentare il codice</h2>
-<p>Le funzioni Python non cominciano esplicitamente con <code>begin</code> o terminano con <code>end</code>, e non ci sono parentesi graffe a indicare dove il codice della funzione inizia e finisce. I due punti (<code>:</code>) e l'indentazione del codice stesso sono gli unici delimitatori.
+<p>Le funzioni Python non cominciano esplicitamente con <code>begin</code> né terminano con <code>end</code>, e non ci sono parentesi graffe a indicare dove il codice della funzione inizia e finisce. I due punti (<code>:</code>) e l'indentazione del codice stesso sono gli unici delimitatori.
 <pre><code>
 <a>def approximate_size(size, a_kilobyte_is_1024_bytes=True):  <span>&#x2460;</span></a>
 <a>    if size &lt; 0:                                            <span>&#x2461;</span></a>
@@ -187,19 +187,19 @@ if __name__ == "__main__":
 
     raise ValueError('number too large')</code></pre>
 <ol>
-<li>I blocchi di codice sono definiti dalla loro indentazione. Per &#8220;blocco di codice&#8221; intendo funzioni, istruzioni <code>if</code>, cicli <code>for</code>, cicli <code>while</code>, e così via. L'indentazione comincia un blocco e il rientro lo termina. Non ci sono esplicite parentesi graffe, parentesi quadre, o parole chiave. Questo vuol dire che gli spazi bianchi hanno significato, e devono essere consistenti. In questo esempio, il codice della funzione è indentato di quattro spazi. Non è necessario che siano quattro spazi, c'è solo bisogno che l'indentazione sia consistente. La prima riga che non è indentata indica la fine della funzione.
+<li>I blocchi di codice sono definiti dalla loro indentazione. Per &#8220;blocco di codice&#8221; intendo funzioni, istruzioni <code>if</code>, cicli <code>for</code>, cicli <code>while</code>, e così via. L'indentazione comincia un blocco e il rientro lo termina. Non ci sono parentesi graffe, parentesi quadre, o parole chiave. Questo vuol dire che gli spazi bianchi hanno significato, e devono essere consistenti. In questo esempio, il codice della funzione è indentato di quattro spazi. Non è necessario che siano quattro spazi, c'è solo bisogno che l'indentazione sia consistente. La prima riga che non è indentata indica la fine della funzione.
 <li>In Python, una istruzione <code>if</code> è seguita da un blocco di codice. Se l'espressione di <code>if</code> viene valutata come vera, il blocco indentato viene eseguito, altrimenti si ricade nel blocco di <code>else</code> (se esiste). (Notate la mancanza di parentesi attorno alla espressione.)
 <li>Questa riga è dentro il blocco di codice dell'<code>if</code>. L'istruzione di <code>raise</code> solleverà una eccezione (di tipo <code>ValueError</code>), ma solo se <code>size &lt; 0</code>.
 <li>Questa <em>non</em> è la fine della funzione. Le righe completamente vuote non contano. La funzione continua nella riga seguente.
-<li>Anche il ciclo <code>for</code> segnala l'inizio di un blocco di codice. I blocchi di codice possono contenere più righe, fino a quando esse sono indentate della stessa quantità. Questo ciclo <code>for</code> ha tre righe di codice in esso. Non c'è nessun'altra sintassi speciale per blocchi di codice multiriga. Indentate e andate avanti con la vostra vita.
+<li>Anche il ciclo <code>for</code> segnala l'inizio di un blocco di codice. I blocchi di codice possono contenere più righe, fino a quando esse sono indentate della stessa quantità. Questo ciclo <code>for</code> contiene tre righe di codice. Non c'è nessun'altra sintassi speciale per blocchi di codice su più righe. Indentate e andate avanti con la vostra vita.
 </ol>
-<p>Dopo alcune iniziali proteste e diverse analogie maliziose al Fortran, vi riappacificherete con questo e comincerete a vederne i benefici. Uno dei maggiori benefici è che tutti i programmi Python appaiono simili, in quanto l'indentazione è un requisito del linguaggio e non un problema di stile. Questo rende più facile leggere e comprendere il codice Python di altre persone.
+<p>Dopo alcune proteste iniziali e diverse analogie maliziose al Fortran, vi riappacificherete con questa caratteristica di Python e comincerete a vederne i benefici. Uno dei maggiori benefici è che tutti i programmi Python appaiono simili, in quanto l'indentazione è un requisito del linguaggio e non una questione di stile. Questo rende più facile leggere e comprendere il codice Python scritto da altre persone.
 <blockquote class="note compare java">
 <p><span>&#x261E;</span>Python usa i ritorni a capo per separare le istruzioni e i due punti e l'indentazione per separare i blocchi di codice. <abbr>C++</abbr> e Java usano i punti e virgola per separare le istruzioni e le parentesi graffe per separare i blocchi di codice.
 </blockquote>
 <h2 id=runningscripts>Eseguire script</h2>
 <aside>Ogni cosa in Python è un oggetto.</aside>
-<p>I moduli Python sono oggetti e hanno diverse proprietà utili. Potete usare questo per collaudare facilmente i vostri moduli mentre li scrivete, includendo uno speciale blocco di codice che viene eseguito quando lanciate il file Python dalla linea di comando. Considerate le ultime righe di <code>humansize.py</code>:
+<p>I moduli Python sono oggetti e hanno diverse proprietà utili. Potete sfruttare questa caratteristica per collaudare facilmente i vostri moduli mentre li scrivete, includendo uno speciale blocco di codice che viene eseguito quando lanciate il file Python dalla linea di comando. Considerate le ultime righe di <code>humansize.py</code>:
 <pre><code>
 if __name__ == "__main__":
     print(approximate_size(1000000000000, False))
@@ -212,14 +212,14 @@ if __name__ == "__main__":
 <samp class=p>>>> </samp><kbd>import humansize</kbd>
 <samp class=p>>>> </samp><kbd>humansize.__name__</kbd>
 <samp>'humansize'</samp></pre>
-<p>Ma potete anche eseguire il modulo direttamente come un programma a sé, nel qual caso <code>__name__</code> sarà lo speciale valore di default <code>__main__</code>. Python valuterà questa istruzione <code>if</code>, troverà una espressione vera, ed eseguirà il blocco di codice corrispondente. In questo caso, per stampare due valori.
+<p>Ma potete anche eseguire il modulo direttamente come un programma a sé, nel qual caso <code>__name__</code> sarà lo speciale valore di default <code>__main__</code>. Nel nostro esempio, Python valuterà l'istruzione <code>if</code>, troverà una espressione vera, ed eseguirà il blocco di codice corrispondente. In questo caso, per stampare due valori.
 <pre class=screen>
 <samp class=p>c:\home\diveintopython3> </samp><kbd>c:\python30\python.exe humansize.py</kbd>
 <samp>1.0 TB
 931.3 GiB</samp></pre>
 <h2 id=furtherreading>Letture di approfondimento</h2>
 <ul>
-<li><a href=http://www.python.org/dev/peps/pep-0257/>PEP 257: Docstring Conventions</a> spiega cosa distingue una buona <code>docstring</code> da una eccellente <code>docstring</code>.
+<li><a href=http://www.python.org/dev/peps/pep-0257/>PEP 257: Docstring Conventions</a> spiega cosa distingue una buona <code>docstring</code> da una <code>docstring</code> eccellente.
 <li><a href=http://docs.python.org/3.0/tutorial/controlflow.html#documentation-strings>Python Tutorial: Documentation Strings</a> si occupa a sua volta dell'argomento.
 <li><a href=http://www.python.org/dev/peps/pep-0008/>PEP 8: Style Guide for Python Code</a> descrive il buon stile di indentazione.
 <li><a href=http://docs.python.org/3.0/reference/><cite>Python Reference Manual</cite></a> spiega cosa significa dire che <a href=http://docs.python.org/3.0/reference/datamodel.html#objects-values-and-types>ogni cosa in Python è un oggetto</a>, perché alcune persone sono pedanti e adorano discutere questo tipo di cose in lungo e in largo.
