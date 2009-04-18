@@ -69,8 +69,8 @@ del{background:#f87}
 <h3 id=how.windows1252><code>windows-1252</code></h3>
 <p>Se <code>UniversalDetector</code> riconosce un carattere <span class=wtf>high-bit</span> nel testo, ma nessuno delle altre sonde per codifiche multi-byte o a singolo byte restituisce un risultato di confidenza, crea una <code>Latin1Prober</code> (definita in <code>latin1prober.py</code>) per cercare di riconoscere testo inglese in una codifica <code>windows-1252</code>. Questo riconscimento è intrinsecamente inaffidabile, perché le lettere inglesi sono codificate allo stesso modo in molte codifiche differenti. L'unico modo di distinguere <code>windows-1252</code> è attraverso simboli comunemente usati come <span class=wtf>smart quotes</span>, <span class=wtf>curly apostrophes</span>, simboli di copyright, e simili. <code>Latin1Prober</code> riduce automaticamente la propria stima di confidenza per permettere a sonde più accurate di vincere se è assolutamente possibile.
 <h2 id=running2to3>Eseguire <code>2to3</code></h2>
-<p>We&#8217;re going to migrate the <code>chardet</code> module from Python 2 to Python 3. Python 3 comes with a utility script called <code>2to3</code>, which takes your actual Python 2 source code as input and auto-converts as much as it can to Python 3. In some cases this is easy &mdash; a function was renamed or moved to a different modules &mdash; but in other cases it can get pretty complex. To get a sense of all that it <em>can</em> do, refer to the appendix, <a href=porting-code-to-python-3-with-2to3.html>Porting code to Python 3 with <code>2to3</code></a>. In this chapter, we&#8217;ll start by running <code>2to3</code> on the <code>chardet</code> package, but as you&#8217;ll see, there will still be a lot of work to do after the automated tools have performed their magic.
-<p>The main <code>chardet</code> package is split across several different files, all in the same directory. The <code>2to3</code> script makes it easy to convert multiple files at once: just pass a directory as a command line argument, and <code>2to3</code> will convert each of the files in turn.
+<p>Effettueremo la migrazione del modulo <code>chardet</code> da Python 2 a Python 3. Python 3 viene distribuito con uno script di utilità chiamato <code>2to3</code>, che prende in ingresso il vostro codice sorgente in Python 2 e lo converte automaticamente tanto quanto gli è possibile verso Python 3. In alcuni casi questo è facile &mdash; una funzione è stata rinominata oppure spostata in un modulo differente &mdash; ma in altri casi può diventare piuttosto complesso. Per avere un'idea di tutto quello che <em>può</em> fare, fate riferimento all'appendice, <a href=convertire-codice-verso-python-3-con-2to3.html>Convertire codice verso Python 3 con <code>2to3</code></a>. In questo capitolo, cominceremo col lanciare <code>2to3</code> sul pacchetto <code>chardet</code>, ma come vedrete ci sarà ancora molto lavoro da fare dopo che gli strumenti automatici avranno eseguito la loro magia. 
+<p>Il pacchetto principale di <code>chardet</code> è diviso in molti file diversi, tutti nella stessa directory. Lo script <code>2to3</code> rende facile convertire più file in una volta: basta passargli una directory come argomento a linea di comando, e <code>2to3</code> convertirà ognuno dei file a turno.
 <pre class=screen><samp class=p>C:\home\chardet> </samp><kbd>python c:\Python30\Tools\Scripts\2to3.py -w chardet\</kbd>
 <samp>RefactoringTool: Skipping implicit fixer: buffer
 RefactoringTool: Skipping implicit fixer: idioms
@@ -537,7 +537,7 @@ RefactoringTool: chardet\sbcsgroupprober.py
 RefactoringTool: chardet\sjisprober.py
 RefactoringTool: chardet\universaldetector.py
 RefactoringTool: chardet\utf8prober.py</samp></pre>
-<p>Now run the <code>2to3</code> script on the testing harness, <code>test.py</code>.
+<p>Ora eseguiamo lo script <code>2to3</code> sulla <span class=wtf>harness</span> di collaudo, <code>test.py</code>.
 <pre class=screen><samp class=p>C:\home\chardet> </samp><kbd>python c:\Python30\Tools\Scripts\2to3.py -w test.py</kbd>
 <samp>RefactoringTool: Skipping implicit fixer: buffer
 RefactoringTool: Skipping implicit fixer: idioms
@@ -568,12 +568,12 @@ RefactoringTool: Skipping implicit fixer: ws_comma
 <ins>+print(count, 'tests')</ins>
 RefactoringTool: Files that were modified:
 RefactoringTool: test.py</samp></pre>
-<p>[FIXME explain the difference in import syntax]
-<p>Well, that wasn&#8217;t so hard. Just a few imports and print statements to convert. Time to run the new version. Do you think it&#8217;ll work?
-<h2 id=manual>Fixing What <code>2to3</code> Can&#8217;t</h2>
-<h3 id=falseisinvalidsyntax><code>False</code> is invalid syntax</h3>
-<aside>You do have tests, right?</aside>
-<p>Now for the real test: running the test harness against the test suite. Since the test suite is designed to cover all the possible code paths, it&#8217;s a good way to test our ported code to make sure there aren&#8217;t any bugs lurking anywhere.
+<p><span class=fixme>[FIXME explain the difference in import syntax]</span>
+<p>Ebbene, non è stato così difficile. Solo alcune istruzioni di <code>import</code> e <code>print</code> da convertire. &Egrave; il momento di eseguire la nuova versione. Pensate che funzionerà?
+<h2 id=manual>Risolvere quello che <code>2to3</code> non può</h2>
+<h3 id=falseisinvalidsyntax><code>False</code> è invalid syntax</h3>
+<aside>Avete i test, giusto?</aside>
+<p>Ora per il collaudo reale: lanciare la <span class=wtf>harness</span> di test contro la <span class=wtf>test suite</span>. Dato che la <span class=wtf>test suite</span> è stata progettata per coprire tutti i possibili percorsi nel codice, è un buon modo di collaudare il codice convertito per assicurarsi che non ci sia alcun bug in agguato da qualche parte.
 <pre class=screen><samp class=p>C:\home\chardet> </samp><kbd>python test.py tests\*\*</kbd>
 <samp class=traceback>Traceback (most recent call last):
   File "test.py", line 1, in &lt;module>
@@ -582,7 +582,7 @@ RefactoringTool: test.py</samp></pre>
     self.done = constants.False
                               ^
 SyntaxError: invalid syntax</samp></pre>
-<p>Hmm, a small snag. In Python 3, <code>False</code> is a reserved word, so you can&#8217;t use it as a variable name. Let&#8217;s look at <code>constants.py</code> to see where it&#8217;s defined. Here&#8217;s the original version from <code>constants.py</code>, before the <code>2to3</code> script changed it:
+<p>Hmm, un piccolo intoppo. In Python 3, <code>False</code> è una parola riservata, e quindi non potete usarla come nome di variabile. Diamo una occhiata a <code>constants.py</code> per vedere dov'è definita. Ecco la versione orginale da <code>constants.py</code>, prima che lo script <code>2to3</code> la cambiasse:
 <pre><code>import __builtin__
 if not hasattr(__builtin__, 'False'):
     False = 0
@@ -590,15 +590,15 @@ if not hasattr(__builtin__, 'False'):
 else:
     False = __builtin__.False
     True = __builtin__.True</code></pre>
-<p>This piece of code is designed to allow this library to run under older versions of Python 2. Prior to Python 2.3 [FIXME-LINK], Python had no built-in <code>Boolean</code> type. This code detects the absence of the built-in constants <code>True</code> and <code>False</code>, and defines them if necessary.
-<p>However, Python 3 will always have a <code>Boolean</code> type, so this entire code snippet is unnecessary. The simplest solution is to replace all instances of <code>constants.True</code> and <code>constants.False</code> with <code>True</code> and <code>False</code>, respectively, then delete this dead code from <code>constants.py</code>.
-<p>So this line in <code>universaldetector.py</code>:
+<p>Questo frammento di codice è progettato per permettere a questa libreria di venire eseguita dalle versioni più vecchie di Python 2. Prima di Python 2.3 <span class=fixme>[FIXME-LINK]</span>, Python non aveva alcun tipo <code>Boolean</code>. Questo codice riconosce l'assenza delle costanti built-in <code>True</code> e <code>False</code>, e le definisce se è necessario.
+<p>Comunque, Python 3 avrà sempre un tipo <code>Boolean</code>, quindi questo intero frammento di codice è superfluo. La soluzione più semplice è di sostituire tutte le istanze di <code>constants.True</code> e <code>constants.False</code> con <code>True</code> e <code>False</code>, rispettivamente, e poi cancellare questo codice morto da <code>constants.py</code>.
+<p>Così questa riga <code>universaldetector.py</code>:
 <pre><code>self.done = constants.False</code></pre>
-<p>Becomes
+<p>Diventa
 <pre><code>self.done = False</code></pre>
-<p>Ah, wasn&#8217;t that satisfying?  The code is shorter and more readable already.
+<p>Ah, non è stato soddisfacente? Il codice è più corto e già più leggibile.
 <h3 id=nomodulenamedconstants>No module named <code>constants</code></h3>
-<p>Time to run <code>test.py</code> again and see how far it gets.
+<p>&Egrave; il momento di eseguire nuovamente <code>test.py</code> e vedere fino a dove riesce ad arrivare.
 <pre class=screen><samp class=p>C:\home\chardet> </samp><kbd>python test.py tests\*\*</kbd>
 <samp class=traceback>Traceback (most recent call last):
   File "test.py", line 1, in &lt;module>
@@ -606,31 +606,31 @@ else:
   File "C:\home\chardet\chardet\universaldetector.py", line 29, in &lt;module>
     import constants, sys
 ImportError: No module named constants</samp></pre>
-<p>What&#8217;s that you say?  No module named <code>constants</code>?  Of course there&#8217;s a module named <code>constants</code>. &hellip;Oh wait, no there isn&#8217;t. Remember when the <code>2to3</code> script fixed up all those import statements?  This library has a lot of relative imports &mdash; that is, modules that import other modules within the library. In Python 3, all import statements are absolute by default [FIXME-LINK PEP 0328]. To do relative imports, you need to do something like this instead:
+<p>Cos'è che dici? Nessun modulo chiamato <code>constants</code>? Ma certo che c'è un modulo chiamato <code>constants</code>. &hellip;Oh aspettate, no non c'è. Ricordate quando lo script <code>2to3</code> ha risolto tutte quelle istruzioni di <code>import</code>? Questa libreria ha un sacco di <code>import</code> relativi &mdash; cioè, moduli che importano altri moduli nell'ambito della libreria. In Python 3, tutte le istruzioni di <code>import</code> sono assolute di default <span class=fixme>[FIXME-LINK PEP 0328]</span>. Per importare un modulo in maniera relativa, avete bisogno di scrivere qualcosa come questo:
 <pre><code>from . import constants</code></pre>
-<p>But wait. Wasn&#8217;t the <code>2to3</code> script supposed to take care of these for you?  Well, it did, but this particular import statement combines two different types of imports into one line: a relative import of the <code>constants</code> module within the library, and an absolute import of the <code>sys</code> module that is pre-installed in the Python standard library. In Python 2, you could combine these into one import statement. In Python 3, you can&#8217;t, and the <code>2to3</code> script is not smart enough to split the import statement into two.
-<p>The solution is to split the import statement manually. So this two-in-one import:
+<p>Ma aspettate. Non doveva essere lo script <code>2to3</code> a curarsi di queste cose per voi? Be', lo ha fatto, ma questa particolare istruzione di <code>import</code> combina due differenti tipo di importazione in una riga: una importazione relativa del modulo <code>constants</code> all'interno della libreria, e una importazione assoluta del modulo <code>sys</code> che è preinstallato nella libreria standard di Python. In Python 2, potevate combinare questi due in una unica istruzione <code>import</code>. In Python 3, non potete, e lo script <code>2to3</code> non è abbastanza scaltro da spezzare l'istruzione di <code>import</code> in due.
+<p>La soluzione consiste nel dividere l'istruzione di <code>import</code> manualmente. Così questa doppia istruzione di <code>import</code>:
 <pre><code>import constants, sys</code></pre>
-<p>Needs to become two separate imports:
+<p>Deve diventare due istruzioni di <code>import</code> separate:
 <pre><code>from . import constants
 import sys</code></pre>
-<p>There are variations of this problem scattered throughout the <code>chardet</code> library. In some places it&#8217;s "<code>import constants, sys</code>"; in other places, it&#8217;s "<code>import constants, re</code>". The fix is the same: manually split the import statement into two lines, one for the relative import, the other for the absolute import.
-<p>Onward!
+<p>Ci sono variazioni di questo problema sparse in tutta la libreria <code>chardet</code>. In alcuni posti è "<code>import constants, sys</code>"; in altri posti, è "<code>import constants, re</code>". La soluzione è la stessa: dividete manualmente l'istruzione di <code>import</code> in due righe, una per quella relativa, l'altra per quella assoluta.
+<p>Avanti!
 <h3 id=namefileisnotdefined>Name <var>'file'</var> is not defined</h3>
-<aside>open() is the new file(). PapayaWhip is the new black.</aside>
-<p>And here we go again, running <code>test.py</code> to try to execute our test cases&hellip;</p>
+<aside>open() è il nuovo file(). PapayaWhip è il nuovo nero.</aside>
+<p>Ed eccoci ancora qui, a lanciare <code>test.py</code> per provare a eseguire i nostri test&hellip;</p>
 <pre class=screen><samp class=p>C:\home\chardet> </samp><kbd>python test.py tests\*\*</kbd>
 <samp>tests\ascii\howto.diveintomark.org.xml</samp>
 <samp class=traceback>Traceback (most recent call last):
   File "test.py", line 9, in &lt;module>
     for line in file(f, 'rb'):
 NameError: name 'file' is not defined</samp></pre>
-<p>This one surprised me, because I&#8217;ve been using this idiom as long as I can remember. In Python 2, the global <var>file()</var> function was an alias for <var>open()</var>, which was the standard way of opening files for reading. In Python 3, the entire system for reading and writing files has been refactored into the <code>io</code> module. [FIXME-LINK PEP 3116]  I&#8217;ll cover the new I/O module in more detail in Chapter FIXME, but for now, the important bit is that the global <var>file()</var> function no longer exists. However, the <var>open()</var> function does still exist. (Technically, it&#8217;s an alias for <var>io.open()</var>, but never mind that right now.)
-<p>Thus, the simplest solution to the problem of the missing <var>file()</var> is to call <var>open()</var> instead:
+<p>Questo mi ha sorpreso, perché ho usato questo idioma fin da quando riesco a ricordare. In Python 2, la funzione globale <var>file()</var> era un alias per <var>open()</var>, che era il modo standard di aprire i file per leggerli. In Python 3, l'intero sistema per la lettura e la scrittura dei file è stato rifattorizzato nel modulo <code>io</code>. <span class=wtf>[FIXME-LINK PEP 3116]</span> Tratterò del nuovo modulo di I/O con maggiori dettagli nel Capitolo <span class=fixme>FIXME</span>, ma per ora la cosa importante è che la funzione globale <var>file()</var> non esiste più. Comunque, la funzione <var>open()</var> esiste ancora. (Tecnicamente, è un alias per <var>io.open()</var>, ma non preoccupatevi di questo adesso.)
+<p>Quindi, la soluzione più semplice al problema della mancanza di <var>file()</var> è chiamare <var>open()</var> al suo posto:
 <pre><code>for line in open(f, 'rb'):</code></pre>
-<p>And that&#8217;s all I have to say about that.
-<h3 id=cantuseastringpattern>Can&#8217;t use a string pattern on a bytes-like object</h3>
-<p>Now things are starting to get interesting. And by &#8220;interesting,&#8221; I mean &#8220;confusing as all hell.&#8221;
+<p>E questo è tutto quello che ho da dire in merito.
+<h3 id=cantuseastringpattern>Can't use a string pattern on a bytes-like object</h3>
+<p>Ora le cose cominciano a diventare interessanti. E per &#8220;interesting,&#8221; voglio dire &#8220;incasinate come l'inferno.&#8221;
 <pre class=screen><samp class=p>C:\home\chardet> </samp><kbd>python test.py tests\*\*</kbd>
 <samp>tests\ascii\howto.diveintomark.org.xml</samp>
 <samp class=traceback>Traceback (most recent call last):
@@ -639,30 +639,30 @@ NameError: name 'file' is not defined</samp></pre>
   File "C:\home\chardet\chardet\universaldetector.py", line 98, in feed
     if self._highBitDetector.search(aBuf):
 TypeError: can't use a string pattern on a bytes-like object</samp></pre>
-<p>To debug this, let&#8217;s see what <var>self._highBitDetector</var> is. It&#8217;s defined in the <var>__init__</var> method of the <var>UniversalDetector</var> class:
+<p>Per correggere questo, diamo un'occhiata a cos'è <var>self._highBitDetector</var>. &Egrave; definito nel metodo <var>__init__</var> della classe <var>UniversalDetector</var>:
 <pre><code>class UniversalDetector:
     def __init__(self):
         self._highBitDetector = re.compile(r'[\x80-\xFF]')</code></pre>
-<p>This pre-compiles a regular expression designed to find non-<abbr>ASCII</abbr> characters in the range 128&ndash;255 (0x80&ndash;0xFF). Wait, that&#8217;s not quite right; I need to be more precise with my terminology. This pattern is designed to find non-<abbr>ASCII</abbr> <em>bytes</em> in the range 128-255.
-<p>And therein lies the problem.
-<p>In Python 2, a string was an array of bytes whose character encoding was tracked separately. If you wanted Python 2 to keep track of the character encoding, you had to use a Unicode string (<code>u''</code>) instead. But in Python 3, a string is always what Python 2 called a Unicode string &mdash; that is, an array of Unicode characters (of possibly varying byte lengths). Since this regular expression is defined by a string pattern, it can only be used to search a string &mdash; again, an array of characters. But what we&#8217;re searching is not a string, it&#8217;s a byte array. Looking at the traceback, this error occurred in <code>universaldetector.py</code>:
+<p>Questo precompila una espressione regolare progettata per trovare caratteri di tipo non-<abbr>ASCII</abbr> nell'intervallo 128&ndash;255 (0x80&ndash;0xFF). Aspettate, non è proprio esatto; devo essere più preciso nella mia terminologia. Questo pattern è usato per trovare <em>byte</em> di tipo non-<abbr>ASCII</abbr> nell'intervallo 128&ndash;255.
+<p>E il problema è proprio qui.
+<p>In Python 2, una stringa era un vettore di byte la cui codifica di carattere era <span class=wtf>tracked</span> separatamente. Se volevate che Python 2 tenesse traccia della codifica di carattere, dovevate usare una stringa di tipo Unicode (<code>u''</code>). Ma in Python 3, una stringa è sempre quello che Python 2 chiamava stringa di tipo Unicode &mdash; cioè, un vettore di caratteri Unicode (possibilmente con lunghezze diverse in termini di byte). Dato che questa espressione regolare è definita come un pattern in una stringa, può essere usato solo per fare ricerche in una stringa &mdash; ancora, un vettore di caratteri. Ma ciò in cui stiamo cercando non è una stringa, bensì un vettore di byte. Dando un'occhiata alla <span class=wtf>traceback</span>, questo errore è apparso in <code>universaldetector.py</code>:
 <pre><code>def feed(self, aBuf):
     .
     .
     .
     if self._mInputState == ePureAscii:
         if self._highBitDetector.search(aBuf):</code></pre>
-<p>And what is <var>aBuf</var>?  Let&#8217;s backtrack further to a place that calls <code>UniversalDetector.feed()</code>. One place that calls it is the test harness, <code>test.py</code>.
+<p>E cos'è <var>aBuf</var>? Torniamo ancora più indietro al luogo che invoca <code>UniversalDetector.feed()</code>. Un luogo che lo invoca è la <span class=wtf>harness</span> di collaudo, <code>test.py</code>.
 <pre><code>u = UniversalDetector()
 .
 .
 .
 for line in open(f, 'rb'):
     u.feed(line)</code></pre>
-<aside>Not an array of characters, but an array of bytes.</aside>
-<p>And here we find our answer: in the <code>UniversalDetector.feed()</code> method, <var>aBuf</var> is a line read from a file on disk. Look carefully at the parameters used to open the file: <code>'rb'</code>. <code>'r'</code> is for &#8220;read&#8221;; OK, big deal, we&#8217;re reading the file. Ah, but <code>'b'</code> is for &#8220;binary.&#8221;  Without the <code>'b'</code> flag, this <code>for</code> loop would read the file, line by line, and convert each line into a string &mdash; an array of Unicode characters &mdash; according to the system default character encoding. (You could override the system encoding with another parameter to <var>open()</var>, but never mind that for now.)  But with the <code>'b'</code> flag, this <code>for</code> loop reads the file, line by line, and stores each line exactly as it appears in the file, as an array of bytes. That byte array gets passed to <code>UniversalDetector.feed()</code>, and eventually gets passed to the pre-compiled regular expression, <var>self._highBitDetector</var>, to search for high-bit&hellip; characters. But we don&#8217;t have characters; we have bytes. Oops.
-<p>What we need this regular expression to search is not an array of characters, but an array of bytes.
-<p>Once you realize that, the solution is not difficult. Regular expressions defined with strings can search strings. Regular expressions defined with byte arrays can search byte arrays. To define a byte array pattern, we simply change the type of the argument we use to define the regular expression to a byte array. (There is one other case of this same problem, on the very next line.)
+<aside>Non un vettore di caratteri, ma un vettore di byte.</aside>
+<p>E qui troviamo la nostra risposta: nel metodo <code>UniversalDetector.feed()</code> method, <var>aBuf</var> è una riga letta da un file su disco. Guardate attentamente i parametri utilizzati per aprire il file: <code>'rb'</code>. <code>'r'</code> sta per &#8220;read&#8221;, lettura; OK, <span class=wtf>big deal</span>, stiamo leggendo il file. Ah, ma <code>'b'</code> sta per &#8220;binary&#8221;, binario. Senza il flag <code>'b'</code>, questo ciclo <code>for</code> leggerebbe il file, riga per riga, e convertirebbe ogni riga in una stringa &mdash; un vettore di caratteri Unicode &mdash; in accordo con la codifica di carattere di default del sistema. (Potreste <span class=wtf>override</span> la codifica del sistema con un altro parametro di <var>open()</var>, ma non preoccupatevi di questo adesso.) Ma con il flag <code>'b'</code>, questo ciclo <code>for</code> legge il file, riga per riga, e memorizza ogni riga esattamente come appare nel file, come un vettore di byte. Quel vettore di byte viene passato a <code>UniversalDetector.feed()</code>, e alla fine iene passato alla espressione regolare precompilata, <var>self._highBitDetector</var>, per cercare i&hellip; caratteri <span class=wtf>high-bit</span>. Ma non abbiamo caratteri. Abbiamo byte. Oops.
+<p>Quello su cui abbiamo bisogno che l'espressione regolare effettui la ricerca non è un vettore di caratteri, ma un vettore di byte.
+<p>Una volta che realizzate questo, la soluzione non è difficile. Le espressioni regolari definite come stringhe possono effettuare ricerche sulle stringe. Le espressioni regolari definite come vettori di byte possono effettuare ricerche sui vettori di byte. Per definire un pattern come un vettore di byte, cambiamo semplicemente il tipo dell' argomento che usiamo per definire l'espressione regolare a vettore di byte. (C'è un altro caso di questo stesso problema, proprio nella riga successiva.)
 <pre><code>  class UniversalDetector:
       def __init__(self):
 <del>-         self._highBitDetector = re.compile(r'[\x80-\xFF]')</del>
@@ -672,7 +672,7 @@ for line in open(f, 'rb'):
           self._mEscCharSetProber = None
           self._mCharSetProbers = []
           self.reset()</code></pre>
-<p>Searching the entire codebase for other uses of the <code>re</code> module turns up two more instances, in <code>charsetprober.py</code>. Again, the code is defining regular expressions as strings but executing them on <var>aBuf</var>, which is a byte array. The solution is the same: define the regular expression patterns as byte arrays.
+<p>Cercando l'intera base di codice per altri usi del modulo <code>re</code> scopre due instanze in più, in <code>charsetprober.py</code>. Ancora, il codice definisce espressioni regolari come stringhema le esegue su <var>aBuf</var>, che è un vettore di byte. La soluzione è la stessa: definire i pattern di espressioni regolare come vettori di byte.
 <pre><code>  class CharSetProber:
       .
       .
@@ -687,8 +687,8 @@ for line in open(f, 'rb'):
 <ins>+         aBuf = re.sub(b'([A-Za-z])+', b' ', aBuf)</ins>
           return aBuf</code></pre>
         
-<h3 id=cantconvertbytesobject>Can't convert <code>'bytes'</code> object to <code>str</code> implicitly</h3>
-<p>Curiouser and curiouser&hellip;
+<h3 id=cantconvertbytesobject>Can't convert <code>'bytes'</code> object to str implicitly</h3>
+<p>Sempre più curioso&hellip;
 <pre class=screen><samp class=p>C:\home\chardet> </samp><kbd>python test.py tests\*\*</kbd>
 <samp>tests\ascii\howto.diveintomark.org.xml</samp>
 <samp class=traceback>Traceback (most recent call last):
@@ -697,7 +697,7 @@ for line in open(f, 'rb'):
   File "C:\home\chardet\chardet\universaldetector.py", line 100, in feed
     elif (self._mInputState == ePureAscii) and self._escDetector.search(self._mLastChar + aBuf):
 TypeError: Can't convert 'bytes' object to str implicitly</samp></pre>
-<p>There's an unfortunate clash of coding style and Python interpreter here. The <code>TypeError</code> could be anywhere on that line, but the traceback doesn't tell you exactly where it is. It could be in the first conditional or the second, and the traceback would look the same. To narrow it down, you should split the line in half, like this:
+<p>Qui c'è uno sfortunato scontro tra stile di codifica e l'interprete Python. L'errore di tipo <code>TypeError</code> potrebbe essere dovunque su quella riga, ma la <span class=wtf>traceback</span> non vi dice esattamente dov'è. Potrebbe essere nella prima condizione o nella seconda, e la <span class=wtf>traceback</span> sarebbe la stessa. Per circoscrivere l'errore, dovete spezzare a metà la riga, in questo modo:
 <pre><code>elif (self._mInputState == ePureAscii) and \
     self._escDetector.search(self._mLastChar + aBuf):</code></pre>
 <p>And re-run the test:</p>
@@ -709,8 +709,8 @@ TypeError: Can't convert 'bytes' object to str implicitly</samp></pre>
   File "C:\home\chardet\chardet\universaldetector.py", line 101, in feed
     self._escDetector.search(self._mLastChar + aBuf):
 TypeError: Can't convert 'bytes' object to str implicitly</samp></pre>
-<p>Aha! The problem was not in the first conditional (<code>self._mInputState == ePureAscii</code>) but in the second one. So what could cause a <code>TypeError</code> there? Perhaps you're thinking that the <code>search()</code> method is expecting a value of a different type, but that wouldn't generate this traceback. Python functions can take any value; if you pass the right number of arguments, the function will execute. It may <em>crash</em> if you pass it a value of a different type than it's expecting, but if that happened, the traceback would point to somewhere inside the function. But this traceback says it never got as far as calling the <code>search()</code> method. So the problem must be in that <code>+</code> operation, as it's trying to construct the value that it will eventually pass to the <code>search()</code> method.
-<p>We know from <a href=#cantuseastringpattern>previous debugging</a> that <var>aBuf</var> is a byte array. So what is <code>self._mLastChar</code>? It's an instance variable, defined in the <code>reset()</code> method, which is actually called from the <code>__init__()</code> method.
+<p>Aha! Il problema non era nella prima condizione (<code>self._mInputState == ePureAscii</code>) ma nella seconda. Quindi cosa potrebbe causare un <code>TypeError</code> lì? Forse state pensando che il metodo <code>search()</code> si aspetti un valore di tipo differente, ma quello non genererebbe questa <span class=wtf>traceback</span>. Le funzioni Python possono prendere qualsiasi valore; se passate il numero corretto di argomenti, la funzione eseguirà. Potrebbe <em>fallire</em> se le passate un valore di tipo differente rispetto a quello che si aspetta, ma se questo fosse successo, la <span class=wtf>traceback</span> punterebbe da qualche parte all'interno della funzione. Ma questa <span class=wtf>traceback</span> dice che non è mai arrivata tanto lontano da chiamare il metodo <code>search()</code>. Quindi il problema deve essere in quella operazione <code>+</code>, dato che sta cercando di costruire un valore che alla fine verrà passato al metodo <code>search()</code>.
+<p>Sappiamo da una <a href=#cantuseastringpattern>correzione precedente</a> che <var>aBuf</var> è un vettore di byte. Quindi cos'è <code>self._mLastChar</code>? &Egrave; una variabile di istanza, definita nel metodo <code>reset()</code>, che viene effettivamente chiamata dal metodo <code>__init__()</code>.
 <pre><code>class UniversalDetector:
     def __init__(self):
         self._highBitDetector = re.compile(b'[\x80-\xFF]')
@@ -726,8 +726,8 @@ TypeError: Can't convert 'bytes' object to str implicitly</samp></pre>
         self._mGotData = False
         self._mInputState = ePureAscii
 <mark>        self._mLastChar = ''</mark></code></pre>
-<p>And now we have our answer. Do you see it? <var>self._mLastChar</var> is a string, but <var>aBuf</var> is a byte array. And you can't concatenate a string to a byte array &mdash; not even a zero-length string.
-<p>So what is <var>self._mLastChar</var> anyway? The answer is in the <code>feed()</code> method, just a few lines down from where the trackback occurred.
+<p>E ora abbiamo la nostra risposta. La vedete? <var>self._mLastChar</var> è una stringa, ma <var>aBuf</var> è un vettore di byte. E non potete concatenare una stringa a un vettore di byte &mdash; nemmeno una stringa di lunghezza zero.
+<p>Quindi cos'è <var>self._mLastChar</var> ad ogni modo? La risposta è nel metodo <code>feed()</code>, giusto qualche riga più in basso rispetto a dove la <span class=wtf>traceback</span> è capitata.
 <pre><code>if self._mInputState == ePureAscii:
     if self._highBitDetector.search(aBuf):
         self._mInputState = eHighbyte
@@ -736,14 +736,14 @@ TypeError: Can't convert 'bytes' object to str implicitly</samp></pre>
         self._mInputState = eEscAscii
 
 <mark>self._mLastChar = aBuf[-1]</mark></code></pre>
-<p>The calling function calls this <code>feed()</code> method over and over again with a few bytes at a time. The method processes the bytes it was given (passed in as <var>aBuf</var>), then stores the last byte in <var>self._mLastChar</var> in case it's needed during the next call. (In a multi-byte encoding, the <code>feed()</code> method might get called with half of a character, then called again with the other half.)  But because <var>aBuf</var> is now a byte array instead of a string, <var>self._mLastChar</var> needs to be a byte array as well. Thus:
+<p>La funzione chiamante invoca continuamente questo metodo <code>feed()</code> con pochi byte alla volta. Il metodo elabora i byte che gli sono stati dati (passati come <var>aBuf</var>), poi memorizza l'ultimo byte in <var>self._mLastChar</var> nel caso ce ne sia bisogno durante l'invocazione successiva. (In una codifica multi-byte, il metodo <code>feed()</code> potrebbe venire invocato con metà di un carattere, e poi invocato ancora con l'altra metà.) Ma dato che <var>aBuf</var> è ora un vettore di byte invece che una stringa, anche <var>self._mLastChar</var> deve essere un vettore di byte. Perciò:
 <pre><code>  def reset(self):
       .
       .
       .
 <del>-     self._mLastChar = ''</del>
 <ins>+     self._mLastChar = b''</ins></code></pre>
-<p>Searching the entire codebase for <code>"mLastChar"</code> turns up a similar problem in <code>mbcharsetprober.py</code>, but instead of tracking the last character, it tracks the last <em>two</em> characters. The <code>MultiByteCharSetProber</code> class uses a list of 1-character strings to track the last two characters; in Python 3, it needs to use a list of integers.
+<p>Cercando tutta la base di codie per <code>"mLastChar"</code> scopre un problema simile in <code>mbcharsetprober.py</code>, ma invece di tenere traccia dell'ultimo carattere, tiene traccia degli ultimi <em>due</em> caratteri. La classe <code>MultiByteCharSetProber</code> usa una lista di stringhe di 1 carattere per tenere traccia degli ultimi due caratteri; in Python 3, deve usare una lista di interi.
 <pre><code>
   class MultiByteCharSetProber(CharSetProber):
       def __init__(self):
@@ -762,7 +762,7 @@ TypeError: Can't convert 'bytes' object to str implicitly</samp></pre>
 <del>-         self._mLastChar = ['\x00', '\x00']</del>
 <ins>+         self._mLastChar = [0, 0]</ins></code></pre>
 <h3 id=unsupportedoperandtypeforplus>Unsupported operand type(s) for +: <code>'int'</code> and <code>'bytes'</code></h3>
-<p>I have good news, and I have bad news. The good news is we're making progress&hellip;
+<p>Ho una buona notizia e una cattiva notizia. La buona notizia è che stiamo facendo progressi&hellip;
 <pre class=screen><samp class=p>C:\home\chardet> </samp><kbd>python test.py tests\*\*</kbd>
 <samp>tests\ascii\howto.diveintomark.org.xml</samp>
 <samp class=traceback>Traceback (most recent call last):
@@ -771,9 +771,9 @@ TypeError: Can't convert 'bytes' object to str implicitly</samp></pre>
   File "C:\home\chardet\chardet\universaldetector.py", line 101, in feed
     self._escDetector.search(self._mLastChar + aBuf):
 TypeError: unsupported operand type(s) for +: 'int' and 'bytes'</samp></pre>
-<p>&hellip;The bad news is it doesn't always feel like progress.
-<p>But this is progress! Really! Even though the traceback calls out the same line of code, it's a different error than it used to be. Progress! So what's the problem now? The last time I checked, this line of code didn't try to concatenate an <code>int</code> with a byte array (<code>bytes</code>). In fact, you just spent a lot of time <a href=#cantconvertbytesobject>ensuring that <var>self._mLastChar</var> was a byte array</a>. How did it turn into an <code>int</code>?
-<p>The answer lies not in the previous lines of code, but in the following lines.
+<p>&hellip;La cattiva notizia è che questo non sempre sembra un progresso.
+<p>Ma questo è un progresso! Davvero! Anche se la <span class=wtf>traceback</span> evidenzia la stessa riga di codice, è un errore diverso da quello di prima. Progresso! Quindi qual è ora il problema? L'ultima volta che ho controllato, questa riga di codice non provava a concatenare un <code>int</code> con un vettore di byte (<code>bytes</code>). Infatti, avete appena speso un sacco di tempo per <a href=#cantconvertbytesobject>assicurarvi che <var>self._mLastChar</var> fosse un vettore di byte</a>. Come si è trasformato in un <code>int</code>?
+<p>La risposta non è nelle righe di codice precedenti, ma nelle righe seguenti.
 <pre><code>if self._mInputState == ePureAscii:
     if self._highBitDetector.search(aBuf):
         self._mInputState = eHighbyte
@@ -782,8 +782,8 @@ TypeError: unsupported operand type(s) for +: 'int' and 'bytes'</samp></pre>
         self._mInputState = eEscAscii
 
 <mark>self._mLastChar = aBuf[-1]</mark></code></pre>
-<aside>Each item in a string is a string. Each item in a byte array is an integer.</aside>
-<p>This error doesn't occur the first time the <code>feed()</code> method gets called; it occurs the <em>second time</em>, after <var>self._mLastChar</var> has been set to the last byte of <var>aBuf</var>. Well, what's the problem with that? Getting a single element from a byte array yields an integer, not a byte array. To see the difference, follow me to the interactive shell:
+<aside>Ogni elemento in una stringa è una stringa. Ogni elemento in un vettore di byte è un intero.</aside>
+<p>Questo errore non avviene la priam volta che il metodo <code>feed()</code> viene chiamato; avviene la <em>seconda volta</em>, dopo che <var>self._mLastChar</var> è stato impostato all'ultimo byte di <var>aBuf</var>. E quindi, qual è il problema con quello? Recuperare un singolo elemento da un vettore di byte produce un intero, non un vettore di byte. Per vedere la differenza, seguitemi nella shell interattiva:
 <pre class=screen>
 <a><samp class=p>>>> </samp><kbd>aBuf = b'\xEF\xBB\xBF'</kbd>         <span>&#x2460;</span></a>
 <samp class=p>>>> </samp><kbd>len(aBuf)</kbd>
@@ -803,21 +803,21 @@ TypeError: unsupported operand type(s) for +: 'int' and 'bytes'</samp>
 <a><samp class=p>>>> </samp><kbd>mLastChar + aBuf</kbd>               <span>&#x2465;</span></a>
 <samp>b'\xbf\xef\xbb\xbf'</samp></pre>
 <ol>
-<li>Define a byte array of length 3.
-<li>The last element of the byte array is 191.
-<li>That's an integer.
-<li>Concatenating an integer with a byte array doesn't work. You've now replicated the error you just found in <code>universaldetector.py</code>.
-<li>Ah, here's the fix. Instead of taking the last element of the byte array, use <a href=native-datatypes.html#slicinglists>list slicing</a> to create a new byte array containing just the last element. That is, start with the last element and continue the slice until the end of the byte array. Now <var>mLastChar</var> is a byte array of length 1.
-<li>Concatenating a byte array of length 1 with a byte array of length 3 returns a new byte array of length 4.
+<li>Definisce un vettore di byte di lunghezza 3.
+<li>L'ultimo elemento del vettore di byte è 191.
+<li>Quello è un intero.
+<li>Concatenare un intero a un vettore di byte non funziona. Avete ora riprodotto l'errore che avete appena trovato in <code>universaldetector.py</code>.
+<li>Ah, questa è la soluzione. Invece di prendere l'ultimo elemento del vettore di byte, <a href=native-datatypes.html#slicinglists>affettate la lista</a> per creare un nuovo vettore di byte contenente solo l'ultimo elemento. Cioè, cominciate con l'ultimo elemento e continuate la fetta fino alla fine del vettore di byte. Ora <var>mLastChar</var> è un vettore di byte di lunghezza 1.
+<li>Concatenare un vettore di byte di lunghezza 1 con un vettore di byte di lunghezza 3 restituisce un nuovo vettore di byte di lunghezza 4.
 </ol>
-<p>So, to ensure that the <code>feed()</code> method in <code>universaldetector.py</code> continues to work no matter how often it's called, you need to <a href=#cantconvertbytesobject>initialize <var>self._mLastChar</var> as a 0-length byte array</a>, then <em>make sure it stays a byte array</em>.
+<p>Quindi, per assicurarvi che il metodo <code>feed()</code> in <code>universaldetector.py</code> continui a lavorare a prescindere da quanto spesso viene invocato, dovete <a href=#cantconvertbytesobject>inizializzare <var>self._mLastChar</var> come un vettore di byte di lungezza 0</a>, e poi <em>assicurarvi che rimanga un vettore di byte</em>.
 <pre><code>              self._escDetector.search(self._mLastChar + aBuf):
           self._mInputState = eEscAscii
 
 <del>- self._mLastChar = aBuf[-1]</del>
 <ins>+ self._mLastChar = aBuf[-1:]</ins></code></pre>
 <h3 id=ordexpectedstring><code>ord()</code> expected string of length 1, but <code>int</code> found</h3>
-<p>Tired yet? You're almost there&hellip;
+<p>Già stanchi? Ci siete quasi&hellip;
 <pre class=screen><samp class=p>C:\home\chardet> </samp><kbd>python test.py tests\*\*</kbd>
 <samp>tests\ascii\howto.diveintomark.org.xml                       ascii with confidence 1.0
 tests\Big5\0804.blogspot.com.xml</samp>
@@ -833,25 +833,25 @@ tests\Big5\0804.blogspot.com.xml</samp>
   File "C:\home\chardet\chardet\codingstatemachine.py", line 43, in next_state
     byteCls = self._mModel['classTable'][ord(c)]
 TypeError: ord() expected string of length 1, but int found</samp></pre>
-<p>OK, so <var>c</var> is an <code>int</code>, but the <code>ord()</code> function was expecting a 1-character string. Fair enough. Where is <var>c</var> defined?
+<p>OK, quindi <var>c</var> è un <code>int</code>, ma la funzione <code>ord()</code> si aspetta una stringa di 1 carattere. Abbastanza onesto. Dove viene definito <var>c</var>?
 <pre><code># codingstatemachine.py
 def next_state(self, c):
     # for each byte we get its class
     # if it is first byte, we also get byte length
     byteCls = self._mModel['classTable'][ord(c)]</code></pre>
-<p>That's no help; it's just passed into the function. Let's pop the stack.
+<p>Questo non è di aiuto; viene semplicemente passato dentro la funzione. <span class=wtf>Let's pop the stack</span>.
 <pre><code># utf8prober.py
 def feed(self, aBuf):
     for c in aBuf:
         codingState = self._mCodingSM.next_state(c)</code></pre>
-<p>And now we have the answer. Do you see it? In Python 2, <var>aBuf</var> was a string, so <var>c</var> was a 1-character string. (That's what you get when you iterate over a string &mdash; all the characters, one by one.) But now, <var>aBuf</var> is a byte array, so <var>c</var> is an <code>int</code>, not a 1-character string. In other words, there's no need to call the <code>ord()</code> function because <var>c</var> is already an <code>int</code>!
-<p>Thus:
+<p>E ora abbiamo la risposta. La vedete? In Python 2, <var>aBuf</var> era una stringa, quindi <var>c</var> era una stringa di 1 carattere. (Questo è quello che si ottiene quando si itera su una stringa &mdash; tutti i caratteri, uno ad uno.) Ma ora, <var>aBuf</var> è un vettore di byte, quindi <var>c</var> è un <code>int</code>, non una stringa di 1 carattere. In altre parole, non c'è alcun bisogno di chiamare la funzione <code>ord()</code> perché <var>c</var> è già un <code>int</code>!
+<p>Perciò:
 <pre><code>  def next_state(self, c):
       # for each byte we get its class
       # if it is first byte, we also get byte length
 <del>-     byteCls = self._mModel['classTable'][ord(c)]</del>
 <ins>+     byteCls = self._mModel['classTable'][c]</ins></code></pre>
-<p>Searching the entire codebase for instances of <code>"ord(c)"</code> uncovers similar problems in <code>sbcharsetprober.py</code>&hellip;
+<p>Cercando l'intera base di codice per istanze di <code>"ord(c)"</code> scopre problemi simili in <code>sbcharsetprober.py</code>&hellip;
 <pre><code># sbcharsetprober.py
 def feed(self, aBuf):
     if not self._mModel['keepEnglishLetter']:
@@ -861,13 +861,13 @@ def feed(self, aBuf):
         return self.get_state()
     for c in aBuf:
 <mark>        order = self._mModel['charToOrderMap'][ord(c)]</mark></code></pre>
-<p>&hellip;and <code>latin1prober.py</code>&hellip;
+<p>&hellip;e in <code>latin1prober.py</code>&hellip;
 <pre><code># latin1prober.py
 def feed(self, aBuf):
     aBuf = self.filter_with_english_letters(aBuf)
     for c in aBuf:
 <mark>        charClass = Latin1_CharToClass[ord(c)]</mark></code></pre>
-<p><var>c</var> is iterating over <var>aBuf</var>, which means it is an integer, not a 1-character string.  The solution is the same: change <code>ord(c)</code> to just plain <code>c</code>.
+<p><var>c</var> sta iterando su <var>aBuf</var>, il che significa che èun intero, non una stringa di 1 carattere. La soluzione è la stessa: cambiare <code>ord(c)</code> al solo <code>c</code>.
 <pre><code>  # sbcharsetprober.py
   def feed(self, aBuf):
       if not self._mModel['keepEnglishLetter']:
@@ -887,7 +887,7 @@ def feed(self, aBuf):
 <ins>+         charClass = Latin1_CharToClass[c]</ins>
 </code></pre>
 <h3 id=unorderabletypes>Unorderable types: <code>int()</code> >= <code>str()</code></h3>
-<p>Let's go again.
+<p>Continuiamo ancora.
 <pre class=screen><samp class=p>C:\home\chardet> </samp><kbd>python test.py tests\*\*</kbd>
 <samp>tests\ascii\howto.diveintomark.org.xml                       ascii with confidence 1.0
 tests\Big5\0804.blogspot.com.xml</samp>
@@ -905,8 +905,8 @@ tests\Big5\0804.blogspot.com.xml</samp>
   File "C:\home\chardet\chardet\jpcntx.py", line 176, in get_order
     if ((aStr[0] >= '\x81') and (aStr[0] &lt;= '\x9F')) or \
 TypeError: unorderable types: int() >= str()</samp></pre>
-<p>Did you notice? This time around, the code passed the first test case (<code>tests\ascii\howto.diveintomark.org.xml</code>). You're making real progress here.
-<p>So what's this all about? &#8220;Unorderable types&#8221;? Once again, the difference between byte arrays and strings is rearing its ugly head. Take a look at the code:
+<p>Avete notato? Questa volta, il codice ha passato il primo test (<code>tests\ascii\howto.diveintomark.org.xml</code>) con successo. State facendo progressi tangibili qui.
+<p>Quindi di cosa si parla qui? &#8220;Unorderable types&#8221;? Tipi non ordinabili? Ancora una volta, la differenza tra vettori di byte e stringhe sta rialzando la sua ripugnante testa. Date un'occhiata al codice:
 <pre><code>class SJISContextAnalysis(JapaneseContextAnalysis):
     def get_order(self, aStr):
         if not aStr: return -1, 1
@@ -916,7 +916,7 @@ TypeError: unorderable types: int() >= str()</samp></pre>
             charLen = 2
         else:
             charLen = 1</code></pre>
-<p>And where does <var>aStr</var> come from? Let's pop the stack:
+<p>E da dove viene <var>aStr</var>? <span class=wtf>Let's pop the stack</span>:
 <pre><code>def feed(self, aBuf, aLen):
     .
     .
@@ -924,9 +924,9 @@ TypeError: unorderable types: int() >= str()</samp></pre>
     i = self._mNeedToSkipCharNum
     while i &lt; aLen:
 <mark>        order, charLen = self.get_order(aBuf[i:i+2])</mark></code></pre>
-<p>Oh look, it's our old friend, <var>aBuf</var>. As you might have guessed from every other issue we've encountered in this chapter, <var>aBuf</var> is a byte array. Here, the <code>feed()</code> method isn't just passing it on wholesale; it's slicing it. But as you saw <a href=#unsupportedoperandtypeforplus>earlier in this chapter</a>, slicing a byte array returns a byte array, so the <var>aStr</var> parameter that gets passed to the <code>get_order()</code> method is still a byte array.
-<p>And what is this code trying to do with <var>aStr</var>? It's taking the first element of the byte array and comparing it to a string of length 1. In Python 2, that worked, because <var>aStr</var> and <var>aBuf</var> were strings, and <var>aStr[0]</var> would be a string, and you can compare strings for inequality. But in Python 3, <var>aStr</var> and <var>aBuf</var> are byte arrays, <var>aStr[0]</var> is an integer, and you can't compare integers and strings for inequality without explicitly coercing one of them.
-<p>In this case, there's no need to make the code more complicated by adding an explicit coercion. <var>aStr[0]</var> yields an integer; the things you're comparing to are all constants. Let's change them from 1-character strings to integers.
+<p>Oh guardate, è il nostro vecchio amico, <var>aBuf</var>. Come avrete potuto intuire da tutti gli altri problemi che abbiamo incontrato in questo capitolo, <var>aBuf</var> è un vettore di byte. Qui, il metodo <code>feed()</code> non sta semplicemente passandolo tutto intero; lo sta affettando. Ma come avete visto <a href=#unsupportedoperandtypeforplus>precedentemente in questo capitolo</a>, affettare un vettore di byte restituisce un vettore di byte, quindi il parametro <var>aStr</var> che viene passato al metodo <code>get_order()</code> è ancora un vettore di byte.
+<p>E cos'è che questo codice sta cercando di fare con <var>aStr</var>? Prende il primo elemento del vettore di byte e lo confronta con una stringa di lunghezza 1. In Python 2, questo funzionava, perché <var>aStr</var> e <var>aBuf</var> erano stringhe, e <var>aStr[0]</var> sarebbe stata una stringa, e potevate confrontare le stringhe per la disuguaglianza. Ma in Python 3, <var>aStr</var> and <var>aBuf</var> sono vettori di byte, <var>aStr[0]</var> è un intero è non potete confrontare interi e stringhe per la disuguaglianza senza forzare esplicitamente gli uni al tipo delle altre o viceversa.
+<p>In questo caso, non c'è bisogno di rendere il codice più complicato aggiungendo una forzatura esplicita. <var>aStr[0]</var> produce un intero; le cose con le quali state facendo il confronto sono tutte costanti. Cambiamole da stringhe di 1 carattere a interi.
 <pre><code>  class SJISContextAnalysis(JapaneseContextAnalysis):
       def get_order(self, aStr):
           if not aStr: return -1, 1
@@ -979,7 +979,7 @@ TypeError: unorderable types: int() >= str()</samp></pre>
 <ins>+               return aStr[1] - 0xA1, charLen</ins>
 
         return -1, charLen</code></pre>
-<p>Searching the entire codebase for occurrences of the <code>ord()</code> function uncovers the same problem in <code>chardistribution.py</code>:
+<p>Cercando l'intera base di codice per occorrenze della funzione <code>ord()</code> scopre lo stesso problema in <code>chardistribution.py</code>:
 <pre class=screen><samp class=p>C:\home\chardet> </samp><kbd>python test.py tests\*\*</kbd>
 <samp>tests\ascii\howto.diveintomark.org.xml                       ascii with confidence 1.0
 tests\Big5\0804.blogspot.com.xml</samp>
@@ -997,7 +997,7 @@ tests\Big5\0804.blogspot.com.xml</samp>
   File "C:\home\chardet\chardet\chardistribution.py", line 174, in get_order
     if (aStr[0] >= '\x81') and (aStr[0] &lt;= '\x9F'):
 TypeError: unorderable types: int() >= str()</samp></pre>
-<p>The fix is the same:
+<p>La soluzione è la stessa:
 <pre><code>  class EUCTWDistributionAnalysis(CharDistributionAnalysis):
       def __init__(self):
           CharDistributionAnalysis.__init__(self)
@@ -1103,7 +1103,7 @@ TypeError: unorderable types: int() >= str()</samp></pre>
           else:
               return -1</code></pre>
 <h3 id=reduceisnotdefined>Global name <code>'reduce'</code> is not defined</h3>
-<p>Once more into the breach&hellip;
+<p>Ancora una volta nella breccia&hellip;
 <pre class=screen><samp class=p>C:\home\chardet> </samp><kbd>python test.py tests\*\*</kbd>
 <samp>tests\ascii\howto.diveintomark.org.xml                       ascii with confidence 1.0
 tests\Big5\0804.blogspot.com.xml</samp>
@@ -1115,21 +1115,21 @@ tests\Big5\0804.blogspot.com.xml</samp>
   File "C:\home\chardet\chardet\latin1prober.py", line 126, in get_confidence
     total = reduce(operator.add, self._mFreqCounter)
 NameError: global name 'reduce' is not defined</samp></pre>
-<p>According to the official <a href=http://docs.python.org/3.0/whatsnew/3.0.html#builtins>What's New In Python 3.0</a> guide, the <code>reduce()</code> function has been moved out of the global namespace and into the <code>functools</code> module. Quoting the guide: "Use <code>functools.reduce()</code> if you really need it; however, 99 percent of the time an explicit <code>for</code> loop is more readable." You can read more about the decision from Guido van Rossum's weblog: <a href="http://www.artima.com/weblogs/viewpost.jsp?thread=98196">The fate of reduce() in Python 3000</a>.
+<p>Secondo la guida ufficiale a cosa c'è di nuovo in Python 3, <a href=http://docs.python.org/3.0/whatsnew/3.0.html#builtins>What's New In Python 3.0</a>, la funzione <code>reduce()</code> è stata spostata dallo spazio di nomi globale nel modulo <code>functools</code>. Per citare la guida: "Usate <code>functools.reduce()</code> se proprio ne avete bisogno; comunque, il 99 per cento delle volte un esplicito ciclo <code>for</code> è più leggibile." Potete approfondire le motivazioni di questa decisione sul blog di Guido van Rossum: <a href="http://www.artima.com/weblogs/viewpost.jsp?thread=98196">The fate of reduce() in Python 3000</a>. (Il destino di <code>reduce()</code> in Python 3000.)
 <pre><code>def get_confidence(self):
     if self.get_state() == constants.eNotMe:
         return 0.01
   
 <mark>    total = reduce(operator.add, self._mFreqCounter)</mark></code></pre>
-<p>The <code>reduce()</code> function takes two arguments &mdash; a function and a list (strictly speaking, any iterable object will do) &mdash; and applies the function cumulatively to each item of the list. In other words, this is a fancy and roundabout way of adding up all the items in a list and returning the result.
-<p>This monstrosity was so common that Python added a global <code>sum()</code> function.
+<p>La funzione <code>reduce()</code> prende due argomenti &mdash; una funzione e una lista (strettamente parlando, qualsiasi oggetto iterabile potrebbe andare) &mdash; e applica una funzione cumulativamente a ogni elemento nella lista. In altre parole, questo è un modo elaborato e tortuoso di sommare tutti gli elementi in una lista e restituire il risultato.
+<p>Questa mostruosità era così comune che Pyhon ha aggiunto una funzione globale <code>sum()</code>.
 <pre><code>  def get_confidence(self):
       if self.get_state() == constants.eNotMe:
           return 0.01
   
 <del>-     total = reduce(operator.add, self._mFreqCounter)</del>
 <ins>+     total = sum(self._mFreqCounter)</ins></code></pre>
-<p>Since you're no longer using the <code>operator</code> module, you can remove that <code>import</code> from the top of the file as well.
+<p>Dato che non state più usando il modulo <code>operator</code>, potete anche rimuovere quella istruzione di <code>import</code> dall'inizio del file.
 <pre><code>  from .charsetprober import CharSetProber
   from . import constants
 <del>- import operator</del></code></pre>
@@ -1168,16 +1168,17 @@ tests\EUC-JP\arclamp.jp.xml                                  EUC-JP with confide
 .
 .
 316 tests</samp></pre>
-<p>Holy crap, it actually works! <em><a href=http://www.hampsterdance.com/>/me does a little dance</a></em>
-<h2 id=summary>Summary</h2>
-<p>What have we learned?
+<p>Porca puttana, funziona davvero! <em><a href=http://www.hampsterdance.com/>/me fa una piccola danza</a></em>
+<h2 id=summary>Riepilogo</h2>
+<p>Che cosa abbiamo imparato?
 <ol>
-<li>Porting any non-trivial amount of code from Python 2 to Python 3 is going to be a pain. There's no way around it. It's hard.
-<li>The <a href=porting-code-to-python-3-with-2to3.html>automated <code>2to3</code> tool</a> is helpful as far as it goes, but it will only do the easy parts &mdash; function renames, module renames, syntax changes. It's an impressive piece of engineering, but in the end it's just an intelligent search-and-replace bot.
-<li>The #1 porting problem in this library was the difference between strings and bytes. In this case that seems obvious, since the whole point of the <code>chardet</code> library is to convert a stream of bytes into a string. But &#8220;a stream of bytes&#8221; comes up more often than you might think. Reading a file in &#8220;binary&#8221; mode? You'll get a stream of bytes. Fetching a web page? Calling a web <abbr>API</abbr>? They return a stream of bytes, too.
-<li><em>You</em> need to understand your program. Thoroughly. Preferably because you wrote it, but at the very least, you need to be comfortable with all its quirks and musty corners. The bugs are everywhere.
-<li>Test cases are essential. Don't port anything without them. Don't even try. The <em>only</em> reason I have any confidence at all that <code>chardet</code> works in Python 3 is because I had a test suite that exercised every line of code in the entire library. I <em>never</em> would have found half of these problems with manual spot-checking.
+<li>Convertire qualsiasi quantità non banale di codice da Python 2 verso Python 3 sarà doloroso. Non c'è alcun modo di evitarlo. &Egrave; difficile.
+<li>Lo <a href=porting-code-to-python-3-with-2to3.html>stumento automatico <code>2to3</code></a> è utile per quello che può fare, ma farà solo la parte facile &mdash; rinominerà le funzioni e i moduli, modificherà la sintassi. &Egrave; un impressionante esempio di ingegneria, ma alla fine è solo un automa intelligente per la ricerca e la sostituzione.
+<li>Il problema numero 1 in questa libreria era la differenza tra stringhe e byte. In questo caso quello sembrava ovvio, dato che l'intero punto della libreria <code>chardet</code> è convertire un flusso di byte in una stringa. Ma &#8220;un flusso di byte&#8221; viene fuori molto più spesso di quanto possiate immaginare. Leggete un file in modalità &#8220;binaria&#8221;? Avrete un flusso di byte. Recuperate una pagina web? Chiamate una <abbr>API</abbr> web? Anche quelle restituiscono un flusso di byte.
+<li><em>Voi</em> avete bisogno di capire il vostro programma. Completamente. Preferibilmente perché lo avete scritto, ma almeno, avete bisogno di trovarvi a vostro agio con tutte le sue stranezze e i suoi angoli ammuffiti. I bug si annidano dovunque.
+<li>I test sono essenziali. Non convertite nulla senza di loro. Non provateci nemmeno. L'<em>unica</em> ragione per cui ho una qualche confidenza che <code>chardet</code> funzioni in Python 3 è perché avevo una <span class=wtf>test suite</span> che esercitava ogni riga di codice nell'intera libreria. Non sarei <em>mai</em> riuscito a trovare la metà di questi problemi facendo una ricerca manuale.
 </ol>
-<p class=c>&copy; 2001&ndash;9 <a href=about.html>Mark Pilgrim</a>
+<p class=c>&copy; 2001&ndash;9 <a href=about.html>Mark Pilgrim</a><br>
+&copy; 2009 <a href=translation.html>Giulio Piancastelli</a> per la traduzione italiana
 <script src=jquery.js></script>
 <script src=dip3.js></script>
