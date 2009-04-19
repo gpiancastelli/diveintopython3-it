@@ -28,7 +28,7 @@ td pre{padding:0;border:0}
 <p id=toc>&nbsp;
 <h2 id=divingin>Immersione!</h2>
 <p class=f>Virtualmente tutti i programmi scritti in Python 2 avranno bisogno almeno di qualche ritocco per essere eseguiti correttamente sotto Python 3. Per aiutare con questa transizione, Python 3 comprende uno script di utilità chiamato <code>2to3</code>, che prende il vostro codice sorgente in Python 2 in ingresso e lo converte automaticamente verso Python 3 tanto quanto gli è possibile. <a href=caso-di-studio-convertire-chardet-verso-python-3.html#running2to3>Caso di studio: convertire <code>chardet</code> verso Python 3</a> descrive come eseguire lo script <code>2to3</code>, poi mostra alcune cose che esso non riesce a correggere automaticamente. Questa appendice documenta ciò che lo script <em>può</em> correggere automaticamente
-<h2 id=print>Istruzione <code>print</code></h2>
+<h2 id=print>L'istruzione <code>print</code></h2>
 <p>In Python 2, <code>print</code> era una istruzione. Qualsiasi cosa volevate stampare semplicemente seguiva la parola chiave <code>print</code>. In Python 3, <code>print()</code> è una funzione &mdash; ogni cosa che volete stampare è passata a <code>print()</code> come qualsiasi altra funzione.
 <table>
 <tr>
@@ -258,15 +258,15 @@ from urllib2 import HTTPError</code></pre></td>
 from urllib.error import HTTPError</code></pre></td></tr>
 </table>
 <ol>
-<li>The old <code>urllib</code> module in Python 2 had a variety of functions, including <code>urlopen()</code> for fetching data and <code>splittype()</code>, <code>splithost()</code>, and <code>splituser()</code> for splitting a <abbr>URL</abbr> into its constituent parts. These functions have been reorganized more logically within the new <code>urllib</code> package. <code>2to3</code> will also change all calls to these functions so they use the new naming scheme.
-<li>The old <code>urllib2</code> module in Python 2 has been folded into into the <code>urllib</code> package in Python 3. All your <code>urllib2</code> favorites &mdash; the <code>build_opener()</code> method, <code>Request</code> objects, and <code>HTTPBasicAuthHandler</code> and friends &mdash; are still available.
-<li>The <code>urllib.parse</code> module in Python 3 contains all the parsing functions from the old <code>urlparse</code> module in Python 2.
-<li>The <code>urllib.robotparser</code> module parses <a href=http://www.robotstxt.org/><code>robots.txt</code> files</a>.
-<li>The <code>FancyURLopener</code> class, which handles <abbr>HTTP</abbr> redirects and other status codes, is still available in the new <code>urllib.request</code> module. The <code>urlencode</code> function has moved to <code>urllib.parse</code>.
-<li>The <code>Request</code> object is still available in <code>urllib.request</code>, but constants like <code>HTTPError</code> have been moved to <code>urllib.error</code>.
+<li>Il vecchio modulo <code>urllib</code> di Python 2 aveva una varietà di funzioni, comprese <code>urlopen()</code> per recuperare dati e <code>splittype()</code>, <code>splithost()</code>, e <code>splituser()</code> per dividere un <abbr>URL</abbr> nelle sue parti costituenti. Queste funzioni sono state riorganizzate più logicamente nell'ambito del nuovo pacchetto <code>urllib</code>. <code>2to3</code> cambierà anche tutte le chiamate a queste funzioni in modo da usare il nuovo schema di nomi.
+<li>Il vecchio modulo <code>urllib2</code> di Python 2 è stato ripiegato nel pacchetto <code>urllib</code> in Python 3. Tutte le vostre funzionalità preferite di <code>urllib2</code> &mdash; il metodo <code>build_opener()</code> method, gli oggetti <code>Request</code>, e <code>HTTPBasicAuthHandler</code> e compagnia &mdash; sono ancora disponibili.
+<li>Il modulo <code>urllib.parse</code> di Python 3 contiene tutte le funzioni di riconoscimento del vecchio modulo <code>urlparse</code> di Python 2.
+<li>Il modulo <code>urllib.robotparser</code> riconosce i <a href=http://www.robotstxt.org/>file <code>robots.txt</code></a>.
+<li>La classe <code>FancyURLopener</code>, che gestisce le redirezioni <abbr>HTTP</abbr> e altri codici di stato, è ancora disponibile nel nuovo modulo <code>urllib.request</code>. La funzione <code>urlencode()</code> è stata spostata in <code>urllib.parse</code>.
+<li>L'oggetto <code>Request</code> è ancora disponibile in <code>urllib.request</code>, ma costanti come <code>HTTPError</code> sono state spostate in <code>urllib.error</code>.
 </ol>
 <h3 id=dbm><code>dbm</code></h3>
-<p>All the various <abbr>DBM</abbr> clones are now in a single package, <code>dbm</code>. If you need a specific variant like <abbr>GNU</abbr> <abbr>DBM</abbr>, you can import the appropriate module within the <code>dbm</code> package.
+<p>Tutti i vari cloni di <abbr>DBM</abbr> si trovano ora in un singolo pacchetto, <code>dbm</code>. Se avete bisogno di una specifica variante come <abbr>GNU</abbr> <abbr>DBM</abbr>, potete importare il modulo appropriate nell'ambito del pacchetto <code>dbm</code>.
 <table>
 <tr><th>Notes</th>
 <th>Python 2</th>
@@ -290,7 +290,7 @@ import whichdb</code></pre></td>
 <td><code>import dbm</code></td></tr>
 </table>
 <h3 id=xmlrpc><code>xmlrpc</code></h3>
-<p><abbr>XML-RPC</abbr> is a lightweight method of performing remote <abbr>RPC</abbr> calls over <abbr>HTTP</abbr>. The <abbr>XML-RPC</abbr> client library and several <abbr>XML-RPC</abbr> server implementations are now combined in a single package, <code>xmlrpc</code>.
+<p><abbr>XML-RPC</abbr> è un metodo leggero per eseguire chiamate <abbr>RPC</abbr> remote su <abbr>HTTP</abbr>. La libreria client di <abbr>XML-RPC</abbr> e diverse implementazioni di server <abbr>XML-RPC</abbr> sono ora combinate in un singolo pacchetto, <code>xmlrpc</code>.
 <table>
 <tr><th>Notes</th>
 <th>Python 2</th>
@@ -304,7 +304,7 @@ import whichdb</code></pre></td>
 import SimpleXMLRPCServer</code></pre></td>
 <td><code>import xmlrpc.server</code></td></tr>
 </table>
-<h3 id=othermodules>Other modules</h3>
+<h3 id=othermodules>Altri moduli</h3>
 <table>
 <tr><th>Notes</th>
 <th>Python 2</th>
@@ -345,19 +345,19 @@ except ImportError:
 <td><code>import subprocess</code></td></tr>
 </table>
 <ol>
-<li>A common idiom in Python 2 was to try to import <code>cStringIO as StringIO</code>, and if that failed, to import <code>StringIO</code> instead. Do not do this in Python 3; the <code>io</code> module does it for you. It will find the fastest implementation available and use it automatically.
-<li>A similar idiom was used to import the fastest pickle implementation. Do not do this in Python 3; the <code>pickle</code> module does it for you.
-<li>The <code>builtins</code> module contains the global functions, classes, and constants used throughout the Python language. Redefining a function in the <code>builtins</code> module will redefine the global function everywhere. That is exactly as powerful and scary as it sounds.
-<li>The <code>copyreg</code> module adds pickle support for custom types defined in C.
-<li>The <code>queue</code> module implements a multi-producer, multi-consumer queue.
-<li>The <code>socketserver</code> module provides generic base classes for implementing different kinds of socket servers.
-<li>The <code>configparser</code> module parses <abbr>INI</abbr>-style configuration files.
-<li>The <code>reprlib</code> module reimplements the built-in <code>repr()</code> function, but with limits on how many values are represented.
-<li>The <code>subprocess</code> module allows you to spawn processes, connect to their pipes, and obtain their return codes.
+<li>Un idioma comune in Python 2 era quello di importare <code>cStringIO as StringIO</code>, e se questo falliva, importare <code>StringIO</code> al suo posto. Non fatelo in Python 3; il modulo <code>io</code> lo fa per voi. Troverà l'implementazione più veloce disponibile e la utilizzerà automaticamente.
+<li>Un simile idioma veniva usato per importare l'implementazione di <span class=wtf>pickle</span> più veloce. Non fatelo in Python 3; il modulo <code>pickle</code> lo fa per voi.
+<li>Il modulo <code>builtins</code> contiene le funzioni globali, le classi e le costanti usate in tutto il linguaggio Python. Ridefinire un funzione nel modulo <code>builtins</code> ridefinirà la funzione globale ovunque. Questo è esattamente tanto potente e spaventoso quanto sembra.
+<li>Il modulo <code>copyreg</code> aggiunge il supporto per pickle ai tipi personalizzati definiti in C.
+<li>Il modulo <code>queue</code> implementa una coda con supporto per produttori e consumatori multipli.
+<li>Il modulo <code>socketserver</code> fornisce classi basi generiche per implementare differenti tipi di server per le socket.
+<li>Il modulo <code>configparser</code> riconosce i file di configurazione sullo stile dei file <abbr>INI</abbr>.
+<li>Il modulo <code>reprlib</code> reimplementa la funzione built-in <code>repr()</code>, introducendo dei limiti su quanti valori sono rappresentati.
+<li>Il modulo <code>subprocess</code> vi permette di creare processi, connetterli alle loro pipe, e ottenere i loro codici di ritorno.
 </ol>
-<h2 id=import>Relative imports within a package</h2>
-<p>A package is a group of related modules that function as a single entity. In Python 2, when modules within a package need to reference each other, you use <code>import foo</code> or <code>from foo import Bar</code>. The Python 2 interpreter first searches within the current package to find <code>foo.py</code>, and then moves on to the other directories in the Python search path (<code>sys.path</code>). Python 3 works a bit differently. Instead of searching the current package, it goes directly to the Python search path. If you want one module within a package to import another module in the same package, you need to explicitly provide the relative path between the two modules.
-<p>Suppose you had this package, with multiple files in the same directory:
+<h2 id=import>Importazioni relative nell'ambito di un pacchetto</h2>
+<p>Un pacchetto è un gruppo di moduli correlati che funziona come una singola entità. In Python 2, quando i moduli all'interno di un pacchetto devono fare riferimento gli uni agli altri, si usa l'idioma <code>import foo</code> oppure <code>from foo import Bar</code>. L'interprete Python 2 prima cerca nell'ambito del pacchetto corrente per trovare <code>foo.py</code>, e poi si sposta nelle altre directory contenute nel percorso di ricerca di Python (<code>sys.path</code>). Python 3 funziona in modo leggermente diverso. Invece di cercare nel pacchetto corrente, si sposta direttamente al percorso di ricerca di Python. Se volete che un modulo in un pacchetto importi un altro modulo nello stesso pacchetto, dovete esplicitamente fornire il percorso relativo tra i due moduli.
+<p>Supponete di avere questo pacchetto, con più file nella stessa directory:
 <pre>chardet/
 |
 +--__init__.py
@@ -367,7 +367,7 @@ except ImportError:
 +--mbcharsetprober.py
 |
 +--universaldetector.py</pre>
-<p>Now suppose that <code>universaldetector.py</code> needs to import the entire <code>constants.py</code> file and one class from <code>mbcharsetprober.py</code>. How do you do it?
+<p>Ora supponete che <code>universaldetector.py</code> abbia bisogno di importare l'intero file <code>constants.py</code> e una classe da <code>mbcharsetprober.py</code>. Come fareste?
 <table>
 <tr><th>Notes</th>
 <th>Python 2</th>
@@ -381,11 +381,11 @@ except ImportError:
 <td><code>from .mbcharsetprober import MultiByteCharsetProber</code></td></tr>
 </table>
 <ol>
-<li>When you need to import an entire module from elsewhere in your package, use the new <code>from . import</code> syntax. The period is actually a relative path from this file (<code>universaldetector.py</code>) to the file you want to import (<code>constants.py</code>). In this case, they are in the same directory, thus the single period. You can also import from the parent directory (<code>from .. import anothermodule</code>) or a subdirectory.
-<li>To import a specific class or function from another module directly into your module's namespace, prefix the target module with a relative path, minus the trailing slash. In this case, <code>mbcharsetprober.py</code> is in the same directory as <code>universaldetector.py</code>, so the path is a single period. You can also import form the parent directory (<code>from ..anothermodule import AnotherClass</code>) or a subdirectory.
+<li>Quando dovete importare un intero modulo da qualche parte nel vostro pacchetto, usate la nuova sintassi <code>from . import</code>. Il punto è in realtà il percorso relativo da questo file (<code>universaldetector.py</code>) al file che volete importare (<code>constants.py</code>). In questo caso, sono nella stessa directory, quindi è sufficiente un singolo punto. Potete anche importare dalla directory genitore (<code>from .. import anothermodule</code>) o da una sottodirectory.
+<li>Per importare una specifica classe o funzione da un altro modulo direttamente nello spazio di nomi del vostro modulo, prefissate il modulo obiettivo con un percorso relativo, meno lo slash finale. In questo caso, <code>mbcharsetprober.py</code> è nella stessa directory di <code>universaldetector.py</code>, quindi il percorso è un singolo punto. Potete anche importare dalla directory genitore (<code>from ..anothermodule import AnotherClass</code>) o da una sottodirectory.
 </ol>
-<h2 id=next><code>next()</code> iterator method</h2>
-<p>In Python 2, iterators had a <code>next()</code> method which returned the next item in the sequence. That's still true in Python 3, but there is now also a global <code>next()</code> function that takes an iterator as an argument.
+<h2 id=next>Il metodo <code>next()</code> degli iteratori</h2>
+<p>In Python 2, gli iteratori hanno un metodo <code>next()</code> che restituisce l'elemento successivo nella sequenza. Questo è ancora vero in Python 3, ma c'è anche una funzione globale <code>next()</code> che prende un iteratore come argomento.
 <table>
 <tr><th>Notes</th>
 <th>Python 2</th>
@@ -418,14 +418,14 @@ for an_iterator in a_sequence_of_iterators:
     an_iterator.__next__()</code></pre></td></tr>
 </table>
 <ol>
-<li>In the simplest case, instead of calling an iterator's <code>next()</code> method, you now pass the iterator itself to the global <code>next()</code> function.
-<li>If you have a function that returns an iterator, call the function and pass the result to the <code>next()</code> function. (The <code>2to3</code> script is smart enough to convert this properly.)
-<li>If you define your own class and mean to use it as an iterator, define the <code>__next__()</code> special method.
-<li>If you define your own class and just happen to have a method named <code>next()</code> that takes one or more arguments, <code>2to3</code> will not touch it. This class can not be used as an iterator, because its <code>next()</code> method takes arguments.
-<li>This one is a bit tricky. If you have a local variable named <var>next</var>, then it takes precedence over the new global <code>next()</code> function. In this case, you need to call the iterator's special <code>__next()__</code> method to get the next item in the sequence. (Alternatively, you could also refactor the code so the local variable wasn't named <var>next</var>, but <code>2to3</code> will not do that for you automatically.)
+<li>Nel caso più semplice, invece di chiamare il metodo <code>next()</code> di un iteratore, ora passate l'iteratore stesso alla funzione globale <code>next()</code>.
+<li>Se avete una funzione che restituisce un iteratore, chiamate la funzione e passate il risultato alla funzione <code>next(). (Lo script <code>2to3</code> è abbastanza intelligente da convertire questo in maniera appropriata.)
+<li>Se definite la vostra classe e volete usarla come un iteratore, definite il metodo speciale <code>__next__()</code>.
+<li>Se definite la vostra classe e vi capita che abbia un metodo chiamato <code>next()</code> che prende uno o più argomenti, <code>2to3</code> non lo toccherà. Questa classe non può essere usata come un iteratore, perché il suo metodo <code>next()</code> accetta degli argomenti.
+<li>Questo è un po' complicato. Se avete una variabile locale chiamata <var>next</var>, allora essa ha precedenza sulla funzione globale <code>next()</code>. In questo caso, dovete chiamare il metodo speciale <code>__next__()</code> dell'iteratore per ottenere l'elemento successivo nella sequenza. (Alternativamente, potreste anche modificare il codice in modo che la variabile locale non sia più chiamata <var>next</var>, ma <code>2to3</code> non lo farà automaticamente per voi.)
 </ol>
-<h2 id=filter><code>filter()</code> global function</h2>
-<p>In Python 2, the <code>filter()</code> function returned a list, the result of filtering a sequence through a function that returned <code>True</code> or <code>False</code> for each item in the sequence. In Python 3, the <code>filter()</code> function returns an iterator, not a list.
+<h2 id=filter>La funzione globale <code>filter()</code></h2>
+<p>In Python 2, la funzione <code>filter()</code> restituiva una lista, il risultato di filtrare una sequenza attraverso una funzione che restituiva <code>True</code> o <code>False</code> per ogni elemento della sequenza. In Python 3, la funzione <code>filter()</code> restituisce un iteratore, non una lista.
 <table>
 <tr><th>Notes</th>
 <th>Python 2</th>
@@ -448,14 +448,14 @@ for an_iterator in a_sequence_of_iterators:
 <td><i>no change</i></td></tr>
 </table>
 <ol>
-<li>In the most basic case, <code>2to3</code> will wrap a call to <code>filter()</code> with a call to <code>list()</code>, which simply iterates through its argument and returns a real list.
-<li>However, if the call to <code>filter()</code> is <em>already</em> wrapped in <code>list()</code>, <code>2to3</code> will do nothing, since the fact that <code>filter()</code> is returning an iterator is irrelevant.
-<li>For the special syntax of <code>filter(None, ...)</code>, <code>2to3</code> will transform the call into a semantically equivalent list comprehension.
-<li>In contexts like <code>for</code> loops, which iterate through the entire sequence anyway, no changes are necessary.
-<li>Again, no changes are necessary, because the list comprehension will iterate through the entire sequence, and it can do that just as well if <code>filter()</code> returns an iterator as if it returns a list.
+<li>Nel caso più basilare, <code>2to3</code> circonderà la chiamata a <code>filter()</code> con una chiamata a <code>list()</code>, che semplicemente itera attraverso il suo argomento e restituisce una vera lista.
+<li>Comunque, se la chiamata a <code>filter()</code> è <em>già</em> circondata da <code>list()</code>, <code>2to3</code> non farà nulla, dato che il fatto che <code>filter()</code> restituisca un iteratore è irrilevante.
+<li>Per la sintassi speciale di <code>filter(None, ...)</code>, <code>2to3</code> trasformerà la chiamata in una <span class=wtf>list comprehension</span> semanticamente equivalente.
+<li>In contesti come i cicli <code>for</code>, che iterano comunque attraverso l'intera sequenza, non sono necessari cambiamenti.
+<li>Ancora, non sono necessari cambiamenti, perché la <span class=wtf>list comprehension</span> itererà attraverso l'intera sequenza, e lo può fare altrettanto bene sia che <code>filter()</code> restituisca un iteratore sia che restituisca una lista.
 </ol>
-<h2 id=map><code>map()</code> global function</h2>
-<p>In much the same way as <a href=#filter><code>filter()</code></a>, the <code>map()</code> function now returns an iterator. (In Python 2, it returned a list.)
+<h2 id=map>La funzione globale <code>map()</code></h2>
+<p>In maniera molto simile a <a href=#filter><code>filter()</code></a>, la funzione <code>map()</code> ora restituisce un iteratore. (In Python 2, restituiva una lista.)
 <table>
 <tr><th>Notes</th>
 <th>Python 2</th>
@@ -478,14 +478,14 @@ for an_iterator in a_sequence_of_iterators:
 <td><i>no change</i></td></tr>
 </table>
 <ol>
-<li>As with <code>filter()</code>, in the most basic case, <code>2to3</code> will wrap a call to <code>map()</code> with a call to <code>list()</code>.
-<li>For the special syntax of <code>map(None, ...)</code>, the identity function, <code>2to3</code> will convert it to an equivalent call to <code>list()</code>.
-<li>If the first argument to <code>map()</code> is a lambda function, <code>2to3</code> will convert it to an equivalent list comprehension.
-<li>In contexts like <code>for</code> loops, which iterate through the entire sequence anyway, no changes are necessary.
-<li>Again, no changes are necessary, because the list comprehension will iterate through the entire sequence, and it can do that just as well if <code>map()</code> returns an iterator as if it returns a list.
+<li>Come con <code>filter()</code>, nel caso più basilare, <code>2to3</code> circonderà la chiamata a <code>map()</code> con una chiamata a <code>list()</code>.
+<li>Per la sintassi speciale di <code>map(None, ...)</code>, la funzione identità, <code>2to3</code> la convertirà in una equivalente chiamata a <code>list()</code>.
+<li>Se il primo argomento di <code>map()</code> è una funzine lambda, <code>2to3</code> la convertirà in una <span class=wtf>list comprehension</span> semanticamente equivalente.
+<li>In contesti come i cicli <code>for</code>, che iterano comunque attraverso l'intera sequenza, non sono necessari cambiamenti.
+<li>Ancora, non sono necessari cambiamenti, perché la <span class=wtf>list comprehension</span> itererà attraverso l'intera sequenza, e lo può fare altrettanto bene sia che <code>map()</code> restituisca un iteratore sia che restituisca una lista.
 </ol>
-<h2 id=reduce><code>reduce()</code> global function (3.1+)</h2>
-<p>In Python 3, the <code>reduce()</code> function has been removed from the global namespace and placed in the <code>functools</code> module.
+<h2 id=reduce>La funzione globale <code>reduce()</code> (3.1+)</h2>
+<p>In Python 3, la funzione <code>reduce()</code> è stata rimossa dallo spazio di nomi globale e piazzata nel modulo <code>functools</code>.
 <table>
 <tr><th>Notes</th>
 <th>Python 2</th>
@@ -497,10 +497,10 @@ for an_iterator in a_sequence_of_iterators:
 reduce(a, b, c)</code></pre></td></tr>
 </table>
 <blockquote>
-<p><span>&#x261E;</span>The version of <code>2to3</code> that shipped with Python 3.0 would not fix the <code>reduce()</code> function automatically. The fix first appeared in the <code>2to3</code> script that shipped with Python 3.1.
+<p><span>&#x261E;</span>La versione di <code>2to3</code> rilasciata con Python 3.0 non correggerà la funzione <code>reduce()</code> automaticamente. La correzione è apparsa per la prima volta nello script <code>2to3</code> che verrà rilasciato con Python 3.1.
 </blockquote>
-<h2 id=apply><code>apply()</code> global function</h2>
-<p>Python 2 had a global function called <code>apply()</code>, which took a function <var>f</var> and a list <code>[a, b, c]</code> and returned <code>f(a, b, c)</code>. In Python 3, the <code>apply()</code> function no longer exists. Instead, there is a new function calling syntax that allows you to pass a list and have Python apply the list as the function's arguments.
+<h2 id=apply>La funzione globale <code>apply()</code></h2>
+<p>Python 2 ha una funzione globale chiamata <code>apply()</code>, che prende una funzione <var>f</var> e una lista <code>[a, b, c]</code> e restituisce <code>f(a, b, c)</code>. In Python 3, la funzione <code>apply()</code> non esiste più. Al suo posto, c'è una nuova sintassi per la chiamata a funzione che vi permette di passare una lista e avere Python che applica la lista come gli argomenti della funzione.
 <table>
 <tr><th>Notes</th>
 <th>Python 2</th>
@@ -520,13 +520,13 @@ reduce(a, b, c)</code></pre></td></tr>
 <td><code>aModule.a_function(*a_list_of_args)</code></td></tr>
 </table>
 <ol>
-<li>In the simplest form, you can call a function with a list of arguments (an actual list like <code>[a, b, c]</code>) by prepending the list with an asterisk (<code>*</code>). This is exactly equivalent to the old <code>apply()</code> function in Python 2.
-<li>In Python 2, the <code>apply()</code> function could actually take three parameters: a function, a list of arguments, and a dictionary of named arguments. In Python 3, you can accomplish the same thing by prepending the list of arguments with an asterisk (<code>*</code>) and the dictionary of named arguments with two asterisks (<code>**</code>).
-<li>The <code>+</code> operator, used here for list concatenation, takes precedence over the <code>*</code> operator, so there is no need for extra parentheses around <code>a_list_of_args + z</code>.
-<li>The <code>2to3</code> script is smart enough to convert complex <code>apply()</code> calls, including calling functions within imported modules.
+<li>Nella forma più semplice, potete chiamare una funzione con una lista di argomenti (una lista reale come <code>[a, b, c]</code>) facendo precedere la lista da un asterisco (<code>*</code>). Questo è esattamente equivalente alla vecchia funzione <code>apply()</code> di Python 2.
+<li>In Python 2, la funzione <code>apply()</code> poteva in realtà accettare tre parametri: una funzione, una lista di argomenti, e un dizionario di argomenti con nomi. In Python 3, potete ottenere la stessa cosa facendo precedere la lista di argomenti da un asterisco (<code>*</code>) e il dizionario di argomenti con nomi da due asterischi (<code>**</code>).
+<li>L'operatore <code>+</code>, usato qui per concatenare liste, ha precedenza sull'operatore <code>*</code>, quindi non c'è bisogno di parentesi aggiuntive attorno a <code>a_list_of_args + z</code>.
+<li>Lo script <code>2to3</code> è abbastanza scaltro da convertire chiamate complesse ad <code>apply()</code>, comprese chiamate a funzioni contenute in moduli importati.
 </ol>
-<h2 id=intern><code>intern()</code> global function</h2>
-<p>In Python 2, you could call the <code>intern()</code> function on a string to intern it as a performance optimization. In Python 3, the <code>intern()</code> function has been moved to the <code>sys</code> module.
+<h2 id=intern>La funzione globale <code>intern()</code></h2>
+<p>In Python 2, potete chiamare la funzione <code>intern()</code> su una stringa per <span class=wtf>intern</span>arla come una ottimizzazione delle prestazioni. In Python 3, la funzione <code>intern()</code> è stata spostata nel modulo <code>sys</code>.
 <table>
 <tr><th>Notes</th>
 <th>Python 2</th>
@@ -536,8 +536,8 @@ reduce(a, b, c)</code></pre></td></tr>
 <td><code>intern(aString)</code></td>
 <td><code>sys.intern(aString)</code></td></tr>
 </table>
-<h2 id=exec><code>exec</code> statement</h2>
-<p>Just as <a href=#print>the <code>print</code> statement</a> became a function in Python 3, so too has the <code>exec</code> statement. The <code>exec()</code> function takes a string which contains arbitrary Python code and executes it as if it were just another statement or expression.
+<h2 id=exec>L'istruzione <code>exec</code></h2>
+<p>Esattamente come <a href=#print>l'istruzione <code>print</code></a> è diventata una funzione in Python 3, così è successo anche all'istruzione <code>exec</code>. La funzione <code>exec()</code> prende una stringa che contiene codice Python arbitrario e la esegue come se fosse solo un'altra istruzione o espressione.
 <table>
 <tr><th>Notes</th>
 <th>Python 2</th>
@@ -554,12 +554,12 @@ reduce(a, b, c)</code></pre></td></tr>
 <td><code>exec(codeString, a_global_namespace, a_local_namespace)</code></td></tr>
 </table>
 <ol>
-<li>In the simplest form, the <code>2to3</code> script simply encloses the code-as-a-string in parentheses, since <code>exec()</code> is now a function instead of a statement.
-<li>The old <code>exec</code> statement could take a namespace, a private environment of globals in which the code-as-a-string would be executed. Python 3 can also do this; just pass the namespace as the second argument to the <code>exec()</code> function.
-<li>Even fancier, the old <code>exec</code> statement could also take a local namespace (like the variables defined within a function). In Python 3, the <code>exec()</code> function can do that too.
+<li>Nella sua forma più semplice, lo script <code>2to3</code> racchiude semplicemente tra parentesi il codice sotto forma di stringa, dato che <code>exec()</code> è ora una funzione invece di una istruzione.
+<li>La vecchia istruzione <code>exec</code> poteva prendere uno spazio di nomi, un ambiente privato di nomi globali in cui il codice sotto forma di stringa sarebbe stato eseguito. Anche Python 3 può farlo; basta passare lo spazio di nomi come secondo argomento alla funzione <code>exec()</code>.
+<li>In maniera ancora più elaborata, la vecchia istruzione <code>exec</code> poteva anche prendere uno spazio di nomi locali (come le variabili definite nell'ambito di una funzione). In Python 3, la funzione <code>exec()</code> può fare anche questo.
 </ol>
-<h2 id=execfile><code>execfile</code> statement (3.1+)</h2>
-<p>Like the old <a href=#exec><code>exec</code> statement</a>, the old <code>execfile</code> statement will execute strings as if they were Python code. Where <code>exec</code> took a string, <code>execfile</code> took a filename. In Python 3, the <code>execfile</code> statement has been eliminated. If you really need to take a file of Python code and execute it (but you're not willing to simply import it), you can accomplish the same thing by opening the file, reading its contents, calling the global <code>compile()</code> function to force the Python interpreter to compile the code, and then call the new <code>exec()</code> function.
+<h2 id=execfile>L'istruzione <code>execfile</code> (3.1+)</h2>
+<p>Come la vecchia <a href=#exec>istruzione <code>exec</code></a>, la vecchia istruzione <code>execfile</code> esegue stringhe come se fossero codice Python. Laddove <code>exec</code> prendeva una stringa, <code>execfile</code> prende un nome di file. In Python 3, l'istruzione <code>execfile</code> è stata eliminata. Se avete davvero bisogno di prendere un file di codice Python e di eseguirlo (ma non siete disposti semplicemente a importarlo), potete ottenere lo stesso effetto aprendo il file, leggendone il contenuto, chiamando la funzione globale <code>compile()</code> per obbligare l'interprete Python a compilare il codice, e poi chiamare la nuova funzione <code>exec()</code>.
 <table>
 <tr><th>Notes</th>
 <th>Python 2</th>
@@ -570,10 +570,10 @@ reduce(a, b, c)</code></pre></td></tr>
 <td><code>exec(compile(open("a_filename").read(), "a_filename", "exec"))</code></td></tr>
 </table>
 <blockquote>
-<p><span>&#x261E;</span>The version of <code>2to3</code> that shipped with Python 3.0 would not fix the <code>execfile</code> statement automatically. The fix first appeared in the <code>2to3</code> script that shipped with Python 3.1.
+<p><span>&#x261E;</span>La versione di 2to3 rilasciata con Python 3.0 non corregge l'istruzione <code>execfile</code> automaticamente. La correzione è apparsa per la prima volta nello script <code>2to3</code> che verrà rilasciato con Python 3.1.
 </blockquote>
-<h2 id=repr><code>repr</code> literals (backticks)</h2>
-<p>In Python 2, there was a special syntax of wrapping any object in backticks (like <code>`x`</code>) to get a representation of the object. In Python 3, this capability still exists, but you can no longer use backticks to get it. Instead, use the global <code>repr()</code> function.
+<h2 id=repr>I letterali <code>repr</code> (i backtick)</h2>
+<p>In Python 2, c'era una speciale sintassi per racchiudere qualsiasi oggetto tra <span class=wtf>backticks</span> (come <code>`x`</code>) per ottenere una rappresentazione di quell'oggetto. In Python 3, questa possibilità esiste ancora, ma non potete più usare i <span class=wtf>backtick</span> per averla. Invece, usate la funzione globale <code>repr()</code>.
 <table>
 <tr><th>Notes</th>
 <th>Python 2</th>
@@ -587,11 +587,11 @@ reduce(a, b, c)</code></pre></td></tr>
 <td><code>repr("PapayaWhip" + repr(2))</code></td></tr>
 </table>
 <ol>
-<li>Remember, <var>x</var> can be anything &mdash; a class, a function, a module, a primitive data type, etc. The <code>repr()</code> function works on everything.
-<li>In Python 2, backticks could be nested, leading to this sort of confusing (but valid) expression. The <code>2to3</code> tool is smart enough to convert this into nested calls to <code>repr()</code>.
+<li>Ricordate, <var>x</var> può essere qualsiasi cosa &mdash; una class, una funzione, un modulo, un tipo di dati primitivi, etc. La funzione <code>repr()</code> lavora su tutto.
+<li>In Python 2, i backtick potevano essere annidati, producendo questo tipo di espressioni confuse (ma valide). Lo strumento <code>2to3</code> è abbastanza scaltro da convertire questo in chiamate annidate a <code>repr()</code>.
 </ol>
-<h2 id=except><code>try...except</code> statement</h2>
-<p>The syntax for catching exceptions has changed slightly between Python 2 and Python 3.
+<h2 id=except>L'istruzione <code>try...except</code></h2>
+<p>La sintassi per catturare le eccezioni è leggermente cambiata tra Python 2 e Python 3.
 <table>
 <tr><th>Notes</th>
 <th>Python 2</th>
@@ -629,16 +629,16 @@ except:
 <td><i>no change</i></td></tr>
 </table>
 <ol>
-<li>Instead of a comma after the exception type, Python 3 uses a new keyword, <code>as</code>.
-<li>The <code>as</code> keyword also works for catching multiple types of exceptions at once.
-<li>If you catch an exception but don't actually care about accessing the exception object itself, the syntax is identical between Python 2 and Python 3.
-<li>Similarly, if you use a fallback to catch <em>all</em> exceptions, the syntax is identical.
+<li>Invece di una virgola dopo il tipo della eccezione, Python 3 usa una nuova parola chiave, <code>as</code>.
+<li>La parola chiave <code>as</code> funziona anche per catturare più tipi di eccezioni alla volta.
+<li>Se catturate una eccezione ma in realtà non vi interessa accedere all'oggetto eccezione di per sé, la sintassi è identica tra Python 2 e Python 3.
+<li>Similmente, se usate un <span class=wtf>fallback</span> per catturare <em>tutte</em> le eccezioni, la sintassi è identica.
 </ol>
 <blockquote class=note>
-<p><span>&#x261E;</span>You should never use a fallback to catch <em>all</em> exceptions when importing modules (or most other times). Doing so will catch things like <code>KeyboardInterrupt</code> (if the user pressed <kbd>Ctrl-C</kbd> to interrupt the program) and can make it more difficult to debug errors.
+<p><span>&#x261E;</span>Non dovreste mai usare un <span class=wtf>fallback</span> per catturare <em>tutte</em> le eccezioni quando importate moduli (o nella maggior parte delle altre occasioni). Fare così catturerà cose come <code>KeyboardInterrupt</code> (se l'utente ha premuto <kbd>Ctrl-C</kbd> per interrompere il programma) è può rendere molto più difficile il debug degli errori.
 </blockquote>
-<h2 id=raise><code>raise</code> statement</h2>
-<p>The syntax for raising your own exceptions has changed slightly between Python 2 and Python 3.
+<h2 id=raise>L'istruzione <code>raise</code></h2>
+<p>La sintassi per sollevare le vostre eccezioni è leggermente cambiata tra Python 2 e Python 3.
 <table>
 <tr><th>Notes</th>
 <th>Python 2</th>
@@ -658,13 +658,13 @@ except:
 <td><i>unsupported</i></td></tr>
 </table>
 <ol>
-<li>In the simplest form, raising an exception without a custom error message, the syntax is unchanged.
-<li>The change becomes noticeable when you want to raise an exception with a custom error message. Python 2 separated the exception class and the message with a comma; Python 3 passes the error message as a parameter.
-<li>Python 2 supported a more complex syntax to raise an exception with a custom traceback (stack trace). You can do this in Python 3 as well, but the syntax is quite different.
-<li>In Python 2, you could raise an exception with no exception class, just an error message. In Python 3, this is no longer possible. <code>2to3</code> will warn you that it was unable to fix this automatically.
+<li>Nella sua forma più semplice, sollevare una eccezione senza un messaggio personalizzato, la sintassi è rimasta invariata.
+<li>Il cambiamento si nota quando volete sollevare una eccezione con un messaggio personalizzato. Python 2 separava la classe della eccezione e il messaggio con una virgola; Python 3 passa il messaggio di errore come un parametro.
+<li>Python 2 supportava una sintassi più complessa per sollevare una eccezione con un <span class=wtf>traceback</span> (la traccia dello stack di esecuzione) personalizzato. Potete farlo anche in Python 3, ma la sintassi è abbastanza differente.
+<li>In Python 2, potevate sollevare una eccezione senza alcuna classe, semplicemente un messaggio di errore. In Python 3, questo non è più possibile. <code>2to3</code> vi avvertirà che non è in grado di correggere questo automaticamente.
 </ol>
-<h2 id=throw><code>throw</code> method on generators</h2>
-<p>In Python 2, generators have a <code>throw()</code> method. Calling <code>a_generator.throw()</code> raises an exception at the point where the generator was paused, then returns the next value yielded by the generator function. In Python 3, this functionality is still available, but the syntax is slightly different.
+<h2 id=throw>Il metodo <code>throw</code> dei generatori</h2>
+<p>In Python 2, i generatori hanno un metodo <code>throw()</code>. Chiamare <code>a_generator.throw()</code> solleva una eccezione nel punto in cui il generatore è stato sospeso, poi restituisce il valore successivo prodotto dalla funzione generatrice. In Python 3 questa funzionalità è ancora disponibile, ma la sintassi è leggermente diversa.
 <table>
 <tr><th>Notes</th>
 <th>Python 2</th>
@@ -681,12 +681,12 @@ except:
 <td><i>unsupported</i></td></tr>
 </table>
 <ol>
-<li>In the simplest form, a generator throws an exception without a custom error message. In this case, the syntax has not changed between Python 2 and Python 3.
-<li>If the generator throws an exception <em>with</em> a custom error message, you need to pass the error string to the exception when you create it.
-<li>Python 2 also supported throwing an exception with <em>only</em> a custom error message. Python 3 does not support this, and the <code>2to3</code> script will display a warning telling you that you will need to fix this code manually.
+<li>Nella sua forma più semplice, un generatore lancia una eccezione senza un messaggio di errore personalizzato. In questo caso, la sintassi non è cambiata nel passaggio da Python 2 a Python 3.
+<li>Se il generatore lancia una eccezione <em>con</em> un messaggio di errore personalizzato, dovete passare la stringa di errore all'eccezione quando la create.
+<li>Python 2 supportava anche il lancio di una eccezione con <em>solo</em> un messaggio di errore personalizzato. Python 3 non supporta questo, e lo script <code>2to3</code> visualizzerà un avvertimento dicendovi che avrete bisogno di correggere manualmente questo codice.
 </ol>
-<h2 id=xrange><code>xrange()</code> global function</h2>
-<p>In Python 2, there were two ways to get a range of numbers: <code>range()</code>, which returned a list, and <code>xrange()</code>, which returned an iterator. In Python 3, <code>range()</code> returns an iterator, and <code>xrange()</code> doesn't exist.
+<h2 id=xrange>La funzione globale <code>xrange()</code></h2>
+<p>In Python 2, c'erano due modi per ottenere una lista di numeri: <code>range()</code>, che restituiva una lista, e <code>xrange()</code>, che restituiva un iteratore. In Python 3, <code>range()</code> restituisce un iteratore, e <code>xrange()</code> non esiste più.
 <table>
 <tr><th>Notes</th>
 <th>Python 2</th>
@@ -709,14 +709,14 @@ except:
 <td><i>no change</i></td></tr>
 </table>
 <ol>
-<li>In the simplest case, the <code>2to3</code> script will simply convert <code>xrange()</code> to <code>range()</code>.
-<li>If your Python 2 code used <code>range()</code>, the <code>2to3</code> script does not know whether you needed a list, or whether an iterator would do. It errs on the side of caution and coerces the return value into a list by calling the <code>list()</code> function.
-<li>If the <code>xrange()</code> function was inside a list comprehension, there is no need to coerce the result to a list, since the list comprehension will work just fine with an iterator.
-<li>Similarly, a <code>for</code> loop will work just fine with an iterator, so there is no need to change anything here.
-<li>The <code>sum()</code> function will also work with an iterator, so <code>2to3</code> makes no changes here either. Like <a href=#dict>dictionary methods that return views instead of lists</a>, this applies to <code>min()</code>, <code>max()</code>, <code>sum()</code>, <code>list()</code>, <code>tuple()</code>, <code>set()</code>, <code>sorted()</code>, <code>any()</code>, and <code>all()</code>.
+<li>Nel caso più semplice, lo script <code>2to3</code> semplicemente convertirà <code>xrange()</code> in <code>range()</code>.
+<li>Se il vostro codice in Python 2 usava <code>range()</code>, lo script <code>2to3</code> non sa se avete bisogno di una lista, o se un iteratore potrebbe bastare. Pecca per eccesso di prudenza e forza il valore di ritorno a una lista chiamando la funzione <code>list()</code>.
+<li>Se la funzione <code>xrange()</code> è in una <span class=wtf>list comprehension</span>, non c'è bisogno di forzare il risultato a una lista, perché la <span class=wtf>list comprehension</span> lavora altrettanto bene con un iteratore.
+<li>Similmente, un ciclo <code>for</code> lavora altrettanto bene con un iteratore, quindi non c'è bisogno di cambiare nulla qui.
+<li>Anche la funzione <code>sum()</code> lavora altrettanto bene con un iteratore, quindi <code>2to3</code> non effettua alcun cambiamento neanche qui. Come per <a href=#dict>i metodi dei dizionari che restituiscono viste invece di liste</a>, questo si applica a <code>min()</code>, <code>max()</code>, <code>sum()</code>, <code>list()</code>, <code>tuple()</code>, <code>set()</code>, <code>sorted()</code>, <code>any()</code>, e <code>all()</code>.
 </ol>
-<h2 id=raw_input><code>raw_input()</code> and <code>input()</code> global functions</h2>
-<p>Python 2 had two global functions for asking the user for input on the command line. The first, called <code>input()</code>, expected the user to enter a Python expression (and returned the result). The second, called <code>raw_input()</code>, just returned whatever the user typed. This was wildly confusing for beginners and widely regarded as a &#8220;wart&#8221; in the language. Python 3 excises this wart by renaming <code>raw_input()</code> to <code>input()</code>, so it works the way everyone naively expects it to work.
+<h2 id=raw_input>Le funzioni globali <code>raw_input()</code> e <code>input()</code></h2>
+<p>Python 2 aveva due funzioni globali per chiedere all'utente un input dalla linea di comando. La prima, chiamata <code>input()</code>, si aspettava che l'utente inserisse una espressione Python (e ne restituiva il risultato). La seconda, chiamata <code>raw_input()</code>, semplicemente restituiva qualsiasi cosa l'utente avesse digitato. Questo era selvaggiamente confuso per i principianti e largamente considerato come un &#8220;neo&#8221; nel linguaggio. Python 3 asporta questo neo rinominando <code>raw_input()</code> a <code>input()</code>, in modo che funzioni nel modo in cui ognuno si aspetta ingenuamente che funzioni.
 <table>
 <tr><th>Notes</th>
 <th>Python 2</th>
@@ -733,12 +733,12 @@ except:
 <td><code>eval(input())</code></td></tr>
 </table>
 <ol>
-<li>In the simplest form, <code>raw_input()</code> becomes <code>input()</code>.
-<li>In Python 2, the <code>raw_input()</code> function could take a prompt as a parameter. This has been retained in Python 3.
-<li>If you actually need to ask the user for a Python expression to evaluate, use the <code>input()</code> function and pass the result to <code>eval()</code>.
+<li>Nella sua forma più semplice, <code>raw_input()</code> diventa <code>input()</code>.
+<li>In Python 2, la funzione <code>raw_input()</code> poteva prendere un prompt come parametro. Questo è stato mantenuto in Python 3.
+<li>Se avete effettivamente bisogno di chiedere all'utente una espressione Python da valutare, usate la funzione <code>input()</code> e passatene il risultato a <code>eval()</code>.
 </ol>
-<h2 id=funcattrs><code>func_*</code> function attributes</h2>
-<p>In Python 2, code within functions can access special attributes about the function itself. In Python 3, these special function attributes have been renamed for consistency with other attributes.
+<h2 id=funcattrs>Le proprietà <code>func_*</code> delle funzioni</h2>
+<p>In Python 2, il codice all'interno delle funzioni può accedere a speciali proprietà della funzione stessa. In Python 3, queste proprietà speciali di una funzione sono state rinominate per renderle consistenti con altre proprietà.
 <table>
 <tr><th>Notes</th>
 <th>Python 2</th>
@@ -767,16 +767,16 @@ except:
 <td><code>a_function.__code__</code></td></tr>
 </table>
 <ol>
-<li>The <code>__name__</code> attribute (previously <code>func_name</code>) contains the function's name.
-<li>The <code>__doc__</code> attribute (previously <code>func_doc</code>) contains the <i>docstring</i> that you defined in the function's source code.
-<li>The <code>__defaults__</code> attribute (previously <code>func_defaults</code>) is a tuple containing default argument values for those arguments that have default values.
-<li>The <code>__dict__</code> attribute (previously <code>func_dict</code>) is the namespace supporting arbitrary function attributes.
-<li>The <code>__closure__</code> attribute (previously <code>func_closure</code>) is a tuple of cells that contain bindings for the function's free variables.
-<li>The <code>__globals__</code> attribute (previously <code>func_globals</code>) is a reference to the global namespace of the module in which the function was defined.
-<li>The <code>__code__</code> attribute (previously <code>func_code</code>) is a code object representing the compiled function body.
+<li>La proprietà <code>__name__</code> (precedentemente <code>func_name</code>) contiene il nome della funzione.
+<li>La proprietà <code>__doc__</code> (precedentemente <code>func_doc</code>) contiene la <i>docstring</i> che avete definito nel codice sorgente della funzione.
+<li>La proprietà <code>__defaults__</code> (precedentemente <code>func_defaults</code>) è una tupla contenente i valori di default degli argomenti per quegli argomenti che hanno un valore di default.
+<li>La proprietà <code>__dict__</code> (precedentemente <code>func_dict</code>) è lo spazio di nomi che supporta la gestione di proprietà arbitrarie per la funzione.
+<li>La proprietà <code>__closure__</code> (precedentemente <code>func_closure</code>) è una tupla di celle che contengono i legami per le variabili libere della funzione.
+<li>La proprietà <code>__globals__</code> (precedentemente <code>func_globals</code>) è un riferimento allo spazio di nomi globale del modulo in cui la funzione è stata definita.
+<li>La proprietà <code>__code__</code> (precedentemente <code>func_code</code>) è un oggetto codice che rappresenta il corpo della funzione compilata.
 </ol>
-<h2 id=xreadlines><code>xreadlines()</code> I/O method</h2>
-<p>In Python 2, file objects had an <code>xreadlines()</code> method which returned an iterator that would read the file one line at a time. This was useful in <code>for</code> loops, among other places. In fact, it was so useful, later versions of Python 2 added the capability to file objects themselves.
+<h2 id=xreadlines>Il metodo di I/O <code>xreadlines()</code></h2>
+<p>In Python 2, gli oggetti file avevano un metodo <code>xreadlines()</code> che restituiva un iteratore per leggere il file una riga alla volta. Questo era utile nei cicli <code>for</code>, insieme ad altri posti. In effetti, era così utile che le ultime versioni di Python 2 hanno aggiunto questa capacità agli oggetti file stessi.
 <table>
 <tr><th>Notes</th>
 <th>Python 2</th>
@@ -790,12 +790,12 @@ except:
 <td><i>no change</i></td></tr>
 </table>
 <ol>
-<li>If you used to call <code>xreadlines()</code> with no arguments, <code>2to3</code> will convert it to just the file object. In Python 3, this will accomplish the same thing: read the file one line at a time and execute the body of the <code>for</code> loop.
-<li>If you used to call <code>xreadlines()</code> with an argument (the number of lines to read at a time), keep doing that. It still works in Python 3, and <code>2to3</code> will not change it.
+<li>Se eravate soliti chiamare <code>xreadlines()</code> senza argomenti, <code>2to3</code> la convertirà solo all'oggetto file. In Python 3, questo fa compiere la stessa cosa: leggere il file una riga alla volta ed eseguire il corpo del ciclo <code>for</code>.
+<li>Se eravate soliti chiamare <code>xreadlines()</code> con un argomento (il numero di righe da leggere alla volta), continuate a farlo. Funziona ancora in Python 3, e <code>2to3</code> non lo cambierà.
 </ol>
 <p class=c><span style="font-size:56px;line-height:0.88">&#x2603;</span>
-<h2 id=tuple_params><code>lambda</code> functions that take a tuple instead of multiple parameters</h2>
-<p>In Python 2, you could define anonymous <code>lambda</code> functions which took multiple parameters by defining the function as taking a tuple with a specific number of items. In effect, Python 2 would &#8220;unpack&#8221; the tuple into named arguments, which you could then reference (by name) within the <code>lambda</code> function. In Python 3, you can still pass a tuple to a <code>lambda</code> function, but the Python interpreter will not unpack the tuple into named arguments. Instead, you will need to reference each argument by its positional index.
+<h2 id=tuple_params>Funzioni <code>lambda</code> che accettano una tupla invece di parametri multipli</h2>
+<p>In Python 2, potevate definire funzioni <code>lambda</code> anonime che accettavano parametri multipli definendola in modo che accettasse una tupla con uno specifico numero di elementi. In effetti, Python 2 avrebbe &#8220;spacchettato&#8221; la tupla negli argomenti con nome, che poi avreste potuto riferire (attraverso il nome) all'interno dalla funzione <code>lambda</code>. In Python 3, potete ancora passare una tupla a una funzione <code>lambda</code>, ma l'interprete Python non spacchetterà la tupla in argomenti con nome. Invece, dovrete riferirvi ad ogni argomento tramite l'indice della sua posizione.
 <table>
 <tr><th>Notes</th>
 <th>Python 2</th>
@@ -815,13 +815,13 @@ except:
 <td><i>unchanged</i></td></tr>
 </table>
 <ol>
-<li>If you had defined a <code>lambda</code> function that took a tuple of one item, in Python 3 that would become a <code>lambda</code> with references to <var>x1[0]</var>. The name <var>x1</var> is autogenerated by the <code>2to3</code> script, based on the named arguments in the original tuple.
-<li>A <code>lambda</code> function with a two-item tuple <var>(x, y)</var> gets converted to <var>x_y</var> with positional arguments <var>x_y[0]</var> and <var>x_y[1]</var>.
-<li>The <code>2to3</code> script can even handle <code>lambda</code> functions with nested tuples of named arguments. The resulting Python 3 code is a bit unreadable, but it works the same as the old code did in Python 2.
-<li>You can define <code>lambda</code> functions that take multiple arguments. Without parentheses around the arguments, Python 2 just treats it as a <code>lambda</code> function with multiple arguments; within the <code>lambda</code> function, you simply reference the arguments by name, just like any other function. This syntax still works in Python 3.
+<li>Se avete definito una funzione <code>lambda</code> che accetta una tupla composta da un elemento, in Python 3 questa diventerebbe una <code>lambda</code> con riferimenti a <var>x1[0]</var>. Il nome <var>x1</var> viene generato automaticamente dallo script <code>2to3</code>, sulla base degli argomenti con nome nella tupla originale.
+<li>Una funzione <code>lambda</code> con una tupla <var>(x, y)</var> di due elementi viene convertita a <var>x_y</var> con argomenti posizionali <var>x_y[0]</var> e <var>x_y[1]</var>.
+<li>Lo script <code>2to3</code> può perfino gestire funzioni <code>lambda</code> con tuple innestate di argomenti con nome. Il codice Python 3 risultante è leggermente illeggibile, ma funziona allo stesso modo in cui funzionava in Python 2.
+<li>Potete definire funzioni <code>lambda</code> che accettano più argomenti. Senza parentesi attorno agli argomenti, Python 2 la tratta semplicemente come una funzione <code>lambda</code> con argomenti multipli; all'interno della funzione <code>lambda</code>, fate semplicemente riferimento agli argomenti tramite il loro nome, esattamente come avviene per ogni altra funzione. Questa sintassi funziona ancora in Python 3.
 </ol>
-<h2 id=methodattrs>Special method attributes</h2>
-<p>In Python 2, class methods can reference the class object they are defined in, as well as the method object itself.  <code>im_self</code> is the class instance object; the class <code>im_func</code> is the function object; <code>im_class</code> is the class of <code>im_self</code> (for bound methods) or the class that asked for the method (for unbound methods). In Python 3, these special method attributes have been renamed to follow the naming conventions of other attributes.
+<h2 id=methodattrs>Proprietà speciali dei metodi</h2>
+<p>In Python 2, i metodi di classe possono riferirsi all'oggetto classe in cui sono definiti, così come all'oggetto metodo stesso. <code>im_self</code> è l'istanza dell'oggetto classe; la classe <code>im_func</code> rappresenta l'oggetto funzione; <code>im_class</code> è la classe di <code>im_self</code> (per metodi legati) o la classe che ha chiesto quel metodo (per metodi non legati). In Python 3, queste proprietà speciali dei metodi sono state rinominate per seguire le convenzioni sui nomi delle altre proprietà.
 <table>
 <tr><th>Notes</th>
 <th>Python 2</th>
@@ -837,8 +837,8 @@ except:
 <td><code>aClassInstance.aClassMethod.im_class</code></td>
 <td><code>aClassInstance.aClassMethod.self.__class__</code></td></tr>
 </table>
-<h2 id=nonzero><code>__nonzero__</code> special class attribute</h2>
-<p>In Python 2, you could build your own classes that could be used in a boolean context. For example, you could instantiate the class and then use the instance in an <code>if</code> statement. To do this, you defined a special <code>__nonzero__()</code> method which returned <code>True</code> or <code>False</code>, and it was called whenever the instance was used in a boolean context. In Python 3, you can still do this, but the name of the method has changed to <code>__bool__()</code>.
+<h2 id=nonzero>La proprietà speciale <code>__nonzero__</code> delle classi</h2>
+<p>In Python 2, potevate costruire una vostra classe che potesse essere usata in un contesto booleano. Per esempio, potevate istanziare la classe e poi usare l'istanza in una istruzione <code>if</code>. Per fare questo, definivate un metodo speciale <code>__nonzero__()</code> che restituiva <code>True</code> o <code>False</code>, e veniva chiamato ogni volta che l'istanza veniva usata in un contesto booleano. In Python 3 potete ancora farlo, ma il nome del metodo è stato cambiato in <code>__bool__()</code>.
 <table>
 <tr><th>Notes</th>
 <th>Python 2</th>
@@ -858,11 +858,11 @@ except:
 <td><i>no change</i></td></tr>
 </table>
 <ol>
-<li>Instead of <code>__nonzero__()</code>, Python 3 calls the <code>__bool__()</code> method when evaluating an instance in a boolean context.
-<li>However, if you have a <code>__nonzero__()</code> method that takes arguments, the <code>2to3</code> tool will assume that you were using it for some other purpose, and it will not make any changes.
+<li>Al posto di <code>__nonzero__()</code>, Python 3 chiama il metodo <code>__bool__()</code> per valutare una istanza in un contesto booleano.
+<li>Comunque, se avete un metodo <code>__nonzero__()</code> che accetta argomenti, lo strumento <code>2to3</code> presumerà che lo steste usando per qualche altro scopo, e non effettuerà alcun cambiamento.
 </ol>
-<h2 id=numliterals>Octal literals</h2>
-<p>The syntax for defining base 8 (octal) numbers has changed slightly between Python 2 and Python 3.
+<h2 id=numliterals>Letterali in base otto</h2>
+<p>La sintassi per definire numeri in base 8 (ottali) è leggermente cambiata nel passaggio da Python 2 a Python 3.
 <table>
 <tr><th>Notes</th>
 <th>Python 2</th>
@@ -873,7 +873,7 @@ except:
 <td><code>x = 0o755</code></td></tr>
 </table>
 <h2 id=renames><code>sys.maxint</code></h2>
-<p>Due to the <a href=#long>integration of the <code>long</code> and <code>int</code> types</a>, the <code>sys.maxint</code> constant is no longer accurate. Because the value may still be useful in determining platform-specific capabilities, it has been retained but renamed as <code>sys.maxsize</code>.
+<p>A causa della integrazione dei tipi <code>long</code> e <code>int</code>, la costante <code>sys.maxint</code> non è più accurata. Dato che il valore potrebbe ancora essere utile per determinare le capacità di una specifica piattaforma, è stata mantenuta ma rinominata in <code>sys.maxsize</code>.
 <table>
 <tr><th>Notes</th>
 <th>Python 2</th>
@@ -887,11 +887,11 @@ except:
 <td><code>a_function(sys.maxsize)</code></td></tr>
 </table>
 <ol>
-<li><code>maxint</code> becomes <code>maxsize</code>.
-<li>Any usage of <code>sys.maxint</code> becomes <code>sys.maxsize</code>.
+<li><code>maxint</code> diventa <code>maxsize</code>.
+<li>Ogni uso di <code>sys.maxint</code> diventa <code>sys.maxsize</code>.
 </ol>
-<h2 id=callable><code>callable()</code> global function</h2>
-<p>In Python 2, you could check whether an object was callable (like a function) with the global <code>callable()</code> function. In Python 3, this global function has been eliminated. To check whether an object is callable, check for the existence of the <code>__call__()</code> special method.
+<h2 id=callable>La funzione globale <code>callable()</code></h2>
+<p>In Python 2, potevate contollare se un oggetto era chiamabile (come una funzione) con la funzione globale <code>callable()</code>. In Python 3, questa funzione globale è stata eliminata. Per controllare se un oggetto è invocabile, controllate l'esistenza del metodo speciale <code>__call__()</code>.
 <table>
 <tr><th>Notes</th>
 <th>Python 2</th>
@@ -901,8 +901,8 @@ except:
 <td><code>callable(anything)</code></td>
 <td><code>hasattr(anything, "__call__")</code></td></tr>
 </table>
-<h2 id=zip><code>zip()</code> global function</h2>
-<p>In Python 2, the global <code>zip()</code> function took any number of sequences and returned a list of tuples. The first tuple contained the first item from each sequence; the second tuple contained the second item from each sequence; and so on. In Python 3, <code>zip()</code> returns an iterator instead of a list.
+<h2 id=zip>La funzione globale <code>zip()</code></h2>
+<p>In Python 2, la funzione globale <code>zip()</code> prendeva un qualsiasi numero di sequenze e restituiva una lista di tuple. La prima tupla conteneva il primo elemento di ogni sequenza; la seconda tupla conteneva il secondo elemento di ogni sequenza; e così via. In Python 3, <code>zip()</code> restituisce un iteratore invece di una lista.
 <table>
 <tr><th>Notes</th>
 <th>Python 2</th>
@@ -916,11 +916,11 @@ except:
 <td><i>no change</i></td></tr>
 </table>
 <ol>
-<li>In the simplest form, you can get the old behavior of the <code>zip()</code> function by wrapping the return value in a call to <code>list()</code>, which will run through the iterator that <code>zip()</code> returns and return a real list of the results.
-<li>In contexts that already iterate through all the items of a sequence (such as this call to the <code>join()</code> method), the iterator that <code>zip()</code> returns will work just fine. The <code>2to3</code> script is smart enough to detect these cases and make no change to your code.
+<li>Nella forma più semplice, potete ottenere il vecchio comportamento della funzione <code>zip()</code> circondandone il valore di ritorno con una chiamata a <code>list()</code>, che correrà lungo l'iteratore che restituito da <code>zip()</code> e restituisce una lista reale dei risultati.
+<li>In contesti che iterano già attraverso tutti gli elementi di una sequenza (come questa chiamata al metodo <code>join()</code>) l'iteratore che <code>zip()</code> restituisce funzionerà adeguatamente. Lo script <code>2to3</code> è abbastanza scaltro da riconoscere questi casi e non fare alcun cambiamento al vostro codice.
 </ol>
-<h2 id=standarderror><code>StandardError</code> exception</h2>
-<p>In Python 2, <code>StandardError</code> was the base class for all built-in exceptions other than <code>StopIteration</code>, <code>GeneratorExit</code>, <code>KeyboardInterrupt</code>, and <code>SystemExit</code>. In Python 3, <code>StandardError</code> has been eliminated; use <code>Exception</code> instead.
+<h2 id=standarderror>L'eccezione di tipo <code>StandardError</code></h2>
+<p>In Python 2, <code>StandardError</code> era la classe base per tutte le eccezioni built-in tranne <code>StopIteration</code>, <code>GeneratorExit</code>, <code>KeyboardInterrupt</code>, e <code>SystemExit</code>. In Python 3, la classe <code>StandardError</code> è stata eliminata; usate <code>Exception</code> al suo posto.
 <table>
 <tr><th>Notes</th>
 <th>Python 2</th>
@@ -933,8 +933,8 @@ except:
 <td><code>x = StandardError(a, b, c)</code></td>
 <td><code>x = Exception(a, b, c)</code></td></tr>
 </table>
-<h2 id=types><code>types</code> module constants</h2>
-<p>The <code>types</code> module contains a variety of constants to help you determine the type of an object. In Python 2, it contained constants for all primitive types like <code>dict</code> and <code>int</code>. In Python 3, these constants have been eliminated; just use the primitive type name instead.
+<h2 id=types>Le costanti del modulo <code>types</code></h2>
+<p>Il modulo <code>types</code> contiene una varietà di costanti per aiutarvi a determinare il tipo di un oggetto. In Python 2, conteneva costanti per tutti i tipi primitivi come <code>dict</code> e <code>int</code>. In Python 3, queste constanti sono state eliminate; vi basta usare il nome del tipo primitivo.
 <table>
 <tr><th>Notes</th>
 <th>Python 2</th>
@@ -959,8 +959,8 @@ except:
 <td><code>types.NoneType</code></td>
 <td><code>type(None)</code></td></tr>
 </table>
-<h2 id=isinstance><code>isinstance()</code> global function (3.1+)</h2>
-<p>The <code>isinstance()</code> function checks whether an object is an instance of a particular class or type. In Python 2, you could pass a tuple of types, and <code>isinstance()</code> would return <code>True</code> if the object was any of those types. In Python 3, you can still do this, but passing the same type twice is deprecated.
+<h2 id=isinstance>La funzione globale <code>isinstance()</code> (3.1+)</h2>
+<p>La funzione <code>isinstance()</code> controlla se un oggetto è una istanza di una particolare classe o tipo. In Python 2, potevate passare una tupla di tipi, e <code>isinstance()</code> avrebbe restituito <code>True</code> se l'oggetto fosse stato di uno di quei tipi. In Python 3, potete ancora farlo, ma passare lo stesso tipo due volte è deprecato.
 <table>
 <tr><th>Notes</th>
 <th>Python 2</th>
@@ -971,10 +971,10 @@ except:
 <td><code>isinstance(x, (int, float))</code></td></tr>
 </table>
 <blockquote>
-<p><span>&#x261E;</span>The version of <code>2to3</code> that shipped with Python 3.0 would not fix these cases of <code>isinstance()</code> automatically. The fix first appeared in the <code>2to3</code> script that shipped with Python 3.1.
+<p><span>&#x261E;</span>La versione di 2to3 rilasciata con Python 3.0 non corregge automaticamente questi casi di <code>isinstance()</code>. La correzione è apparsa per la prima volta nello script 2to3 che verrà rilasciato con Python 3.1.
 </blockquote>
-<h2 id=basestring><code>basestring</code> datatype</h2>
-<p>Python 2 had two string types: Unicode and non-Unicode. But there was also another type, <code>basestring</code>. It was an abstract type, a superclass for both the <code>str</code> and <code>unicode</code> types. It couldn't be called or instantiated directly, but you could pass it to the global <code>isinstance()</code> function to check whether an object was either a Unicode or non-Unicode string. In Python 3, there is only one string type, so <code>basestring</code> has no reason to exist.
+<h2 id=basestring>Il tipo di dato <code>basestring</code></h2>
+<p>Python 2 aveva due tipi di stringhe: Unicode e non Unicode. Ma c'era anche un altro tipo, <code>basestring</code>. Era un tipo astratto, una superclasse per entrambi i tipi <code>str</code> e <code>unicode</code>. Non poteva essere chiamata o istanziata direttamente, ma potevate passarla alla funzione globale <code>isinstance()</code> per controllare che un oggetto fosse una stringa Unicode o una stringa non Unicode. In Python 3, c'è un solo tipo di stringhe, quindi <code>basestring</code> non ha ragione di esistere.
 <table>
 <tr><th>Notes</th>
 <th>Python 2</th>
@@ -984,8 +984,8 @@ except:
 <td><code>isinstance(x, basestring)</code></td>
 <td><code>isinstance(x, str)</code></td></tr>
 </table>
-<h2 id=itertools><code>itertools</code> module</h2>
-<p>Python 2.3 introduced the <code>itertools</code> module, which defined variants of the global <code>zip()</code>, <code>map()</code>, and <code>filter()</code> functions that returned iterators instead of lists. In Python 3, those global functions return iterators, so those functions in the <code>itertools</code> module have been eliminated.
+<h2 id=itertools>Il modulo <code>itertools</code></h2>
+<p>Python 2.3 ha introdotto il modulo <code>itertools</code>, che definiva varianti delle funzioni globali <code>zip()</code>, <code>map()</code>, e <code>filter()</code> che restituivano iteratori invece di liste. In Python 3, quelle funzioni globali restituiscono iteratori, quindi quelle funzioni nel modulo <code>itertools</code> sono state eliminate.
 <table>
 <tr><th>Notes</th>
 <th>Python 2</th>
@@ -1005,13 +1005,13 @@ except:
 <td><code>from itertools import foo</code></td></tr>
 </table>
 <ol>
-<li>Instead of <code>itertools.izip()</code>, just use the global <code>zip()</code> function.
-<li>Instead of <code>itertools.imap()</code>, just use <code>map()</code>.
-<li><code>itertools.ifilter()</code> becomes <code>filter()</code>.
-<li>The <code>itertools</code> module still exists in Python 3, it just doesn't have the functions that have migrated to the global namespace. The <code>2to3</code> script is smart enough to remove the specific imports that no longer exist, while leaving other imports intact.
+<li>Invece di <code>itertools.izip()</code>, usate semplicemente la funzione globale <code>zip()</code>.
+<li>Invece di <code>itertools.imap()</code>, usate semplicemente <code>map()</code>.
+<li><code>itertools.ifilter()</code> diventa <code>filter()</code>.
+<li>Il modulo <code>itertools</code> esiste ancora in Python 3, gli mancano solo le funzioni che sono state spostate nello spazio di nomi globale. Lo script <code>2to3</code> è abbastanza scaltro da rimuovere le specifiche istruzioni di <code>import</code> per moduli che non esistono più, lasciando le altre intatte.
 </ol>
 <h2 id=sys_exc><code>sys.exc_type</code>, <code>sys.exc_value</code>, <code>sys.exc_traceback</code></h2>
-<p>Python 2 had three variables in the <code>sys</code> module that you could access while an exception was being handled: <code>sys.exc_type</code>, <code>sys.exc_value</code>, <code>sys.exc_traceback</code>. (Actually, these date all the way back to Python 1.)  Ever since Python 1.5, these variables have been deprecated in favor of <code>sys.exc_info</code>, which is a tuple that contains all three values. In Python 3, these individual variables have finally gone away; you must use <code>sys.exc_info</code>.
+<p>Python 2 aveva tre variabili nel modulo <code>sys</code> che potevate accedere mentre una eccezione veniva gestita: <code>sys.exc_type</code>, <code>sys.exc_value</code>, <code>sys.exc_traceback</code>. (In realtà, queste risalgono a Python 1.) Fin da Python 1.5, queste variabili sono state deprecate a favore di <code>sys.exc_info</code>, che è una tupla che contiene tutti e tre i valori. In Python 3, queste singole variabili sono infine sparite; dovete usare <code>sys.exc_info</code>.
 <table>
 <tr><th>Notes</th>
 <th>Python 2</th>
@@ -1027,8 +1027,8 @@ except:
 <td><code>sys.exc_traceback</code></td>
 <td><code>sys.exc_info()[2]</code></td></tr>
 </table>
-<h2 id=paren>List comprehensions over tuples</h2>
-<p>In Python 2, if you wanted to code a list comprehension that iterated over a tuple, you did not need to put parentheses around the tuple values. In Python 3, explicit parentheses are required.
+<h2 id=paren><span class=wtf>List comprehensions</span> sulle tuple</h2>
+<p>In Python 2, se volevate implementare una <span class=wtf>list comprehension</span> che iterasse su una tupla, non avevate bisogno di mettere le parentesi attorno ai valori della tupla. In Python 3, le parentesi esplicite sono obbligatorie.
 <table>
 <tr><th>Notes</th>
 <th>Python 2</th>
@@ -1038,8 +1038,8 @@ except:
 <td><code>[i for i in 1, 2]</code></td>
 <td><code>[i for i in (1, 2)]</code></td></tr>
 </table>
-<h2 id=getcwdu><code>os.getcwdu()</code> function</h2>
-<p>Python 2 had a function named <code>os.getcwd()</code>, which returned the current working directory as a (non-Unicode) string. Because modern file systems can handle directory names in any character encoding, Python 2.3 introduced <code>os.getcwdu()</code>. The <code>os.getcwdu()</code> function returned the current working directory as a Unicode string. In Python 3, there is only one string type (Unicode), so <code>os.getcwd()</code> is all you need.
+<h2 id=getcwdu>La funzione <code>os.getcwdu()</code></h2>
+<p>Python 2 aveva una funzione chiamata <code>os.getcwd()</code>, che restituiva la directory di lavoro sotto forma di una stringa (non Unicode). Dato che i moderni file system possono gestire i nomi di directory in qualsiasi codifica di carattere, Python 2.3 ha introdotto <code>os.getcwdu()</code>. La funzione <code>os.getcwdu()</code> restituisce la directory di lavoro corrente come una stringa Unicode. In Python 3, c'è un solo tipo di stringhe (Unicode), quindi <code>os.getcwd()</code> è tutto quello di cui avete bisogno.
 <table>
 <tr><th>Notes</th>
 <th>Python 2</th>
@@ -1049,8 +1049,8 @@ except:
 <td><code>os.getcwdu()</code></td>
 <td><code>os.getcwd()</code></td></tr>
 </table>
-<h2 id=metaclass>Metaclasses</h2>
-<p>In Python 2, you could create metaclasses either by defining the <code>metaclass</code> argument in the class declaration, or by defining a special class-level <code>__metaclass__</code> attribute. In Python 3, the class-level attribute has been eliminated.
+<h2 id=metaclass>Metaclassi</h2>
+<p>In Python 2, potevate creare metaclassi definendo l'argomento <code>metaclass</code> nella dichiarazione della classe, oppure definendo uno speciale attributo <code>__metaclass__</code> a livello di classe. In Python 3, questo attributo a livello di classe è stato eliminato.
 <table>
 <tr><th>Notes</th>
 <th>Python 2</th>
@@ -1072,16 +1072,16 @@ except:
     pass</code></pre></td></tr>
 </table>
 <ol>
-<li>Declaring the metaclass in the class declaration worked in Python 2, and it still works the same in Python 3.
-<li>Declaring the metaclass in a class attribute worked in Python 2, but doesn't work in Python 3.
-<li>The <code>2to3</code> script is smart enough to construct a valid class declaration, even if the class is inherited from one or more base classes.
+<li>Dichiarare la metaclasse nella dichiarazione della classe funzionava in Python 2, e funziona ancora allo stesso modo in Python 3.
+<li>Dichiarare la metaclasse in un attributo di classe funzionava in Python 2, ma non funziona in Python 3.
+<li>Lo script <code>2to3</code> è abbastanza potente da costruire una dichiarazione di classe valida, anche se la classe eredita da una o più classi base.
 </ol>
-<h2 id=nitpick>Matters of style</h2>
-<p>The rest of the &#8220;fixes&#8221; listed here aren't really fixes per se. That is, the things they change are matters of style, not substance. They work just as well in Python 3 as they do in Python 2, but the developers of Python have a vested interest in making Python code as uniform as possible. To that end, there is an <a href=http://www.python.org/dev/peps/pep-0008/>official Python style guide</a> which outlines &mdash; in excruciating detail &mdash; all sorts of nitpicky details that you almost certainly don't care about. And given that <code>2to3</code> provides such a great infrastructure for converting Python code from one thing to another, the authors took it upon themselves to add a few optional features to improve the readability of your Python programs.
-<h3 id=set_literal><code>set()</code> literals (explicit)</h3>
-<p>In Python 2, the only way to define a literal set in your code was to call <code>set(a_sequence)</code>. This still works in Python 3, but a clearer way of doing it is to use the new set literal notation: curly braces. (Dictionaries are also defined with curly braces, which makes sense once you think about it, because dictionaries are just sets of key-value pairs.)
+<h2 id=nitpick>Questioni di stile</h2>
+<p>Il resto delle &#8220;correzioni&#8221; elencate qui non sono realmente correzioni di per sé. Vale a dire che le cose che modificano sono questioni di stile, non di sostanza. Funzionano altrettanto bene in Python 3 come funzionavano in Python 2, ma gli svilupptori di Python hanno un legittimo interesse nel rendere il codice Python più uniforme possibile. A questo scopo, esiste una <a href=http://www.python.org/dev/peps/pep-0008/>guida ufficiale allo stile in Python</a> che delinea &mdash; in doloroso dettaglio &mdash; tutti quei tipi di particolari minuziosi e pedanti di cui quasi certamente non vi interessa. E dato che <code>2to3</code> fornisce una infrastruttura così buona per la conversione di codice Python da una cosa a un'altra, gli autori si sono presi la briga di aggiungere alcune caratteristiche opzionali per migliorare la leggibilità dei vostri programmi Python.
+<h3 id=set_literal>Letterali <code>set()</code> (esplicita)</h3>
+<p>In Python 2, l'unico modo di definire un letterale insieme nel vostro codice era chiamare <code>set(a_sequence)</code>. Questo funziona ancora in Python 3, ma un modo più chiaro di farlo è usare la nuova notazione per i letterali insieme: le parentesi graffe. (Anche i dizionari sono definiti con parentesi graffe, che ha senso una volta che ci pensate, perché i dizionari sono esattamente insiemi di coppie chiave-valore.)
 <blockquote class=note>
-<p><span>&#x261E;</span>The <code>2to3</code> script will not fix <code>set()</code> literals by default. To enable this fix, specify <kbd>-f set_literal</kbd> on the command line when you call <code>2to3</code>.
+<p><span>&#x261E;</span>Lo script <code>2to3</code> non correggerà i letterali <code>set()</code> di default. Per abilitare questa correzione, specificate <kbd>-f set_literal</kbd> sulla linea di comando quando chiamate <code>2to3</code>.
 </blockquote>
 <table>
 <tr><th>Notes</th>
@@ -1098,10 +1098,10 @@ except:
 <td><code>set([i for i in a_sequence])</code></td>
 <td><code>{i for i in a_sequence}</code></td></tr>
 </table>
-<h3 id=buffer><code>buffer()</code> global function (explicit)</h3>
-<p>Python objects implemented in C can export a &#8220;buffer interface,&#8221; which is a block of memory that is directly readable and writeable without copying. (That is exactly as powerful and scary as it sounds.)  In Python 3, <code>buffer()</code> has been renamed to <code>memoryview()</code>. (It's a little more complicated than that, but you can almost certainly ignore the differences.)
+<h3 id=buffer>La funzione globale <code>buffer()</code> (esplicita)</h3>
+<p>Gli oggetti Python implementati in C possono esportare una &#8220;interfaccia di buffer,&#8221; che è un blocco di memoria che è direttamente leggibile e scrivibile senza copiare. (Questo è esattamente potente e spaventoso quanto sembra.) In Python 3, <code>buffer()</code> è stata rinominata a <code>memoryview()</code>. (&Egrave; un po' più complicato di così, ma potete quasi certamente ignorare le differenze.)
 <blockquote class=note>
-<p><span>&#x261E;</span>The <code>2to3</code> script will not fix the <code>buffer()</code> function by default. To enable this fix, specify <kbd>-f buffer</kbd> on the command line when you call <code>2to3</code>.
+<p><span>&#x261E;</span>Lo script <code>2to3</code> non correggerà la funzione <code>buffer()</code> di default. Per abilitare questa correzione, specificate <kbd>-f buffer</kbd> sulla linea di comando quando chiamate <code>2to3</code>.
 </blockquote>
 <table>
 <tr><th>Notes</th>
@@ -1112,10 +1112,10 @@ except:
 <td><code>x = buffer(y)</code></td>
 <td><code>x = memoryview(y)</code></td></tr>
 </table>
-<h3 id=wscomma>Whitespace around commas (explicit)</h3>
-<p>Despite being draconian about whitespace for indenting and outdenting, Python is actually quite liberal about whitespace in other areas. Within lists, tuples, sets, and dictionaries, whitespace can appear before and after commas with no ill effects. However, the Python style guide states that commas should be preceded by zero spaces and followed by one. Although this is purely an aesthetic issue (the code works either way, in both Python 2 and Python 3), the <code>2to3</code> script can optionally fix this for you.
+<h3 id=wscomma>Gli spazi bianhi attorno alle virgole (esplicita)</h3>
+<p>Nonostante sia draconiano a riguardo degli spazi bianchi per l'indentazione del codice, Python è in realtà piuttosto liberale a proposito degli spazi bianchi in altre aree. Nell'ambito di liste, tuple, insiemi, e dizionari, gli spazi bianchi possono apparire prima e dopo le virgole senza sortire alcun effetto negativo. Comunque, la guida di stile in Python afferma che le virgole dovrebbero essere precedeute da zero spazi e seguite da uno spazio. Sebbene questo sia un problema puramente estetico (il codice funziona in ogni modo, sia in Python 2 che in Python 3) lo script <code>2to3</code> può opzionalmente correggere questo per voi.
 <blockquote class=note>
-<p><span>&#x261E;</span>The <code>2to3</code> script will not fix whitespace around commas by default. To enable this fix, specify <kbd>-f wscomma</kbd> on the command line when you call <code>2to3</code>.
+<p><span>&#x261E;</span>Lo script <code>2to3</code> non correggerà gli spazi bianchi attorno alle virgole di default. Per abilitare questa correzione, specificate <kbd>-f wscomma</kbd> sulla linea di comando quando chiamate <code>2to3</code>.
 </blockquote>
 <table>
 <tr><th>Notes</th>
@@ -1129,10 +1129,10 @@ except:
 <td><code>{a :b}</code></td>
 <td><code>{a: b}</code></td></tr>
 </table>
-<h3 id=idioms>Common idioms (explicit)</h3>
-<p>There were a number of common idioms built up in the Python community. Some, like the <code>while 1:</code> loop, date back to Python 1. (Python didn't have a true boolean type until version 2.3, so developers used <code>1</code> and <code>0</code> instead.)  Modern Python programmers should train their brains to use modern versions of these idioms instead.
+<h3 id=idioms>Idiomi comuni (esplicita)</h3>
+<p>C'erano un numero di idiomi comuni accumulati dalla comunità Python. Alcuni, come il ciclo <code>while 1:</code>, risalgono a Python 1. (Python non ha avuto un vero tipo boolean fino alla versione 2.3, così gli sviluppatori usavano <code>1</code> e <code>0</code>.) I moderni programmatori Python dovrebbero allenare i loro cervelli all'uso delle moderne versioni di questi idiomi.
 <blockquote class=note>
-<p><span>&#x261E;</span>The <code>2to3</code> script will not fix common idioms by default. To enable this fix, specify <kbd>-f idioms</kbd> on the command line when you call <code>2to3</code>.
+<p><span>&#x261E;</span>Lo script <code>2to3</code> non correggerà gli idiomi comuni di default. Per abilitare questa correzione, specificate <kbd>-f idioms</kbd> sulla linea di comando quando chiamate <code>2to3</code>.
 </blockquote>
 <table>
 <tr><th>Notes</th>
@@ -1157,7 +1157,8 @@ do_stuff(a_list)</code></pre></td>
 <td><pre><code>a_list = sorted(a_sequence)
 do_stuff(a_list)</code></pre></td></tr>
 </table>
-<p>FIXME: once the rest of the book is written, this appendix should contain copious links back to any chapter or section that touches on these features.
-<p class=c>&copy; 2001&ndash;9 <a href=about.html>Mark Pilgrim</a>
+<p><span class=fixme>FIXME: once the rest of the book is written, this appendix should contain copious links back to any chapter or section that touches on these features.</span>
+<p class=c>&copy; 2001&ndash;9 <a href=about.html>Mark Pilgrim</a><br>
+&copy; 2009 <a href=translation.html>Giulio Piancastelli</a> per la traduzione italiana
 <script src=jquery.js></script>
 <script src=dip3.js></script>
