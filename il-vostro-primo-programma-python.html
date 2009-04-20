@@ -68,9 +68,9 @@ if __name__ == "__main__":
 <p>La parola chiave <code>def</code> inizia la dichiarazione di funzione, seguita dal nome della funzione, seguito dagli argomenti della funzione racchiusi tra parentesi. Argomenti multipli sono separati da virgole.
 <p>Notate anche che la funzione non definisce un tipo di dato di ritorno. Le funzioni Python non specificano il tipo di dato del loro valore di ritorno; non specificano nemmeno se restituiscono o no un valore. (In effetti, ogni funzione Python restituisce un valore; se la funzione esegue una istruzione di <code>return</code>, restituirà quel valore, altrimenti restituirà <code>None</code>, il valore nullo di Python.)
 <blockquote class=note>
-<p><span>&#x261E;</span>In alcuni linguaggi, le funzioni (che restituiscono un valore) cominciano con <code>function</code>, e le procedure (che non restituiscono un valore) cominciano con <code>sub</code>. Non ci sono procedure in Python. Ci sono solo funzioni, tutte le funzioni ritornano un valore (anche se è <code>None</code>) e tutte le funzioni cominciano con <code>def</code>.
+<p><span>&#x261E;</span>In alcuni linguaggi, le funzioni (che restituiscono un valore) cominciano con <code>function</code>, e le procedure (che non restituiscono un valore) cominciano con <code>sub</code>. Non ci sono procedure in Python. Ci sono solo funzioni, tutte le funzioni restituiscono un valore (anche se è <code>None</code>) e tutte le funzioni cominciano con <code>def</code>.
 </blockquote>
-<p>La funzione <code>approximate_size</code> accetta due argomenti &mdash; <var>size</var> e <var>a_kilobyte_is_1024_bytes</var> &mdash; ma nessun argomento specifica il proprio tipo. (Come avreste potuto indovinare dalla sintassi <code>=True</code>, il secondo argomento è di tipo boolean. Imparerete cosa fa quella sintassi in <span class=fixme>[FIXME xref-was-#apihelper]</span>.) In Python, le variabili non sono mai esplicitamente tipate. L'interprete Python capisce da solo qual è il tipo di una variable e ne tiene traccia internamente.
+<p>La funzione <code>approximate_size</code> accetta due argomenti &mdash; <var>size</var> e <var>a_kilobyte_is_1024_bytes</var> &mdash; ma nessun argomento specifica il proprio tipo. (Come avreste potuto indovinare dalla sintassi <code>=True</code>, il secondo argomento è di tipo boolean. Imparerete ad usare questa sintassi in <span class=fixme>[FIXME xref-was-#apihelper]</span>.) In Python, le variabili non sono mai esplicitamente tipate. L'interprete Python capisce da solo qual è il tipo di una variable e ne tiene traccia internamente.
 <blockquote class="note compare java">
 <p><span>&#x261E;</span>In Java e in altri linguaggi staticamente tipati, dovete specificare il tipo del valore di ritorno e di ogni argomento della funzione. In Python, i tipi non vengono mai specificati. Sulla base del valore che viene assegnato, Python tiene traccia del tipo di dato internamente.
 </blockquote>
@@ -98,7 +98,7 @@ if __name__ == "__main__":
 <tr><th>Fortemente tipato</th><td>Pascal, Java</td><td>Python, Ruby</td></tr>
 </table>
 <h2 id=readability>Scrivere codice leggibile</h2>
-<p>Non vi annoierò con un lungo e <span class=wtf>finger-wagging</span> discorso sull'importanza di documentare il vostro codice. Vi basti sapere che il codice viene scritto una volta sola ma letto molte volte, e che l'audience più importante del vostro codice siete voi stessi, sei mesi dopo averlo scritto (cioè dopo che vi siete dimenticati tutto ma avete bisogno di aggiustare qualcosa). Python rende facile la scrittura di codice leggibile, perciò avantaggiatevene. Fra sei mesi mi ringrazierete.
+<p>Non vi annoierò con un lungo e <span class=wtf>finger-wagging</span> discorso sull'importanza di documentare il vostro codice. Vi basti sapere che il codice viene scritto una volta sola ma letto molte volte, e che l'audience più importante del vostro codice siete voi stessi, sei mesi dopo averlo scritto (cioè dopo che vi siete dimenticati tutto ma avete bisogno di correggere qualcosa). Python facilita la scrittura di codice leggibile, perciò avantaggiatevene. Fra sei mesi mi ringrazierete.
 <h3 id=docstrings>Stringhe di documentazione</h3>
 <p>Potete documentare una funzione Python aggiungendole una stringa di documentazione (chiamata <code>docstring</code> per brevità). Nel nostro programma, la funzione <code>approximate_size</code> è stata dotata di una <code>docstring</code>:
 <pre><code>def approximate_size(size, a_kilobyte_is_1024_bytes=True):
@@ -147,7 +147,7 @@ if __name__ == "__main__":
 </samp></pre>
 <ol>
 <li>La prima riga importa il programma <code>humansize</code> come un modulo &ndash; un pezzo di codice che potete usare interattivamente, o da un programma Python più grande. (Vedrete esempi di programmi Python distribuiti su più moduli in <span class=fixme>[FIXME xref]</span>.) Una volta importato un modulo, potete fare riferimento a ognuna delle sue funzioni, classi, o proprietà pubbliche. I moduli possono sfruttare questa loro caratteristica per accedere alle funzionalità di altri moduli, e voi potete farlo anche nella shell interattiva di Python. Questo è un concetto importante, e lo vedrete ribadito più volte nel seguito di questo libro.
-<li>Quando volete usare funzioni definite in moduli importati, avete bisogno di includere il nome del modulo. Quindi non potete semplicemente dire <code>approximate_size</code>; deve essere <code>humansize.approximate_size</code>. Se avete usato le classi in Java, la sintassi dovrebbe risultarvi vagamente familiare.
+<li>Quando volete usare funzioni definite in moduli importati, dovete includere il nome del modulo. Quindi non potete semplicemente dire <code>approximate_size</code>; deve essere <code>humansize.approximate_size</code>. Se avete usato le classi in Java, la sintassi dovrebbe risultarvi vagamente familiare.
 <li>Invece di invocare la funzione, avete richiesto una delle sue proprietà, <code>__doc__</code>.
 </ol>
 <blockquote class="note compare perl5">
@@ -170,7 +170,7 @@ if __name__ == "__main__":
 </ol>
 <h3 id=whatsanobject>Che cos'è un oggetto?</h3>
 <p>Ogni cosa in Python è un oggetto, e quasi ogni cosa possiede proprietà e metodi. Tutte le funzioni hanno una proprietà built-in <code>__doc__</code>, che restituisce la <var>docstring</var> definita nel codice sorgente della funzione. Il modulo <code>sys</code> è un oggetto che ha (tra le altre cose) una proprietà chiamata <var>path</var>. E così via.
-<p>Tuttavia, questo non risponde alla domanda fondamentale: che cos'è un oggetto? Linguaggi di programmazione differenti definiscono &#8220;oggetto&#8221; in modi differenti. In alcuni, significa che <em>tutti</em> gli oggetti <em>devono</em> avere proprietà e metodi; in altri, significa che tutti gli oggetti sono estendibili. In Python, la definizione è più lasca; alcuni oggetti non hanno attributi né metodi (per maggiori dettagli vedi <span class=fixme>[FIXME xref-was-#datatypes]</span>), e non tutti gli oggetti sono estendibili (per maggiori dettagli vedi <span class=fixme>[FIXME xref-was-#fileinfo]</span>). Ma ogni cosa è un oggetto nel senso che può essere assegnata a una variabile o passata come argomento a una funzione (per maggiori dettagli vedi <span class=fixme>[FIXME xref-was-#apihelp]</span>).
+<p>Tuttavia, questo non risponde alla domanda fondamentale: che cos'è un oggetto? Linguaggi di programmazione differenti definiscono &#8220;oggetto&#8221; in modi differenti. In alcuni, significa che <em>tutti</em> gli oggetti <em>devono</em> avere proprietà e metodi; in altri, significa che tutti gli oggetti sono estendibili. In Python, la definizione è più lasca; alcuni oggetti non hanno proprietà né metodi (per maggiori dettagli vedi <span class=fixme>[FIXME xref-was-#datatypes]</span>), e non tutti gli oggetti sono estendibili (per maggiori dettagli vedi <span class=fixme>[FIXME xref-was-#fileinfo]</span>). Ma ogni cosa è un oggetto nel senso che può essere assegnata a una variabile o passata come argomento a una funzione (per maggiori dettagli vedi <span class=fixme>[FIXME xref-was-#apihelp]</span>).
 <p>Questo concetto è così importante che lo ripeterò nel caso vi fosse sfuggito le prime volte: <em>ogni cosa in Python è un oggetto</em>. Le strighe sono oggetti. Le liste sono oggetti. Le funzioni sono oggetti. Persino i moduli sono oggetti.
 <h2 id=indentingcode>Indentare il codice</h2>
 <p>Le funzioni Python non cominciano esplicitamente con <code>begin</code> né terminano con <code>end</code>, e non ci sono parentesi graffe a indicare dove il codice della funzione inizia e finisce. I due punti (<code>:</code>) e l'indentazione del codice stesso sono gli unici delimitatori.
@@ -197,7 +197,7 @@ if __name__ == "__main__":
 <blockquote class="note compare java">
 <p><span>&#x261E;</span>Python usa i ritorni a capo per separare le istruzioni e i due punti e l'indentazione per separare i blocchi di codice. <abbr>C++</abbr> e Java usano i punti e virgola per separare le istruzioni e le parentesi graffe per separare i blocchi di codice.
 </blockquote>
-<h2 id=runningscripts>Eseguire script</h2>
+<h2 id=runningscripts>Eseguire gli script</h2>
 <aside>Ogni cosa in Python è un oggetto.</aside>
 <p>I moduli Python sono oggetti e hanno diverse proprietà utili. Potete sfruttare questa caratteristica per collaudare facilmente i vostri moduli mentre li scrivete, includendo uno speciale blocco di codice che viene eseguito quando lanciate il file Python dalla linea di comando. Considerate le ultime righe di <code>humansize.py</code>:
 <pre><code>
@@ -205,9 +205,9 @@ if __name__ == "__main__":
     print(approximate_size(1000000000000, False))
     print(approximate_size(1000000000000))</code></pre>
 <blockquote class="note compare clang">
-<p><span>&#x261E;</span>Come il <abbr>C</abbr>, Python usa <code>==</code> per il confronto e <code>=</code> per l'assegnamento. A differenza del <abbr>C</abbr>, Python non supporta l'assegnamento in-line, e quindi non c'è alcuna possibilità di assegnare accidentalmente il valore che pensavate di stare confrontando.
+<p><span>&#x261E;</span>Come il <abbr>C</abbr>, Python usa <code>==</code> per il confronto e <code>=</code> per l'assegnamento. A differenza del <abbr>C</abbr>, Python non supporta l'assegnamento inline, e quindi non c'è alcuna possibilità di assegnare accidentalmente il valore che pensavate di stare confrontando.
 </blockquote>
-<p>Che cosa rende questa istruzione <code>if</code> speciale? Ebbene, i moduli sono oggetti, e tutti i moduli hanno la proprietà built-in <code>__name__</code>. Il <code>__name__</code> di un modulo dipende da come state usando il modulo. Se importate un modulo tramite <code>import</code>, allora <code>__name__</code> sarà il nome del file del modulo, senza il percorso e l'estensione. 
+<p>Che cosa rende questa istruzione <code>if</code> speciale? Ebbene, i moduli sono oggetti, e tutti i moduli hanno la proprietà built-in <code>__name__</code>. Il valore della proprietà <code>__name__</code> di un modulo dipende da come state usando il modulo. Se importate un modulo, allora <code>__name__</code> sarà il nome del file del modulo, senza il percorso e l'estensione. 
 <pre class=screen>
 <samp class=p>>>> </samp><kbd>import humansize</kbd>
 <samp class=p>>>> </samp><kbd>humansize.__name__</kbd>
