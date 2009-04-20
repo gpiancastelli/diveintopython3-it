@@ -17,20 +17,20 @@ body{counter-reset:h1 5}
 </blockquote>
 <p id=toc>&nbsp;
 <h2 id=divingin>Immersione!</h2>
-<p class=f>L'inglese è una lingua schizofrenica che prende in prestito parole da molte altre lingue. Le più basilari operazioni linguistiche, come prendere un nome singolare e trasformarlo in un nome plurale, sono complicate dal retaggio misto della lingua. Ci sono regole, e poi ci sono eccezioni alle regole, e infine ci sono eccezioni alle eccezioni.
-<p>In questo capitolo, imparerete qualcosa sui nomi plurali. E anche su funzioni che restituiscono altre funzioni, espressioni regolare avanzate, iteratori e generatori. Ma prima, parliamo di come costruire nomi plurali. (Se non avete ancora letto <a href=espressioni-regolari.html>il capitolo sulle espressioni regolari</a>, questo potrebbe essere un buon momento per farlo. Questo capitolo presume che abbiate capito le basi delle espressioni regolari, e discenderà velocemente verso usi più avanzati.)
+<p class=f>L'inglese è una lingua schizofrenica che prende in prestito parole da molte altre lingue. Le operazioni linguistiche più basilari, come prendere un sostantivo singolare e trasformarlo in un sostantivo plurale, sono complicate dal retaggio misto della lingua. Ci sono delle regole, e poi ci sono delle eccezioni alle regole, e infine ci sono delle eccezioni alle eccezioni.
+<p>In questo capitolo, imparerete qualcosa sui sostantivi plurali in inglese. E anche su funzioni che restituiscono altre funzioni, sull'uso avanzato delle espressioni regolari, su iteratori e generatori. Ma prima, parliamo di come si costruiscono i sostantivi plurali in inglese. (Se non avete ancora letto <a href=espressioni-regolari.html>il capitolo sulle espressioni regolari</a>, questo potrebbe essere un buon momento per farlo. Questo capitolo presume che abbiate capito le basi delle espressioni regolari, e si inoltrerà velocemente verso i loro usi più avanzati.)
 <p>Se siete cresciuti in un paese di lingua madre inglese o avete imparato l'inglese in un ambiente scolastico formale, avrete familiarità con le regole di base:
 <ul>
 <li>Se una parola finisce con S, X, o Z, aggiungete ES. <i>Bass</i> diventa <i>basses</i>, <i>fax</i> diventa <i>faxes</i>, e <i>waltz</i> diventa <i>waltzes</i>.
-<li>Se una parola finisce con una H rumorosa, aggiungete ES; se finisce con una H muta, aggiungete solo S. Che cos'è una H rumorosa? UNa H che viene combinata con altre lettere per creare un suono che si possa udire. Quindi <i>coach</i> diventa <i>coaches</i> e <i>rash</i> diventa <i>rashes</i>, perché potete udire i suoni CH e SH quando li pronunciate. Ma <i>cheetah</i> diventa <i>cheetahs</i>, perché la H è muta.
+<li>Se una parola finisce con una H rumorosa, aggiungete ES; se finisce con una H muta, aggiungete solo S. Che cos'è una H rumorosa? Una H che viene combinata con altre lettere per creare un suono che si possa udire. Quindi <i>coach</i> diventa <i>coaches</i> e <i>rash</i> diventa <i>rashes</i>, perché potete udire i suoni CH e SH quando li pronunciate. Ma <i>cheetah</i> diventa <i>cheetahs</i>, perché la H è muta.
 <li>Se una parola finisce con una Y che suona come una I, cambiate la Y in IES; se la Y è combinata con una vocale per suonare come qualcos'altro, aggiungete solo S. Così <i>vacancy</i> diventa <i>vacancies</i>, ma <i>day</i> diventa <i>days</i>.
 <li>Se tutto il resto fallisce, aggiungete S e sperate per il meglio.
 </ul>
-<p>(Lo so, ci sono un sacco di eccezioni.<i>Man</i> diventa <i>men</i> e <i>woman</i> diventa <i>women</i>, ma <i>human</i> diventa <i>humans</i>. <i>Mouse</i> diventa <i>mice</i> e <i>louse</i> diventa <i>lice</i>, ma <i>house</i> diventa <i>houses</i>. <i>Knife</i> diventa <i>knives</i> e <i>wife</i> diventa <i>wives</i>, ma <i>lowlife</i> diventa <i>lowlifes</i>. E non fatemi parlare delle parole che sono il loro stesso plurale, come <i>sheep</i>, <i>deer</i>, e <i>haiku</i>.)
+<p>(Lo so, ci sono un sacco di eccezioni. <i>Man</i> diventa <i>men</i> e <i>woman</i> diventa <i>women</i>, ma <i>human</i> diventa <i>humans</i>. <i>Mouse</i> diventa <i>mice</i> e <i>louse</i> diventa <i>lice</i>, ma <i>house</i> diventa <i>houses</i>. <i>Knife</i> diventa <i>knives</i> e <i>wife</i> diventa <i>wives</i>, ma <i>lowlife</i> diventa <i>lowlifes</i>. E non fatemi parlare delle parole che sono il loro stesso plurale, come <i>sheep</i>, <i>deer</i>, e <i>haiku</i>.)
 <p>In altre lingue, ovviamente, le cose sono completamente differenti.
-<p>Progettiamo una libreria Python che crei automaticamente il plurale dei nomi inglesi. Cominceremo giusto con queste quattro regole, ma tenete a mente che dovrete inevitabilmente aggiungerne altre.
-<h2 id=i-know>I Know, Let&#8217;s Use Regular Expressions!</h2>
-<p>E così state guardando alle parole, il che significa, almeno in inglese, che state guardando a stringhe di caratteri. Avete regole che dicono che avete bisogno di trovare combinazioni differenti di caratteri, e poi fare loro cose differenti. Questo sembra un lavoro per le espressioni regolari!
+<p>Progettiamo una libreria Python che crei automaticamente il plurale dei sostantivi inglesi. Cominceremo giusto con queste quattro regole, ma tenete a mente che dovrete inevitabilmente aggiungerne altre.
+<h2 id=i-know>Ci sono, usiamo le espressioni regolari!</h2>
+<p>E così state guardando alle parole, il che significa, almeno in inglese, che state guardando a stringhe di caratteri. Avete regole che dicono che dovete trovare combinazioni differenti di caratteri, e poi fare loro cose differenti. Questo sembra un lavoro per le espressioni regolari!
 <p class=d>[<a href=esempi/plural1.py>scarica <code>plural1.py</code></a>]
 <pre><code>import re
 
@@ -45,7 +45,7 @@ def plural(noun):
         return noun + 's'</code></pre>
 <ol>
 <li>Questa è una espressione regolare, ma usa una sintassi che non avete visto nel capitolo <a href=espressioni-regolari.html><i>Espressioni regolari</i></a>. Le parentesi quadre significano &#8220;trova una corrispondenza con esattamente uno di questi caratteri.&#8221; Così <code>[sxz]</code> significa &#8220;<code>s</code>, oppure <code>x</code>, oppure <code>z</code>&#8221;, ma solo uno di loro. Il simbolo <code>$</code> dovrebbe risultarvi familiare; corrisponde alla fine della stringa. Combinata, questa espressione regolare verifica che <var>noun</var> finisca con <code>s</code>, <code>x</code>, oppure <code>z</code>.
-<li>Questa funzione <code>re.sub</code> esegue sostituzioni di stringhe basandosi su una espressione regolare.
+<li>Questa funzione <code>re.sub()</code> esegue sostituzioni di stringhe basandosi su una espressione regolare.
 </ol>
 
 <p>Diamo un'occhiata alle sostituzioni di espressioni regolari in maggior dettaglio.
@@ -63,7 +63,7 @@ def plural(noun):
 <li>La stringa <code>Mark</code> contiene <code>a</code>, <code>b</code>, oppure <code>c</code>? Sì, contiene <code>a</code>.
 <li>OK, adesso trova <code>a</code>, <code>b</code>, oppure <code>c</code>, e sostituiscilo con <code>o</code>. <code>Mark</code> diventa <code>Mork</code>.
 <li>La stessa funzione trasforma <code>rock</code> in <code>rook</code>.
-<li>Potreste pensare che questo trasformi <code>caps</code> in <code>oaps</code>, ma non lo fa. <code>re.sub</code> rimpiazza <em>tutte</em> le corrispondenze, non solo la prima. Quindi questa espressione regolare trasforma <code>caps</code> in <code>oops</code>, perché entrambe le <code>c</code> e le <code>a</code> vengono trasformate in <code>o</code>.
+<li>Potreste pensare che questo trasformi <code>caps</code> in <code>oaps</code>, ma non lo fa. <code>re.sub()</code> rimpiazza <em>tutte</em> le corrispondenze, non solo la prima. Quindi questa espressione regolare trasforma <code>caps</code> in <code>oops</code>, perché sia la <code>c</code> che la <code>a</code> vengono trasformate in <code>o</code>.
 </ol>
 
 <p>E ora, torniamo alla funzione <code>plural()</code>&hellip;
@@ -108,10 +108,10 @@ def plural(noun):
 <a><samp class=p>>>> </samp><kbd>re.sub('([^aeiou])y$', r'\1ies', 'vacancy')</kbd>  <span>&#x2461;</span></a>
 <samp>'vacancies'</samp></pre>
 <ol>
-<li>Questa espressione regolare trasforma <code>vacancy</code> in <code>vacancies</code> e <code>agency</code> in <code>agencies</code>, che è quello che volevate. Notate che trasformerebbe anche <code>boy</code> in <code>boies</code>, ma questo non succederà mai nella funzione perché avete utilizzato <code>re.search</code> prima per capire se dovreste applicare <code>re.sub</code>.
-<li>Giusto di passaggio, voglio sottolineare che è possibile combinare queste due espressioni regolari (una per scoprire se la regola è applicabile, e l'altra per applicarla effettivamente) in una singola espressione regolare. Questo è come apparirebbe. La maggior parte di essa dovrebbe sembrare familiare: state usando un <span class=wtf>remembered group</span>, che avete imparato nella sezione <a href=espressioni-regolari.html#phonenumbers>Caso di studio: riconoscere i numeri di telefono</a>. Il gruppo è usato per ricordare il carattere prima della lettera <code>y</code>. Poi, nella stringa di sostituzione, usate una nuova sintassi, <code>\1</code>, che significa &#8220;ehi, quel primo gruppo che ricordi? mettilo proprio qui.&#8221; In questo caso, avete ricordato la <code>c</code> prima della <code>y</code>; quando fate la sostituzione, sostituite <code>c</code> al posto di <code>c</code>, e <code>ies</code> al posto di <code>y</code>. (Se avete più di un <span class=wtf>remembered group</span>, potete usare <code>\2</code> e <code>\3</code> e così via.)
+<li>Questa espressione regolare trasforma <code>vacancy</code> in <code>vacancies</code> e <code>agency</code> in <code>agencies</code>, che è quello che volevate. Notate che trasformerebbe anche <code>boy</code> in <code>boies</code>, ma questo non succederà mai nella funzione perché avete utilizzato <code>re.search()</code> prima per capire se dovreste applicare <code>re.sub()</code>.
+<li>Giusto di passaggio, voglio sottolineare che è possibile combinare queste due espressioni regolari (una per scoprire se la regola è applicabile, e l'altra per applicarla effettivamente) in una singola espressione regolare. Questo è come apparirebbe. La maggior parte di essa dovrebbe sembrare familiare: state usando un gruppo da memorizzare, che avete imparato nella sezione <a href=espressioni-regolari.html#phonenumbers>Caso di studio: riconoscere i numeri di telefono</a>. Il gruppo è usato per ricordare il carattere prima della lettera <code>y</code>. Poi, nella stringa di sostituzione, usate una nuova sintassi, <code>\1</code>, che significa &#8220;ehi, hai presente quel primo gruppo che hai memorizzato? mettilo proprio qui.&#8221; In questo caso, avete memorizzato la <code>c</code> prima della <code>y</code>; quando fate la sostituzione, sostituite <code>c</code> al posto di <code>c</code>, e <code>ies</code> al posto di <code>y</code>. (Se avete memorizzato più di un gruppo, potete usare <code>\2</code> e <code>\3</code> e così via.)
 </ol>
-<p>Le sostituzioni di espressioni regolari sono estremamente potenti, e la sintassi <code>\1</code> le rende ancora più potenti. Ma combinare entrambe le operazioni in un'unica espressione regolare è anche più difficile da leggere, e non corrisponde direttamente al modo in cui avete precedentemente descritto le regole per la pluralizzazione. Avete originariamente esposto le regole come &#8220;se la parola finisce con S, X, o Z, allora aggiungete ES&#8221;. Se guardate a questa funzione, avete due righe di codice che dicono esattamente &#8220;se la parola finisce con S, X, o Z, allora aggiungete ES&#8221;. Non può essere più diretto di così. 
+<p>Le sostituzioni di espressioni regolari sono estremamente potenti, e la sintassi <code>\1</code> le rende ancora più potenti. Ma combinare entrambe le operazioni in un'unica espressione regolare è anche più difficile da leggere, e non corrisponde direttamente al modo in cui avete precedentemente descritto le regole per la pluralizzazione. Avete originariamente esposto le regole come &#8220;se la parola finisce con S, X, o Z, allora aggiungete ES&#8221;. Se guardate questa funzione, ci sono due righe di codice che dicono esattamente &#8220;se la parola finisce con S, X, o Z, allora aggiungete ES&#8221;. Non potete essere più diretti di così. 
 
 <h2 id=a-list-of-functions>Una lista di funzioni</h2>
 
@@ -155,16 +155,16 @@ def plural(noun):
         if matches_rule(noun):
             return apply_rule(noun)</code></pre>
 <ol>
-<li>Ora, ogni regola di corrispondenza è la sua propria funzione che restituisce i risultati della chiamata della funzione <code>re.sub()</code>.
-<li>Anche ogni regola di applicazione è la sua propria funzione che chiama la funzione <code>re.search()</code> per applicare la regola di pluralizzazione appropriata.
-<li>Invece di avere una funzione (<code>plural()</code>) con regole multiple, avete la struttura dati <code>rules</code>, che è una sequenza di coppie di funzioni.
-<li>Dato che le regole sono state estratte in una struttura dati separata, la nuova funzione <code>plural()</code> può essere ridotta a poche righe di codice. Usando un ciclo <code>for</code>, potete estrarre regole di corrispondenza e applicazione due alla volta (una per il primo tipo, una per il secondo) dalla struttura dati <var>rules</var>. Alla prima iterazione del ciclo <code>for</code>, <var>matches_rule</var> varrà <code>match_sxz</code>, e <var>apply_rule</var> varrà <code>apply_sxz</code>. Alla seconda iterazione (supponendo che ci arriviate), a <var>matches_rule</var> verrà assegnata <code>match_h</code>, e a <var>apply_rule</var> verrà assegnata <code>apply_h</code>. La funzione garantisce di restituire qualcosa alla fine, perché l'ultima regola di corrispondenza (<code>match_default</code>) restituisce semplicemente <code>True</code>, significando che la regola di applicazione corrispondente (<code>apply_default</code>) sarà sempre applicata.
+<li>Ora, ogni regola di ricerca è contenuta in una propria funzione che restituisce i risultati della chiamata alla funzione <code>re.sub()</code>.
+<li>Anche ogni regola di sostituzione è contenuta in una propria funzione che chiama la funzione <code>re.search()</code> per applicare la regola di pluralizzazione appropriata.
+<li>Invece di avere una funzione (<code>plural()</code>) che contiene più regole, avete la struttura dati <code>rules</code>, che è una sequenza di coppie di funzioni.
+<li>Dato che le regole sono state estratte in una struttura dati separata, la nuova funzione <code>plural()</code> può essere ridotta a poche righe di codice. Usando un ciclo <code>for</code>, potete estrarre regole di ricerca e sostituzione due alla volta (una per il primo tipo, una per il secondo) dalla struttura dati <var>rules</var>. Alla prima iterazione del ciclo <code>for</code>, <var>matches_rule</var> varrà <code>match_sxz</code>, e <var>apply_rule</var> varrà <code>apply_sxz</code>. Alla seconda iterazione (supponendo che ci arriviate), a <var>matches_rule</var> verrà assegnata <code>match_h</code>, e ad <var>apply_rule</var> verrà assegnata <code>apply_h</code>. La funzione garantisce di restituire qualcosa alla fine, perché l'ultima regola di corrispondenza (<code>match_default</code>) restituisce semplicemente <code>True</code>, significando che la regola di applicazione corrispondente (<code>apply_default</code>) sarà sempre applicata.
 </ol>
 
 <aside>La variabile &#8220;rules&#8221; è una lista di funzioni.</aside>
-<p>La ragione per cui questa tecnica funzione è che <a href=il-vostro-primo-programma-python.html#everythingisanobject>ogni cosa in Python è un oggetto</a>, comprese le funzioni. La struttura dati <var>rules</var> contiene funzioni &mdash; non nomi di funzioni, ma reali oggetti funzione. Quando essi vengono assegnati nel ciclo <code>for</code>, allora <var>matches_rule</var> e <var>apply_rule</var> diventano funzioni reali che potete chiamare. Alla prima iterazione del ciclo <code>for</code>, questo è equivalente a chiamare <code>matches_sxz(noun)</code>, e se restituisce una corrispondenza, a chiamare anche <code>apply_sxz(noun)</code>.
+<p>La ragione per cui questa tecnica funziona è che <a href=il-vostro-primo-programma-python.html#everythingisanobject>ogni cosa in Python è un oggetto</a>, comprese le funzioni. La struttura dati <var>rules</var> contiene funzioni &mdash; non nomi di funzioni, ma veri e propri oggetti funzione. Quando questi oggetti vengono assegnati nel ciclo <code>for</code>, allora <var>matches_rule</var> e <var>apply_rule</var> diventano vere e proprie funzioni che potete eseguire. La prima iterazione del ciclo <code>for</code> è equivalente a chiamare <code>matches_sxz(noun)</code> e, se viene restituita una corrispondenza, a chiamare anche <code>apply_sxz(noun)</code>.
 
-<p>Se questo livello di astrazione addizionale vi confonde, provate a svolgere la funzione per vedere l'equivalenza. L'intero ciclo <code>for</code> è equivalente a quanto segue:
+<p>Se questo livello di astrazione aggiuntivo vi confonde, provate a sviluppare la funzione per vedere l'equivalenza. L'intero ciclo <code>for</code> è equivalente a quanto segue:
 
 <pre><code>
 def plural(noun):
@@ -177,23 +177,23 @@ def plural(noun):
     if match_default(noun):
         return apply_default(noun)</code></pre>
 
-<p>Il beneficio qui è che quella funzione <code>plural()</code> è ora semplificata. Prende una lista di regole, definite da qualche altra parte, e itera attraverso di loro in modo generico.
+<p>Il beneficio qui è che questa funzione <code>plural()</code> è ora semplificata. Prende una lista di regole, definite da qualche altra parte, e itera attraverso di loro in modo generico.
 
 <ol>
-<li>Ottenete una regola di corrispondenza
-<li>Corrisponde? Allora chiamate la regola di applicazione e restituite il risultato.
-<li>Nessuna corrispondenza? Andate al passo 1.
+<li>Ottiene una regola di ricerca
+<li>Trova una corrispondenza? Allora chiama la regola di applicazione e restituite il risultato.
+<li>Nessuna corrispondenza? Ritorna al passo 1.
 </ol>
 
 <p>Le regole potrebbero essere definite ovunque, in ogni caso. La funzione <code>plural()</code> non se ne cura.
 
-<p>Ora, l'aggiunta di questo livello di astrazione meritava? Non ancora. Consideriamo cosa sarebbe necessario fare per aggiungere una nuova regola alla funzione. Nel primo esempio, questo richiederebbe l'aggiunta di una istruzione <code>if</code> alla funzione <code>plural()</code>. Nel secondo esempio, richiederebbe l'aggiunta di due funzioni, <code>match_foo()</code> e <code>apply_foo()</code>, e l'aggiornamento della lista <var>rules</var> per specificare in quale ordine le nuove funzioni di corrispondenza e applicazione dovrebbero essere chiamate rispetto alle altre regole. 
+<p>Ora, l'aggiunta di questo livello di astrazione meritava? Non ancora. Consideriamo cosa bisognerebbe fare per aggiungere una nuova regola alla funzione. Nel primo esempio, questo richiederebbe l'aggiunta di una istruzione <code>if</code> alla funzione <code>plural()</code>. Nel secondo esempio, richiederebbe l'aggiunta di due funzioni, <code>match_foo()</code> e <code>apply_foo()</code>, e l'aggiornamento della lista <var>rules</var> per specificare in quale ordine le nuove funzioni di ricerca e sostituzione dovrebbero essere chiamate rispetto alle altre regole. 
 
-<p>Ma questa è solo una pietra miliare verso la prossima sezione. Muoviamoci&hellip;
+<p>Ma questa è solo una pietra miliare verso la prossima sezione. Proseguiamo&hellip;
 
 <h2 id=a-list-of-patterns>Una lista di pattern</h2>
 
-<p>Definire funzioni nominate separatamente per ogni regola di corrispondenza e applicazione non è realmente necessario. Non le chiamate mai direttamente; le aggiungete alla lista <var>rules</var> e le chiamate attraverso là. In più, ogni funzione segue uno di due schemi. Tutte le funzioni di corrispondenza chiamano <code>re.search()</code>, e tutte le funzioni di applicazione chiamano <code>re.sub()</code>. Fattorizziamo gli schemi in modo che definire nuove regole diventi più semplice.
+<p>Definire separatamente una funzione con un proprio nome per ogni regola di ricerca e sostituzione non è realmente necessario. Non le chiamate mai direttamente; le aggiungete alla lista <var>rules</var> e le chiamate attraverso di essa. In più, ogni funzione segue uno di due schemi. Tutte le funzioni di ricerca chiamano <code>re.search()</code>, e tutte le funzioni di sostituzione chiamano <code>re.sub()</code>. Fattorizziamo gli schemi in modo che definire nuove regole diventi più semplice.
 
 <p class=d>[<a href=esempi/plural3.py>scarica <code>plural3.py</code></a>]
 <pre><code>import re
@@ -205,9 +205,9 @@ def build_match_and_apply_functions(pattern, search, replace):
         return re.sub(search, replace, word)
 <a>    return (matches_rule, apply_rule)                           <span>&#x2462;</span></a></code></pre>
 <ol>
-<li><code>build_match_and_apply_functions()</code> è una funzione che costruisce altre funzioni dinamicamente. Prende <var>pattern</var>, <var>search</var> e <var>replace</var>, poi definisce una funzione <code>matches_rule()</code> che chiama <code>re.search()</code> con il <var>pattern</var> che è stato passato alla funzione <code>build_match_and_apply_functions()</code>, e la <var>word</var> che è stata passata alla funzione <code>matches_rule()</code> che state costruendo. Whoa.
-<li>La costruzione della funzione di applicazione viene fatta allo stesso modo. La funzione di applicazione è una funzione che prende un parametro, e chiama <code>re.sub()</code> con i parametri <var>search</var> e <var>replace</var> che sono stati passati alla funzione <code>build_match_and_apply_functions()</code>, e la <var>word</var> che è stata passata alla funzione <code>apply_rule()</code> che state costruendo. Questa tecnica di usare i valori di parametri esterni all'interno di una funzione dinamica è chiamata <em>chiusura</em>. State essenzialmente definendo delle costanti nell'ambto della funzione di applicazione che state costruendo; questa prende un parametro (<var>word</var>), ma poi agisce su quello più due altri valori (<var>search</var> and <var>replace</var>) che sono stati impostati quando avete definito la funzione di applicazione.
-<li>Infine, la funzione <code>build_match_and_apply_functions()</code> restituisce una tupla di due valori: le due funzion che avete appena creato. Le costanti definite in quelle funzioni (<var>pattern</var> nell'ambito di <var>matchFunction</var>, e <var>search</var> e <var>replace</var> nell'ambito di <var>applyFunction</var>) rimangono con quelle funzioni, persino dopo che le avete restituite da <code>build_match_and_apply_functions()</code>. Questo è increidbilmente figo.
+<li><code>build_match_and_apply_functions()</code> è una funzione che costruisce dinamicamente altre funzioni. Accetta in ingresso <var>pattern</var>, <var>search</var> e <var>replace</var>, poi definisce una funzione <code>matches_rule()</code> che chiama <code>re.search()</code> con il <var>pattern</var> che è stato passato alla funzione <code>build_match_and_apply_functions()</code>, e la <var>word</var> che è stata passata alla funzione <code>matches_rule()</code> che state costruendo. Whoa.
+<li>La costruzione della funzione di sostituzione viene fatta allo stesso modo. La funzione di sostituzione è una funzione che accetta un parametro, e chiama <code>re.sub()</code> con i parametri <var>search</var> e <var>replace</var> che sono stati passati alla funzione <code>build_match_and_apply_functions()</code>, e la <var>word</var> che è stata passata alla funzione <code>apply_rule()</code> che state costruendo. Questa tecnica di usare i valori di parametri esterni all'interno di una funzione dinamica è chiamata <em>chiusura</em>. State essenzialmente definendo delle costanti nell'ambito della funzione di sostituzione che state costruendo; quest'ultima accetta un parametro (<var>word</var>), ma poi agisce su quello più due altri valori (<var>search</var> e <var>replace</var>) che sono stati impostati quando avete definito la funzione di sostituzione.
+<li>Infine, la funzione <code>build_match_and_apply_functions()</code> restituisce una tupla di due valori: le due funzioni che avete appena creato. Le costanti definite in quelle funzioni (<var>pattern</var> nell'ambito di <var>matchFunction</var>, e <var>search</var> e <var>replace</var> nell'ambito di <var>applyFunction</var>) mantengono il loro valore in quelle funzioni persino dopo che le avete restituite da <code>build_match_and_apply_functions()</code>. Questo è incredibilmente figo.
 </ol>
 
 <p>Se questo risulta incredibilmente confuso (e dovrebbe, è roba strana), potrebbe diventare più chiaro nel momento in cui vedete come si usa.
@@ -224,7 +224,7 @@ def build_match_and_apply_functions(pattern, search, replace):
          for (pattern, search, replace) in patterns]</code></pre>
 <ol>
 <li>Le nostre regole di pluralizzazione sono ora definite come una lista di liste di stringhe (non funzioni). La prima stringa in ogni gruppo è l'espressione regolare che usereste in <code>re.search()</code> per vedere se c'è una corrispondenza con questa regola. La seconda e la terza stringa di ogni gruppo sono le espressioni di ricerca e sostituzione che usereste in <code>re.sub()</code> per applicare effettivamente la regola e trasformare un sostantivo nel suo plurale.
-<li>Questa riga è magia. Prende la lista di stringhe in <var>patterns</var> e la trasforma in una lista di funzioni. Come? Facendo corrispondere le stringhe alla funzione <code>build_match_and_apply_functions()</code>, che giustamente capita di prendere tre stringhe come parametri e restituire una tupla di due funzioni. Questo significa che <var>rules</var> finisce per essere esattamente come nell'esempio precedente: una lista di tuple, dove ogni tupla è una coppia di funzioni, dove la prima funzione è la funzione di corrispondenza che chiama <code>re.search()</code>, e la seconda funzione è la funzione di applicazione che chiama <code>re.sub()</code>.
+<li>Questa riga è magia. Prende la lista di stringhe in <var>patterns</var> e la trasforma in una lista di funzioni. Come? Tracciando una corrispondenza tra le stringhe e la funzione <code>build_match_and_apply_functions()</code>, che accetta appunto tre stringhe come parametri di ingresso e restituisce una tupla di due funzioni in uscita. Questo significa che <var>rules</var> finisce per essere esattamente ciò che era nell'esempio precedente: una lista di tuple, dove ogni tupla è una coppia di funzioni, dove la prima funzione è la funzione di ricerca che chiama <code>re.search()</code>, e la seconda funzione è la funzione di sostituzione che chiama <code>re.sub()</code>.
 </ol>
 
 <p>Per completare questa versione del programma ecco il punto di entrata principale, la funzione <code>plural()</code>.
@@ -234,14 +234,14 @@ def build_match_and_apply_functions(pattern, search, replace):
         if matches_rule(noun):
             return apply_rule(noun)</code></pre>
 <ol>
-<li>Visto che la lista <var>rules</var> è la stessa dell'esempio precedente (davvero, lo è), non dovrebbe sorprendervi che la funzione <code>plural()</code> non sia cambiata per niente. Rimane completamente generica; prende una lista di funzioni di regole e le chiama in ordine. Non si cura di come le regole sono definite. Nell'esempio precedente, esse erano definite come funzioni separate con un proprio nome. Ora sono costruite dinamicamente mappando l'uscita della funzione <code>build_match_and_apply_functions()</code> su una lista di grezze stringhe. Non ha importanza; la funzione <code>plural</code> continua a lavorare nello stesso modo.
+<li>Visto che la lista <var>rules</var> è la stessa dell'esempio precedente (davvero, lo è), non dovrebbe sorprendervi che la funzione <code>plural()</code> non sia cambiata per niente. Rimane completamente generica; prende una lista di funzioni di regole e le chiama in ordine. Non si preoccupa di come le regole sono definite. Nell'esempio precedente, le regole erano definite come funzioni separate con un proprio nome. Ora sono costruite dinamicamente mappando l'uscita della funzione <code>build_match_and_apply_functions()</code> su una lista di stringhe. Non ha importanza; la funzione <code>plural()</code> continua a lavorare nello stesso modo.
 </ol>
 
 <h2 id=a-file-of-patterns>Un file di pattern</h2>
 
-<p>Avete fattorizzato tutto il codice duplicato e aggiunto abbastanza astrazioni in modo che le regole di pluralizzazione sono definite in una lista di stringhe. Il passo logico successivo consiste nel prendere queste stringhe e metterle in un file separato, dove possano essere mantenute separatamente dal codice che le usa. 
+<p>Avete fattorizzato tutto il codice duplicato e aggiunto abbastanza astrazioni in modo che le regole di pluralizzazione siano definite in una lista di stringhe. Il passo logico successivo consiste nel prendere queste stringhe e metterle in un file separato, dove possano essere mantenute separatamente dal codice che le usa. 
 
-<p>Prima di tutto, creiamo un file di testo che contiene le regole che volete. Nessuna struttura dati elaborata, solo stringhe separate da spazi bianchi in tre colonne. Chiamiamo questo file <code>plural4-rules.txt</code>.
+<p>Prima di tutto, creiamo un file di testo che contiene le regole che volete. Nessuna struttura dati elaborata, solo stringhe separate da spazi bianchi su tre colonne. Chiamiamo questo file <code>plural4-rules.txt</code>.
 
 <p class=d>[<a href=esempi/plural4-rules.txt>scarica <code>plural4-rules.txt</code></a>]
 <pre><code>[sxz]$               $    es
@@ -275,7 +275,7 @@ finally:
 <li>La funzione <code>build_match_and_apply_functions()</code> non è cambiata. State ancora usando le chiusure per costruire dinamicamente due funzioni che usano variabili definite nella funzione esterna.
 <li>Aprite il file che contiene i pattern.
 <li>Leggete il file una riga alla volta, usando l'idioma <code>for line in &lt;fileobject&gt;</code>.
-<li>Ogni riga nel file in realtà contiene tre valori, ma essi sono separati da spazi bianchi (tabulazioni o spazi non fa alcuna differenza). Per separarli, usate il metodo <code>split()</code> delle stringhe. Il primo argomento del metodo <code>split()</code> è <code>None</code>, il che significa &#8220;separa sulla base di qualsiasi spazio bianco (tabulazioni o spazi non fa alcuna differenza).&#8221; Il secondo argomento è <code>3</code>, che significa &#8220;separa sulla base di spazi bianchi per 3 volte, poi scarta il resto della riga.&#8221; Una riga come <code>[sxz]$ $ es</code> verrà spezzata nella tupla <code>('[sxz]$', '$', 'es')</code>, il che significa che <var>pattern</var> avrà il valore <code>'[sxz]$'</code>, <var>search</var> avrà il valore <code>'$'</code>, e <var>replace</var> avrà il valore <code>'es'</code>. C'è molta potenza in una piccola riga di codice.
+<li>Ogni riga nel file in realtà contiene tre valori, ma essi sono separati da spazi bianchi (che siano tabulazioni o spazi non fa alcuna differenza). Per separarli, usate il metodo <code>split()</code> delle stringhe. Il primo argomento del metodo <code>split()</code> è <code>None</code>, il che significa &#8220;separa sulla base di qualsiasi spazio bianco (che siano tabulazioni o spazi non fa alcuna differenza).&#8221; Il secondo argomento è <code>3</code>, che significa &#8220;separa sulla base di spazi bianchi per 3 volte, poi scarta il resto della riga.&#8221; Una riga come <code>[sxz]$ $ es</code> verrà spezzata nella tupla <code>('[sxz]$', '$', 'es')</code>, il che significa che <var>pattern</var> avrà il valore <code>'[sxz]$'</code>, <var>search</var> avrà il valore <code>'$'</code>, e <var>replace</var> avrà il valore <code>'es'</code>. C'è molta potenza in una piccola riga di codice.
 <li>Usate un blocco <code>try..finally</code> per assicurarvi di chiudere l'oggetto file.
 </ol>
 
@@ -319,15 +319,15 @@ def plural(noun):
 <samp>incrementing x
 4</samp></pre>
 <ol>
-<li>La presenza della parola chiave <code>yield</code> in <code>make_counter</code> significa che questa non è una normale funzione. &Egrave; un tipo speciale di funzione che genera valori uno alla volta. Potete pensarla come una funzione riesumabile. Chiamarla restituirà un <i>generatore</i> che può essere usato per generare valori successivi di <var>x</var>.
-<li>Per creare un'istanza del generatore <code>make_counter</code>, vi basta invocarlo come ogni altra funzione. Notate che questo non esegue effettivamente il codice della funzione. Potete rendervene conto perché la prima riga della funzione <code>make_counter()</code> chiama <code>print()</code>, ma nulla è stato ancora stampato.
+<li>La presenza della parola chiave <code>yield</code> in <code>make_counter()</code> significa che questa non è una normale funzione. &Egrave; un tipo speciale di funzione che genera valori uno alla volta. Potete pensarla come una funzione riesumabile. Chiamarla restituirà un <i>generatore</i> che può essere usato per generare valori successivi di <var>x</var>.
+<li>Per creare un'istanza del generatore <code>make_counter()</code>, vi basta invocarlo come ogni altra funzione. Notate che questo non esegue effettivamente il codice della funzione. Potete rendervene conto perché la prima riga della funzione <code>make_counter()</code> chiama <code>print()</code>, ma nulla è stato ancora stampato.
 <li>La funzione <code>make_counter()</code> restituisce un oggetto generatore.
-<li>La funzione <code>next()</code> accetta un generatore e restituisce il suo successivo valore. La prima volta che chiamate <code>next()</code> con il generatore <var>counter</var>, esegue il codice in <code>make_counter()</code> fino al prima istruzione <code>yield</code>, poi restituisce il valore che è stato generato. In questo caso, quel valore sarà <code>2</code>, perché avete originariamente creato il generatore invocando <code>make_counter(2)</code>.
-<li>Chiamare ripetutamente <code>next()</code> con lo stesso oggetto generatore riesuma esattamente da dove aveva lasciato e continua fino a quando non colpisce la successiva istruzione <code>yield</code>. Tutte le variabili, lo stato locale, <i class=baa>&amp;</i>c. sono salvate su <code>yield</code> e ripristinate su <code>next()</code>. La successiva riga di codice che attende di essere eseguita chiama <code>print()</code>, che stampa <samp>incrementing x</samp>. Dopo di che, l'istruzione <code>x = x + 1</code>. Poi cicla attraverso il ciclo <code>while</code> di nuovo, e la prima cosa che colpisce è l'istruzione <code>yield x</code>, che salva lo stato di tutto e restituisce il valore corrente di <var>x</var> (ora <code>3</code>).
-<li>La seconda volta che chiamate <code>next(counter)</code>, fate tutte le stesse cose di nuovo, ma questa volta <var>x</var> è ora <code>4</code>
+<li>La funzione <code>next()</code> accetta un generatore e restituisce il suo valore successivo. La prima volta che chiamate <code>next()</code> con il generatore <var>counter</var>, esegue il codice in <code>make_counter()</code> fino al prima istruzione <code>yield</code>, poi restituisce il valore che è stato generato. In questo caso, quel valore sarà <code>2</code>, perché avete originariamente creato il generatore invocando <code>make_counter(2)</code>.
+<li>Chiamare ripetutamente <code>next()</code> con lo stesso oggetto generatore riprende l'esecuzione esattamente da dove aveva lasciato e continua fino a quando non arriva alla successiva istruzione <code>yield</code>. Tutte le variabili, lo stato locale, <i class=baa>&amp;</i>c. sono salvate da <code>yield</code> e ripristinate da <code>next()</code>. La successiva riga di codice che attende di essere eseguita chiama <code>print()</code>, che stampa <samp>incrementing x</samp>. Dopo di che, viene eseguita l'istruzione <code>x = x + 1</code>. Poi si passa di nuovo attraverso il ciclo <code>while</code>, e la prima cosa che si esegue è l'istruzione <code>yield x</code>, che salva lo stato di tutto e restituisce il valore corrente di <var>x</var> (ora <code>3</code>).
+<li>La seconda volta che chiamate <code>next(counter)</code>, fate di nuovo tutte le stesse cose, ma questa volta <var>x</var> vale <code>4</code>
 </ol>
 
-<p>Dato che <code>make_counter</code> imposta un ciclo infinito, potreste teoricamente fare questo per sempre, ed esso continuerebbe semplicemente a incrementare <var>x</var> e sputare fuori valori. Ma guardiamo invece a usi più produttivi dei generatori.
+<p>Dato che <code>make_counter()</code> contiene un ciclo infinito, potreste teoricamente fare questo per sempre, e il generatore continuerebbe semplicemente a incrementare <var>x</var> e sputare fuori valori. Ma guardiamo invece a usi più produttivi dei generatori.
 
 <h3 id=a-fibonacci-generator>Un generatore di Fibonacci</h3>
 
@@ -373,11 +373,11 @@ def plural(noun):
 <ol>
 <li>Come avete visto, <code>for line in open(...)</code> è un idioma comune per leggere da un file una riga alla volta. Ma qui c'è qualcosa che potreste non sapere: la ragione per cui questo idioma funziona è perché <em><code>open()</code> in realtà restituisce un generatore, e invocare <code>next()</code> su questo generatore restituisce la riga successiva del file.</em>
 <li>Nessuna magia qui. Ricordate che le righe del file di regole hanno tre valori separati da spazi bianchi, quindi usate <code>line.split(None, 3)</code> per ottenere le tre &#8220;colonne&#8221; e assegnarle a tre variabili locali.
-<li><em>E poi voi <span class=wtf>yield</span>.</em> Che cosa voi <span class=wtf>yield</span>? Due funzioni, costruite dinamicamente con la vostra vecchia amica, <code>build_match_and_apply_functions()</code>, che è identica all'esempio precedente. In altre parole, <code>rules()</code> è un generatore che sputa fuori funzioni di corrispondenza e applicazione <em>su richiesta</em>.
-<li>Dato che <code>rules()</code> è un generatore, potete usarlo direttamente in un ciclo <code>for</code>. Alla prima iterazione nel ciclo <code>for</code>, chiamerete la funzione <code>rules()</code>, che aprirà il file dei pattern, leggerà la prima riga, costruirà dinamicamente una funzione di corrispondenza e una funzione di applicazione dai pattern in quella riga, e <span class=wtf>yield</span> le funzioni costruite dinamicamente. Nella seconda iterazione del ciclo <code>for</code>, riprenderete esattamente dove avevate lasciato in <code>rules()</code> (cioè nel mezzo del ciclo <code>for line in file(...)</code>). La prima cosa che farà è leggere la riga successiva del file (che è ancora aperto), costruire dinamicamente un'altra coopia di funzioni di corrispondenza e applicazione basate sui pattern in quella riga, e <span class=wtf>yield</span> le due funzioni.
+<li><em>E poi utilizzate <code>yield</code>.</em> Che cosa producete? Due funzioni, costruite dinamicamente con la vostra vecchia amica, <code>build_match_and_apply_functions()</code>, che è identica all'esempio precedente. In altre parole, <code>rules()</code> è un generatore che produce funzioni di ricerca e sostituzione <em>su richiesta</em>.
+<li>Dato che <code>rules()</code> è un generatore, potete usarlo direttamente in un ciclo <code>for</code>. Alla prima iterazione nel ciclo <code>for</code>, chiamerete la funzione <code>rules()</code>, che aprirà il file dei pattern, leggerà la prima riga, costruirà dinamicamente una funzione di ricerca e una funzione di sostituzione usando i pattern di quella riga, e produrrà in uscita le funzioni costruite dinamicamente. Nella seconda iterazione del ciclo <code>for</code>, <code>rules()</code> riprenderà ad eseguire esattamente da dove l'avevate lasciata (cioè nel mezzo del ciclo <code>for line in file(...)</code>). La prima cosa che farà è leggere la riga successiva del file (che è ancora aperto), poi costruirà dinamicamente un'altra coppia di funzioni di ricerca e sostituzione basate sui pattern di quella riga, e infine produrrà in uscita le due funzioni.
 </ol>
 
-<p>Che cosa avete guadagnato rispetto alla fase 4? Tempo di inizializzazione. Nella fase 4, quando importavate il modulo <code>plural4</code>, leggeva interamente il file di pattern e costruiva una lista di tutte le possibili regole, prima ancora che poteste anche solo pensare di chiamare la funzione <code>plural()</code>. Con i generatori, potete fare ogni cosa in maniera lazy: leggete la prima regola e create le corrispettive funzioni e le provate, e se funziona non dovete nemmeno leggere il resto del file o creare nessun'altra funzione.
+<p>Che cosa avete guadagnato rispetto alla fase 4? Tempo di inizializzazione. Nella fase 4, quando importavate il modulo <code>plural4</code>, il file dei pattern veniva interamente letto e una lista di tutte le possibili regole veniva costruita prima ancora che poteste anche solo pensare di chiamare la funzione <code>plural()</code>. Con i generatori, potete fare ogni cosa in maniera ritardata: leggete la prima regola e create le corrispettive funzioni e le provate, e se funziona non dovete nemmeno leggere il resto del file o creare nessun'altra funzione.
 
 <p>Che cosa avete perso? Prestazioni! Ogni volta che chiamate la funzione <code>plural()</code>, il generatore <code>rules()</code> ricomincia dall'inizio &mdash; il che vuol dire riaprire il file dei pattern e leggerlo dall'inizio, una riga alla volta.
 
@@ -389,7 +389,7 @@ def plural(noun):
 
 <h3 id=a-fibonacci-iterator>Un iteratore di Fibonacci</h3>
 
-<p>Ricordate il <a href=a-fibonacci-generator>generatore di Fibonacci</a>? Qui lo trovate sotto forma di un iteratore reimplementato da zero:
+<p>Ricordate il <a href=a-fibonacci-generator>generatore di Fibonacci</a>? Qui lo trovate reimplementato da zero sotto forma di iteratore:
 
 <p class=d>[<a href=esempio/fibonacci2.py>scarica <code>fibonacci2.py</code></a>]
 <pre><code><a>class fib:                                        <span>&#x2460;</span></a>
@@ -408,9 +408,9 @@ def plural(noun):
 <a>        return fib                                <span>&#x2465;</span></a></code></pre>
 <ol>
 <li>Per costruire un iteratore partendo da zero, <code>fib</code> deve essere una classe, non una funzione.
-<li>&#8220;Chiamare&#8221; <code>fib(max)</code> vuol dire in realtà creare una istanza di questa classe e chiamare il suo metodo <code>__init__()</code> con <var>max</var>. Il metodo <code>__init__()</code> salva il valore massimo come una variabile di istanza in modo che altri metodi possano usarla più tardi.
-<li>Il metodo <code>__iter__()</code> viene chiamato ogni volta che qualcuno chiama <code>iter(fib)</code>. (Come vedrete in un minuto, un ciclo <code>for</code> chiama questo metodo automaticamente, ma potete chiamarlo anche voi manualmente.) Dopo aver eseguito l'inizializzazione all'inizio della iterazione (in questo caso, resettando <code>self.a</code> e <code>self.b</code>, i nostri due contatori), il metodo <code>__iter__()</code> può restituire qualsiasi oggetto che implementi un metodo <code>__next__()</code>. In questo caso (e nella maggior parte dei casi), <code>__iter__()</code> restituisce semplicemente <code>self</code>, dato che questa classe implementa il proprio metodo <code>__next__()</code>.
-<li>Il metodo <code>__next__()</code> viene chiamato ogni volta qualcuno chiama <code>next()</code> su un iteratore di una istanza di una classe. Questo avrà più senso in un minuto.
+<li>&#8220;Chiamare&#8221; <code>fib(max)</code> vuol dire in realtà creare una istanza di questa classe e chiamare il suo metodo <code>__init__()</code> con <var>max</var>. Il metodo <code>__init__()</code> salva il valore massimo come una variabile di istanza in modo che altri metodi possano usarlo più tardi.
+<li>Il metodo <code>__iter__()</code> viene chiamato ogni volta che qualcuno chiama <code>iter(fib)</code>. (Come vedrete in un minuto, un ciclo <code>for</code> chiama questo metodo automaticamente, ma potete chiamarlo anche voi manualmente.) Dopo aver eseguito l'inizializzazione all'inizio della iterazione (in questo caso, impostando i valori di <code>self.a</code> e <code>self.b</code>, i nostri due contatori), il metodo <code>__iter__()</code> può restituire qualsiasi oggetto che implementi un metodo <code>__next__()</code>. In questo caso (e nella maggior parte dei casi), <code>__iter__()</code> restituisce semplicemente <code>self</code>, dato che questa classe implementa il proprio metodo <code>__next__()</code>.
+<li>Il metodo <code>__next__()</code> viene chiamato ogni volta che qualcuno chiama <code>next()</code> su un iteratore di una istanza di una classe. Questo avrà più senso fra un minuto.
 <li>Quando il metodo <code>__next__()</code> solleva una eccezione di tipo <code>StopIteration</code>, questo segnala al chiamante che l'iterazione è terminata; non ci sono più valori disponibili. Se il chiamante è un ciclo <code>for</code>, noterà questa eccezione di tipo <code>StopIteration</code> e uscirà gentilmente dal ciclo. (In altre parole, ingoierà l'eccezione.) Questo piccolo tocco di magia è in realtà la chiave per usare gli iteratori nei cicli <code>for</code>.
 <li>Per sputare fuori il valore successivo, il metodo <code>__next__()</code> di un iteratore semplicemente restituisce il valore tramite l'istruzione <code>return</code>. Qui <code>yield</code> non viene usato; quello è zucchero sintattico che si applica solo quando state usando i generatori. Qui invece state creando il vostro iteratore da zero; usate quindi <code>return</code>.
 </ol>
@@ -430,7 +430,7 @@ def plural(noun):
 <ul>
 <li>Il ciclo <code>for</code> invoca <code>fib(1000)</code>, come mostrato. Questo restituisce una istanza della classe <code>fib</code>. Chiamiamo questa istanza <var>fib_inst</var>.
 <li>Segretamente, e piuttosto ingegnosamente, il ciclo <code>for</code> chiama <code>iter(fib_inst)</code>, che restituisce un oggetto iteratore. Chiamiamo questo oggetto <var>fib_iter</var>. In questo caso, <var>fib_iter</var> == <var>fib_inst</var>, perché il metodo <code>__iter__()</code> restituisce <code>self</code>, anche se il ciclo <code>for</code> non lo sa (o non se ne cura).
-<li>Per &#8220;ciclare attraverso&#8221; l'iteratore, il ciclo <code>for</code> chiama <code>next(fib_iter)</code>, che chiama il metodo <code>__next__()</code> sull'oggetto <code>fib_iter</code>, che calcola il successivo numero di Fibonacci e restituisce un valore. Il ciclo <code>for</code> prende questo valore e lo assegna a <var>n</var>, poi esegue il corpo del ciclo <code>for</code> per quel valore di <var>n</var>.
+<li>Per &#8220;ciclare attraverso&#8221; l'iteratore, il ciclo <code>for</code> chiama <code>next(fib_iter)</code>, che chiama il metodo <code>__next__()</code> sull'oggetto <var>fib_iter</var>, che calcola il successivo numero di Fibonacci e restituisce un valore. Il ciclo <code>for</code> prende questo valore e lo assegna a <var>n</var>, poi esegue il corpo del ciclo <code>for</code> per quel valore di <var>n</var>.
 <li>Come fa il ciclo <code>for</code> a sapere quando fermarsi? Sono contento che lo abbiate chiesto! Quando <code>next(fib_iter)</code> solleva una eccezione di tipo <code>StopIteration</code>, il ciclo <code>for</code> ingoierà l'eccezione e uscirà gentilmente. (Ogni altra eccezione vi passerà attraverso e verrà sollevata come al solito.) E dove avete visto una eccezione di tipo <code>StopIteration</code>? Nel metodo <code>__next__()</code>, naturalmente!
 </ul>
 
@@ -470,7 +470,7 @@ def plural(noun):
 
 rules = LazyRules()</code></pre>
 
-<p>Così questa è una classe che implementa <code>__iter__()</code> e <code>__next__()</code>, e perciò può essere usata come un iteratore. Dunque, ne istanziate la classe e assegnate l'istanza a <var>rules</var>. Questo accade sol una volta, al momento di importare il modulo.
+<p>Così questa è una classe che implementa <code>__iter__()</code> e <code>__next__()</code>, e perciò può essere usata come un iteratore. Dunque, ne istanziate la classe e assegnate l'istanza a <var>rules</var>. Questo accade solo una volta, al momento di importare il modulo.
 
 <p>Analizziamo la classe un pezzo alla volta.
 
@@ -480,8 +480,8 @@ rules = LazyRules()</code></pre>
 <a>        self.cache = []                                <span>&#x2461;</span></a></code></pre>
 <ol>
 <li>Il metodo <code>__init__()</code> viene chiamato una volta sola, quando istanziate la classe e ne assegnate l'istanza a <var>rules</var>.
-<li>Dato che viene chiamato una volta sola, è il posto perfetto per aprire il file dei pattern. Lo leggerete più tardi; non ha senso fare più di quello che dovete assolutamente fare fino a quando non diviene assolutamente necessario farlo!
-<li>In più, questo è un buon posto dove inizializzare la cache, che userete più tardi durante la lettura dei pattern dal file.
+<li>Dato che viene chiamato una volta sola, questo metodo è il posto perfetto dove aprire il file dei pattern. Lo leggerete più tardi; non ha senso fare più di quello che dovete assolutamente fare fino a quando non diviene assolutamente necessario farlo!
+<li>In più, questo metodo è un buon posto anche per inizializzare la cache, che userete più tardi durante la lettura dei pattern dal file.
 </ol>
 
 <pre><code><a>    def __iter__(self):       <span>&#x2460;</span></a>
@@ -490,7 +490,7 @@ rules = LazyRules()</code></pre>
 </code></pre>
 <ol>
 <li>Il metodo <code>__iter__()</code> verrà chiamato ogni volta che qualcuno &mdash; diciamo, un ciclo <code>for</code> &mdash; chiama <code>iter(rules)</code>.
-<li>Questo è il luogo dove resettare i contatori che useremo per recuperare gli oggetti dalla cache (che ancora non abbiamo popolato &mdash; pazienza, cavalletta).
+<li>Questo metodo è il posto dove resettare i contatori che useremo per recuperare gli oggetti dalla cache (che ancora non abbiamo popolato &mdash; pazienza, cavalletta).
 <li>Infine, il metodo <code>__iter__()</code> restituisce <code>self</code>, che segnala che questa classe si prenderà cura di restituire i propri valori attraverso l'iterazione.
 </ol>
 
@@ -504,9 +504,9 @@ rules = LazyRules()</code></pre>
 <a>        self.cache.append(funcs)                        <span>&#x2462;</span></a>
         return funcs</code></pre>
 <ol>
-<li>Il metodo <code>__next__()</code> viene chiamato ogni volta che qualcuno &mdash; diciamo, un ciclo <code>for</code> &mdash; chiama <code>next(rules)</code>. Questo metodo ha senso solo se se cominciamo dalla fine e lavoriamo all'indietro. Quindi, facciamolo.
-<li>L'ultima parte di questa funzione dovrebbe sembrare familiare, almeno. La funzione <code>build_match_and_apply_functions()</code> non è cambiata; è la stessa che è sempre stata. <em>Ogni riga del file di pattern verrà letta esattamente una volta, il più tardi possibile.</em>
-<li>L'unica differenza è che, prima di restituire le funzioni di corrispondenza e applicazione (che sono memorizzate nella tupla <var>funcs</var>), dobbiamo salvarle in <code>self.cache</code>. <em>Ogni funzione di corrispondenza e applicazione verrà costruita esattamente una volta, il più tardi possibile, e poi salvata in cache.</em>
+<li>Il metodo <code>__next__()</code> viene chiamato ogni volta che qualcuno &mdash; diciamo, un ciclo <code>for</code> &mdash; chiama <code>next(rules)</code>. Questo metodo si capisce meglio se cominciamo dalla fine e lo leggiamo all'indietro. Quindi, facciamolo.
+<li>L'ultima parte di questa funzione dovrebbe sembrare familiare, quantomeno. La funzione <code>build_match_and_apply_functions()</code> non è cambiata; è la stessa che è sempre stata. <em>Ogni riga del file di pattern verrà letta esattamente una volta, il più tardi possibile.</em>
+<li>L'unica differenza è che, prima di restituire le funzioni di ricerca e sostituzione (che sono memorizzate nella tupla <var>funcs</var>), dobbiamo salvarle in <code>self.cache</code>. <em>Ogni funzione di ricerca e sostituzione verrà costruita esattamente una volta, il più tardi possibile, e poi salvata in cache.</em>
 </ol>
 
 <p>Muovendosi all'indietro&hellip;
@@ -525,7 +525,7 @@ rules = LazyRules()</code></pre>
 <ol>
 <li>Qui utilizziamo i file in maniera astuta. Il metodo <code>readline()</code> (notate: singolare, non il plurale <code>readlines()</code>) legge esattamente una riga da un file aperto. Nello specifico, la riga successiva. (<em>Anche gli oggetti file sono iteratori! <span class=wtf>It&#8217;s iterators all the way down&hellip;</span></em>)
 <li>Se c'è una riga da leggere per <code>readline()</code>, <var>line</var> non sarà una stringa vuota. Anche se il file contenesse una riga vuota, <var>line</var> finirebbe per essere la stringa <code>'\n'</code> contenente il carattere di ritorno a capo. Quando <var>line</var> è davvero la stringa vuota, significa che non ci sono più righe da leggere nel file.
-<li>Quando raggiungiamo la fine del file, dobbiamo chiudere il file e lanciare la magica eccezione di tipo <code>StopIteration</code>. Ricordate, siamo arrivati a questo punto perché avevamo bisogno di una funzione di corrispondenza e applicazione per la regola successiva. Tale regola proviene dalla successiva riga nel file&hellip; ma non c'è nessun'altra riga! Di conseguenza, non abbiamo alcun valore da restituire. L'iterazione è finita. (<span>&#x266B;</span> The party&#8217;s over&hellip; <span>&#x266B;</span>)
+<li>Quando raggiungiamo la fine del file, dobbiamo chiudere il file e lanciare la magica eccezione di tipo <code>StopIteration</code>. Ricordate, siamo arrivati a questo punto perché avevamo bisogno di una funzione di ricerca e sostituzione per la regola successiva. Tale regola proviene dalla riga successiva nel file&hellip; ma non c'è nessun'altra riga! Di conseguenza, non abbiamo alcun valore da restituire. L'iterazione è finita. (<span>&#x266B;</span> The party&#8217;s over&hellip; <span>&#x266B;</span>)
 </ol>
 
 <p>Spostandoci all'indietro fino all'inizio del metodo <code>__next__()</code>&hellip;
@@ -541,20 +541,20 @@ rules = LazyRules()</code></pre>
         .
         .</code></pre>
 <ol>
-<li><code>self.cache</code> sarà una lista di funzioni per cercare corrispondenze con le singole regole e poi applicarle. (Almeno <em>questo</em> dovrebbe suonarvi familiare!) <code>self.cache_index</code> tiene traccia di quale elemento in cache dovremo restituire successivamente. Se non abbiamo ancora esaurito la cache (cioè se la lunghezza di <code>self.cache</code> è più grande di <code>self.cache_index</code>), allora abbiamo una <self class=wtf>hit</self> nella cache! Hurrà! Possiamo restituire le funzioni di corrispondenza e applicazione dalla cache invece che costruirle da zero.
-<li>D'altra parte, se non otteniamo una <self class=wtf>hit</self> dalla cache, <em>e</em> l'oggetto file è stato chiuso (cosa che potrebbe accadere, più in giù nel metodo, come avete visto nel precedente frammento di codice), allora non c'è nient'altro che possiamo fare. Se il file è chiuso, vuol dire che lo abbiamo esaurito &mdash; abbiamo già letto ogni riga dal file dei pattern, e abbiamo già costruito e memorizzato le funzioni di corrispondenza e applicaizone per ogni pattern. Il file è esaurito; la cache è esaurita; anche io sono esaurito. Aspettate, cosa? Tenete duro, abbiamo quasi finito.
+<li><code>self.cache</code> sarà una lista di funzioni per cercare corrispondenze con le singole regole e poi sostituirle. (Almeno <em>questo</em> dovrebbe suonarvi familiare!) <code>self.cache_index</code> tiene traccia di quale elemento in cache dovremo restituire successivamente. Se non abbiamo ancora esaurito la cache (cioè se la lunghezza di <code>self.cache</code> è maggiore di <code>self.cache_index</code>), allora abbiamo una <self class=wtf>hit</self> nella cache! Urrà! Possiamo restituire le funzioni di ricerca e sostituzione dalla cache invece che costruirle da zero.
+<li>D'altra parte, se non otteniamo una <self class=wtf>hit</self> dalla cache, <em>e</em> l'oggetto file è stato chiuso (cosa che potrebbe accadere, più in giù nel metodo, come avete visto nel precedente frammento di codice), allora non c'è nient'altro che possiamo fare. Se il file è chiuso, vuol dire che lo abbiamo esaurito &mdash; abbiamo già letto ogni riga dal file dei pattern, e abbiamo già costruito e memorizzato le funzioni di ricerca e sostituzione per ogni pattern. Il file è esaurito; la cache è esaurita; anche io sono esaurito. Aspettate, cosa? Tenete duro, abbiamo quasi finito.
 </ol>
 
 <p>Mettendo insieme tutti i pezzi, ecco cosa succede quando:
 
 <ul>
-<li>Quando il modulo viene importato, crea una singola istanza della classe <code>LazyRules</code>, chiamata <var>rules</var>, che apre il file dei pattern ma non lo legge.
-<li>Quando le si richiede le prime funzioni di corrispondenza e applicazione, controlla la propria cache ma scopre che è vuota. Quindi legge una singola riga dal file dei pattern, costruisce le funzioni di corrispondenza e applicazione per quei pattern, e le memorizza nella cache.
+<li>Quando il modulo viene importato, viene creata una singola istanza della classe <code>LazyRules</code>, chiamata <var>rules</var>, che apre il file dei pattern ma non lo legge.
+<li>Quando si richiedono a <var>rules</var> le prime funzioni di ricerca e sostituzione, l'istanza controlla la propria cache ma scopre che è vuota. Quindi legge una singola riga dal file dei pattern, costruisce le funzioni di ricerca e sostituzione per quei pattern, e le memorizza nella cache.
 <li>Diciamo che, per amor di discussione, proprio la prima regola trova una corrispondenza. Se è così, nessuna nuova coppia di funzioni viene costruita, e nessun'altra riga viene letta dal file.
-<li>In più, sempre per amor di discussione, supponiamo che il chiamante invochi la funzione <code>plural()</code> <em>di nuovo</em> per costruire il plurale di una parola diversa. Il ciclo <code>for</code> nella funzione <code>plural()</code> chiamerà <code>iter(rules)</code>, che resetterà l'indice della cache ma non l'oggetto file aperto.
-<li>Alla prima iterazione, il ciclo <code>for</code> chiederà un valore a <var>rules</var>, che invocherà il suo metodo <code>__next__()</code> method. Questa volta, però, la cache è caricata con una singola coppia di funzioni di corrispondenza e applicazione, corrispondenti ai pattern nella prima riga del file dei pattern. Visto che la coppia è stata costruita e memorizzata nel tentativo di creare il plurale della parola precedente, viene recuperata dalla cache. L'indice della cache viene incrementato, e il file aperto non viene mai toccato.
-<li>Diciamo ora che, per amor di discussione la prima regola questa volta non genera alcuna corrispondenza. Quindi il ciclo <code>for</code> ricomincia da capo e chiede un altro valore a <var>rules</var>. Questi invoca il metodo <code>__next__()</code> una seconda volta. Questa volta, la cache è esaurita &mdash; conteneva un solo elemento, e noi ne stiamo chiedendo un secondo &mdash; quindi il metodo <code>__next()__</code> continua. Legge un'altra riga dal file aperto, costruisce le funzioni di corrispondenza e applicazione dai pattern, e le memorizza in cache.
-<li>Questo processo di lettura-costruzione-memorizzazione continuerà fino a quando le regole lette dal file dei pattern non corrisponderanno alla parola di cui stiamo cercando di costruire il plurale. Se troviamo una regola che corrisponde prima della fine del file, semplicemente la usiamo e ci fermiamo, con il file ancora aperto. Il puntatore del file rimarrà dovunque avremo smesso di leggere, aspettando il prossimo comando di <code>readline()</code>. Nel frattempo, la cache ha ora più elementi, e se ricominciamo di nuovo a cercare di creare il plurale di una nuova parola, ognuno di quegli elementi in cache verrà provato prima di leggere la riga successiva dal file dei pattern.
+<li>In più, sempre per amor di discussione, supponiamo che il chiamante invochi la funzione <code>plural()</code> <em>di nuovo</em> per costruire il plurale di una parola diversa. Il ciclo <code>for</code> nella funzione <code>plural()</code> chiamerà <code>iter(rules)</code>, che azzererà l'indice della cache ma non l'oggetto file aperto.
+<li>Alla prima iterazione, il ciclo <code>for</code> chiederà un valore a <var>rules</var>, che invocherà il suo metodo <code>__next__()</code>. Questa volta, però, la cache è caricata con una singola coppia di funzioni di ricerca e sostituzione, corrispondenti ai pattern nella prima riga del file dei pattern. Visto che la coppia è stata costruita e memorizzata nel tentativo di creare il plurale della parola precedente, viene recuperata dalla cache. L'indice della cache viene incrementato, e il file aperto non viene mai toccato.
+<li>Diciamo ora che, per amor di discussione, la prima regola questa volta non genera alcuna corrispondenza. Quindi il ciclo <code>for</code> ricomincia da capo e chiede un altro valore a <var>rules</var>. Questi invoca il metodo <code>__next__()</code> una seconda volta. Questa volta, la cache è esaurita &mdash; conteneva un solo elemento, e noi ne stiamo chiedendo un secondo &mdash; quindi il metodo <code>__next__()</code> prosegue. Legge un'altra riga dal file aperto, costruisce le funzioni di ricerca e sostituzione dai pattern, e le memorizza in cache.
+<li>Questo processo di lettura-costruzione-memorizzazione continuerà fino a quando le regole lette dal file dei pattern non corrisponderanno alla parola di cui stiamo cercando di costruire il plurale. Se troviamo una regola che corrisponde prima della fine del file, semplicemente la usiamo e ci fermiamo, con il file ancora aperto. Il puntatore del file rimarrà dovunque avremo smesso di leggere, aspettando il prossimo comando di <code>readline()</code>. Nel frattempo, la cache ha ora più elementi, e se ricominciamo di nuovo a cercare di pluralizzare una nuova parola, ognuno degli elementi in cache verrà provato prima di leggere la riga successiva dal file dei pattern.
 </ul>
 
 <p>E quindi, abbiamo raggiunto i nostri obiettivi combinati:
