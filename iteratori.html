@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<head>
+<meta charset=utf-8>
+<title>Iteratori - Dive into Python 3</title>
+<link rel=stylesheet type=text/css href=dip3.css>
+<link rel=stylesheet type=text/css href=dip3-it.css>
+<style>
+body{counter-reset:h1 6}
+</style>
+<link rel=stylesheet type=text/css media='only screen and (max-device-width: 480px)' href=mobile.css>
+</head>
+<form action=http://www.google.com/cse><div><input type=hidden name=cx value=014021643941856155761:l5eihuescdw><input type=hidden name=ie value=UTF-8>&nbsp;<input name=q size=25>&nbsp;<input type=submit name=sa value=Search></div></form>
+<p>Voi siete qui: <a href=index.html>Home</a> <span>&#8227;</span> <a href=table-of-contents.html#iterators-and-generators>Dive Into Python 3</a> <span>&#8227;</span>
+<p id=level>Livello di difficoltà: <span title=intermedio>&#x2666;&#x2666;&#x2666;&#x2662;&#x2662;</span>
+<h1>Iteratori</h1>
+<blockquote class=q>
+<p><span>&#x275D;</span> East is East, and West is West, and never the twain shall meet. <span>&#x275E;</span><br>&mdash; <a href=http://en.wikiquote.org/wiki/Rudyard_Kipling>Rudyard Kipling</a>
+</blockquote>
+<p id=toc>&nbsp;
+<h2 id=divingin>Immersione!</h2>
+<p class=f>In verità, i generatori sono solo un caso speciale di <i>iteratori</i>. Una funzione che produce valori tramite <code>yield</code> è un modo carino e compatto di costruire un iteratore senza costruire un iteratore. Lasciate che vi mostri cosa intendo dire con questo.
+
+<p>Ricordate il <a href=a-fibonacci-generator>generatore di Fibonacci</a>? Qui lo trovate reimplementato da zero sotto forma di iteratore:
+
+<p class=d>[<a href=esempio/fibonacci2.py>scarica <code>fibonacci2.py</code></a>]
+<pre><code>class Fib:
+    def __init__(self, max):
+        self.max = max
+
+    def __iter__(self):
+        self.a, self.b = 0, 1
+        return self
+
+    def __next__(self):
+        fib = self.a
+        if fib > self.max:
+            raise StopIteration
+        self.a, self.b = self.b, self.a + self.b
+        return fib</code></pre>
+
+<p>Analizziamolo una riga alla volta.
+
+<pre><code>class Fib:</code></pre>
+
+<p><code>class</code>? Classe? Che cos'è una classe?
+
+<h2 id=defining-classes>Definire le classi</h2>
+
+<p>Python è completamente orientato agli oggetti: potete definire le vostre classi, ereditare dalle vostre classi o dalle classi built-in, e instanziare le classi che avete definito.
+
+<p>Definire una classe in Python è semplice. Come per le funzioni, non c'è una definizione di interfaccia separata. Vi basta definire la classe e cominciare a programmarla. Una classe Python comincia con la parola riservata <code>class</code>, seguita dal nome della classe. Tecnicamente, questo è tutto quello che è richiesto, in quanto una classe non ha bisogno di ereditare da nessun'altra classe.
+
+<pre><code>
+class PapayaWhip:  <span>&#x2460;</span>
+    pass           <span>&#x2461;</span></code></pre>
+<ol>
+<li>Il nome di questa classe è <code>PapayaWhip</code>, e non eredita da nessun'altra classe. I nomi di classe solitamente cominciano con una lettera maiuscola, <code>OgniParolaInQuestoModo</code>, ma questa è solo una convenzione, non un requisito.
+<li>Lo avrete probabilmente già indovinato, ma ogni cosa in una classe è indentata, esattamente come il codice all'interno di una funzione, di una istruzione <code>if</code>, dei cicli <code>for</code>, o di ogni altro blocco di codice. La prima riga non indentata non fa più parte della definizione di classe.
+</ol>
+
+<p>Questa classe <code>PapayaWhip</code> non definisce alcun metodo o proprietà, ma sintatticamente ci deve essere qualcosa nella definizione, ed ecco il motivo per quella istruzione <code>pass</code>. Questa è una parola riservata di Python che significa solo &#8220;circolate, non c'è nulla da vedere&#8221;. &Egrave; una istruzione che non fa nulla, e un buon segnaposto quando state definendo lo scheletro di funzioni o classi.
+
+<blockquote class="note compare java">
+<p><span>&#x261E;</span>L'istruzione <code>pass</code> in Python è come un insieme vuoto di parentesi graffe (<code>{}</code>) in Java o C.
+</blockquote>
+
+<p>Molte classi ereditano da altre classi, ma questa non lo fa. Molte classi definiscono metodi, ma questa non lo fa. Non c'è nulla che una classe Python debba assolutamente avere, a parte un nome. In particolare, i programmatori C++ potrebbero trovare strano che le classi Python non abbiano costruttori e distruttori espliciti. Sebbene non sia obbligatorio, le classi Python <em>possono</em> avere qualcosa di simile a un costruttore: il metodo <code>__init__()</code>.
+
+<h3 id=init-method>Il metodo <code>__init__()</code></h3>
+
+<p class=fixme>FIXME - port from DiP
+
+<h3 id=self-and-init>Sapere quando usare <code>self</code> e <code>__init__</code></h3>
+
+<p class=fixme>FIXME - port from DiP
+
+<h2 id=instantiating-classes>Istanziare le classi</h2>
+
+<p class=fixme>FIXME - port from DiP
+
+<h3 id=gc>Una nota sulla garbage collection</h3>
+
+<p class=fixme>FIXME - port from DiP, verify it's still true
+
+<h2 id=special-method-names>Nomi speciali di metodi</h2>
+
+<p class=fixme>FIXME - port from DiP, link to http://docs.python.org/3.0/reference/datamodel.html#special-method-names
+
+<p class=fixme>FIXME - do we want to make an appendix out of some of the special methods? The organization in the Python docs is somewhat haphazard and most names have no examples at all
+
+<h2 id=class-attributes>Proprietà di classe</h2>
+
+<p class=fixme>FIXME
+
+<h2 id=a-fibonacci-iterator>Un iteratore di Fibonacci</h2>
+
+<p class=fixme>FIXME
+
+<p class=d>[<a href=examples/fibonacci2.py>download <code>fibonacci2.py</code></a>]
+<pre><code><a>class Fib:                                        <span>&#x2460;</span></a>
+<a>    def __init__(self, max):                      <span>&#x2461;</span></a>
+        self.max = max
+
+<a>    def __iter__(self):                           <span>&#x2462;</span></a>
+        self.a, self.b = 0, 1
+        return self
+
+<a>    def __next__(self):                           <span>&#x2463;</span></a>
+        fib = self.a
+        if fib > self.max:
+<a>            raise StopIteration                   <span>&#x2464;</span></a>
+        self.a, self.b = self.b, self.a + self.b
+<a>        return fib                                <span>&#x2465;</span></a></code></pre>
+<ol>
+<li>Per costruire un iteratore partendo da zero, <code>fib</code> deve essere una classe, non una funzione.
+<li>&#8220;Chiamare&#8221; <code>fib(max)</code> vuol dire in realtà creare una istanza di questa classe e chiamare il suo metodo <code>__init__()</code> con <var>max</var>. Il metodo <code>__init__()</code> salva il valore massimo come una variabile di istanza in modo che altri metodi possano usarlo più tardi.
+<li>Il metodo <code>__iter__()</code> viene chiamato ogni volta che qualcuno chiama <code>iter(fib)</code>. (Come vedrete in un minuto, un ciclo <code>for</code> chiama questo metodo automaticamente, ma potete chiamarlo anche voi manualmente.) Dopo aver eseguito l'inizializzazione all'inizio della iterazione (in questo caso, impostando i valori di <code>self.a</code> e <code>self.b</code>, i nostri due contatori), il metodo <code>__iter__()</code> può restituire qualsiasi oggetto che implementi un metodo <code>__next__()</code>. In questo caso (e nella maggior parte dei casi), <code>__iter__()</code> restituisce semplicemente <code>self</code>, dato che questa classe implementa il proprio metodo <code>__next__()</code>.
+<li>Il metodo <code>__next__()</code> viene chiamato ogni volta che qualcuno chiama <code>next()</code> su un iteratore di una istanza di una classe. Questo avrà più senso fra un minuto.
+<li>Quando il metodo <code>__next__()</code> solleva una eccezione di tipo <code>StopIteration</code>, questo segnala al chiamante che l'iterazione è terminata; non ci sono più valori disponibili. Se il chiamante è un ciclo <code>for</code>, noterà questa eccezione di tipo <code>StopIteration</code> e uscirà gentilmente dal ciclo. (In altre parole, ingoierà l'eccezione.) Questo piccolo tocco di magia è in realtà la chiave per usare gli iteratori nei cicli <code>for</code>.
+<li>Per sputare fuori il valore successivo, il metodo <code>__next__()</code> di un iteratore semplicemente restituisce il valore tramite l'istruzione <code>return</code>. Qui <code>yield</code> non viene usato; quello è zucchero sintattico che si applica solo quando state usando i generatori. Qui invece state creando il vostro iteratore da zero; usate quindi <code>return</code>.
+</ol>
+
+<p>Non siete ancora completamente confusi? Eccellente. Vediamo come invocare questo iteratore:</p>
+
+<pre class=screen>
+<samp class=p>>>> </samp><kbd>from fibonacci2 import Fib</kbd>
+<samp class=p>>>> </samp><kbd>for n in Fib(1000):</kbd>
+<samp class=p>... </samp><kbd>    print(n, end=' ')</kbd>
+<samp>0 1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987</samp></pre>
+
+<p>Ehi, è esattamente lo stesso! Identico byte per byte a come chiamavate <a href=generatori.html#a-fibonacci-generator>il generatore di Fibonacci</a> (a parte una lettera maiuscola). Ma com'è possibile?
+
+<p>C'è un poco di magia coinvolta nei cicli <code>for</code>. Ecco cosa succede:
+
+<ul>
+<li>Il ciclo <code>for</code> invoca <code>Fib(1000)</code>, come mostrato. Questo restituisce una istanza della classe <code>Fib</code>. Chiamiamo questa istanza <var>fib_inst</var>.
+<li>Segretamente, e piuttosto ingegnosamente, il ciclo <code>for</code> chiama <code>iter(fib_inst)</code>, che restituisce un oggetto iteratore. Chiamiamo questo oggetto <var>fib_iter</var>. In questo caso, <var>fib_iter</var> == <var>fib_inst</var>, perché il metodo <code>__iter__()</code> restituisce <code>self</code>, anche se il ciclo <code>for</code> non lo sa (o non se ne cura).
+<li>Per &#8220;ciclare attraverso&#8221; l'iteratore, il ciclo <code>for</code> chiama <code>next(fib_iter)</code>, che chiama il metodo <code>__next__()</code> sull'oggetto <var>fib_iter</var>, che calcola il successivo numero di Fibonacci e restituisce un valore. Il ciclo <code>for</code> prende questo valore e lo assegna a <var>n</var>, poi esegue il corpo del ciclo <code>for</code> per quel valore di <var>n</var>.
+<li>Come fa il ciclo <code>for</code> a sapere quando fermarsi? Sono contento che lo abbiate chiesto! Quando <code>next(fib_iter)</code> solleva una eccezione di tipo <code>StopIteration</code>, il ciclo <code>for</code> ingoierà l'eccezione e uscirà gentilmente. (Ogni altra eccezione vi passerà attraverso e verrà sollevata come al solito.) E dove avete visto una eccezione di tipo <code>StopIteration</code>? Nel metodo <code>__next__()</code>, naturalmente!
+</ul>
+
+<h3 id=a-plural-rule-iterator>Un iteratore di regole per i sostantivi plurali</h3>
+
+<aside>iter(f) chiama f.__iter__<br>next(f) chiama f.__next__</aside>
+<p>Ora è il momento del gran finale. Riscriviamo il <a href=generatori.html>generatore di regole per i sostantivi plurali</a> sotto forma di iteratore.
+
+<p class=d>[<a href=esempi/plural6.py>scarica <code>plural6.py</code></a>]
+<pre><code>class LazyRules:
+    def __init__(self):
+        self.pattern_file = open('plural6-rules.txt')
+        self.cache = []
+
+    def __iter__(self):
+        self.cache_index = 0
+        return self
+
+    def __next__(self):
+        self.cache_index += 1
+        if len(self.cache) >= self.cache_index:
+            return self.cache[self.cache_index - 1]
+
+        if self.pattern_file.closed:
+            raise StopIteration
+
+        line = self.pattern_file.readline()
+        if not line:
+            self.pattern_file.close()
+            raise StopIteration
+
+        pattern, search, replace = line.split(None, 3)
+        funcs = build_match_and_apply_functions(
+            pattern, search, replace)
+        self.cache.append(funcs)
+        return funcs
+
+rules = LazyRules()</code></pre>
+
+<p>Così questa è una classe che implementa <code>__iter__()</code> e <code>__next__()</code>, e perciò può essere usata come un iteratore. Dunque, ne istanziate la classe e assegnate l'istanza a <var>rules</var>. Questo accade solo una volta, al momento di importare il modulo.
+
+<p>Analizziamo la classe un pezzo alla volta.
+
+<pre><code>class LazyRules:
+<a>    def __init__(self):                                <span>&#x2460;</span></a>
+<a>        self.pattern_file = open('plural6-rules.txt')  <span>&#x2462;</span></a>
+<a>        self.cache = []                                <span>&#x2461;</span></a></code></pre>
+<ol>
+<li>Il metodo <code>__init__()</code> viene chiamato una volta sola, quando istanziate la classe e ne assegnate l'istanza a <var>rules</var>.
+<li>Dato che viene chiamato una volta sola, questo metodo è il posto perfetto dove aprire il file dei pattern. Lo leggerete più tardi; non ha senso fare più di quello che dovete assolutamente fare fino a quando non diviene assolutamente necessario farlo!
+<li>In più, questo metodo è un buon posto anche per inizializzare la cache, che userete più tardi durante la lettura dei pattern dal file.
+</ol>
+
+<pre><code><a>    def __iter__(self):       <span>&#x2460;</span></a>
+<a>        self.cache_index = 0  <span>&#x2461;</span></a>
+<a>        return self           <span>&#x2462;</span></a>
+</code></pre>
+<ol>
+<li>Il metodo <code>__iter__()</code> verrà chiamato ogni volta che qualcuno &mdash; diciamo, un ciclo <code>for</code> &mdash; chiama <code>iter(rules)</code>.
+<li>Questo metodo è il posto dove resettare i contatori che useremo per recuperare gli oggetti dalla cache (che ancora non abbiamo popolato &mdash; pazienza, cavalletta).
+<li>Infine, il metodo <code>__iter__()</code> restituisce <code>self</code>, che segnala che questa classe si prenderà cura di restituire i propri valori attraverso l'iterazione.
+</ol>
+
+<pre><code><a>    def __next__(self):                                 <span>&#x2460;</span></a>
+        .
+        .
+        .
+        pattern, search, replace = line.split(None, 3)
+<a>        funcs = build_match_and_apply_functions(        <span>&#x2461;</span></a>
+            pattern, search, replace)
+<a>        self.cache.append(funcs)                        <span>&#x2462;</span></a>
+        return funcs</code></pre>
+<ol>
+<li>Il metodo <code>__next__()</code> viene chiamato ogni volta che qualcuno &mdash; diciamo, un ciclo <code>for</code> &mdash; chiama <code>next(rules)</code>. Questo metodo si capisce meglio se cominciamo dalla fine e lo leggiamo all'indietro. Quindi, facciamolo.
+<li>L'ultima parte di questa funzione dovrebbe sembrare familiare, quantomeno. La funzione <code>build_match_and_apply_functions()</code> non è cambiata; è la stessa che è sempre stata. <em>Ogni riga del file di pattern verrà letta esattamente una volta, il più tardi possibile.</em>
+<li>L'unica differenza è che, prima di restituire le funzioni di ricerca e sostituzione (che sono memorizzate nella tupla <var>funcs</var>), dobbiamo salvarle in <code>self.cache</code>. <em>Ogni funzione di ricerca e sostituzione verrà costruita esattamente una volta, il più tardi possibile, e poi salvata in cache.</em>
+</ol>
+
+<p>Muovendosi all'indietro&hellip;
+
+<pre><code>    def __next__(self):
+        .
+        .
+        .
+<a>        line = self.pattern_file.readline()  <span>&#x2460;</span></a>
+<a>        if not line:                         <span>&#x2461;</span></a>
+            self.pattern_file.close()
+<a>            raise StopIteration              <span>&#x2462;</span></a>
+        .
+        .
+        .</code></pre>
+<ol>
+<li>Qui utilizziamo i file in maniera astuta. Il metodo <code>readline()</code> (notate: singolare, non il plurale <code>readlines()</code>) legge esattamente una riga da un file aperto. Nello specifico, la riga successiva. (<em>Anche gli oggetti file sono iteratori! <span class=wtf>It&#8217;s iterators all the way down&hellip;</span></em>)
+<li>Se c'è una riga da leggere per <code>readline()</code>, <var>line</var> non sarà una stringa vuota. Anche se il file contenesse una riga vuota, <var>line</var> finirebbe per essere la stringa <code>'\n'</code> contenente il carattere di ritorno a capo. Quando <var>line</var> è davvero la stringa vuota, significa che non ci sono più righe da leggere nel file.
+<li>Quando raggiungiamo la fine del file, dobbiamo chiudere il file e lanciare la magica eccezione di tipo <code>StopIteration</code>. Ricordate, siamo arrivati a questo punto perché avevamo bisogno di una funzione di ricerca e sostituzione per la regola successiva. Tale regola proviene dalla riga successiva nel file&hellip; ma non c'è nessun'altra riga! Di conseguenza, non abbiamo alcun valore da restituire. L'iterazione è finita. (<span>&#x266B;</span> The party&#8217;s over&hellip; <span>&#x266B;</span>)
+</ol>
+
+<p>Spostandoci all'indietro fino all'inizio del metodo <code>__next__()</code>&hellip;
+
+<pre><code>    def __next__(self):
+        self.cache_index += 1
+        if len(self.cache) >= self.cache_index:
+<a>            return self.cache[self.cache_index - 1]     <span>&#x2460;</span></a>
+
+        if self.pattern_file.closed:
+<a>            raise StopIteration                         <span>&#x2461;</span></a>
+        .
+        .
+        .</code></pre>
+<ol>
+<li><code>self.cache</code> sarà una lista di funzioni per cercare corrispondenze con le singole regole e poi sostituirle. (Almeno <em>questo</em> dovrebbe suonarvi familiare!) <code>self.cache_index</code> tiene traccia di quale elemento in cache dovremo restituire successivamente. Se non abbiamo ancora esaurito la cache (cioè se la lunghezza di <code>self.cache</code> è maggiore di <code>self.cache_index</code>), allora abbiamo una <self class=wtf>hit</self> nella cache! Urrà! Possiamo restituire le funzioni di ricerca e sostituzione dalla cache invece che costruirle da zero.
+<li>D'altra parte, se non otteniamo una <self class=wtf>hit</self> dalla cache, <em>e</em> l'oggetto file è stato chiuso (cosa che potrebbe accadere, più in giù nel metodo, come avete visto nel precedente frammento di codice), allora non c'è nient'altro che possiamo fare. Se il file è chiuso, vuol dire che lo abbiamo esaurito &mdash; abbiamo già letto ogni riga dal file dei pattern, e abbiamo già costruito e memorizzato le funzioni di ricerca e sostituzione per ogni pattern. Il file è esaurito; la cache è esaurita; anche io sono esaurito. Aspettate, cosa? Tenete duro, abbiamo quasi finito.
+</ol>
+
+<p>Mettendo insieme tutti i pezzi, ecco cosa succede quando:
+
+<ul>
+<li>Quando il modulo viene importato, viene creata una singola istanza della classe <code>LazyRules</code>, chiamata <var>rules</var>, che apre il file dei pattern ma non lo legge.
+<li>Quando si richiedono a <var>rules</var> le prime funzioni di ricerca e sostituzione, l'istanza controlla la propria cache ma scopre che è vuota. Quindi legge una singola riga dal file dei pattern, costruisce le funzioni di ricerca e sostituzione per quei pattern, e le memorizza nella cache.
+<li>Diciamo che, per amor di discussione, proprio la prima regola trova una corrispondenza. Se è così, nessuna nuova coppia di funzioni viene costruita, e nessun'altra riga viene letta dal file.
+<li>In più, sempre per amor di discussione, supponiamo che il chiamante invochi la funzione <code>plural()</code> <em>di nuovo</em> per costruire il plurale di una parola diversa. Il ciclo <code>for</code> nella funzione <code>plural()</code> chiamerà <code>iter(rules)</code>, che azzererà l'indice della cache ma non l'oggetto file aperto.
+<li>Alla prima iterazione, il ciclo <code>for</code> chiederà un valore a <var>rules</var>, che invocherà il suo metodo <code>__next__()</code>. Questa volta, però, la cache è caricata con una singola coppia di funzioni di ricerca e sostituzione, corrispondenti ai pattern nella prima riga del file dei pattern. Visto che la coppia è stata costruita e memorizzata nel tentativo di creare il plurale della parola precedente, viene recuperata dalla cache. L'indice della cache viene incrementato, e il file aperto non viene mai toccato.
+<li>Diciamo ora che, per amor di discussione, la prima regola questa volta non genera alcuna corrispondenza. Quindi il ciclo <code>for</code> ricomincia da capo e chiede un altro valore a <var>rules</var>. Questi invoca il metodo <code>__next__()</code> una seconda volta. Questa volta, la cache è esaurita &mdash; conteneva un solo elemento, e noi ne stiamo chiedendo un secondo &mdash; quindi il metodo <code>__next__()</code> prosegue. Legge un'altra riga dal file aperto, costruisce le funzioni di ricerca e sostituzione dai pattern, e le memorizza in cache.
+<li>Questo processo di lettura-costruzione-memorizzazione continuerà fino a quando le regole lette dal file dei pattern non corrisponderanno alla parola di cui stiamo cercando di costruire il plurale. Se troviamo una regola che corrisponde prima della fine del file, semplicemente la usiamo e ci fermiamo, con il file ancora aperto. Il puntatore del file rimarrà dovunque avremo smesso di leggere, aspettando il prossimo comando di <code>readline()</code>. Nel frattempo, la cache ha ora più elementi, e se ricominciamo di nuovo a cercare di pluralizzare una nuova parola, ognuno degli elementi in cache verrà provato prima di leggere la riga successiva dal file dei pattern.
+</ul>
+
+<p>E quindi, abbiamo raggiunto i nostri obiettivi combinati <span class=fixme> [FIXME xref]</span>:
+
+<ol>
+<li><strong>Costo di inizializzazione minimo.</strong> L'unica cosa che succede durante l'importazione del modulo è la creazione di una singola istanza di una classe e l'apertura di un file (ma senza alcuna lettura).
+<li><strong>Prestazioni massime.</strong> L'esempio precedente avrebbe letto tutto il file e costruito funzioni dinamicamente ogni volta che volevate pluralizzare una parola. Questa versione memorizza le funzioni non appena vengono costruite, e nel caso peggiore leggerà tutto il file dei pattern una volta sola, a prescindere dal numero di parole che pluralizzate.
+<li><strong>Separazione di codice e dati.</strong> Tutti i pattern sono archiviati in un file separato. Il codice è codice, i dati sono dati, <span class=wtf>and never the twain shall meet</span>.
+</ol>
+
+<h2 id=furtherreading>Letture di approfondimento</h2>
+<ul>
+<li><a href=http://www.python.org/dev/peps/pep-0234/>PEP 234: Iterators</a>
+<li><a href=http://www.python.org/dev/peps/pep-0255/>PEP 255: Simple Generators</a>
+</ul>
+
+<p class=nav><a rel=prev href=espressioni-regolari.html title="indietro a &#8220;Espressioni regolari&#8221;"><span>&#x261C;</a> <a rel=next href=uso-avanzato-degli-iteratori.html title="avanti a &#8220;Uso avanzato degli iteratori&#8221;"><span>&#x261E;</span></a>
+
+<p class=c>&copy; 2001&ndash;9 <a href=about.html>Mark Pilgrim</a><br>
+&copy; 2009 <a href=informazioni-sulla-traduzione.html>Giulio Piancastelli</a> per la traduzione italiana
+<script src=jquery.js></script>
+<script src=dip3.js></script>
