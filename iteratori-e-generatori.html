@@ -253,6 +253,7 @@ $                    $    s</code></pre>
 <p>Ora vediamo come potete usare questo file di regole.
 
 <p class=fixme>[FIXME: now that this chapter comes before the I/O chapter, need to at least mention what open() does]
+<p class=fixme>[FIXME: try/finally -> with]
 <p class=d>[<a href=esempi/plural4.py>scarica <code>plural4.py</code></a>]
 <pre><code>import re
 
@@ -372,7 +373,7 @@ def plural(noun):
         if matches_rule(noun):
             return apply_rule(noun)</code></pre>
 <ol>
-<li>Come avete visto, <code>for line in open(...)</code> è un idioma comune per leggere da un file una riga alla volta. Ma qui c'è qualcosa che potreste non sapere: la ragione per cui questo idioma funziona è perché <em><code>open()</code> in realtà restituisce un generatore, e invocare <code>next()</code> su questo generatore restituisce la riga successiva del file.</em>
+<li>Come avete visto, <code>for line in open(...)</code> è un idioma comune per leggere da un file una riga alla volta. Ma qui c'è qualcosa che potreste non sapere: la ragione per cui questo idioma funziona è perché <em><code>open()</code> in realtà restituisce un iteratore, e invocare <code>next()</code> su questo iteratore restituisce la riga successiva del file.</em>
 <li>Nessuna magia qui. Ricordate che le righe del file di regole hanno tre valori separati da spazi bianchi, quindi usate <code>line.split(None, 3)</code> per ottenere le tre &#8220;colonne&#8221; e assegnarle a tre variabili locali.
 <li><em>E poi utilizzate <code>yield</code>.</em> Che cosa producete? Due funzioni, costruite dinamicamente con la vostra vecchia amica, <code>build_match_and_apply_functions()</code>, che è identica all'esempio precedente. In altre parole, <code>rules()</code> è un generatore che produce funzioni di ricerca e sostituzione <em>su richiesta</em>.
 <li>Dato che <code>rules()</code> è un generatore, potete usarlo direttamente in un ciclo <code>for</code>. Alla prima iterazione nel ciclo <code>for</code>, chiamerete la funzione <code>rules()</code>, che aprirà il file dei pattern, leggerà la prima riga, costruirà dinamicamente una funzione di ricerca e una funzione di sostituzione usando i pattern di quella riga, e produrrà in uscita le funzioni costruite dinamicamente. Nella seconda iterazione del ciclo <code>for</code>, <code>rules()</code> riprenderà ad eseguire esattamente da dove l'avevate lasciata (cioè nel mezzo del ciclo <code>for line in file(...)</code>). La prima cosa che farà è leggere la riga successiva del file (che è ancora aperto), poi costruirà dinamicamente un'altra coppia di funzioni di ricerca e sostituzione basate sui pattern di quella riga, e infine produrrà in uscita le due funzioni.
