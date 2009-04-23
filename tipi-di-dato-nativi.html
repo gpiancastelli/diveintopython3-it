@@ -29,11 +29,11 @@ body{counter-reset:h1 2}
 <li><b>Set</b> sono gruppi di valori senza un ordine preciso.
 <li><b>Dizionari</b> sono gruppi di coppie chiave-valore senza un ordine preciso.
 </ol>
-<p>Naturalmente, ci sono molti più tipi di questi sette. <a href=il-vostro-primo-programma-python.html#everythingisanobject>Ogni cosa è un oggetto</a> in Python, quindi ci sono tipi come <i>modulo</i>, <i>funzione</i>, <i>classe</i>, <i>metodo</i>, <i>file</i>, and persino <i>codice compilato</i>. Avete già visto alcuni di questi: <a href=il-vostro-primo-programma-python.html#runningscripts>i moduli hanno nomi</a>, <a href=il-vostro-primo-programma-python.html#docstrings>le funzioni posseggono una <code>docstring</code></a>, <i class=baa>&amp;</i>c. Imparerete cosa sono le classi in <span class=fixme>[FIXME xref]</span> e cosa sono i file in <span class=fixme>[FIXME xref]</span>.
-<p>Stringhe e byte sono importanti a sufficienza &mdash; e complicati a sufficienza &mdash; da essere trattati in un proprio capitolo. Diamo un'occhiata agli altri per primi.
+<p>Naturalmente, ci sono molti più tipi di questi sette. <a href=il-vostro-primo-programma-python.html#everythingisanobject>Ogni cosa è un oggetto</a> in Python, quindi ci sono anche tipi come <i>modulo</i>, <i>funzione</i>, <i>classe</i>, <i>metodo</i>, <i>file</i>, e persino <i>codice compilato</i>. Ne avete già visti alcuni: <a href=il-vostro-primo-programma-python.html#runningscripts>i moduli hanno un nome</a>, <a href=il-vostro-primo-programma-python.html#docstrings>le funzioni posseggono una <code>docstring</code></a>, <i class=baa>&amp;</i>c. Imparerete cosa sono le classi in <span class=fixme>[FIXME xref]</span> e cosa sono i file in <span class=fixme>[FIXME xref]</span>.
+<p>Stringhe e byte sono abbastanza importanti &mdash; e abbastanza complicati &mdash; da essere trattati in un capitolo a parte. Diamo un'occhiata agli altri per primi.
 <h2 id=booleans>Boolean</h2>
 <aside>Potete usare virtualmente ogni espressione in un contesto di tipo boolean.</aside>
-<p>I dati di tipo boolean sono veri o falsi. Python ha due costanti, <code>True</code> e <code>False</code>, che possono essere usate per assegnari direttamente valori di tipo boolean. Anche le espressioni possono essere valutate come valori booleani. In certi posti (come le istruzioni <code>if</code>), Python si aspetta una espressione da valutare come un valore booleano. Questi posti sono chiamati <i>contesti booleani</i>. Potete virtualmente usare qualsiasi espressione in un contesto booleano, e Python proverà a determinarne il valore di verità. Tipi di dato differenti hanno regole differenti per decidere se un loro valore è vero o falso in un contesto booleano. (Questa frase avrà più senso una volta che avrete visto alcuni esempi concreti più in là in questo capitolo.)
+<p>I dati di tipo boolean sono veri o falsi. Python ha due costanti, <code>True</code> e <code>False</code>, che possono essere usate per assegnare direttamente valori di tipo boolean. Anche le espressioni possono essere valutate come valori booleani. In certi posti (come le istruzioni <code>if</code>), Python si aspetta una espressione da valutare come un valore booleano. Questi posti sono chiamati <i>contesti booleani</i>. Potete virtualmente usare qualsiasi espressione in un contesto booleano, e Python proverà a determinarne il valore di verità. Tipi di dato differenti hanno regole differenti per decidere se un loro valore è vero o falso in un contesto booleano. (Questa frase avrà più senso una volta che avrete visto alcuni esempi concreti più in là in questo capitolo.)
 <p>Per esempio, considerate questo estratto da <a href=il-vostro-primo-programma-python.html#divingin><code>humansize.py</code></a>:
 <pre><code>if size &lt; 0:
     raise ValueError('number must be non-negative')</code></pre>
@@ -49,7 +49,7 @@ body{counter-reset:h1 2}
 <samp class=p>>>> </samp><kbd>size &lt; 0</kbd>
 <samp>True</samp></pre>
 <h2 id=numbers>Numeri</h2>
-<p>I numeri sono impressionanti. Ce ne sono così tanti tra cui scegliere. Python supporta sia gli interi che i numeri in virgola mobile. Non c'è alcuna dichiarazione di tipo per distinguerli; Python è in grado di farlo grazie alla presenza o alla assenza del punto decimale.
+<p>I numeri sono impressionanti. Ce ne sono così tanti tra cui scegliere. Python supporta sia gli interi che i numeri in virgola mobile. Non c'è alcuna dichiarazione di tipo per distinguerli; Python è in grado di farlo grazie alla presenza o meno del punto decimale.
 <pre class=screen>
 <a><samp class=p>>>> </samp><kbd>type(1)</kbd>                 <span>&#x2460;</span></a>
 <samp>&lt;class 'int'></samp>
@@ -61,8 +61,8 @@ body{counter-reset:h1 2}
 <samp>&lt;class 'float'></samp></pre>
 <ol>
 <li>Potete usare la funzione <code>type()</code> per controllare il tipo di qualsiasi valore o variabile. Come vi sarete aspettati, <code>1</code> è un <code>int</code>.
-<li>Aggiungere un <code>int</code> a un <code>int</code> fa ottenere un <code>int</code>.
-<li>Aggiungere un <code>int</code> a un <code>float</code> fa ottenere un <code>float</code>. Python forza l'<code>int</code> a diventare un <code>float</code> per eseguire l'addizione, poi restituisce un <code>float</code> come risultato.
+<li>Aggiungere un <code>int</code> a un <code>int</code> dà come risultato un <code>int</code>.
+<li>Aggiungere un <code>int</code> a un <code>float</code> dà come risultato un <code>float</code>. Python forza l'<code>int</code> a diventare un <code>float</code> per eseguire l'addizione, poi restituisce un <code>float</code> come risultato.
 </ol>
 <h3 id=number-coercion>Forzare interi a decimali e viceversa</h3>
 <p>Come avete appena visto, alcuni operatori (come l'addizione) forzano gli interi a diventare numeri in virgola mobile su necessità. Potete anche forzarli voi stessi.
@@ -81,17 +81,17 @@ body{counter-reset:h1 2}
 <samp>&lt;class 'int'></samp></pre>
 <ol>
 <li>Potete esplicitamente forzare un <code>int</code> a diventare un <code>float</code> chiamando la funzione <code>float()</code>.
-<li><span class=wft>Unsurprisingly</span>, potete anche forzare un <code>float</code> a diventare un <code>int</code> chiamando <code>int()</code>.
+<li><span class=wtf>Unsurprisingly</span>, potete anche forzare un <code>float</code> a diventare un <code>int</code> chiamando <code>int()</code>.
 <li>La funzione <code>int()</code> esegue un troncamento, non arrotonda.
 <li>La funzione <code>int()</code> tronca i numeri negativi verso lo <code>0</code>. &Egrave; una vera funzione di troncamento, non una funzione di appiattimento.
 <li>I numeri in virgola mobile sono accurati fino a 15 decimali.
 <li>Gli interi possono essere arbitrariamente grandi.
 </ol>
 <blockquote class="note compare python2">
-<p><span>&#x261E;</span>Python 2 aveva tipi separati per <code>int</code> e <code>long</code>. Il tipo di dato <code>int</code> era limitato da <code>sys.maxint</code>, che variava a seconda della piattaforma ma normalmente valeva <code>2<sup>32</sup>-1</code>. Python 3 ha un solo tipo per i numeri interi, che si comporta per la maggior parte come il vecchio tipo <code>long</code> di Python 2. Si veda <a href=http://www.python.org/dev/peps/pep-0237><abbr>PEP</abbr> 237</a> per i dettagli.
+<p><span>&#x261E;</span>Python 2 aveva tipi separati per <code>int</code> e <code>long</code>. Il tipo di dato <code>int</code> era limitato da <code>sys.maxint</code>, che variava a seconda della piattaforma ma normalmente valeva <code>2<sup>32</sup>-1</code>. Python 3 ha un solo tipo per i numeri interi, che si comporta per la maggior parte come il vecchio tipo <code>long</code> di Python 2. Si veda la <a href=http://www.python.org/dev/peps/pep-0237><abbr>PEP</abbr> 237</a> per i dettagli.
 </blockquote>
 <h3 id=common-numerical-operations>Operazioni numeriche comuni</h3>
-<p>Potete fare ogni tipo di cosa con i numeri.
+<p>Potete fare ogni tipo di operazioni con i numeri.
 <pre class=screen>
 <a><samp class=p>>>> </samp><kbd>11 / 2</kbd>      <span>&#x2460;</span></a>
 <samp>5.5</samp>
@@ -109,7 +109,7 @@ body{counter-reset:h1 2}
 <ol>
 <li>L'operatore <code>/</code> esegue la divisione in virgola mobile. Restituisce un <code>float</code> anche se sia il numeratore che il denominatore sono numeri di tipo <code>int</code>.
 <li>L'operatore <code>//</code> esegue un tipo strambo di divisione tra interi. Quando il risultato è positivo, potete immaginarla come un troncamento (non un arrotondamento) a <code>0</code> decimali, ma fate attenzione.
-<li>Quando eseguite la divisione intera tra numeri negativi, l'operatore <code>//</code> arrotonda &#8220;per eccesso&#8221; verso l'intero più vicino. Matematicamente parlando, l'arrotondamento è &#8220;per difetto&#8221;, dato che <code>&minus;6</code> è inferiore a <code>&minus;5</code>, ma potrebbe <span class=wtf>trip you up</span> se vi aspettaste un troncamento a <code>&minus;5</code>.
+<li>Quando eseguite la divisione intera tra numeri negativi, l'operatore <code>//</code> arrotonda &#8220;per eccesso&#8221; verso l'intero più vicino. Matematicamente parlando, l'arrotondamento è &#8220;per difetto&#8221;, dato che <code>&minus;6</code> è inferiore a <code>&minus;5</code>, ma potrebbe indurvi a un errore se vi aspettaste un troncamento a <code>&minus;5</code>.
 <li>L'operatore <code>//</code> non restituisce sempre un intero. Se il numeratore o il denominatore sono di tipo <code>float</code>, effettuerà un arrontondamento all'intero più vicino, ma l'effettivo valore di ritorno sarà un <code>float</code>.
 <li>L'operatore <code>**</code> significa &#8220;elevato alla potenza di.&#8221;  <code>11<sup>2</sup></code> vale <code>121</code>.
 <li>L'operatore <code>%</code> dà il resto dopo aver effettuato una divisione di tipo intero. <code>11</code> diviso per <code>2</code> vale <code>5</code> con il resto di <code>1</code>, quindi il risultato in questo caso è <code>1</code>.
@@ -132,10 +132,10 @@ body{counter-reset:h1 2}
 <li>Per cominciare a usare le frazioni, importate il modulo <code>fractions</code>.
 <li>Per definire una frazione, create un oggetto <code>Fraction</code> e passategli il numeratore e il denominatore.
 <li>Potete eseguire tutte le solite operazioni matematiche con le frazioni. Le operazioni restituiscono un nuovo oggetto <code>Fraction</code>. <code>2 * (1/3) = (2/3)</code>
-<li>L'oggetto <code>Fraction</code> ridurrà le frazioni automaticamente. <code>(6/4) = (3/2)</code>
+<li>L'oggetto <code>Fraction</code> semplificherà le frazioni automaticamente. <code>(6/4) = (3/2)</code>
 </ol>
 <h3 id=trig>Trigonometria</h3>
-<p>Potete anche fare la trigonometria di base in Python.
+<p>Potete anche operare con la trigonometria di base in Python.
 <pre class=screen>
 <samp class=p>>>> </samp><kbd>import math</kbd>
 <a><samp class=p>>>> </samp><kbd>math.pi</kbd>                <span>&#x2460;</span></a>
@@ -147,7 +147,7 @@ body{counter-reset:h1 2}
 <ol>
 <li>Il modulo <code>math</code> ha una costante per &pi;, il rapporto tra la circonferenza di un cerchio e il suo diametro.
 <li>Il modulo <code>math</code> ha tutte le funzioni trigonometriche di base, comprese <code>sin()</code>, <code>cos()</code>, <code>tan()</code>, e varianti come <code>asin()</code>.
-<li>Notate, comunque, che Python non ha infinita precisione. <code>tan(&pi; / 4)</code> dovrebbe restituire <code>1.0</code>, non <code>0.99999999999999989</code>.
+<li>Notate, comunque, che la precisione numerica di Python non è infinita. <code>tan(&pi; / 4)</code> dovrebbe restituire <code>1.0</code>, non <code>0.99999999999999989</code>.
 </ol>
 <h3 id=numbers-in-a-boolean-context>Numeri in un contesto booleano</h3>
 <aside>I valori uguali a zero sono falsi, e i valori diversi da zero sono veri.</aside>
@@ -177,11 +177,11 @@ body{counter-reset:h1 2}
 <ol>
 <li>Sapevate di poter definire le vostre funzioni nella shell interattiva di Python? Vi basta premere <kbd>ENTER</kbd> alla fine di ogni riga, ed <kbd>ENTER</kbd> su una riga vuota per concludere la definizione.
 <li>In un contesto booleano, gli interi diversi da zero sono veri; <code>0</code> è falso.
-<li>I numeri in virgola mobile diversi da zero sono veri; <code>0.0</code> è falso. Prestate attenzione a questo! Se c'è anche il più piccolo errore di arrotondamento (non impossibile, come avete visto nella precedente sezione) allora Python opererà su <code>0.0000000000001</code> invece di <code>0</code> e restituirà <code>True</code>.
+<li>I numeri in virgola mobile diversi da zero sono veri; <code>0.0</code> è falso. Fate attenzione! Se c'è anche il più piccolo errore di arrotondamento (non impossibile, come avete visto nella precedente sezione) allora Python opererà su <code>0.0000000000001</code> invece di <code>0</code> e restituirà <code>True</code>.
 <li>Anche le frazioni possono essere usate in un contesto di tipo boolean. <code>Fraction(0, n)</code> è falso per tutti i valori di <var>n</var>. Tutte le altre frazioni sono vere.
 </ol>
 <h2 id=lists>Liste</h2>
-<p>Le liste sono il mulo da soma dei tipi di dato Python. Quando dico &#8220;lista,&#8221; potreste pensare &#8220;array la cui dimensione devo dichiarare in anticipo, e che può solo contenere di uno stesso tipo, <i class=baa>&amp;</i>c.&#8221; Non pensate questo. Le liste sono molto più fighe di così.
+<p>Le liste sono il mulo da soma dei tipi di dato Python. Quando dico &#8220;lista,&#8221; potreste pensare &#8220;array la cui dimensione devo dichiarare in anticipo, e che può solo contenere elementi di uno stesso tipo, <i class=baa>&amp;</i>c.&#8221; Non pensatelo. Le liste sono molto più fighe di così.
 <blockquote class="note compare perl5">
 <p><span>&#x261E;</span>Una lista in Python è come un array in Perl 5. In Perl 5, variabili che memorizzano un array cominciano sempre con il carattere <code>@</code>; in Python, le variabili possono essere chiamate in qualsiasi modo, e Python tiene traccia del tipo di dato internamente.
 </blockquote>
@@ -228,12 +228,12 @@ body{counter-reset:h1 2}
 <a><samp class=p>>>> </samp><kbd>a_list[:]</kbd>              <span>&#x2465;</span></a>
 ['a', 'b', 'mpilgrim', 'z', 'example']</pre>
 <ol>
-<li>Potete ottenere una parte di una lista, chiamata una &#8220;fetta&#8221;, specificando due indici. Il valore di ritorno è una nuova lista che contiene tutti gli elementi della lista, in ordine, a cominciare dal primo indice della fetta (in questo caso <code>a_list[1]</code>), fino al secondo indice della fetta non incluso (in questo caso <code>a_list[3]</code>).
-<li>Affettare una lista funziona anche se uno o entrambi gli indici della fetta sono negativi. Se vi aiuta, potete pensarla in questo modo: leggendo la lista da sinistra a destra, il primo indice della fetta specifica il primo elemento che volete, e il secondo indice della fetta specifica il primo elemento che non volete. Il valore di ritorno è tutto quello che sta in mezzo.
-<li>L'indice delle liste comincia da zero, quindi <code>a_list[0:3]</code> restituisce i primi tre elementi della lista, cominciando da <code>a_list[0]</code>, fino a <code>a_list[3]</code> non incluso.
-<li>Se l'indice sinistro della lista è <code>0</code>, potete lasciarlo fuori, e <code>0</code> diventa implicito. Quindi <code>a_list[:3]</code> è la stessa cosa di <code>a_list[0:3]</code>, perché lo <code>0</code> iniziale è implicito.
-<li>Similmente, se l'indice destro della lista è la lunghezza della lista, potete lasciarlo fuori. Quindi <code>a_list[3:]</code> è la stessa cosa di <code>a_list[3:5]</code>, perché questa lista ha cinque elementi. C'è una piacevole simmetria qui. In questa lista di cinque elementi, <code>a_list[:3]</code> restituisce i primi 3 elementi, e <code>a_list[3:]</code> restituisce gli ultimi due elementi. In effetti, <code>a_list[:<var>n</var>]</code> restituirà sempre i primi <var>n</var> elementi e <code>a_list[<var>n</var>:]</code> restituirà sempre il resto, a prescindere dalla lunghezza della lista.
-<li>Se entrambi gli indici della fetta sono lasciati fuori, tutti gli elementi della lista vengono inclusi. Ma questa non è la stessa della variabile <var>a_list</var> originale. &Egrave; una nuova lista a cui capita di avere tutti gli stessi elementi. <code>a_list[:]</code> è <span class=wtf>shorthand</span> per creare una copia completa di una lista.
+<li>Potete ottenere una parte di una lista, chiamata una &#8220;fetta&#8221;, specificando due indici. Il valore di ritorno è una nuova lista che contiene tutti gli elementi della lista, in ordine, a cominciare dal primo indice della fetta (in questo caso <code>a_list[1]</code>), fino al secondo indice della fetta escluso (in questo caso <code>a_list[3]</code>).
+<li>Affettare una lista funziona anche se uno o entrambi gli indici della fetta sono negativi. Se vi è d'aiuto, potete pensarla in questo modo: leggendo la lista da sinistra a destra, il primo indice della fetta indica il primo elemento che volete, e il secondo indice della fetta indica il primo elemento che non volete. Il valore di ritorno è tutto quello che sta in mezzo.
+<li>L'indice delle liste comincia da zero, quindi <code>a_list[0:3]</code> restituisce i primi tre elementi della lista, cominciando da <code>a_list[0]</code>, fino a <code>a_list[3]</code> escluso.
+<li>Se l'indice sinistro della lista è <code>0</code>, potete ometterlo, e <code>0</code> diventa implicito. Quindi <code>a_list[:3]</code> è la stessa cosa di <code>a_list[0:3]</code>, perché lo <code>0</code> iniziale è implicito.
+<li>Similmente, se l'indice destro della lista è la lunghezza della lista, potete ometterlo. Quindi <code>a_list[3:]</code> è la stessa cosa di <code>a_list[3:5]</code>, perché questa lista ha cinque elementi. C'è una piacevole simmetria qui. In questa lista di cinque elementi, <code>a_list[:3]</code> restituisce i primi 3 elementi, e <code>a_list[3:]</code> restituisce gli ultimi due elementi. In effetti, <code>a_list[:<var>n</var>]</code> restituirà sempre i primi <var>n</var> elementi e <code>a_list[<var>n</var>:]</code> restituirà sempre il resto, a prescindere dalla lunghezza della lista.
+<li>Se entrambi gli indici della fetta vengono omessi, tutti gli elementi della lista vengono inclusi. Ma questa non è la stessa lista della variabile <var>a_list</var> originale. &Egrave; una nuova lista a cui capita di avere tutti gli stessi elementi. <code>a_list[:]</code> è <span class=wtf>shorthand</span> per creare una copia completa di una lista.
 </ol>
 <h3 id=extendinglists>Aggiungere elementi a una lista</h3>
 <p>Ci sono quattro modi per aggiungere un elemento a una lista.
@@ -254,7 +254,7 @@ body{counter-reset:h1 2}
 <ol>
 <li>L'operatore <code>+</code> concatena liste. Una lista può contenere qualsiasi numero di elementi; non c'è alcun limite sulle dimensioni (a parte la memoria disponibile). Una lista può contenere elementi di ogni tipo di dato; non c'è bisogno che siano tutti dello stesso tipo. Qui abbiamo una lista contenente una stringa, un numero in virgola mobile, e un intero.
 <li>Il metodo <code>append()</code> aggiunge un singolo elemento alla fine di una lista. (Ora abbiamo <em>quattro</em> tipi di dato differenti nella lista!)
-<li>Le liste sono implementate come classi. &#8220;Creare&#8221; una lista è in realtà instanziare una classe. Come tale, una lista ha metodi che operano su di essa. Il metodo <code>extend()</code> prende un argomento, una lista, e appende ognuno degli elementi dell'argomento alla lista originale.
+<li>Le liste sono implementate come classi. &#8220;Creare&#8221; una lista è in realtà istanziare una classe. Come tale, una lista ha metodi che operano su di essa. Il metodo <code>extend()</code> prende un argomento, una lista, e appende ognuno degli elementi dell'argomento alla lista originale.
 <li>Il metodo <code>insert()</code> inserisce un singolo elemento in una lista. Il primo argomento è l'indice del primo elemento nella lista che verrà spostato dalla sua posizione. Gli elementi di una lista non devono essere unici; per esempio, ci sono ora due elementi diversi con il valore <code>'a'</code>, <code>a_list[0]</code> e <code>a_list[1]</code>.
 </ol>
 <p>Diamo un'occhiata più da vicino alle differenze tra <code>append()</code> ed <code>extend()</code>.
@@ -278,7 +278,7 @@ body{counter-reset:h1 2}
 <li>Il metodo <code>extend()</code> prende un singolo argomento, che è sempre una lista, e aggiunge ogni elemento di quella lista ad <var>a_list</var>.
 <li>Se cominciate con una lista di tre elementi e la estendete con una lista di altri tre elementi, terminerete con una lista di sei elementi.
 <li>D'altra parte, il metodo <code>append()</code> prende un qualsiasi numero di argomenti, ognuno dei quali può avere un tipo di dato qualsiasi. Qui, state chiamando il metodo <code>append()</code> con un singolo argomento, una lista di tre elementi.
-<li>Se cominciate con una lista di sei elementi e vi appendete una lista, terminerete con... una lista di sette elementi. Perché sette? Perché l'ultimo elemento (che avete appena appeso) <em>è esso stesso una lista</em>. Le liste possono contenere ogni tipo di dato, comprese altre liste. Questo potrebbe essere quello che volete, oppure no. Ma è quello che avete chiesto, ed è quello che avete ottenuto.
+<li>Se cominciate con una lista di sei elementi e vi appendete una lista, terminerete con... una lista di sette elementi. Perché sette? Perché l'ultimo elemento (che avete appena appeso) <em>è anch'esso una lista</em>. Le liste possono contenere ogni tipo di dato, comprese altre liste. Questo potrebbe essere quello che volete, oppure no. Ma è quello che avete chiesto, ed è quello che avete ottenuto.
 </ol>
 <h3 id=searchinglists>Cercare valori in una lista</h3>
 <pre class=screen>
@@ -297,7 +297,7 @@ body{counter-reset:h1 2}
 ValueError: list.index(x): x not in list</samp></pre>
 <ol>
 <li>Per verificare se un valore è in una lista, usate l'operatore <code>in</code>. Esso restituisce <code>True</code> se il valore è nella lista, oppure <code>False</code> se non lo è. Non vi dirà dove il valore si trova nella lista.
-<li>Se avete bisogno di sapere esattamente dove si trova un valore nella lista, chiamate il metodo <code>index()</code>. Di default cercherà nell'intera lista, anche se potete specificare come secondo argomento l'indice (a partire da <code>0</code>) da cui cominciare e persino come terzo argomento l'indice (a partire da <code>0</code>) in cui terminare la ricerca.
+<li>Se avete bisogno di sapere esattamente dove si trova un valore nella lista, chiamate il metodo <code>index()</code>. Di default cercherà nell'intera lista, anche se potete specificare, come secondo argomento, l'indice (a partire da <code>0</code>) da cui cominciare e persino, come terzo argomento, l'indice (a partire da <code>0</code>) in cui terminare la ricerca.
 <li>Come vi sareste aspettati, questo restituisce <code>False</code>, perché <code>'c'</code> non è un valore contenuto in <var>a_list</var>.
 <li>Il metodo <code>index()</code> trova la <em>prima</em> occorrenza di un valore nella lista. In questo caso, <code>'new'</code> appare due volte nella lista, in <code>a_list[2]</code> and <code>a_list[4]</code>, ma il metodo <code>index()</code> restituirà solamente l'indice della prima occorrenza. 
 <li>Come <em>non</em> vi sareste aspettati, se il valore non è trovato nella lista, Python solleva una eccezione. Questa è una differenza considerevole rispetto alla maggior parte dei linguaggi, che resituiscono un qualche indice non valido (come <code>-1</code>). Mentre questo può sembrare fastidioso all'inizio, penso che finirete per apprezzarlo. Significa che il vostro programma fallirà alla sorgente del problema invece di fallire stranamente e silenziosamente più tardi. 
@@ -330,7 +330,7 @@ ValueError: list.index(x): x not in list</samp></pre>
 <p><span>&#x261E;</span>Un dizionario in Python è come un hash in Perl 5. In Perl 5, variabili che memorizzano hash cominciano sempre con il carattere <code>%</code>. In Python, le variabili possono essere chiamate in qualsiasi modo, e Python tiene traccia del tipo di dato internamente.
 </blockquote>
 <h3 id=creating-dictionaries>Creare un dizionario</h3>
-<p>Creare un dizionario è facile. La sintassi è simile ai <a href=#sets>set</a>, ma invece di valori avete coppie chiave-valore. Una volta che avete un dizionario, potete cercare i valori attraverso le loro chiavi.
+<p>Creare un dizionario è facile. La sintassi è simile agli <a href=#sets>insiemi</a>, ma invece di valori avete coppie chiave-valore. Una volta che avete un dizionario, potete cercare i valori attraverso le loro chiavi.
 <pre class=screen>
 <a><samp class=p>>>> </samp><kbd>a_dict = {"server":"db.diveintopython3.org", "database":"mysql"}</kbd>  <span>&#x2460;</span></a>
 <samp class=p>>>> </samp><kbd>a_dict</kbd>
@@ -350,7 +350,7 @@ KeyError: 'db.diveintopython3.org'</samp></pre>
 <li>Potete ottenere i valori attraverso le chiavi, ma non potete ottenere le chiavi attraverso i valori. Quindi, <code>a_dict["server"]</code> è <code>'db.diveintopython3.org'</code>, ma <code>a_dict["db.diveintopython3.org"]</code> solleva una eccezione, perché <code>'db.diveintopython3.org'</code> non è una chiave.
 </ol>
 <h3 id=modifying-dictionaries>Modificare un dizionario</h3>
-<p>I dizionari non hanno alcun limite predefinito sulla dimensione. Potete aggiungere nuove coppie chiave-valore a un dizionario in ogni momento, oppure potete modificare il valore di una chiave esistente. Continuando dall'esempio precedente:
+<p>I dizionari non hanno alcun limite predefinito sulla propria dimensione. Potete aggiungere nuove coppie chiave-valore a un dizionario in ogni momento, oppure potete modificare il valore di una chiave esistente. Continuando dall'esempio precedente:
 <pre class=screen>
 <samp class=p>>>> </samp><kbd>a_dict</kbd>
 <samp>{'server': 'db.diveintopython3.org', 'database': 'mysql'}</samp>
@@ -368,13 +368,13 @@ KeyError: 'db.diveintopython3.org'</samp></pre>
 <samp>{'User': 'mark', 'server': 'db.diveintopython3.org', 'user': 'dora', 'database': 'blog'}</samp></pre>
 <ol>
 <li>Non potete avere chiavi duplicate in un dizionario. Assegnare un valore a una chiave esistente cancellerà il vecchio valore.
-<li>Potete aggiungere nuove coppie chiave-valore in ogni momento. Questa sintassi è identica a quella per modificare valori esistenti.
+<li>Potete aggiungere nuove coppie chiave-valore in ogni momento. Questa sintassi è identica a quella per modificare valori già esistenti.
 <li>Il nuovo elemento nel dizionario (chiave <code>'user'</code>, valore <code>'mark'</code>) appare nel mezzo. In effetti, è stata solamente una coincidenza che gli elementi apparissero in ordine nel primo esempio; è allo stesso modo una coincidenza che appaiano fuori ordine ora.
 <li>Assegnare un valore a una chiave esistente nel dizionario semplicemente sostituisce il vecchio valore con il nuovo.
-<li>Questo cambierà il valore della chiave <code>user</code> indietro a "mark"? No! Guardate bene la chiave &mdash; c'è una <kbd>U</kbd> maiuscola in <kbd>"User"</kbd>. Le chiavi di un dizionario sono <span class=wtf>case-sensitive</span>, quindi questa istruzione crea una nuova coppia chiave-valore, senza sovrascriverne una esistente. A voi potrebbe sembrare simile, ma per quanto riguarda Python, è completamente diverso.
+<li>Questo reinserirà "mark" come valore della chiave <code>user</code>? No! Guardate bene la chiave &mdash; c'è una <kbd>U</kbd> maiuscola in <kbd>"User"</kbd>. Le chiavi di un dizionario sono <span class=wtf>case-sensitive</span>, quindi questa istruzione crea una nuova coppia chiave-valore, senza sovrascriverne una esistente. A voi potrebbe sembrare simile, ma per quanto riguarda Python, è completamente diverso.
 </ol>
 <h3 id=mixed-value-dictionaries>Dizionari a valori misti</h3>
-<p>I dizionari non sono solo per le stringhe. I valori in un dizionario possono essere di qualsiasi tipo di dato, compresi interi, booleani, oggetti arbitrari, e persino altri dizionari. E all'interno di un singolo dizionario, i valori non devono essere tutti dello stesso tipo; potete mescolarli a piacimento. Le chiavi di un dizionario hanno maggiori restrizioni, ma possono essere stringhe, interi, e di pochi altri tipi. Potete mescolare i tipi di dato delle chiavi all'interno di un dizionario.
+<p>I dizionari non sono solo per le stringhe. I valori in un dizionario possono appartenere a qualsiasi tipo di dato, compresi interi, booleani, oggetti arbitrari, e persino altri dizionari. E all'interno di un singolo dizionario, i valori non devono essere tutti dello stesso tipo; potete mescolarli a piacimento. Le chiavi di un dizionario hanno maggiori restrizioni, ma possono essere stringhe, interi, e di pochi altri tipi. Potete mescolare anche i tipi di dato delle chiavi all'interno di un singolo dizionario.
 <p>In effetti, avete già visto un dizionario con chiavi e valori che non sono stringhe nel <a href=il-vostro-primo-programma-python.html#divingin>vostro primo programma Python</a>.
 <pre><code>SUFFIXES = {1000: ('KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'),
             1024: ('KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB')}</code></pre>
@@ -455,7 +455,7 @@ KeyError: 'db.diveintopython3.org'</samp></pre>
 <li><a href="http://www.python.org/dev/peps/pep-0237/"><abbr>PEP</abbr> 237: Unifying Long Integers and Integers</a>
 <li><a href="http://www.python.org/dev/peps/pep-0238/"><abbr>PEP</abbr> 238: Changing the Division Operator</a>
 </ul>
-p class=nav><a rel=prev href=il-vostro-primo-programma-python.html title="indietro a &#8220;Il vostro primo programma Python&#8221;"><span>&#x261C;</a> <a rel=next href=stringhe.html title="avanti a &#8220;Stringhe&#8221;"><span>&#x261E;</span></a>
+<p class=nav><a rel=prev href=il-vostro-primo-programma-python.html title="indietro a &#8220;Il vostro primo programma Python&#8221;"><span>&#x261C;</a> <a rel=next href=stringhe.html title="avanti a &#8220;Stringhe&#8221;"><span>&#x261E;</span></a>
 <p class=c>&copy; 2001&ndash;9 <a href=about.html>Mark Pilgrim</a><br>
 &copy; 2009 <a href=translation.html>Giulio Piancastelli</a> per la traduzione italiana
 <script src=jquery.js></script>
