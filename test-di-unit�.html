@@ -23,15 +23,15 @@ body{counter-reset:h1 8}
 <ol>
 <li>C'è un solo modo corretto di rappresentare un particolare numero come numero romano.
 <li>Anche l'inverso è vero: se una stringa di caratteri è un numero romano valido, rappresenta un solo numero (cioè, può essere interpretata in un solo modo).
-<li>C'è un intervallo limitato di numeri che possono essere espressi come numeri Romani, che nello specifico va da <code>1</code> a <code>3999</code>. (I romani avevano diversi modi di esprimere numeri più grandi, per esempio avendo una barra sopra un numero per rappresentare che il suo valore normale doveva essere moltiplicato per 1000, ma non ce ne occuperemo. Per gli scopi di questo capitolo, conveniamo che i numeri romani vanno da <code>1</code> a <code>3999</code>.) 
+<li>C'è un intervallo limitato di numeri che possono essere espressi come numeri romani, che nello specifico va da <code>1</code> a <code>3999</code>. (I romani avevano diversi modi di esprimere numeri più grandi, per esempio tracciando una barra sopra un numero per dire che il suo valore normale doveva essere moltiplicato per 1000, ma non ce ne occuperemo. Per gli scopi di questo capitolo, conveniamo che i numeri romani vadano da <code>1</code> a <code>3999</code>.) 
 <li>Non c'è alcun modo di rappresentare <code>0</code> nei numeri romani.
 <li>Non c'è alcun modo di rappresentare numeri negativi nei numeri romani.
 <li>Non c'è alcun modo di rappresentare frazioni o numeri non interi nei numeri romani.
 </ol>
-<p>Cominciamo col tracciare quello che un modulo <code>roman.py</code> dovrebbe fare. Avrà due funzioni principali, <code>to_roman()</code> e <code>from_roman()</code>. La funzione <code>to_roman()</code> dovrà prendere un intero da <code>1</code> a <code>3999</code> e restituirne la rappresentazione come numero romano sotto forma di stringa&hellip;</p>
-<p>Fermiamoci subito qui. Ora facciamo qualcosa di un poco inaspettato: scriviamo un test per controllare che la funzione <code>to_roman()</code> faccia quello che volete. Avete letto bene: state per srivere codice che collauda codice che non avete ancora scritto.
-<p>Questo si chiama <i>collaudo di unità</i>. L'insieme di due funzioni di conversione &mdash; <code>to_roman(), e più tardi <code>from_roman()</code> &mdash; può essere implementato e collaudato come una singola unità, separata da qualsiasi programma più grande che le importi. Python possiede un framework per il collaudo di unità, un modulo propriamente chiamato <code>unittest</code>.
-<p>Il collaudo di unità è una parte importante di una strategia di sviluppo complessivamente centrata sui test. Se scrivete dei test di unità, è importante che li scriviate presto (preferibilmente prima di scrivere il codice che collaudano), e che li manteniate aggiornati man mano che il codice e i requisiti cambiano. Il collaudo di unità non è un rimpiazzo per collaudi funzionali o di sistema di più alto livello, ma è importante in tutte le fasi dello sviluppo:
+<p>Cominciamo col tracciare quello che un modulo <code>roman.py</code> dovrebbe fare. Il modulo avrà due funzioni principali, <code>to_roman()</code> e <code>from_roman()</code>. La funzione <code>to_roman()</code> dovrà prendere un intero da <code>1</code> a <code>3999</code> e restituirne la rappresentazione come numero romano sotto forma di stringa&hellip;</p>
+<p>Fermiamoci subito qui. Ora facciamo qualcosa di un poco inaspettato: scriviamo un test per controllare che la funzione <code>to_roman()</code> faccia quello che volete. Avete letto bene: state per scrivere codice che collauda codice che non avete ancora scritto.
+<p>Questa pratica si chiama <i>collaudo di unità</i>. L'insieme di due funzioni di conversione &mdash; <code>to_roman()</code> e, più tardi, <code>from_roman()</code> &mdash; può essere implementato e collaudato come una singola unità, separata da qualsiasi programma più grande che le importi. Python possiede un framework per il collaudo di unità, un modulo propriamente chiamato <code>unittest</code>.
+<p>Il collaudo di unità è una parte importante di una strategia di sviluppo complessivamente centrata sui test. Se scrivete dei test di unità, è importante che li scriviate presto (preferibilmente prima di scrivere il codice che collaudano) e che li manteniate aggiornati man mano che il codice e i requisiti cambiano. Il collaudo di unità non è un rimpiazzo per collaudi funzionali o di sistema di più alto livello, ma è importante in tutte le fasi dello sviluppo:
 <ul>
 <li>Prima di scrivere codice, vi obbliga a dettagliare i vostri requisiti in modo utile.
 <li>Mentre scrivete codice, vi preserva dallo scriverne troppo. Quando tutti i test passano, la funzione è completa.
@@ -51,7 +51,7 @@ body{counter-reset:h1 8}
 <ol>
 <li>La funzione <code>to_roman()</code> dovrebbe restituire la rappresentazione come numero romano di tutti gli interi da <code>1</code> a <code>3999</code>.
 </ol>
-<p>Non è immediatamente ovvio come questo codice faccia&hellip; be', <em>niente</em>. Definisce una classe che non ha alcun metodo <code>__init__()</code> method. La classe <em>ha</em> un altro metodo, ma non viene mai chiamato. L'intero script ha un blocco <code>__main__</code>, ma non fa riferimento alla classe o al suo metodo. Ma fa qualcosa, prometto.
+<p>Non è immediatamente ovvio come questo codice faccia&hellip; be', <em>alcunché</em>. Definisce una classe che non ha alcun metodo <code>__init__()</code>. La classe <em>ha</em> un altro metodo, ma non viene mai chiamato. L'intero script ha un blocco <code>__main__</code>, ma non fa riferimento alla classe o al suo metodo. Ma fa qualcosa, prometto.
 <p class=d>[<a href=esempi/romantest1.py>scarica <code>romantest1.py</code></a>]
 <pre><code>import roman1
 import unittest
@@ -123,14 +123,14 @@ import unittest
 if __name__ == "__main__":
     unittest.main()</code></pre>
 <ol>
-<li>Per scrivere un test, come prima cosa estendete la classe <code>TestCase</code> del modulo <code>unittest</code>. Questa classe mette a disposizione molti metodi utili che potete usare nel vostro test per specificare condizioni specifiche di collaudo.
+<li>Per scrivere un test, come prima cosa estendete la classe <code>TestCase</code> del modulo <code>unittest</code>. Questa classe mette a disposizione molti metodi utili che potete usare nel vostro test per esprimere specifiche condizioni di collaudo.
 <li>Questa è una lista di coppie interi/romani che ho verificato manualmente. Include i dieci numeri più bassi, il numero più alto, ogni numero che si traduce in un numero romano con un singolo carattere, e una serie di esempi casuali di altri numeri validi. Il punto di un test di unità non è collaudare ogni possibile ingresso, ma collaudarne un campione rappresentativo.
-<li>Ogni test individuale ha il proprio metodo, che non deve prendere alcun parametro e ritornare alcun valore. Se il metodo ritorna normalmente senza sollevare una eccezione, il test si considera passato; se il metodo solleva una eccezione, il test si considera fallito.
+<li>Ogni test individuale ha il proprio metodo, che non deve prendere alcun parametro e restituire alcun valore. Se il metodo ritorna normalmente senza sollevare una eccezione, il test si considera passato; se il metodo solleva una eccezione, il test si considera fallito.
 <li>Qui potete chiamare la funzione <code>to_roman()</code>. (Be', la funzione non è ancora stata scritta, ma una volta che lo sarà, questa è la riga che la chiamerà.) Notate che avete definito la <abbr>API</abbr> per la funzione <code>to_roman()</code>: deve prendere un intero (il numero da convertire) e restituire una stringa (la rappresentazione come numero romano). Se la <abbr>API</abbr> è differente, il test si considera fallito. Notate anche che non state catturando alcuna eccezione quando chiamate <code>to_roman()</code>. Questo è intenzionale. <code>to_roman()</code> non dovrebbe sollevare alcuna eccezione quando lo chiamate con un ingresso valido, e questi valori di ingresso sono tutti validi. Se <code>to_roman()</code> solleva una eccezione, questo test si considera fallito.
-<li>Supponendo che la funzione <code>to_roman()</code> sia stata definita correttamente, invocata correttamente, abbia completato con successo la propria esecuzione, e abbia restituito un valore, l'ultimo passo è controllare se ha restituito il valore <em>corretto</em>. Questa è una domanda comune, e la classe <code>TestCase</code> vi fornisce un metodo, <code>assertEqual</code>, per controllare se due valori sono uguali. Se il risultato restituito da <code>to_roman()</code> (<var>result</var>) non corrisponde al valore noto che vi stavate aspettando (<var>numeral</var>), <code>assertEqual</code> solleverà una eccezione e il test fallirà. Se i due valori sono uguali, <code>assertEqual</code> non farà nulla. Se tutti i valori restituiti da <code>to_roman()</code> corrispondono ai valori che vi aspettate, <code>assertEqual</code> non solleverà mai una eccezione, così <code>testToRomaKnownValues</code> alla fine uscirà normalmente, il che significa che <code>to_roman()</code> avrà passato questo test.
+<li>Supponendo che la funzione <code>to_roman()</code> sia stata definita correttamente, invocata correttamente, abbia completato con successo la propria esecuzione e abbia restituito un valore, l'ultimo passo è controllare se ha restituito il valore <em>corretto</em>. Questa è una domanda comune, e la classe <code>TestCase</code> vi fornisce un metodo, <code>assertEqual</code>, per controllare se due valori sono uguali. Se il risultato restituito da <code>to_roman()</code> (<var>result</var>) non corrisponde al valore noto che vi stavate aspettando (<var>numeral</var>), <code>assertEqual</code> solleverà una eccezione e il test fallirà. Se i due valori sono uguali, <code>assertEqual</code> non farà nulla. Se tutti i valori restituiti da <code>to_roman()</code> corrispondono ai valori che vi aspettate, <code>assertEqual</code> non solleverà mai una eccezione, così <code>testToRomaKnownValues</code> alla fine uscirà normalmente, il che significa che <code>to_roman()</code> avrà passato questo test.
 </ol>
-<aside>Scrivete un test che fallisce, e poi codice fino a quando ha successo.</aside>
-<p>Una volta che avete un test, potete cominciare a implementare la funzione <code>to_roman()</code>. Prima di tutto, dovreste crearla come una funzione vuota e verificare che il test fallisca. Se il test ha successo prima che abbiate scritto del codice, state sbagliando qualcosa &mdash; i vostri test non stanno per niente collaudando il vostro codice! Scrivete un test che fallisce, e poi codice fino a quando ha successo.
+<aside>Scrivete un test che fallisce, poi programmate fino a quando ha successo.</aside>
+<p>Una volta che avete un test, potete cominciare a implementare la funzione <code>to_roman()</code>. Prima di tutto, dovreste crearla come una funzione vuota e verificare che il test fallisca. Se il test ha successo prima che abbiate scritto del codice, state sbagliando qualcosa &mdash; i vostri test non stanno per niente collaudando il vostro codice! Scrivete un test che fallisce, poi programmate fino a quando ha successo.
 <pre><code># roman1.py
 
 function to_roman(n):
@@ -160,7 +160,7 @@ Traceback (most recent call last):
 <li>Lanciare lo script esegue <code>unittest.main()</code>, che esegue ogni test. Ogni test è un metodo all'interno di ogni classe in <code>romantest.py</code> che erediti da <code>unittest.TestCase</code>. Per ogni test, il modulo <code>unittest</code> stamperà la <code>docstring</code> del metodo e un risultato di successo o fallimento per quel test. Come ci aspettavamo, questo test fallisce.
 <li>Per ogni test falilto, <code>unittest</code> visualizzerà le informazioni <span class=wtf>trace</span> che mostrano esattamente cos'è successo. In questo caso, la chiamata ad <code>assertEqual()</code> ha sollevato una eccezione di tipo <code>AssertionError</code> perché si aspettava che <code>to_roman(1)</code> restituisse <code>"I"</code>, ma non lo ha fatto. (Dato che non c'era nessuna istruzione esplicita di <code>return</code>, la funzione ha restituito <code>None</code>, il valore nullo di Python.)
 <li>Dopo i dettagli di ogni test, <code>unittest</code> visualizza un riassunto di quanti test sono stati eseguiti e quanto tempo hanno impiegato.
-<li>Nell'insieme, un test di unità è fallito perché almeno un test non è passato. Quando un test non passa, <code>unittest</code> distingue tra fallimenti ed errori. Un fallimento è una chiamata a un metodo <code>assertXYZ</code>, come <code>assertEqual</code> o <code>assertRaises</code>, che fallisce perché la condizione asserita non è vera o l'eccezione attesa non è stata sollevata. Un errore è qualsiasi altro tipo di eccezione sollevata dal codice che state collaudando o dal test di unità stesso.
+<li>Nell'insieme, il collaudo di unità è fallito perché almeno un test non è passato. Quando un test non passa, <code>unittest</code> distingue tra fallimenti ed errori. Un fallimento è una chiamata a un metodo <code>assertXYZ</code>, come <code>assertEqual</code> o <code>assertRaises</code>, che fallisce perché la condizione asserita non è vera o l'eccezione attesa non è stata sollevata. Un errore è qualsiasi altro tipo di eccezione sollevata dal codice che state collaudando o dal test di unità stesso.
 </ol>
 <p><em>Ora</em>, infine, potete scrivere la funzione <code>to_roman()</code>.
 <p class=d>[<a href=esempi/roman1.py>scarica <code>roman1.py</code></a>]
@@ -187,7 +187,7 @@ def to_roman(n):
             n -= integer
     return result</code></pre>
 <ol>
-<li><var>roman_numeral_map</var> è una tupla di tuple che definisce tre cose: la rappresentazione a caratteri dei numeri romani più basilari; l'ordine dei numeri romani (discendente secondo il valore, da <code>M</code> fino a <code>I</code>); il valore di ogni numero romano. Ogni tupla interna è una coppia di <code>(<var>numero</var>, <var>valore</var>)</code>. Non ci sono solo i numeri romani con un singolo carattere; sono definiti anche coppie di due caratteri come <code>CM</code> (&#8220;un centinaio meno un migliaio&#8221;). Questo rende più semplice il codice della funzione <code>to_roman()</code>.
+<li><var>roman_numeral_map</var> è una tupla di tuple che definisce tre cose: la rappresentazione a caratteri dei numeri romani di base; l'ordine dei numeri romani (discendente secondo il valore, da <code>M</code> fino a <code>I</code>); il valore di ogni numero romano. Ogni tupla interna è una coppia <code>(<var>numero</var>, <var>valore</var>)</code>. Non ci sono solo i numeri romani con un singolo carattere; sono definiti anche coppie di due caratteri come <code>CM</code> (&#8220;un centinaio meno un migliaio&#8221;). Questo rende più semplice il codice della funzione <code>to_roman()</code>.
 <li>Ed ecco dove la ricca struttura dati di <var>roman_numeral_map</var> vi ripaga, perché non avete bisogno di alcuna logica speciale per gestire la regola di sottrazione. Per convertire verso i numeri romani, dovete semplicemente iterare attraverso <var>roman_numeral_map</var> cercando il più grande valore intero minore o uguale al numero in ingresso. Una volta trovato, aggiungete la rappresentazione del numero romano alla fine del risultato, sottraete il corrispondente valore intero dal numero in ingresso, <span class=wtf>lather, rinse, repeat</span>.
 </ol>
 <p>Se non vi è ancora chiaro come la funzione <code>to_roman()</code> lavora, aggiungete una chiamata a <code>print()</code> alla fine del ciclo <code>while</code>:
@@ -216,7 +216,7 @@ Ran 1 test in 0.016s
 
 OK</samp></pre>
 <ol>
-<li>Urrà! La funzione <code>to_roman()</code> passa il test per i &#8220;valori noti.&#8221; Non è completo, ma mette alla prova la funzione con una varietà di ingressi, compresi interi che producono ogni numero romano con un singolo carattere, l'intero più grande possibile (<code>3999</code>), e l'intero che produce il numero romano più lungo (<code>3888</code>). A questo punto, potete essere ragionevolmente confidenti che la funzione funzioni per ogni ingresso valido che potete darle.
+<li>Urrà! La funzione <code>to_roman()</code> passa il test per i &#8220;valori noti.&#8221; Non è completo, ma mette alla prova la funzione con una varietà di ingressi, compresi interi che producono ogni numero romano con un singolo carattere, l'intero più grande possibile (<code>3999</code>), e l'intero che produce il numero romano più lungo (<code>3888</code>). A questo punto, potete essere ragionevolmente fiduciosi che la funzione funzioni per ogni ingresso valido che possiate darle.
 </ol>
 <p>Ingresso &#8220;valido&#8221;? Hmm. E se l'ingresso non fosse valido?
 <h2 id=romantest2>&#8220;Fermati e prendi fuoco&#8221;</h2>
@@ -231,9 +231,9 @@ OK</samp></pre>
 <a><samp class=p>>>> </samp><kbd>roman1.to_roman(9000)</kbd>  <span>&#x2460;</span></a>
 <samp>'MMMMMMMMM'</samp></pre>
 <ol>
-<li>Questo non è assolutamente quello che volete &mdash; quello non è nemmeno un numero romano valido! In effetti, ognuno di questi numeri è fuori dall'intervallo degli ingressi accettabili, ma la funzione ritorna un finto valore comunque. Restituire silenziosamente valori sbagliati è <em>maaaaaaale</em>; se un programma deve fallire, è molto meglio che fallisca velocemente e rumorosamente. &#8220;Fermati e prendi fuoco,&#8221; come dice il detto. Il modo che ha Python per fermarsi e prendere fuoco è sollevare una eccezione.
+<li>Questo non è assolutamente quello che volete &mdash; quello non è nemmeno un numero romano valido! In effetti, ognuno di questi numeri è fuori dall'intervallo degli ingressi accettabili, ma la funzione restituisce un finto valore comunque. Restituire silenziosamente valori sbagliati è <em>maaaaaaale</em>; se un programma deve fallire, è molto meglio che fallisca velocemente e rumorosamente. &#8220;Fermati e prendi fuoco,&#8221; come dice il detto. Il modo che ha Python per fermarsi e prendere fuoco è sollevare una eccezione.
 </ol>
-<p>La questione da chiedersi è, &#8220;Come posso esprimere questo sotto forma di un requisito collaudabile?&#8221; Che ne dite di questo, per cominciare:
+<p>La domanda da porsi è, &#8220;Come posso esprimere questo sotto forma di un requisito collaudabile?&#8221; Che ne dite di questo, per cominciare:
 <blockquote>
 <p>La funzione <code>to_roman()</code> dovrebbe sollevare una eccezione di tipo <code>OutOfRangeError</code> quando le viene passato un intero più grande di <code>3999</code>.
 </blockquote>
@@ -247,10 +247,10 @@ OK</samp></pre>
 <ol>
 <li>Come nel test precedente, create una classe che eredita da <code>unittest.TestCase</code>. Potete avere più di un test per classe (come vedrete più tardi in questo capitolo), ma ho scelto di creare una nuova classe in questo caso perché questo collaudo è qualcosa di diverso rispetto all'ultimo. Terremo tutti i collaudi sugli ingressi validi insieme in una classe, e tutti i collaudi sugli ingressi non validi insieme in un'altra.
 <li>Come nel test precedente, il test stesso è un metodo della classe, con un nome che comincia con <code>test</code>.
-<li>La classe <code>unittest.TestCase</code> fornisce il metodo <code>assertRaises</code> method, che prende i seguenti argomenti: l'eccezione che vi aspettate, la funzione che state collaudando, e gli argomenti che volete passare a quella funzione. (Se la funzione che state collaudando prende più di un argomento, passateli tutti ad <code>assertRaises</code>, in ordine, e verranno passati direttamente alla funzione che state collaudando.)
+<li>La classe <code>unittest.TestCase</code> fornisce il metodo <code>assertRaises</code>, che prende i seguenti argomenti: l'eccezione che vi aspettate, la funzione che state collaudando, e gli argomenti che volete passare a quella funzione. (Se la funzione che state collaudando prende più di un argomento, passateli tutti ad <code>assertRaises</code>, in ordine, e verranno passati direttamente alla funzione che state collaudando.)
 </ol>
-<p>Fate molta attenzione a quest'ultima riga di codice. Invece di chiamare direttamente <code>to_roman() e controllare manualmente che sollevi una particolare eccezione (avvolgendola in un blocco <code>try...except</code> <span class=fixme>[FIXME xref]</span>), il metodo <code>assertRaises</code> ha incapsulato tutto questo per noi. Tutto quello che fate è dirgli quali sono l'eccezione che vi aspettate (<code>roman2.OutOfRangeError</code>), la funzione (<code>to_roman()</code>), e gli argomenti della funzione (<code>4000</code>). Il metodo <code>assertRaises</code> si prende cura di chiamare <code>to_roman()</code> e controllare che sollevi <code>roman2.OutOfRangeError</code>.
-<p>Notate anche che state passando la funzione <code>to_roman()</code> stessa come un argomento; non la state chiamando, e non ne state il nome sotto forma di stringa. Ho recentemente menzionato quant'è comodo che <a href="il-vostro-primo-programma-python.html#everythingisanobject">ogni cosa in Python sia un oggetto</a>?
+<p>Fate molta attenzione a quest'ultima riga di codice. Invece di chiamare direttamente <code>to_roman()</code> e controllare manualmente che sollevi una particolare eccezione (avvolgendola in un blocco <code>try...except</code> <span class=fixme>[FIXME xref]</span>), il metodo <code>assertRaises</code> ha incapsulato tutto questo per noi. Tutto quello che fate è dirgli quali sono l'eccezione che vi aspettate (<code>roman2.OutOfRangeError</code>), la funzione (<code>to_roman()</code>) e gli argomenti della funzione (<code>4000</code>). Il metodo <code>assertRaises</code> si prende cura di chiamare <code>to_roman()</code> e controllare che sollevi <code>roman2.OutOfRangeError</code>.
+<p>Notate anche che state passando la funzione <code>to_roman()</code> stessa come un argomento; non la state chiamando, e non ne state passando il nome sotto forma di stringa. Ho recentemente menzionato quant'è comodo che <a href="il-vostro-primo-programma-python.html#everythingisanobject">ogni cosa in Python sia un oggetto</a>?
 <p>Quindi cosa succede quando lanciate la <span class=wtf>test suite</span> con questo nuovo test?
 <pre class=screen>
 <samp class=p>you@localhost:~$ </samp><kbd>python3 romantest2.py -v</kbd>
@@ -271,7 +271,7 @@ Ran 2 tests in 0.000s
 FAILED (errors=1)</samp></pre>
 <ol>
 <li>Avreste dovuto aspettarvi che questo fallisse (dato che non avete scritto ancora il codice per farlo passare), ma&hellip; non è esattamente &#8220;fallito,&#8221; ha invece avuto un &#8220;errore.&#8221; Questa è una distinzione sottile ma importante. Un test di unità ha effettivamente <em>tre</em> valori di ritorno: successo, fallimento, ed errore. Successo, ovviamente, significa che il test è passato &mdash; il codice ha fatto quello che vi aspettavate. &#8220;Fallimento&#8221; è il risultato del test precedente (fino a quando non avete scritto il codice per farlo passare) &mdash; eseguiva il codice ma il risultato non era quello che vi aspettavate. &#8220;Errore&#8221; significa che il codice non ha nemmeno eseguito correttamente.
-<li>Perché il codice non ha eseguito correttamente? La <span class=wtf>traceback</span> dà la risposta: il modulo che state collaudando non ha una eccezione chiamata <code>OutOfRangeError</code>. Ricordate, avete passato questa eccezione al metodo <code>assertRaises()</code>, perché è l'eccezione che volete che la funzione sollevi dato un ingresso fuodi dall'intervallo consentito. Ma l'eccezione non esiste, quindi la chiamata al metodo <code>assertRaises()</code> fallisce. Non ha avuto la possibilità di collaudare la funzione <code>to_roman()</code>; non è arrivata così lontano.
+<li>Perché il codice non ha eseguito correttamente? La <span class=wtf>traceback</span> dà la risposta: il modulo che state collaudando non include alcuna eccezione chiamata <code>OutOfRangeError</code>. Ricordate, avete passato questa eccezione al metodo <code>assertRaises()</code>, perché è l'eccezione che volete che la funzione sollevi dato un ingresso fuori dall'intervallo consentito. Ma l'eccezione non esiste, quindi la chiamata al metodo <code>assertRaises()</code> fallisce. Non ha avuto la possibilità di collaudare la funzione <code>to_roman()</code>; non è arrivata così lontano.
 </ol>
 <p>Per risolvere questo problema, dovete definire l'eccezione <code>OutOfRangeError</code> in <code>roman2.py</code>.
 <pre><code><a>class OutOfRangeError(ValueError):  <span>&#x2460;</span></a>
@@ -316,7 +316,7 @@ FAILED (failures=1)</samp></pre>
             n -= integer
     return result</code></pre>
 <ol>
-<li>Questo è semplice: se l'ingresso dato (<var>n</var>) è più grande di <code>3999</code>, solleva una eccezione di tipo <code>OutOfRangeError</code>. Il test di unità non controlla il messaggio nella stringa che accompagna l'eccezione, sebbene possiate scrivere un altro test che faccia questo controllo (ma fate attenzione ai problemi di internazionalizzazione per stringhe che variano con l'ambiente o la lingua dell'utente).
+<li>Questo è semplice: se l'ingresso dato (<var>n</var>) è più grande di <code>3999</code>, allora solleva una eccezione di tipo <code>OutOfRangeError</code>. Il test di unità non controlla il messaggio nella stringa che accompagna l'eccezione, sebbene possiate scrivere un altro test che faccia questo controllo (ma fate attenzione ai problemi di internazionalizzazione per stringhe che variano con l'ambiente o la lingua dell'utente).
 </ol>
 <p>Questo fa passare il test? Scopriamolo.
 <pre class=screen>
@@ -329,7 +329,7 @@ Ran 2 tests in 0.000s
 
 OK</samp></pre>
 <ol>
-<li>Urrà! Entrambi i test passano. Dato che avete lavorato iterativamente, rimbalzando avanti e indietro tra i test e il codice, potete essere sicuri che le due righe di codice che avete scritto sono la causa del passaggio di quel test dal &#8220;fallimento&#8221; al &#8220;successo.&#8221; Questo tipo di confidenza si guadagna a un certo prezzo, ma si ripagherà da sola durante la vita del vostro codice.
+<li>Urrà! Entrambi i test passano. Dato che avete lavorato iterativamente, spostandovi avanti e indietro tra i test e il codice, potete essere sicuri che le due righe di codice che avete scritto sono la causa del passaggio di quel test dal &#8220;fallimento&#8221; al &#8220;successo.&#8221; Questo tipo di confidenza si guadagna a un certo prezzo, ma si ripagherà da sola durante la vita del vostro codice.
 </ol>
 
 <h2 id=romantest3>Più fermate, più fuoco</h2>
@@ -410,8 +410,8 @@ FAILED (failures=2)</samp></pre>
             n -= integer
     return result</code></pre>
 <ol>
-<li>Questa è una classica scorciatoia di Python: confronti multipli allo stesso tempo. Questo è equivalente a <code>if not ((0 &lt; n) and (n &lt; 4000))</code>, ma è molto più facile da leggere. Questa riga di codice dovrebbe catturare gli ingressi che sono troppo grandi, negativi, o zero.
-<li>Se cambiate le vostre condizioni, assicuratevi di aggiornare i vostri messaggi in modo che riflettano i cambiamenti. Il framework <code>unittest</code> non se ne curerà, ma renderebbe difficile effettuare un controllo manuale se il vostro codice lanciasse eccezioni non correttamente descritte.
+<li>Questa è una classica scorciatoia di Python: confronti multipli allo stesso tempo. Questo codice è equivalente a <code>if not ((0 &lt; n) and (n &lt; 4000))</code>, ma è molto più facile da leggere. Questa riga di codice dovrebbe catturare gli ingressi che sono troppo grandi, negativi, o zero.
+<li>Se cambiate le vostre condizioni, assicuratevi di aggiornare i vostri messaggi in modo che riflettano i cambiamenti. Il framework <code>unittest</code> non se ne curerà, ma sarebbe difficile effettuare un controllo manuale se il vostro codice lanciasse eccezioni non correttamente descritte.
 </ol>
 
 <p>Potrei mostrarvi un'intera serie di esempi non correlati che mostrano che la scorciatoia dei confronti multipli allo stesso tempo funziona, ma invece eseguirò semplicemente i test di unità e lo dimostrerò.
@@ -449,7 +449,7 @@ OK</samp></pre>
 class OutOfRangeError(ValueError): pass
 <mark>class NotIntegerError(ValueError): pass</mark></code></pre>
 
-<p>Poi, scrivete un test che contolli l'eccezione <code>NonIntegerError</code>.
+<p>Poi, scrivete un test che verifichi la generazione dell'eccezione <code>NonIntegerError</code>.
 
 <pre><code>class ToRomanBadInput(unittest.TestCase):
     .
