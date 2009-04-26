@@ -497,7 +497,7 @@ for an_iterator in a_sequence_of_iterators:
 <td><pre><code>from functtools import reduce
 reduce(a, b, c)</code></pre>
 </table>
-<blockquote>
+<blockquote class=note>
 <p><span>&#x261E;</span>La versione di <code>2to3</code> rilasciata con Python 3.0 non correggerà la funzione <code>reduce()</code> automaticamente. La correzione è apparsa per la prima volta nello script <code>2to3</code> che verrà rilasciato con Python 3.1.
 </blockquote>
 <h2 id=apply>La funzione globale <code>apply()</code></h2>
@@ -570,7 +570,7 @@ reduce(a, b, c)</code></pre>
 <td><code>execfile("a_filename")</code>
 <td><code>exec(compile(open("a_filename").read(), "a_filename", "exec"))</code>
 </table>
-<blockquote>
+<blockquote class=note>
 <p><span>&#x261E;</span>La versione di 2to3 rilasciata con Python 3.0 non corregge l'istruzione <code>execfile</code> automaticamente. La correzione è apparsa per la prima volta nello script <code>2to3</code> che verrà rilasciato con Python 3.1.
 </blockquote>
 <h2 id=repr>I letterali <code>repr</code> (i backtick)</h2>
@@ -717,7 +717,7 @@ except:
 <li>Anche la funzione <code>sum()</code> lavora altrettanto bene con un iteratore, quindi <code>2to3</code> non effettua alcun cambiamento neanche qui. Come per <a href=#dict>i metodi dei dizionari che restituiscono viste invece di liste</a>, questo si applica a <code>min()</code>, <code>max()</code>, <code>sum()</code>, <code>list()</code>, <code>tuple()</code>, <code>set()</code>, <code>sorted()</code>, <code>any()</code>, e <code>all()</code>.
 </ol>
 <h2 id=raw_input>Le funzioni globali <code>raw_input()</code> e <code>input()</code></h2>
-<p>Python 2 aveva due funzioni globali per chiedere all'utente un input dalla linea di comando. La prima, chiamata <code>input()</code>, si aspettava che l'utente inserisse una espressione Python (e ne restituiva il risultato). La seconda, chiamata <code>raw_input()</code>, semplicemente restituiva qualsiasi cosa l'utente avesse digitato. Questo era selvaggiamente confuso per i principianti e largamente considerato come un &#8220;neo&#8221; nel linguaggio. Python 3 asporta questo neo rinominando <code>raw_input()</code> a <code>input()</code>, in modo che funzioni nel modo in cui ognuno si aspetta ingenuamente che funzioni.
+<p>Python 2 aveva due funzioni globali per chiedere all'utente di inserire dati in ingresso dalla linea di comando. La prima, chiamata <code>input()</code>, si aspettava che l'utente inserisse una espressione Python (e ne restituiva il risultato). La seconda, chiamata <code>raw_input()</code>, restituiva semplicemente qualsiasi cosa l'utente avesse digitato. Questo comportamento era fonte di terribile confusione per i principianti e generalmente considerato come un &#8220;neo&#8221; del linguaggio. Python 3 asporta questo neo rinominando <code>raw_input()</code> a <code>input()</code>, in modo che funzioni come ci si aspetta intuitivamente che debba funzionare.
 <table>
 <tr><th>Notes
 <th>Python 2
@@ -791,12 +791,12 @@ except:
 <td><i>no change</i>
 </table>
 <ol>
-<li>Se eravate soliti chiamare <code>xreadlines()</code> senza argomenti, <code>2to3</code> la convertirà solo all'oggetto file. In Python 3, questo fa compiere la stessa cosa: leggere il file una riga alla volta ed eseguire il corpo del ciclo <code>for</code>.
+<li>Se eravate soliti chiamare <code>xreadlines()</code> senza argomenti, <code>2to3</code> convertirà la chiamata al solo oggetto file. In Python 3, si compie così la stessa operazione: leggere il file una riga alla volta ed eseguire il corpo del ciclo <code>for</code>.
 <li>Se eravate soliti chiamare <code>xreadlines()</code> con un argomento (il numero di righe da leggere alla volta), continuate a farlo. Funziona ancora in Python 3, e <code>2to3</code> non lo cambierà.
 </ol>
 <p class=c><span style="font-size:56px;line-height:0.88">&#x2603;</span>
 <h2 id=tuple_params>Funzioni <code>lambda</code> che accettano una tupla invece di parametri multipli</h2>
-<p>In Python 2, potevate definire funzioni <code>lambda</code> anonime che accettavano parametri multipli definendola in modo che accettasse una tupla con uno specifico numero di elementi. In effetti, Python 2 avrebbe &#8220;spacchettato&#8221; la tupla negli argomenti con nome, che poi avreste potuto riferire (attraverso il nome) all'interno dalla funzione <code>lambda</code>. In Python 3, potete ancora passare una tupla a una funzione <code>lambda</code>, ma l'interprete Python non spacchetterà la tupla in argomenti con nome. Invece, dovrete riferirvi ad ogni argomento tramite l'indice della sua posizione.
+<p>In Python 2, potevate definire una funzione <code>lambda</code> anonima che accettava parametri multipli definendola in modo che accettasse una tupla con uno specifico numero di elementi. In effetti, Python 2 avrebbe &#8220;spacchettato&#8221; la tupla negli argomenti con nome, che poi avreste potuto riferire (attraverso il nome) all'interno dalla funzione <code>lambda</code>. In Python 3, potete ancora passare una tupla a una funzione <code>lambda</code>, ma l'interprete Python non spacchetterà la tupla in argomenti con nome. Invece, dovrete riferirvi ad ogni argomento tramite l'indice della sua posizione.
 <table>
 <tr><th>Notes
 <th>Python 2
@@ -816,10 +816,10 @@ except:
 <td><i>unchanged</i>
 </table>
 <ol>
-<li>Se avete definito una funzione <code>lambda</code> che accetta una tupla composta da un elemento, in Python 3 questa diventerebbe una <code>lambda</code> con riferimenti a <var>x1[0]</var>. Il nome <var>x1</var> viene generato automaticamente dallo script <code>2to3</code>, sulla base degli argomenti con nome nella tupla originale.
-<li>Una funzione <code>lambda</code> con una tupla <var>(x, y)</var> di due elementi viene convertita a <var>x_y</var> con argomenti posizionali <var>x_y[0]</var> e <var>x_y[1]</var>.
+<li>Se avete definito una funzione <code>lambda</code> che accetta una tupla composta da un elemento, in Python 3 questa diventerà una <code>lambda</code> con riferimenti a <var>x1[0]</var>. Il nome <var>x1</var> viene generato automaticamente dallo script <code>2to3</code>, sulla base degli argomenti con nome nella tupla originale.
+<li>La tupla di due elementi <var>(x, y)</var> argomento di una funzione <code>lambda</code> viene convertita a <var>x_y</var> con argomenti posizionali <var>x_y[0]</var> e <var>x_y[1]</var>.
 <li>Lo script <code>2to3</code> può perfino gestire funzioni <code>lambda</code> con tuple innestate di argomenti con nome. Il codice Python 3 risultante è leggermente illeggibile, ma funziona allo stesso modo in cui funzionava in Python 2.
-<li>Potete definire funzioni <code>lambda</code> che accettano più argomenti. Senza parentesi attorno agli argomenti, Python 2 la tratta semplicemente come una funzione <code>lambda</code> con argomenti multipli; all'interno della funzione <code>lambda</code>, fate semplicemente riferimento agli argomenti tramite il loro nome, esattamente come avviene per ogni altra funzione. Questa sintassi funziona ancora in Python 3.
+<li>Potete definire funzioni <code>lambda</code> che accettano più argomenti. Senza parentesi attorno agli argomenti, Python 2 le tratta semplicemente come funzioni <code>lambda</code> con argomenti multipli; all'interno della funzione <code>lambda</code>, fate semplicemente riferimento agli argomenti tramite il loro nome, esattamente come avviene per ogni altra funzione. Questa sintassi funziona ancora in Python 3.
 </ol>
 <h2 id=methodattrs>Proprietà speciali dei metodi</h2>
 <p>In Python 2, i metodi di classe possono riferirsi all'oggetto classe in cui sono definiti, così come all'oggetto metodo stesso. <code>im_self</code> è l'istanza dell'oggetto classe; la classe <code>im_func</code> rappresenta l'oggetto funzione; <code>im_class</code> è la classe di <code>im_self</code> (per metodi legati) o la classe che ha chiesto quel metodo (per metodi non legati). In Python 3, queste proprietà speciali dei metodi sono state rinominate per seguire le convenzioni sui nomi delle altre proprietà.
@@ -892,7 +892,7 @@ except:
 <li>Ogni uso di <code>sys.maxint</code> diventa <code>sys.maxsize</code>.
 </ol>
 <h2 id=callable>La funzione globale <code>callable()</code></h2>
-<p>In Python 2, potevate contollare se un oggetto era chiamabile (come una funzione) con la funzione globale <code>callable()</code>. In Python 3, questa funzione globale è stata eliminata. Per controllare se un oggetto è invocabile, controllate l'esistenza del metodo speciale <code>__call__()</code>.
+<p>In Python 2, potevate contollare se un oggetto era chiamabile (come una funzione) con la funzione globale <code>callable()</code>. In Python 3, questa funzione globale è stata eliminata. Per controllare se un oggetto è chiamabile, controllate l'esistenza del metodo speciale <code>__call__()</code>.
 <table>
 <tr><th>Notes
 <th>Python 2
@@ -917,7 +917,7 @@ except:
 <td><i>no change</i>
 </table>
 <ol>
-<li>Nella forma più semplice, potete ottenere il vecchio comportamento della funzione <code>zip()</code> circondandone il valore di ritorno con una chiamata a <code>list()</code>, che correrà lungo l'iteratore che restituito da <code>zip()</code> e restituisce una lista reale dei risultati.
+<li>Nella forma più semplice, potete ottenere il vecchio comportamento della funzione <code>zip()</code> circondandone il valore di ritorno con una chiamata a <code>list()</code>, che attraversa l'iteratore restituito da <code>zip()</code> e restituisce una lista reale dei risultati.
 <li>In contesti che iterano già attraverso tutti gli elementi di una sequenza (come questa chiamata al metodo <code>join()</code>) l'iteratore che <code>zip()</code> restituisce funzionerà adeguatamente. Lo script <code>2to3</code> è abbastanza scaltro da riconoscere questi casi e non fare alcun cambiamento al vostro codice.
 </ol>
 <h2 id=standarderror>L'eccezione di tipo <code>StandardError</code></h2>
@@ -971,7 +971,7 @@ except:
 <td><code>isinstance(x, (int, float, int))</code>
 <td><code>isinstance(x, (int, float))</code>
 </table>
-<blockquote>
+<blockquote class=note>
 <p><span>&#x261E;</span>La versione di 2to3 rilasciata con Python 3.0 non corregge automaticamente questi casi di <code>isinstance()</code>. La correzione è apparsa per la prima volta nello script 2to3 che verrà rilasciato con Python 3.1.
 </blockquote>
 <h2 id=basestring>Il tipo di dato <code>basestring</code></h2>
@@ -986,7 +986,7 @@ except:
 <td><code>isinstance(x, str)</code>
 </table>
 <h2 id=itertools>Il modulo <code>itertools</code></h2>
-<p>Python 2.3 ha introdotto il modulo <code>itertools</code>, che definiva varianti delle funzioni globali <code>zip()</code>, <code>map()</code>, e <code>filter()</code> che restituivano iteratori invece di liste. In Python 3, quelle funzioni globali restituiscono iteratori, quindi quelle funzioni nel modulo <code>itertools</code> sono state eliminate.
+<p>Python 2.3 ha introdotto il modulo <code>itertools</code>, che definiva delle varianti per le funzioni globali <code>zip()</code>, <code>map()</code>, e <code>filter()</code> che restituivano iteratori invece di liste. In Python 3, quelle funzioni globali restituiscono iteratori, quindi le corrispondenti funzioni del modulo <code>itertools</code> sono state eliminate.
 <table>
 <tr><th>Notes
 <th>Python 2
@@ -1009,10 +1009,10 @@ except:
 <li>Invece di <code>itertools.izip()</code>, usate semplicemente la funzione globale <code>zip()</code>.
 <li>Invece di <code>itertools.imap()</code>, usate semplicemente <code>map()</code>.
 <li><code>itertools.ifilter()</code> diventa <code>filter()</code>.
-<li>Il modulo <code>itertools</code> esiste ancora in Python 3, gli mancano solo le funzioni che sono state spostate nello spazio di nomi globale. Lo script <code>2to3</code> è abbastanza scaltro da rimuovere le specifiche istruzioni di <code>import</code> per moduli che non esistono più, lasciando le altre intatte.
+<li>Il modulo <code>itertools</code> esiste ancora in Python 3, gli mancano solo le funzioni che sono state spostate nello spazio di nomi globale. Lo script <code>2to3</code> è abbastanza scaltro da rimuovere le specifiche istruzioni di <code>import</code> per moduli che non esistono più, lasciando intatte le altre.
 </ol>
 <h2 id=sys_exc><code>sys.exc_type</code>, <code>sys.exc_value</code>, <code>sys.exc_traceback</code></h2>
-<p>Python 2 aveva tre variabili nel modulo <code>sys</code> che potevate accedere mentre una eccezione veniva gestita: <code>sys.exc_type</code>, <code>sys.exc_value</code>, <code>sys.exc_traceback</code>. (In realtà, queste risalgono a Python 1.) Fin da Python 1.5, queste variabili sono state deprecate a favore di <code>sys.exc_info</code>, che è una tupla che contiene tutti e tre i valori. In Python 3, queste singole variabili sono infine sparite; dovete usare <code>sys.exc_info</code>.
+<p>Python 2 aveva tre variabili nel modulo <code>sys</code> che potevate accedere durante la gestione di una eccezione: <code>sys.exc_type</code>, <code>sys.exc_value</code>, <code>sys.exc_traceback</code>. (In realtà, esse risalgono a Python 1.) Fin da Python 1.5, queste variabili sono state deprecate a favore di <code>sys.exc_info</code>, che è una tupla contenente tutti e tre i valori. In Python 3, queste singole variabili sono infine sparite; dovete usare <code>sys.exc_info</code>.
 <table>
 <tr><th>Notes
 <th>Python 2
@@ -1028,8 +1028,8 @@ except:
 <td><code>sys.exc_traceback</code>
 <td><code>sys.exc_info()[2]</code>
 </table>
-<h2 id=paren><span class=wtf>List comprehensions</span> sulle tuple</h2>
-<p>In Python 2, se volevate implementare una <span class=wtf>list comprehension</span> che iterasse su una tupla, non avevate bisogno di mettere le parentesi attorno ai valori della tupla. In Python 3, le parentesi esplicite sono obbligatorie.
+<h2 id=paren>Descrizioni di lista sulle tuple</h2>
+<p>In Python 2, se volevate implementare una descrizione di lista che iterasse su una tupla, non avevate bisogno di mettere le parentesi attorno ai valori della tupla. In Python 3, le parentesi esplicite sono obbligatorie.
 <table>
 <tr><th>Notes
 <th>Python 2
@@ -1078,7 +1078,7 @@ except:
 <li>Lo script <code>2to3</code> è abbastanza potente da costruire una dichiarazione di classe valida, anche se la classe eredita da una o più classi base.
 </ol>
 <h2 id=nitpick>Questioni di stile</h2>
-<p>Il resto delle &#8220;correzioni&#8221; elencate qui non sono realmente correzioni di per sé. Vale a dire che le cose che modificano sono questioni di stile, non di sostanza. Funzionano altrettanto bene in Python 3 come funzionavano in Python 2, ma gli svilupptori di Python hanno un legittimo interesse nel rendere il codice Python più uniforme possibile. A questo scopo, esiste una <a href=http://www.python.org/dev/peps/pep-0008/>guida ufficiale allo stile in Python</a> che delinea &mdash; in doloroso dettaglio &mdash; tutti quei tipi di particolari minuziosi e pedanti di cui quasi certamente non vi interessa. E dato che <code>2to3</code> fornisce una infrastruttura così buona per la conversione di codice Python da una cosa a un'altra, gli autori si sono presi la briga di aggiungere alcune caratteristiche opzionali per migliorare la leggibilità dei vostri programmi Python.
+<p>Il resto delle &#8220;correzioni&#8221; elencate qui di seguito non sono realmente correzioni di per sé. Vale a dire che le cose che modificano sono considerate questioni di stile, non di sostanza. Funzionano tanto bene in Python 3 quanto funzionavano in Python 2, ma gli sviluppatori di Python hanno un legittimo interesse nel rendere il codice Python più uniforme possibile. A questo scopo, esiste una <a href=http://www.python.org/dev/peps/pep-0008/>guida ufficiale allo stile in Python</a> che delinea &mdash; dolorosamente in dettaglio &mdash; tutti quei tipi di particolari minuziosi e pedanti di cui quasi certamente non vi interessa sapere. E dato che <code>2to3</code> fornisce una infrastruttura così buona per la conversione di codice Python da una forma a un'altra, gli autori si sono presi la briga di aggiungere alcune caratteristiche opzionali per migliorare la leggibilità dei vostri programmi Python.
 <h3 id=set_literal>Letterali <code>set()</code> (esplicita)</h3>
 <p>In Python 2, l'unico modo di definire un letterale insieme nel vostro codice era chiamare <code>set(a_sequence)</code>. Questo funziona ancora in Python 3, ma un modo più chiaro di farlo è usare la nuova notazione per i letterali insieme: le parentesi graffe. (Anche i dizionari sono definiti con parentesi graffe, che ha senso una volta che ci pensate, perché i dizionari sono esattamente insiemi di coppie chiave-valore.)
 <blockquote class=note>
@@ -1100,7 +1100,7 @@ except:
 <td><code>{i for i in a_sequence}</code>
 </table>
 <h3 id=buffer>La funzione globale <code>buffer()</code> (esplicita)</h3>
-<p>Gli oggetti Python implementati in C possono esportare una &#8220;interfaccia di buffer,&#8221; che è un blocco di memoria che è direttamente leggibile e scrivibile senza copiare. (Questo è esattamente potente e spaventoso quanto sembra.) In Python 3, <code>buffer()</code> è stata rinominata a <code>memoryview()</code>. (&Egrave; un po' più complicato di così, ma potete quasi certamente ignorare le differenze.)
+<p>Gli oggetti Python implementati in C possono esportare una &#8220;interfaccia di buffer,&#8221; che è un blocco di memoria direttamente leggibile e scrivibile senza effettuare copie. (Questo è esattamente potente e spaventoso quanto sembra.) In Python 3, <code>buffer()</code> è stata rinominata a <code>memoryview()</code>. (&Egrave; un po' più complicato di così, ma potete quasi certamente ignorare le differenze.)
 <blockquote class=note>
 <p><span>&#x261E;</span>Lo script <code>2to3</code> non correggerà la funzione <code>buffer()</code> di default. Per abilitare questa correzione, specificate <kbd>-f buffer</kbd> sulla linea di comando quando chiamate <code>2to3</code>.
 </blockquote>
@@ -1113,8 +1113,8 @@ except:
 <td><code>x = buffer(y)</code>
 <td><code>x = memoryview(y)</code>
 </table>
-<h3 id=wscomma>Gli spazi bianhi attorno alle virgole (esplicita)</h3>
-<p>Nonostante sia draconiano a riguardo degli spazi bianchi per l'indentazione del codice, Python è in realtà piuttosto liberale a proposito degli spazi bianchi in altre aree. Nell'ambito di liste, tuple, insiemi, e dizionari, gli spazi bianchi possono apparire prima e dopo le virgole senza sortire alcun effetto negativo. Comunque, la guida di stile in Python afferma che le virgole dovrebbero essere precedeute da zero spazi e seguite da uno spazio. Sebbene questo sia un problema puramente estetico (il codice funziona in ogni modo, sia in Python 2 che in Python 3) lo script <code>2to3</code> può opzionalmente correggere questo per voi.
+<h3 id=wscomma>Gli spazi bianchi attorno alle virgole (esplicita)</h3>
+<p>Nonostante Python sia draconiano a riguardo degli spazi bianchi per l'indentazione del codice, il linguaggio è in realtà piuttosto liberale a proposito degli spazi bianchi in altre aree. Nell'ambito di liste, tuple, insiemi e dizionari, gli spazi bianchi possono apparire prima e dopo le virgole senza sortire alcun effetto negativo. Comunque, la guida di stile in Python afferma che le virgole dovrebbero essere precedeute da zero spazi e seguite da uno spazio. Sebbene questo sia un problema puramente estetico (il codice funziona in ogni modo, sia in Python 2 che in Python 3) lo script <code>2to3</code> può opzionalmente correggerlo per voi.
 <blockquote class=note>
 <p><span>&#x261E;</span>Lo script <code>2to3</code> non correggerà gli spazi bianchi attorno alle virgole di default. Per abilitare questa correzione, specificate <kbd>-f wscomma</kbd> sulla linea di comando quando chiamate <code>2to3</code>.
 </blockquote>
