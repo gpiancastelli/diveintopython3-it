@@ -21,7 +21,7 @@ th{text-align:left}
 </blockquote>
 <p id=toc>&nbsp;
 <h2 id=divingin>Immersione!</h2>
-<p class=f>Di solito, i libri di programmazione cominciano con una serie di capitoli noiosi sui fondamentali, e solo verso la fine arrivano a costruire qualcosa di utile. Noi ci risparmieremo tutto questo. Qui di seguito troverete subito un programma Python completo e funzionante. Probabilmente ora non ha alcun senso per voi, ma non preoccupatevi perché lo analizzerete riga per riga. Provate comunque a leggerlo, come prima cosa, per vedere se riuscite a ricavarne qualcosa.
+<p class=f>Di solito, i libri di programmazione cominciano con una serie di capitoli noiosi sui fondamentali, e solo verso la fine arrivano a costruire qualcosa di utile. Noi ci risparmieremo questa attesa. Qui di seguito troverete subito un programma Python completo e funzionante. Probabilmente ora non ha alcun senso per voi, ma non preoccupatevi perché lo analizzerete riga per riga. Provate comunque a leggerlo, prima di tutto, per vedere se riuscite a ricavarne qualcosa.
 <p class=d>[<a href=esempi/humansize.py>scarica <code>humansize.py</code></a>]
 <pre><code>SUFFIXES = {1000: ['KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
             1024: ['KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB']}
@@ -51,12 +51,12 @@ def approximate_size(size, a_kilobyte_is_1024_bytes=True):
 if __name__ == "__main__":
     print(approximate_size(1000000000000, False))
     print(approximate_size(1000000000000))</code></pre>
-<p>Ora eseguiamo il programma dalla linea di comando. Sotto Windows, sembrerà qualcosa di simile a questo:
+<p>Ora eseguiamo il programma dalla linea di comando. Sotto Windows, avremo qualcosa di simile a questo:
 <pre class=screen>
 <samp class=p>c:\home\diveintopython3> </samp><kbd>c:\python30\python.exe humansize.py</kbd>
 <samp>1.0 TB
 931.3 GiB</samp></pre>
-<p>Sotto Mac OS X o Linux, sembrerà qualcosa di simile a questo:
+<p>Sotto Mac OS X o Linux, avremo qualcosa di simile a questo:
 <pre class=screen>
 <samp class=p>you@localhost:~$ </samp><kbd>python3 humansize.py</kbd>
 <samp>1.0 TB
@@ -71,9 +71,9 @@ if __name__ == "__main__":
 <blockquote class=note>
 <p><span>&#x261E;</span>In alcuni linguaggi, le funzioni (che restituiscono un valore) cominciano con <code>function</code>, e le procedure (che non restituiscono un valore) cominciano con <code>sub</code>. Non ci sono procedure in Python. Ci sono solo funzioni, tutte le funzioni restituiscono un valore (anche se è <code>None</code>) e tutte le funzioni cominciano con <code>def</code>.
 </blockquote>
-<p>La funzione <code>approximate_size</code> accetta due argomenti &mdash; <var>size</var> e <var>a_kilobyte_is_1024_bytes</var> &mdash; ma nessun argomento specifica il proprio tipo. (Come avreste potuto indovinare dalla sintassi <code>=True</code>, il secondo argomento è di tipo boolean. Imparerete ad usare questa sintassi in <span class=fixme>[FIXME xref-was-#apihelper]</span>.) In Python, le variabili non sono mai esplicitamente tipate. L'interprete Python capisce da solo qual è il tipo di una variable e ne tiene traccia internamente.
+<p>La funzione <code>approximate_size</code> accetta due argomenti &mdash; <var>size</var> e <var>a_kilobyte_is_1024_bytes</var> &mdash; ma nessun argomento dichiara il proprio tipo. (Come avreste potuto indovinare dalla sintassi <code>=True</code>, il secondo argomento è di tipo boolean. Imparerete ad usare questa sintassi in <span class=fixme>[FIXME xref-was-#apihelper]</span>.) In Python, le variabili non sono mai esplicitamente tipate. L'interprete Python capisce da solo qual è il tipo di una variable e ne tiene traccia internamente.
 <blockquote class="note compare java">
-<p><span>&#x261E;</span>In Java e in altri linguaggi staticamente tipati, dovete specificare il tipo del valore di ritorno e di ogni argomento della funzione. In Python, i tipi non vengono mai specificati. Sulla base del valore che viene assegnato, Python tiene traccia del tipo di dato internamente.
+<p><span>&#x261E;</span>In Java e in altri linguaggi staticamente tipati, dovete dichiarare il tipo del valore di ritorno e di ogni argomento della funzione. In Python, i tipi non vengono mai dichiarati. Sulla base del valore che viene assegnato, Python tiene traccia del tipo di dato internamente.
 </blockquote>
 <h3 id=datatypes>Come confrontare i tipi di dato Python con gli altri linguaggi di programmazione</h3>
 <p>Un lettore erudito mi ha mandato questa spiegazione su come confrontare Python con altri linguaggi di programmazione:
@@ -91,7 +91,7 @@ if __name__ == "__main__":
 <dd>Un linguaggio in cui i tipi sono &#8220;automagicamente&#8221; forzati ad altri tipi su necessità; l'opposto di fortemente tipato. <abbr>PHP</abbr> è debolmente tipato. In <abbr>PHP</abbr>, potete concatenare la stringa <code>'12'</code> e l'intero <code>3</code> per ottenere la stringa <code>'123'</code>, e successivamente trattarla come l'intero <code>123</code>, il tutto senza conversioni esplicite.
 </dd>
 </dl>
-<p>Quindi Python è sia <em>dinamicamente tipato</em> (perché non utilizza dichiarazioni di tipo esplicite) e <em>fortemente tipato</em> (perché una volta che una variabile ha un tipo, esso ha effettivamente importanza).
+<p>Quindi Python è sia <em>dinamicamente tipato</em> (perché non utilizza dichiarazioni di tipo esplicite) che <em>fortemente tipato</em> (perché una volta che una variabile ha un tipo, esso ha effettivamente importanza).
 <p>Se avete esperienza con altri linguaggi di programmazione, questa tabella potrebbe aiutarvi a visualizzare il modo in cui Python può essere confrontato con essi:
 <table>
 <tr><th><th>Staticamente tipato<th>Dinamicamente tipato
@@ -114,7 +114,7 @@ if __name__ == "__main__":
 
     """</code></pre>
 <aside>Ogni funzione merita una docstring decente.</aside>
-<p>Le triple virgolette significano una stringa su più righe. Ogni cosa tra le virgolette di inizio e di fine è parte di una singola stringa, inclusi i ritorni a capo, gli spazi bianchi all'inizio di una riga, e altri caratteri di virgolette. Le triple virgolette si possono usare dovunque, ma le vedrete usate soprattutto nella definizione di una <code>docstring</code>.
+<p>Le triple virgolette servono per rappresentare una stringa su più righe. Ogni cosa tra le virgolette di inizio e di fine è parte di una singola stringa, inclusi i ritorni a capo, gli spazi bianchi all'inizio di una riga, e altri caratteri di virgolette. Le triple virgolette si possono usare dovunque, ma le vedrete sfruttate soprattutto nella definizione di una <code>docstring</code>.
 <blockquote class="note compare perl5">
 <p><span>&#x261E;</span>Le triple virgolette sono anche un modo facile per definire una stringa che contiene sia apici che virgolette, come <code>qq/.../</code> in Perl 5.
 </blockquote>
@@ -130,7 +130,7 @@ if __name__ == "__main__":
 -->
 <h2 id=everythingisanobject>Ogni cosa è un oggetto</h2>
 <p>Nel caso vi fosse sfuggito, ho appena detto che le funzioni Python hanno delle proprietà, e che quelle proprietà sono disponibili a tempo di esecuzione. Una funzione, come ogni altra cosa in Python, è un oggetto.
-<p>Lanciate la shell interattiva Python e seguitemi attraverso questa serie di istruzioni:
+<p>Lanciate la shell interattiva di Python e seguitemi attraverso questa serie di istruzioni:
 <pre class=screen>
 <a><samp class=p>>>> </samp><kbd>import humansize</kbd>                               <span>&#x2460;</span></a>
 <a><samp class=p>>>> </samp><kbd>print(humansize.approximate_size(4096, True))</kbd>  <span>&#x2461;</span></a>
@@ -194,7 +194,7 @@ if __name__ == "__main__":
 <li>Questa <em>non</em> è la fine della funzione. Le righe completamente vuote non contano. La funzione continua nella riga seguente.
 <li>Anche il ciclo <code>for</code> segnala l'inizio di un blocco di codice. I blocchi di codice possono contenere più righe, fino a quando esse sono indentate della stessa quantità. Questo ciclo <code>for</code> contiene tre righe di codice. Non c'è nessun'altra sintassi speciale per blocchi di codice su più righe. Indentate e andate avanti con la vostra vita.
 </ol>
-<p>Dopo alcune proteste iniziali e diverse analogie maliziose al Fortran, vi riappacificherete con questa caratteristica di Python e comincerete a vederne i benefici. Uno dei maggiori benefici è che tutti i programmi Python appaiono simili, in quanto l'indentazione è un requisito del linguaggio e non una questione di stile. Questo rende più facile leggere e comprendere il codice Python scritto da altre persone.
+<p>Dopo alcune proteste iniziali e diverse analogie maliziose al Fortran, vi riappacificherete con questa caratteristica di Python e comincerete a vederne i lati positivi. Uno dei maggiori benefici è che tutti i programmi Python appaiono simili, in quanto l'indentazione è un requisito del linguaggio e non una questione di stile. Questo rende più facile leggere e comprendere il codice Python scritto da altre persone.
 <blockquote class="note compare java">
 <p><span>&#x261E;</span>Python usa i ritorni a capo per separare le istruzioni e i due punti e l'indentazione per separare i blocchi di codice. <abbr>C++</abbr> e Java usano i punti e virgola per separare le istruzioni e le parentesi graffe per separare i blocchi di codice.
 </blockquote>
@@ -206,14 +206,14 @@ if __name__ == "__main__":
     print(approximate_size(1000000000000, False))
     print(approximate_size(1000000000000))</code></pre>
 <blockquote class="note compare clang">
-<p><span>&#x261E;</span>Come il <abbr>C</abbr>, Python usa <code>==</code> per il confronto e <code>=</code> per l'assegnamento. A differenza del <abbr>C</abbr>, Python non supporta l'assegnamento inline, e quindi non c'è alcuna possibilità di assegnare accidentalmente il valore che pensavate di stare confrontando.
+<p><span>&#x261E;</span>Come il <abbr>C</abbr>, Python usa <code>==</code> per il confronto e <code>=</code> per l'assegnamento. A differenza del <abbr>C</abbr>, Python non supporta l'assegnamento inline, quindi non c'è alcuna possibilità di assegnare accidentalmente il valore che pensavate di stare confrontando.
 </blockquote>
-<p>Che cosa rende questa istruzione <code>if</code> speciale? Ebbene, i moduli sono oggetti, e tutti i moduli hanno la proprietà built-in <code>__name__</code>. Il valore della proprietà <code>__name__</code> di un modulo dipende da come state usando il modulo. Se importate un modulo, allora <code>__name__</code> sarà il nome del file del modulo, senza il percorso e l'estensione. 
+<p>Che cosa rende speciale questa istruzione <code>if</code>? Ebbene, i moduli sono oggetti, e tutti i moduli hanno la proprietà built-in <code>__name__</code>. Il valore della proprietà <code>__name__</code> di un modulo dipende da come state usando il modulo. Se importate un modulo, allora <code>__name__</code> sarà il nome del file del modulo, senza il percorso e l'estensione. 
 <pre class=screen>
 <samp class=p>>>> </samp><kbd>import humansize</kbd>
 <samp class=p>>>> </samp><kbd>humansize.__name__</kbd>
 <samp>'humansize'</samp></pre>
-<p>Ma potete anche eseguire il modulo direttamente come un programma a sé, nel qual caso <code>__name__</code> sarà lo speciale valore di default <code>__main__</code>. Nel nostro esempio, Python valuterà l'istruzione <code>if</code>, troverà una espressione vera, ed eseguirà il blocco di codice corrispondente. In questo caso, per stampare due valori.
+<p>Ma potete anche eseguire direttamente il modulo come un programma a sé, nel qual caso <code>__name__</code> sarà lo speciale valore di default <code>__main__</code>. Nel nostro esempio, Python valuterà l'istruzione <code>if</code>, troverà una espressione vera, ed eseguirà il blocco di codice corrispondente. In questo caso, per stampare due valori.
 <pre class=screen>
 <samp class=p>c:\home\diveintopython3> </samp><kbd>c:\python30\python.exe humansize.py</kbd>
 <samp>1.0 TB
@@ -225,7 +225,7 @@ if __name__ == "__main__":
 <li><a href=http://www.python.org/dev/peps/pep-0008/>PEP 8: Style Guide for Python Code</a> descrive il buon stile di indentazione.
 <li><a href=http://docs.python.org/3.0/reference/><cite>Python Reference Manual</cite></a> spiega cosa significa dire che <a href=http://docs.python.org/3.0/reference/datamodel.html#objects-values-and-types>ogni cosa in Python è un oggetto</a>, perché alcune persone sono pedanti e adorano discutere questo tipo di cose in lungo e in largo.
 </ul>
-p class=nav><a rel=prev class=todo><span>&#x261C;</a> <a rel=next href=tipi-di-dato-nativi.html title="avanti a &#8220;Tipi di dato nativi&#8221;"><span>&#x261E;</span></a>
+<p class=nav><a rel=prev class=todo><span>&#x261C;</a> <a rel=next href=tipi-di-dato-nativi.html title="avanti a &#8220;Tipi di dato nativi&#8221;"><span>&#x261E;</span></a>
 <p class=c>&copy; 2001&ndash;9 <a href=about.html>Mark Pilgrim</a><br>
 &copy; 2009 <a href=translation.html>Giulio Piancastelli</a> per la traduzione italiana
 <script src=jquery.js></script>
