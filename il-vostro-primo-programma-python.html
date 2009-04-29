@@ -82,7 +82,7 @@ if __name__ == "__main__":
 <dd>Un linguaggio in cui i tipi sono fissati a tempo di compilazione. La maggior parte dei linguaggi staticamente tipati impone questo vincolo obbligandovi a dichiarare tutte le variabili con i loro tipi prima che possiate usarle. Java e <abbr>C</abbr> sono linguaggi staticamente tipati.
 </dd>
 <dt>linguaggio dinamicamente tipato</dt>
-<dd>Un linguaggio in cui i tipi sono scoperti a tempo di esecuzione; l'opposto di staticamente tipato. JavaScript e Python sono dinamicamente tipati, perché capiscono qual è il tipo di una variabile quando le viene assegnato un valore per la prima volta.
+<dd>Un linguaggio in cui i tipi sono stabiliti a tempo di esecuzione; l'opposto di staticamente tipato. JavaScript e Python sono dinamicamente tipati, perché capiscono qual è il tipo di una variabile quando le viene assegnato un valore per la prima volta.
 </dd>
 <dt>linguaggio fortemente tipato</dt>
 <dd>Un linguaggio in cui i tipi sono sempre rispettati. Java e Python sono fortemente tipati. Se avete un intero, non potete trattarlo come una stringa senza prima convertirlo esplicitamente.
@@ -99,7 +99,7 @@ if __name__ == "__main__":
 <tr><th>Fortemente tipato<td>Pascal, Java<td>Python, Ruby</td>
 </table>
 <h2 id=readability>Scrivere codice leggibile</h2>
-<p>Non vi annoierò con un lungo e <span class=wtf>finger-wagging</span> discorso sull'importanza di documentare il vostro codice. Vi basti sapere che il codice viene scritto una volta sola ma letto molte volte, e che l'audience più importante del vostro codice siete voi stessi, sei mesi dopo averlo scritto (cioè dopo che vi siete dimenticati tutto ma avete bisogno di correggere qualcosa). Python facilita la scrittura di codice leggibile, perciò avantaggiatevene. Fra sei mesi mi ringrazierete.
+<p>Non vi annoierò con una lunga predica sull'importanza di documentare il vostro codice. Vi basti sapere che il codice viene scritto una volta sola ma letto molte volte, e che i lettori più importanti del vostro codice siete voi stessi, sei mesi dopo averlo scritto (cioè dopo che vi siete dimenticati tutto ma avete bisogno di correggere qualcosa). Python facilita la scrittura di codice leggibile, perciò avantaggiatevene. Fra sei mesi mi ringrazierete.
 <h3 id=docstrings>Stringhe di documentazione</h3>
 <p>Potete documentare una funzione Python aggiungendole una stringa di documentazione (chiamata <code>docstring</code> per brevità). Nel nostro programma, la funzione <code>approximate_size</code> è stata dotata di una <code>docstring</code>:
 <pre><code>def approximate_size(size, a_kilobyte_is_1024_bytes=True):
@@ -120,7 +120,7 @@ if __name__ == "__main__":
 </blockquote>
 <p>Tutto quello che si trova tra le triple virgolette rappresenta la <code>docstring</code> della funzione, che documenta quello che la funzione fa. Una <code>docstring</code>, se esiste, deve essere la prima cosa definita in una funzione (cioè, nella riga subito dopo la dichiarazione di funzione). Non avete tecnicamente bisogno di dotare la vostra funzione di una <code>docstring</code>, ma dovreste sempre farlo. So che lo avete sentito in ogni corso di programmazione che avete seguito, ma Python vi dà un incentivo aggiuntivo: la <code>docstring</code> è disponibile a tempo di esecuzione sotto forma di proprietà della funzione.
 <blockquote class=note>
-<p><span>&#x261E;</span>Molti <abbr>IDE</abbr> per Python usano le <code>docstring</code> per fornire documentazione sensibile al contesto, in modo che quando scrivete il nome di una funzione la sua <code>docstring</code> appaia sotto forma di tooltip. Questa cosa può essere incredibilmente utile, ma lo è solamente tanto quanto le <code>docstring</code> che scrivete.
+<p><span>&#x261E;</span>Molti <abbr>IDE</abbr> per Python usano le <code>docstring</code> per fornire documentazione sensibile al contesto, in modo che quando scrivete il nome di una funzione la sua <code>docstring</code> appaia sotto forma di suggerimento. Questa caratteristica può essere incredibilmente utile, ma lo è solamente tanto quanto le <code>docstring</code> che scrivete.
 </blockquote>
 <!--
 <h3 id=functionannotations>Function Annotations</h3>
@@ -167,7 +167,7 @@ if __name__ == "__main__":
 <li>Importare il modulo <code>sys</code> rende disponibili tutte le sue funzioni e proprietà.
 <li><code>sys.path</code> è una lista di nomi di directory che costituiscono il percorso di ricerca corrente. (Il vostro apparirà diverso, a seconda del vostro sistema operativo, della versione di Python che state eseguendo e di dove è stata originariamente installata.) Python cercherà attraverso queste directory (in questo ordine) un file con estensione <code>.py</code> il cui nome corrisponda a quello che state cercando di importare.
 <li>In realtà, ho mentito; la verità è più complicata di così, perché non tutti i moduli sono memorizzati come file <code>.py</code>. Alcuni, come il modulo <code>sys</code>, sono moduli &#8220;built-in&#8221;, integrati direttamente all'interno dell'interprete Python. I moduli built-in si comportano esattamente come gli altri moduli, ma il loro codice sorgente Python non è disponibile, perché non sono scritti in Python! (Il modulo <code>sys</code> è scritto in <abbr>C</abbr>.)
-<li>Potete aggiungere a tempo di esecuzione una nuova directory al percorso di ricerca di Python appendendo il nome della directory a <code>sys.path</code>; successivamente, Python guarderà anche in quella directory ogni volta che provate a importare un modulo. L'effetto dura fino a quando l'interprete Python è in esecuzione. (Imparerete di più su <code>append()</code> e altri metodi delle liste in <span class=fixme>[FIXME xref-was-#datatypes]</span>.)
+<li>Potete aggiungere a tempo di esecuzione una nuova directory al percorso di ricerca di Python aggiungendo il nome della directory a <code>sys.path</code>; successivamente, Python guarderà anche in quella directory ogni volta che provate a importare un modulo. L'effetto dura fino a quando l'interprete Python è in esecuzione. (Imparerete di più su <code>append()</code> e altri metodi delle liste in <span class=fixme>[FIXME xref-was-#datatypes]</span>.)
 </ol>
 <h3 id=whatsanobject>Che cos'è un oggetto?</h3>
 <p>Ogni cosa in Python è un oggetto, e quasi ogni cosa possiede proprietà e metodi. Tutte le funzioni hanno una proprietà built-in <code>__doc__</code>, che restituisce la <var>docstring</var> definita nel codice sorgente della funzione. Il modulo <code>sys</code> è un oggetto che ha (tra le altre cose) una proprietà chiamata <var>path</var>. E così via.
@@ -188,10 +188,10 @@ if __name__ == "__main__":
 
     raise ValueError('number too large')</code></pre>
 <ol>
-<li>I blocchi di codice sono definiti dalla loro indentazione. Per &#8220;blocco di codice&#8221; intendo funzioni, istruzioni <code>if</code>, cicli <code>for</code>, cicli <code>while</code>, e così via. L'indentazione comincia un blocco e il rientro lo termina. Non ci sono parentesi graffe, parentesi quadre, o parole chiave. Questo vuol dire che gli spazi bianchi hanno significato, e devono essere consistenti. In questo esempio, il codice della funzione è indentato di quattro spazi. Non è necessario che siano quattro spazi, c'è solo bisogno che l'indentazione sia consistente. La prima riga che non è indentata indica la fine della funzione.
+<li>I blocchi di codice sono definiti dalla loro indentazione. Per &#8220;blocco di codice&#8221; intendo funzioni, istruzioni <code>if</code>, cicli <code>for</code>, cicli <code>while</code>, e così via. La presenza di una indentazione comincia un blocco e la sua assenza lo termina. Non ci sono parentesi graffe, parentesi quadre, o parole chiave. Questo vuol dire che gli spazi bianchi hanno significato, e devono essere consistenti. In questo esempio, il codice della funzione è indentato di quattro spazi. Non è necessario che siano quattro spazi, c'è solo bisogno che l'indentazione sia consistente. La prima riga che non è indentata indica la fine della funzione.
 <li>In Python, una istruzione <code>if</code> è seguita da un blocco di codice. Se l'espressione di <code>if</code> viene valutata come vera, il blocco indentato viene eseguito, altrimenti si ricade nel blocco di <code>else</code> (se esiste). (Notate la mancanza di parentesi attorno alla espressione.)
 <li>Questa riga è dentro il blocco di codice dell'<code>if</code>. L'istruzione di <code>raise</code> solleverà una eccezione (di tipo <code>ValueError</code>), ma solo se <code>size &lt; 0</code>.
-<li>Questa <em>non</em> è la fine della funzione. Le righe completamente vuote non contano. La funzione continua nella riga seguente.
+<li>Questa <em>non</em> è la fine della funzione. Le righe completamente vuote non vengono considerate. La funzione continua nella riga seguente.
 <li>Anche il ciclo <code>for</code> segnala l'inizio di un blocco di codice. I blocchi di codice possono contenere più righe, fino a quando esse sono indentate della stessa quantità. Questo ciclo <code>for</code> contiene tre righe di codice. Non c'è nessun'altra sintassi speciale per blocchi di codice su più righe. Indentate e andate avanti con la vostra vita.
 </ol>
 <p>Dopo alcune proteste iniziali e diverse analogie maliziose al Fortran, vi riappacificherete con questa caratteristica di Python e comincerete a vederne i lati positivi. Uno dei maggiori benefici è che tutti i programmi Python appaiono simili, in quanto l'indentazione è un requisito del linguaggio e non una questione di stile. Questo rende più facile leggere e comprendere il codice Python scritto da altre persone.
@@ -206,7 +206,7 @@ if __name__ == "__main__":
     print(approximate_size(1000000000000, False))
     print(approximate_size(1000000000000))</code></pre>
 <blockquote class="note compare clang">
-<p><span>&#x261E;</span>Come il <abbr>C</abbr>, Python usa <code>==</code> per il confronto e <code>=</code> per l'assegnamento. A differenza del <abbr>C</abbr>, Python non supporta l'assegnamento inline, quindi non c'è alcuna possibilità di assegnare accidentalmente il valore che pensavate di stare confrontando.
+<p><span>&#x261E;</span>Come il <abbr>C</abbr>, Python usa <code>==</code> per il confronto e <code>=</code> per l'assegnamento. A differenza del <abbr>C</abbr>, Python non supporta l'assegnamento in linea, quindi non c'è alcuna possibilità di assegnare accidentalmente il valore che pensavate di stare confrontando.
 </blockquote>
 <p>Che cosa rende speciale questa istruzione <code>if</code>? Ebbene, i moduli sono oggetti, e tutti i moduli hanno la proprietà built-in <code>__name__</code>. Il valore della proprietà <code>__name__</code> di un modulo dipende da come state usando il modulo. Se importate un modulo, allora <code>__name__</code> sarà il nome del file del modulo, senza il percorso e l'estensione. 
 <pre class=screen>
