@@ -21,19 +21,19 @@ body{counter-reset:h1 2}
 <p class=f>Mettete da parte <a href=il-vostro-primo-programma-python.html>il vostro primo programma Python</a> per un minuto, e parliamo di tipi di dato. In Python, <a href=il-vostro-primo-programma-python.html#datatypes>ogni variabile ha un tipo di dato</a>, ma non avete bisogno di dichiararlo esplicitamente. In base all'assegnamento originale di ogni variabile, Python capisce di quale tipo è e ne tiene traccia internamente.
 <p>Python ha molti tipi di dato nativi. Questi sono quelli più importanti:
 <ol>
-<li><b>Boolean</b> sono solamente <code>True</code> oppure <code>False</code>.
-<li><b>Numeri</b> possono essere interi (<code>1</code> e <code>2</code>), reali (<code>1.1</code> e <code>1.2</code>), frazioni (<code>1/2</code> e <code>2/3</code>), o persino numeri complessi (<code><var>i</var></code>, la radice quadrata di <code>-1</code>).
-<li><b>Stringhe</b> sono sequenze di caratteri Unicode, <i>e.g.</i> un documento <abbr>HTML</abbr>.
-<li><b>Byte</b> e <b>byte array</b>, <i>e.g.</i> un file <abbr>JPEG</abbr> contenente una immagine.
-<li><b>Liste</b> sono sequenze ordinate di valori.
-<li><b>Set</b> sono gruppi di valori senza un ordine preciso.
-<li><b>Dizionari</b> sono gruppi di coppie chiave-valore senza un ordine preciso.
+<li><b>Booleani</b>: sono solamente <code>True</code> oppure <code>False</code>.
+<li><b>Numeri</b>: possono essere interi (<code>1</code> e <code>2</code>), reali (<code>1.1</code> e <code>1.2</code>), frazioni (<code>1/2</code> e <code>2/3</code>), o persino numeri complessi (<code><var>i</var></code>, la radice quadrata di <code>-1</code>).
+<li><b>Stringhe</b>: sono sequenze di caratteri Unicode, <i>e.g.</i> un documento <abbr>HTML</abbr>.
+<li><b>Byte</b> e <b>byte array</b>: <i>e.g.</i> un file <abbr>JPEG</abbr> contenente una immagine.
+<li><b>Liste</b>: sono sequenze ordinate di valori.
+<li><b>Set</b>: sono insiemi di valori senza un ordine preciso.
+<li><b>Dizionari</b>: sono insiemi di coppie chiave-valore senza un ordine preciso.
 </ol>
 <p>Naturalmente, ci sono molti più tipi di questi sette. <a href=il-vostro-primo-programma-python.html#everythingisanobject>Ogni cosa è un oggetto</a> in Python, quindi ci sono anche tipi come <i>modulo</i>, <i>funzione</i>, <i>classe</i>, <i>metodo</i>, <i>file</i>, e persino <i>codice compilato</i>. Ne avete già visti alcuni: <a href=il-vostro-primo-programma-python.html#runningscripts>i moduli hanno un nome</a>, <a href=il-vostro-primo-programma-python.html#docstrings>le funzioni posseggono una <code>docstring</code></a>, <i class=baa>&amp;</i>c. Imparerete cosa sono le classi in <span class=fixme>[FIXME xref]</span> e cosa sono i file in <span class=fixme>[FIXME xref]</span>.
 <p>Stringhe e byte sono abbastanza importanti &mdash; e abbastanza complicati &mdash; da essere trattati in un capitolo a parte. Diamo un'occhiata agli altri per primi.
-<h2 id=booleans>Boolean</h2>
-<aside>Potete usare virtualmente ogni espressione in un contesto di tipo boolean.</aside>
-<p>I dati di tipo boolean sono veri o falsi. Python ha due costanti, <code>True</code> e <code>False</code>, che possono essere usate per assegnare direttamente valori di tipo boolean. Anche le espressioni possono essere valutate come valori booleani. In certi posti (come le istruzioni <code>if</code>), Python si aspetta una espressione da valutare come un valore booleano. Questi posti sono chiamati <i>contesti booleani</i>. Potete virtualmente usare qualsiasi espressione in un contesto booleano, e Python proverà a determinarne il valore di verità. Tipi di dato differenti hanno regole differenti per decidere se un loro valore è vero o falso in un contesto booleano. (Questa frase avrà più senso una volta che avrete visto alcuni esempi concreti più in là in questo capitolo.)
+<h2 id=booleans>Booleani</h2>
+<aside>Potete usare virtualmente qualsiasi espressione in un contesto logico.</aside>
+<p>I dati di tipo booleano sono veri o falsi. Python ha due costanti, <code>True</code> e <code>False</code>, che possono essere usate per assegnare direttamente valori di tipo booleano. Anche le espressioni possono essere valutate come valori booleani. In certi posti (come le istruzioni <code>if</code>), Python si aspetta una espressione da valutare come un valore booleano. Questi posti sono chiamati <i>contesti logici</i>. Potete virtualmente usare qualsiasi espressione in un contesto logico, e Python proverà a determinarne il valore di verità. Tipi di dato differenti hanno regole differenti per decidere se un loro valore è vero o falso in un contesto logico. (Questa frase avrà più senso una volta che avrete visto alcuni esempi concreti più in là in questo capitolo.)
 <p>Per esempio, considerate questo estratto da <a href=il-vostro-primo-programma-python.html#divingin><code>humansize.py</code></a>:
 <pre><code>if size &lt; 0:
     raise ValueError('number must be non-negative')</code></pre>
@@ -60,11 +60,11 @@ body{counter-reset:h1 2}
 <samp class=p>>>> </samp><kbd>type(2.0)</kbd>
 <samp>&lt;class 'float'></samp></pre>
 <ol>
-<li>Potete usare la funzione <code>type()</code> per controllare il tipo di qualsiasi valore o variabile. Come vi sarete aspettati, <code>1</code> è un <code>int</code>.
+<li>Potete usare la funzione <code>type()</code> per controllare il tipo di qualsiasi valore o variabile. Come vi sareste aspettati, <code>1</code> è un <code>int</code>.
 <li>Aggiungere un <code>int</code> a un <code>int</code> dà come risultato un <code>int</code>.
 <li>Aggiungere un <code>int</code> a un <code>float</code> dà come risultato un <code>float</code>. Python forza l'<code>int</code> a diventare un <code>float</code> per eseguire l'addizione, poi restituisce un <code>float</code> come risultato.
 </ol>
-<h3 id=number-coercion>Forzare interi a decimali e viceversa</h3>
+<h3 id=number-coercion>Forzare interi a reali e viceversa</h3>
 <p>Come avete appena visto, alcuni operatori (come l'addizione) forzano gli interi a diventare numeri in virgola mobile su necessità. Potete anche forzarli voi stessi.
 <pre class=screen>
 <a><samp class=p>>>> </samp><kbd>float(2)</kbd>                <span>&#x2460;</span></a>
@@ -145,40 +145,40 @@ body{counter-reset:h1 2}
 <a><samp class=p>>>> </samp><kbd>math.tan(math.pi / 4)</kbd>  <span>&#x2462;</span></a>
 <samp>0.99999999999999989</samp></pre>
 <ol>
-<li>Il modulo <code>math</code> ha una costante per &pi;, il rapporto tra la circonferenza di un cerchio e il suo diametro.
-<li>Il modulo <code>math</code> ha tutte le funzioni trigonometriche di base, comprese <code>sin()</code>, <code>cos()</code>, <code>tan()</code>, e varianti come <code>asin()</code>.
+<li>Il modulo <code>math</code> include una costante per &pi;, il rapporto tra la circonferenza di un cerchio e il suo diametro.
+<li>Il modulo <code>math</code> contiene tutte le funzioni trigonometriche di base, comprese <code>sin()</code>, <code>cos()</code>, <code>tan()</code>, e varianti come <code>asin()</code>.
 <li>Notate, comunque, che la precisione numerica di Python non è infinita. <code>tan(&pi; / 4)</code> dovrebbe restituire <code>1.0</code>, non <code>0.99999999999999989</code>.
 </ol>
-<h3 id=numbers-in-a-boolean-context>Numeri in un contesto booleano</h3>
+<h3 id=numbers-in-a-boolean-context>Numeri in un contesto logico</h3>
 <aside>I valori uguali a zero sono falsi, e i valori diversi da zero sono veri.</aside>
-<p>Potete usare i numeri <a href="#booleans">in un contesto di tipo boolean</a>, come una istruzione <code>if</code>. I valori uguali a zero sono falsi, e i valori diversi da zero sono veri.
+<p>Potete usare i numeri <a href="#booleans">in un contesto logico</a>, come una istruzione <code>if</code>. I valori uguali a zero sono falsi, e i valori diversi da zero sono veri.
 <pre class=screen>
 <a><samp class=p>>>> </samp><kbd>def is_it_true(anything):</kbd>             <span>&#x2460;</span></a>
 <samp class=p>... </samp><kbd>  if anything:</kbd>
-<samp class=p>... </samp><kbd>    print("yes, it's true")</kbd>
+<samp class=p>... </samp><kbd>    print("sì, è vero")</kbd>
 <samp class=p>... </samp><kbd>  else:</kbd>
-<samp class=p>... </samp><kbd>    print("no, it's false")</kbd>
+<samp class=p>... </samp><kbd>    print("no, è falso")</kbd>
 <samp class=p>...</samp>
 <a><samp class=p>>>> </samp><kbd>is_it_true(1)</kbd>                         <span>&#x2461;</span></a>
-<samp>yes, it's true</samp>
+<samp>sì, è vero</samp>
 <samp class=p>>>> </samp><kbd>is_it_true(-1)</kbd>
-<samp>yes, it's true</samp>
+<samp>sì, è vero</samp>
 <samp class=p>>>> </samp><kbd>is_it_true(0)</kbd>
-<samp>no, it's false</samp>
+<samp>no, è falso</samp>
 <a><samp class=p>>>> </samp><kbd>is_it_true(0.1)</kbd>                       <span>&#x2462;</span></a>
-<samp>yes, it's true</samp>
+<samp>sì, è vero</samp>
 <samp class=p>>>> </samp><kbd>is_it_true(0.0)</kbd>
-<samp>no, it's false</samp>
+<samp>no, è falso</samp>
 <samp class=p>>>> </samp><kbd>import fractions</kbd>
 <a><samp class=p>>>> </samp><kbd>is_it_true(fractions.Fraction(1, 2))</kbd>  <span>&#x2463;</span></a>
-<samp>yes, it's true</samp>
+<samp>sì, è vero</samp>
 <samp class=p>>>> </samp><kbd>is_it_true(fractions.Fraction(0, 1))</kbd>
-<samp>no, it's false</samp></pre>
+<samp>no, è falso</samp></pre>
 <ol>
 <li>Sapevate di poter definire le vostre funzioni nella shell interattiva di Python? Vi basta premere <kbd>ENTER</kbd> alla fine di ogni riga, ed <kbd>ENTER</kbd> su una riga vuota per concludere la definizione.
-<li>In un contesto booleano, gli interi diversi da zero sono veri; <code>0</code> è falso.
+<li>In un contesto logico, gli interi diversi da zero sono veri; <code>0</code> è falso.
 <li>I numeri in virgola mobile diversi da zero sono veri; <code>0.0</code> è falso. Fate attenzione! Se c'è anche il più piccolo errore di arrotondamento (non impossibile, come avete visto nella precedente sezione) allora Python opererà su <code>0.0000000000001</code> invece di <code>0</code> e restituirà <code>True</code>.
-<li>Anche le frazioni possono essere usate in un contesto di tipo boolean. <code>Fraction(0, n)</code> è falso per tutti i valori di <var>n</var>. Tutte le altre frazioni sono vere.
+<li>Anche le frazioni possono essere usate in un contesto logico. <code>Fraction(0, n)</code> è falso per tutti i valori di <var>n</var>. Tutte le altre frazioni sono vere.
 </ol>
 <h2 id=lists>Liste</h2>
 <p>Le liste sono il mulo da soma dei tipi di dato Python. Quando dico &#8220;lista,&#8221; potreste pensare &#8220;array la cui dimensione devo dichiarare in anticipo, e che può solo contenere elementi di uno stesso tipo, <i class=baa>&amp;</i>c.&#8221; Non pensatelo. Le liste sono molto più fighe di così.
@@ -186,7 +186,7 @@ body{counter-reset:h1 2}
 <p><span>&#x261E;</span>Una lista in Python è come un array in Perl 5. In Perl 5, variabili che memorizzano un array cominciano sempre con il carattere <code>@</code>; in Python, le variabili possono essere chiamate in qualsiasi modo, e Python tiene traccia del tipo di dato internamente.
 </blockquote>
 <blockquote class="note compare java">
-<p><span>&#x261E;</span>Una lista in Python è molto di più di un array in Java (anche se può essere usata come tale se è questo tutto quello che volete dalla vita). Una analogia migliore sarebbe quella con la classe <code>ArrayList</code>, che può contenere oggetti di tipo arbitrario e può espandersi dinamicamente man mano che nuovi elementi vengono aggiunti.
+<p><span>&#x261E;</span>Una lista in Python è molto di più di un array in Java (anche se può essere usata come tale se questo è tutto quello che volete dalla vita). Una analogia migliore sarebbe quella con la classe <code>ArrayList</code>, che può contenere oggetti di tipo arbitrario e può espandersi dinamicamente man mano che nuovi elementi vengono aggiunti.
 </blockquote>
 <h3 id=creatinglists>Creare una lista</h3>
 <p>Creare una lista è facile: usate le parentesi quadre per racchiudere una lista di valori separati da virgole.
@@ -211,7 +211,7 @@ body{counter-reset:h1 2}
 </ol>
 <h3 id=slicinglists>Affettare una lista</h3>
 <aside>a_list[0] è il primo elemento di a_list.</aside>
-<p>Una volta che avete definito una lista, potete ottenere una qualsiasi sua parte come una nuova lista. Questo si chiama <i>affettare</i> la lista.
+<p>Una volta che avete definito una lista, potete ottenerne una parte qualsiasi sotto forma di una nuova lista. Questa operazione si chiama <i>affettare</i> la lista.
 <pre class=screen>
 <samp class=p>>>> </samp><kbd>a_list</kbd>
 <samp>['a', 'b', 'mpilgrim', 'z', 'example']</samp>
@@ -228,7 +228,7 @@ body{counter-reset:h1 2}
 <a><samp class=p>>>> </samp><kbd>a_list[:]</kbd>              <span>&#x2465;</span></a>
 ['a', 'b', 'mpilgrim', 'z', 'example']</pre>
 <ol>
-<li>Potete ottenere una parte di una lista, chiamata una &#8220;fetta&#8221;, specificando due indici. Il valore di ritorno è una nuova lista che contiene tutti gli elementi della lista, in ordine, a cominciare dal primo indice della fetta (in questo caso <code>a_list[1]</code>), fino al secondo indice della fetta escluso (in questo caso <code>a_list[3]</code>).
+<li>Potete ottenere una parte di una lista, chiamata &#8220;fetta&#8221;, specificando due indici. Il valore di ritorno è una nuova lista che contiene tutti gli elementi della lista, in ordine, a cominciare dal primo indice della fetta (in questo caso <code>a_list[1]</code>), fino al secondo indice della fetta escluso (in questo caso <code>a_list[3]</code>).
 <li>Affettare una lista funziona anche se uno o entrambi gli indici della fetta sono negativi. Se vi è d'aiuto, potete pensarla in questo modo: leggendo la lista da sinistra a destra, il primo indice della fetta indica il primo elemento che volete, e il secondo indice della fetta indica il primo elemento che non volete. Il valore di ritorno è tutto quello che sta in mezzo.
 <li>L'indice delle liste comincia da zero, quindi <code>a_list[0:3]</code> restituisce i primi tre elementi della lista, cominciando da <code>a_list[0]</code>, fino a <code>a_list[3]</code> escluso.
 <li>Se l'indice sinistro della lista è <code>0</code>, potete ometterlo, e <code>0</code> diventa implicito. Quindi <code>a_list[:3]</code> è la stessa cosa di <code>a_list[0:3]</code>, perché lo <code>0</code> iniziale è implicito.
@@ -254,7 +254,7 @@ body{counter-reset:h1 2}
 <ol>
 <li>L'operatore <code>+</code> concatena liste. Una lista può contenere qualsiasi numero di elementi; non c'è alcun limite sulle dimensioni (a parte la memoria disponibile). Una lista può contenere elementi di ogni tipo di dato; non c'è bisogno che siano tutti dello stesso tipo. Qui abbiamo una lista contenente una stringa, un numero in virgola mobile, e un intero.
 <li>Il metodo <code>append()</code> aggiunge un singolo elemento alla fine di una lista. (Ora abbiamo <em>quattro</em> tipi di dato differenti nella lista!)
-<li>Le liste sono implementate come classi. &#8220;Creare&#8221; una lista è in realtà istanziare una classe. Come tale, una lista ha metodi che operano su di essa. Il metodo <code>extend()</code> prende un argomento, una lista, e appende ognuno degli elementi dell'argomento alla lista originale.
+<li>Le liste sono implementate come classi. &#8220;Creare&#8221; una lista vuol dire in realtà istanziare una classe. Come tale, una lista ha metodi che operano su di essa. Il metodo <code>extend()</code> prende un argomento, una lista, e aggiunge ognuno degli elementi dell'argomento in coda alla lista originale.
 <li>Il metodo <code>insert()</code> inserisce un singolo elemento in una lista. Il primo argomento è l'indice del primo elemento nella lista che verrà spostato dalla sua posizione. Gli elementi di una lista non devono essere unici; per esempio, ci sono ora due elementi diversi con il valore <code>'a'</code>, <code>a_list[0]</code> e <code>a_list[1]</code>.
 </ol>
 <p>Diamo un'occhiata più da vicino alle differenze tra <code>append()</code> ed <code>extend()</code>.
@@ -278,7 +278,7 @@ body{counter-reset:h1 2}
 <li>Il metodo <code>extend()</code> prende un singolo argomento, che è sempre una lista, e aggiunge ogni elemento di quella lista ad <var>a_list</var>.
 <li>Se cominciate con una lista di tre elementi e la estendete con una lista di altri tre elementi, terminerete con una lista di sei elementi.
 <li>D'altra parte, il metodo <code>append()</code> prende un qualsiasi numero di argomenti, ognuno dei quali può avere un tipo di dato qualsiasi. Qui, state chiamando il metodo <code>append()</code> con un singolo argomento, una lista di tre elementi.
-<li>Se cominciate con una lista di sei elementi e vi appendete una lista, terminerete con... una lista di sette elementi. Perché sette? Perché l'ultimo elemento (che avete appena appeso) <em>è anch'esso una lista</em>. Le liste possono contenere ogni tipo di dato, comprese altre liste. Questo potrebbe essere quello che volete, oppure no. Ma è quello che avete chiesto, ed è quello che avete ottenuto.
+<li>Se cominciate con una lista di sei elementi e vi accodate una lista, terminerete con... una lista di sette elementi. Perché sette? Perché l'ultimo elemento (che avete appena aggiunto) <em>è anch'esso una lista</em>. Le liste possono contenere ogni tipo di dato, comprese altre liste. Questo potrebbe essere quello che volete, oppure no. Ma è quello che avete chiesto, ed è quello che avete ottenuto.
 </ol>
 <h3 id=searchinglists>Cercare valori in una lista</h3>
 <pre class=screen>
@@ -296,28 +296,28 @@ body{counter-reset:h1 2}
   File "&lt;interactive input>", line 1, in ?
 ValueError: list.index(x): x not in list</samp></pre>
 <ol>
-<li>Per verificare se un valore è in una lista, usate l'operatore <code>in</code>. Esso restituisce <code>True</code> se il valore è nella lista, oppure <code>False</code> se non lo è. Non vi dirà dove il valore si trova nella lista.
+<li>Per verificare se un valore è presente in una lista, usate l'operatore <code>in</code>. Esso restituisce <code>True</code> se il valore è nella lista, oppure <code>False</code> se non lo è. Non vi dirà dove si trova il valore.
 <li>Se avete bisogno di sapere esattamente dove si trova un valore nella lista, chiamate il metodo <code>index()</code>. Di default cercherà nell'intera lista, anche se potete specificare, come secondo argomento, l'indice (a partire da <code>0</code>) da cui cominciare e persino, come terzo argomento, l'indice (a partire da <code>0</code>) in cui terminare la ricerca.
 <li>Come vi sareste aspettati, questo restituisce <code>False</code>, perché <code>'c'</code> non è un valore contenuto in <var>a_list</var>.
 <li>Il metodo <code>index()</code> trova la <em>prima</em> occorrenza di un valore nella lista. In questo caso, <code>'new'</code> appare due volte nella lista, in <code>a_list[2]</code> and <code>a_list[4]</code>, ma il metodo <code>index()</code> restituirà solamente l'indice della prima occorrenza. 
 <li>Come <em>non</em> vi sareste aspettati, se il valore non è trovato nella lista, Python solleva una eccezione. Questa è una differenza considerevole rispetto alla maggior parte dei linguaggi, che resituiscono un qualche indice non valido (come <code>-1</code>). Mentre questo può sembrare fastidioso all'inizio, penso che finirete per apprezzarlo. Significa che il vostro programma fallirà alla sorgente del problema invece di fallire stranamente e silenziosamente più tardi. 
 </ol>
-<h3 id=lists-in-a-boolean-context>Liste in un contesto booleano</h3>
+<h3 id=lists-in-a-boolean-context>Liste in un contesto logico</h3>
 <aside>Le liste vuote sono false; tutte le altre liste sono vere.</aside>
-<p>Potete usare una lista anche in <a href=#booleans>un contesto di tipo boolean</a>, come quello di una istruzione <code>if</code>.
+<p>Potete usare una lista anche in <a href=#booleans>un contesto logico</a>, come quello di una istruzione <code>if</code>.
 <pre class=screen>
 <samp class=p>>>> </samp><kbd>def is_it_true(anything):</kbd>
 <samp class=p>... </samp><kbd>  if anything:</kbd>
-<samp class=p>... </samp><kbd>    print("yes, it's true")</kbd>
+<samp class=p>... </samp><kbd>    print("sì, è vero")</kbd>
 <samp class=p>... </samp><kbd>  else:</kbd>
-<samp class=p>... </samp><kbd>    print("no, it's false")</kbd>
+<samp class=p>... </samp><kbd>    print("no, è falso")</kbd>
 <samp class=p>...</samp>
 <a><samp class=p>>>> </samp><kbd>is_it_true([])</kbd>             <span>&#x2461;</span></a>
-<samp>no, it's false</samp>
+<samp>no, è falso</samp>
 <a><samp class=p>>>> </samp><kbd>is_it_true(['a'])</kbd>          <span>&#x2462;</span></a>
-<samp>yes, it's true</samp></pre>
+<samp>sì, è vero</samp></pre>
 <ol>
-<li>In un contesto booleano, una lista vuota è falsa.
+<li>In un contesto logico, una lista vuota è falsa.
 <li>Qualsiasi lista con almeno un elemento è vera.
 </ol>
 <!--
@@ -330,7 +330,7 @@ ValueError: list.index(x): x not in list</samp></pre>
 <p><span>&#x261E;</span>Un dizionario in Python è come un hash in Perl 5. In Perl 5, variabili che memorizzano hash cominciano sempre con il carattere <code>%</code>. In Python, le variabili possono essere chiamate in qualsiasi modo, e Python tiene traccia del tipo di dato internamente.
 </blockquote>
 <h3 id=creating-dictionaries>Creare un dizionario</h3>
-<p>Creare un dizionario è facile. La sintassi è simile agli <a href=#sets>insiemi</a>, ma invece di valori avete coppie chiave-valore. Una volta che avete un dizionario, potete cercare i valori attraverso le loro chiavi.
+<p>Creare un dizionario è facile. La sintassi è simile agli <a href=#sets>insiemi</a>, ma invece di valori avete coppie chiave-valore. Una volta che avete un dizionario, potete recuperarne i valori attraverso le loro chiavi.
 <pre class=screen>
 <a><samp class=p>>>> </samp><kbd>a_dict = {"server":"db.diveintopython3.org", "database":"mysql"}</kbd>  <span>&#x2460;</span></a>
 <samp class=p>>>> </samp><kbd>a_dict</kbd>
@@ -371,10 +371,10 @@ KeyError: 'db.diveintopython3.org'</samp></pre>
 <li>Potete aggiungere nuove coppie chiave-valore in ogni momento. Questa sintassi è identica a quella per modificare valori già esistenti.
 <li>Il nuovo elemento nel dizionario (chiave <code>'user'</code>, valore <code>'mark'</code>) appare nel mezzo. In effetti, è stata solamente una coincidenza che gli elementi apparissero in ordine nel primo esempio; è allo stesso modo una coincidenza che appaiano fuori ordine ora.
 <li>Assegnare un valore a una chiave esistente nel dizionario semplicemente sostituisce il vecchio valore con il nuovo.
-<li>Questo reinserirà "mark" come valore della chiave <code>user</code>? No! Guardate bene la chiave &mdash; c'è una <kbd>U</kbd> maiuscola in <kbd>"User"</kbd>. Le chiavi di un dizionario sono <span class=wtf>case-sensitive</span>, quindi questa istruzione crea una nuova coppia chiave-valore, senza sovrascriverne una esistente. A voi potrebbe sembrare simile, ma per quanto riguarda Python, è completamente diverso.
+<li>Questo assegnamento reinserirà "mark" come valore della chiave <code>user</code>? No! Guardate bene la chiave &mdash; c'è una <kbd>U</kbd> maiuscola in <kbd>"User"</kbd>. Le chiavi di un dizionario sono sensibili alle maiuscole, quindi questa istruzione crea una nuova coppia chiave-valore, senza sovrascriverne una esistente. A voi potrebbe sembrare simile, ma per quanto riguarda Python, è completamente diverso.
 </ol>
 <h3 id=mixed-value-dictionaries>Dizionari a valori misti</h3>
-<p>I dizionari non sono solo per le stringhe. I valori in un dizionario possono appartenere a qualsiasi tipo di dato, compresi interi, booleani, oggetti arbitrari, e persino altri dizionari. E all'interno di un singolo dizionario, i valori non devono essere tutti dello stesso tipo; potete mescolarli a piacimento. Le chiavi di un dizionario hanno maggiori restrizioni, ma possono essere stringhe, interi, e di pochi altri tipi. Potete mescolare anche i tipi di dato delle chiavi all'interno di un singolo dizionario.
+<p>I dizionari non funzionano solo con le stringhe. I valori in un dizionario possono appartenere a qualsiasi tipo di dato, compresi interi, booleani, oggetti arbitrari, e persino altri dizionari. E all'interno di un singolo dizionario, i valori non devono essere tutti dello stesso tipo; potete mescolarli a piacimento. Le chiavi di un dizionario hanno maggiori restrizioni, ma possono essere stringhe, interi, e di pochi altri tipi. Potete mescolare anche i tipi di dato delle chiavi all'interno di un singolo dizionario.
 <p>In effetti, avete già visto un dizionario con chiavi e valori che non sono stringhe nel <a href=il-vostro-primo-programma-python.html#divingin>vostro primo programma Python</a>.
 <pre><code>SUFFIXES = {1000: ('KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'),
             1024: ('KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB')}</code></pre>
@@ -391,32 +391,32 @@ KeyError: 'db.diveintopython3.org'</samp></pre>
 <a><samp class=p>>>> </samp><kbd>SUFFIXES[1000][3]</kbd>  <span>&#x2463;</span></a>
 <samp>'TB'</samp></pre>
 <ol>
-<li>Come per le <a href=#lists>liste</a><!-- and <a href=#sets>sets</a>-->, la funzione <code>len()</code> vi dà il numero di oggetti in un dizionario.
+<li>Come per le <a href=#lists>liste</a><!-- and <a href=#sets>sets</a>-->, la funzione <code>len()</code> vi restituisce il numero di oggetti in un dizionario.
 <li><code>1000</code> è una chiave nel dizionario <code>SUFFIXES</code>; il suo valore è una lista di otto elementi (otto stringhe, per essere precisi).
 <li>Similmente, <code>1024</code> è una chiave nel dizionario <code>SUFFIXES</code>; il suo valore è anch'esso una lista di otto elementi.
 <li>Dato che <code>SUFFIXES[1000]</code> è una lista, potete accedere ai singoli elementi in quella lista attraverso il loro indice a partire da 0.
 </ol>
-<h3 id=dictionaries-in-a-boolean-context>Dizionari in un contesto booleano</h3>
+<h3 id=dictionaries-in-a-boolean-context>Dizionari in un contesto logico</h3>
 <aside>I dizionari vuoti sono falsi; tutti gli altri dizionari sono veri.</aside>
-<p>Potete usare i dizionari anche in <a href=#booleans>un contesto di tipo boolean</a>, come quello di una istruzione <code>if</code>.
+<p>Potete usare i dizionari anche in <a href=#booleans>un contesto logico</a>, come quello di una istruzione <code>if</code>.
 <pre class=screen>
 <samp class=p>>>> </samp><kbd>def is_it_true(anything):</kbd>
 <samp class=p>... </samp><kbd>  if anything:</kbd>
-<samp class=p>... </samp><kbd>    print("yes, it's true")</kbd>
+<samp class=p>... </samp><kbd>    print("sì, è vero")</kbd>
 <samp class=p>... </samp><kbd>  else:</kbd>
-<samp class=p>... </samp><kbd>    print("no, it's false")</kbd>
+<samp class=p>... </samp><kbd>    print("no, è falso")</kbd>
 <samp class=p>...</samp>
 <a><samp class=p>>>> </samp><kbd>is_it_true({})</kbd>             <span>&#x2460;</span></a>
-<samp>no, it's false</samp>
+<samp>no, è falso</samp>
 <a><samp class=p>>>> </samp><kbd>is_it_true({'a': 1})</kbd>       <span>&#x2461;</span></a>
-<samp>yes, it's true</samp></pre>
+<samp>sì, è vero</samp></pre>
 <ol>
-<li>In un contesto booleano, un dizionario vuoto è falso.
+<li>In un contesto logico, un dizionario vuoto è falso.
 <li>Qualsiasi dizionario con almeno una coppia chiave-valore è vero.
 </ol>
 <h2 id=none><code>None</code></h2>
 <p><code>None</code> è una costante speciale in Python. &Egrave; un valore nullo. <code>None</code> non è la stessa cosa di <code>False</code>. <code>None</code> non è <code>0</code>. <code>None</code> non è una stringa vuota. Confrontare <code>None</code> con qualcos'altro che non sia <code>None</code> restituirà sempre <code>False</code>.
-<p><code>None</code> è l'unico valore nullo. Ha il suo proprio tipo di dato (<code>NoneType</code>). Potete assegnare <code>None</code> a qualsiasi variabile, ma non potete creare altri oggetti di tipo <code>NoneType</code>. Tutte le varibili il cui valore è <code>None</code> sono uguali tra loro.
+<p><code>None</code> è l'unico valore nullo. Ha un proprio tipo di dato (<code>NoneType</code>). Potete assegnare <code>None</code> a qualsiasi variabile, ma non potete creare altri oggetti di tipo <code>NoneType</code>. Tutte le varibili il cui valore è <code>None</code> sono uguali tra loro.
 <pre class=screen>
 <samp class=p>>>> </samp><kbd>type(None)</kbd>
 <samp>&lt;class 'NoneType'></samp>
@@ -435,19 +435,19 @@ KeyError: 'db.diveintopython3.org'</samp></pre>
 <samp class=p>>>> </samp><kbd>x == y</kbd>
 <samp>True</samp>
 </pre>
-<h3 id=none-in-a-boolean-context><code>None</code> in un contesto booleano</h3>
-<p>In <a href=#booleans>un contesto di tipo boolean</a>, <code>None</code> è falso e <code>not None</code> è vero.
+<h3 id=none-in-a-boolean-context><code>None</code> in un contesto logico</h3>
+<p>In <a href=#booleans>un contesto logico</a>, <code>None</code> è falso e <code>not None</code> è vero.
 <pre class=screen>
 <samp class=p>>>> </samp><kbd>def is_it_true(anything):</kbd>
 <samp class=p>... </samp><kbd>  if anything:</kbd>
-<samp class=p>... </samp><kbd>    print("yes, it's true")</kbd>
+<samp class=p>... </samp><kbd>    print("sì, è vero")</kbd>
 <samp class=p>... </samp><kbd>  else:</kbd>
-<samp class=p>... </samp><kbd>    print("no, it's false")</kbd>
+<samp class=p>... </samp><kbd>    print("no, è falso")</kbd>
 <samp class=p>...</samp>
 <samp class=p>>>> </samp><kbd>is_it_true(None)</kbd>
-<samp>no, it's false</samp>
+<samp>no, è falso</samp>
 <samp class=p>>>> </samp><kbd>is_it_true(not None)</kbd>
-<samp>yes, it's true</samp></pre>
+<samp>sì, è vero</samp></pre>
 <h2 id=furtherreading>Letture di approfondimento</h2>
 <ul>
 <li><a href="http://docs.python.org/3.0/library/fractions.html">The <code>fractions</code> module</a>
