@@ -62,10 +62,10 @@ body{counter-reset:h1 2}
 <ol>
 <li>Potete usare la funzione <code>type()</code> per controllare il tipo di qualsiasi valore o variabile. Come vi sareste aspettati, <code>1</code> è un <code>int</code>.
 <li>Aggiungere un <code>int</code> a un <code>int</code> dà come risultato un <code>int</code>.
-<li>Aggiungere un <code>int</code> a un <code>float</code> dà come risultato un <code>float</code>. Python forza l'<code>int</code> a diventare un <code>float</code> per eseguire l'addizione, poi restituisce un <code>float</code> come risultato.
+<li>Aggiungere un <code>int</code> a un <code>float</code> dà come risultato un <code>float</code>. Python converte implicitamente l'<code>int</code> in un <code>float</code> per eseguire l'addizione, poi restituisce un <code>float</code> come risultato.
 </ol>
-<h3 id=number-coercion>Forzare interi a reali e viceversa</h3>
-<p>Come avete appena visto, alcuni operatori (come l'addizione) forzano gli interi a diventare numeri in virgola mobile su necessità. Potete anche forzarli voi stessi.
+<h3 id=number-coercion>Convertire interi a reali e viceversa</h3>
+<p>Come avete appena visto, alcuni operatori (come l'addizione) convertono implicitamente gli interi in numeri in virgola mobile su necessità. Potete anche convertirli esplicitamente voi stessi.
 <pre class=screen>
 <a><samp class=p>>>> </samp><kbd>float(2)</kbd>                <span>&#x2460;</span></a>
 <samp>2.0</samp>
@@ -80,8 +80,8 @@ body{counter-reset:h1 2}
 <a><samp class=p>>>> </samp><kbd>type(1000000000000000)</kbd>  <span>&#x2465;</span></a>
 <samp>&lt;class 'int'></samp></pre>
 <ol>
-<li>Potete esplicitamente forzare un <code>int</code> a diventare un <code>float</code> chiamando la funzione <code>float()</code>.
-<li><span class=wtf>Unsurprisingly</span>, potete anche forzare un <code>float</code> a diventare un <code>int</code> chiamando <code>int()</code>.
+<li>Potete convertire esplicitamente un <code>int</code> in un <code>float</code> chiamando la funzione <code>float()</code>.
+<li><span class=wtf>Unsurprisingly</span>, potete anche convertire esplicitamente un <code>float</code> in un <code>int</code> chiamando <code>int()</code>.
 <li>La funzione <code>int()</code> esegue un troncamento, non arrotonda.
 <li>La funzione <code>int()</code> tronca i numeri negativi verso lo <code>0</code>. &Egrave; una vera funzione di troncamento, non una funzione di appiattimento.
 <li>I numeri in virgola mobile sono accurati fino a 15 decimali.
