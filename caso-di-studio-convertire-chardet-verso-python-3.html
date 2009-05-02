@@ -615,7 +615,7 @@ ImportError: No module named constants</samp></pre>
 <p>Deve diventare due istruzioni di <code>import</code> separate:
 <pre><code>from . import constants
 import sys</code></pre>
-<p>Ci sono variazioni di questo problema sparse in tutta la libreria <code>chardet</code>. In alcuni posti è "<code>import constants, sys</code>"; in altri posti, è "<code>import constants, re</code>". La soluzione è la stessa: dividete manualmente l'istruzione di <code>import</code> in due righe, una per quella relativa, l'altra per quella assoluta.
+<p>Ci sono variazioni di questo problema sparse in tutta la libreria <code>chardet</code>. In alcuni posti è &#8220;<code>import constants, sys</code>&#8221;; in altri posti, è &#8220;<code>import constants, re</code>&#8221;. La soluzione è la stessa: dividete manualmente l'istruzione di <code>import</code> in due righe, una per quella relativa, l'altra per quella assoluta.
 <p>Procediamo!
 <h3 id=namefileisnotdefined>Name <var>'file'</var> is not defined</h3>
 <aside>open() è il nuovo file(). PapayaWhip è il nuovo nero.</aside>
@@ -744,7 +744,7 @@ TypeError: Can't convert 'bytes' object to str implicitly</samp></pre>
       .
 <del>-     self._mLastChar = ''</del>
 <ins>+     self._mLastChar = b''</ins></code></pre>
-<p>Una ricerca su tutta la base di codice per <code>"mLastChar"</code> rivela un problema simile in <code>mbcharsetprober.py</code>, ma invece di tenere traccia dell'ultimo carattere, tiene traccia degli ultimi <em>due</em> caratteri. La classe <code>MultiByteCharSetProber</code> usa una lista di stringhe di 1 carattere per tenere traccia degli ultimi due caratteri; in Python 3, deve usare una lista di interi.
+<p>Una ricerca su tutta la base di codice per &#8220;<code>mLastChar</code>&#8221; rivela un problema simile in <code>mbcharsetprober.py</code>, ma invece di tenere traccia dell'ultimo carattere, tiene traccia degli ultimi <em>due</em> caratteri. La classe <code>MultiByteCharSetProber</code> usa una lista di stringhe di 1 carattere per tenere traccia degli ultimi due caratteri; in Python 3, deve usare una lista di interi.
 <pre><code>
   class MultiByteCharSetProber(CharSetProber):
       def __init__(self):
@@ -852,7 +852,7 @@ def feed(self, aBuf):
       # if it is first byte, we also get byte length
 <del>-     byteCls = self._mModel['classTable'][ord(c)]</del>
 <ins>+     byteCls = self._mModel['classTable'][c]</ins></code></pre>
-<p>Una ricerca sull'intera base di codice per istanze di <code>"ord(c)"</code> rivela problemi simili in <code>sbcharsetprober.py</code>&hellip;
+<p>Una ricerca sull'intera base di codice per istanze di &#8220;<code>ord(c)</code>&#8221; rivela problemi simili in <code>sbcharsetprober.py</code>&hellip;
 <pre><code># sbcharsetprober.py
 def feed(self, aBuf):
     if not self._mModel['keepEnglishLetter']:
@@ -1116,7 +1116,7 @@ tests\Big5\0804.blogspot.com.xml</samp>
   File "C:\home\chardet\chardet\latin1prober.py", line 126, in get_confidence
     total = reduce(operator.add, self._mFreqCounter)
 NameError: global name 'reduce' is not defined</samp></pre>
-<p>Secondo la guida ufficiale alle novità di Python 3, <a href=http://docs.python.org/3.0/whatsnew/3.0.html#builtins>What's New In Python 3.0</a>, la funzione <code>reduce()</code> è stata spostata dallo spazio di nomi globale nel modulo <code>functools</code>. Per citare la guida: "Usate <code>functools.reduce()</code> se proprio ne avete bisogno; comunque, il 99 per cento delle volte un esplicito ciclo <code>for</code> è più leggibile." Potete approfondire le motivazioni di questa decisione sul blog di Guido van Rossum: <a href="http://www.artima.com/weblogs/viewpost.jsp?thread=98196">The fate of reduce() in Python 3000</a>. (Il destino di <code>reduce()</code> in Python 3000.)
+<p>Secondo la guida ufficiale alle novità di Python 3, <a href=http://docs.python.org/3.0/whatsnew/3.0.html#builtins>What's New In Python 3.0</a>, la funzione <code>reduce()</code> è stata spostata dallo spazio di nomi globale nel modulo <code>functools</code>. Per citare la guida: &#8220;Usate <code>functools.reduce()</code> se proprio ne avete bisogno; comunque, il 99 per cento delle volte un esplicito ciclo <code>for</code> è più leggibile.&#8221; Potete approfondire le motivazioni di questa decisione sul blog di Guido van Rossum: <a href="http://www.artima.com/weblogs/viewpost.jsp?thread=98196">The fate of reduce() in Python 3000</a>. (Il destino di <code>reduce()</code> in Python 3000.)
 <pre><code>def get_confidence(self):
     if self.get_state() == constants.eNotMe:
         return 0.01
