@@ -32,11 +32,9 @@ td pre{padding:0;border:0}
 <h2 id=print>L'istruzione <code>print</code></h2>
 <p>In Python 2, <code>print</code> era una istruzione. Per stampare una cosa qualsiasi, bastava farla seguire alla parola chiave <code>print</code>. In Python 3, <code>print()</code> è una funzione &mdash; ogni cosa che volete stampare è passata a <code>print()</code> come qualsiasi altra funzione.
 <table>
-<tr>
-<th class=notes>Notes
-<th class=python2>Python 2
-<th class=python3>Python 3
-
+<tr><th>Notes
+<th>Python 2
+<th>Python 3
 <tr><th>&#x2460;
 <td><code>print</code>
 <td><code>print()</code>
@@ -66,7 +64,6 @@ td pre{padding:0;border:0}
 <tr><th>Notes
 <th>Python 2
 <th>Python 3
-
 <tr><th>&#x2460;
 <td><code>u"PapayaWhip"</code>
 <td><code>"PapayaWhip"</code>
@@ -84,7 +81,6 @@ td pre{padding:0;border:0}
 <tr><th>Notes
 <th>Python 2
 <th>Python 3
-
 <tr><th>
 <td><code>unicode(anything)</code>
 <td><code>str(anything)</code>
@@ -96,7 +92,6 @@ td pre{padding:0;border:0}
 <tr><th>Notes
 <th>Python 2
 <th>Python 3
-
 <tr><th>&#x2460;
 <td><code>x = 1000000000000L</code>
 <td><code>x = 1000000000000</code>
@@ -126,7 +121,6 @@ td pre{padding:0;border:0}
 <tr><th>Notes
 <th>Python 2
 <th>Python 3
-
 <tr><th>&#x2460;
 <td><code>if x &lt;> y:</code>
 <td><code>if x != y:</code>
@@ -144,7 +138,6 @@ td pre{padding:0;border:0}
 <tr><th>Notes
 <th>Python 2
 <th>Python 3
-
 <tr><th>&#x2460;
 <td><code>a_dictionary.has_key("PapayaWhip")</code>
 <td><code>"PapayaWhip" in a_dictionary</code>
@@ -174,7 +167,6 @@ td pre{padding:0;border:0}
 <tr><th>Notes
 <th>Python 2
 <th>Python 3
-
 <tr><th>&#x2460;
 <td><code>a_dictionary.keys()</code>
 <td><code>list(a_dictionary.keys())</code>
@@ -206,7 +198,6 @@ td pre{padding:0;border:0}
 <tr><th>Notes
 <th>Python 2
 <th>Python 3
-
 <tr><th>&#x2460;
 <td><code>import httplib</code>
 <td><code>import http.client</code>
@@ -234,7 +225,6 @@ import CGIHttpServer</code></pre>
 <tr><th>Notes
 <th>Python 2
 <th>Python 3
-
 <tr><th>&#x2460;
 <td><code>import urllib</code>
 <td><code>import urllib.request, urllib.parse, urllib.error</code>
@@ -272,7 +262,6 @@ from urllib.error import HTTPError</code></pre>
 <tr><th>Notes
 <th>Python 2
 <th>Python 3
-
 <tr><th>
 <td><code>import dbm</code>
 <td><code>import dbm.ndbm</code>
@@ -296,7 +285,6 @@ import whichdb</code></pre>
 <tr><th>Notes
 <th>Python 2
 <th>Python 3
-
 <tr><th>
 <td><code>import xmlrpclib</code>
 <td><code>import xmlrpc.client</code>
@@ -310,7 +298,6 @@ import SimpleXMLRPCServer</code></pre>
 <tr><th>Notes
 <th>Python 2
 <th>Python 3
-
 <tr><th>&#x2460;
 <td><pre><code>try:
     import cStringIO as StringIO
@@ -373,7 +360,6 @@ except ImportError:
 <tr><th>Notes
 <th>Python 2
 <th>Python 3
-
 <tr><th>&#x2460;
 <td><code>import constants</code>
 <td><code>from . import constants</code>
@@ -391,7 +377,6 @@ except ImportError:
 <tr><th>Notes
 <th>Python 2
 <th>Python 3
-
 <tr><th>&#x2460;
 <td><code>anIterator.next()</code>
 <td><code>next(anIterator)</code>
@@ -431,7 +416,6 @@ for an_iterator in a_sequence_of_iterators:
 <tr><th>Notes
 <th>Python 2
 <th>Python 3
-
 <tr><th>&#x2460;
 <td><code>filter(a_function, a_sequence)</code>
 <td><code>list(filter(a_function, a_sequence))</code>
@@ -461,7 +445,6 @@ for an_iterator in a_sequence_of_iterators:
 <tr><th>Notes
 <th>Python 2
 <th>Python 3
-
 <tr><th>&#x2460;
 <td><code>map(a_function, 'PapayaWhip')</code>
 <td><code>list(map(a_function, 'PapayaWhip'))</code>
@@ -491,7 +474,6 @@ for an_iterator in a_sequence_of_iterators:
 <tr><th>Notes
 <th>Python 2
 <th>Python 3
-
 <tr><th>
 <td><code>reduce(a, b, c)</code>
 <td><pre><code>from functtools import reduce
@@ -506,7 +488,6 @@ reduce(a, b, c)</code></pre>
 <tr><th>Notes
 <th>Python 2
 <th>Python 3
-
 <tr><th>&#x2460;
 <td><code>apply(a_function, a_list_of_args)</code>
 <td><code>a_function(*a_list_of_args)</code>
@@ -532,7 +513,6 @@ reduce(a, b, c)</code></pre>
 <tr><th>Notes
 <th>Python 2
 <th>Python 3
-
 <tr><th>
 <td><code>intern(aString)</code>
 <td><code>sys.intern(aString)</code>
@@ -543,7 +523,6 @@ reduce(a, b, c)</code></pre>
 <tr><th>Notes
 <th>Python 2
 <th>Python 3
-
 <tr><th>&#x2460;
 <td><code>exec codeString</code>
 <td><code>exec(codeString)</code>
@@ -565,7 +544,6 @@ reduce(a, b, c)</code></pre>
 <tr><th>Notes
 <th>Python 2
 <th>Python 3
-
 <tr><th>
 <td><code>execfile("a_filename")</code>
 <td><code>exec(compile(open("a_filename").read(), "a_filename", "exec"))</code>
@@ -579,7 +557,6 @@ reduce(a, b, c)</code></pre>
 <tr><th>Notes
 <th>Python 2
 <th>Python 3
-
 <tr><th>&#x2460;
 <td><code>`x`</code>
 <td><code>repr(x)</code>
@@ -597,7 +574,6 @@ reduce(a, b, c)</code></pre>
 <tr><th>Notes
 <th>Python 2
 <th>Python 3
-
 <tr><th>&#x2460;
 <td><pre><code>try:
     import mymodule
@@ -644,7 +620,6 @@ except:
 <tr><th>Notes
 <th>Python 2
 <th>Python 3
-
 <tr><th>&#x2460;
 <td><code>raise MyException</code>
 <td><i>unchanged</i>
@@ -670,7 +645,6 @@ except:
 <tr><th>Notes
 <th>Python 2
 <th>Python 3
-
 <tr><th>&#x2460;
 <td><code>a_generator.throw(MyException)</code>
 <td><i>no change</i>
@@ -692,7 +666,6 @@ except:
 <tr><th>Notes
 <th>Python 2
 <th>Python 3
-
 <tr><th>&#x2460;
 <td><code>xrange(10)</code>
 <td><code>range(10)</code>
@@ -722,7 +695,6 @@ except:
 <tr><th>Notes
 <th>Python 2
 <th>Python 3
-
 <tr><th>&#x2460;
 <td><code>raw_input()</code>
 <td><code>input()</code>
@@ -744,7 +716,6 @@ except:
 <tr><th>Notes
 <th>Python 2
 <th>Python 3
-
 <tr><th>&#x2460;
 <td><code>a_function.func_name</code>
 <td><code>a_function.__name__</code>
@@ -782,7 +753,6 @@ except:
 <tr><th>Notes
 <th>Python 2
 <th>Python 3
-
 <tr><th>&#x2460;
 <td><code>for line in a_file.xreadlines():</code>
 <td><code>for line in a_file:</code>
@@ -801,7 +771,6 @@ except:
 <tr><th>Notes
 <th>Python 2
 <th>Python 3
-
 <tr><th>&#x2460;
 <td><code>lambda (x,): x + f(x)</code>
 <td><code>lambda x1: x1[0] + f(x1[0])</code>
@@ -827,7 +796,6 @@ except:
 <tr><th>Notes
 <th>Python 2
 <th>Python 3
-
 <tr><th>
 <td><code>aClassInstance.aClassMethod.im_func</code>
 <td><code>aClassInstance.aClassMethod.__func__</code>
@@ -844,7 +812,6 @@ except:
 <tr><th>Notes
 <th>Python 2
 <th>Python 3
-
 <tr><th>&#x2460;
 <td><pre><code>class A:
     def __nonzero__(self):
@@ -868,7 +835,6 @@ except:
 <tr><th>Notes
 <th>Python 2
 <th>Python 3
-
 <tr><th>
 <td><code>x = 0755</code>
 <td><code>x = 0o755</code>
@@ -879,7 +845,6 @@ except:
 <tr><th>Notes
 <th>Python 2
 <th>Python 3
-
 <tr><th>&#x2460;
 <td><code>from sys import maxint</code>
 <td><code>from sys import maxsize</code>
@@ -897,7 +862,6 @@ except:
 <tr><th>Notes
 <th>Python 2
 <th>Python 3
-
 <tr><th>
 <td><code>callable(anything)</code>
 <td><code>hasattr(anything, "__call__")</code>
@@ -908,7 +872,6 @@ except:
 <tr><th>Notes
 <th>Python 2
 <th>Python 3
-
 <tr><th>&#x2460;
 <td><code>zip(a, b, c)</code>
 <td><code>list(zip(a, b, c))</code>
@@ -926,7 +889,6 @@ except:
 <tr><th>Notes
 <th>Python 2
 <th>Python 3
-
 <tr><th>
 <td><code>x = StandardError()</code>
 <td><code>x = Exception()</code>
@@ -940,7 +902,6 @@ except:
 <tr><th>Notes
 <th>Python 2
 <th>Python 3
-
 <tr><th>
 <td><code>types.StringType</code>
 <td><code>bytes</code>
@@ -966,7 +927,6 @@ except:
 <tr><th>Notes
 <th>Python 2
 <th>Python 3
-
 <tr><th>
 <td><code>isinstance(x, (int, float, int))</code>
 <td><code>isinstance(x, (int, float))</code>
@@ -980,7 +940,6 @@ except:
 <tr><th>Notes
 <th>Python 2
 <th>Python 3
-
 <tr><th>
 <td><code>isinstance(x, basestring)</code>
 <td><code>isinstance(x, str)</code>
@@ -991,7 +950,6 @@ except:
 <tr><th>Notes
 <th>Python 2
 <th>Python 3
-
 <tr><th>&#x2460;
 <td><code>itertools.izip(a, b)</code>
 <td><code>zip(a, b)</code>
@@ -1017,7 +975,6 @@ except:
 <tr><th>Notes
 <th>Python 2
 <th>Python 3
-
 <tr><th>
 <td><code>sys.exc_type</code>
 <td><code>sys.exc_info()[0]</code>
@@ -1034,7 +991,6 @@ except:
 <tr><th>Notes
 <th>Python 2
 <th>Python 3
-
 <tr><th>
 <td><code>[i for i in 1, 2]</code>
 <td><code>[i for i in (1, 2)]</code>
@@ -1045,7 +1001,6 @@ except:
 <tr><th>Notes
 <th>Python 2
 <th>Python 3
-
 <tr><th>
 <td><code>os.getcwdu()</code>
 <td><code>os.getcwd()</code>
@@ -1056,7 +1011,6 @@ except:
 <tr><th>Notes
 <th>Python 2
 <th>Python 3
-
 <tr><th>&#x2460;
 <td><pre><code>class C(metaclass=PapayaMeta):
     pass</code></pre>
@@ -1088,7 +1042,6 @@ except:
 <tr><th>Notes
 <th>Before
 <th>After
-
 <tr><th>
 <td><code>set([1, 2, 3])</code>
 <td><code>{1, 2, 3}</code>
@@ -1108,7 +1061,6 @@ except:
 <tr><th>Notes
 <th>Before
 <th>After
-
 <tr><th>
 <td><code>x = buffer(y)</code>
 <td><code>x = memoryview(y)</code>
@@ -1122,7 +1074,6 @@ except:
 <tr><th>Notes
 <th>Before
 <th>After
-
 <tr><th>
 <td><code>a ,b</code>
 <td><code>a, b</code>
@@ -1139,7 +1090,6 @@ except:
 <tr><th>Notes
 <th>Before
 <th>After
-
 <tr><th>
 <td><pre><code>while 1:
     do_stuff()</code></pre>
