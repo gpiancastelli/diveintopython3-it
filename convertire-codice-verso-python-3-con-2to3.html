@@ -79,7 +79,7 @@ td pre{padding:0;border:0}
 <li>Le <span class=wtf>raw strings</span> Unicode (in cui Python non effettua l'escape automatico dei backslash) sono convertite a <span class=wtf>raw strings</span>. In Python 3, le <span class=wtf>raw strings</span> sono sempre di tipo Unicode.
 </ol>
 <h2 id=unicode>La funzione globale <code>unicode()</code></h2>
-<p>Python 2 aveva due funzioni globali per forzare oggetti in stringhe: <code>unicode()</code> per forzarli a stringhe Unicode, e <code>str()</code> per forzarli a stringhe non Unicode. Python 3 ha un solo tipo di stringhe, stringhe Unicode, quindi la funzione <code>str()</code> è tutto quello che vi serve. (La funzione <code>unicode()</code> non esiste più.)
+<p>Python 2 aveva due funzioni globali per convertire oggetti in stringhe: <code>unicode()</code> per convertirli a stringhe Unicode, e <code>str()</code> per convertirli a stringhe non Unicode. Python 3 ha un solo tipo di stringhe, stringhe Unicode, quindi la funzione <code>str()</code> è tutto quello che vi serve. (La funzione <code>unicode()</code> non esiste più.)
 <table>
 <tr><th>Notes
 <th>Python 2
@@ -116,7 +116,7 @@ td pre{padding:0;border:0}
 <ol>
 <li>I letterali <code>long</code> in base 10 diventano letterali <code>int</code> in base 10.
 <li>I letterali <code>long</code> in base 16 diventano letterali <code>int</code> in base 16.
-<li>In Python 3, la vecchia funzione <code>long()</code> non esiste più, dato che i <code>long</code> non esistono più. Per forzare una variabile a un intero, usate la funzione <code>int()</code>.
+<li>In Python 3, la vecchia funzione <code>long()</code> non esiste più, dato che i <code>long</code> non esistono più. Per convertire una variabile a un intero, usate la funzione <code>int()</code>.
 <li>Per controllare se una variabile è un intero, recuperatene il tipo e confrontatelo con <code>int</code>, non con <code>long</code>.
 <li>Potete anche usare la funzione <code>isinstance()</code> per controllare i tipi di dato; ancora, usate <code>int</code>, non <code>long</code>, per controllare gli interi.
 </ol>
@@ -711,8 +711,8 @@ except:
 </table>
 <ol>
 <li>Nel caso più semplice, lo script <code>2to3</code> semplicemente convertirà <code>xrange()</code> in <code>range()</code>.
-<li>Se il vostro codice in Python 2 usava <code>range()</code>, lo script <code>2to3</code> non sa se avete bisogno di una lista, o se un iteratore potrebbe bastare. Pecca per eccesso di prudenza e forza il valore di ritorno a una lista chiamando la funzione <code>list()</code>.
-<li>Se la funzione <code>xrange()</code> è in una descrizione di lista, non c'è bisogno di forzare il risultato a una lista, perché la descrizione di lista lavora altrettanto bene con un iteratore.
+<li>Se il vostro codice in Python 2 usava <code>range()</code>, lo script <code>2to3</code> non sa se avete bisogno di una lista, o se un iteratore potrebbe bastare. Pecca per eccesso di prudenza e converte il valore di ritorno in una lista chiamando la funzione <code>list()</code>.
+<li>Se la funzione <code>xrange()</code> è in una descrizione di lista, non c'è bisogno di convertire il risultato in una lista, perché la descrizione di lista lavora altrettanto bene con un iteratore.
 <li>Similmente, un ciclo <code>for</code> lavora altrettanto bene con un iteratore, quindi non c'è bisogno di cambiare nulla qui.
 <li>Anche la funzione <code>sum()</code> lavora altrettanto bene con un iteratore, quindi <code>2to3</code> non effettua alcun cambiamento neanche qui. Come per <a href=#dict>i metodi dei dizionari che restituiscono viste invece di liste</a>, questo si applica a <code>min()</code>, <code>max()</code>, <code>sum()</code>, <code>list()</code>, <code>tuple()</code>, <code>set()</code>, <code>sorted()</code>, <code>any()</code>, e <code>all()</code>.
 </ol>
