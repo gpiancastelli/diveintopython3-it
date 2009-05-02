@@ -364,34 +364,3 @@ rules = LazyRules()</code></pre>
 &copy; 2009 <a href=informazioni-sulla-traduzione.html>Giulio Piancastelli</a> per la traduzione italiana
 <script src=jquery.js></script>
 <script src=dip3.js></script>
-
-<!--
-FIXME some good stuff here about calling ancestor's methods explicitly. need to find where to put it once we have an example of a class that inherits from something else.
-
-<li>Some pseudo-object-oriented languages like Powerbuilder have a concept of &#8220;extending&#8221; constructors and other events, where the ancestor's method is called automatically before the descendant's method is executed. Python does not do this; you must always explicitly call the appropriate method in the ancestor class.
-<li>I told you that this class acts like a dictionary, and here is the first sign of it. You're assigning the argument <var>filename</var> as the value of this object's <code>name</code> key.
-<li>Note that the <code>__init__</code> method never returns a value.
-
-<h3>5.3.2. Knowing When to Use <var>self</var> and <code>__init__</code></h3>
-<p>When defining your class methods, you <em>must</em> explicitly list <var>self</var> as the first argument for each method, including <code>__init__</code>. When you call a method of an ancestor class from within your class, you <em>must</em> include the <var>self</var> argument. But when you call your class method from outside, you do not specify anything for the <var>self</var> argument; you skip it entirely, and Python automatically adds the instance reference for you. I am aware that this is confusing at first; it's not really inconsistent,
-   but it may appear inconsistent because it relies on a distinction (between bound and unbound methods) that you don't know
-   about yet.
-<p>Whew. I realize that's a lot to absorb, but you'll get the hang of it. All Python classes work the same way, so once you learn one, you've learned them all. If you forget everything else, remember this
-   one thing, because I promise it will trip you up:<table id="tip.initoptional" class=note border="0" summary="">
-
-<td rowspan="2" align="center" valign="top" width="1%"><img src="images/note.png" alt="Note" title="" width="24" height="24"><td colspan="2" align="left" valign="top" width="99%"><code>__init__</code> methods are optional, but when you define one, you must remember to explicitly call the ancestor's <code>__init__</code> method (if it defines one). This is more generally true: whenever a descendant wants to extend the behavior of the ancestor,
-         the descendant method must explicitly call the ancestor method at the proper time, with the proper arguments.
-<div class=itemizedlist>
-<h3>Further Reading on Python Classes</h3>
-<ul>
-<li><a href="http://www.freenetpages.co.uk/hp/alan.gauld/" title="Python book for first-time programmers"><i class=citetitle>Learning to Program</i></a> has a gentler <a href="http://www.freenetpages.co.uk/hp/alan.gauld/tutclass.htm">introduction to classes</a>.
-
-<li><a href="http://www.ibiblio.org/obp/thinkCSpy/" title="Python book for computer science majors"><i class=citetitle>How to Think Like a Computer Scientist</i></a> shows how to <a href="http://www.ibiblio.org/obp/thinkCSpy/chap12.htm">use classes to model compound datatypes</a>.
-
-<li><a href="http://www.python.org/doc/current/tut/tut.html"><i class=citetitle>Python Tutorial</i></a> has an in-depth look at <a href="http://www.python.org/doc/current/tut/node11.html">classes, namespaces, and inheritance</a>.
-
-<li><a href="http://www.faqts.com/knowledge-base/index.phtml/fid/199/">Python Knowledge Base</a> answers <a href="http://www.faqts.com/knowledge-base/index.phtml/fid/242">common questions about classes</a>.
-
-</ul>
-
--->
