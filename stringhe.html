@@ -56,7 +56,7 @@ Il tuo alfabeto termina dove il mio inizia! <span>&#x275E;</span><br>&mdash; Dr.
 
 <p>C'è una codifica Unicode che usa quattro byte per carattere. &Egrave; chiamata UTF-32, perché 32 bit = 4 byte. UTF-32 è la codifica più semplice; prende ogni carattere Unicode (un numero di 4 byte) e rappresenta il carattere con quello stesso numero. Questo ha alcuni vantaggi, tra cui il più importante è la possibilità di accedere al carattere di posizione <var>N</var> in una stringa in tempo costante, perché il carattere in posizione <var>N</var> comincia al byte di posizione <var>4&times;N</var>. Ha anche diversi svantaggi, tra cui il più ovvio è la necessità di quattro maledetti byte per memorizzare ogni maledetto carattere.
 
-<p>Anche se ci sono un sacco di caratteri Unicode, a quanto pare la maggior parte delle persone non ne userà nessuno al di là dei primi 65535. Quindi, esiste un'altra codifica Unicode, chiamata UTF-16 (perché 16 bit = 2 byte). UTF-16 codifica ogni carattere tra 0 e 65535 come due byte, e poi usa un qualche sporco trucco nel caso dobbiate effettivamente rappresentare i rari caratteri Unicode che si trovano nel &#8220;piano astrale&#8221; al di là di 65535. Il vantaggio più ovvio: UTF-16 ha una efficienza in spazio che è il doppio rispetto a UTF-32, perché ogni carattere richiede solo due byte da memorizzare invece di quattro byte (a parte quelli per cui non è così). E potete ancora facilmente accedere al carattere di posizione <var>N</var> in una stringa in tempo costante, se assumete che la stringa non includa alcun carattere del piano astrale, che è una buona assunzione fino al momento in cui non lo è più.
+<p>Anche se ci sono un sacco di caratteri Unicode, a quanto pare la maggior parte delle persone non ne userà nessuno al di là dei primi 65535. Quindi, esiste un'altra codifica Unicode, chiamata UTF-16 (perché 16 bit = 2 byte). UTF-16 codifica ogni carattere tra 0 e 65535 come due byte, e poi usa un qualche sporco trucco nel caso dobbiate effettivamente rappresentare i rari caratteri Unicode che si trovano nel &#8220;piano astrale&#8221; al di là di 65535. Il vantaggio più ovvio: UTF-16 è due volte più efficiente in termini di spazio rispetto a UTF-32, perché ogni carattere richiede solo due byte da memorizzare invece di quattro byte (a parte quelli per cui non è così). E potete ancora facilmente accedere al carattere di posizione <var>N</var> in una stringa in tempo costante, se ipotizzate che la stringa non includa alcun carattere del piano astrale, che è una buona ipotesi fino a quando non lo è più.
 
 <p>Ma sia UTF-32 che UTF-16 presentano anche altri svantaggi non banali. Sistemi computerizzati differenti memorizzano i singoli byte in modi differenti. Questo significa che il carattere <code>U+4E2D</code> potrebbe essere memorizzato in UTF-16 come <code>4E 2D</code> oppure <code>2D 4E</code>, a seconda che il sistema sia di tipo big-endian o little-endian. (Per UTF-32 ci sono ancora più ordinamenti di byte possibili.) Fino a quando i vostri documenti non lasciano mai il vostro computer, siete al sicuro &mdash; applicazioni differenti sullo stesso computer utilizzeranno sempre lo stesso ordine dei byte. Ma nel momento in cui volete trasferire documenti tra sistemi, forse su una qualche sorta di world wide web, avrete bisogno di un modo per indicare in quale ordine i vostri byte sono memorizzati. Altrimenti, il sistema ricevente non ha alcun modo di sapere se la sequenza di due byte <code>4E 2D</code> rappresenta <code>U+4E2D</code> oppure <code>U+2D4E</code>.
 
@@ -68,11 +68,11 @@ Il tuo alfabeto termina dove il mio inizia! <span>&#x275E;</span><br>&mdash; Dr.
 
 <p class=c style="font-size:1000%;font-weight:bold;line-height:1;margin:0.7em 0">UTF-8
 
-<p>UTF-8 è un sistema di codifica Unicode a <em>lunghezza variabile</em>. Cioè, caratteri differenti occupano un numero differente di byte. Per i caratteri <abbr>ASCII</abbr> (A-Z, <i class=baa>&amp;</i>c.) UTF-8 usa solo un byte per carattere. In effetti, usa gli stessi identici byte; i primi 128 caratteri (0&ndash;127) in UTF-8 sono indistinguibili da quelli <abbr>ASCII</abbr>. I caratteri &#8220;Extended Latin&#8221; come &ntilde; e &ouml; finiscono per occupare due byte. (I byte non sono semplicemente dei &#8220;code point&#8221; Unicode come sarebbero in UTF-16; c'è qualche serio giochetto con i bit coinvolto.) Caratteri cinesi come &#x4E2D; finiscono per occupare tre byte. I caratteri raramente usati del &#8220;piano astrale&#8221; occupano quattro byte.
+<p>UTF-8 è un sistema di codifica Unicode a <em>lunghezza variabile</em>. Cioè, caratteri differenti occupano un numero differente di byte. Per i caratteri <abbr>ASCII</abbr> (A-Z, <i class=baa>&amp;</i>c.) UTF-8 usa solo un byte per carattere. In effetti, usa gli stessi identici byte; i primi 128 caratteri (0&ndash;127) in UTF-8 sono indistinguibili da quelli <abbr>ASCII</abbr>. I caratteri &#8220;Extended Latin&#8221; come &ntilde; e &ouml; finiscono per occupare due byte. (I byte non sono semplicemente dei &#8220;code point&#8221; Unicode come sarebbero in UTF-16; i bit vengono pesantemente manipolati in qualche modo.) Caratteri cinesi come &#x4E2D; finiscono per occupare tre byte. I caratteri raramente usati del &#8220;piano astrale&#8221; occupano quattro byte.
 
-<p>Svantaggi: dato che ogni carattere può occupare un numero differente di byte, accedere al carattere di posizione <var>N</var> è una operazione da O(N). In più, c'è qualche giochetto con i bit da fare per codificare i caratteri in byte e decodificare i byte in caratteri.
+<p>Svantaggi: dato che ogni carattere può occupare un numero differente di byte, accedere al carattere di posizione <var>N</var> è una operazione da O(N). In più, i bit devono essere manipolati per codificare i caratteri in byte e decodificare i byte in caratteri.
 
-<p>Vantaggi: la codifica dei caratteri <abbr>ASCII</abbr> comuni è super-efficiente. Per i caratteri Extended Latin non è peggiore rispetto alla codifica UTF-16, e per i caratteri cinesi è migliore rispetto a UTF-32. In più (e dovete fidarvi di me su questo, perché non vi mostrerò i calcoli), grazie alla natura esatta dei giochetti con i bit, non ci sono problemi di ordinamento dei byte. Un documento codificato in UTF-8 usa esattamente lo stesso flusso di byte su qualsiasi computer.
+<p>Vantaggi: la codifica dei caratteri <abbr>ASCII</abbr> comuni è super-efficiente. Per i caratteri Extended Latin non è peggiore rispetto alla codifica UTF-16, e per i caratteri cinesi è migliore rispetto a UTF-32. In più (e dovete fidarvi di me su questo, perché non vi mostrerò i calcoli), grazie alla natura esatta delle manipolazioni sui bit, non ci sono problemi di ordinamento dei byte. Un documento codificato in UTF-8 usa esattamente lo stesso flusso di byte su qualsiasi computer.
 
 <h2 id=divingin>Immersione!</h2>
 
@@ -157,7 +157,7 @@ def approximate_size(size, a_kilobyte_is_1024_bytes=True):
 <samp>'1000KB = 1MB'</samp>
 </pre>
 <ol>
-<li>Invece di chiamare una funzione qualsiasi nel modulo <code>humansize</code>, state recuperando una delle strutture dati che il modulo definisce: la lista dei suffissi "SI" (potenze-di-1000).
+<li>Invece di chiamare una funzione qualsiasi nel modulo <code>humansize</code>, state recuperando una delle strutture dati che il modulo definisce: la lista dei suffissi (potenze-di-1000) del Sistema internazionale di unità di misura ("SI").
 <li>Questo sembra complicato, ma non lo è. <code>{0}</code> si riferirebbe al primo argomento passato al metodo <code>format()</code>, <var>si_suffixes</var>. Ma <var>si_suffixes</var> è una lista. Così <code>{0[0]}</code> si riferisce al primo elemento della lista che è il primo argomento passato al metodo <code>format()</code>: <code>'KB'</code>. Similmente, <code>{0[1]}</code> si riferisce al secondo elemento della stessa lista: <code>'MB'</code>. Ogni cosa fuori dalle parentesi graffe &mdash; compreso <code>1000</code>, il segno di uguale, e gli spazi &mdash; non viene toccato. Il risultato finale è la stringa <code>'1000KB = 1MB'</code>.
 </ol>
 
@@ -172,7 +172,7 @@ def approximate_size(size, a_kilobyte_is_1024_bytes=True):
 <li><em>Una qualsiasi combinazione dei nomi precedenti</em>
 </ul>
 
-<p>Giusto per farvi uscire di testa, eccovi un esempio che combina tutti i nomi appena visti:
+<p>Giusto per impressionarvi, eccovi un esempio che combina tutti i nomi appena visti:
 
 <pre class=screen>
 <samp class=p>>>> </samp><kbd>import humansize</kbd>
@@ -210,7 +210,7 @@ def approximate_size(size, a_kilobyte_is_1024_bytes=True):
 <samp class=p>>>> </samp><kbd>"{0:.1f} {1}".format(698.25, 'GB')</kbd>
 <samp>'698.3 GB'</samp></pre>
 
-<p>Per tutti i dettagli cruenti sulle specifiche di formato, consultate la sezione <a href="http://docs.python.org/3.0/library/string.html#format-specification-mini-language">Format Specification Mini-Language</a> nella documentazione ufficiale di Python.
+<p>Per tutti i dettagli più intricati sulle specifiche di formato, consultate la sezione <a href="http://docs.python.org/3.0/library/string.html#format-specification-mini-language">Format Specification Mini-Language</a> nella documentazione ufficiale di Python.
 
 <h2 id=common-string-methods>Altri metodi di uso comune per le stringhe</h2>
 
@@ -255,7 +255,7 @@ experience of years.</samp>
 <samp>{'password': 'PapayaWhip', 'user': 'pilgrim', 'database': 'master'}</samp></pre>
 
 <ol>
-<li>Il metodo <code>split()</code> delle stringhe prende un argomento, un delimitatore, e separa la stringa in una lista di stringhe in corrispondenza del delimitatore. In questo caso, il delimitatore è un carattere di ampersand, ma potrebbe essere qualsiasi cosa.
+<li>Il metodo <code>split()</code> delle stringhe prende un argomento, un delimitatore, e separa la stringa in una lista di stringhe in corrispondenza del delimitatore. In questo caso, il delimitatore è un carattere di E commerciale, ma potrebbe essere qualsiasi cosa.
 <li>Ora abbiamo una lista di stringhe, ognuna con una chiave, seguita da un segno di uguale, seguito da un valore. Vogliamo iterare sull'intera lista e seprarare ogni stringa in due stringhe in corrispondenza del primo segno di uguale. (In teoria, anche un valore potrebbe contenere un segno di uguale. Se avessimo usato <code>'key=value=foo'.split('=')</code>, avremmo ottenuto una lista di tre elementi, <code>['key', 'value', 'foo']</code>.)
 <li>Infine, Python può trasformare quella lista-di-liste in un dizionario semplicemente passandola alla funzione <code>dict()</code>.
 </ol>
@@ -381,7 +381,7 @@ FIXME: move this to the intro of the upcoming files chapter?
 
 <pre><code># -*- coding: windows-1252 -*-</code></pre>
 
-<p>Tecnicamente, la modifica della codifica di carattere si può trovare anche sulla seconda riga, se la prima riga è un comando hash-bang di tipo <abbr>UNIX</abbr>.
+<p>Tecnicamente, la dichiarazione per la nuova codifica di carattere si può trovare anche sulla seconda riga, se la prima riga contiene un comando hash-bang di tipo <abbr>UNIX</abbr>.
 
 <pre><code>#!/usr/bin/python3
 # -*- coding: windows-1252 -*-</code></pre>

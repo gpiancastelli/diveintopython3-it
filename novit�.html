@@ -16,20 +16,20 @@ h3:before{content:""}
 <p id=level>Livello di difficoltà: <span title=advanced>&#x2666;&#x2666;&#x2666;&#x2666;&#x2662;</span>
 <h1>Cosa c'è di nuovo in &#8220;Dive Into Python 3&#8221;</h1>
 <blockquote class=q>
-<p><span>&#x275D;</span> Isn&#8217;t this where we came in? <span>&#x275E;</span><br>&mdash; Pink Floyd, The Wall
+<p><span>&#x275D;</span> Non è da qui che siamo entrati? <span>&#x275E;</span><br>&mdash; Pink Floyd, The Wall
 </blockquote>
 <p id=toc>&nbsp;
-<h2 id=divingin><i>a.k.a.</i> &#8220;il livello meno&#8221;</h2>
+<h2 id=divingin><i>alias</i> &#8220;il livello meno&#8221;</h2>
 
-<h3 id=divingin2><i>a.k.a.</i> Non voglio leggere più pagine di questo maledetto libro di quante ne debba assolutamente leggere.</h3>
+<h3 id=divingin2><i>alias</i> Non voglio leggere più pagine di questo maledetto libro di quante ne debba assolutamente leggere.</h3>
 
 <p class=f>Avete letto l'originale &#8220;<a href=http://diveintopython.org/>Dive Into Python</a>&#8221; e forse avete perfino comprato il libro. (Grazie!) Conoscete già Python 2 piuttosto bene. Siete pronti a saltare il fosso e imparare Python 3. &hellip; Se tutto questo è vero, continuate a leggere. (Se niente di tutto questo è vero, vi converebbe <a href=il-vostro-primo-programma-python.html>cominciare dall'inizio</a>.)
 
 <p>Python 3 include uno script chiamato <code>2to3</code>. Imparate come funziona. Amatelo. Usatelo. <a href=convertire-codice-verso-python-3-con-2to3.html>Convertire codice verso Python 3 con <code>2to3</code></a> è una guida di riferimento a tutte le cose che lo strumento <code>2to3</code> è in grado di correggere automaticamente. Dato che molte di quelle cose sono modifiche alla sintassi, è un buon punto di partenza per imparare molti dei cambiamenti sintattici di Python 3. (<code>print</code> è ora una funzione, <code>`x`</code> non funziona, <i class=baa>&amp;</i>c.)
 
-<p><a href=caso-di-studio-convertire-chardet-verso-python-3.html>Caso di studio: convertire <code>chardet</code> verso Python 3</a> documenta il mio tentativo (infine coronato dal successo) di convertire una libreria non banale da Python 2 verso Python 3. Potrebbe esservi d'aiuto; potrebbe non esserlo. Ha una curva di apprendimento abbastanza ripida, dato che dovete prima capire più o meno come funziona la libreria, in modo da poter poi capire perché si è rotta e come aggiustarla. Molti dei malfunzionamenti sono focalizzati sulle stringhe. Parlando delle quali&hellip;
+<p><a href=caso-di-studio-convertire-chardet-verso-python-3.html>Caso di studio: convertire <code>chardet</code> verso Python 3</a> documenta il mio tentativo (infine coronato dal successo) di convertire una libreria non banale da Python 2 verso Python 3. Potrebbe esservi d'aiuto; potrebbe non esserlo. Ha una curva di apprendimento abbastanza ripida, dato che dovete prima capire più o meno come funziona la libreria, in modo da poter poi capire i problemi che sono comparsi e come risolverli. Molti dei malfunzionamenti sono focalizzati sulle stringhe. Parlando delle quali&hellip;
 
-<p>Stringhe. Whew. Da dove cominciare. Python 2 aveva &#8220;stringhe&#8221; e &#8220;stringhe Unicode.&#8221; Python 3 ha &#8220;byte&#8221; e &#8220;stringhe.&#8221; Cioè, tutte le stringhe ora sono stringhe Unicode, e se volete lavorare con un insieme di byte, usate il nuovo tipo <code>bytes</code>. Oh, e Python 3 non effettuerà mai una conversione implicita tra stringhe e byte, così se non siete sicuri di quello che avete, il vostro codice si romperà quasi sicuramente. Leggete <a href=stringhe.html>il capitolo sulle stringhe</a> per maggiori dettagli.
+<p>Stringhe. Whew. Da dove cominciare. Python 2 aveva &#8220;stringhe&#8221; e &#8220;stringhe Unicode.&#8221; Python 3 ha &#8220;byte&#8221; e &#8220;stringhe.&#8221; Cioè, tutte le stringhe ora sono stringhe Unicode, e se volete lavorare con un insieme di byte, usate il nuovo tipo <code>bytes</code>. Oh, e Python 3 non effettuerà mai una conversione implicita tra stringhe e byte, così se non siete sicuri di quello che state usando, durante l'esecuzione dei vostri programmi compariranno quasi sicuramente degli errori. Leggete <a href=stringhe.html>il capitolo sulle stringhe</a> per maggiori dettagli.
 
 <p>Anche se Unicode non vi interessa, vorrete sapere come <a href=stringhe.html#formatting-strings>formattare le stringhe in Python 3</a>, che è completamente differente rispetto a Python 2.
 
