@@ -81,8 +81,8 @@ body{counter-reset:h1 2}
 <samp>&lt;class 'int'></samp></pre>
 <ol>
 <li>Potete convertire esplicitamente un <code>int</code> in un <code>float</code> chiamando la funzione <code>float()</code>.
-<li><span class=wtf>Unsurprisingly</span>, potete anche convertire esplicitamente un <code>float</code> in un <code>int</code> chiamando <code>int()</code>.
-<li>La funzione <code>int()</code> esegue un troncamento, non arrotonda.
+<li>Naturalmente, potete anche convertire esplicitamente un <code>float</code> in un <code>int</code> chiamando <code>int()</code>.
+<li>La funzione <code>int()</code> esegue un troncamento, non un arrotondamento.
 <li>La funzione <code>int()</code> tronca i numeri negativi verso lo <code>0</code>. &Egrave; una vera funzione di troncamento, non una funzione di appiattimento.
 <li>I numeri in virgola mobile sono accurati fino a 15 decimali.
 <li>Gli interi possono essere arbitrariamente grandi.
@@ -233,7 +233,7 @@ body{counter-reset:h1 2}
 <li>L'indice delle liste comincia da zero, quindi <code>a_list[0:3]</code> restituisce i primi tre elementi della lista, cominciando da <code>a_list[0]</code>, fino a <code>a_list[3]</code> escluso.
 <li>Se l'indice sinistro della lista è <code>0</code>, potete ometterlo, e <code>0</code> diventa implicito. Quindi <code>a_list[:3]</code> è la stessa cosa di <code>a_list[0:3]</code>, perché lo <code>0</code> iniziale è implicito.
 <li>Similmente, se l'indice destro della lista è la lunghezza della lista, potete ometterlo. Quindi <code>a_list[3:]</code> è la stessa cosa di <code>a_list[3:5]</code>, perché questa lista ha cinque elementi. C'è una piacevole simmetria qui. In questa lista di cinque elementi, <code>a_list[:3]</code> restituisce i primi 3 elementi, e <code>a_list[3:]</code> restituisce gli ultimi due elementi. In effetti, <code>a_list[:<var>n</var>]</code> restituirà sempre i primi <var>n</var> elementi e <code>a_list[<var>n</var>:]</code> restituirà sempre il resto, a prescindere dalla lunghezza della lista.
-<li>Se entrambi gli indici della fetta vengono omessi, tutti gli elementi della lista vengono inclusi. Ma questa non è la stessa lista della variabile <var>a_list</var> originale. &Egrave; una nuova lista a cui capita di avere tutti gli stessi elementi. <code>a_list[:]</code> è <span class=wtf>shorthand</span> per creare una copia completa di una lista.
+<li>Se entrambi gli indici della fetta vengono omessi, tutti gli elementi della lista vengono inclusi. Ma questa non è la stessa lista della variabile <var>a_list</var> originale. &Egrave; una nuova lista a cui capita di avere tutti gli stessi elementi. <code>a_list[:]</code> è una notazione abbreviata per creare la copia completa di una lista.
 </ol>
 <h3 id=extendinglists>Aggiungere elementi a una lista</h3>
 <p>Ci sono quattro modi per aggiungere un elemento a una lista.
