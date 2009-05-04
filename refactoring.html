@@ -162,7 +162,7 @@ class RoundtripCheck(unittest.TestCase):
 <li>I valori noti già esistenti non cambiano (sono ancora tutti valori ragionevoli da testare), ma avete bisogno di aggiungerne alcuni nell'intervallo delle quattro migliaia. Qui ho incluso <code>4000</code> (il più corto), <code>4500</code> (il secondo più corto), <code>4888</code> (il più lungo), e <code>4999</code> (il più grande).
 <li>La definizione di &#8220;input grande&#8221; è cambiata. Questo test invocava <code>to_roman()</code> con <code>4000</code> e si aspettava un errore; ora che i valori <code>4000-4999</code> sono validi, avete bisogno di alzare la soglia a <code>5000</code>.
 <li>Anche la definizione di &#8220;troppi caratteri ripetuti&#8221; è cambiata. Questo test invocava <code>from_roman()</code> con <code>'MMMM'</code> e si aspettava un errore; ora che <code>MMMM</code> è considerato un numero romano valido, avete bisogno di alzare il valore limite a <code>'MMMMM'</code>.
-<li>Il <span class=wtf>sanity check</span> controlla ogni numero nell'intervallo, da <code>1</code> fino a <code>3999</code>. Dato che ora l'intervallo si è allargato, anche questo ciclo <code>for</code> deve essere aggiornato per arrivare fino a <code>4999</code>.
+<li>Il test di consistenza controlla ogni numero nell'intervallo, da <code>1</code> fino a <code>3999</code>. Dato che ora l'intervallo si è allargato, anche questo ciclo <code>for</code> deve essere aggiornato per arrivare fino a <code>4999</code>.
 </ol>
 
 <p>Ora i vostri test sono sincronizzati con i nuovi requisiti, ma il vostro codice non lo è, quindi quando li eseguite aspettatevi diversi fallimenti.
@@ -219,7 +219,7 @@ FAILED (errors=3)</samp></pre>
 <ol>
 <li>Il test per i valori noti a <code>from_roman()</code> fallirà non appena arriva a <code>'MMMM'</code>, perché <code>from_roman()</code> pensa ancora che questo sia un numero romano non valido.
 <li>Il test per i valori noti a <code>to_roman()</code> fallirà non appena arriva a <code>4000</code>, perché <code>to_roman()</code> pensa ancora che questo numero sia fuori dall'intervallo.
-<li>Anche il controllo di <span class=wtf>roundtrip</span> fallirà non appena arriva a <code>4000</code>, perché <code>to_roman()</code> pensa ancora che questo numero sia fuori dall'intervallo.
+<li>Anche il controllo di consistenza fallirà non appena arriva a <code>4000</code>, perché <code>to_roman()</code> pensa ancora che questo numero sia fuori dall'intervallo.
 </ol>
 
 <p>Ora che i vostri test falliscono a causa dei nuovi requisiti, potete pensare a correggere il codice per riallinearlo con i test. (Una cosa che richiede un po' di tempo per essere assimilata quando cominciate a utilizzare i test di unità è che il codice sotto collaudo non è mai &#8220;avanti&#8221; rispetto ai test. Mentre è indietro, avete ancora del lavoro da fare, e appena ha recuperato i test potete smettere di programmare.)
@@ -440,7 +440,7 @@ to_roman should fail with 0 input ... ok
 
 OK</samp></pre>
 <ol>
-<li>Non che lo abbiate chiesto, ma è anche veloce! Tipo, almeno 10&times; più veloce. Naturalmente, questo non è un confronto onesto, perché questa versione impiega più tempo ad essere importata (quando costruisce le tabelle di ricerca). Ma dato che viene importata una volta sola, il costo di inizializzazione è ammortizzato su tutte le chiamate delle funzioni <code>to_roman()</code> e <code>from_roman()</code>. E dato che i test effettuano diverse migliaia di chiamate di funzione (il test <span class=wtf>roundtrip</span> da solo ne fa 10.000), questo risparmio si accumula molto velocemente!
+<li>Non che lo abbiate chiesto, ma è anche veloce! Tipo, almeno 10&times; più veloce. Naturalmente, questo non è un confronto onesto, perché questa versione impiega più tempo ad essere importata (quando costruisce le tabelle di ricerca). Ma dato che viene importata una volta sola, il costo di inizializzazione è ammortizzato su tutte le chiamate delle funzioni <code>to_roman()</code> e <code>from_roman()</code>. E dato che i test effettuano diverse migliaia di chiamate di funzione (il solo test di consistenza ne fa 10.000), questo risparmio si accumula molto velocemente!
 </ol>
 
 <p>Qual è la morale della storia?

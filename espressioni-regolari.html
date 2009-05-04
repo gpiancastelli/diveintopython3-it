@@ -362,7 +362,7 @@ body{counter-reset:h1 4}
 <ol>
 <li>Questo è lo stesso pattern dell'esempio precedente, a parte il fatto che ora state trovando una corrispondenza con <code>\D*</code>, zero o più caratteri non numerici, prima del primo gruppo da memorizzare (il codice d'area). Notate che non state memorizzando questi caratteri non numerici (non sono tra parentesi). Se li trovate, semplicemente li saltate e poi cominciate a memorizzare il codice d'area in qualsiasi punto si trovi.
 <li>Potete riconoscere i numeri telefonici con successo anche con una parentesi aperta prima del codice d'area. (La parentesi chiusa dopo il codice d'area è già gestita; viene trattata come un separatore non numerico e corrisponde al <code>\D*</code> dopo il primo gruppo da memorizzare.)
-<li>Giusto come <span class=wtf>sanity check</span> per assicurarvi di non aver rotto nulla che prima funzionava. Dato che i caratteri iniziali sono interamente opzionali, questo trova una corrispondenza con l'inizio della stringa, poi zero caratteri non numerici, poi un gruppo di tre cifre da memorizzare (<code>800</code>), poi un carattere non numerico (il trattino), poi un gruppo di tre cifre da memorizzare (<code>555</code>), poi un carattere non numerico (il trattino), poi un gruppo di quattro cifre da memorizzare (<code>1212</code>), poi zero caratteri non numerici, poi un gruppo di zero cifre da memorizzare, poi la fine della stringa.
+<li>Giusto come prova del nove per assicurarvi di non aver rotto nulla che prima funzionava. Dato che i caratteri iniziali sono interamente opzionali, questo trova una corrispondenza con l'inizio della stringa, poi zero caratteri non numerici, poi un gruppo di tre cifre da memorizzare (<code>800</code>), poi un carattere non numerico (il trattino), poi un gruppo di tre cifre da memorizzare (<code>555</code>), poi un carattere non numerico (il trattino), poi un gruppo di quattro cifre da memorizzare (<code>1212</code>), poi zero caratteri non numerici, poi un gruppo di zero cifre da memorizzare, poi la fine della stringa.
 <li>Qui è dove le espressioni regolari mi fanno venire voglia di cavarmi gli occhi con un oggetto spuntato. Perché questo numero di telefono non corrisponde? Perché c'è un <code>1</code> prima del codice d'area, ma avete supposto che tutti i caratteri prima del codice d'area fossero caratteri non numerici (<code>\D*</code>). Aargh.
 </ol>
 <p>Rivediamo il nostro lavoro per un secondo. Finora le espressioni regolari hanno tutte trovato una corrispondenza dall'inizio della stringa. Ma ora vedete che ci potrebbe essere una quantità indeterminata di caratteri all'inizio della stringa che volete ignorare. Piuttosto che provare a trovare una corrispondenza con tutta quella roba solo per scartarla, adottiamo un approccio differente: evitiamo di cercare esplicitamente una corrispondenza con l'inizio della stringa. Questo approccio è mostrato nel prossimo esempio.
@@ -377,7 +377,7 @@ body{counter-reset:h1 4}
 <ol>
 <li>Notate la mancanza di <code>^</code> in questa espressione regolare. Non state più trovando una corrispondenza con l'inizio della stringa. Non c'è niente che dica che avete bisogno di trovare una corrispondenza tra l'intera stringa in ingresso e la vostra espressione regolare. Il riconoscitore di espressioni regolari farà il duro lavoro di capire quando la stringa in ingresso comincerà a corrispondere, e proseguirà da lì.
 <li>Ora potete riconoscere con successo un numero telefonico che include caratteri iniziali e una cifra iniziale, più un qualsaisi numero di qualsiasi tipo di separatori attorno a ogni parte del numero telefonico.
-<li><span class=wtf>Sanity check</span>. Questo funziona ancora.
+<li>La prova del nove. Funziona ancora.
 <li>Anche questo funziona ancora.
 </ol>
 <p>Avete visto quanto velocemente una espressione regolare può finire fuori controllo? Date una rapida occhiata a una qualsiasi delle iterazioni precedenti. Potete dire la differenza tra quella e la successiva?
@@ -400,7 +400,7 @@ body{counter-reset:h1 4}
 <samp>('800', '555', '1212', '')</samp></pre>
 <ol>
 <li>A parte il fatto di essere distribuita su più righe, questa è esattamente l'espressione regolare dell'ultimo passo, quindi non ci sorprende che riconosca gli stessi ingressi.
-<li><span class=wtf>sanity check</span> finale. Sì, funziona ancora. Avete finito.
+<li>La prova del nove finale. Sì, funziona ancora. Avete finito.
 </ol>
 <h2 id=summary>Riepilogo</h2>
 <p>Questa è solo la più piccola cima dell'iceberg di quello che le espressioni regolari possono fare. In altre parole, anche se ora siete completamente sommersi da esse, credetemi, non avete ancora visto niente.
