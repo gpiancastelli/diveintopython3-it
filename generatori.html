@@ -50,7 +50,7 @@ def plural(noun):
 <li>Questa funzione <code>re.sub()</code> esegue sostituzioni di stringhe basandosi su una espressione regolare.
 </ol>
 
-<p>Diamo un'occhiata in maggior dettaglio alle sostituzioni di espressioni regolari.
+<p>Diamo un'occhiata più dettagliata alle sostituzioni di espressioni regolari.
 <pre class=screen>
 <samp class=p>>>> </samp><kbd>import re</kbd>
 <a><samp class=p>>>> </samp><kbd>re.search('[abc]', 'Mark')</kbd>    <span>&#x2460;</span></a>
@@ -85,7 +85,7 @@ def plural(noun):
 <li>Stesso schema qui: cerca parole che finiscono in Y, dove il carattere che precede la Y <em>non</em> è <code>a</code>, <code>e</code>, <code>i</code>, <code>o</code>, oppure <code>u</code>. State cercando parole che finiscono con una Y che ha un suono /i/.
 </ol>
 
-<p>Diamo una occhiata in maggior dettaglio alla negazione nelle espressioni regolari.
+<p>Diamo una occhiata più dettagliata alla negazione nelle espressioni regolari.
 
 <pre class=screen>
 <samp class=p>>>> </samp><kbd>import re</kbd>
@@ -99,7 +99,7 @@ def plural(noun):
 <samp class=p>>>> </samp></pre>
 <ol>
 <li><code>vacancy</code> corrisponde a questa espressione regolare, perché finisce con <code>cy</code>, e <code>c</code> non è <code>a</code>, <code>e</code>, <code>i</code>, <code>o</code>, oppure <code>u</code>.
-<li><code>boy</code> non corrisponde, perché finisce con <code>oy</code>, e avete specificatamente detto che il carattere prima della <code>y</code> non può essere <code>o</code>. <code>day</code> non corrisponde, perche termina in <code>ay</code>.
+<li><code>boy</code> non corrisponde, perché finisce con <code>oy</code>, e avete specificato che il carattere prima della <code>y</code> non può essere <code>o</code>. <code>day</code> non corrisponde, perche termina in <code>ay</code>.
 <li><code>pita</code> non corrisponde, perché non termina in <code>y</code>.
 </ol>
 <pre class=screen>
@@ -195,7 +195,7 @@ def plural(noun):
 
 <h2 id=a-list-of-patterns>Una lista di pattern</h2>
 
-<p>Definire separatamente una funzione con un proprio nome per ogni regola di ricerca e sostituzione non è realmente necessario. Non le chiamate mai direttamente; le aggiungete alla lista <var>rules</var> e le chiamate attraverso di essa. In più, ogni funzione segue uno di due schemi. Tutte le funzioni di ricerca chiamano <code>re.search()</code> e tutte le funzioni di sostituzione chiamano <code>re.sub()</code>. Fattorizziamo gli schemi in modo che definire nuove regole diventi più semplice.
+<p>Definire separatamente una funzione con un proprio nome per ogni regola di ricerca e sostituzione non è realmente necessario. Non le chiamate mai direttamente; le aggiungete alla lista <var>rules</var> e le chiamate attraverso di essa. In più, ogni funzione segue uno di due schemi. Tutte le funzioni di ricerca chiamano <code>re.search()</code> e tutte le funzioni di sostituzione chiamano <code>re.sub()</code>. Evidenziamo gli schemi in modo che definire nuove regole diventi più semplice.
 
 <p class=d>[<a href=esempi/plural3.py>scarica <code>plural3.py</code></a>]
 <pre><code>import re
@@ -241,7 +241,7 @@ def build_match_and_apply_functions(pattern, search, replace):
 
 <h2 id=a-file-of-patterns>Un file di pattern</h2>
 
-<p>Avete fattorizzato tutto il codice duplicato e aggiunto abbastanza astrazioni in modo che le regole di pluralizzazione siano definite in una lista di stringhe. Il passo logico successivo consiste nel prendere queste stringhe e metterle in un file separato, dove possano essere gestite separatamente dal codice che le usa. 
+<p>Avete estratto tutto il codice duplicato e aggiunto abbastanza astrazioni in modo che le regole di pluralizzazione siano definite in una lista di stringhe. Il passo logico successivo consiste nel prendere queste stringhe e metterle in un file separato, dove possano essere gestite separatamente dal codice che le usa. 
 
 <p>Prima di tutto, creiamo un file di testo che contiene le regole che volete. Nessuna struttura dati elaborata, solo stringhe separate da spazi bianchi su tre colonne. Chiamiamo questo file <code>plural4-rules.txt</code>.
 
@@ -357,7 +357,7 @@ def plural(noun):
 <samp>0 1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987</samp></pre>
 <ol>
 <li>Potete usare un generatore come <code>fib()</code> direttamente in un ciclo <code>for</code>. Il ciclo <code>for</code> chiamerà automaticamente la funzione <code>next()</code> per ottenere valori dal generatore <code>fib()</code> e assegnarli alla variabile di indice del ciclo <code>for</code> (<var>n</var>).
-<li>A ogni iterazione nel ciclo <code>for</code>, <var>n</var> ottiene un nuovo valore dalla istruzione <code>yield</code> in <code>fib()</code>, e tutto quello che dovete fare è stamparlo. Una volta che <code>fib()</code> ha finito i numeri (<var>a</var> diventa più grande di <var>max</var>, che nel nostro caso è <code>1000</code>) allora il ciclo <code>for</code> esce gentilmente.
+<li>A ogni iterazione nel ciclo <code>for</code>, <var>n</var> ottiene un nuovo valore dalla istruzione <code>yield</code> in <code>fib()</code>, e tutto quello che dovete fare è stamparlo. Una volta che <code>fib()</code> ha finito i numeri (<var>a</var> diventa più grande di <var>max</var>, che nel nostro caso è <code>1000</code>) allora il ciclo <code>for</code> esce normalmente.
 </ol>
 
 <h3 id=a-plural-rule-generator>Un generatore di regole per i sostantivi plurali</h3>
@@ -383,7 +383,7 @@ def plural(noun):
 
 <p>Che cosa avete perso? Prestazioni! Ogni volta che chiamate la funzione <code>plural()</code>, il generatore <code>rules()</code> ricomincia dall'inizio &mdash; il che vuol dire riaprire il file dei pattern e leggerlo dall'inizio, una riga alla volta.
 
-<p>E se poteste avere il meglio dei due mondi? Minimo costo di inizializzazione (non eseguire alcun codice alla chiamata di <code>import</code>) <em>e</em> massime prestazioni (non costruire sempre le stesse funzioni ogni volta). Oh, e volete ancora mantenere le regole in un file separato (perché il codice è codice, e i dati sono dati), fino a quando non dobbiate leggere la stessa riga due volte.
+<p>E se poteste avere il meglio dei due mondi? Minimo costo di inizializzazione (evitando di eseguire codice alla chiamata di <code>import</code>) <em>e</em> massime prestazioni (evitando di costruire sempre le stesse funzioni ogni volta). Oh, e volete ancora mantenere le regole in un file separato (perché il codice è codice, e i dati sono dati), fino a quando non dobbiate leggere la stessa riga due volte.
 
 <p>Per farlo, avrete bisogno di costruire un vostro iteratore. Ma prima che possiate fare <em>questo</em>, dovete imparare le classi Python.
 
