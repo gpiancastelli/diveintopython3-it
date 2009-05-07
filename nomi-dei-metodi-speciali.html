@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<head>
+<meta charset=utf-8>
+<title>Nomi dei metodi speciali - Dive into Python 3</title>
+<!--[if IE]><script src=html5.js></script><![endif]-->
+<link rel=stylesheet type=text/css href=dip3.css>
+<link rel=stylesheet type=text/css href=dip3-it.css>
+<style>
+h1:before{counter-increment:h1;content:"Appendice B. "}
+h2:before{counter-increment:h2;content:"B." counter(h2) ". "}
+h3:before{counter-increment:h3;content:"B." counter(h2) "." counter(h3) ". "}
+tr + tr th:first-child{font:medium 'Arial Unicode MS',FreeSerif,OpenSymbol,'DejaVu Sans',sans-serif}
+table{width:100%;border-collapse:collapse}
+th,td{width:30%;padding:0 0.5em;border:1px solid #bbb}
+th{text-align:left;vertical-align:baseline}
+td{vertical-align:top}
+th:first-child{width:10%;text-align:center}
+th,td,td pre{margin:0}
+td pre{padding:0;border:0}
+td a:link, td a:visited{border:0}
+</style>
+<link rel=stylesheet type=text/css media='only screen and (max-device-width: 480px)' href=mobile.css>
+</head>
+<form action=http://www.google.com/cse><div><input type=hidden name=cx value=014021643941856155761:l5eihuescdw><input type=hidden name=ie value=UTF-8>&nbsp;<input name=q size=25>&nbsp;<input type=submit name=sa value=Search></div></form>
+<p>Voi siete qui: <a href=index.html>Home</a> <span>&#8227;</span> <a href=table-of-contents.html#special-method-names>Dive Into Python 3</a> <span>&#8227;</span>
+<p id=level>Livello di difficoltà: <span title=advanced>&#x2666;&#x2666;&#x2666;&#x2666;&#x2666;</span>
+<h1>Nomi dei metodi speciali</h1>
+<blockquote class=q>
+<p><span>&#x275D;</span> La mia specialità è avere ragione quando altri hanno torto. <span>&#x275E;</span><br>&mdash; <a href=http://en.wikiquote.org/wiki/George_Bernard_Shaw>George Bernard Shaw</a>
+</blockquote>
+<p id=toc>&nbsp;
+<h2 id=divingin>Immersione!</h2>
+<p class=f>Abbiamo già trattato alcuni nomi di metodi speciali in altri punti di questo libro &mdash; metodi &#8220;magici&#8221; che Python invoca quando usate una certa sintassi. Sfruttando i metodi speciali, le vostre classi possono comportarsi come sequenze, come dizionari, come funzioni, come iteratori, o addirittura come numeri! Questa appendice serve sia come riferimento per i metodi speciali che abbiamo già visto, sia come breve introduzione ad alcuni dei più esoterici tra essi.
+
+<h2 id=basics>Le basi</h2>
+
+<p>Se avete letto <a href=iterators.html#divingin>l'introduzione alle classi</a>, avete giù visto il metodo speciale più comune: il metodo <code>__init__()</code>. La maggioranza delle classi che scrivo finiscono per necessitare di qualche inizializzazione. Ci sono anche alcuni altri metodi speciali di base che sono particolarmente utili per effettuare il debug sulle vostre classi <span class=wtf>custom</span>.
+
+<table>
+<tr><th>Note
+<th>Voi volete&hellip;
+<th>Quindi scrivete&hellip;
+<th>E Python invoca&hellip;
+<tr><th>&#x2460;
+<td>inizializzare un'istanza
+<td><code>x = MyCustomClass()</code>
+<td><code>x.__init__()</code>
+<tr><th>&#x2461;
+<td>la rappresentazione &#8220;ufficiale&#8221; sotto forma di stringa
+<td><code>repr(x)</code>
+<td><code>x.__repr__()</code>
+<tr><th>&#x2462;
+<td><span class=wtf>the &#8220;informal&#8221; value as a string</span>
+<td><code>str(x)</code>
+<td><code>x.__str__()</code>
+<tr><th>&#x2463;
+<td><span class=wtf>the &#8220;informal&#8221; value as a byte array</span>
+<td><code>bytes(x)</code>
+<td><code>x.__bytes__()</code>
+<tr><th>&#x2464;
+<td><span class=wtf>the value as a formatted string</span>
+<td><code>format(x)</code>
+<td><code>x.__format__(<var>format_spec</var>)</code>
+</table>
+<ol>
+<li>Il metodo <code>__init__()</code> viene invocato <em>dopo</em> che l'istanza è stata creata. Se volete controllare l'effettivo processo di creazione, usate <a href=#esoterica>il metodo <code>__new__()</code></a>.
+<li>Per convenzione, la stringa restituita dal metodo <code>__repr__()</code> dovrebbe essere un'espressione Python valida.
+<li>Il metodo <code>__str__()</code> viene invocato anche quando chiamate <code>print(x)</code>.
+<li><em>Una novità di Python 3</em>, dato che il tipo <code>bytes</code> è stato introdotto in questa versione del linguaggio.
+<li>Per convenzione, <var>format_spec</var> dovrebbe conformarsi al <a href=http://www.python.org/doc/3.0/library/string.html#formatspec>mini-linguaggio per le specifiche di formato</a>. <code>decimal.py</code> nella libreria standard di Python fornisce il proprio metodo <code>__format__()</code>.
+</ol>
+
+<h2 id=acts-like-iterator>Classi che si comportano come iteratori</h2>
+
+<p>Nel <a href=iterators.html>capitolo sugli iteratori</a>, avete visto come implementare un iteratore da zero utilizzando i metodi <code>__iter__()</code> e <code>__next__()</code>.
+
+<table>
+<tr><th>Note
+<th>Voi volete&hellip;
+<th>Quindi scrivete&hellip;
+<th>E Python invoca&hellip;
+<tr><th>&#x2460;
+<td>iterare attraverso una sequenza
+<td><code>iter(seq)</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__iter__><code>seq.__iter__()</code></a>
+<tr><th>&#x2461;
+<td>ottenere il valore successivo da un iteratore
+<td><code>next(seq)</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__next__><code>seq.__next__()</code></a>
+<tr><th>&#x2462;
+<td>creare un iteratore in ordine inverso
+<td><code>reversed(seq)</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__reversed__><code>seq.__reversed__()</code></a>
+</table>
+<ol>
+<li>Il metodo <code>__iter__()</code> viene invocato ogni volta che create un nuovo iteratore. &Egrave; un buon posto dove inizializzare l'iteratore con valori iniziali.
+<li>Il metodo <code>__next__()</code> viene invocato ogni volta che recuperate il valore successivo da un iteratore.
+<li>Il metodo <code>__reversed__()</code> è poco comune. Prende una sequenza esistente e restituisce un iteratore che produce gli elementi nella sequenza in ordine inverso, dall'ultimo al primo.
+</ol>
+
+<h2 id=computed-attributes>Proprietà calcolate</h2>
+
+<p class=fixme>FIXME not sure of the wording/depth required here because I don't yet know if I'm going to cover these in a previous chapter. Let's assume I'm not, and I can move the examples later if need be.
+
+<table>
+<tr><th>Note
+<th>Voi volete&hellip;
+<th>Quindi scrivete&hellip;
+<th>E Python invoca&hellip;
+<tr><th>&#x2461;
+<td>ottenere (incondizionatamente) una proprietà calcolata
+<td><code>x.my_property</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__getattribute__><code>x.__getattribute__(<var>"my_property"</var>)</code></a>
+<tr><th>&#x2460;
+<td>ottenere (con un <span class=wtf>fallback</span>) una proprietà calcolata
+<td><code>x.my_property</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__getattr__><code>x.__getattr__(<var>"my_property"</var>)</code></a>
+<tr><th>&#x2462;
+<td>impostare il valore di una proprietà
+<td><code>x.my_property = value</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__setattr__><code>x.__setattr__(<var>"my_property"</var>, <var>value</var>)</code></a>
+<tr><th>&#x2463;
+<td>eliminare una proprietà
+<td><code>del x.my_property</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__delattr__><code>x.__delattr__(<var>"my_property"</var>)</code></a>
+<tr><th>&#x2464;
+<td>elencare tutte le proprietà e i metodi
+<td><code>dir(x)</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__dir__><code>x.__dir__()</code></a>
+</table>
+<ol>
+<li>Se la vostra classe definisce un metodo <code>__getattribute__()</code>, Python lo invocherà <em>ogni volta che fate riferimento a una proprietà o a un nome di metodo qualsiasi</em> (a parte i nomi dei metodi speciali, dato che questo causerebbe uno spiacevole ciclo infinito).
+<li>Se la vostra classe definisce un metodo <code>__getattr__()</code>, Python lo invocherà solo dopo aver cercato la proprietà in tutti i posti in cui viene cercata normalmente. Se un'istanza <var>x</var> definise una proprietà <var>color</var>, <code>x.color</code> <em>non</em> risulterà nella invocazione di <code>x.__getattr__("color")</code>; restituirà semplicemente il valore di <var>x.color</var> già definito.
+<li>Il metodo <code>__setattr__()</code> viene invocato ogni volta che assegnate un valore a una proprietà.
+<li>Il metodo <code>__delattr__()</code> viene invocato ogni volta che eliminate una proprietà.
+<li>Il metodo <code>__dir__()</code> è utile se definite un metodo <code>__getattr__()</code> o un metodo <code>__getattribute__()</code>. Normalmente, invocare <code>dir(x)</code> elencherebbe solo le proprietà e i metodi normali. Se il vostro metodo <code>__getattr__()</code> gestisce dinamicamente una proprietà <var>color</var>, <code>dir(x)</code> non mostrerà <var>color</var> come una delle proprietà disponibili. <span class=wtf>Overriding</span> il metodo <code>__dir__()</code> vi permette di mostrare <var>color</var> nell'elenco delle proprietà disponibili, venendo in aiuto ad altre persone che vorrebbero usare la vostra classe senza scavare nelle sue interiora.
+</ol>
+
+<p>La distinzione tra i metodi <code>__getattr__()</code> e <code>__getattribute__()</code> è sottile ma importante. Posso spiegarla con due esempi:
+
+<pre class=screen>
+<code>class Dynamo:
+    def __getattr__(self, key):
+<a>        if key == "color":         <span>&#x2460;</span></a>
+            return "PapayaWhip"
+        else:
+<a>            raise AttributeError   <span>&#x2461;</span></a></code>
+
+<samp class=p>>>> </samp><kbd>dyn = Dynamo()</kbd>
+<a><samp class=p>>>> </samp><kbd>dyn.color</kbd>                      <span>&#x2462;</span></a>
+<samp>'PapayaWhip'</samp>
+<samp class=p>>>> </samp><kbd>dyn.color = "LemonChiffon"</kbd>
+<a><samp class=p>>>> </samp><kbd>dyn.color</kbd>                      <span>&#x2463;</span></a>
+<samp>'LemonChiffon'</samp></pre>
+<ol>
+<li>Il nome della proprietà viene passato al metodo <code>__getattr__()</code> sotto forma di stringa. Se il nome è <code>"color</code>, il metodo restituisce un valore. (In questo caso, è solamente una stringa costante, ma normalmente effettuereste una qualche sorta di computazione e ne restituireste il risultato.)
+<li>Se il nome della proprietà è sconosciuto, il metodo <code>__getattr__()</code> ha bisogno di sollevare una eccezione di tipo <code>AttributeError</code>, altrimenti il vostro codice fallirà silenziosamente quando accedete a proprietà non definite. (Tecnicamente, se il metodo non solleva una eccezione o restituisce esplicitamente un valore, restituisce <code>None</code>, il valore nullo di Python. Questo significa che <em>tutte</em> le proprietà non esplicitamente definite varrebbero <code>None</code>, che quasi sicuramente non è quello che volete.)
+<li>L'istanza <var>dyn</var> non ha una proprietà chiamata <var>color</var>, quindi il metodo <code>__getattr__()</code> viene invocato per fornirne il valore calcolato.
+<li>Dopo aver esplicitamente impostato <var>dyn.color</var>, il metodo <code>__getattr__()</code> non viene più invocato per fornire il valore di <var>dyn.color</var>, perché <var>dyn.color</var> è già definita in questa istanza.
+</ol>
+
+<p>D'altra parte, il metodo <code>__getattribute__()</code> viene invocato in maniera assoluta e incondizionata.
+
+<pre class=screen>
+<code>class SuperDynamo:
+    def __getattribute__(self, key):
+        if key == 'color':
+            return "PapayaWhip"
+        else:
+            raise AttributeError</code>
+
+<samp class=p>>>> </samp><kbd>dyn = SuperDynamo()</kbd>
+<a><samp class=p>>>> </samp><kbd>dyn.color</kbd>                      <span>&#x2460;</span></a>
+<samp>"PapayaWhip"</samp>
+<samp class=p>>>> </samp><kbd>dyn.color = "LemonChiffon"</kbd>
+<a><samp class=p>>>> </samp><kbd>dyn.color</kbd>                      <span>&#x2461;</span></a>
+<samp>"PapayaWhip"</samp></pre>
+<ol>
+<li>Il metodo <code>__getattribute__()</code> viene invocato per fornire il valore di <var>dyn.color</var>.
+<li>Anche dopo aver esplicitamente impostato <var>dyn.color</var>, il metodo <code>__getattribute__()</code> <em>viene ancora invocato</em> per fornire il valore di <var>dyn.color</var>. Se esiste, il metodo <code>__getattribute__()</code> <em>viene invocato incondizionatamente</em> per ogni accesso a proprietà e metodi, anche per proprietà che avete esplicitamente impostato dopo la creazione di una istanza.
+</ol>
+
+<blockquote class=note>
+<p><span>&#x261E;</span>Se la vostra classe definisce un metodo <code>__getattribute__()</code>, vorrete probabilmente definire anche un metodo <code>__setattr__()</code> e coordinare i due per tenere traccia del valore delle proprietà. Altrimenti, qualsiasi proprietà che impostate dopo aver creato una istanza scomparirà in un buco nero.
+</blockquote>
+
+<p>Avete bisogno di prestare particolare attenzione con il metodo <code>__getattribute__()</code>, perché viene invocato anche quando Python cerca il nome di un metodo sulla vostra classe.
+
+<pre class=screen>
+<code>class Rastan:
+    def __getattribute__(self, key):
+<a>        raise AttributeError           <span>&#x2460;</span></a>
+    def swim(self):
+        pass</code>
+
+<samp class=p>>>> </samp><kbd>hero = Rastan()</kbd>
+<a><samp class=p>>>> </samp><kbd>hero.swim()</kbd>                        <span>&#x2461;</span></a>
+<samp class=traceback>Traceback (most recent call last):
+  File "&lt;stdin>", line 1, in &lt;module>
+  File "&lt;stdin>", line 3, in __getattribute__
+AttributeError</samp></pre>
+<ol>
+<li>Questa classe definisce un metodo <code>__getattribute__()</code> che solleva sempre una eccezione di tipo <code>AttributeError</code>. Nessun accesso a proprietà o metodi avrà successo.
+<li>Quando invocate <code>hero.swim()</code>, Python cerca un metodo <code>swim()</code> nella classe <code>Rastan</code>. Questa ricerca passa attraverso il metodo <code>__getattribute__()</code>, <em>perché tutti gli accessi a proprietà e metodi passano attraverso il metodo <code>__getattribute__()</code></em>. In questo caso, il metodo <code>__getattribute__()</code> solleva una eccezione di tipo <code>AttributeError</code>, quindi l'accesso al metodo fallisce, quindi la chiamata di metodo fallisce.
+</ol>
+
+<h2 id=acts-like-function>Classi che si comportano come funzioni</h2>
+
+<p>Potete rendere invocabile un'istanza di una classe &mdash; esattamente come una funzione è invocabile &mdash; definendo il metodo <code>__call__()</code>.
+
+<table>
+<tr><th>Note
+<th>Voi volete&hellip;
+<th>Quindi scrivete&hellip;
+<th>E Python invoca&hellip;
+<tr><th>&#x2460;
+<td>&#8220;invocare&#8221; un'istanza come una funzione
+<td><code>my_instance()</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__call__><code>my_instance.__call__()</code></a>
+</table>
+
+<p>Il <a href="http://docs.python.org/3.0/library/zipfile.html">modulo <code>zipfile</code></a> usa questa tecnica per definire una classe che possa decrittare un file zip crittato con una data password. L'algoritmo di decrittazione per i file zip richiede di memorizzare uno stato durante la decrittazione. Definire il decrittatore come una classe vi permette di mantenere questo stato all'interno di una singola istanza della classe decrittatore. Lo stato viene inizializzato nel metodo <code>__init__()</code> e aggiornato man mano che il file viene decrittato. Ma dato che la classe è anche &#8220;invocabile&#8221; come una funzione, potete passare l'istanza come primo argomento alla funzione <code>map()</code>, in questo modo:
+
+<pre><code>
+# estratto da zipfile.py
+class _ZipDecrypter:
+.
+.
+.
+    def __init__(self, pwd):
+<a>        self.key0 = 305419896               <span>&#x2460;</span></a>
+        self.key1 = 591751049
+        self.key2 = 878082192
+        for p in pwd:
+            self._UpdateKeys(p)
+
+<a>    def __call__(self, c):                  <span>&#x2461;</span></a>
+        assert isinstance(c, int)
+        k = self.key2 | 2
+        c = c ^ (((k * (k^1)) >> 8) & 255)
+        self._UpdateKeys(c)
+        return c
+.
+.
+.
+<a>zd = _ZipDecrypter(pwd)                    <span>&#x2462;</span></a>
+bytes = zef_file.read(12)
+<a>h = list(map(zd, bytes[0:12]))             <span>&#x2463;</span></a></code></pre>
+<ol>
+<li>La classe <code>_ZipDecryptor</code> mantiene lo stato sotto forma di tre chiavi rotanti, che vengono successivamente aggiornate nel metodo <code>_UpdateKeys()</code> (non mostrato qui).
+<li>La classe definisce un metodo <code>__call__()</code>, che rende le istanze di questa classe invocabili come funzioni. In questo caso, il metodo <code>__call__()</code> decritta un singolo byte del file zip, quindi aggiorna le chiavi rotanti sulla base del byte che è stato decrittato.
+<li><var>zd</var> è un'istanza della classe <code>_ZipDecryptor</code>. La variabile <var>pwd</var> viene passata al metodo <code>__init__()</code>, dove viene memorizzata e usata per aggiornare le chiavi rotanti per la prima volta.
+<li>Dati i primi 12 byte di un file zip, li decrittate mappando i byte su <var>zd</var>, effettivamente &#8220;invocando&#8221; <var>zd</var> 12 volte, che invoca il metodo <code>__call__()</code> 12 volte, che aggiorna il suo stato interno e restituisce un byte risultante 12 volte.
+</ol>
+
+<h2 id=acts-like-list>Classi che si comportano come sequenze</h2>
+
+<p>Se la vostra classe agisce come contenitore per un insieme di valori &mdash; cioè, se ha senso chiedere se la vostra classe &#8220;contiene&#8221; un valore &mdash; allora dovrebbe probabilmente definire i seguenti metodi speciali che le permettono di assumere il comportamento di una sequenza.
+
+<table>
+<tr><th>Note
+<th>Voi volete&hellip;
+<th>Quindi scrivete&hellip;
+<th>E Python invoca&hellip;
+<tr><th>
+<td>la lunghezza di una sequenza
+<td><code>len(seq)</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__len__><code>seq.__len__()</code></a>
+<tr><th>
+<td>sapere se una sequenza contiene uno specifico valore
+<td><code>x in seq</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__contains__><code>seq.__contains__(<var>x</var>)</code></a>
+</table>
+
+<p id=acts-like-list-example>Il <a href=http://docs.python.org/3.0/library/cgi.html>modulo <code>cgi</code></a> sfrutta questi metodi nella sua classe <code>FieldStorage</code>, che rappresenta tutti i campi di una form o i parametri di richiesta <span class=wtf>submitted</span> a una pagina web dinamica.
+
+<pre><code>
+# Uno script che risponde a http://example.com/search?q=cgi
+import cgi
+fs = cgi.FieldStorage()
+<a>if "q" in fs:                                               <span>&#x2460;</span></a>
+  do_search()
+
+# Un estratto da cgi.py che spiega come funziona lo script
+class FieldStorage:
+.
+.
+.
+<a>    def __contains__(self, key):                            <span>&#x2461;</span></a>
+        if self.list is None:
+            raise TypeError("not indexable")
+<a>        return any(item.name == key for item in self.list)  <span>&#x2462;</span></a>
+
+<a>    def __len__(self):                                      <span>&#x2463;</span></a>
+        return len(self.keys())</code></pre>
+<ol>
+<li>Una volta creata un'istanza della classe <code>cgi.FieldStorage</code>, potete usare l'operatore &#8220;<code>in</code>&#8221; per controllare se un particolare parametro è stato incluso nella <span class=wtf>query string</span>.
+<li>Il metodo <code>__contains__()</code> è la magia che fa funzionare questo.
+<li>Quando dite <code>if "q" in fs</code>, Python cerca nell'oggetto <var>fs</var> il metodo <code>__contains__()</code>, che è definito in <code>cgi.py</code>. Il valore <code>"q"</code> è passato al metodo <code>__contains__()</code> come argomento <var>key</var>.
+<li>La stessa classe <code>FieldStorage</code> supporta anche la restituzione della propria lunghezza, quindi potete dire <code>len(<var>fs</var>)</code> e verrà invocato il metodo <code>__len__()</code> sulla classe <code>FieldStorage</code> per restituire il numero di parametri di richiesta che sono stati identificati.
+</ol>
+
+<h2 id=acts-like-dict>Classi che si comportano come dizionari</h2>
+
+<p>Estendendo un poco la sezione precedente, potete definire classi che non solo rispondono all'operatore &#8220;<code>in</code>&#8221; e alla funzione <code>len()</code>, ma che agiscono come dizionari <span class=wtf>full-blown</span>, restituendo valori sulla base di chiavi.
+
+<table>
+<tr><th>Note
+<th>Voi volete&hellip;
+<th>Quindi scrivete&hellip;
+<th>E Python invoca&hellip;
+<tr><th>
+<td>ottenere un valore tramite la sua chiave
+<td><code>x[key]</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__getitem__><code>x.__getitem__(<var>"key"</var>)</code></a>
+<tr><th>
+<td>impostare un valore tramite la sua chiave
+<td><code>x[key] = value</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__setitem__><code>x.__setitem__(<var>"key"</var>, <var>value</var>)</code></a>
+<tr><th>
+<td>eliminare una coppia chiave-valore
+<td><code>del x[key]</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__delitem__><code>x.__delitem__(<var>"key"</var>)</code></a>
+<tr><th>
+<td>fornire un valore di default per chiavi mancanti
+<td><code>x[nonexistent_key]</code>
+<td><a href=http://docs.python.org/3.0/library/collections.html#collections.defaultdict.__missing__><code>x.__missing__(<var>"nonexistent_key"</var>)</code></a>
+</table>
+
+<p>La <a href=#acts-like-list-example>classe <code>FieldStorage</code></a> del <a href=http://docs.python.org/3.0/library/cgi.html>modulo <code>cgi</code></a> definisce anche questi metodi speciali, il che significa che potete fare cose come queste:
+
+<pre><code>
+# Uno script che risponde a http://example.com/search?q=cgi
+import cgi
+fs = cgi.FieldStorage()
+if "q" in fs:
+<a>  do_search(fs["q"])                              <span>&#x2460;</span></a>
+
+# Un estratto da cgi.py che spiega come funziona lo script
+class FieldStorage:
+.
+.
+.
+<a>    def __getitem__(self, key):                   <span>&#x2461;</span></a>
+        if self.list is None:
+            raise TypeError("not indexable")
+        found = []
+        for item in self.list:
+            if item.name == key: found.append(item)
+        if not found:
+            raise KeyError(key)
+        if len(found) == 1:
+            return found[0]
+        else:
+            return found</code></pre>
+<ol>
+<li>L'oggetto <var>fs</var> è una istanza di <code>cgi.FieldStorage</code>, tuttavia potete valutare espressioni come <code>fs["q"]</code>.
+<li><code>fs["q"]</code> invoca il metodo <code>__getitem__()</code> con il parametro <var>key</var> impostato a <code>"q"</code>. Quindi controlla se la lista di parametri di ricerca che mantiene internamente (<var>self.list</var>) contiene un elemento la cui proprietà <code>.name</code> corrisponde alla chiave data.
+</ol>
+
+<h2 id=acts-like-number>Classi che si comportano come numeri</h2>
+
+<p>Usando i metodi speciali appropriati, potete definire le vostre classi che si comportano come numeri. Questo significa che potete addizionarle, sottrarle, ed eseguire su di esse altre operazioni matematiche. Questo è il modo in cui <a href=advanced-classes.html#implementing-fractions>sono realizzate le frazioni</a> &mdash; la classe <code>Fraction</code> implementa questi metodi speciali, in modo che possiate fare cose come questa:
+
+<pre class=screen>
+<samp class=p>>>> </samp><kbd>from fractions import Fraction</kbd>
+<samp class=p>>>> </samp><kbd>x = Fraction(1, 3)</kbd>
+<samp class=p>>>> </samp><kbd>x / 3</kbd>
+<samp>Fraction(1, 9)</samp></pre>
+
+<p>Ecco la lista completa dei metodi speciali che dovete implementare per avere una classe simile ai numeri.
+
+<table>
+<tr><th>Note
+<th>Voi volete&hellip;
+<th>Quindi scrivete&hellip;
+<th>E Python invoca&hellip;
+<tr><th>
+<td>addizione
+<td><code>x + y</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__add__><code>x.__add__(<var>y</var>)</code></a>
+<tr><th>
+<td>sottrazione
+<td><code>x - y</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__sub__><code>x.__sub__(<var>y</var>)</code></a>
+<tr><th>
+<td>moltiplicazione
+<td><code>x * y</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__mul__><code>x.__mul__(<var>y</var>)</code></a>
+<tr><th>
+<td>divisione
+<td><code>x / y</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__truediv__><code>x.__truediv__(<var>y</var>)</code></a>
+<tr><th>
+<td class=wtf>floor division
+<td><code>x // y</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__floordiv__><code>x.__floordiv__(<var>y</var>)</code></a>
+<tr><th>
+<td>modulo (resto)
+<td><code>x % y</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__mod__><code>x.__mod__(<var>y</var>)</code></a>
+<tr><th>
+<td class=wtf>floor division <i class=baa>&amp;</i> modulo
+<td><code>divmod(x, y)</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__divmod__><code>x.__divmod__(<var>y</var>)</code></a>
+<tr><th>
+<td>elevamento a potenza
+<td><code>x ** y</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__pow__><code>x.__pow__(<var>y</var>)</code></a>
+<tr><th>
+<td class=wtf>left bit-shift
+<td><code>x &lt;&lt; y</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__lshift__><code>x.__lshift__(<var>y</var>)</code></a>
+<tr><th>
+<td class=wtf>right bit-shift
+<td><code>x >> y</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__rshift__><code>x.__rshift__(<var>y</var>)</code></a>
+<tr><th>
+<td class=wtf>bitwise <code>and</code>
+<td><code>x &amp; y</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__and__><code>x.__and__(<var>y</var>)</code></a>
+<tr><th>
+<td class=wtf>bitwise <code>xor</code>
+<td><code>x ^ y</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__xor__><code>x.__xor__(<var>y</var>)</code></a>
+<tr><th>
+<td class=wtf>bitwise <code>or</code>
+<td><code>x | y</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__or__><code>x.__or__(<var>y</var>)</code></a>
+</table>
+
+<p>Questo è tutto buono e giusto se <var>x</var> è un'istanza di una classe che implementa questi metodi. Ma cosa succede se non ne implementa uno? O peggio, cosa succede se lo implementa, ma non può gestire certi tipi di argomenti? Per esempio:
+
+<pre class=screen>
+<samp class=p>>>> </samp><kbd>from fractions import Fraction</kbd>
+<samp class=p>>>> </samp><kbd>x = Fraction(1, 3)</kbd>
+<samp class=p>>>> </samp><kbd>1 / x</kbd>
+<samp>Fraction(3, 1)</samp></pre>
+
+<p>Questo <em>non</em> è il caso di prendere un oggetto <code>Fraction</code> e dividerlo per un intero (come nell'esempio precedente). Quel caso era semplice: <code>x / 3</code> invoca <code>x.__truediv__(3)</code> e il metodo <code>__truediv__()</code> della classe <code>Fraction</code> gestisce tutta la matematica. Ma gli interi non &#8220;sanno&#8221; come fare operazioni aritmetiche con le frazioni. Quindi come mai questo esempio funziona?
+
+<p>La risposta è in un secondo insieme di metodi speciali per l'aritmetica con <i class=wtf>reflected operands</i>. Data una operazione aritmetica con due operandi (<i>e.g.</i> <code>x / y</code>), ci sono due modi di eseguirla:
+
+<ol>
+<li>Dire a <var>x</var> di dividersi per <var>y</var>, oppure
+<li>Dire a <var>y</var> di dividersi per <var>x</var>
+</ol>
+
+<p>L'insieme di metodi speciali appena visto adotta il primo approccio: dato <code>x / y</code>, fornisce a <var>x</var> un modo per dire &#8220;So come dividermi per <var>y</var>.&#8221; L'insieme di metodi speciali che segue adotta il secondo approccio: fornisce a <var>y</var> un modo per dire &#8220;So come fare il denominatore e dividere <var>x</var> per me stessa.&#8221;
+
+<table>
+<tr><th>Note
+<th>Voi volete&hellip;
+<th>Quindi scrivete&hellip;
+<th>E Python invoca&hellip;
+<tr><th>
+<td>addizione
+<td><code>x + y</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__radd__><code>y.__radd__(<var>x</var>)</code></a>
+<tr><th>
+<td>sottrazione
+<td><code>x - y</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__rsub__><code>y.__rsub__(<var>x</var>)</code></a>
+<tr><th>
+<td>moltiplicazione
+<td><code>x * y</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__rmul__><code>y.__rmul__(<var>x</var>)</code></a>
+<tr><th>
+<td>divisione
+<td><code>x / y</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__rtruediv__><code>y.__rtruediv__(<var>x</var>)</code></a>
+<tr><th>
+<td class=wtf>floor division
+<td><code>x // y</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__rfloordiv__><code>y.__rfloordiv__(<var>x</var>)</code></a>
+<tr><th>
+<td>modulo (resto)
+<td><code>x % y</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__rmod__><code>y.__rmod__(<var>x</var>)</code></a>
+<tr><th>
+<td class=wtf>floor division <i class=baa>&amp;</i> modulo
+<td><code>divmod(x, y)</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__rdivmod__><code>y.__rdivmod__(<var>x</var>)</code></a>
+<tr><th>
+<td>elevamento a potenza
+<td><code>x ** y</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__rpow__><code>y.__rpow__(<var>x</var>)</code></a>
+<tr><th>
+<td class=wtf>left bit-shift
+<td><code>x &lt;&lt; y</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__rlshift__><code>y.__rlshift__(<var>x</var>)</code></a>
+<tr><th>
+<td class=wtf>right bit-shift
+<td><code>x >> y</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__rrshift__><code>y.__rrshift__(<var>x</var>)</code></a>
+<tr><th>
+<td class=wtf>bitwise <code>and</code>
+<td><code>x &amp; y</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__rand__><code>y.__rand__(<var>x</var>)</code></a>
+<tr><th>
+<td class=wtf>bitwise <code>xor</code>
+<td><code>x ^ y</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__rxor__><code>y.__rxor__(<var>x</var>)</code></a>
+<tr><th>
+<td class=wtf>bitwise <code>or</code>
+<td><code>x | y</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__ror__><code>y.__ror__(<var>x</var>)</code></a>
+</table>
+
+<p>Ma aspettate! C'è di più! Se state eseguendo operazioni <span class=wtf>&#8220;in-place&#8221;</span>, come <code>x /= 3</code>, ci sono ancora più metodi speciali che potete definire.
+
+<table>
+<tr><th>Note
+<th>Voi volete&hellip;
+<th>Quindi scrivete&hellip;
+<th>E Python invoca&hellip;
+<tr><th>
+<td class=wtf>in-place addition
+<td><code>x += y</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__iadd__><code>x.__iadd__(<var>y</var>)</code></a>
+<tr><th>
+<td class=wtf>in-place subtraction
+<td><code>x -= y</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__isub__><code>x.__isub__(<var>y</var>)</code></a>
+<tr><th>
+<td class=wtf>in-place multiplication
+<td><code>x *= y</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__imul__><code>x.__imul__(<var>y</var>)</code></a>
+<tr><th>
+<td class=wtf>in-place division
+<td><code>x /= y</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__itruediv__><code>x.__itruediv__(<var>y</var>)</code></a>
+<tr><th>
+<td class=wtf>in-place floor division
+<td><code>x //= y</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__ifloordiv__><code>x.__ifloordiv__(<var>y</var>)</code></a>
+<tr><th>
+<td class=wtf>in-place modulo
+<td><code>x %= y</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__imod__><code>x.__imod__(<var>y</var>)</code></a>
+<tr><th>
+<td class=wtf>in-place raise to power
+<td><code>x **= y</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__ipow__><code>x.__ipow__(<var>y</var>)</code></a>
+<tr><th>
+<td class=wtf>in-place left bit-shift
+<td><code>x &lt;&lt;= y</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__ilshift__><code>x.__ilshift__(<var>y</var>)</code></a>
+<tr><th>
+<td class=wtf>in-place right bit-shift
+<td><code>x >>= y</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__irshift__><code>x.__irshift__(<var>y</var>)</code></a>
+<tr><th>
+<td class=wtf>in-place bitwise <code>and</code>
+<td><code>x &amp;= y</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__iand__><code>x.__iand__(<var>y</var>)</code></a>
+<tr><th>
+<td class=wtf>in-place bitwise <code>xor</code>
+<td><code>x ^= y</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__ixor__><code>x.__ixor__(<var>y</var>)</code></a>
+<tr><th>
+<td class=wtf>in-place bitwise <code>or</code>
+<td><code>x |= y</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__ior__><code>x.__ior__(<var>y</var>)</code></a>
+</table>
+
+<p>Nota: per la maggior parte, i metodi per le operazioni <span class=wtf>in-place</span> non sono richiesti. Se non definite il metodo per una particolare operazione <span class=wtf>in-place</span>, Python proverà gli altri metodi. Ad esempio, per eseguire l'espressione <code>x /= y</code>, Python proverà a:
+
+<ol>
+<li>Invocare <code>x.__itruediv__(<var>y</var>)</code>. Se questo metodo è definito e restituisce un valore diverso da <code>NotImplemented</code>, abbiamo fatto.
+<li>Invocare <code>x.__truediv__(<var>y</var>)</code>. Se questo metodo è definito e restituisce un valore diverso da <code>NotImplemented</code>, il vecchio valore di <var>x</var> viene scartato e rimpiazzato dal valore restituito, esattamente come se aveste eseguito <code>x = x / y</code>.
+<li>Invocare <code>y.__rtruediv__(<var>x</var>)</code>. Se questo metodo è definito e restituisce un valore diverso da <code>NotImplemented</code>, il vecchio valore di <var>x</var> viene scartato e rimpiazzato dal valore restituito.
+</ol>
+
+<p>Quindi avete bisogno di definire metodi <span class=wtf>in-place</span> come il metodo <code>__itruediv__()</code> solo se volete effettuare qualche ottimizzazione speciale per l'operando <span class=wtf>in-place</span>. Altrimenti, Python essenzialmente riformulerà l'operando <span class=wtf>in-place</span> in modo da utilizzare un operando normale + un assegnamento di variabile.
+
+<p>Ci sono anche alcune operazioni matematiche &#8220;unarie&#8221; che gli oggetti simili a numeri possono eseguire su sé stessi.
+
+<table>
+<tr><th>Note
+<th>Voi volete&hellip;
+<th>Quindi scrivete&hellip;
+<th>E Python invoca&hellip;
+<tr><th>
+<td>un numero negativo
+<td><code>-x</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__neg__><code>x.__neg__()</code></a>
+<tr><th>
+<td>un numero positivo
+<td><code>+x</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__pos__><code>x.__pos__()</code></a>
+<tr><th>
+<td>il valore assoluto
+<td><code>abs(x)</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__abs__><code>x.__abs__()</code></a>
+<tr><th>
+<td>l'inverso
+<td><code>~x</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__invert__><code>x.__invert__()</code></a>
+<tr><th>
+<td>un numero complesso
+<td><code>complex(x)</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__complex__><code>x.__complex__()</code></a>
+<tr><th>
+<td>un numero intero
+<td><code>int(x)</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__int__><code>x.__int__()</code></a>
+<tr><th>
+<td>un numero in virgola mobile
+<td><code>float(x)</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__float__><code>x.__float__()</code></a>
+<tr><th>
+<td>un numero arrotondato all'intero più vicino
+<td><code>round(x)</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__round__><code>x.__round__()</code></a>
+<tr><th>
+<td>un numero arrotondato alla <var>n</var>-sima cifra
+<td><code>round(x, n)</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__round__><code>x.__round__(n)</code></a>
+<tr><th>
+<td>il più piccolo intero che sia <code>>= x</code>
+<td><code>math.ceil(x)</code>
+<td><a href=http://docs.python.org/3.0/library/math.html#math.ceil><code>x.__ceil__()</code></a>
+<tr><th>
+<td>il più grande intero che sia <code>&lt;= x</code>
+<td><code>math.floor(x)</code>
+<td><a href=http://docs.python.org/3.0/library/math.html#math.floor><code>x.__floor__()</code></a>
+<tr><th>
+<td>troncare <code>x</code> all'intero più vicino verso lo <code>0</code>
+<td><code>math.trunc(x)</code>
+<td><a href=http://docs.python.org/3.0/library/math.html#math.trunc><code>x.__trunc__()</code></a>
+<tr><th><a href=http://www.python.org/dev/peps/pep-0357/>PEP 357</a>
+<td>usare un numero come indice di lista
+<td><code>a_list[<var>x</var>]</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__index__><code>x.__index__()</code></a>
+</table>
+
+<h2 id=rich-comparisons>Classi che possono essere confrontate</h2>
+
+<p>Ho separato questa sezione dalla precedente perché i confronti non sono strettamente un privilegio dei numeri. Molti tipi di dato possono essere confrontati &mdash; stringhe, liste, persino dizionari. Se state creando una vostra classe e ha senso confrontare i vostri oggetti con altri oggetti, potete usare i metodi speciali che seguono per realizzare i confronti.
+
+<table>
+<tr><th>Note
+<th>Voi volete&hellip;
+<th>Quindi scrivete&hellip;
+<th>E Python invoca&hellip;
+<tr><th>
+<td>uguaglianza
+<td><code>x == y</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__eq__><code>x.__eq__(<var>y</var>)</code></a>
+<tr><th>
+<td>disuguaglianza
+<td><code>x != y</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__ne__><code>x.__ne__(<var>y</var>)</code></a>
+<tr><th>
+<td>minore di
+<td><code>x &lt; y</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__lt__><code>x.__lt__(<var>y</var>)</code></a>
+<tr><th>
+<td>minore o uguale a
+<td><code>x &lt;= y</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__le__><code>x.__le__(<var>y</var>)</code></a>
+<tr><th>
+<td>maggiore di
+<td><code>x >  y</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__gt__><code>x.__gt__(<var>y</var>)</code></a>
+<tr><th>
+<td>maggiore o uguale a
+<td><code>x >= y</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__ge__><code>x.__ge__(<var>y</var>)</code></a>
+<tr><th>
+<td>un valore di verità in un contesto logico
+<td><code>if x:</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__bool__><code>x.__bool__()</code></a>
+</table>
+
+<h2 id=pickle>Classi che possono essere serializzate</h2>
+<!--see http://docs.python.org/3.0/library/pickle.html:-->
+
+<p>Python supporta la serializzazione e la deserializzazione di oggetti arbitrari. (La maggior parte dei riferimenti su Python chiama questi processi
+
+Python supports serializing and unserializing arbitrary objects. (La maggior parte dei riferimenti su Python chiama questi processi &#8220;pickling&#8221; e &#8220;unpickling.&#8221;) La serializzazione può rivelarsi utile per salvare lo stato di un oggetto su un file e ripristinarlo successivamente. Tutti i <a href=native-datatypes.html>tipi di dato nativi</a> includono già il supporto per la serializzazione. Se create una classe <span class=wtf>custom</span> che volete essere in grado di serializzare, vi suggerisco di leggere la documentazione sul <a href=http://docs.python.org/3.0/library/pickle.html>protocollo di serializzazione</a> per vedere quando e come i metodi speciali che seguono vengono invocati.
+
+<table>
+<tr><th>Note
+<th>Voi volete&hellip;
+<th>Quindi scrivete&hellip;
+<th>E Python invoca&hellip;
+<tr><th>
+<td>la copia di un oggetto <span class=wtf>custom</span>
+<td><code>copy.copy(x)</code>
+<td><a href=http://docs.python.org/3.0/library/copy.html><code>x.__copy__()</code></a>
+<tr><th>
+<td>la copia in profondità di un oggetto <span class=wtf>custom</span>
+<td><code>copy.deepcopy(x)</code>
+<td><a href=http://docs.python.org/3.0/library/copy.html><code>x.__deepcopy__()</code></a>
+<tr><th>
+<td>ottenere lo stato di un oggetto prima della serializzazione
+<td><code>pickle.dump(x, <var>file</var>)</code>
+<td><a href=http://docs.python.org/3.0/library/pickle.html#pickle-state><code>x.__getstate__()</code></a>
+<tr><th>
+<td>serializzare un oggetto
+<td><code>pickle.dump(x, <var>file</var>)</code>
+<td><a href=http://docs.python.org/3.0/library/pickle.html#pickling-class-instances><code>x.__reduce__()</code></a>
+<tr><th>
+<td>serializzare un oggetto (con un nuovo protocollo di pickling)
+<td><code>pickle.dump(x, <var>file</var>, <var>protocol_version</var>)</code>
+<td><a href=http://docs.python.org/3.0/library/pickle.html#pickling-class-instances><code>x.__reduce_ex__(<var>protocol_version</var>)</code></a>
+<tr><th>
+<td>controllare come un oggetto viene creato durante la deserializzazione
+<td><code>x = pickle.load(<var>file</var>)</code>
+<td><a href=http://docs.python.org/3.0/library/pickle.html#pickling-class-instances><code>x.__getnewargs__()</code></a>
+<tr><th>
+<td>ripristinare lo stato di un oggetto dopo la deserializzazione
+<td><code>x = pickle.load(<var>file</var>)</code>
+<td><a href=http://docs.python.org/3.0/library/pickle.html#pickle-state><code>x.__setstate__()</code></a>
+</table>
+
+<h2 id=context-managers>Classi che possono essere usate in un blocco <code>with</code></h2>
+
+<p>Python 3 supporta l'istruzione <code>with</code>, che vi permette di accedere alle proprietà e ai metodi di un oggetto senza riferirvi esplicitamente all'oggetto ogni volta. Un blocco <code>with</code> definisce un <a href=http://www.python.org/doc/3.0/library/stdtypes.html#typecontextmanager>contesto a tempo di esecuzione</a>; voi &#8220;entrate&#8221; nel contesto quando l'istruzione <code>with</code> viene eseguita, e &#8220;uscite&#8221; dal contesto dopo che l'ultima istruzione nel blocco viene eseguita.
+
+<p>Qualsiasi classe può essere usata in un blocco <code>with</code>; non è richiesto alcun metodo speciale. L'interprete Python creerà il contesto a tempo di esecuzione e inoltrerà alla vostra classe tutti gli accessi a proprietà e le chiamate ai metodi. Comunque, se volete che la vostra classe faccia qualcosa di speciale quando entra o esce da un contesto a tempo di esecuzione, potete definire i metodi speciali che seguono.
+
+<table>
+<tr><th>Note
+<th>Voi volete&hellip;
+<th>Quindi scrivete&hellip;
+<th>E Python invoca&hellip;
+<tr><th>
+<td>fare qualcosa di speciale quando entrate in un blocco <code>with</code>
+<td><code>with x:</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__enter__><code>x.__enter__()</code></a>
+<tr><th>
+<td>fare qualcosa di speciale quando lasciate un blocco <code>with</code>
+<td><code>with x:</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__exit__><code>x.__exit__()</code></a>
+</table>
+
+<p>Ecco come <span class=fixme>[FIXME-xref]</span> funziona l'idioma <code>with <var>file</var></code>.
+
+<pre><code># estratto da io.py:
+def _checkClosed(self, msg=None):
+    """Internal: raise an ValueError if file is closed
+    """
+    if self.closed:
+        raise ValueError("I/O operation on closed file."
+                         if msg is None else msg)
+
+def __enter__(self) -> "IOBase":
+    """Context management protocol.  Returns self."""
+<a>    self._checkClosed()                                <span>&#x2460;</span></a>
+<a>    return self                                        <span>&#x2461;</span></a>
+
+def __exit__(self, *args) -> None:
+    """Context management protocol.  Calls close()"""
+<a>    self.close()                                       <span>&#x2462;</span></a></code></pre>
+<ol>
+<li>L'oggetto file definisce sia un metodo <code>__enter__()</code> che un metodo <code>__exit__()</code>. Il metodo <code>__enter__()</code> verifica che il file sia aperto: se non lo è, il metodo <code>_checkClosed()</code> solleva una eccezione.
+<li>Il metodo <code>__enter__()</code> dovrebbe quasi sempre restituire <var>self</var> &mdash; questo è l'oggetto che il blocco <code>with</code> userà per inoltrare gli accessi a proprietà e metodi.
+<li>All'uscita dal blocco <code>with</code>, l'oggetto file viene automaticamente chiuso. Come? Nel metodo <code>__exit__()</code>, viene invocato <code>self.close()</code>.
+</ol>
+
+<blockquote class=note>
+<p><span>&#x261E;</span>Il metodo <code>__exit__()</code> verrà sempre invocato, anche se una eccezione viene sollevata nel blocco <code>with</code>. In effetti, se una eccezione viene sollevata, le informazioni sulla eccezione saranno passate al metodo <code>__exit__()</code>. Si veda la documentazione sui <a href=http://www.python.org/doc/3.0/reference/datamodel.html#with-statement-context-managers>gestori di contesto per l'istruzione with</a> per maggiori dettagli.
+</blockquote>
+
+<h2 id=esoterica>Roba veramente esoterica</h2>
+
+<p>Se sapete quello che state facendo, potete ottenere il controllo quasi completo su come le classi sono confrontate, come le proprietà sono definite, e quali tipi di classi sono considerate sottoclassi della vostra classe.
+
+<table>
+<tr><th>Note
+<th>Voi volete&hellip;
+<th>Quindi scrivete&hellip;
+<th>E Python invoca&hellip;
+<tr><th>
+<td>il costruttore di una classe
+<td><code>x = MyClass()</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__new__><code>x.__new__()</code></a>
+<tr><th>
+<td>il distruttore di una classe
+<td><code>del x</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__del__><code>x.__del__()</code></a>
+<tr><th>
+<td>che solo uno specifico insieme di proprietà sia definito
+<td>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__slots__><code>x.__slots__()</code></a>
+<tr><th>
+<td>un valore <span class=wtf>custom</span> di hash
+<td><code>hash(x)</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__hash__><code>x.__hash__()</code></a>
+<tr><th>
+<td>ottenere il valore di una proprietà
+<td><code>x.color</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__get__><code>type(x).__dict__['color'].__get__(x, type(x))</code></a>
+<tr><th>
+<td>impostare il valore di una proprietà
+<td><code>x.color = 'PapayaWhip'</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__set__><code>type(x).__dict__['color'].__set__(x, 'PapayaWhip')</code></a>
+<tr><th>
+<td>eliminare una proprietà
+<td><code>del x.color</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__delete__><code>type(x).__dict__['color'].__del__(x)</code></a>
+<tr><th>
+<td>controllare se un oggetto è istanza della vostra classe
+<td><code>isinstance(x, MyClass)</code>
+<td><a href=http://www.python.org/dev/peps/pep-3119/#overloading-isinstance-and-issubclass><code>MyClass.__instancecheck__(x)</code></a>
+<tr><th>
+<td>controllare se una classe è sottoclasse di una vostra classe
+<td><code>issubclass(C, MyClass)</code>
+<td><a href=http://www.python.org/dev/peps/pep-3119/#overloading-isinstance-and-issubclass><code>MyClass.__subclasscheck__(C)</code></a>
+<tr><th>
+<td>controllare se una classe è sottoclasse di una vostra classe astratta di base
+<td><code>issubclass(C, MyABC)</code>
+<td><a href=http://docs.python.org/3.0/library/abc.html#abc.ABCMeta.__subclasshook__><code>MyABC.__subclasshook__(C)</code></a>
+</table>
+
+<p class=nav><a rel=prev href=convertire-codice-verso-python-3-con-2to3.html title="indietro a &#8220;Convertire codice verso Python 3 con 2to3&#8221;"><span>&#x261C;</span></a> <a rel=next class=todo><span>&#x261E;</span></a>
+<p class=c>&copy; 2001&ndash;9 <a href=about.html>Mark Pilgrim</a><br>
+&copy; 2009 <a href=translation.html>Giulio Piancastelli</a> per la traduzione italiana
+<script src=jquery.js></script>
+<script src=dip3.js></script>
