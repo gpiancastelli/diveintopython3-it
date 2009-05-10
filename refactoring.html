@@ -112,7 +112,7 @@ Ran 11 tests in 0.156s
 <li>Tutti gli altri test hanno ancora successo, il che significa che la correzione del bug non ha introdotto nuovi errori. Potete smettere di programmare.
 </ol>
 
-<p>Programmare in questo modo non rende più facile la correzione dei bug. Per i bug più semplici (come questo) bastano test semplici; bug complessi richiederanno test complessi. In un ambiente centrato sui test, potrebbe <em>sembrare</em> che ci voglia più tempo per correggere un bug, dato che avete prima bisogno di esprimere la sostanza del bug sotto forma di codice (per scrivere il test), e poi dovete correggere il bug stesso. Successivamente, se il test non ha immediatamente successo, avete bisogno di capire se la correzione era sbagliata, o se è il test stesso ad avere un bug. Comunque, nel lungo periodo, lavorare spostandovi continuamente avanti e indietro tra il codice del test e il codice che state collaudando vi ricompenserà, perché rende molto più probabile che i bug vengano corretti al primo tentativo. In più, visto che potete facilmente rieseguire <em>tutti</em> i test insieme a quello nuovo, avete molte meno probabilità di rompere il vecchio codice quando state aggiustando quello nuovo. Il test di unità di oggi è il test di regressione di domani.
+<p>Programmare in questo modo non rende più facile la correzione dei bug. Per i bug più semplici (come questo) bastano test semplici; bug complessi richiederanno test complessi. In un processo di sviluppo guidato dai test, potrebbe <em>sembrare</em> che ci voglia più tempo per correggere un bug, dato che avete prima bisogno di esprimere la sostanza del bug sotto forma di codice (per scrivere il test), e poi dovete correggere il bug stesso. Successivamente, se il test non ha immediatamente successo, avete bisogno di capire se la correzione era sbagliata, o se è il test stesso ad avere un bug. Comunque, nel lungo periodo, lavorare spostandovi continuamente avanti e indietro tra il codice del test e il codice che state collaudando vi ricompenserà, perché rende molto più probabile che i bug vengano corretti al primo tentativo. In più, visto che potete facilmente rieseguire <em>tutti</em> i test insieme a quello nuovo, avete molte meno probabilità di rompere il vecchio codice quando state aggiustando quello nuovo. Il test di unità di oggi è il test di regressione di domani.
 
 <h2 id=changing-requirements>Gestire il cambiamento dei requisiti</h2>
 <p>Nonostante facciate del vostro meglio per tenere i vostri committenti con i piedi ben piantati per terra in modo da ottenere requisiti precisi sotto la minaccia di orribili torture a base di forbici e cera calda, i requisiti cambieranno. La maggior parte dei committenti non sa cosa vuole fino a quando non la vede, e anche se lo sapesse, non sarebbe così brava a descrivere ciò che vuole in maniera sufficientemente precisa da risultare utile. E anche se lo fosse, vorrebbe comunque di più nella versione successiva. Quindi siate preparati ad aggiornare i vostri test man mano che i requisiti cambiano.
@@ -165,7 +165,7 @@ class RoundtripCheck(unittest.TestCase):
 <li>Il test di consistenza controlla ogni numero nell'intervallo, da <code>1</code> fino a <code>3999</code>. Dato che ora l'intervallo si è allargato, anche questo ciclo <code>for</code> deve essere aggiornato per arrivare fino a <code>4999</code>.
 </ol>
 
-<p>Ora i vostri test sono sincronizzati con i nuovi requisiti, ma il vostro codice non lo è, quindi quando li eseguite aspettatevi diversi fallimenti.
+<p>Ora i vostri test sono aggiornati rispetto ai nuovi requisiti, ma il vostro codice non lo è, quindi quando li eseguite aspettatevi diversi fallimenti.
 
 <pre class=screen>
 <samp class=p>you@localhost:~$ </samp><kbd>python3 romantest9.py -v</kbd>
@@ -294,7 +294,7 @@ Ran 12 tests in 0.203s
 
 <p>Il refactoring è il processo di prendere codice funzionante e farlo funzionare meglio. Solitamente, &#8220;meglio&#8221; significa &#8220;più velocemente&#8221;, ma può voler anche dire &#8220;usando meno memoria&#8221;, oppure &#8220;usando meno spazio su disco&#8221;, o semplicemente &#8220;in maniera più elegante&#8221;. Qualsiasi cosa voglia dire per voi, per il vostro progetto, nel vostro ambiente, il refactoring è importante per la salute a lungo termine di qualsiasi programma.
 
-<p>Nel nostro caso, &#8220;meglio&#8221; significa sia &#8220;più velocemente&#8221; che &#8220;in maniera più facile da mantenere.&#8221; Nello specifico, la funzione <code>from_roman()</code> è lenta e più complessa di quanto vorrei, a causa di quella grossa e disgustosa espressione regolare che usate per validare i numeri romani. Ora, potreste pensare, "Certo, l'espressione regolare è grande e <span class=wtf>hairy</span>, ma in quale altro modo si suppone che io controlli che una stringa arbitraria sia un numero romano valido?"
+<p>Nel nostro caso, &#8220;meglio&#8221; significa sia &#8220;più velocemente&#8221; che &#8220;in maniera più facile da mantenere.&#8221; Nello specifico, la funzione <code>from_roman()</code> è lenta e più complessa di quanto vorrei, a causa di quella grossa e disgustosa espressione regolare che usate per validare i numeri romani. Ora, potreste pensare, "Certo, l'espressione regolare è grande e intricata, ma in quale altro modo si suppone che io controlli che una stringa arbitraria sia un numero romano valido?"
 
 <p>Risposta: ce ne sono solo 5000; perché non costruite semplicemente una tabella di ricerca? Questa idea diventa ancora migliore nel momento in cui realizzate che <em>non avete per niente bisogno di usare un'espressione regolare</em>. Mentre costruite la tabella di ricerca per convertire i numeri interi in numeri romani, potete costruire la tabella di ricerca inversa per convertire i numeri romani in interi. Nel momento in cui avete bisogno di controllare se una stringa arbitraria è un numero romano valido, avrete già raccolto tutti i numeri romani validi. La &#8220;verifica&#8221; si riduce a un singolo accesso a un dizionario.
 
@@ -359,7 +359,7 @@ def build_lookup_tables():
 
 build_lookup_tables()</code></pre>
 
-<p>Dividiamo il programma in frammenti più comprensibili. Chiaramente, la riga più importante è l'ultima:
+<p>Dividiamo il programma in frammenti più comprensibili. Teoricamente, la riga più importante è l'ultima:
 
 <pre><code>build_lookup_tables()</code></pre>
 
@@ -453,7 +453,7 @@ OK</samp></pre>
 
 <h2 id=summary>Riepilogo</h2>
 
-<p>Il collaudo di unità è un potente concetto che, se adeguatamente implementato, può sia ridurre i costi di mantenimento sia aumentare la flessibilità di ogni progetto a lungo termine. &Egrave; anche importante capire che il collaudo di unità non è una panacea, un Risolutore Magico di Problemi, o la cosiddetta pallottola d'argento. Scrivere buoni test di unità è difficile, e mantenerli aggiornati richiede disciplina (specialmente quando i committenti vi urlano dietro per farvi risolvere bug critici). I test di unità non sono il sostituto di altre forme di collaudo, compresi i test funzionali, i test di integrazione, e i test di accettazione per l'utente. Ma sono adeguati, e funzionano, e una volta che li avete visti funzionare vi chiederete come avete fatto a lavorare senza fino a quel momento. 
+<p>Il collaudo di unità è un potente concetto che, se adeguatamente implementato, può sia ridurre i costi di mantenimento sia aumentare la flessibilità di ogni progetto a lungo termine. &Egrave; anche importante capire che il collaudo di unità non è una panacea, un Risolutore Magico di Problemi, o la cosiddetta pallottola d'argento. Scrivere buoni test di unità è difficile, e mantenerli aggiornati richiede disciplina (specialmente quando i committenti vi urlano dietro per farvi risolvere bug critici). I test di unità non sono il sostituto di altre forme di collaudo, compresi i test funzionali, i test di integrazione, e i test di accettazione per l'utente. Ma sono convenienti, e funzionano, e una volta che li avete visti funzionare vi chiederete come avete fatto a lavorare senza fino a quel momento. 
 
 <p>Questi pochi capitoli hanno coperto diversi argomenti, molti dei quali non erano nemmeno specifici per Python. Esistono framework per il collaudo di unità in molti linguaggi, e tutti vi richiedono di applicare una serie di pratiche basate sugli stessi concetti elementari:
 
