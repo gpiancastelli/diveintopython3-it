@@ -24,10 +24,10 @@ body{counter-reset:h1 10}
 <a><samp class=p>>>> </samp><kbd>roman7.from_roman("")</kbd> <span>&#x2460;</span></a>
 <samp>0</samp></pre>
 <ol>
-<li>Ricordate in <span class=fixme>[FIXME-xref]</span> nella sezione precedente quando continuavate a notare che una stringa vuota sarebbe stata riconosciuta dall'espressione regolare che stavate usando per controllare i numeri romani validi? Ebbene, questo è ancora vero per la versione finale dell'espressione regolare. Ma è un bug; in realtà, vorreste che una stringa vuota sollevasse una eccezione di tipo <code>InvalidRomanNumeralError</code> esattamente come ogni altra sequenza di caratteri che non rappresenta un numero romano valido.
+<li>Ricordate quando, nel <span class=fixme>[FIXME-xref]</span> capitolo precedente, continuavate a notare che una stringa vuota sarebbe stata riconosciuta dall'espressione regolare che stavate usando per controllare i numeri romani validi? Ebbene, questo è ancora vero per la versione finale dell'espressione regolare. Ma è un bug; in realtà, vorreste che una stringa vuota sollevasse un'eccezione di tipo <code>InvalidRomanNumeralError</code> esattamente come ogni altra sequenza di caratteri che non rappresenta un numero romano valido.
 </ol>
 
-<p>Dopo aver riprodotto il bug, e prima di correggerlo, dovreste scrivere un test che fallisce, mettendo in questo modo il bug in evidenza.
+<p>Dopo aver riprodotto il bug, e prima di correggerlo, dovreste scrivere un test che fallisce, mettendo così il bug in evidenza.
 
 <pre><code>class FromRomanBadInput(unittest.TestCase):  
     .
@@ -37,7 +37,7 @@ body{counter-reset:h1 10}
         """from_roman should fail with blank string"""
 <a>        self.assertRaises(roman6.InvalidRomanNumeralError, roman6.from_roman, "") <span>&#x2460;</span></a></code></pre>
 <ol>
-<li>Qui le cose sono piuttosto semplici. Chiamate <code>from_roman()</code> con una stringa vuota, e vi assicurate che sollevi una eccezione di tipo <code>InvalidRomanNumeralError</code>. La parte difficile è stata trovare il bug; ora che lo conoscete, scrivere un test per verificarlo è la parte facile.
+<li>Qui le cose sono piuttosto semplici. Chiamate <code>from_roman()</code> con una stringa vuota, e vi assicurate che sollevi un'eccezione di tipo <code>InvalidRomanNumeralError</code>. La parte difficile è stata trovare il bug; ora che lo conoscete, scrivere un test per verificarlo è la parte facile.
 </ol>
 
 <p>Dato che il vostro codice ha un bug e ora avete un test che verifica quel bug, il test fallirà:
@@ -69,7 +69,7 @@ Ran 11 tests in 0.171s
 
 FAILED (failures=1)</samp></pre>
 
-<p><em>Ora</em> potete correggere il bug.
+<p><em>Adesso</em> potete correggere il bug.
 
 <pre><code>def from_roman(s):
     """convert Roman numeral to integer"""
@@ -112,7 +112,7 @@ Ran 11 tests in 0.156s
 <li>Tutti gli altri test hanno ancora successo, il che significa che la correzione del bug non ha introdotto nuovi errori. Potete smettere di programmare.
 </ol>
 
-<p>Programmare in questo modo non rende più facile la correzione dei bug. Per i bug più semplici (come questo) bastano test semplici; bug complessi richiederanno test complessi. In un processo di sviluppo guidato dai test, potrebbe <em>sembrare</em> che ci voglia più tempo per correggere un bug, dato che avete prima bisogno di esprimere la sostanza del bug sotto forma di codice (per scrivere il test), e poi dovete correggere il bug stesso. Successivamente, se il test non ha immediatamente successo, avete bisogno di capire se la correzione era sbagliata, o se è il test stesso ad avere un bug. Comunque, nel lungo periodo, lavorare spostandovi continuamente avanti e indietro tra il codice del test e il codice che state collaudando vi ricompenserà, perché rende molto più probabile che i bug vengano corretti al primo tentativo. In più, visto che potete facilmente rieseguire <em>tutti</em> i test insieme a quello nuovo, avete molte meno probabilità di rompere il vecchio codice quando state aggiustando quello nuovo. Il test di unità di oggi è il test di regressione di domani.
+<p>Programmare in questo modo non rende più facile la correzione dei bug. Per i bug più semplici (come questo) bastano test semplici; bug complessi richiederanno test complessi. In un processo di sviluppo guidato dai test, potrebbe <em>sembrare</em> che ci voglia più tempo per correggere un bug, dato che prima avete bisogno di esprimere la sostanza del bug sotto forma di codice (per scrivere il test), e poi dovete correggere il bug vero e proprio. Successivamente, se il test non ha immediatamente successo, avete bisogno di capire se la correzione era sbagliata, o se è il test stesso ad avere un bug. Comunque, nel lungo periodo, lavorare spostandovi continuamente avanti e indietro tra il codice del test e il codice che state collaudando vi ricompenserà, perché rende molto più probabile che i bug vengano corretti al primo tentativo. In più, visto che potete facilmente rieseguire <em>tutti</em> i test insieme a quello nuovo, avete molte meno probabilità di guastare il vecchio codice quando state aggiustando quello nuovo. Il test di unità di oggi è il test di regressione di domani.
 
 <h2 id=changing-requirements>Gestire il cambiamento dei requisiti</h2>
 <p>Nonostante facciate del vostro meglio per tenere i vostri committenti con i piedi ben piantati per terra in modo da ottenere requisiti precisi sotto la minaccia di orribili torture a base di forbici e cera calda, i requisiti cambieranno. La maggior parte dei committenti non sa cosa vuole fino a quando non la vede, e anche se lo sapesse, non sarebbe così brava a descrivere ciò che vuole in maniera sufficientemente precisa da risultare utile. E anche se lo fosse, vorrebbe comunque di più nella versione successiva. Quindi siate preparati ad aggiornare i vostri test man mano che i requisiti cambiano.
@@ -159,8 +159,8 @@ class RoundtripCheck(unittest.TestCase):
             result = roman8.from_roman(numeral)
             self.assertEqual(integer, result)</code></pre>
 <ol>
-<li>I valori noti già esistenti non cambiano (sono ancora tutti valori ragionevoli da testare), ma avete bisogno di aggiungerne alcuni nell'intervallo delle quattro migliaia. Qui ho incluso <code>4000</code> (il più corto), <code>4500</code> (il secondo più corto), <code>4888</code> (il più lungo), e <code>4999</code> (il più grande).
-<li>La definizione di &#8220;input grande&#8221; è cambiata. Questo test invocava <code>to_roman()</code> con <code>4000</code> e si aspettava un errore; ora che i valori <code>4000-4999</code> sono validi, avete bisogno di alzare la soglia a <code>5000</code>.
+<li>I valori noti già esistenti non cambiano (sono ancora tutti valori ragionevoli da collaudare), ma avete bisogno di aggiungerne alcuni nell'intervallo delle quattro migliaia. Qui ho incluso <code>4000</code> (il più corto), <code>4500</code> (il secondo più corto), <code>4888</code> (il più lungo), e <code>4999</code> (il più grande).
+<li>La definizione di &#8220;numero in ingresso troppo grande&#8221; è cambiata. Questo test invocava <code>to_roman()</code> con <code>4000</code> e si aspettava un errore; ora che i valori <code>4000-4999</code> sono validi, avete bisogno di alzare la soglia a <code>5000</code>.
 <li>Anche la definizione di &#8220;troppi caratteri ripetuti&#8221; è cambiata. Questo test invocava <code>from_roman()</code> con <code>'MMMM'</code> e si aspettava un errore; ora che <code>MMMM</code> è considerato un numero romano valido, avete bisogno di alzare il valore limite a <code>'MMMMM'</code>.
 <li>Il test di consistenza controlla ogni numero nell'intervallo, da <code>1</code> fino a <code>3999</code>. Dato che ora l'intervallo si è allargato, anche questo ciclo <code>for</code> deve essere aggiornato per arrivare fino a <code>4999</code>.
 </ol>
@@ -218,11 +218,11 @@ Ran 12 tests in 0.171s
 FAILED (errors=3)</samp></pre>
 <ol>
 <li>Il test per i valori noti a <code>from_roman()</code> fallirà non appena arriva a <code>'MMMM'</code>, perché <code>from_roman()</code> pensa ancora che questo sia un numero romano non valido.
-<li>Il test per i valori noti a <code>to_roman()</code> fallirà non appena arriva a <code>4000</code>, perché <code>to_roman()</code> pensa ancora che questo numero sia fuori dall'intervallo.
-<li>Anche il controllo di consistenza fallirà non appena arriva a <code>4000</code>, perché <code>to_roman()</code> pensa ancora che questo numero sia fuori dall'intervallo.
+<li>Il test per i valori noti a <code>to_roman()</code> fallirà non appena arriva a <code>4000</code>, perché <code>to_roman()</code> pensa ancora che questo numero sia fuori dall'intervallo di validità.
+<li>Anche il controllo di consistenza fallirà non appena arriva a <code>4000</code>, perché <code>to_roman()</code> pensa ancora che questo numero sia fuori dall'intervallo di validità.
 </ol>
 
-<p>Ora che i vostri test falliscono a causa dei nuovi requisiti, potete pensare a correggere il codice per riallinearlo con i test. (Una cosa che richiede un po' di tempo per essere assimilata quando cominciate a utilizzare i test di unità è che il codice sotto collaudo non è mai &#8220;avanti&#8221; rispetto ai test. Mentre è indietro, avete ancora del lavoro da fare, e appena ha recuperato i test potete smettere di programmare.)
+<p>Ora che i vostri test falliscono a causa dei nuovi requisiti, potete pensare a correggere il codice per riallinearlo con i test. (Una cosa che richiede un po' di tempo per essere assimilata quando cominciate a utilizzare i test di unità è che il codice sotto collaudo non è mai &#8220;avanti&#8221; rispetto ai test. Mentre è indietro avete ancora del lavoro da fare, e appena lo avete rimesso in pari con i test potete smettere di programmare.)
 
 <p class=d>[<a href=esempi/roman9.py>scarica <code>roman9.py</code></a>]
 <pre><code>
@@ -257,8 +257,8 @@ def from_roman(s):
     .
     .</code></pre>
 <ol>
-<li>Non avete bisogno di fare alcun cambiamento alla funzione <code>from_roman()</code>. L'unico cambiamento è a <var>roman_numeral_pattern</var>. Se guardate da vicino la prima sezione dell'espressione regolare, noterete che ho cambiato il massimo numero di caratteri <code>M</code> opzionali da <code>3</code> a <code>4</code>. Questa modifica renderà legali i numeri romani equivalenti fino a <code>4999</code> invece di <code>3999</code>. La funzione <code>from_roman()</code> è in effetti completamente generica; controlla semplicemente i caratteri ripetuti nei numeri romani e li somma, senza preoccuparsi di quante volte si ripetano. L'unica ragione per cui non gestiva <code>'MMMM'</code> prima era che l'avevate esplicitamente fermata utilizzando la corrispondenza con il pattern dell'espressione regolare.
-<li>La funzione <code>to_roman()</code> ha bisogno solo di un piccolo cambiamento nel controllo sull'intervallo. Laddove controllavate che fosse <code>0 &lt; n &lt; 4000</code>, ora controllate che sia <code>0 &lt; n &lt; 5000</code>. Anche il messaggio di errore che sollevate tramite <code>raise</code> va modificato per riflettere il nuovo intervallo accettabile (<code>1..4999</code> invece di <code>1..3999</code>). Non avete bisogno di fare alcun cambiamento al resto della funzione; gestisce già i nuovi casi. (Aggiunge allegramente <code>'M'</code> per ogni migliaia che trova; ricevuto in ingresso <code>4000</code>, restituirà in uscita <code>'MMMM'</code>. L'unica ragione per cui non lo faceva prima è che l'avevate esplicitamente fermata tramite il controllo sull'intervallo.)
+<li>Non avete bisogno di fare alcun cambiamento alla funzione <code>from_roman()</code>. L'unico cambiamento è a <var>roman_numeral_pattern</var>. Se guardate da vicino la prima sezione dell'espressione regolare, noterete che ho cambiato il massimo numero di caratteri <code>M</code> opzionali da <code>3</code> a <code>4</code>. Questa modifica renderà legali i numeri romani equivalenti fino a <code>4999</code> invece di <code>3999</code>. La funzione <code>from_roman()</code> è in effetti completamente generica; controlla semplicemente i caratteri ripetuti nei numeri romani e li somma, senza preoccuparsi di quante volte si ripetano. In precedenza, la funzione non poteva gestire <code>'MMMM'</code> solo perché l'avevate esplicitamente fermata utilizzando la corrispondenza con il pattern dell'espressione regolare.
+<li>La funzione <code>to_roman()</code> ha bisogno solo di un piccolo cambiamento nel controllo sull'intervallo. Laddove controllavate che fosse <code>0 &lt; n &lt; 4000</code>, ora controllate che sia <code>0 &lt; n &lt; 5000</code>. Anche il messaggio di errore che sollevate tramite <code>raise</code> va modificato per riflettere il nuovo intervallo accettabile (<code>1..4999</code> invece di <code>1..3999</code>). Non avete bisogno di fare alcun cambiamento al resto della funzione; gestisce già i nuovi casi. (Aggiunge allegramente <code>'M'</code> per ogni migliaia che trova; ricevuto in ingresso <code>4000</code>, restituirà in uscita <code>'MMMM'</code>. In precedenza, la funzione non poteva farlo solo perché l'avevate esplicitamente fermata tramite il controllo sull'intervallo.)
 </ol>
 
 <p>Potreste non essere convinti che questi due piccoli cambiamenti siano tutto ciò di cui avete bisogno. Ehi, non siete obbligati a fidarvi della mia parola; controllate voi stessi.
@@ -290,13 +290,13 @@ Ran 12 tests in 0.203s
 
 <h2 id=refactoring>Refactoring</h2>
 
-<p>La cosa migliore di un collaudo di unità completo non è la sensazione che provate quando tutti i vostri test hanno finalmente successo, e nemmeno la sensazione che provate quando qualcun altro vi accusa di aver rotto il suo codice e voi potete effettivamente <em>dimostrare</em> che non lo avete fatto. La cosa migliore dei test di unità è che vi danno la libertà di applicare il refactoring senza pietà.
+<p>La cosa migliore di un collaudo di unità completo non è la sensazione che provate quando tutti i vostri test hanno finalmente successo, e nemmeno la sensazione che provate quando qualcun altro vi accusa di aver guastato il suo codice e voi potete effettivamente <em>dimostrare</em> che non lo avete fatto. La cosa migliore dei test di unità è che vi danno la libertà di applicare il refactoring sistematicamente.
 
-<p>Il refactoring è il processo di prendere codice funzionante e farlo funzionare meglio. Solitamente, &#8220;meglio&#8221; significa &#8220;più velocemente&#8221;, ma può voler anche dire &#8220;usando meno memoria&#8221;, oppure &#8220;usando meno spazio su disco&#8221;, o semplicemente &#8220;in maniera più elegante&#8221;. Qualsiasi cosa voglia dire per voi, per il vostro progetto, nel vostro ambiente, il refactoring è importante per la salute a lungo termine di qualsiasi programma.
+<p>Il refactoring è il procedimento tramite il quale si modifica codice già funzionante allo scopo di farlo funzionare meglio. Di solito, &#8220;meglio&#8221; significa &#8220;più velocemente&#8221;, ma può anche voler dire &#8220;usando meno memoria&#8221;, oppure &#8220;usando meno spazio su disco&#8221;, o semplicemente &#8220;in maniera più elegante&#8221;. Qualsiasi cosa voglia dire per voi, per il vostro progetto, nel vostro ambiente, il refactoring è importante per la salute a lungo termine di qualsiasi programma.
 
-<p>Nel nostro caso, &#8220;meglio&#8221; significa sia &#8220;più velocemente&#8221; che &#8220;in maniera più facile da mantenere.&#8221; Nello specifico, la funzione <code>from_roman()</code> è lenta e più complessa di quanto vorrei, a causa di quella grossa e disgustosa espressione regolare che usate per validare i numeri romani. Ora, potreste pensare, "Certo, l'espressione regolare è grande e intricata, ma in quale altro modo si suppone che io controlli che una stringa arbitraria sia un numero romano valido?"
+<p>Nel nostro caso, &#8220;meglio&#8221; significa sia &#8220;più velocemente&#8221; che &#8220;in maniera più facile da mantenere.&#8221; Nello specifico, la funzione <code>from_roman()</code> è lenta e più complessa di quanto vorrei, a causa di quella grossa e disgustosa espressione regolare che usate per validare i numeri romani. Ora, potreste pensare, "Certo, l'espressione regolare è lunga e intricata, ma in quale altro modo si suppone che io controlli che una stringa arbitraria sia un numero romano valido?"
 
-<p>Risposta: ce ne sono solo 5000; perché non costruite semplicemente una tabella di ricerca? Questa idea diventa ancora migliore nel momento in cui realizzate che <em>non avete per niente bisogno di usare un'espressione regolare</em>. Mentre costruite la tabella di ricerca per convertire i numeri interi in numeri romani, potete costruire la tabella di ricerca inversa per convertire i numeri romani in interi. Nel momento in cui avete bisogno di controllare se una stringa arbitraria è un numero romano valido, avrete già raccolto tutti i numeri romani validi. La &#8220;verifica&#8221; si riduce a un singolo accesso a un dizionario.
+<p>Risposta: di numeri romani validi ce ne sono solo 5000; perché non costruite semplicemente una tabella di ricerca? Questa idea diventa ancora migliore nel momento in cui realizzate che <em>non avete per niente bisogno di usare un'espressione regolare</em>. Mentre costruite la tabella di ricerca per convertire i numeri interi in numeri romani, potete costruire la tabella di ricerca inversa per convertire i numeri romani in interi. Nel momento in cui avete bisogno di controllare se una stringa arbitraria è un numero romano valido, avrete già raccolto tutti i numeri romani validi. La &#8220;verifica&#8221; si riduce a un singolo accesso a un dizionario.
 
 <p>E la cosa migliore di tutte è che avete già un insieme completo di test di unità. Potete cambiare metà del codice nel modulo, ma i test di unità rimarranno gli stessi. Questo significa che potete dimostrare &mdash; a voi stessi e agli altri &mdash; che il nuovo codice funziona tanto bene quanto quello originale.
 
@@ -367,7 +367,7 @@ build_lookup_tables()</code></pre>
 
 <p>Cosa fa la funzione <code>build_lookup_tables()</code>? Sono contento che lo abbiate chiesto.
 
-<pre><code><a>to_roman_table = [ None ]
+<pre><code>to_roman_table = [ None ]
 from_roman_table = {}
 .
 .
@@ -453,17 +453,17 @@ OK</samp></pre>
 
 <h2 id=summary>Riepilogo</h2>
 
-<p>Il collaudo di unità è un potente concetto che, se adeguatamente implementato, può sia ridurre i costi di mantenimento sia aumentare la flessibilità di ogni progetto a lungo termine. &Egrave; anche importante capire che il collaudo di unità non è una panacea, un Risolutore Magico di Problemi, o la cosiddetta pallottola d'argento. Scrivere buoni test di unità è difficile, e mantenerli aggiornati richiede disciplina (specialmente quando i committenti vi urlano dietro per farvi risolvere bug critici). I test di unità non sono il sostituto di altre forme di collaudo, compresi i test funzionali, i test di integrazione, e i test di accettazione per l'utente. Ma sono convenienti, e funzionano, e una volta che li avete visti funzionare vi chiederete come avete fatto a lavorare senza fino a quel momento. 
+<p>Il collaudo di unità è un potente concetto che, se adeguatamente implementato, può sia ridurre i costi di mantenimento sia aumentare la flessibilità di ogni progetto a lungo termine. &Egrave; anche importante capire che il collaudo di unità non è una panacea, un Risolutore Magico di Problemi, o la cosiddetta pallottola d'argento. Scrivere buoni test di unità è difficile, e mantenerli aggiornati richiede disciplina (specialmente quando i committenti vi urlano dietro per farvi correggere bug critici). I test di unità non sono il sostituto di altre forme di collaudo, compresi i test funzionali, i test di integrazione, e i test di accettazione per l'utente. Ma sono convenienti, e funzionano, e una volta che li avete visti funzionare vi chiederete come avete fatto a lavorare senza fino a quel momento. 
 
 <p>Questi pochi capitoli hanno coperto diversi argomenti, molti dei quali non erano nemmeno specifici per Python. Esistono framework per il collaudo di unità in molti linguaggi, e tutti vi richiedono di applicare una serie di pratiche basate sugli stessi concetti elementari:
 
 <ul>
-<li>Progettate test che siano specifici, automatizzati, e indipendenti
+<li>Progettate test che siano specifici, automatizzati e indipendenti
 <li>Scrivete i test <em>prima</em> del codice che devono collaudare
 <li>Scrivete test che utilizzino dati di ingresso accettabili e verifichino i risultati corretti
 <li>Scrivete test che utilizzino dati di ingresso non accettabili e controllino le corrette risposte di fallimento
 <li>Scrivete e aggiornate i test per riflettere nuovi requisiti
-<li>Applicate il refactoring senza pietà per migliorare prestazioni, scalabilità, leggibilità, manutenibilità, o qualsiasi altra -ilità che vi manca.
+<li>Applicate sistematicamente il refactoring per migliorare prestazioni, scalabilità, leggibilità, manutenibilità, o qualsiasi altra -ilità che vi manca.
 </ul>
 
 <p class=c>&copy; 2001&ndash;9 <a href=informazioni-sul-libro.html>Mark Pilgrim</a><br>
