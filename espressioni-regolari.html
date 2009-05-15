@@ -87,7 +87,7 @@ body{counter-reset:h1 4}
 <li>I numeri romani sono sempre scritti dal più alto al più basso e letti da sinistra a destra, così l'ordine dei caratteri ha molta importanza. <code>DC</code> è <code>600</code>; <code>CD</code> è un numero completamente differente (<code>400</code>, <code>100</code> meno di <code>500</code>). <code>CI</code> è <code>101</code>; <code>IC</code> non è nemmeno un numero romano valido (perché non potete sottrarre <code>1</code> direttamente da <code>100</code>; dovreste scriverlo come <code>XCIX</code>, per <code>10</code> meno di <code>100</code>, poi <code>1</code> meno di <code>10</code>).
 </ul>
 <h3 id=thousands>Controllare le migliaia</h3>
-<p>Cosa potremmo fare per verificare che una stringa arbitraria sia un numero romano valido? Prendiamo una cifra alla volta. Dato che i numeri roman sono sempre scritti dalla cifra più alta a quella più bassa, cominciamo con la più alta: le migliaia. Per i numeri da 1000 in su, le migliaia sono rappresentate da una serie di caratteri <code>M</code>.
+<p>Come potremmo fare per verificare che una stringa arbitraria sia un numero romano valido? Prendiamo una cifra alla volta. Dato che i numeri roman sono sempre scritti dalla cifra più alta a quella più bassa, cominciamo con la più alta: le migliaia. Per i numeri da 1000 in su, le migliaia sono rappresentate da una serie di caratteri <code>M</code>.
 <pre class=screen>
 <samp class=p>>>> </samp><kbd>import re</kbd>
 <a><samp class=p>>>> </samp><kbd>pattern = '^M?M?M?$'</kbd>        <span>&#x2460;</span></a>
