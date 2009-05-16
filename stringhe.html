@@ -42,7 +42,7 @@ Il tuo alfabeto termina dove il mio inizia! <span>&#x275E;</span><br>&mdash; Dr.
 
 <p>Considerate ora il tentativo di memorizzare molti frammenti di testo nello stesso posto, come nella stessa tabella di un database che contiene tutte le email che avete mai ricevuto. Avete ancora bisogno di archiviare la codifica di carattere insieme a ogni frammento di testo in modo da poterlo visualizzare correttamente. Pensate sia difficile? Provate a fare una ricerca nel vostro database di posta elettronica, il che significa effettuare al volo conversioni tra codifiche multiple. Non vi sembra divertente?
 
-<p>Ora considerate la possibilità di documenti scritti in più lingue, dove i caratteri presi da diverse lingue sono uno a fianco dell'altro nello stesso documento. (Suggerimento: i programmi che provavano a farlo tipicamente usavano codici di escape per passare da una &#8220;modalità&#8221; all'altra. Poof, eccovi in modalità russa koi8-r, quindi 241 rappresenta questo carattere; poof, ora siete in modalità Mac Greek, quindi 241 rappresenta un qualche altro carattere.) E naturalmente vorrete effettuare ricerche anche su <em>quei</em> documenti.
+<p>Ora considerate la possibilità di documenti scritti in più lingue, dove i caratteri presi da diverse lingue sono uno a fianco dell'altro nello stesso documento. (Suggerimento: i programmi che provavano a farlo tipicamente usavano codici di escape per passare da una &#8220;modalità&#8221; all'altra. Poof, eccovi in modalità russa koi8-r, quindi 241 rappresenta Я; poof, ora siete in modalità Mac Greek, quindi 241 rappresenta ώ.) E naturalmente vorrete effettuare ricerche anche su <em>quei</em> documenti.
 
 <p>E ora piangete pure, perché tutto quello che pensavate di sapere sulle stringhe è sbagliato, e il &#8220;testo semplice&#8221; non esiste.
 
@@ -62,7 +62,7 @@ Il tuo alfabeto termina dove il mio inizia! <span>&#x275E;</span><br>&mdash; Dr.
 
 <p>Per risolvere <em>questo</em> problema, le codifiche Unicode multi-byte definiscono un &#8220;Byte Order Mark,&#8221; uno speciale carattere non stampabile che potete includere all'inizio del vostro documento per indicare in quale ordine sono memorizzati i vostri byte. Per UTF-16, il Byte Order Mark è <code>U+FEFF</code>. Se ricevete un documento UTF-16 che comincia con i byte <code>FF FE</code>, sapete che l'ordine dei byte va in una certa direzione; se comincia con <code>FE FF</code>, sapete che l'ordine dei byte è quello inverso.
 
-<p>Tuttavia, UTF-16 non è esattamente l'ideale, specialmente se avete a che fare con un sacco di caratteri <abbr>ASCII</abbr>. Se ci pensate, persino una pagina web in cinese conterrà un sacco di caratteri <abbr>ASCII</abbr> &mdash; tutti gli elementi e gli attributi che circondano i caratteri stampabili cinesi. Essere in grado di accedere al carattere di posizione <var>N</var> in tempo O(1) è carino, ma rimane ancora l'irritante problema di quei caratteri del piano astrale, il che significa che non potete <em>garantire</em> che ogni carattere sia esattamente due byte, e quindi non potete <em>davvero</em> accedere al carattere di posizione <var>N</var> in tempo O(1) a meno che non manteniate un indice separato. E ragazzi, c'è sicuramente un sacco di testo <abbr>ASCII</abbr> nel mondo&hellip;
+<p>Tuttavia, UTF-16 non è esattamente l'ideale, specialmente se avete a che fare con un sacco di caratteri <abbr>ASCII</abbr>. Se ci pensate, persino una pagina web in cinese conterrà un sacco di caratteri <abbr>ASCII</abbr> &mdash; tutti gli elementi e gli attributi che circondano i caratteri stampabili cinesi. Essere in grado di accedere al carattere di posizione <var>N</var> in tempo costante è carino, ma rimane ancora l'irritante problema di quei caratteri del piano astrale, il che significa che non potete <em>garantire</em> che ogni carattere sia esattamente due byte, e quindi non potete <em>davvero</em> accedere al carattere di posizione <var>N</var> in tempo costante a meno che non manteniate un indice separato. E ragazzi, c'è sicuramente un sacco di testo <abbr>ASCII</abbr> nel mondo&hellip;
 
 <p>Altre persone hanno ponderato a lungo su questi problemi, e hanno trovato una soluzione:
 
@@ -70,7 +70,7 @@ Il tuo alfabeto termina dove il mio inizia! <span>&#x275E;</span><br>&mdash; Dr.
 
 <p>UTF-8 è un sistema di codifica Unicode a <em>lunghezza variabile</em>. Cioè, caratteri differenti occupano un numero differente di byte. Per i caratteri <abbr>ASCII</abbr> (A-Z, <i class=baa>&amp;</i>c.) UTF-8 usa solo un byte per carattere. In effetti, usa gli stessi identici byte; i primi 128 caratteri (0&ndash;127) in UTF-8 sono indistinguibili da quelli <abbr>ASCII</abbr>. I caratteri &#8220;Extended Latin&#8221; come &ntilde; e &ouml; finiscono per occupare due byte. (I byte non sono semplicemente dei &#8220;code point&#8221; Unicode come sarebbero in UTF-16; i bit vengono pesantemente manipolati in qualche modo.) Caratteri cinesi come &#x4E2D; finiscono per occupare tre byte. I caratteri raramente usati del &#8220;piano astrale&#8221; occupano quattro byte.
 
-<p>Svantaggi: dato che ogni carattere può occupare un numero differente di byte, accedere al carattere di posizione <var>N</var> è una operazione da O(N). In più, i bit devono essere manipolati per codificare i caratteri in byte e decodificare i byte in caratteri.
+<p>Svantaggi: dato che ogni carattere può occupare un numero differente di byte, accedere al carattere di posizione <var>N</var> è una operazione da O(N) &mdash; cioè, più lunga è la stringa, più tempo ci vuole per trovare uno specifico carattere. In più, i bit devono essere manipolati per codificare i caratteri in byte e decodificare i byte in caratteri.
 
 <p>Vantaggi: la codifica dei caratteri <abbr>ASCII</abbr> comuni è super-efficiente. Per i caratteri Extended Latin non è peggiore rispetto alla codifica UTF-16, e per i caratteri cinesi è migliore rispetto a UTF-32. In più (e dovete fidarvi di me su questo, perché non vi mostrerò i calcoli), grazie alla natura esatta delle manipolazioni sui bit, non ci sono problemi di ordinamento dei byte. Un documento codificato in UTF-8 usa esattamente lo stesso flusso di byte su qualsiasi computer.
 
@@ -422,7 +422,7 @@ FIXME: move this to the intro of the upcoming files chapter?
 <li><a href="http://www.python.org/dev/peps/pep-3101/"><abbr>PEP</abbr> 3101: Advanced String Formatting</a>
 </ul>
 
-<p class=nav><a rel=prev href=tipi-di-dato-nativi.html title="indietro a &#8220;Tipi di dato nativi&#8221;"><span>&#x261C;</a> <a rel=next href=espressioni-regolari.html title="avanti a &#8220;Espressioni regolari&#8221;"><span>&#x261E;</span></a>
+<p class=nav><a rel=prev href=tipi-di-dato-nativi.html title="indietro a &#8220;Tipi di dato nativi&#8221;"><span>&#x261C;</span></a> <a rel=next href=espressioni-regolari.html title="avanti a &#8220;Espressioni regolari&#8221;"><span>&#x261E;</span></a>
 
 <p class=c>&copy; 2001&ndash;9 <a href=informazioni-sul-libro.html>Mark Pilgrim</a><br>
 &copy; 2009 <a href=informazioni-sulla-traduzione.html>Giulio Piancastelli</a> per la traduzione italiana

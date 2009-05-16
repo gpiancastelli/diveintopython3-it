@@ -97,11 +97,11 @@ class Fib:
 <a><samp class=p>>>> </samp><kbd>fib.__class__</kbd>              <span>&#x2462;</span></a>
 <samp>&lt;class 'fibonacci2.Fib'></samp>
 <a><samp class=p>>>> </samp><kbd>fib.__doc__</kbd>                <span>&#x2463;</span></a>
-<samp>'iteratore che produce i numeri della sequenza di Fibonacci'</samp></code></pre>
+<samp>'iteratore che produce i numeri della sequenza di Fibonacci'</samp></pre>
 <ol>
 <li>State creando un'istanza della classe <code>Fib</code> (definita nel modulo <code>fibonacci2</code>) e assegnando l'istanza appena creata alla variabile <var>fib</var>. State passando un parametro, <code>100</code>, che finirà per diventare l'argomento <var>max</var> del metodo <code>__init__()</code> in <code>Fib</code>.
 <li><var>fib</var> è ora un'istanza della classe <code>Fib</code>.
-<li>Ogni istanza di una classe ha una proprietà built-in, <code>__class__</code>, che è la classe dell'oggetto. I programmatori Java potrebbero avere familiarità con la classe <code>Class</code>, che contiene metodi come <code>getName()</code> e <code>getSuperclass()</code> per ottenere metainformazioni su un oggetto. In Python, questo tipo di metadati si può ottenere direttamente dall'oggetto stesso attraverso proprietà come <code>__class__</code>, <code>__name__</code>, e <code>__bases__</code>.
+<li>Ogni istanza di una classe ha una proprietà built-in, <code>__class__</code>, che è la classe dell'oggetto. I programmatori Java potrebbero avere familiarità con la classe <code>Class</code>, che contiene metodi come <code>getName()</code> e <code>getSuperclass()</code> per ottenere metainformazioni su un oggetto. In Python, questo tipo di metadati si può ottenere attraverso proprietà, ma l'idea è la stessa.
 <li>Potete accedere alla <code>docstring</code> dell'istanza esattamente come con una funzione o un modulo. Tutte le istanze di una classe condividono la stessa <code>docstring</code>.
 </ol>
 
@@ -199,10 +199,10 @@ class Fib:
 
 <p class=d>[<a href=esempi/plural6.py>scarica <code>plural6.py</code></a>]
 <pre><code>class LazyRules:
-    rules_f = 'plural6-rules.txt'
+    rules_filename = 'plural6-rules.txt'
     
     def __init__(self):
-        self.pattern_file = open(self.rules_f)
+        self.pattern_file = open(self.rules_filename)
         self.cache = []
 
     def __iter__(self):
@@ -235,32 +235,32 @@ rules = LazyRules()</code></pre>
 <p>Analizziamo la classe un pezzo alla volta.
 
 <pre><code>class LazyRules:
-    rules_f = 'plural6-rules.txt'
-<a>    def __init__(self):                         <span>&#x2460;</span></a>
-<a>        self.pattern_file = open(self.rules_f)  <span>&#x2461;</span></a>
-<a>        self.cache = []                         <span>&#x2462;</span></a></code></pre>
+    rules_filename = 'plural6-rules.txt'
+<a>    def __init__(self):                                <span>&#x2460;</span></a>
+<a>        self.pattern_file = open(self.rules_filename)  <span>&#x2461;</span></a>
+<a>        self.cache = []                                <span>&#x2462;</span></a></code></pre>
 <ol>
 <li>Il metodo <code>__init__()</code> viene chiamato una volta sola, quando create un'istanza della classe e l'assegnate a <var>rules</var>.
 <li>Dato che viene chiamato una volta sola, questo metodo è il posto perfetto dove aprire il file dei pattern. Lo leggerete più tardi; non ha senso fare più di quello che dovete assolutamente fare fino a quando non diviene assolutamente necessario farlo!
 <li>In più, questo metodo è un buon posto anche per inizializzare la cache, che userete più tardi durante la lettura dei pattern dal file.
 </ol>
 
-<p>Prima di continuare, diamo un'occhiata più da vicino a <var>rules_f</var>. Non è definita all'interno del metodo <code>__init__()</code>. In effetti, non è definita all'interno di <em>nessun</em> metodo. &Egrave; definita a livello della classe. &Egrave; una <i>variabile di classe</i>, e sebbene possiate accedervi esattamente come una variabile di istanza (<var>self.rules_f</var>), è condivisa da tutte le istanze della classe <code>LazyRules</code>.
+<p>Prima di continuare, diamo un'occhiata più da vicino a <var>rules_filename</var>. Non è definita all'interno del metodo <code>__init__()</code>. In effetti, non è definita all'interno di <em>nessun</em> metodo. &Egrave; definita a livello della classe. &Egrave; una <i>variabile di classe</i>, e sebbene possiate accedervi esattamente come una variabile di istanza (<var>self.rules_filename</var>), è condivisa da tutte le istanze della classe <code>LazyRules</code>.
 
 <pre class=screen>
 <samp class=p>>>> </samp><kbd>import plural6</kbd>
 <samp class=p>>>> </samp><kbd>r1 = plural6.LazyRules()</kbd>
 <samp class=p>>>> </samp><kbd>r2 = plural6.LazyRules()</kbd>
-<samp class=p>>>> </samp><kbd>r1.rules_f</kbd>                               <span>&#x2460;</span>
+<samp class=p>>>> </samp><kbd>r1.rules_filename</kbd>                               <span>&#x2460;</span>
 <samp>'plural6-rules.txt'</samp>
-<samp class=p>>>> </samp><kbd>r2.rules_f</kbd>
+<samp class=p>>>> </samp><kbd>r2.rules_filename</kbd>
 <samp>'plural6-rules.txt'</samp>
-<samp class=p>>>> </samp><kbd>r1.__class__.rules_f</kbd>                     <span>&#x2461;</span>
+<samp class=p>>>> </samp><kbd>r1.__class__.rules_filename</kbd>                     <span>&#x2461;</span>
 <samp>'plural6-rules.txt'</samp>
-<samp class=p>>>> </samp><kbd>r1.__class__.rules_f = 'papayawhip.txt'</kbd>  <span>&#x2462;</span>
-<samp class=p>>>> </samp><kbd>r1.rules_f</kbd>
+<samp class=p>>>> </samp><kbd>r1.__class__.rules_filename = 'papayawhip.txt'</kbd>  <span>&#x2462;</span>
+<samp class=p>>>> </samp><kbd>r1.rules_filename</kbd>
 <samp>'papayawhip.txt'</samp>
-<samp class=p>>>> </samp><kbd>r2.rules_f</kbd>                               <span>&#x2463;</span>
+<samp class=p>>>> </samp><kbd>r2.rules_filename</kbd>                               <span>&#x2463;</span>
 <samp>'papayawhip.txt'</samp></pre>
 <ol>
 <li class=fixme>FIXME
@@ -358,7 +358,7 @@ rules = LazyRules()</code></pre>
 <li><a href=http://www.python.org/dev/peps/pep-0255/>PEP 255: Simple Generators</a>
 </ul>
 
-<p class=nav><a rel=prev href=espressioni-regolari.html title="indietro a &#8220;Espressioni regolari&#8221;"><span>&#x261C;</a> <a rel=next href=uso-avanzato-degli-iteratori.html title="avanti a &#8220;Uso avanzato degli iteratori&#8221;"><span>&#x261E;</span></a>
+<p class=nav><a rel=prev href=generatori.html title="indietro a &#8220;Generatori&#8221;"><span>&#x261C;</span></a> <a rel=next href=uso-avanzato-degli-iteratori.html title="avanti a &#8220;Uso avanzato degli iteratori&#8221;"><span>&#x261E;</span></a>
 
 <p class=c>&copy; 2001&ndash;9 <a href=informazioni-sul-libro.html>Mark Pilgrim</a><br>
 &copy; 2009 <a href=informazioni-sulla-traduzione.html>Giulio Piancastelli</a> per la traduzione italiana
