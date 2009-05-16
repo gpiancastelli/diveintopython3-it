@@ -158,8 +158,8 @@ td pre{padding:0;border:0}
 <li>La forma più semplice.
 <li>L'operatore <code>or</code> ha la precedenza sull'operatore <code>in</code>, quindi in questo caso non c'è alcun bisogno di usare le parentesi.
 <li>D'altra parte, in questo caso <em>avete</em> bisogno di usare le parentesi, per lo stesso motivo &mdash; <code>or</code> ha la precedenza su <code>in</code>.
-<li>L'operatore <code>in</code> ha la precedenza sull'operatore <code>+</code>, quindi anche questa forma necessita di parentesi.
-<li>Ancora con le parentesi, per la stessa ragione.
+<li>L'operatore <code>in</code> ha la precedenza sull'operatore <code>+</code>, quindi questa forma non avrebbe tecnicamente bisogno delle parentesi, ma <code>2to3</code> le aggiunge comunque.
+<li>Questa forma ha certamente bisogno delle parentesi, dato che l'operatore <code>in</code> ha la precedenza sull'operatore <code>+</code>.
 </ol>
 <h2 id=dict>Metodi dei dizionari che restituiscono liste</h2>
 <p>In Python 2, molti metodi dei dizionari restituivano liste. I metodi più frequentemente usati erano <code>keys()</code>, <code>items()</code>, e <code>values()</code>. In Python 3, tutti questi metodi restituiscono viste dinamiche. In alcuni contesti, questo non è un problema. Se il valore di ritorno del metodo è passato immediatamente a un'altra funzione che itera attraverso l'intera sequenza, non fa alcuna differenza che il tipo reale sia una lista o una vista. In altri contesti, ha invece molta importanza. Se vi stavate aspettando una lista completa con elementi accessibili individualmente, il vostro codice si bloccherà, perché le viste non supportano l'accesso basato su indici.
@@ -806,7 +806,7 @@ except:
 <td><code>aClassInstance.aClassMethod.im_class</code>
 <td><code>aClassInstance.aClassMethod.self.__class__</code>
 </table>
-<h2 id=nonzero>La proprietà speciale <code>__nonzero__</code> delle classi</h2>
+<h2 id=nonzero>Il metodo speciale <code>__nonzero__</code></h2>
 <p>In Python 2, potevate costruire una vostra classe che potesse essere usata in un contesto booleano. Per esempio, potevate istanziare la classe e poi usare l'istanza in una istruzione <code>if</code>. Per fare questo, definivate un metodo speciale <code>__nonzero__()</code> che restituiva <code>True</code> o <code>False</code>, e veniva chiamato ogni volta che l'istanza veniva usata in un contesto booleano. In Python 3 potete ancora farlo, ma il nome del metodo è stato cambiato in <code>__bool__()</code>.
 <table>
 <tr><th>Note
@@ -921,6 +921,9 @@ except:
 <td><code>types.NoneType</code>
 <td><code>type(None)</code>
 </table>
+<blockquote class=note>
+<p><span>&#x261E;</span><code>types.StringType</code> corrisponde a <code>bytes</code> invece che a <code>str</code> perché una &#8220;stringa&#8221; (non una stringa Unicode, semplicemente una stringa normale) in Python 2 è in realtà solo una sequenza di byte in una particolare codifica di carattere.
+</blockquote>
 <h2 id=isinstance>La funzione globale <code>isinstance()</code> (3.1+)</h2>
 <p>La funzione <code>isinstance()</code> controlla se un oggetto è una istanza di una particolare classe o tipo. In Python 2, potevate passare una tupla di tipi, e <code>isinstance()</code> avrebbe restituito <code>True</code> se l'oggetto fosse stato di uno di quei tipi. In Python 3, potete ancora farlo, ma passare lo stesso tipo due volte è deprecato.
 <table>

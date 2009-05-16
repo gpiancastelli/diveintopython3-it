@@ -277,7 +277,7 @@ body{counter-reset:h1 2}
 <ol>
 <li>Il metodo <code>extend()</code> prende un singolo argomento, che è sempre una lista, e aggiunge ogni elemento di quella lista ad <var>a_list</var>.
 <li>Se cominciate con una lista di tre elementi e la estendete con una lista di altri tre elementi, terminerete con una lista di sei elementi.
-<li>D'altra parte, il metodo <code>append()</code> prende un qualsiasi numero di argomenti, ognuno dei quali può avere un tipo di dato qualsiasi. Qui, state chiamando il metodo <code>append()</code> con un singolo argomento, una lista di tre elementi.
+<li>D'altra parte, il metodo <code>append()</code> prende un singolo argomento, che può avere un tipo di dato qualsiasi. Qui, state chiamando il metodo <code>append()</code> con una lista di tre elementi.
 <li>Se cominciate con una lista di sei elementi e vi accodate una lista, terminerete con... una lista di sette elementi. Perché sette? Perché l'ultimo elemento (che avete appena aggiunto) <em>è anch'esso una lista</em>. Le liste possono contenere ogni tipo di dato, comprese altre liste. Questo potrebbe essere quello che volete, oppure no. Ma è quello che avete chiesto, ed è quello che avete ottenuto.
 </ol>
 <h3 id=searchinglists>Cercare valori in una lista</h3>
@@ -315,10 +315,13 @@ ValueError: list.index(x): x not in list</samp></pre>
 <a><samp class=p>>>> </samp><kbd>is_it_true([])</kbd>             <span>&#x2461;</span></a>
 <samp>no, è falso</samp>
 <a><samp class=p>>>> </samp><kbd>is_it_true(['a'])</kbd>          <span>&#x2462;</span></a>
+<samp>sì, è vero</samp>
+<a><samp class=p>>>> </samp><kbd>is_it_true([False])</kbd>        <span>&#x2463;</span></a>
 <samp>sì, è vero</samp></pre>
 <ol>
 <li>In un contesto logico, una lista vuota è falsa.
 <li>Qualsiasi lista con almeno un elemento è vera.
+<li>Qualsiasi lista con almeno un elemento è vera. Il valore degli elementi è irrilevante.
 </ol>
 <!--
 <h2 id=sets>Sets</h2>
@@ -376,8 +379,8 @@ KeyError: 'db.diveintopython3.org'</samp></pre>
 <h3 id=mixed-value-dictionaries>Dizionari a valori misti</h3>
 <p>I dizionari non funzionano solo con le stringhe. I valori in un dizionario possono appartenere a qualsiasi tipo di dato, compresi interi, booleani, oggetti arbitrari, e persino altri dizionari. E all'interno di un singolo dizionario, i valori non devono essere tutti dello stesso tipo; potete mescolarli a piacimento. Le chiavi di un dizionario hanno maggiori restrizioni, ma possono essere stringhe, interi, e di pochi altri tipi. Potete mescolare anche i tipi di dato delle chiavi all'interno di un singolo dizionario.
 <p>In effetti, avete già visto un dizionario con chiavi e valori che non sono stringhe nel <a href=il-vostro-primo-programma-python.html#divingin>vostro primo programma Python</a>.
-<pre><code>SUFFIXES = {1000: ('KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'),
-            1024: ('KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB')}</code></pre>
+<pre><code>SUFFIXES = {1000: ['KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
+            1024: ['KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB']}</code></pre>
 <p>Analizziamo questo oggetto nella shell interattiva.
 <pre class=screen>
 <samp class=p>>>> </samp><kbd>SUFFIXES = {1000: ['KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],</kbd>
@@ -455,7 +458,7 @@ KeyError: 'db.diveintopython3.org'</samp></pre>
 <li><a href="http://www.python.org/dev/peps/pep-0237/"><abbr>PEP</abbr> 237: Unifying Long Integers and Integers</a>
 <li><a href="http://www.python.org/dev/peps/pep-0238/"><abbr>PEP</abbr> 238: Changing the Division Operator</a>
 </ul>
-<p class=nav><a rel=prev href=il-vostro-primo-programma-python.html title="indietro a &#8220;Il vostro primo programma Python&#8221;"><span>&#x261C;</a> <a rel=next href=stringhe.html title="avanti a &#8220;Stringhe&#8221;"><span>&#x261E;</span></a>
+<p class=nav><a rel=prev href=il-vostro-primo-programma-python.html title="indietro a &#8220;Il vostro primo programma Python&#8221;"><span>&#x261C;</span></a> <a rel=next href=stringhe.html title="avanti a &#8220;Stringhe&#8221;"><span>&#x261E;</span></a>
 <p class=c>&copy; 2001&ndash;9 <a href=informazioni-sul-libro.html>Mark Pilgrim</a><br>
 &copy; 2009 <a href=informazioni-sulla-traduzione.html>Giulio Piancastelli</a> per la traduzione italiana
 <script src=jquery.js></script>

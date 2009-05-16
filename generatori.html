@@ -146,11 +146,11 @@ def match_default(noun):
 def apply_default(noun):
     return noun + 's'
 
-<a>rules = ((match_sxz, apply_sxz),               <span>&#x2462;</span></a>
-         (match_h, apply_h),
-         (match_y, apply_y),
-         (match_default, apply_default)
-         )
+<a>rules = [[match_sxz, apply_sxz],               <span>&#x2462;</span></a>
+         [match_h, apply_h],
+         [match_y, apply_y],
+         [match_default, apply_default]
+         ]
 
 def plural(noun):           
 <a>    for matches_rule, apply_rule in rules:       <span>&#x2463;</span></a>
@@ -205,11 +205,11 @@ def build_match_and_apply_functions(pattern, search, replace):
         return re.search(pattern, word)
 <a>    def apply_rule(word):                                       <span>&#x2461;</span></a>
         return re.sub(search, replace, word)
-<a>    return (matches_rule, apply_rule)                           <span>&#x2462;</span></a></code></pre>
+<a>    return [matches_rule, apply_rule]                           <span>&#x2462;</span></a></code></pre>
 <ol>
 <li><code>build_match_and_apply_functions()</code> è una funzione che costruisce dinamicamente altre funzioni. Accetta in ingresso <var>pattern</var>, <var>search</var> e <var>replace</var>, poi definisce una funzione <code>matches_rule()</code> che chiama <code>re.search()</code> con il <var>pattern</var> che è stato passato alla funzione <code>build_match_and_apply_functions()</code>, e con la parola <var>word</var> che è stata passata alla funzione <code>matches_rule()</code> che state costruendo. Whoa.
 <li>La funzione di sostituzione viene costruita allo stesso modo. Essa accetta un parametro, e chiama <code>re.sub()</code> utilizzando sia i parametri <var>search</var> e <var>replace</var> che sono stati passati alla funzione <code>build_match_and_apply_functions()</code>, sia la parola <var>word</var> che è stata passata alla funzione <code>apply_rule()</code> stessa. Questa tecnica di usare i valori di parametri esterni all'interno di una funzione dinamica è chiamata <em>chiusura</em>. State essenzialmente definendo delle costanti nell'ambito della funzione di sostituzione che state costruendo; quest'ultima accetta un parametro (<var>word</var>), ma poi agisce su quello più altri due valori (<var>search</var> e <var>replace</var>) che sono stati impostati nel momento in cui la funzione di sostituzione è stata definita.
-<li>Infine, la funzione <code>build_match_and_apply_functions()</code> restituisce una tupla di due valori: le due funzioni che avete appena creato. Le costanti definite in quelle funzioni (<var>pattern</var> nell'ambito di <var>match_rule</var>, e <var>search</var> e <var>replace</var> nell'ambito di <var>apply_rule</var>) mantengono il loro valore in quelle funzioni persino dopo che <code>build_match_and_apply_functions()</code> le ha restituite. Questo è estremamente figo.
+<li>Infine, la funzione <code>build_match_and_apply_functions()</code> restituisce una lista di due valori: le due funzioni che avete appena creato. Le costanti definite in quelle funzioni (<var>pattern</var> nell'ambito di <var>match_rule</var>, e <var>search</var> e <var>replace</var> nell'ambito di <var>apply_rule</var>) mantengono il loro valore in quelle funzioni persino dopo che <code>build_match_and_apply_functions()</code> le ha restituite. Questo è estremamente figo.
 </ol>
 
 <p>Se questo risulta incredibilmente confuso (e dovrebbe, è roba strana), potrebbe diventare più chiaro nel momento in cui vedete come si usa.
@@ -226,7 +226,7 @@ def build_match_and_apply_functions(pattern, search, replace):
          for (pattern, search, replace) in patterns]</code></pre>
 <ol>
 <li>Le nostre regole di pluralizzazione sono ora definite come una lista di liste di stringhe (non di funzioni). La prima stringa in ogni gruppo è l'espressione regolare che usereste in <code>re.search()</code> per vedere se c'è una corrispondenza con questa regola. La seconda e la terza stringa di ogni gruppo sono le espressioni di ricerca e sostituzione che usereste in <code>re.sub()</code> per applicare effettivamente la regola e trasformare un sostantivo nel suo plurale.
-<li>Questa riga è magia. Prende la lista di stringhe in <var>patterns</var> e la trasforma in una lista di funzioni. Come? Tracciando una corrispondenza tra le stringhe e il valore di ritorno della funzione <code>build_match_and_apply_functions()</code>, che accetta appunto tre stringhe come parametri di ingresso e restituisce proprio una tupla di due funzioni in uscita. Questo significa che <var>rules</var> finisce per essere esattamente ciò che era nell'esempio precedente: una lista di tuple, dove ogni tupla è una coppia di funzioni, dove la prima funzione è la funzione di ricerca che chiama <code>re.search()</code> e la seconda funzione è la funzione di sostituzione che chiama <code>re.sub()</code>.
+<li>Questa riga è magia. Prende la lista di stringhe in <var>patterns</var> e la trasforma in una lista di funzioni. Come? Tracciando una corrispondenza tra le stringhe e il valore di ritorno della funzione <code>build_match_and_apply_functions()</code>, che accetta appunto tre stringhe come parametri di ingresso e restituisce proprio una lista di due funzioni in uscita. Questo significa che <var>rules</var> finisce per essere esattamente ciò che era nell'esempio precedente: una lista di liste, dove ogni lista (interna) è una coppia di funzioni, dove la prima funzione è la funzione di ricerca che chiama <code>re.search()</code> e la seconda funzione è la funzione di sostituzione che chiama <code>re.sub()</code>.
 </ol>
 
 <p>Per completare questa versione del programma ecco il punto di entrata principale, la funzione <code>plural()</code>.
@@ -263,7 +263,7 @@ $                    $    s</code></pre>
         return re.search(pattern, word)
     def apply_rule(word):
         return re.sub(search, replace, word)
-    return (matches_rule, apply_rule)
+    return [matches_rule, apply_rule]
 
 rules = []
 <a>pattern_file = open('plural4-rules.txt')                        <span>&#x2461;</span></a>
@@ -278,7 +278,7 @@ finally:
 <li>La funzione <code>build_match_and_apply_functions()</code> non è cambiata. State ancora usando le chiusure per costruire dinamicamente due funzioni che usano variabili definite nella funzione esterna.
 <li>Aprite il file che contiene i pattern.
 <li>Leggete il file una riga alla volta, usando l'idioma <code>for line in &lt;fileobject&gt;</code>.
-<li>Ogni riga nel file in realtà contiene tre valori, separati da spazi bianchi (che siano tabulazioni o spazi non fa alcuna differenza). Per recuperarli, usate il metodo <code>split()</code> delle stringhe. Il primo argomento del metodo <code>split()</code> è <code>None</code>, che significa &#8220;spezza la stringa in corrispondenza di qualsiasi spazio bianco (che siano tabulazioni o spazi non fa alcuna differenza).&#8221; Il secondo argomento è <code>3</code>, che significa &#8220;spezza la stringa in corrispondenza di spazi bianchi per 3 volte, poi scartane il resto.&#8221; Una riga come <code>[sxz]$ $ es</code> verrà suddivisa nella tupla <code>('[sxz]$', '$', 'es')</code>, il che significa che <var>pattern</var> avrà il valore <code>'[sxz]$'</code>, <var>search</var> avrà il valore <code>'$'</code>, e <var>replace</var> avrà il valore <code>'es'</code>. C'è molta potenza in una piccola riga di codice.
+<li>Ogni riga nel file in realtà contiene tre valori, separati da spazi bianchi (che siano tabulazioni o spazi non fa alcuna differenza). Per recuperarli, usate il metodo <code>split()</code> delle stringhe. Il primo argomento del metodo <code>split()</code> è <code>None</code>, che significa &#8220;spezza la stringa in corrispondenza di qualsiasi spazio bianco (che siano tabulazioni o spazi non fa alcuna differenza).&#8221; Il secondo argomento è <code>3</code>, che significa &#8220;spezza la stringa in corrispondenza di spazi bianchi per 3 volte, poi scartane il resto.&#8221; Una riga come <code>[sxz]$ $ es</code> verrà suddivisa nella lista <code>['[sxz]$', '$', 'es']</code>, il che significa che <var>pattern</var> avrà il valore <code>'[sxz]$'</code>, <var>search</var> avrà il valore <code>'$'</code>, e <var>replace</var> avrà il valore <code>'es'</code>. C'è molta potenza in una piccola riga di codice.
 <li>Usate un blocco <code>try..finally</code> per assicurarvi di chiudere l'oggetto file.
 </ol>
 
@@ -286,7 +286,7 @@ finally:
 
 <h2 id=generators>Generatori</h2>
 
-<p>Ora siete pronti per imparare i generatori.
+<p>Non sarebbe magnifico avere una funzione <code>plural()</code> generica che analizza il file di regole? Ottieni le regole, controlla se c'è una corrispondenza, applica la trasformazione appropriata, vai alla regola successiva. Questo è tutto quello che la funzione <code>plural()</code> ha bisogno di fare, e questo è tutto quello che la funzione <code>plural()</code> dovrebbe fare.
 
 <p class=d>[<a href=esempi/plural5.py>scarica <code>plural5.py</code></a>]
 <pre><code>def rules():
@@ -392,7 +392,7 @@ def plural(noun):
 <li><a href=http://www.python.org/dev/peps/pep-0255/>PEP 255: Simple Generators</a>
 </ul>
 
-<p class=nav><a rel=prev href=espressioni-regolari.html title="indietro a &#8220;Espressioni regolari&#8221;"><span>&#x261C;</a> <a rel=next href=iteratori.html title="avanti a &#8220;Iteratori&#8221;"><span>&#x261E;</span></a>
+<p class=nav><a rel=prev href=espressioni-regolari.html title="indietro a &#8220;Espressioni regolari&#8221;"><span>&#x261C;</span></a> <a rel=next href=iteratori.html title="avanti a &#8220;Iteratori&#8221;"><span>&#x261E;</span></a>
 
 <p class=c>&copy; 2001&ndash;9 <a href=informazioni-sul-libro.html>Mark Pilgrim</a><br>
 &copy; 2009 <a href=informazioni-sulla-traduzione.html>Giulio Piancastelli</a> per la traduzione italiana
