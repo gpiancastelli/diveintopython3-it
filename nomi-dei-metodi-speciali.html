@@ -564,7 +564,7 @@ class FieldStorage:
 <td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__ior__><code>x.__ior__(<var>y</var>)</code></a>
 </table>
 
-<p>Nota: per la maggior parte, i metodi per le operazioni <span class=wtf>in-place</span> non sono richiesti. Se non definite il metodo per una particolare operazione <span class=wtf>in-place</span>, Python proverà a utilizzare gli altri metodi. Ad esempio, per eseguire l'espressione <code>x /= y</code>, Python proverà a:
+<p>Nota: per la maggior parte, i metodi per le operazioni <span class=wtf>in-place</span> non sono richiesti. Se non definite il metodo per una particolare operazione <span class=wtf>in-place</span>, Python proverà a utilizzare gli altri metodi. Per esempio, cercando di eseguire l'espressione <code>x /= y</code>, Python proverà a:
 
 <ol>
 <li>Invocare <code>x.__itruediv__(<var>y</var>)</code>. Se questo metodo è definito e restituisce un valore diverso da <code>NotImplemented</code>, abbiamo finito.
