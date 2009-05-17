@@ -39,7 +39,7 @@ E = 4</code></pre>
 
 <p>Il rompicapo alfametico più conosciuto è <code>SEND + MORE = MONEY</code>.
 
-<p>In questo capitolo, ci immergeremo in un incredibile programma Python originariamente scritto da Raymond Hettinger. Questo programma risolve rompicapi di alfametica <em>in sole 14 righe di codice</em>.
+<p>In questo capitolo, analizzeremo un incredibile programma Python originariamente scritto da Raymond Hettinger. Questo programma risolve rompicapi di alfametica <em>in sole 14 righe di codice</em>.
 
 <p class=d>[<a href=esempi/alphametics.py>scarica <code>alphametics.py</code></a>]
 <pre><code>import re
@@ -98,7 +98,7 @@ if __name__ == '__main__':
 
 <h2 id=unique-items>Trovare elementi unici in una sequenza</h2>
 
-<p>Le descrizioni di insieme rendono triviale trovare gli elementi unici di una sequenza. <span class=fixme>[FIXME-not sure if I&#8217;m going to cover set comprehensions in an earlier chapter; if not, this is certainly an abrupt and inadequate introduction to the topic.]</span>
+<p>Le descrizioni di insieme rendono banale trovare gli elementi unici di una sequenza. <span class=fixme>[FIXME-not sure if I&#8217;m going to cover set comprehensions in an earlier chapter; if not, this is certainly an abrupt and inadequate introduction to the topic.]</span>
 
 <pre class=screen>
 <samp class=p>>>> </samp><kbd>a_list = ['a', 'c', 'b', 'a', 'd', 'b']</kbd>
@@ -113,7 +113,7 @@ if __name__ == '__main__':
 <a><samp class=p>>>> </samp><kbd>{c for c in ''.join(words)}</kbd>              <span>&#x2463;</span></a>
 <samp>{'E', 'D', 'M', 'O', 'N', 'S', 'R', 'Y'}</samp></pre>
 <ol>
-<li>Data una lista contenente diverse stringhe, una descrizione di insieme con la funzione identità restituirà un insieme di stringhe uniche dalla lista. Questo ha senso se lo pensate come un ciclo <code>for</code>. Prendete il primo elemento della lista, mettetelo nell'insieme. Il secondo. Il terzo. Il quarto &mdash; aspettate, quello è già nell'insieme, quindi va elencato solo una volta. Il quinto. Il sesto &mdash; ancora, un duplicato, quindi va elencato solo una volta. Il risultato finale? Tutti gli elementi unici della lista originale, senza alcun duplicato. La lista originale non deve nemmeno essere ordinata prima.
+<li>Data una lista contenente diverse stringhe, una descrizione di insieme con la funzione identità restituirà un insieme di stringhe uniche dalla lista. Questa operazione ha senso se lo pensate come un ciclo <code>for</code>. Prendete il primo elemento della lista, mettetelo nell'insieme. Il secondo. Il terzo. Il quarto &mdash; aspettate, quello è già nell'insieme, quindi va elencato solo una volta. Il quinto. Il sesto &mdash; ancora, un duplicato, quindi va elencato solo una volta. Il risultato finale? Tutti gli elementi unici della lista originale, senza alcun duplicato. La lista originale non deve nemmeno essere ordinata prima.
 <li>La stessa tecnica funziona con le stringhe, dato che una stringa è solamente una sequenza di caratteri.
 <li>Data una lista di stringhe, <code>''.join(<var>a_list</var>)</code> le concatena tutte in un'unica stringa.
 <li>Quindi, data una lista di stringhe, questa descrizione di insieme restituisce tutti i caratteri unici su tutte le stringhe, senza alcun duplicato.
@@ -151,7 +151,7 @@ AssertionError</samp></pre>
 
 <p>Ma è leggermente più facile da leggere e scrivere.
 
-<p>Il risolutore di alfametica usa proprio questa istruzione di <code>assert</code> per <span class=wtf>bail out</span> se il rompicapo contiene più di dieci singole lettere. Dato che a ogni lettera va assegnata una singola cifra, e ci sono solo dieci cifre, un rompicapo con più di dieci singole lettere non è risolvibile.
+<p>Il risolutore di alfametica usa proprio questa istruzione di <code>assert</code> per interrompere la propria esecuzione nel caso il rompicapo contenga più di dieci singole lettere. Dato che a ogni lettera va assegnata una singola cifra, e ci sono solo dieci cifre, un rompicapo con più di dieci singole lettere non è risolvibile.
 
 <h2 id=generator-expressions>Espressioni generatore</h2>
 
@@ -185,9 +185,9 @@ gen = ord_map(unique_characters)</code></pre>
 
 <h2 id=permutations>Calcolare le permutazioni&hellip; in maniera ritardata!</h2>
 
-<p>Prima di tutto, che diavolo sono le permutazioni? Le permutazioni sono un concetto matematico. (Ci sono effettivamente diverse definizioni, a seconda di quale matematica state utilizzando. Qui sto parlando di <span class=wtf>combinatorics</span>, ma se questo non vi dice niente, non preoccupatevi. Come sempre, <a href="http://it.wikipedia.org/wiki/Permutazioni">Wikipedia è vostra amica</a>.)
+<p>Prima di tutto, cosa diavolo sono le permutazioni? Le permutazioni sono un concetto matematico. (Ci sono effettivamente diverse definizioni, a seconda di quale matematica state utilizzando. Qui sto parlando di <span class=wtf>combinatorics</span>, ma se questo non vi dice niente, non preoccupatevi. Come sempre, <a href="http://it.wikipedia.org/wiki/Permutazioni">Wikipedia è vostra amica</a>.)
 
-<p>L'idea è che prendete una lista di cose (potrebbero essere numeri, potrebbero essere lettere, potrebbero essere orsi danzanti) e trovate tutti i modi possibili per dividerla in liste più piccole. Tutte le liste più piccole hanno la stessa dimensione, che può essere tanto piccola quanto 1 e tanto grande quanto il numero totale degli elementi. Oh, e nessun oggetto può essere ripetuto. I matematici dicono cose come &#8220;troviamo le permutazioni di 3 elementi differenti presi 2 alla volta,&#8221; che significa che avete una sequenza di 3 elementi e volete trovare tutte le possibili coppie ordinate.
+<p>L'idea alla base delle permutazioni è quella di prendere una lista di cose (potrebbero essere numeri, potrebbero essere lettere, potrebbero essere orsi danzanti) e trovare tutti i modi possibili per dividerla in liste più piccole. Tutte le liste più piccole hanno la stessa dimensione, che può essere tanto piccola quanto 1 e tanto grande quanto il numero totale degli elementi. Oh, e nessun oggetto può essere ripetuto. I matematici dicono cose come &#8220;troviamo le permutazioni di 3 elementi differenti presi 2 alla volta,&#8221; che significa trovare tutte le possibili coppie ordinate a partire da una sequenza di 3 elementi.
 
 <pre class=screen>
 <a><samp class=p>>>> </samp><kbd>import itertools</kbd>                              <span>&#x2460;</span></a>
@@ -209,11 +209,11 @@ gen = ord_map(unique_characters)</code></pre>
   File "&lt;stdin>", line 1, in <module>
 StopIteration</samp></pre>
 <ol>
-<li>Il modulo <code>itertools</code> ha tutti i tipi di roba divertente in esso, inclusa una funzione <code>permutations()</code> che fa tutto il duro lavoro di trovare permutazioni.
-<li>La funzione <code>permutations()</code> prende una sequenza (qui una lista di tre interi) e un numero, che è il numero di elementi che volete in ogni gruppo più piccolo. La funzione restituisce un iteratore, che potete usare in un ciclo <code>for</code> o in qualsiasi altro luogo che itera. Qui <span class=wtf>step through</span> l'iteratore manualmente per mostrare tutti i valori.
+<li>Il modulo <code>itertools</code> contiene i più svariati tipi di roba divertente, compresa una funzione <code>permutations()</code> che si sobbarca tutto il duro lavoro della ricerca di permutazioni.
+<li>La funzione <code>permutations()</code> prende una sequenza (qui una lista di tre interi) e un numero, che è il numero di elementi che volete includere in ogni gruppo più piccolo. La funzione restituisce un iteratore, che potete usare in un ciclo <code>for</code> o in qualsiasi altro vecchio luogo che itera. Qui attraverserò l'iteratore manualmente per mostrare tutti i valori.
 <li>La prima permutazione degli elementi di <code>[1, 2, 3]</code> presi 2 alla volta è <code>(1, 2)</code>.
 <li>Notate che le permutazioni sono ordinate: <code>(2, 1)</code> è diversa da <code>(1, 2)</code>.
-<li>Ecco qua! Quelle sono tutte le permutazioni degli elementi di <code>[1, 2, 3]</code> presi 2 alla volta. Coppie come <code>(1, 1)</code> e <code>(2, 2)</code> non si mostrano mai, perché contengono ripetizioni e quindi non sono permutazioni valide. Quando non ci sono più permutazioni, l'iteratore solleva una eccezione di tipo <code>StopIteration</code>.
+<li>Ecco qua! Quelle che abbiamo visto sono tutte le permutazioni degli elementi di <code>[1, 2, 3]</code> presi 2 alla volta. Coppie come <code>(1, 1)</code> e <code>(2, 2)</code> non compaiono mai, perché contengono ripetizioni e quindi non sono permutazioni valide. Quando non ci sono più permutazioni, l'iteratore solleva una eccezione di tipo <code>StopIteration</code>.
 </ol>
 
 <p>La funzione <code>permutations()</code> non deve prendere una lista. Può prendere ogni sequenza &mdash; persino una stringa.
@@ -244,7 +244,7 @@ StopIteration</samp>
 <ol>
 <li>Una stringa è semplicemente una sequenza di caratteri. Allo scopo di trovare permutazioni, la stringa <code>'ABC'</code> è equivalente alla lista <code>['A', 'B', 'C']</code>.
 <li>La prima permutazione dei 3 elementi in <code>['A', 'B', 'C']</code>, presi 3 alla volta, è <code>('A', 'B', 'C')</code>. Esistono altre cinque permutazioni &mdash; gli stessi tre caratteri in ogni ordine possibile.
-<li>Dato che la funzione <code>permutations()</code> restituisce sempre un iteratore, un modo facile per effettuare il debug sulle permutazioni è passare l'iteratore alla funzione built-in <code>list()</code> per vedere immediatamente tutte le permutazioni.
+<li>Dato che la funzione <code>permutations()</code> restituisce sempre un iteratore, si può facilmente effettuare il debug sulle permutazioni passando l'iteratore alla funzione built-in <code>list()</code> per vedere immediatamente tutte le permutazioni.
 </ol>
 
 <h2 id=more-itertools>Altra roba divertente nel modulo <code>itertools</code></h2>
@@ -258,7 +258,7 @@ StopIteration</samp>
 <samp>[('A', 'B'), ('A', 'C'), ('B', 'C')]</samp></pre>
 <ol>
 <li>La funzione <code>itertools.product()</code> restituisce un iteratore contenente il prodotto cartesiano di due sequenze.
-<li>La funzione <code>itertools.combinations()</code> restituisce un iteratore contenente tutte le possibili combinazioni della sequenza data della lunghezza data. Questa è come la funzione <code>itertools.permutations()</code>, a parte che le combinazinoi non includono elementi che sono il duplicato di altri elementi in ordine differente. Quindi <code>itertools.permutations('ABC', 2)</code> restituirà sia <code>('A', 'B')</code> and <code>('B', 'A')</code> (among others), ma <code>itertools.combinations('ABC', 2)</code> non restituirà <code>('B', 'A')</code> perché è il duplicato di <code>('A', 'B')</code> in un ordine differente.
+<li>La funzione <code>itertools.combinations()</code> restituisce un iteratore contenente tutte le possibili combinazioni di lunghezza data a partire dalla sequenza data. Questa funzione si comporta come la funzione <code>itertools.permutations()</code>, a parte il fatto che le combinazioni non includono elementi che sono il duplicato di altri elementi in ordine differente. Quindi <code>itertools.permutations('ABC', 2)</code> restituirà sia <code>('A', 'B')</code> and <code>('B', 'A')</code> (tra le altre), ma <code>itertools.combinations('ABC', 2)</code> non restituirà <code>('B', 'A')</code> perché è il duplicato di <code>('A', 'B')</code> con un differente ordine degli elementi.
 </ol>
 
 <p class=d>[<a href=esempi/favorite-people.txt>scarica <code>favorite-people.txt</code></a>]
@@ -281,9 +281,9 @@ StopIteration</samp>
 'Chris', 'Ethan', 'Sarah', 'Lizzie', 'Wesley']</samp></pre>
 <ol>
 <li>Questo idioma restituisce una lista delle righe in un file di testo.
-<li>Sfortunatamente (per questo esempio), l'idioma <code>list(open(<var>filename</var>))</code> include anche i ritorni a capo alla fine di ogni riga. Questa descrizione di lista usa il metodo <code>rstrip()</code> delle stringhe per togliere gli spazi bianchi in coda ad ogni riga.
-<li>La funzione <code>sorted()</code> prende una lista e la restituisce ordinata. Di default, ordina alfabeticamente.
-<li>Ma la funzione <code>sorted()</code> può anche prendere una funzione come parametro <var>key</var>, e ordinare in base ad essa. In questo caso, la funzione di ordinamento è <code>len()</code>, quindi ordina sulla base della lunghezza di ogni elemento, calcolando <code>len(<var>each item</var>)</code>. I nomi più corti vengono prima, poi quelli più lunghi, poi quelli lunghissimi.
+<li>Sfortunatamente (per questo esempio), l'idioma <code>list(open(<var>filename</var>))</code> include anche i ritorni a capo alla fine di ogni riga. Questa descrizione di lista usa il metodo <code>rstrip()</code> delle stringhe per togliere lo spazio bianco in coda ad ogni riga.
+<li>La funzione <code>sorted()</code> prende una lista e la restituisce ordinata. Di default, l'ordine è alfabetico.
+<li>Ma la funzione <code>sorted()</code> può anche prendere una funzione come parametro <var>key</var>, e ordinare in base ad essa. In questo caso, la funzione di ordinamento è <code>len()</code>, quindi questa invocazione ordina sulla base della lunghezza di ogni elemento, calcolando <code>len(<var>each_item</var>)</code>. I nomi più corti vengono prima, poi quelli più lunghi, poi quelli ancora più lunghi.
 </ol>
 
 <p>Che cos'ha a che fare tutto questo con il modulo <code>itertools</code>? Sono contento che lo abbiate chiesto.
@@ -318,7 +318,7 @@ Nomi con 6 lettere:
 Lizzie
 Wesley</samp></pre>
 <ol>
-<li>La funzione <code>itertools.groupby()</code> prende una sequenza e una funzione chiave, e restituisce un iteratore che genera coppie. Ogni coppia contiene il risultato della applicazione della funzione chiave a ogni elemento (<code>key_function(<var>each item</var>)</code>) e un altro iteratore che contiene tutti gli elementi che condividono quel risultato.
+<li>La funzione <code>itertools.groupby()</code> prende una sequenza e una funzione chiave, e restituisce un iteratore che genera coppie. Ogni coppia è composta dal risultato dell'applicazione della funzione chiave a ogni elemento (<code>key_function(<var>each_item</var>)</code>) e da un altro iteratore che contiene tutti gli elementi che condividono quel risultato.
 <li>In questo esempio, data una lista di nomi ordinata per lunghezza, <code>itertools.groupby(names, len)</code> metterà tutti i nomi di 4 lettere in un iteratore, tutti i nomi di 5 lettere in un altro iteratore, e così via. La funzione <code>groupby()</code> è completamente generica; potrebbe raggruppare stringhe sulla base della prima lettera, numeri sulla base del loro numero di fattori, oppure utilizzando qualsiasi altra funzione chiave che vi possa venire in mente.
 </ol>
 <!-- YO DAWG, WE HEARD YOU LIKE LOOPING, SO WE PUT AN ITERATOR IN YOUR ITERATOR SO YOU CAN LOOP WHILE YOU LOOP. -->
@@ -339,11 +339,11 @@ Wesley</samp></pre>
 <ol>
 <li>La funzione <code>itertools.chain()</code> prende due iteratori e restituisce un iteratore che contiene tutti gli elementi del primo iteratore seguiti da tutti gli elementi del secondo iteratore. (In realtà, può prendere un numero qualsiasi di iteratori, e concatenarli tutti nell'ordine in cui sono stati passati alla funzione.)
 <li>La funzione <code>zip()</code> fa qualcosa di prosaico che si rivela estremamente utile: prende un numero qualsiasi di sequenze e restituisce un iteratore col primo elemento di ogni sequenza, poi il secondo elemento di ognuna, poi il terzo, e così via.
-<li>La funzione <code>zip()</code> si ferma alla fine della sequenza più corta. <code>range(10, 14)</code> contiene 4 elementi (10, 11, 12, and 13), ma <code>range(0, 3)</code> ne contiene solo 3, quindi la funzione <code>zip()</code> restituisce un iteratore di 3 elementi.
+<li>La funzione <code>zip()</code> si ferma alla fine della sequenza più corta. <code>range(10, 14)</code> contiene 4 elementi (10, 11, 12, e 13), ma <code>range(0, 3)</code> ne contiene solo 3, quindi la funzione <code>zip()</code> restituisce un iteratore di 3 elementi.
 <li>D'altra parte, la funzione <code>itertools.zip_longest()</code> si ferma alla fine della sequenza <em>più lunga</em>, inserendo il valore <code>None</code> per elementi oltre la fine delle sequenze più corte.
 </ol>
 
-<p id=dict-zip>OK, questo è stato tutto molto interessante, ma come si relazione al risolutore di alfametica? Ecco come:
+<p id=dict-zip>OK, tutto questo è stato molto interessante, ma come si collega al risolutore di alfametica? Ecco come:
 
 <pre class=screen>
 <samp class=p>>>> </samp><kbd>characters = ('S', 'M', 'E', 'D', 'O', 'N', 'R', 'Y')</kbd>
@@ -356,10 +356,10 @@ Wesley</samp></pre>
  'N': '5', 'S': '1', 'R': '6', 'Y': '7'}</samp></pre>
 <ol>
 <li>Data una lista di lettere e una lista di cifre (ognuna rappresentata qui come una stringa di 1 carattere), la funzione <code>zip()</code> creerà coppie di lettere e cifre, in ordine.
-<li>Perché è così figo? Perché la struttura dati capita di essere esattamente la struttura giusta da passare alla funzione <code>dict()</code> per creare un dizionario che usi le lettere come chiavi e le cifre ad esse associate come valori. Sebbene la rappresentazione stampata del dizionario elenchi le coppie in ordine differente (i dizionari non hanno alcun &#8220;ordine&#8221; di per sé), potete vedere che ogni lettera è associata con una cifra sulla base dell'ordinamento delle sequenze <var>characters</var> e <var>guess</var> originali.
+<li>Perché è così figo? Perché si dà il caso che la struttura dati sia esattamente la struttura giusta da passare alla funzione <code>dict()</code> per creare un dizionario che usi le lettere come chiavi e le cifre ad esse associate come valori. Sebbene la rappresentazione stampata del dizionario elenchi le coppie in ordine differente (i dizionari non hanno alcun &#8220;ordine&#8221; di per sé), potete vedere che ogni lettera è associata con una cifra sulla base dell'ordinamento delle sequenze <var>characters</var> e <var>guess</var> originali.
 </ol>
 
-<p id=guess>Il risolutore di alfametica usa questa tecnica per creare un dizionario che fa corrispondere le lettere nel rompicampo alle cifre nella soluzione, per ogni possibile soluzione.
+<p id=guess>Il risolutore di alfametica usa questa tecnica per creare un dizionario che mette in corrispondenza le lettere nel rompicampo con le cifre nella soluzione, per ogni possibile soluzione.
 
 <pre><code>characters = tuple(ord(c) for c in sorted_characters)
 digits = tuple(ord(c) for c in '0123456789')
@@ -370,9 +370,9 @@ for guess in itertools.permutations(digits, len(characters)):
 
 <p>Ma cos'è questo metodo <code>translate()</code>? Ah, ora state arrivando alla parte <em>davvero</em> divertente.
 
-<h2 id=string-translate>Un nuovo tipo di manipolazioni di stringhe</h2>
+<h2 id=string-translate>Un nuovo tipo di manipolazione di stringhe</h2>
 
-<p>Le stringhe Python hanno molti metodi. Avete imparato alcuni di quei metodi nel <a href=stringhe.html>capitolo sulle stringhe</a>: <code>lower()</code>, <code>count()</code>, e <code>format()</code>. Ora voglio introdurvi a una potente ma poco conosciuta tecnica di manipolazione di stringhe: il metodo <code>translate()</code>.
+<p>Le stringhe Python hanno molti metodi. Avete imparato alcuni di quei metodi nel <a href=stringhe.html>capitolo sulle stringhe</a>: <code>lower()</code>, <code>count()</code>, e <code>format()</code>. Ora voglio introdurvi a una tecnica di manipolazione di stringhe molto potente ma poco conosciuta: il metodo <code>translate()</code>.
 
 <pre class=screen>
 <a><samp class=p>>>> </samp><kbd>translation_table = {ord("A"): ord("O")}</kbd>  <span>&#x2460;</span></a>
@@ -381,9 +381,9 @@ for guess in itertools.permutations(digits, len(characters)):
 <a><samp class=p>>>> </samp><kbd>'MARK'.translate(translation_table)</kbd>       <span>&#x2462;</span></a>
 <samp>'MORK'</samp></pre>
 <ol>
-<li>Le traduzioni di stringa cominciano con una tabella di traduzione, che è solo un dizionario che fa corrispondere un carattere a nu altro. In realtà &#8220;carattere&#8221; è sbagliato &mdash; la tabella di traduzione fa in realtà corrispondere un <em>byte</em> a un altro.
-<li>Ricordate, i byte in Python 3 sono interi. La funzione <code>ord()</code> restituisce il valore <abbr>ASCII</abbr> di un carattere, che, nel caso delle lettere A&ndash;Z, è sempre un byte da 65 a 90.
-<li>Il metodo <code>translate()</code> su una stringa prende una tabella di traduzione e fa correre la stringa attraverso di essa. Vale a dire, sostituisce tutte le occorrenze delle chiavi della tabella di traduzione con i valori corrispondenti. In questo caso, &#8220;traducendo&#8221; <code>MARK</code> in <code>MORK</code>.
+<li>Le traduzioni di stringa cominciano con una tabella di traduzione, che è solo un dizionario che mette in corrispondenza un carattere con un altro. In realtà &#8220;carattere&#8221; non è il termine giusto &mdash; in realtà la tabella di traduzione mette in corrispondenza un <em>byte</em> con un altro.
+<li>Ricordate, i byte in Python 3 sono interi. La funzione <code>ord()</code> restituisce il valore <abbr>ASCII</abbr> di un carattere, che nel caso delle lettere A&ndash;Z è sempre un byte da 65 a 90.
+<li>Il metodo <code>translate()</code> fa scorrere una stringa attraverso la tabella di traduzione passata come argomento, sostituendo tutte le occorrenze delle chiavi della tabella con i valori corrispondenti. In questo caso, &#8220;traducendo&#8221; <code>MARK</code> in <code>MORK</code>.
 </ol>
 
 <p>Che cos'ha a che fare questo con la soluzione dei rompicapi alfametici? A quanto pare, tutto.
@@ -403,15 +403,15 @@ for guess in itertools.permutations(digits, len(characters)):
 <ol>
 <li>Usando una <a href=#generator-expressions>espressione generatore</a>, calcoliamo velocemente i valori in byte per ogni carattere in una stringa. <var>characters</var> è un esempio dei valori di <var>sorted_characters</var> nella funzione <code>alphametics.solve()</code>.
 <li>Usando un'altra espressione generatore, calcoliamo velocemente i valori in byte per ogni cifra in quella stringa. Il risultato, <var>guess</var>, è nella forma <a href=#guess>restituita dalla funzione <code>itertools.permutations()</code></a> nella funzione <code>alphametics.solve()</code>.
-<li>Questa tabella di traduzione è generata <a href=#dict-zip>applicando <code>zip()</code> a <var>characters</var> e <var>guess</var></a> e costruendo un dizionario a partire dalla sequenza di coppie risultante. Questo è esattamente quello che la funzione <code>alphametics.solve()</code> fa all'interno del ciclo <code>for</code>.
-<li>Infine, passiamo la tabella di traduzione al metodo <code>translate()</code> della stringa del rompicapo originale. Questo converte ogni lettera nella stringa alla cifra corrispondente (sulla base delle lettere in <var>characters</var> e delle cifre in <var>guess</var>). Il risultato è una espressione Python valida, sotto forma di stringa.
+<li>Questa tabella di traduzione è generata <a href=#dict-zip>invocando <code>zip()</code> su <var>characters</var> e <var>guess</var></a> e costruendo un dizionario a partire dalla sequenza di coppie risultante. Questo è esattamente quello che la funzione <code>alphametics.solve()</code> fa all'interno del ciclo <code>for</code>.
+<li>Infine, passiamo la tabella di traduzione al metodo <code>translate()</code> della stringa del rompicapo originale. Questa operazione converte ogni lettera nella stringa alla cifra corrispondente (sulla base delle lettere in <var>characters</var> e delle cifre in <var>guess</var>). Il risultato è una espressione Python valida, sotto forma di stringa.
 </ol>
 
-<p>Piuttosto impressionante. Ma cosa potete fare con una stringa che capita di essere una espressione Python valida?
+<p>Piuttosto impressionante. Ma cosa potete fare con una stringa che casualmente rappresenta una espressione Python valida?
 
 <h2 id=eval>Valutare stringhe arbitrarie come espressioni Python</h2>
 
-<p>Questo è l'ultimo pezzo del puzzle (o piuttosto, l'ultimo pezzo del risolutore di puzzle). Dopo tutta quella elaborata manipolazione di stringhe, rimaniamo con una stringa come <code>'9567 + 1085 == 10652'</code>. Ma quella è una stringa, e a cos'è buona una stringa? Entra <code>eval()</code>, lo strumento universale di valutazione in Python.
+<p>Questo è l'ultimo pezzo del puzzle (o piuttosto, l'ultimo pezzo del risolutore di puzzle). Dopo tutta quella sofisticata manipolazione di stringhe, non ci rimane altro che una stringa come <code>'9567 + 1085 == 10652'</code>. Ma quella è appunto solo una stringa, e a cosa può servirci una stringa? Entra <code>eval()</code>, lo strumento universale di valutazione in Python.
 
 <pre class=screen>
 <samp class=p>>>> </samp><kbd>eval('1 + 1 == 2')</kbd>
@@ -421,7 +421,7 @@ for guess in itertools.permutations(digits, len(characters)):
 <samp class=p>>>> </samp><kbd>eval('9567 + 1085 == 10652')</kbd>
 <samp>True</samp></pre>
 
-<p>Ma aspettate, c'è di più! La funzione <code>eval()</code> non si limita a espressioni logiche. Può gestire <em>qualsiasi</em> espressione Python e restituire <em>qualsiasi</em> tipo di dato.
+<p>Ma aspettate, c'è di più! La funzione <code>eval()</code> non si limita alle espressioni logiche. Può gestire <em>qualsiasi</em> espressione Python e restituire <em>qualsiasi</em> tipo di dato.
 
 <pre class=screen>
 <samp class=p>>>> </samp><kbd>eval('"A" + "B"')</kbd>
@@ -445,9 +445,9 @@ for guess in itertools.permutations(digits, len(characters)):
 <a><samp class=p>>>> </samp><kbd>eval("math.sqrt(x)")</kbd>  <span>&#x2462;</span></a>
 <samp>2.2360679774997898</samp></pre>
 <ol>
-<li>L'espressione che <code>eval()</code> accetta può riferire variabili globali definite al di fuori di <code>eval()</code>. Se chiamata all'interno di una funzione, può anche riferire variabili locali.
-<li>E funzioni.
-<li>E moduli.
+<li>L'espressione che <code>eval()</code> accetta può fare riferimento a variabili globali definite al di fuori di <code>eval()</code>. Se chiamata all'interno di una funzione, può anche fare riferimento a variabili locali.
+<li>E a funzioni.
+<li>E a moduli.
 </ol>
 
 <p>Hey, aspettate un momento&hellip;
@@ -474,7 +474,7 @@ for guess in itertools.permutations(digits, len(characters)):
 
 <p class=c style="font-size:1000%;font-weight:bold;line-height:1;margin:0.7em 0">eval() è MALVAGIA
 
-<p>Be', la parte malvagia è la valutazione di espressioni arbitrarie provenienti da sorgenti non affidabili. Dovreste usare <code>eval()</code> su ingressi affidabili. Naturalmente, il trucco è scoprire cos'è &#8220;affidabile.&#8221 Ma ecco qualcosa che so di sicuro: <b>NON</b> dovreste prendere questo risolutore di alfametica e metterlo su Internet come un piccolo e divertente servizio web. Non fate l'errore di pensare &#8220;Gosh, la funzione fa un sacco di manipolazioni di stringhe prima di ottenere una stringa da valutare; <em>non riesco a immaginare</em> come qualcuno potrebbe sfruttare quello.&#8221; Qualcuno <b>SCOPRIR&Agrave;</b> come infilare codice eseguibile pericoloso al di là di tutte quelle manipolazioni di stringhe (<a href=http://www.matasano.com/log/1032/this-new-vulnerability-dowds-inhuman-flash-exploit/>sono accadute cose anche più strane</a>), e poi potrete dare al vostro server il bacio d'addio.
+<p>Be', la parte malvagia è la valutazione di espressioni arbitrarie provenienti da sorgenti non affidabili. Dovreste usare <code>eval()</code> solo su ingressi affidabili. Naturalmente, il trucco è scoprire cos'è &#8220;affidabile.&#8221 Ma ecco qualcosa che so di sicuro: <b>NON</b> dovreste prendere questo risolutore di alfametica e metterlo su Internet come un piccolo servizio web divertente. Non fate l'errore di pensare &#8220;Gosh, la funzione effettua un sacco di manipolazioni di stringhe prima di ottenere una stringa da valutare; <em>non riesco a immaginare</em> come qualcuno potrebbe servirsene.&#8221; Qualcuno <b>SCOPRIR&Agrave;</b> come infilare codice eseguibile pericoloso attraverso tutte quelle manipolazioni di stringhe (<a href=http://www.matasano.com/log/1032/this-new-vulnerability-dowds-inhuman-flash-exploit/>sono accadute cose anche più strane</a>), e poi potrete dare al vostro server il bacio d'addio.
 
 <p>Ma sicuramente ci sarà <em>qualche</em> modo per valutare espressioni in sicurezza? Mettere <code>eval()</code> in una <span class=wtf>sandbox</span> dove non può accedere o danneggiare il mondo esterno? Be', sì, ma è complicato.
 
@@ -493,7 +493,7 @@ NameError: name 'x' is not defined</samp>
   File "&lt;string>", line 1, in &lt;module>
 NameError: name 'math' is not defined</samp></pre>
 <ol>
-<li>Il secondo e terzo parametro passati alla funzione <code>eval()</code> agiscono come spazi di nomi globali e locali in cui valutare l'espressione. IN questo caso, sono entrambi vuoti, che significa che quando la stringa <code>"x * 5"</code> viene valutata, non c'è alcun riferimento a <var>x</var> né nello spazio di nomi globale né in quello locale, quindi <code>eval()</code> lancia una eccezione.
+<li>Il secondo e terzo parametro passati alla funzione <code>eval()</code> agiscono come spazi di nomi globali e locali in cui valutare l'espressione. In questo caso, sono entrambi vuoti, così quando la stringa <code>"x * 5"</code> viene valutata non esiste alcun riferimento a <var>x</var> né nello spazio di nomi globale né in quello locale, quindi <code>eval()</code> solleva una eccezione.
 <li>Potete selettivamente includere specifici valori nello spazio di nomi globale elencandoli individualmente. Poi quelle variabili &mdash; e solo quelle &mdash; saranno disponibili durante la valutazione.
 <li>Anche se avete appena importato il modulo <code>math</code>, non lo avete incluso nello spazio di nomi passato alla funzione <code>eval()</code>, così la valutazione è fallita.
 </ol>
@@ -534,21 +534,21 @@ NameError: name '__import__' is not defined</samp>
   File "<string>", line 1, in <module>
 NameError: name '__import__' is not defined</samp></pre>
 <ol>
-<li>Per valutare espressioni non affidabili in maniera sicura, avete bisogno di definire nello spazio di nomi globale un dizionario che faccia corrispondere <code>"__builtins__"</code> a <code>None</code>, il valore nullo di Python. Internamente, le funzioni &#8220;built-in&#8221; sono contenute in uno pseudo-modulo chiamato <code>"__builtins__"</code>. Questo pseudo-modulo (<i>i.e.</i> l'insieme delle funzioni built-in) è reso disponibile alle espressioni valutate a meno che non lo <span class=wtf>override</span> esplicitamente.
-<li>Potete fare questo, ma state molto, molto attenti a non fare errori di ortografia. In particolare, assicuratevi di aver <span class=wtf>overridden</span> <code>__builtins__</code> e non <code>__builtin__</code> o <code>__built-ins__</code> o qualche altra variazione.
+<li>Per valutare espressioni non affidabili in maniera sicura, avete bisogno di definire nello spazio di nomi globale un dizionario che faccia corrispondere <code>"__builtins__"</code> a <code>None</code>, il valore nullo di Python. Internamente, le funzioni &#8220;built-in&#8221; sono contenute in uno pseudo-modulo chiamato <code>"__builtins__"</code>. Questo pseudo-modulo (<i>i.e.</i> l'insieme delle funzioni built-in) viene reso disponibile alle espressioni valutate a meno che non lo rimpiazziate esplicitamente.
+<li>Potete fare questo, ma state molto, molto attenti a non fare errori di ortografia. In particolare, assicuratevi di aver rimpiazzato <code>__builtins__</code> e non <code>__builtin__</code> o <code>__built-ins__</code> o qualche altra variazione.
 </ol>
 
-<p>Quindi, alla fine, <em>è</em> possibile valutare in sicurezza espressioni Python non affidabili. Passare <code>{"__builtins__": None}</code> come secondo parametro alla funzione <code>eval()</code> non è intuitivo (e non è il comportamento di default), ma funziona. Se capite <em>perché</em> funziona, sarà meno probabile che usiate <code>eval()</code> in maniera scorretta, in un modo che funziona con ingressi affidabili ma che ha conseguenze potenzialmente devastanti con ingressi non affidabili.
+<p>Quindi, alla fine, <em>è</em> possibile valutare in sicurezza espressioni Python non affidabili. Passare <code>{"__builtins__": None}</code> come secondo parametro alla funzione <code>eval()</code> non è intuitivo (e non è il comportamento di default) ma funziona. Se capite <em>perché</em> funziona, sarà meno probabile che usiate <code>eval()</code> in maniera scorretta, in un modo che funziona con ingressi affidabili ma che ha conseguenze potenzialmente devastanti con ingressi non affidabili.
 
 <h2 id=alphametics-finale class=wtf>Putting It All Together</h2>
 
-<p>Ricapitolando: questo programma risolve rompicapo alfametici utilizzando la forza bruta, <i>i.e.</i> attraverso una ricerca completa di tutte le possibili soluzioni. Per fare questo, il programma&hellip;
+<p>Ricapitolando: questo programma risolve rompicapi alfametici utilizzando la forza bruta, <i>i.e.</i> attraverso una ricerca completa di tutte le possibili soluzioni. Per fare questo, il programma&hellip;
 
 <ol>
 <li><a href=#re-findall>Trova tutte le lettere nel rompicapo</a> con la funzione <code>re.findall()</code>
 <li><a href=#unique-items>Trova tutte le lettere <em>uniche</em> nel rompicapo</a> con le descrizioni di insieme
-<li><a href=#assert>Controlla se ci sono più di 10 lettere uniche</a> (significando che il rompicapo è assolutamente irrisolvibile) con una istruzione <code>assert</code>
-<li><a href=#generator-objects>Converte le lettere ai loro equivalenti <abbr>ASCII</abbr> equivalents</a> con un oggetto generatore
+<li><a href=#assert>Controlla se ci sono più di 10 lettere uniche</a> (cioè se il rompicapo è assolutamente irrisolvibile) con una istruzione <code>assert</code>
+<li><a href=#generator-objects>Converte le lettere ai loro equivalenti <abbr>ASCII</abbr></a> con un oggetto generatore
 <li><a href=#permutations>Calcola tutte le possibili soluzioni</a> con la funzione <code>itertools.permutations()</code>
 <li><a href=#string-translate>Converte ogni possibile soluzione in una espressione Python</a> con il metodo <code>translate()</code> delle stringhe
 <li><a href=#eval>Verifica ogni possibile soluzione valutando l'espressione Python</a> con la funzione <code>eval()</code>
@@ -567,7 +567,7 @@ NameError: name '__import__' is not defined</samp></pre>
 <li><a href="http://www.tkcs-collins.com/truman/alphamet/index.shtml">Indice dell'alfametica</a>, compresi <a href="http://www.tkcs-collins.com/truman/alphamet/alphamet.shtml">un sacco di rompicapi</a> e <a href="http://www.tkcs-collins.com/truman/alphamet/alpha_gen.shtml">un generatore per farne dei vostri</a>
 </ul>
 
-<p>Molti, moltissimi ringraziamenti a Raymond Hettinger per essere stato d'accordo a rilicenziare il suo codice in modo che io potessi portarlo verso Python 3 e usarlo come base per questo capitolo.
+<p>Molti, moltissimi ringraziamenti a Raymond Hettinger per aver accettato di rilicenziare il suo codice in modo che io potessi portarlo verso Python 3 e usarlo come base per questo capitolo.
 
 <p class=nav><a rel=prev href=iteratori.html title="indietro a &#8220;Iteratori&#8221;"><span>&#x261C;</span></a> <a rel=next href=test-di-unità.html title="avanti a &#8220;Test di unità&#8221;"><span>&#x261E;</span></a>
 
