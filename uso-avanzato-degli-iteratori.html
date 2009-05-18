@@ -18,7 +18,7 @@ body{counter-reset:h1 7}
 </blockquote>
 <p id=toc>&nbsp;
 <h2 id=divingin>Immersione!</h2>
-<p class=f>H<code>AWAII + IDAHO + IOWA + OHIO == STATES</code>. Oppure, per dirlo in un altro modo, <code>510199 + 98153 + 9301 + 3593 == 621246</code>. <span class=wtf>Am I speaking in tongues?</span> No, è solamente un rompicapo.
+<p class=f>H<code>AWAII + IDAHO + IOWA + OHIO == STATES</code>. Oppure, per dirlo in un altro modo, <code>510199 + 98153 + 9301 + 3593 == 621246</code>. &Egrave; un fenomeno di glossolalia? No, è solamente un rompicapo.
 
 <p>Lasciate che vi mostri come scomporlo.
 
@@ -185,7 +185,7 @@ gen = ord_map(unique_characters)</code></pre>
 
 <h2 id=permutations>Calcolare le permutazioni&hellip; in maniera ritardata!</h2>
 
-<p>Prima di tutto, cosa diavolo sono le permutazioni? Le permutazioni sono un concetto matematico. (Ci sono effettivamente diverse definizioni, a seconda di quale matematica state utilizzando. Qui sto parlando di <span class=wtf>combinatorics</span>, ma se questo non vi dice niente, non preoccupatevi. Come sempre, <a href="http://it.wikipedia.org/wiki/Permutazioni">Wikipedia è vostra amica</a>.)
+<p>Prima di tutto, cosa diavolo sono le permutazioni? Le permutazioni sono un concetto matematico. (Ci sono effettivamente diverse definizioni, a seconda di quale matematica state utilizzando. Qui sto parlando di combinatoria, ma se questo non vi dice niente, non preoccupatevi. Come sempre, <a href="http://it.wikipedia.org/wiki/Permutazioni">Wikipedia è vostra amica</a>.)
 
 <p>L'idea alla base delle permutazioni è quella di prendere una lista di cose (potrebbero essere numeri, potrebbero essere lettere, potrebbero essere orsi danzanti) e trovare tutti i modi possibili per dividerla in liste più piccole. Tutte le liste più piccole hanno la stessa dimensione, che può essere tanto piccola quanto 1 e tanto grande quanto il numero totale degli elementi. Oh, e nessun oggetto può essere ripetuto. I matematici dicono cose come &#8220;troviamo le permutazioni di 3 elementi differenti presi 2 alla volta,&#8221; che significa trovare tutte le possibili coppie ordinate a partire da una sequenza di 3 elementi.
 
@@ -476,7 +476,7 @@ for guess in itertools.permutations(digits, len(characters)):
 
 <p>Be', la parte malvagia è la valutazione di espressioni arbitrarie provenienti da sorgenti non affidabili. Dovreste usare <code>eval()</code> solo su ingressi affidabili. Naturalmente, il trucco è scoprire cos'è &#8220;affidabile.&#8221 Ma ecco qualcosa che so di sicuro: <b>NON</b> dovreste prendere questo risolutore di alfametica e metterlo su Internet come un piccolo servizio web divertente. Non fate l'errore di pensare &#8220;Gosh, la funzione effettua un sacco di manipolazioni di stringhe prima di ottenere una stringa da valutare; <em>non riesco a immaginare</em> come qualcuno potrebbe servirsene.&#8221; Qualcuno <b>SCOPRIR&Agrave;</b> come infilare codice eseguibile pericoloso attraverso tutte quelle manipolazioni di stringhe (<a href=http://www.matasano.com/log/1032/this-new-vulnerability-dowds-inhuman-flash-exploit/>sono accadute cose anche più strane</a>), e poi potrete dare al vostro server il bacio d'addio.
 
-<p>Ma sicuramente ci sarà <em>qualche</em> modo per valutare espressioni in sicurezza? Mettere <code>eval()</code> in una <span class=wtf>sandbox</span> dove non può accedere o danneggiare il mondo esterno? Be', sì, ma è complicato.
+<p>Ma sicuramente ci sarà <em>qualche</em> modo per valutare espressioni in sicurezza? Mettere <code>eval()</code> in un ambiente controllato dove non possa accedere o danneggiare il mondo esterno? Be', sì, ma è complicato.
 
 <pre class=screen>
 <samp class=p>>>> </samp><kbd>x = 5</kbd>
@@ -498,7 +498,7 @@ NameError: name 'math' is not defined</samp></pre>
 <li>Anche se avete appena importato il modulo <code>math</code>, non lo avete incluso nello spazio di nomi passato alla funzione <code>eval()</code>, così la valutazione è fallita.
 </ol>
 
-<p>Gee, è stato facile. Lasciatemi fare quel servizio web di alfametica ora!
+<p>Perbacco, è stato facile. Lasciatemi fare quel servizio web di alfametica ora!
 
 <pre class=screen>
 <a><samp class=p>>>> </samp><kbd>eval("pow(5, 2)", {}, {})</kbd>                   <span>&#x2460;</span></a>
@@ -567,7 +567,7 @@ NameError: name '__import__' is not defined</samp></pre>
 <li><a href="http://www.tkcs-collins.com/truman/alphamet/index.shtml">Indice dell'alfametica</a>, compresi <a href="http://www.tkcs-collins.com/truman/alphamet/alphamet.shtml">un sacco di rompicapi</a> e <a href="http://www.tkcs-collins.com/truman/alphamet/alpha_gen.shtml">un generatore per farne dei vostri</a>
 </ul>
 
-<p>Molti, moltissimi ringraziamenti a Raymond Hettinger per aver accettato di rilicenziare il suo codice in modo che io potessi portarlo verso Python 3 e usarlo come base per questo capitolo.
+<p>Molti, moltissimi ringraziamenti a Raymond Hettinger per aver accettato di ridistribuire il suo codice con una licenza diversa in modo che io potessi convertirlo verso Python 3 e usarlo come base per questo capitolo.
 
 <p class=nav><a rel=prev href=iteratori.html title="indietro a &#8220;Iteratori&#8221;"><span>&#x261C;</span></a> <a rel=next href=test-di-unità.html title="avanti a &#8220;Test di unità&#8221;"><span>&#x261E;</span></a>
 
