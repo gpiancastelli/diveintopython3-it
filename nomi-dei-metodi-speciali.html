@@ -30,11 +30,11 @@ td a:link, td a:visited{border:0}
 </blockquote>
 <p id=toc>&nbsp;
 <h2 id=divingin>Immersione!</h2>
-<p class=f>Abbiamo già trattato alcuni nomi di metodi speciali in altri punti di questo libro &mdash; metodi &#8220;magici&#8221; che Python invoca quando usate una certa sintassi. Sfruttando i metodi speciali, le vostre classi possono comportarsi come sequenze, come dizionari, come funzioni, come iteratori, o addirittura come numeri! Questa appendice serve sia come riferimento per i metodi speciali che abbiamo già visto, sia come breve introduzione ad alcuni dei più esoterici tra essi.
+<p class=f>Abbiamo già trattato alcuni nomi di metodi speciali in altri punti di questo libro &mdash; metodi &#8220;magici&#8221; che Python invoca quando usate una certa sintassi. Sfruttando i metodi speciali, le vostre classi possono comportarsi come sequenze, come dizionari, come funzioni, come iteratori, o addirittura come numeri! Questa appendice serve sia come riferimento per i metodi speciali che abbiamo già visto, sia come breve introduzione ad alcuni dei metodi speciali più esoterici.
 
 <h2 id=basics>Le basi</h2>
 
-<p>Se avete letto <a href=iterators.html#divingin>l'introduzione alle classi</a>, avete già visto il metodo speciale più comune: il metodo <code>__init__()</code>. La maggioranza delle classi che scrivo finiscono per avere bisogno di qualche inizializzazione. Ci sono anche alcuni altri metodi speciali di base che si rivelano particolarmente utili quando effettuate il debug sulle vostre classi <span class=wtf>custom</span>.
+<p>Se avete letto <a href=iterators.html#divingin>l'introduzione alle classi</a>, avete già visto il metodo speciale più comune: il metodo <code>__init__()</code>. La maggior parte delle classi che scrivo finiscono per avere bisogno di un qualche tipo di inizializzazione. Ci sono anche alcuni altri metodi speciali di base che si rivelano particolarmente utili quando dovete effettuare il debug delle vostre classi.
 
 <table>
 <tr><th>Note
@@ -43,7 +43,7 @@ td a:link, td a:visited{border:0}
 <th>E Python invoca&hellip;
 <tr><th>&#x2460;
 <td>inizializzare un'istanza
-<td><code>x = MyCustomClass()</code>
+<td><code>x = MyClass()</code>
 <td><code>x.__init__()</code>
 <tr><th>&#x2461;
 <td>la rappresentazione &#8220;ufficiale&#8221; sotto forma di stringa
@@ -66,7 +66,7 @@ td a:link, td a:visited{border:0}
 <li>Il metodo <code>__init__()</code> viene invocato <em>dopo</em> che l'istanza è stata creata. Se volete controllare l'effettivo processo di creazione, usate <a href=#esoterica>il metodo <code>__new__()</code></a>.
 <li>Per convenzione, la stringa restituita dal metodo <code>__repr__()</code> dovrebbe essere un'espressione Python valida.
 <li>Il metodo <code>__str__()</code> viene invocato anche quando chiamate <code>print(x)</code>.
-<li><em>Una novità di Python 3</em>, dato che il tipo <code>bytes</code> è stato introdotto in questa versione del linguaggio.
+<li>Il metodo <code>__bytes__()</code> è <em>una novità di Python 3</em>, dato che il tipo <code>bytes</code> è stato introdotto in questa versione del linguaggio.
 <li>Per convenzione, <var>format_spec</var> dovrebbe conformarsi al <a href=http://www.python.org/doc/3.0/library/string.html#formatspec>mini-linguaggio per le specifiche di formato</a>. Il modulo <code>decimal</code> nella libreria standard di Python implementa il proprio metodo <code>__format__()</code>.
 </ol>
 
@@ -130,10 +130,10 @@ td a:link, td a:visited{border:0}
 </table>
 <ol>
 <li>Se la vostra classe definisce un metodo <code>__getattribute__()</code>, Python lo invocherà <em>ogni volta che fate riferimento a una proprietà o a un nome di metodo qualsiasi</em> (a parte i nomi dei metodi speciali, dato che questo causerebbe uno spiacevole ciclo infinito).
-<li>Se la vostra classe definisce un metodo <code>__getattr__()</code>, Python lo invocherà solo dopo aver cercato la proprietà in tutti i posti in cui viene cercata normalmente. Se un'istanza <var>x</var> definise una proprietà <var>color</var>, <code>x.color</code> <em>non</em> risulterà nella invocazione di <code>x.__getattr__("color")</code>; restituirà semplicemente il valore di <var>x.color</var> già definito.
+<li>Se la vostra classe definisce un metodo <code>__getattr__()</code>, Python lo invocherà solo dopo aver cercato la proprietà in tutti i posti in cui viene cercata normalmente. Se un'istanza <var>x</var> definise una proprietà <var>color</var>, l'accesso a <var>x.color</var> <em>non</em> causerà l'invocazione di <code>x.__getattr__("color")</code> ma restituirà semplicemente il valore di <var>x.color</var> già definito.
 <li>Il metodo <code>__setattr__()</code> viene invocato ogni volta che assegnate un valore a una proprietà.
 <li>Il metodo <code>__delattr__()</code> viene invocato ogni volta che eliminate una proprietà.
-<li>Il metodo <code>__dir__()</code> è utile se definite un metodo <code>__getattr__()</code> o un metodo <code>__getattribute__()</code>. Normalmente, l'invocazione di <code>dir(x)</code> elenca solo le proprietà e i metodi normali. Se il vostro metodo <code>__getattr__()</code> gestisce dinamicamente una proprietà <var>color</var>, <code>dir(x)</code> non mostrerà <var>color</var> come una delle proprietà disponibili. Fornire una vostra implementazione del metodo <code>__dir__()</code> vi permette di mostrare <var>color</var> nell'elenco delle proprietà disponibili, venendo in aiuto ad altre persone che vorrebbero usare la vostra classe senza doverne esaminare i dettagli interni.
+<li>Il metodo <code>__dir__()</code> è utile se definite un metodo <code>__getattr__()</code> o un metodo <code>__getattribute__()</code>. Normalmente, l'invocazione di <code>dir(x)</code> elenca solo le proprietà e i metodi normali. Se il vostro metodo <code>__getattr__()</code> gestisce dinamicamente una proprietà <var>color</var>, <code>dir(x)</code> non mostrerà <var>color</var> come una delle proprietà disponibili. Fornire una vostra implementazione del metodo <code>__dir__()</code> vi permette di mostrare <var>color</var> nell'elenco delle proprietà disponibili, venendo in aiuto ad altri programmatori che vorrebbero usare la vostra classe senza doverne esaminare i dettagli interni.
 </ol>
 
 <p>La distinzione tra i metodi <code>__getattr__()</code> e <code>__getattribute__()</code> è sottile ma importante. Posso spiegarla con due esempi:
@@ -206,7 +206,7 @@ AttributeError</samp></pre>
 
 <h2 id=acts-like-function>Classi che si comportano come funzioni</h2>
 
-<p>Potete rendere invocabile un'istanza di una classe &mdash; esattamente come una funzione è invocabile &mdash; definendo il metodo <code>__call__()</code>.
+<p>Potete rendere invocabile un'istanza di una classe &mdash; esattamente come è invocabile una funzione &mdash; definendo il metodo <code>__call__()</code>.
 
 <table>
 <tr><th>Note
@@ -248,7 +248,7 @@ bytes = zef_file.read(12)
 <a>h = list(map(zd, bytes[0:12]))             <span>&#x2463;</span></a></code></pre>
 <ol>
 <li>La classe <code>_ZipDecrypter</code> mantiene lo stato sotto forma di tre chiavi rotanti, che vengono successivamente aggiornate nel metodo <code>_UpdateKeys()</code> (che qui non viene mostrato).
-<li>La classe definisce un metodo <code>__call__()</code>, che rende le istanze di questa classe invocabili come funzioni. In questo caso, il metodo <code>__call__()</code> decritta un singolo byte del file zip, quindi aggiorna le chiavi rotanti sulla base del byte che è stato decrittato.
+<li>La classe definisce un metodo <code>__call__()</code> che rende le istanze di questa classe invocabili come funzioni. In questo caso, il metodo <code>__call__()</code> decritta un singolo byte del file zip, quindi aggiorna le chiavi rotanti sulla base del byte che è stato decrittato.
 <li><var>zd</var> è un'istanza della classe <code>_ZipDecrypter</code>. La variabile <var>pwd</var> viene passata al metodo <code>__init__()</code>, dove viene memorizzata e usata per aggiornare le chiavi rotanti per la prima volta.
 <li>Dati i primi 12 byte di un file zip, li decrittate mappando i byte su <var>zd</var>, effettivamente &#8220;invocando&#8221; 12 volte <var>zd</var>, che invoca 12 volte il metodo <code>__call__()</code>, che per 12 volte aggiorna il suo stato interno e restituisce un byte come risultato.
 </ol>
@@ -327,7 +327,7 @@ class FieldStorage:
 <td><a href=http://docs.python.org/3.0/library/collections.html#collections.defaultdict.__missing__><code>x.__missing__(<var>"nonexistent_key"</var>)</code></a>
 </table>
 
-<p>La <a href=#acts-like-list-example>classe <code>FieldStorage</code></a> del <a href=http://docs.python.org/3.0/library/cgi.html>modulo <code>cgi</code></a> definisce anche questi metodi speciali, il che significa che potete fare cose come queste:
+<p>La <a href=#acts-like-list-example>classe <code>FieldStorage</code></a> del <a href=http://docs.python.org/3.0/library/cgi.html>modulo <code>cgi</code></a> definisce anche questi metodi speciali, in modo che possiate fare cose come queste:
 
 <pre><code>
 # Uno script che risponde a http://example.com/search?q=cgi
@@ -355,12 +355,12 @@ class FieldStorage:
             return found</code></pre>
 <ol>
 <li>L'oggetto <var>fs</var> è un'istanza di <code>cgi.FieldStorage</code>, tuttavia potete valutare espressioni come <code>fs["q"]</code>.
-<li><code>fs["q"]</code> invoca il metodo <code>__getitem__()</code> con il parametro <var>key</var> impostato a <code>"q"</code>. Quindi controlla se la lista di parametri di richiesta che mantiene internamente (<var>self.list</var>) contiene un elemento la cui proprietà <code>.name</code> corrisponde alla chiave data.
+<li><code>fs["q"]</code> invoca il metodo <code>__getitem__()</code> con il parametro <var>key</var> impostato a <code>"q"</code>. Quindi controlla se la lista di parametri di richiesta che mantiene internamente (<var>self.list</var>) contiene un elemento la cui proprietà <code>name</code> corrisponde alla chiave data.
 </ol>
 
 <h2 id=acts-like-number>Classi che si comportano come numeri</h2>
 
-<p>Usando i metodi speciali appropriati, potete definire vostre classi che si comportano come numeri. Questo significa che potete addizionarle, sottrarle, ed eseguire su di esse altre operazioni matematiche. Questo è il modo in cui <a href=advanced-classes.html#implementing-fractions>sono realizzate le frazioni</a> &mdash; la classe <code>Fraction</code> implementa questi metodi speciali, in modo che possiate fare cose come questa:
+<p>Usando i metodi speciali appropriati, potete definire classi che si comportano come numeri. Questo significa che potete sommarle, sottrarle ed eseguire su di esse altre operazioni matematiche. Questo è il modo in cui <a href=advanced-classes.html#implementing-fractions>sono realizzate le frazioni</a> &mdash; la classe <code>Fraction</code> implementa questi metodi speciali, in modo che possiate fare cose come questa:
 
 <pre class=screen>
 <samp class=p>>>> </samp><kbd>from fractions import Fraction</kbd>
@@ -437,7 +437,7 @@ class FieldStorage:
 <samp class=p>>>> </samp><kbd>1 / x</kbd>
 <samp>Fraction(3, 1)</samp></pre>
 
-<p>Questo <em>non</em> è il caso in cui un oggetto <code>Fraction</code> viene diviso per un intero (come nell'esempio precedente). Quel caso era semplice: <code>x / 3</code> invoca <code>x.__truediv__(3)</code> e il metodo <code>__truediv__()</code> della classe <code>Fraction</code> gestisce tutte la matematica coinvolta. Ma gli interi non &#8220;sanno&#8221; come fare operazioni aritmetiche con le frazioni. Quindi come mai questo esempio funziona?
+<p>Questo <em>non</em> è il caso in cui un oggetto <code>Fraction</code> viene diviso per un intero (come nell'esempio precedente). Quel caso era semplice: <code>x / 3</code> invoca <code>x.__truediv__(3)</code> e il metodo <code>__truediv__()</code> della classe <code>Fraction</code> gestisce tutta la matematica coinvolta. Ma gli interi non &#8220;sanno&#8221; come fare operazioni aritmetiche con le frazioni. Quindi come mai questo esempio funziona?
 
 <p>La risposta è in un secondo insieme di metodi speciali per l'aritmetica con <i class=wtf>reflected operands</i>. Data un'operazione aritmetica con due operandi (<i>e.g.</i> <code>x / y</code>), ci sono due modi di eseguirla:
 
@@ -507,7 +507,7 @@ class FieldStorage:
 <td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__ror__><code>y.__ror__(<var>x</var>)</code></a>
 </table>
 
-<p>Ma aspettate! C'è di più! Se state eseguendo operazioni <span class=wtf>&#8220;in-place&#8221;</span>, come <code>x /= 3</code>, ci sono ancora più metodi speciali che potete definire.
+<p>Ma aspettate! C'è di più! Se state eseguendo operazioni <span class=wtf>&#8220;in-place&#8221;</span>, come <code>x /= 3</code>, ci sono ancora altri metodi speciali aggiuntivi che potete definire.
 
 <table>
 <tr><th>Note
@@ -564,7 +564,7 @@ class FieldStorage:
 <td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__ior__><code>x.__ior__(<var>y</var>)</code></a>
 </table>
 
-<p>Nota: per la maggior parte, i metodi per le operazioni <span class=wtf>in-place</span> non sono richiesti. Se non definite il metodo per una particolare operazione <span class=wtf>in-place</span>, Python proverà a utilizzare gli altri metodi. Per esempio, cercando di eseguire l'espressione <code>x /= y</code>, Python proverà a:
+<p>Notate che la maggior parte dei metodi per le operazioni <span class=wtf>in-place</span> non è richiesta. Se non definite il metodo per una particolare operazione <span class=wtf>in-place</span>, Python proverà a utilizzare gli altri metodi. Per esempio, cercando di eseguire l'espressione <code>x /= y</code>, Python proverà a:
 
 <ol>
 <li>Invocare <code>x.__itruediv__(<var>y</var>)</code>. Se questo metodo è definito e restituisce un valore diverso da <code>NotImplemented</code>, abbiamo finito.
@@ -572,7 +572,7 @@ class FieldStorage:
 <li>Invocare <code>y.__rtruediv__(<var>x</var>)</code>. Se questo metodo è definito e restituisce un valore diverso da <code>NotImplemented</code>, il vecchio valore di <var>x</var> viene scartato e rimpiazzato dal valore restituito.
 </ol>
 
-<p>Quindi avete bisogno di definire metodi <span class=wtf>in-place</span> come il metodo <code>__itruediv__()</code> solo se volete effettuare qualche ottimizzazione speciale per l'operando <span class=wtf>in-place</span>. Altrimenti, Python essenzialmente riformulerà l'operando <span class=wtf>in-place</span> in modo da utilizzare un operando normale + un assegnamento di variabile.
+<p>Quindi avete bisogno di definire metodi <span class=wtf>in-place</span> come il metodo <code>__itruediv__()</code> solo se volete effettuare qualche ottimizzazione speciale per l'operando <span class=wtf>in-place</span>. Altrimenti, Python essenzialmente riformulerà l'operando <span class=wtf>in-place</span> in modo da utilizzare un operando normale più un assegnamento di variabile.
 
 <p>Ci sono anche alcune operazioni matematiche &#8220;unarie&#8221; che gli oggetti simili a numeri possono eseguire su sé stessi.
 
@@ -677,7 +677,7 @@ class FieldStorage:
 <h2 id=pickle>Classi che possono essere serializzate</h2>
 <!--see http://docs.python.org/3.0/library/pickle.html:-->
 
-<p>Python supporta la serializzazione e la deserializzazione di oggetti arbitrari. (La maggior parte dei riferimenti su Python chiama questi processi &#8220;pickling&#8221; e &#8220;unpickling.&#8221;) La serializzazione può rivelarsi utile per salvare lo stato di un oggetto su un file e ripristinarlo successivamente. Tutti i <a href=native-datatypes.html>tipi di dato nativi</a> includono già il supporto per la serializzazione. Se create una classe <span class=wtf>custom</span> che volete essere in grado di serializzare, vi suggerisco di leggere la documentazione sul <a href=http://docs.python.org/3.0/library/pickle.html>protocollo di serializzazione</a> per vedere quando e come i metodi speciali che seguono vengono invocati.
+<p>Python supporta la serializzazione e la deserializzazione di oggetti arbitrari. (La maggior parte dei riferimenti su Python chiama questi processi &#8220;pickling&#8221; e &#8220;unpickling.&#8221;) La serializzazione può rivelarsi utile per salvare lo stato di un oggetto su un file e ripristinarlo successivamente. Tutti i <a href=native-datatypes.html>tipi di dato nativi</a> includono già il supporto per la serializzazione. Se create una classe che volete essere in grado di serializzare, vi suggerisco di leggere la documentazione sul <a href=http://docs.python.org/3.0/library/pickle.html>protocollo di serializzazione</a> per vedere quando e come i metodi speciali che seguono vengono invocati.
 
 <table>
 <tr><th>Note
@@ -685,11 +685,11 @@ class FieldStorage:
 <th>Quindi scrivete&hellip;
 <th>E Python invoca&hellip;
 <tr><th>
-<td>la copia di un oggetto <span class=wtf>custom</span>
+<td>la copia di un oggetto
 <td><code>copy.copy(x)</code>
 <td><a href=http://docs.python.org/3.0/library/copy.html><code>x.__copy__()</code></a>
 <tr><th>
-<td>la copia in profondità di un oggetto <span class=wtf>custom</span>
+<td>la copia in profondità di un oggetto
 <td><code>copy.deepcopy(x)</code>
 <td><a href=http://docs.python.org/3.0/library/copy.html><code>x.__deepcopy__()</code></a>
 <tr><th>
@@ -716,7 +716,7 @@ class FieldStorage:
 
 <h2 id=context-managers>Classi che possono essere usate in un blocco <code>with</code></h2>
 
-<p>Python 3 supporta l'istruzione <code>with</code>, che vi permette di accedere alle proprietà e ai metodi di un oggetto senza riferirvi esplicitamente all'oggetto ogni volta. Un blocco <code>with</code> definisce un <a href=http://www.python.org/doc/3.0/library/stdtypes.html#typecontextmanager>contesto a tempo di esecuzione</a>; voi &#8220;entrate&#8221; nel contesto quando l'istruzione <code>with</code> viene eseguita, e &#8220;uscite&#8221; dal contesto dopo che l'ultima istruzione nel blocco viene eseguita.
+<p>Python 3 supporta l'istruzione <code>with</code>, che vi permette di accedere alle proprietà e ai metodi di un oggetto senza riferirvi esplicitamente all'oggetto per ogni accesso. Un blocco <code>with</code> definisce un <a href=http://www.python.org/doc/3.0/library/stdtypes.html#typecontextmanager>contesto a tempo di esecuzione</a>; voi &#8220;entrate&#8221; nel contesto quando l'istruzione <code>with</code> viene eseguita, e &#8220;uscite&#8221; dal contesto dopo che l'ultima istruzione nel blocco viene eseguita.
 
 <p>Qualsiasi classe può essere usata in un blocco <code>with</code>; non è richiesto alcun metodo speciale. L'interprete Python creerà il contesto a tempo di esecuzione e inoltrerà alla vostra classe tutti gli accessi alle proprietà e le chiamate ai metodi. Comunque, se volete che la vostra classe faccia qualcosa di speciale quando entra o esce da un contesto a tempo di esecuzione, potete definire i metodi speciali che seguono.
 
@@ -785,7 +785,7 @@ def __exit__(self, *args) -> None:
 <td>
 <td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__slots__><code>x.__slots__()</code></a>
 <tr><th>
-<td>un valore <span class=wtf>custom</span> di hash
+<td>un valore di hash personalizzato
 <td><code>hash(x)</code>
 <td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__hash__><code>x.__hash__()</code></a>
 <tr><th>
