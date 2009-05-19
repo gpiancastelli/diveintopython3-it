@@ -112,7 +112,7 @@ td a:link, td a:visited{border:0}
 <td><code>x.my_property</code>
 <td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__getattribute__><code>x.__getattribute__(<var>"my_property"</var>)</code></a>
 <tr><th>&#x2460;
-<td>ottenere (con un <span class=wtf>fallback</span>) una proprietà calcolata
+<td>ottenere (alternativamente) una proprietà calcolata
 <td><code>x.my_property</code>
 <td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__getattr__><code>x.__getattr__(<var>"my_property"</var>)</code></a>
 <tr><th>&#x2462;
@@ -247,9 +247,9 @@ class _ZipDecrypter:
 bytes = zef_file.read(12)
 <a>h = list(map(zd, bytes[0:12]))             <span>&#x2463;</span></a></code></pre>
 <ol>
-<li>La classe <code>_ZipDecrypter</code> mantiene lo stato sotto forma di tre chiavi rotanti, che vengono successivamente aggiornate nel metodo <code>_UpdateKeys()</code> (che qui non viene mostrato).
-<li>La classe definisce un metodo <code>__call__()</code> che rende le istanze di questa classe invocabili come funzioni. In questo caso, il metodo <code>__call__()</code> decritta un singolo byte del file zip, quindi aggiorna le chiavi rotanti sulla base del byte che è stato decrittato.
-<li><var>zd</var> è un'istanza della classe <code>_ZipDecrypter</code>. La variabile <var>pwd</var> viene passata al metodo <code>__init__()</code>, dove viene memorizzata e usata per aggiornare le chiavi rotanti per la prima volta.
+<li>La classe <code>_ZipDecrypter</code> mantiene lo stato sotto forma di tre chiavi di cifratura, che vengono successivamente aggiornate facendone ruotare i bit nel metodo <code>_UpdateKeys()</code> (che qui non viene mostrato).
+<li>La classe definisce un metodo <code>__call__()</code> che rende le istanze di questa classe invocabili come funzioni. In questo caso, il metodo <code>__call__()</code> decritta un singolo byte del file zip, quindi aggiorna le chiavi di cifratura sulla base del byte che è stato decrittato.
+<li><var>zd</var> è un'istanza della classe <code>_ZipDecrypter</code>. La variabile <var>pwd</var> viene passata al metodo <code>__init__()</code>, dove viene memorizzata e usata per aggiornare le chiavi di cifratura per la prima volta.
 <li>Dati i primi 12 byte di un file zip, li decrittate mappando i byte su <var>zd</var>, effettivamente &#8220;invocando&#8221; 12 volte <var>zd</var>, che invoca 12 volte il metodo <code>__call__()</code>, che per 12 volte aggiorna il suo stato interno e restituisce un byte come risultato.
 </ol>
 
@@ -439,7 +439,7 @@ class FieldStorage:
 
 <p>Questo <em>non</em> è il caso in cui un oggetto <code>Fraction</code> viene diviso per un intero (come nell'esempio precedente). Quel caso era semplice: <code>x / 3</code> invoca <code>x.__truediv__(3)</code> e il metodo <code>__truediv__()</code> della classe <code>Fraction</code> gestisce tutta la matematica coinvolta. Ma gli interi non &#8220;sanno&#8221; come fare operazioni aritmetiche con le frazioni. Quindi come mai questo esempio funziona?
 
-<p>La risposta è in un secondo insieme di metodi speciali per l'aritmetica con <i class=wtf>reflected operands</i>. Data un'operazione aritmetica con due operandi (<i>e.g.</i> <code>x / y</code>), ci sono due modi di eseguirla:
+<p>La risposta è in un secondo insieme di metodi speciali per l'aritmetica con <i>operandi rovesciati</i>. Data un'operazione aritmetica con due operandi (<i>e.g.</i> <code>x / y</code>), ci sono due modi di eseguirla:
 
 <ol>
 <li>Dire a <var>x</var> di dividersi per <var>y</var>, oppure
@@ -507,7 +507,7 @@ class FieldStorage:
 <td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__ror__><code>y.__ror__(<var>x</var>)</code></a>
 </table>
 
-<p>Ma aspettate! C'è di più! Se state eseguendo operazioni <span class=wtf>&#8220;in-place&#8221;</span>, come <code>x /= 3</code>, ci sono ancora altri metodi speciali aggiuntivi che potete definire.
+<p>Ma aspettate! C'è di più! Se state eseguendo operazioni &#8220;in loco&#8221;, come <code>x /= 3</code>, ci sono ancora altri metodi speciali aggiuntivi che potete definire.
 
 <table>
 <tr><th>Note
@@ -515,56 +515,56 @@ class FieldStorage:
 <th>Quindi scrivete&hellip;
 <th>E Python invoca&hellip;
 <tr><th>
-<td class=wtf>in-place addition
+<td>addizione in loco
 <td><code>x += y</code>
 <td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__iadd__><code>x.__iadd__(<var>y</var>)</code></a>
 <tr><th>
-<td class=wtf>in-place subtraction
+<td>sottrazione in loco
 <td><code>x -= y</code>
 <td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__isub__><code>x.__isub__(<var>y</var>)</code></a>
 <tr><th>
-<td class=wtf>in-place multiplication
+<td>moltiplicazione in loco
 <td><code>x *= y</code>
 <td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__imul__><code>x.__imul__(<var>y</var>)</code></a>
 <tr><th>
-<td class=wtf>in-place division
+<td>divisione in loco
 <td><code>x /= y</code>
 <td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__itruediv__><code>x.__itruediv__(<var>y</var>)</code></a>
 <tr><th>
-<td class=wtf>in-place floor division
+<td>divisione intera in loco
 <td><code>x //= y</code>
 <td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__ifloordiv__><code>x.__ifloordiv__(<var>y</var>)</code></a>
 <tr><th>
-<td class=wtf>in-place modulo
+<td>modulo in loco
 <td><code>x %= y</code>
 <td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__imod__><code>x.__imod__(<var>y</var>)</code></a>
 <tr><th>
-<td class=wtf>in-place raise to power
+<td>elevamento a potenza in loco
 <td><code>x **= y</code>
 <td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__ipow__><code>x.__ipow__(<var>y</var>)</code></a>
 <tr><th>
-<td class=wtf>in-place left bit-shift
+<td>scorrimento a sinistra in loco
 <td><code>x &lt;&lt;= y</code>
 <td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__ilshift__><code>x.__ilshift__(<var>y</var>)</code></a>
 <tr><th>
-<td class=wtf>in-place right bit-shift
+<td>scorrimento a destra in loco
 <td><code>x >>= y</code>
 <td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__irshift__><code>x.__irshift__(<var>y</var>)</code></a>
 <tr><th>
-<td class=wtf>in-place bitwise <code>and</code>
+<td><code>and</code> bit per bit in loco
 <td><code>x &amp;= y</code>
 <td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__iand__><code>x.__iand__(<var>y</var>)</code></a>
 <tr><th>
-<td class=wtf>in-place bitwise <code>xor</code>
+<td><code>xor</code> bit per bit in loco
 <td><code>x ^= y</code>
 <td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__ixor__><code>x.__ixor__(<var>y</var>)</code></a>
 <tr><th>
-<td class=wtf>in-place bitwise <code>or</code>
+<td><code>or</code> bit per bit in loco
 <td><code>x |= y</code>
 <td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__ior__><code>x.__ior__(<var>y</var>)</code></a>
 </table>
 
-<p>Notate che la maggior parte dei metodi per le operazioni <span class=wtf>in-place</span> non è richiesta. Se non definite il metodo per una particolare operazione <span class=wtf>in-place</span>, Python proverà a utilizzare gli altri metodi. Per esempio, cercando di eseguire l'espressione <code>x /= y</code>, Python proverà a:
+<p>Notate che la maggior parte dei metodi per le operazioni in loco non è richiesta. Se non definite il metodo per una particolare operazione in loco, Python proverà a utilizzare gli altri metodi. Per esempio, cercando di eseguire l'espressione <code>x /= y</code>, Python proverà a:
 
 <ol>
 <li>Invocare <code>x.__itruediv__(<var>y</var>)</code>. Se questo metodo è definito e restituisce un valore diverso da <code>NotImplemented</code>, abbiamo finito.
@@ -572,7 +572,7 @@ class FieldStorage:
 <li>Invocare <code>y.__rtruediv__(<var>x</var>)</code>. Se questo metodo è definito e restituisce un valore diverso da <code>NotImplemented</code>, il vecchio valore di <var>x</var> viene scartato e rimpiazzato dal valore restituito.
 </ol>
 
-<p>Quindi avete bisogno di definire metodi <span class=wtf>in-place</span> come il metodo <code>__itruediv__()</code> solo se volete effettuare qualche ottimizzazione speciale per l'operando <span class=wtf>in-place</span>. Altrimenti, Python essenzialmente riformulerà l'operando <span class=wtf>in-place</span> in modo da utilizzare un operando normale più un assegnamento di variabile.
+<p>Quindi avete bisogno di definire metodi in loco come il metodo <code>__itruediv__()</code> solo se volete effettuare qualche ottimizzazione speciale per l'operando in loco. Altrimenti, Python essenzialmente riformulerà l'operazione in loco in modo da utilizzare un operando normale più un assegnamento di variabile.
 
 <p>Ci sono anche alcune operazioni matematiche &#8220;unarie&#8221; che gli oggetti simili a numeri possono eseguire su sé stessi.
 

@@ -609,10 +609,10 @@ except:
 <li>Invece di una virgola dopo il tipo della eccezione, Python 3 usa una nuova parola chiave, <code>as</code>.
 <li>La parola chiave <code>as</code> funziona anche per catturare più tipi di eccezioni alla volta.
 <li>Se catturate una eccezione ma in realtà non vi interessa accedere all'oggetto eccezione di per sé, la sintassi è identica tra Python 2 e Python 3.
-<li>Similmente, se usate un <span class=wtf>fallback</span> per catturare <em>tutte</em> le eccezioni, la sintassi è identica.
+<li>Similmente, se usate una istruzione <code>except</code> vuota per catturare <em>tutte</em> le eccezioni, la sintassi è identica.
 </ol>
 <blockquote class=note>
-<p><span>&#x261E;</span>Non dovreste mai usare un <span class=wtf>fallback</span> per catturare <em>tutte</em> le eccezioni quando importate moduli (o nella maggior parte delle altre occasioni). Se lo fate, rischiate di catturare anche eccezioni come <code>KeyboardInterrupt</code> (se l'utente ha premuto <kbd>Ctrl-C</kbd> per interrompere il programma) rendendo in questo modo molto più difficile il debug degli errori.
+<p><span>&#x261E;</span>Non dovreste mai usare una istruzione <code>except</code> vuota per catturare <em>tutte</em> le eccezioni quando importate moduli (o nella maggior parte delle altre occasioni). Se lo fate, rischiate di catturare anche eccezioni come <code>KeyboardInterrupt</code> (se l'utente ha premuto <kbd>Ctrl-C</kbd> per interrompere il programma) rendendo in questo modo molto più difficile effettuare il debug degli errori.
 </blockquote>
 <h2 id=raise>L'istruzione <code>raise</code></h2>
 <p>La sintassi per sollevare le vostre eccezioni è leggermente cambiata tra Python 2 e Python 3.
