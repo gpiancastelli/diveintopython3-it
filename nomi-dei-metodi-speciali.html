@@ -3,8 +3,8 @@
 <meta charset=utf-8>
 <title>Nomi dei metodi speciali - Dive into Python 3</title>
 <!--[if IE]><script src=html5.js></script><![endif]-->
-<link rel=stylesheet type=text/css href=dip3.css>
-<link rel=stylesheet type=text/css href=dip3-it.css>
+<link rel=stylesheet href=dip3.css>
+<link rel=stylesheet href=dip3-it.css>
 <style>
 h1:before{counter-increment:h1;content:"Appendice B. "}
 h2:before{counter-increment:h2;content:"B." counter(h2) ". "}
@@ -19,11 +19,11 @@ th,td,td pre{margin:0}
 td pre{padding:0;border:0}
 td a:link, td a:visited{border:0}
 </style>
-<link rel=stylesheet type=text/css media='only screen and (max-device-width: 480px)' href=mobile.css>
+<link rel=stylesheet media='only screen and (max-device-width: 480px)' href=mobile.css>
 </head>
 <form action=http://www.google.com/cse><div><input type=hidden name=cx value=014021643941856155761:l5eihuescdw><input type=hidden name=ie value=UTF-8>&nbsp;<input name=q size=25>&nbsp;<input type=submit name=sa value=Search></div></form>
 <p>Voi siete qui: <a href=index.html>Home</a> <span>&#8227;</span> <a href=table-of-contents.html#special-method-names>Dive Into Python 3</a> <span>&#8227;</span>
-<p id=level>Livello di difficoltà: <span title=advanced>&#x2666;&#x2666;&#x2666;&#x2666;&#x2666;</span>
+<p id=level>Livello di difficoltà: <span title=pro>&#x2666;&#x2666;&#x2666;&#x2666;&#x2666;</span>
 <h1>Nomi dei metodi speciali</h1>
 <blockquote class=q>
 <p><span>&#x275D;</span> La mia specialità è avere ragione quando altri hanno torto. <span>&#x275E;</span><br>&mdash; <a href=http://en.wikiquote.org/wiki/George_Bernard_Shaw>George Bernard Shaw</a>
@@ -219,7 +219,7 @@ AttributeError</samp></pre>
 <td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__call__><code>my_instance.__call__()</code></a>
 </table>
 
-<p>Il <a href="http://docs.python.org/3.0/library/zipfile.html">modulo <code>zipfile</code></a> usa questa tecnica per definire una classe che possa decodificare un file zip criptato con una data password. L'algoritmo di decodifica per i file zip richiede di memorizzare uno stato durante l'esecuzione. Definire il decodificatore come una classe vi permette di mantenere questo stato all'interno di una singola istanza di tale classe. Lo stato viene inizializzato nel metodo <code>__init__()</code> e aggiornato man mano che il file viene decodificato. Ma dato che la classe è anche &#8220;invocabile&#8221; come una funzione, potete passare l'istanza come primo argomento alla funzione <code>map()</code>, in questo modo:
+<p>Il <a href=http://docs.python.org/3.0/library/zipfile.html>modulo <code>zipfile</code></a> usa questa tecnica per definire una classe che possa decodificare un file zip criptato con una data password. L'algoritmo di decodifica per i file zip richiede di memorizzare uno stato durante l'esecuzione. Definire il decodificatore come una classe vi permette di mantenere questo stato all'interno di una singola istanza di tale classe. Lo stato viene inizializzato nel metodo <code>__init__()</code> e aggiornato man mano che il file viene decodificato. Ma dato che la classe è anche &#8220;invocabile&#8221; come una funzione, potete passare l'istanza come primo argomento alla funzione <code>map()</code>, in questo modo:
 
 <pre><code>
 # estratto da zipfile.py

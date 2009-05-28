@@ -2,12 +2,12 @@
 <head>
 <meta charset=utf-8>
 <title>Uso avanzato degli iteratori - Dive into Python 3</title>
-<link rel=stylesheet type=text/css href=dip3.css>
-<link rel=stylesheet type=text/css href=dip3-it.css>
+<link rel=stylesheet href=dip3.css>
+<link rel=stylesheet href=dip3-it.css>
 <style>
 body{counter-reset:h1 7}
 </style>
-<link rel=stylesheet type=text/css media='only screen and (max-device-width: 480px)' href=mobile.css>
+<link rel=stylesheet media='only screen and (max-device-width: 480px)' href=mobile.css>
 </head>
 <form action=http://www.google.com/cse><div><input type=hidden name=cx value=014021643941856155761:l5eihuescdw><input type=hidden name=ie value=UTF-8>&nbsp;<input name=q size=25>&nbsp;<input type=submit name=sa value=Search></div></form>
 <p>Voi siete qui: <a href=index.html>Home</a> <span>&#8227;</span> <a href=table-of-contents.html#advanced-iterators>Dive Into Python 3</a> <span>&#8227;</span>
@@ -185,7 +185,7 @@ gen = ord_map(unique_characters)</code></pre>
 
 <h2 id=permutations>Calcolare le permutazioni&hellip; in maniera ritardata!</h2>
 
-<p>Prima di tutto, cosa diavolo sono le permutazioni? Le permutazioni sono un concetto matematico. (Ci sono effettivamente diverse definizioni, a seconda di quale matematica state utilizzando. Qui sto parlando di combinatoria, ma se questo non vi dice niente, non preoccupatevi. Come sempre, <a href="http://it.wikipedia.org/wiki/Permutazioni">Wikipedia è vostra amica</a>.)
+<p>Prima di tutto, cosa diavolo sono le permutazioni? Le permutazioni sono un concetto matematico. (Ci sono effettivamente diverse definizioni, a seconda di quale matematica state utilizzando. Qui sto parlando di combinatoria, ma se questo non vi dice niente, non preoccupatevi. Come sempre, <a href=http://it.wikipedia.org/wiki/Permutazioni>Wikipedia è vostra amica</a>.)
 
 <p>L'idea alla base delle permutazioni è quella di prendere una lista di cose (potrebbero essere numeri, potrebbero essere lettere, potrebbero essere orsi danzanti) e trovare tutti i modi possibili per dividerla in liste più piccole. Tutte le liste più piccole hanno la stessa dimensione, che può essere tanto piccola quanto 1 e tanto grande quanto il numero totale degli elementi. Oh, e nessun oggetto può essere ripetuto. I matematici dicono cose come &#8220;troviamo le permutazioni di 3 elementi differenti presi 2 alla volta,&#8221; che significa trovare tutte le possibili coppie ordinate a partire da una sequenza di 3 elementi.
 
@@ -560,11 +560,11 @@ NameError: name '__import__' is not defined</samp></pre>
 <h2 id=furtherreading>Letture di approfondimento</h2>
 
 <ul>
-<li>Guardate Raymond Hettiger presentare <a href="http://blip.tv/file/1947373/">"Easy AI with Python"</a> a PyCon 2009
-<li><a href="http://code.activestate.com/recipes/576615/">Recipe 576615: Alphametics solver</a>, il risolutore di alfametica originale scritto da Raymond Hettinger per Python 2
-<li><a href="http://code.activestate.com/recipes/users/178123/">Altre ricette di Raymond Hettinger</a> nel <span class=wtf>repository</span> di codice di ActiveState
-<li><a href="http://en.wikipedia.org/wiki/Verbal_arithmetic">Alfametica su Wikipedia</a>
-<li><a href="http://www.tkcs-collins.com/truman/alphamet/index.shtml">Indice dell'alfametica</a>, compresi <a href="http://www.tkcs-collins.com/truman/alphamet/alphamet.shtml">un sacco di rompicapi</a> e <a href="http://www.tkcs-collins.com/truman/alphamet/alpha_gen.shtml">un generatore per farne dei vostri</a>
+<li>Guardate Raymond Hettiger presentare <a href=http://blip.tv/file/1947373/>&#8220;Easy AI with Python&#8221;</a> a PyCon 2009
+<li><a href=http://code.activestate.com/recipes/576615/>Recipe 576615: Alphametics solver</a>, il risolutore di alfametica originale scritto da Raymond Hettinger per Python 2
+<li><a href=http://code.activestate.com/recipes/users/178123/>Altre ricette di Raymond Hettinger</a> nel <span class=wtf>repository</span> di codice di ActiveState
+<li><a href=http://en.wikipedia.org/wiki/Verbal_arithmetic>Alfametica su Wikipedia</a>
+<li><a href=http://www.tkcs-collins.com/truman/alphamet/index.shtml>Indice dell'alfametica</a>, compresi <a href=http://www.tkcs-collins.com/truman/alphamet/alphamet.shtml>un sacco di rompicapi</a> e <a href=http://www.tkcs-collins.com/truman/alphamet/alpha_gen.shtml>un generatore per farne dei vostri</a>
 </ul>
 
 <p>Molti, moltissimi ringraziamenti a Raymond Hettinger per aver accettato di ridistribuire il suo codice con una licenza diversa in modo che io potessi convertirlo verso Python 3 e usarlo come base per questo capitolo.

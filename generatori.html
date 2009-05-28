@@ -2,12 +2,13 @@
 <head>
 <meta charset=utf-8>
 <title>Generatori - Dive into Python 3</title>
-<link rel=stylesheet type=text/css href=dip3.css>
-<link rel=stylesheet type=text/css href=dip3-it.css>
+<!--[if IE]><script src=html5.js></script><![endif]-->
+<link rel=stylesheet href=dip3.css>
+<link rel=stylesheet href=dip3-it.css>
 <style>
 body{counter-reset:h1 5}
 </style>
-<link rel=stylesheet type=text/css media='only screen and (max-device-width: 480px)' href=mobile.css>
+<link rel=stylesheet media='only screen and (max-device-width: 480px)' href=mobile.css>
 </head>
 <form action=http://www.google.com/cse><div><input type=hidden name=cx value=014021643941856155761:l5eihuescdw><input type=hidden name=ie value=UTF-8>&nbsp;<input name=q size=25>&nbsp;<input type=submit name=sa value=Search></div></form>
 <p>Voi siete qui: <a href=index.html>Home</a> <span>&#8227;</span> <a href=table-of-contents.html#iterators-and-generators>Dive Into Python 3</a> <span>&#8227;</span>
@@ -277,7 +278,7 @@ finally:
 <ol>
 <li>La funzione <code>build_match_and_apply_functions()</code> non è cambiata. State ancora usando le chiusure per costruire dinamicamente due funzioni che usano variabili definite nella funzione esterna.
 <li>Aprite il file che contiene i pattern.
-<li>Leggete il file una riga alla volta, usando l'idioma <code>for line in &lt;fileobject&gt;</code>.
+<li>Leggete il file una riga alla volta, usando l'idioma <code>for line in &lt;fileobject></code>.
 <li>Ogni riga nel file in realtà contiene tre valori, separati da spazi bianchi (che siano tabulazioni o spazi non fa alcuna differenza). Per recuperarli, usate il metodo <code>split()</code> delle stringhe. Il primo argomento del metodo <code>split()</code> è <code>None</code>, che significa &#8220;spezza la stringa in corrispondenza di qualsiasi spazio bianco (che siano tabulazioni o spazi non fa alcuna differenza).&#8221; Il secondo argomento è <code>3</code>, che significa &#8220;spezza la stringa in corrispondenza di spazi bianchi per 3 volte, poi scartane il resto.&#8221; Una riga come <code>[sxz]$ $ es</code> verrà suddivisa nella lista <code>['[sxz]$', '$', 'es']</code>, il che significa che <var>pattern</var> avrà il valore <code>'[sxz]$'</code>, <var>search</var> avrà il valore <code>'$'</code>, e <var>replace</var> avrà il valore <code>'es'</code>. C'è molta potenza in una piccola riga di codice.
 <li>Usate un blocco <code>try..finally</code> per assicurarvi di chiudere l'oggetto file.
 </ol>

@@ -2,12 +2,13 @@
 <head>
 <meta charset=utf-8>
 <title>Iteratori - Dive into Python 3</title>
-<link rel=stylesheet type=text/css href=dip3.css>
-<link rel=stylesheet type=text/css href=dip3-it.css>
+<!--[if IE]><script src=html5.js></script><![endif]-->
+<link rel=stylesheet href=dip3.css>
+<link rel=stylesheet href=dip3-it.css>
 <style>
 body{counter-reset:h1 6}
 </style>
-<link rel=stylesheet type=text/css media='only screen and (max-device-width: 480px)' href=mobile.css>
+<link rel=stylesheet media='only screen and (max-device-width: 480px)' href=mobile.css>
 </head>
 <form action=http://www.google.com/cse><div><input type=hidden name=cx value=014021643941856155761:l5eihuescdw><input type=hidden name=ie value=UTF-8>&nbsp;<input name=q size=25>&nbsp;<input type=submit name=sa value=Search></div></form>
 <p>Voi siete qui: <a href=index.html>Home</a> <span>&#8227;</span> <a href=table-of-contents.html#iterators-and-generators>Dive Into Python 3</a> <span>&#8227;</span>
@@ -173,7 +174,7 @@ class Fib:
 <li>Per produrre in uscita il valore successivo, il metodo <code>__next__()</code> di un iteratore restituisce semplicemente il valore tramite l'istruzione <code>return</code>. Qui <code>yield</code> non viene usato; quello è zucchero sintattico che si applica solo quando state usando i generatori. Qui invece state creando il vostro iteratore da zero; quindi, usate <code>return</code>.
 </ol>
 
-<p>Non siete ancora completamente confusi? Eccellente. Vediamo come invocare questo iteratore:</p>
+<p>Non siete ancora completamente confusi? Eccellente. Vediamo come invocare questo iteratore:
 
 <pre class=screen>
 <samp class=p>>>> </samp><kbd>from fibonacci2 import Fib</kbd>
