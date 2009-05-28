@@ -55,8 +55,8 @@ td pre{padding:0;border:0}
 <li>Per stampare una riga vuota, invocate <code>print()</code> senza alcun argomento.
 <li>Per stampare un singolo valore, invocate <code>print()</code> con un argomento.
 <li>Per stampare due valori separati da uno spazio, invocate <code>print()</code> con due argomenti.
-<li>Questo è un po' complicato. In Python 2, una istruzione <code>print</code> conclusa da una virgola avrebbe stampato i valori separati da spazi, seguiti da uno spazio finale, evitando di stampare un ritorno a capo. Per ottenere questo comportamento in Python 3, è necessario passare <code>end=' '</code> come argomento con nome alla funzione <code>print()</code>. L'argomento <code>end</code> assume <code>'\n'</code> (un ritorno a capo) come valore di default, quindi <span class=wtf>overriding it</span> sopprimerà il ritorno a capo dopo la stampa degli altri argomenti.
-<li>In Python 2, potevate redirigere l'uscita verso una pipe &mdash; come <code>sys.stderr</code> &mdash; utilizzando la sintassi <code>>>nome_della_pipe</code>. Per ottenere la redirezione in Python 3, è necessario passare la pipe come valore all'argomento con nome <code>file</code>. L'argomento <code>file</code> assume <code>sys.stdout</code> (uscita standard) come valore di default, quindi <span class=wtf>overriding it</span> produrrà l'uscita su una pipe differente.
+<li>Questo è un po' complicato. In Python 2, una istruzione <code>print</code> conclusa da una virgola avrebbe stampato i valori separati da spazi, seguiti da uno spazio finale, evitando di stampare un ritorno a capo. Per ottenere questo comportamento in Python 3, è necessario passare <code>end=' '</code> come argomento con nome alla funzione <code>print()</code>. L'argomento <code>end</code> assume <code>'\n'</code> (un ritorno a capo) come valore di default, quindi modificarlo sopprimerà il ritorno a capo dopo la stampa degli altri argomenti.
+<li>In Python 2, potevate redirigere l'uscita verso una pipe &mdash; come <code>sys.stderr</code> &mdash; utilizzando la sintassi <code>>>nome_della_pipe</code>. Per ottenere la redirezione in Python 3, è necessario passare la pipe come valore all'argomento con nome <code>file</code>. L'argomento <code>file</code> assume <code>sys.stdout</code> (uscita standard) come valore di default, quindi modificarlo produrrà l'uscita su una pipe differente.
 </ol>
 <h2 id=unicodeliteral>Letterali stringa Unicode</h2>
 <p>Python 2 aveva due tipi di stringa: stringhe Unicode e stringhe non Unicode. Python 3 ha un solo tipo di stringa: stringhe Unicode.
@@ -220,7 +220,7 @@ import CGIHttpServer</code></pre>
 <li>Il modulo <code>http.server</code> fornisce un server <abbr>HTTP</abbr> di base.
 </ol>
 <h3 id=urllib><code>urllib</code></h3>
-<p>Python 2 aveva una <span class=wtf>rat's nest</span> di moduli sovrapposti per riconoscere, codificare e recuperare gli <abbr>URL</abbr>. In Python 3, tutti questi moduli sono stati riorganizzati e combinati in un singolo package chiamato <code>urllib</code>.
+<p>Python 2 aveva un macello di moduli sovrapposti per riconoscere, codificare e recuperare gli <abbr>URL</abbr>. In Python 3, tutti questi moduli sono stati riorganizzati e combinati in un singolo package chiamato <code>urllib</code>.
 <table>
 <tr><th>Note
 <th>Python 2
@@ -250,7 +250,7 @@ from urllib.error import HTTPError</code></pre>
 </table>
 <ol>
 <li>Il vecchio modulo <code>urllib</code> di Python 2 raccoglieva una varietà di funzioni, comprese <code>urlopen()</code> per recuperare dati e <code>splittype()</code>, <code>splithost()</code> e <code>splituser()</code> per suddividere un <abbr>URL</abbr> nelle sue parti costituenti. Queste funzioni sono state riorganizzate più logicamente nell'ambito del nuovo package <code>urllib</code>. <code>2to3</code> modificherà anche tutte le chiamate a queste funzioni in modo da usare il nuovo schema di nomi.
-<li>Il vecchio modulo <code>urllib2</code> di Python 2 è stato ripiegato nel package <code>urllib</code> in Python 3. Tutte le vostre funzionalità preferite di <code>urllib2</code> &mdash; il metodo <code>build_opener()</code>, gli oggetti <code>Request</code>, <code>HTTPBasicAuthHandler</code> e compagnia &mdash; sono ancora disponibili.
+<li>Il vecchio modulo <code>urllib2</code> di Python 2 è stato incorporato nel package <code>urllib</code> in Python 3. Tutte le vostre funzionalità preferite di <code>urllib2</code> &mdash; il metodo <code>build_opener()</code>, gli oggetti <code>Request</code>, <code>HTTPBasicAuthHandler</code> e compagnia &mdash; sono ancora disponibili.
 <li>Il modulo <code>urllib.parse</code> di Python 3 contiene tutte le funzioni di riconoscimento del vecchio modulo <code>urlparse</code> di Python 2.
 <li>Il modulo <code>urllib.robotparser</code> riconosce i <a href=http://www.robotstxt.org/>file <code>robots.txt</code></a>.
 <li>La classe <code>FancyURLopener</code>, che gestisce le redirezioni <abbr>HTTP</abbr> e altri codici di stato, è ancora disponibile nel nuovo modulo <code>urllib.request</code>. La funzione <code>urlencode()</code> è stata spostata in <code>urllib.parse</code>.
@@ -368,7 +368,7 @@ except ImportError:
 <td><code>from .mbcharsetprober import MultiByteCharsetProber</code>
 </table>
 <ol>
-<li>Quando dovete importare un intero modulo da qualche parte nel vostro package, usate la nuova sintassi <code>from . import</code>. Il punto è in realtà il percorso relativo da questo file (<code>universaldetector.py</code>) al file che volete importare (<code>constants.py</code>). In questo caso sono nella stessa directory, quindi è sufficiente un singolo punto. Potete anche importare dalla directory genitore (<code>from .. import anothermodule</code>) o da una sottodirectory.
+<li>Quando dovete importare un intero modulo da qualche parte nel vostro package, usate la nuova sintassi <code>from . import</code>. Il punto è in realtà il percorso relativo da questo file (<code>universaldetector.py</code>) al file che volete importare (<code>constants.py</code>). In questo caso sono nella stessa directory, quindi è sufficiente un singolo punto. Potete anche importare dalla directory superiore (<code>from .. import anothermodule</code>) o da una sottodirectory.
 <li>Per importare una specifica classe o funzione da un altro modulo direttamente nello spazio di nomi del vostro modulo, fate precedere al nome del modulo obiettivo un prefisso contenente un percorso relativo, meno lo slash finale. In questo caso <code>mbcharsetprober.py</code> è nella stessa directory di <code>universaldetector.py</code>, quindi il percorso è un singolo punto. Potete anche importare dalla directory genitore (<code>from ..anothermodule import AnotherClass</code>) o da una sottodirectory.
 </ol>
 <h2 id=next>Il metodo <code>next()</code> degli iteratori</h2>
@@ -707,7 +707,7 @@ except:
 </table>
 <ol>
 <li>Nella sua forma più semplice, <code>raw_input()</code> diventa <code>input()</code>.
-<li>In Python 2, la funzione <code>raw_input()</code> poteva prendere un prompt come parametro. Questo è stato mantenuto in Python 3.
+<li>In Python 2, la funzione <code>raw_input()</code> poteva prendere come parametro un prompt, cioè una stringa di caratteri visualizzata per indicare l'attesa di un nuovo ingresso da parte della funzione. Questo parametro è stato mantenuto in Python 3.
 <li>Se avete effettivamente bisogno di chiedere all'utente una espressione Python da valutare, usate la funzione <code>input()</code> e passatene il risultato a <code>eval()</code>.
 </ol>
 <h2 id=funcattrs>Le proprietà <code>func_*</code> delle funzioni</h2>
