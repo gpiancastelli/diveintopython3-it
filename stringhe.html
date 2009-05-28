@@ -2,13 +2,13 @@
 <head>
 <meta charset=utf-8>
 <title>Stringhe - Dive into Python 3</title>
-<link rel=stylesheet type=text/css href=dip3.css>
-<link rel=stylesheet type=text/css href=dip3-it.css>
+<!--[if IE]><script src=html5.js></script><![endif]-->
+<link rel=stylesheet href=dip3.css>
+<link rel=stylesheet href=dip3-it.css>
 <style>
 body{counter-reset:h1 3}
-.s{text-decoration:line-through}
 </style>
-<link rel=stylesheet type=text/css media='only screen and (max-device-width: 480px)' href=mobile.css>
+<link rel=stylesheet media='only screen and (max-device-width: 480px)' href=mobile.css>
 </head>
 <form action=http://www.google.com/cse><div><input type=hidden name=cx value=014021643941856155761:l5eihuescdw><input type=hidden name=ie value=UTF-8>&nbsp;<input name=q size=25>&nbsp;<input type=submit name=sa value=Search></div></form>
 <p>Voi siete qui: <a href=index.html>Home</a> <span>&#8227;</span> <a href=table-of-contents.html#strings>Dive Into Python 3</a> <span>&#8227;</span>
@@ -20,7 +20,7 @@ Il tuo alfabeto termina dove il mio inizia! <span>&#x275E;</span><br>&mdash; Dr.
 </blockquote>
 <p id=toc>&nbsp;
 <h2 id=boring-stuff>Alcune cose noiose che avete bisogno di sapere prima di potervi immergere</h2>
-<p class=f>Sapevate che la popolazione di <a href="http://en.wikipedia.org/wiki/Bougainville_Province">Bougainville</a> ha il più piccolo alfabeto del mondo? Il loro <a href="http://en.wikipedia.org/wiki/Rotokas_alphabet">alfabeto Rotokas</a> è composto da sole 12 lettere: A, E, G, I, K, O, P, R, S, T, U, e V. All'altra estremità dello spettro, lingue come il cinese, il giapponese e il coreano hanno migliaia di caratteri. L'inglese, ovviamente, ha 26 lettere &mdash; 52 se contate le maiuscole e le minuscole separatamente &mdash; più una manciata di <i class=baa>!@#$%&</i> simboli di punteggiatura.
+<p class=f>Sapevate che la popolazione di <a href=http://en.wikipedia.org/wiki/Bougainville_Province>Bougainville</a> ha il più piccolo alfabeto del mondo? Il loro <a href=http://en.wikipedia.org/wiki/Rotokas_alphabet>alfabeto Rotokas</a> è composto da sole 12 lettere: A, E, G, I, K, O, P, R, S, T, U, e V. All'altra estremità dello spettro, lingue come il cinese, il giapponese e il coreano hanno migliaia di caratteri. L'inglese, ovviamente, ha 26 lettere &mdash; 52 se contate le maiuscole e le minuscole separatamente &mdash; più una manciata di <i class=baa>!@#$%&</i> simboli di punteggiatura.
 
 <p>Quando alcune persone parlano di &#8220;testo,&#8221; stanno pensando a &#8220;caratteri e simboli su uno schermo di computer.&#8221; Ma i computer non si occupano di caratteri e simboli; i computer maneggiano bit e byte. Ogni frammento di testo che avete mai visto sullo schermo di un computer si trova in realtà memorizzato in una particolare <i>codifica di carattere</i>. Parlando per sommi capi, la codifica di carattere fornisce una corrispondenza tra quello che vedete sul vostro schermo e quello che il vostro computer mantiene effettivamente in memoria e su disco. Ci sono molte codifiche di carattere diverse, alcune ottimizzate per particolari lingue come il russo o il cinese o l'inglese, e altre che possono essere usate per più di una lingua.
 
@@ -50,7 +50,7 @@ Il tuo alfabeto termina dove il mio inizia! <span>&#x275E;</span><br>&mdash; Dr.
 
 <p><i>Entra Unicode.</i>
 
-<p>Unicode è un sistema progettato per rappresentare <em>qualsiasi</em> carattere proveniente da <em>qualsiasi</em> lingua. Unicode rappresenta ogni lettera, carattere, o ideogramma come un numero di 4 byte, da 0 a 4294967295. (Quest'ultimo è il valore di 2<sup>32</sup>&minus;1.) Ogni numero di 4 byte rappresenta un unico carattere usato in almeno una delle lingue del mondo. Non tutti i numeri sono utilizzati, ma più di 65535 lo sono, quindi 2 byte non sarebbero stati sufficienti. I caratteri che sono usati in più di una lingua corrispondono generalmente allo stesso numero, a meno che non ci sia una buona ragione etimologica per non farlo. In ogni caso, c'è esattamente 1 numero per carattere, ed esattamente 1 carattere per numero. Ogni numero rappresenta sempre solo un carattere; non ci sono &#8220;modalità&#8221; di cui tenere traccia. <code>U+0041</code> è sempre <code>'A'</code>, anche se la vostra lingua non possiede alcuna <code>'A'</code>.
+<p>Unicode è un sistema progettato per rappresentare <em>qualsiasi</em> carattere proveniente da <em>qualsiasi</em> lingua. Unicode rappresenta ogni lettera, carattere, o ideogramma come un numero di 4 byte. Ogni numero rappresenta un unico carattere usato in almeno una delle lingue del mondo. (Non tutti i numeri sono utilizzati, ma più di 65535 lo sono, quindi 2 byte non sarebbero stati sufficienti.) I caratteri che sono usati in più di una lingua corrispondono generalmente allo stesso numero, a meno che non ci sia una buona ragione etimologica per non farlo. In ogni caso, c'è esattamente 1 numero per carattere, ed esattamente 1 carattere per numero. Ogni numero rappresenta sempre solo un carattere; non ci sono &#8220;modalità&#8221; di cui tenere traccia. <code>U+0041</code> è sempre <code>'A'</code>, anche se la vostra lingua non possiede alcuna <code>'A'</code>.
 
 <p>A prima vista, sembra una grande idea. Una codifica per governarle tutte. Lingue multiple per documento. Niente più &#8220;passaggi di modalità&#8221; per cambiare codifica a metà del testo. Ma l'ovvia domanda dovrebbe subito saltarvi in mente. Quattro byte? Per ogni singolo carattere<span title="interrobang!">&#8253;</span> Sembra uno spreco orrendo, specialmente per lingue come l'inglese e lo spagnolo, che necessitano di meno di un byte (256 numeri) per esprimere ogni possibile carattere. In effetti, è uno spreco persino per lingue basate su ideogrammi (come il cinese) che non hanno mai bisogno di più di due byte per carattere.
 
@@ -157,7 +157,7 @@ def approximate_size(size, a_kilobyte_is_1024_bytes=True):
 <samp>'1000KB = 1MB'</samp>
 </pre>
 <ol>
-<li>Invece di chiamare una funzione qualsiasi nel modulo <code>humansize</code>, state recuperando una delle strutture dati che il modulo definisce: la lista dei suffissi (potenze-di-1000) del Sistema internazionale di unità di misura ("SI").
+<li>Invece di chiamare una funzione qualsiasi nel modulo <code>humansize</code>, state recuperando una delle strutture dati che il modulo definisce: la lista dei suffissi (potenze-di-1000) del Sistema internazionale di unità di misura (&#8220;SI&#8221;).
 <li>Questo sembra complicato, ma non lo è. <code>{0}</code> si riferirebbe al primo argomento passato al metodo <code>format()</code>, <var>si_suffixes</var>. Ma <var>si_suffixes</var> è una lista. Così <code>{0[0]}</code> si riferisce al primo elemento della lista che è il primo argomento passato al metodo <code>format()</code>: <code>'KB'</code>. Similmente, <code>{0[1]}</code> si riferisce al secondo elemento della stessa lista: <code>'MB'</code>. Ogni cosa fuori dalle parentesi graffe &mdash; compreso <code>1000</code>, il segno di uguale, e gli spazi &mdash; non viene toccata. Il risultato finale è la stringa <code>'1000KB = 1MB'</code>.
 </ol>
 
@@ -210,7 +210,7 @@ def approximate_size(size, a_kilobyte_is_1024_bytes=True):
 <samp class=p>>>> </samp><kbd>"{0:.1f} {1}".format(698.25, 'GB')</kbd>
 <samp>'698.3 GB'</samp></pre>
 
-<p>Per tutti i dettagli più intricati sulle specifiche di formato, consultate la sezione <a href="http://docs.python.org/3.0/library/string.html#format-specification-mini-language">Format Specification Mini-Language</a> nella documentazione ufficiale di Python.
+<p>Per tutti i dettagli più intricati sulle specifiche di formato, consultate la sezione <a href=http://docs.python.org/3.0/library/string.html#format-specification-mini-language>Format Specification Mini-Language</a> nella documentazione ufficiale di Python.
 
 <h2 id=common-string-methods>Altri metodi di uso comune per le stringhe</h2>
 
@@ -359,22 +359,17 @@ TypeError: Can't convert 'bytes' object to str implicitly</samp>
 <ol>
 <li>Questa è una stringa. Ha nove caratteri.
 <li>Questo è un oggetto <code>bytes</code>. Ha 13 byte. &Egrave; la sequenza di byte che si ottiene codificando <var>a_string</var> in UTF-8.
-<li>Questo è un oggetto <code>bytes</code>. Ha 11 byte. &Egrave; la sequenza di byte che si ottiene codificando <var>a_string</var> in GB18030.
-<li>Questo è un oggetto <code>bytes</code>. Ha 11 byte. &Egrave; una <em>sequenza completamente diversa di byte</em> che si ottiene codificando <var>a_string</var> con l'algoritmo di codifica Big5.
+<li>Questo è un oggetto <code>bytes</code>. Ha 11 byte. &Egrave; la sequenza di byte che si ottiene codificando <var>a_string</var> in <a href=http://en.wikipedia.org/wiki/GB_18030>GB18030</a>.
+<li>Questo è un oggetto <code>bytes</code>. Ha 11 byte. &Egrave; una <em>sequenza completamente diversa di byte</em> che si ottiene codificando <var>a_string</var> in <a href=http://en.wikipedia.org/wiki/Big5>Big5</a>.
 <li>Questa è una stringa. Ha nove caratteri. &Egrave; la sequenza di caratteri che si ottiene decodificando <var>by</var> con l'algoritmo di codifica Big5. &Egrave; identica alla stringa originale.
 </ol>
-
-<!--
-FIXME: move this to the intro of the upcoming files chapter?
-<p>OK, so a string is a sequence of Unicode characters. But a file on disk is not a sequence of Unicode characters; a file on disk is a sequence of bytes. So if you read a &#8220;text file&#8221; from disk, how does Python convert that sequence of bytes into a sequence of characters? The answer is that it decodes the bytes according to a specific character encoding algorithm, and returns a sequence of Unicode characters, otherwise known as a string.
--->
 
 <h2 id=py-encoding>Post Scriptum: codifica di caratteri per il codice sorgente Python</h2>
 
 <p>Python 3 assume che il vostro codice sorgente &mdash; <i>i.e.</i> ogni file <code>.py</code> &mdash; sia codificato in UTF-8.
 
 <blockquote class="note compare python2">
-<p><span>&#x261E;</span>In Python 2, la codifica di default per i file <code>.py</code> era <abbr>ASCII</abbr>. In Python 3, <a href="http://www.python.org/dev/peps/pep-3120/">la codifica di default è UTF-8</a>.
+<p><span>&#x261E;</span>In Python 2, la codifica di default per i file <code>.py</code> era <abbr>ASCII</abbr>. In Python 3, <a href=http://www.python.org/dev/peps/pep-3120/>la codifica di default è UTF-8</a>.
 </blockquote>
 
 <p>Se volete usare una codifica differente nel vostro codice Python, potete inserire una dichiarazione di codifica nella prima riga di ogni file. Questa dichiarazione definisce windows-1252 come codifica di un file <code>.py</code>
@@ -386,40 +381,40 @@ FIXME: move this to the intro of the upcoming files chapter?
 <pre><code>#!/usr/bin/python3
 # -*- coding: windows-1252 -*-</code></pre>
 
-<p>Per maggiori informazioni, consultate la <a href="http://www.python.org/dev/peps/pep-0263/"><abbr>PEP</abbr> 263: Defining Python Source Code Encodings</a>.
+<p>Per maggiori informazioni, consultate la <a href=http://www.python.org/dev/peps/pep-0263/><abbr>PEP</abbr> 263: Defining Python Source Code Encodings</a>.
 
 <h2 id=furtherreading>Letture di approfondimento</h2>
 
 <p>Su Unicode in Python:
 
 <ul>
-<li><a href="http://docs.python.org/3.0/howto/unicode.html">Python Unicode HOWTO</a>
-<li><a href="http://docs.python.org/3.0/whatsnew/3.0.html#text-vs-data-instead-of-unicode-vs-8-bit">What&#8217;s New In Python 3: Text vs. Data Instead Of Unicode vs. 8-bit</a>
+<li><a href=http://docs.python.org/3.0/howto/unicode.html>Python Unicode HOWTO</a>
+<li><a href=http://docs.python.org/3.0/whatsnew/3.0.html#text-vs-data-instead-of-unicode-vs-8-bit>What&#8217;s New In Python 3: Text vs. Data Instead Of Unicode vs. 8-bit</a>
 </ul>
 
 <p>Su Unicode in generale:
 
 <ul>
-<li><a href="http://www.joelonsoftware.com/articles/Unicode.html">The Absolute Minimum Every Software Developer Absolutely, Positively Must Know About Unicode and Character Sets (No Excuses!)</a>
-<li><a href="http://www.tbray.org/ongoing/When/200x/2003/04/06/Unicode">On the Goodness of Unicode</a>
-<li><a href="http://www.tbray.org/ongoing/When/200x/2003/04/13/Strings">On Character Strings</a>
-<li><a href="http://www.tbray.org/ongoing/When/200x/2003/04/26/UTF">Characters vs. Bytes</a>
+<li><a href=http://www.joelonsoftware.com/articles/Unicode.html>The Absolute Minimum Every Software Developer Absolutely, Positively Must Know About Unicode and Character Sets (No Excuses!)</a>
+<li><a href=http://www.tbray.org/ongoing/When/200x/2003/04/06/Unicode>On the Goodness of Unicode</a>
+<li><a href=http://www.tbray.org/ongoing/When/200x/2003/04/13/Strings>On Character Strings</a>
+<li><a href=http://www.tbray.org/ongoing/When/200x/2003/04/26/UTF>Characters vs. Bytes</a>
 </ul>
 
 <p>Sulle codifiche di carattere in altri formati:
 
 <ul>
-<li><a href="http://feedparser.org/docs/character-encoding.html">Character encoding in XML</a>
-<li><a href="http://blog.whatwg.org/the-road-to-html-5-character-encoding">Character encoding in HTML</a>
+<li><a href=http://feedparser.org/docs/character-encoding.html>Character encoding in XML</a>
+<li><a href=http://blog.whatwg.org/the-road-to-html-5-character-encoding>Character encoding in HTML</a>
 </ul>
 
 <p>Sulle stringhe e sulla formattazione di stringhe:
 
 <ul>
-<li><a href="http://docs.python.org/3.0/library/string.html"><code>string</code> &mdash; Common string operations</a>
-<li><a href="http://docs.python.org/3.0/library/string.html#formatstrings">Format String Syntax</a>
-<li><a href="http://docs.python.org/3.0/library/string.html#format-specification-mini-language">Format Specification Mini-Language</a>
-<li><a href="http://www.python.org/dev/peps/pep-3101/"><abbr>PEP</abbr> 3101: Advanced String Formatting</a>
+<li><a href=http://docs.python.org/3.0/library/string.html><code>string</code> &mdash; Common string operations</a>
+<li><a href=http://docs.python.org/3.0/library/string.html#formatstrings>Format String Syntax</a>
+<li><a href=http://docs.python.org/3.0/library/string.html#format-specification-mini-language>Format Specification Mini-Language</a>
+<li><a href=http://www.python.org/dev/peps/pep-3101/><abbr>PEP</abbr> 3101: Advanced String Formatting</a>
 </ul>
 
 <p class=nav><a rel=prev href=tipi-di-dato-nativi.html title="indietro a &#8220;Tipi di dato nativi&#8221;"><span>&#x261C;</span></a> <a rel=next href=espressioni-regolari.html title="avanti a &#8220;Espressioni regolari&#8221;"><span>&#x261E;</span></a>

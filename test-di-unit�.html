@@ -2,12 +2,13 @@
 <head>
 <meta charset=utf-8>
 <title>Test di unità - Dive into Python 3</title>
-<link rel=stylesheet type=text/css href=dip3.css>
-<link rel=stylesheet type=text/css href=dip3-it.css>
+<!--[if IE]><script src=html5.js></script><![endif]-->
+<link rel=stylesheet href=dip3.css>
+<link rel=stylesheet href=dip3-it.css>
 <style>
 body{counter-reset:h1 8}
 </style>
-<link rel=stylesheet type=text/css media='only screen and (max-device-width: 480px)' href=mobile.css>
+<link rel=stylesheet media='only screen and (max-device-width: 480px)' href=mobile.css>
 </head>
 <form action=http://www.google.com/cse><div><input type=hidden name=cx value=014021643941856155761:l5eihuescdw><input type=hidden name=ie value=UTF-8>&nbsp;<input name=q size=25>&nbsp;<input type=submit name=root value=Search></div></form>
 <p>Voi siete qui: <a href=index.html>Home</a> <span>&#8227;</span> <a href=table-of-contents.html#unit-testing>Dive Into Python 3</a> <span>&#8227;</span>
@@ -18,8 +19,8 @@ body{counter-reset:h1 8}
 </blockquote>
 <p id=toc>&nbsp;
 <h2 id=divingin>Immersione! (Oppure no?)</h2>
-<p class=f>In questo capitolo, scriverete e farete il debug di un insieme di funzioni di utilità per convertire da e verso i numeri romani. Avete visto le meccaniche per la costruzione e la validazione dei numeri romani nel <a href="espressioni-regolari.html#romannumerals">&#8220;Caso di studio: numeri romani&#8221;</a>. Ora fate un passo indietro e considerate come potremmo fare per trasformare quel programma in una utilità a due vie.
-<p><a href="espressioni-regolari.html#romannumerals">Le regole per i numeri romani</a> ci hanno condotto a una serie di interessanti osservazioni:
+<p class=f>In questo capitolo, scriverete e farete il debug di un insieme di funzioni di utilità per convertire da e verso i numeri romani. Avete visto le meccaniche per la costruzione e la validazione dei numeri romani nel <a href=espressioni-regolari.html#romannumerals>&#8220;Caso di studio: numeri romani&#8221;</a>. Ora fate un passo indietro e considerate come potremmo fare per trasformare quel programma in una utilità a due vie.
+<p><a href=espressioni-regolari.html#romannumerals>Le regole per i numeri romani</a> ci hanno condotto a una serie di interessanti osservazioni:
 <ol>
 <li>C'è un solo modo corretto di rappresentare un particolare numero come numero romano.
 <li>Anche l'inverso è vero: se una stringa di caratteri è un numero romano valido, rappresenta un solo numero (cioè, può essere interpretata in un solo modo).
@@ -28,7 +29,7 @@ body{counter-reset:h1 8}
 <li>Non c'è alcun modo di rappresentare numeri negativi nei numeri romani.
 <li>Non c'è alcun modo di rappresentare frazioni o numeri non interi nei numeri romani.
 </ol>
-<p>Cominciamo col tracciare quello che un modulo <code>roman.py</code> dovrebbe fare. Il modulo avrà due funzioni principali, <code>to_roman()</code> e <code>from_roman()</code>. La funzione <code>to_roman()</code> dovrà prendere un intero da <code>1</code> a <code>3999</code> e restituirne la rappresentazione come numero romano sotto forma di stringa&hellip;</p>
+<p>Cominciamo col tracciare quello che un modulo <code>roman.py</code> dovrebbe fare. Il modulo avrà due funzioni principali, <code>to_roman()</code> e <code>from_roman()</code>. La funzione <code>to_roman()</code> dovrà prendere un intero da <code>1</code> a <code>3999</code> e restituirne la rappresentazione come numero romano sotto forma di stringa&hellip;
 <p>Fermiamoci subito qui. Ora facciamo qualcosa di un poco inaspettato: scriviamo un test per controllare che la funzione <code>to_roman()</code> faccia quello che volete. Avete letto bene: state per scrivere codice che collauda codice che non avete ancora scritto.
 <p>Questa pratica si chiama <i>collaudo di unità</i>. L'insieme di due funzioni di conversione &mdash; <code>to_roman()</code> e, più tardi, <code>from_roman()</code> &mdash; può essere implementato e collaudato come una singola unità, separata da qualsiasi programma più grande che le importi. Python possiede un framework per il collaudo di unità, un modulo propriamente chiamato <code>unittest</code>.
 <p>Il collaudo di unità è una parte importante di una strategia di sviluppo complessivamente centrata sui test. Se scrivete dei test di unità, è importante che li scriviate presto (preferibilmente prima di scrivere il codice che collaudano) e che li manteniate aggiornati man mano che il codice e i requisiti cambiano. Il collaudo di unità non è un rimpiazzo per collaudi funzionali o di sistema di più alto livello, ma è importante in tutte le fasi dello sviluppo:
@@ -250,7 +251,7 @@ OK</samp></pre>
 <li>La classe <code>unittest.TestCase</code> fornisce il metodo <code>assertRaises()</code>, che prende i seguenti argomenti: l'eccezione che vi aspettate, la funzione che state collaudando, e gli argomenti che volete passare a quella funzione. (Se la funzione che state collaudando prende più di un argomento, passateli tutti ad <code>assertRaises()</code>, in ordine, ed essi verranno passati direttamente alla funzione che state collaudando.)
 </ol>
 <p>Fate molta attenzione a quest'ultima riga di codice. Invece di invocare direttamente <code>to_roman()</code> e controllare manualmente che sollevi una particolare eccezione (incorporando la chiamata di funzione in un blocco <code>try...except</code> <span class=fixme>[FIXME xref]</span>), state utilizzando il metodo <code>assertRaises()</code>, che ha incapsulato per noi tutte queste operazioni. Tutto quello che dovete fare è dirgli quali sono l'eccezione che vi aspettate (<code>roman2.OutOfRangeError</code>), la funzione da invocare (<code>to_roman()</code>) e gli argomenti con cui invocarla (<code>4000</code>). Il metodo <code>assertRaises()</code> si prende cura di chiamare <code>to_roman()</code> e controllare che sollevi <code>roman2.OutOfRangeError</code>.
-<p>Notate anche che state passando la funzione <code>to_roman()</code> stessa come un argomento; non la state invocando e non ne state passando il nome sotto forma di stringa. Ho recentemente menzionato quant'è comodo che <a href="il-vostro-primo-programma-python.html#everythingisanobject">ogni cosa in Python sia un oggetto</a>?
+<p>Notate anche che state passando la funzione <code>to_roman()</code> stessa come un argomento; non la state invocando e non ne state passando il nome sotto forma di stringa. Ho recentemente menzionato quant'è comodo che <a href=il-vostro-primo-programma-python.html#everythingisanobject>ogni cosa in Python sia un oggetto</a>?
 <p>Quindi cosa succede quando lanciate la <span class=wtf>test suite</span> con questo nuovo test?
 <pre class=screen>
 <samp class=p>you@localhost:~$ </samp><kbd>python3 romantest2.py -v</kbd>

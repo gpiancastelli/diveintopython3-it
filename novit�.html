@@ -3,25 +3,22 @@
 <meta charset=utf-8>
 <title>Cosa c'è di nuovo in "Dive into Python 3"</title>
 <!--[if IE]><script src=html5.js></script><![endif]-->
-<link rel=stylesheet type=text/css href=dip3.css>
-<link rel=stylesheet type=text/css href=dip3-it.css>
+<link rel=stylesheet href=dip3.css>
+<link rel=stylesheet href=dip3-it.css>
 <style>
 body{counter-reset:h1 -1}
 h3:before{content:""}
 </style>
-<link rel=stylesheet type=text/css media='only screen and (max-device-width: 480px)' href=mobile.css>
+<link rel=stylesheet media='only screen and (max-device-width: 480px)' href=mobile.css>
 </head>
 <form action=http://www.google.com/cse><div><input type=hidden name=cx value=014021643941856155761:l5eihuescdw><input type=hidden name=ie value=UTF-8>&nbsp;<input name=q size=25>&nbsp;<input type=submit name=sa value=Search></div></form>
 <p>Voi siete qui: <a href=index.html>Home</a> <span>&#8227;</span> <a href=table-of-contents.html#whats-new>Dive Into Python 3</a> <span>&#8227;</span>
-<p id=level>Livello di difficoltà: <span title=advanced>&#x2666;&#x2666;&#x2666;&#x2666;&#x2662;</span>
 <h1>Cosa c'è di nuovo in &#8220;Dive Into Python 3&#8221;</h1>
 <blockquote class=q>
 <p><span>&#x275D;</span> Non è da qui che siamo entrati? <span>&#x275E;</span><br>&mdash; Pink Floyd, The Wall
 </blockquote>
 <p id=toc>&nbsp;
 <h2 id=divingin><i>alias</i> &#8220;il livello meno&#8221;</h2>
-
-<h3 id=divingin2><i>alias</i> Non voglio leggere più pagine di questo maledetto libro di quante ne debba assolutamente leggere.</h3>
 
 <p class=f>Avete letto l'originale &#8220;<a href=http://diveintopython.org/>Dive Into Python</a>&#8221; e forse avete perfino comprato il libro. (Grazie!) Conoscete già Python 2 piuttosto bene. Siete pronti a saltare il fosso e imparare Python 3. &hellip; Se tutto questo è vero, continuate a leggere. (Se niente di tutto questo è vero, vi converebbe <a href=il-vostro-primo-programma-python.html>cominciare dall'inizio</a>.)
 
@@ -35,11 +32,12 @@ h3:before{content:""}
 
 <p>Gli iteratori sono dovunque in Python 3, e li capisco molto meglio rispetto a quando ho scritto &#8220;Dive Into Python&#8221; cinque anni fa. Anche voi avete bisogno di capirli, perché molte funzioni che erano solite restituire liste in Python 2 ora restituiranno iteratori in Python 3. Come minimo, dovreste leggere <a href=iteratori.html#a-fibonacci-iterator>la seconda metà del capitolo sugli iteratori</a> e <a href=uso-avanzato-degli-iteratori.html#generator-expressions>la seconda metà del capitolo sull'uso avanzato degli iteratori</a>.
 
-<p>A grande richiesta, ho aggiunto un'appendice sui <a href="">nomi dei metodi speciali</a>, che è più o meno simile al <a href="http://www.python.org/doc/3.0/reference/datamodel.html#special-method-names">capitolo &#8220;Data Model&#8221; della documentazione di Python</a> ma condita da osservazioni ironiche e pungenti.
+<p>A grande richiesta, ho aggiunto un'appendice sui <a href="">nomi dei metodi speciali</a>, che è più o meno simile al <a href=http://www.python.org/doc/3.0/reference/datamodel.html#special-method-names>capitolo &#8220;Data Model&#8221; della documentazione di Python</a> ma condita da osservazioni ironiche e pungenti.
 
-<p>&Egrave; tutto per ora; il libro non è ancora finito! Il sottosistema di I/O dei file è totalmente diverso, ora; spero di scriverne presto. Ci sono scelte molto migliori per elaborare documenti XML, ora; spero di scrivere presto anche di questo.
+<p>Al tempo in cui stavo scrivendo &#8220;Dive Into Python&#8221;, tutte le librerie XML disponibili facevano schifo. Poi Fredrik Lundh ha realizzato <a href=http://effbot.org/zone/element-index.htm>ElementTree</a>, che non fa schifo proprio per niente. Gli dèi di Python hanno saggiamente <a href=http://docs.python.org/3.0/library/xml.etree.elementtree.html>incorporato ElementTree nella libreria standard</a>, e ora ElementTree forma le basi per il <a href=xml.html>mio nuovo capitolo su XML</a>. Le vecchie librerie per il riconscimento di XML sono ancora in giro, ma dovreste evitarle, perché fanno schifo!
 
-<!--<p class=nav><a rel=prev class=todo><span>&#x261C;</span></a> <a rel=next href=your-first-python-program.html><span>&#x261E;</span></a>-->
+<p>&Egrave; tutto per ora; il libro non è ancora finito! Il sottosistema di I/O dei file è totalmente diverso, ora; spero di scriverne presto.
+
 <p class=c>&copy; 2001&ndash;9 <a href=informazioni-sul-libro.html>Mark Pilgrim</a><br>
 &copy; 2009 <a href=informazioni-sulla-traduzione.html>Giulio Piancastelli</a> per la traduzione italiana
 <script src=jquery.js></script>

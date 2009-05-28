@@ -2,12 +2,13 @@
 <head>
 <meta charset=utf-8>
 <title>Espressioni regolari - Dive into Python 3</title>
-<link rel=stylesheet type=text/css href=dip3.css>
-<link rel=stylesheet type=text/css href=dip3-it.css>
+<!--[if IE]><script src=html5.js></script><![endif]-->
+<link rel=stylesheet href=dip3.css>
+<link rel=stylesheet href=dip3-it.css>
 <style>
 body{counter-reset:h1 4}
 </style>
-<link rel=stylesheet type=text/css media='only screen and (max-device-width: 480px)' href=mobile.css>
+<link rel=stylesheet media='only screen and (max-device-width: 480px)' href=mobile.css>
 </head>
 <form action=http://www.google.com/cse><div><input type=hidden name=cx value=014021643941856155761:l5eihuescdw><input type=hidden name=ie value=UTF-8>&nbsp;<input name=q size=25>&nbsp;<input type=submit name=root value=Search></div></form>
 <p>Voi siete qui: <a href=index.html>Home</a> <span>&#8227;</span> <a href=table-of-contents.html#regular-expressions>Dive Into Python 3</a> <span>&#8227;</span>
@@ -296,7 +297,7 @@ body{counter-reset:h1 4}
 <a><samp class=p>>>> </samp><kbd>phonePattern.search('800-555-1212-1234')</kbd>                 <span>&#x2462;</span></a>
 <samp class=p>>>> </samp></pre>
 <ol>
-<li>Leggete sempre una espressione regolare da sinistra a destra. Questa trova una corrispondenza con l'inizio della stringa, e poi con <code>(\d{3})</code>. Cos'è <code>\d{3}</code>? Be', <code>\d</code> significa &#8220;qualsiasi cifra numerica&#8221; (da <code>0</code> fino a <code>9</code>). E <code>{3}</code> significa &#8220;trova una corrispondenza con esattamente tre cifre numeriche&#8221;; è una variazione della <a href="#re.nm" title="7.4. Using the {n,m} Syntax">sintassi <code>{n,m}</code></a> che avete visto prima. Mettere il tutto tra parentesi significa &#8220;trova una corrispondenza con esattamente tre cifre numeriche, <em>e memorizzala come un gruppo che posso richiederti più tardi</em>&#8221;. Poi l'espressione regolare trova quindi una corrispondenza con un trattino letterale. Poi trova una corrispondenza con un altro gruppo di esattamente tre cifre. Poi un altro trattino letterale. Poi un altro gruppo di esattamente quattro cifre. Poi trova una corrispondenza con la fine della stringa.
+<li>Leggete sempre una espressione regolare da sinistra a destra. Questa trova una corrispondenza con l'inizio della stringa, e poi con <code>(\d{3})</code>. Cos'è <code>\d{3}</code>? Be', <code>\d</code> significa &#8220;qualsiasi cifra numerica&#8221; (da <code>0</code> fino a <code>9</code>). E <code>{3}</code> significa &#8220;trova una corrispondenza con esattamente tre cifre numeriche&#8221;; è una variazione della <a href=#nmsyntax>sintassi <code>{n,m}</code></a> che avete visto prima. Mettere il tutto tra parentesi significa &#8220;trova una corrispondenza con esattamente tre cifre numeriche, <em>e memorizzala come un gruppo che posso richiederti più tardi</em>&#8221;. Poi l'espressione regolare trova quindi una corrispondenza con un trattino letterale. Poi trova una corrispondenza con un altro gruppo di esattamente tre cifre. Poi un altro trattino letterale. Poi un altro gruppo di esattamente quattro cifre. Poi trova una corrispondenza con la fine della stringa.
 <li>Per avere accesso ai gruppi che il motore di espressioni regolari ha memorizzato durante il riconoscimento, usate il metodo <code>groups()</code> sull'oggetto che il metodo <code>search()</code> vi restituisce. Invocare <code>groups()</code> vi restituirà una tupla di tanti gruppi quanti ne avete definiti nella espressione regolare. In questo caso, avete definito tre gruppi, uno di tre cifre, uno di tre cifre, e uno di quattro cifre.
 <li>Questa espressione regolare non è la risposta finale, perché non gestisce un numero telefonico con una estensione alla fine. Per fare questo, avrete bisogno di espandere l'espressione regolare.
 </ol>
