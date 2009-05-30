@@ -20,9 +20,9 @@ mark{display:inline}
 </blockquote>
 <p id=toc>&nbsp;
 <h2 id=divingin>Immersione!</h2>
-<p class=f>La maggior parte dei capitoli in questo libro si sono centrati attorno a un pezzo di codice d'esempio. Ma <abbr>XML</abbr> non è a proposito di codice; è a proposito di dati. Uno degli usi più comuni di <abbr>XML</abbr> è la &#8220;syndication feed&#8221; che elenca gli ultimi articoli di un blog, un forum, o un altro sito web frequentemente aggiornato. La maggior parte dei software <span class=wtf>di blogging</span> più popolari è in grado di produrre una feed e aggiornarla ogni volta che nuovi articoli, <span class=wtf>thread di discussione</span>, o <span class=wtf>blog post</span> vengono pubblicati. Potete seguire un blog &#8220;sottoscrivendo&#8221; la sua feed, e potete seguire blog multipli con un &#8220;<a href=http://en.wikipedia.org/wiki/List_of_feed_aggregators>aggregatore di feed</a>&#8221; dedicato come <a href=http://www.google.com/reader/>Google Reader</a>.
+<p class=f>La maggior parte dei capitoli in questo libro si sono centrati attorno a un pezzo di codice d'esempio. Ma <abbr>XML</abbr> non è a proposito di codice; è a proposito di dati. Uno degli usi più comuni di <abbr>XML</abbr> è il &#8220;syndication feed&#8221; che elenca gli ultimi articoli di un blog, un forum, o un altro sito web frequentemente aggiornato. La maggior parte dei software <span class=wtf>di blogging</span> più popolari è in grado di produrre un feed e aggiornarla ogni volta che nuovi articoli, <span class=wtf>thread di discussione</span>, o <span class=wtf>blog post</span> vengono pubblicati. Potete seguire un blog &#8220;sottoscrivendo&#8221; il suo feed, e potete seguire blog multipli con un &#8220;<a href=http://en.wikipedia.org/wiki/List_of_feed_aggregators>aggregatore di feed</a>&#8221; dedicato come <a href=http://www.google.com/reader/>Google Reader</a>.
 
-<p>Qui, dunque, ci sono i dati <abbr>XML</abbr> con cui lavoreremo in questo capitolo. &Egrave; una feed &mdash; nello specifico, una <a class=wtf href=http://atompub.org/rfc4287.html>syndication feed Atom</a>.
+<p>Qui, dunque, ci sono i dati <abbr>XML</abbr> con cui lavoreremo in questo capitolo. &Egrave; un feed &mdash; nello specifico, un <a class=wtf href=http://atompub.org/rfc4287.html>syndication feed Atom</a>.
 
 <p class=d>[<a href=esempi/feed.xml>scarica <code>feed.xml</code></a>]
 <pre><code>&lt;?xml version="1.0" encoding="utf-8"?>
@@ -172,9 +172,9 @@ mark{display:inline}
 
 <p>E ora conoscete quel tanto di <abbr>XML</abbr> che vi serve per poter essere pericolosi!
 
-<h2 id=xml-structure>La struttura di una feed Atom</h2>
+<h2 id=xml-structure>La struttura di un feed Atom</h2>
 
-<p>Pensate a un weblog, o in effetti a qualsiasi sito web il cui contenuto venga frequentemente aggiornato, come <a href=http://www.cnn.com/>CNN.com</a>. Il sito ha un titolo (&#8220;CNN.com&#8221;), un sottotitolo (&#8220;Breaking News, U.S., World, Weather, Entertainment <i class=baa>&amp;</i> Video News&#8221;), una data per l'ultimo aggiornamento (&#8220;updated 12:43 p.m. EDT, Sat May 16, 2009&#8221;), e una lista di articoli <span class=wtf>posted</span> in tempi differenti. Anche ogni articolo ha un titolo, una data di prima pubblicazione (e magari anche una data per l'ultimo aggiornamento, se ne è stata pubblicata una correzione oppure è stato risolto un errore di battitura), e un URL unico.
+<p>Pensate a un weblog, o in effetti a qualsiasi sito web il cui contenuto venga frequentemente aggiornato, come <a href=http://www.cnn.com/>CNN.com</a>. Il sito ha un titolo (&#8220;CNN.com&#8221;), un sottotitolo (&#8220;Breaking News, U.S., World, Weather, Entertainment <i class=baa>&amp;</i> Video News&#8221;), una data per l'ultimo aggiornamento (&#8220;updated 12:43 p.m. EDT, Sat May 16, 2009&#8221;), e una lista di articoli pubblicati in tempi differenti. Anche ogni articolo ha un titolo, una data di prima pubblicazione (e magari anche una data per l'ultimo aggiornamento, se ne è stata pubblicata una modifica oppure è stato corretto un errore di battitura), e un URL unico.
 
 <p>Il formato di syndication Atom è progettato per catturare tutte queste informazioni in un formato standard. Il mio weblog e CNN.com sono <span class=wtf>wildly</span> differenti nel design, ambito, e pubblico, ma entrambi hanno la stessa struttura di base. CNN.com ha un titolo; il mio blog ha un titolo; CNN.com pubblica articoli; io pubblico articoli.
 
@@ -184,10 +184,10 @@ mark{display:inline}
 <a>      xml:lang="en">                       <span>&#x2461;</span></a></code></pre>
 <ol>
 <li><code>http://www.w3.org/2005/Atom</code> è lo spazio di nomi Atom.
-<li>Qualsiasi elemento può contenere un attributo <code>xml:lang</code>, che dichiara la lingua di quell'elemento e dei suoi figli. In questo caso, l'attributo <code>xml:lang</code> è dichiarato una sola volta nell'elemento radice, il che significa che l'intera feed è in inglese.
+<li>Qualsiasi elemento può contenere un attributo <code>xml:lang</code>, che dichiara la lingua di quell'elemento e dei suoi figli. In questo caso, l'attributo <code>xml:lang</code> è dichiarato una sola volta nell'elemento radice, il che significa che l'intero feed è in inglese.
 </ol>
 
-<p>Una feed Atom contiene diversi pezzi di informazione sulla feed stessa. Questi sono dichiarati come figli dell'elemento <code>feed</code> a livello di radice.
+<p>Un feed Atom contiene diversi pezzi di informazione sul feed stesso. Questi sono dichiarati come figli dell'elemento <code>feed</code> a livello di radice.
 
 <pre><code>&lt;feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
 <a>  &lt;title>dive into mark&lt;/title>                                             <span>&#x2460;</span></a>
@@ -196,17 +196,17 @@ mark{display:inline}
 <a>  &lt;updated>2009-03-27T21:56:07Z&lt;/updated>                                   <span>&#x2463;</span></a>
 <a>  &lt;link rel="alternate" type="text/html" href="http://diveintomark.org/"/>  <span>&#x2464;</span></a></code></pre>
 <ol>
-<li>Il titolo di questa feed è <code>dive into mark</code>. 
-<li>Il sottotitolo di questa feed è <code>currently between addictions</code>.
+<li>Il titolo di questo feed è <code>dive into mark</code>. 
+<li>Il sottotitolo di questo feed è <code>currently between addictions</code>.
 <li>Ogni feed necessita di un identificatore unico. Leggete la <a href=http://www.ietf.org/rfc/rfc4151.txt>RFC 4151</a> per sapre come crearne uno.
-<li>Questa feed è stata aggiornata per l'ultima volta il 27 marzo 2009, alle 21:56 GMT. Di solito, questa data è equivalente alla data dell'ultima modifica dell'articolo più recente.
-<li>Ora le cose cominciano a diventare interessanti. Questo elemento <code>link</code> non ha contenuto testuale, ma ha tre attributi: <code>rel</code>, <code>type</code> e <code>href</code>. Il valore di <code>rel</code> vi dice che tipo di collegamento è questo; <code>rel="alternate"</code> significa che è un collegamento a una rappresentazione alternativa per questa feed. L'attributo <code>type="text/html"</code> significa che questo è un collegamento a una pagina <abbr>HTML</abbr>. E la destinazione del collegamento viene fornita nell'attributo <code>href</code>.
+<li>Questo feed è stata aggiornata per l'ultima volta il 27 marzo 2009, alle 21:56 GMT. Di solito, questa data è equivalente alla data dell'ultima modifica dell'articolo più recente.
+<li>Ora le cose cominciano a diventare interessanti. Questo elemento <code>link</code> non ha contenuto testuale, ma ha tre attributi: <code>rel</code>, <code>type</code> e <code>href</code>. Il valore di <code>rel</code> vi dice che tipo di collegamento è questo; <code>rel="alternate"</code> significa che è un collegamento a una rappresentazione alternativa per questo feed. L'attributo <code>type="text/html"</code> significa che questo è un collegamento a una pagina <abbr>HTML</abbr>. E la destinazione del collegamento viene fornita nell'attributo <code>href</code>.
 </ol>
 
-<p>Ora sappiamo che questa è una feed per un sito chiamato &#8220;dive into mark&#8220; che è disponibile all'indirizzo <a href=http://diveintomark.org/><code>http://diveintomark.org/</code></a> e che è stato aggiornato per l'ultima volta il 27 marzo 2009.
+<p>Ora sappiamo che questo è un feed per un sito chiamato &#8220;dive into mark&#8220; che è disponibile all'indirizzo <a href=http://diveintomark.org/><code>http://diveintomark.org/</code></a> e che è stato aggiornato per l'ultima volta il 27 marzo 2009.
 
 <blockquote class=note>
-<p><span>&#x261E;</span>Sebbene l'ordine degli elementi possa essere rilevante in alcuni documenti <abbr>XML</abbr>, non lo è in una feed Atom.
+<p><span>&#x261E;</span>Sebbene l'ordine degli elementi possa essere rilevante in alcuni documenti <abbr>XML</abbr>, non lo è in un feed Atom.
 </blockquote>
 
 <p>Dopo i metadati a livello di feed si trova la lista degli articoli più recenti. Un articolo <span class=wtf>looks like this</span>:
@@ -231,13 +231,13 @@ mark{display:inline}
     On dialup.&lt;/summary>
 <a>&lt;/entry>                                                                   <span>&#x2467;</span></a></code></pre>
 <ol>
-<li>L'elemento <code>author</code> vi dice chi ha scritto questo articolo: un certo tizio di nome Mark, che potete trovare a bighellonare all'indirizzo <code>http://diveintomark.org/</code>. (Questo è lo stesso indirizzo del collegamento alternativo contenuto nei metadati della feed, ma non deve per forza esserlo. Molti weblog hanno più di un autore, ognuno col proprio sito personale.)
+<li>L'elemento <code>author</code> vi dice chi ha scritto questo articolo: un certo tizio di nome Mark, che potete trovare a bighellonare all'indirizzo <code>http://diveintomark.org/</code>. (Questo è lo stesso indirizzo del collegamento alternativo contenuto nei metadati del feed, ma non deve per forza esserlo. Molti weblog hanno più di un autore, ognuno col proprio sito personale.)
 <li>L'elemento <code>title</code> vi dà il titolo dell'articolo, &#8220;Dive into history, 2009 edition&#8221;.
 <li>Come per il collegamento alternativo a livello di feed, questo elemento <code>link</code> vi dà l'indirizzo della versione <abbr>HTML</abbr> di questo articolo.
 <li>Ogni voce, come ogni feed, necessita di un identificatore unico.
 <li>Ogni voce ha due date: la data di prima pubblicazione (<code>published</code>) e la data di ultima modifica (<code>updated</code>).
 <li>Ogni voce può avere un numero arbitrario di categorie. Questo articolo è classificato sotto le categorie <code>diveintopython</code>, <code>docbook</code> e <code>html</code>.
-<li>L'elemento <code>summary</code> fornisce un breve riepilogo dell'articolo. (Esiste anche un elemento <code>content</code>, che qui non viene mostrato, da utilizzare se volete includere il testo completo dell'articolo nella vostra feed.) Questo elemento <code>summary</code> possiede l'attributo <code>type="html"</code> specifico di Atom, che specifica che questo riepilogo è un frammento di <abbr>HTML</abbr>, non testo semplice. Questo è importante, dato che contiene entità specifiche di <abbr>HTML</abbr> (<code>&amp;mdash;</code> e <code>&amp;hellip;</code>) che dovrebbero essere rappresentate come &#8220;&mdash;&#8221; e &#8220;&hellip;&#8221; piuttosto che visualizzate direttamente.
+<li>L'elemento <code>summary</code> fornisce un breve riepilogo dell'articolo. (Esiste anche un elemento <code>content</code>, che qui non viene mostrato, da utilizzare se volete includere il testo completo dell'articolo nel vostro feed.) Questo elemento <code>summary</code> possiede l'attributo <code>type="html"</code> specifico di Atom, che specifica che questo riepilogo è un frammento di <abbr>HTML</abbr>, non testo semplice. Questo è importante, dato che contiene entità specifiche di <abbr>HTML</abbr> (<code>&amp;mdash;</code> e <code>&amp;hellip;</code>) che dovrebbero essere rappresentate come &#8220;&mdash;&#8221; e &#8220;&hellip;&#8221; piuttosto che visualizzate direttamente.
 <li>Infine, il tag di chiusura per l'elemento <code>entry</code> segnala la fine dei metadati per questo articolo.
 </ol>
 
@@ -248,7 +248,7 @@ mark{display:inline}
 <p class=d>[<a href=esempi/feed.xml>scarica <code>feed.xml</code></a>]
 <pre class=screen>
 <a><samp class=p>>>> </samp><kbd>import xml.etree.ElementTree as etree</kbd>    <span>&#x2460;</span></a>
-<a><samp class=p>>>> </samp><kbd>tree = etree.parse("examples/feed.xml")</kbd>  <span>&#x2461;</span></a>
+<a><samp class=p>>>> </samp><kbd>tree = etree.parse("esempi/feed.xml")</kbd>  <span>&#x2461;</span></a>
 <a><samp class=p>>>> </samp><kbd>root = tree.getroot()</kbd>                    <span>&#x2462;</span></a>
 <a><samp class=p>>>> </samp><kbd>root</kbd>                                     <span>&#x2463;</span></a>
 <samp>&lt;Element {http://www.w3.org/2005/Atom}feed at cd1eb0></samp></pre>
@@ -325,7 +325,7 @@ mark{display:inline}
 
 <pre class=screen>
 <samp class=p>>>> </samp><kbd>import xml.etree.ElementTree as etree</kbd>
-<samp class=p>>>> </samp><kbd>tree = etree.parse("examples/feed.xml")</kbd>
+<samp class=p>>>> </samp><kbd>tree = etree.parse("esempi/feed.xml")</kbd>
 <samp class=p>>>> </samp><kbd>root = tree.getroot()</kbd>
 <a><samp class=p>>>> </samp><kbd>root.findall("{http://www.w3.org/2005/Atom}entry")</kbd>    <span>&#x2460;</span></a>
 <samp>[&lt;Element {http://www.w3.org/2005/Atom}entry at e2b4e0>,
@@ -383,7 +383,7 @@ mark{display:inline}
  'rel': 'alternate'}</samp></pre>
 <ol>
 <li>Questa richiesta &mdash; <code>//{http://www.w3.org/2005/Atom}link</code> &mdash; è molto simile agli esempi precedenti, tranne per i due caratteri di slash all'inizio della richiesta. Quei due slash significano &#8220;non cercare solo tra i figli diretti; voglio <em>qualsiasi</em> elemento, a prescindere dal livello di <span class=wtf>nesting</span>.&#8221; Quindi il risultato è una lista di quattro elementi <code>link</code>, non uno solo.
-<li>Il primo risultato <em>è</em> un figlio diretto dell'elemento radice. Come potete vedere dai suoi attributi, questo è il collegamento alternativo a livello di feed che punta alla versione <abbr>HTML</abbr> del sito web che la feed descrive.
+<li>Il primo risultato <em>è</em> un figlio diretto dell'elemento radice. Come potete vedere dai suoi attributi, questo è il collegamento alternativo a livello di feed che punta alla versione <abbr>HTML</abbr> del sito web che il feed descrive.
 <li>Gli altri tre risultati sono i collegamenti alternativi a livello di singola voce. Ogni elemento <code>entry</code> ha un singolo elemento figlio <code>link</code>, e a causa del doppio slash all'inizio della richiesta, questa richiesta li trova tutti e tre.
 </ol>
 
@@ -438,7 +438,7 @@ StopIteration</samp></pre>
 
 <pre class=screen>
 <a><samp class=p>>>> </samp><kbd>from lxml import etree</kbd>                   <span>&#x2460;</span></a>
-<a><samp class=p>>>> </samp><kbd>tree = etree.parse("examples/feed.xml")</kbd>  <span>&#x2461;</span></a>
+<a><samp class=p>>>> </samp><kbd>tree = etree.parse("esempi/feed.xml")</kbd>  <span>&#x2461;</span></a>
 <a><samp class=p>>>> </samp><kbd>root = tree.getroot()</kbd>                    <span>&#x2462;</span></a>
 <a><samp class=p>>>> </samp><kbd>root.findall("{http://www.w3.org/2005/Atom}entry")</kbd>  <span>&#x2463;</span></a>
 <samp>[&lt;Element {http://www.w3.org/2005/Atom}entry at e2b4e0>,
@@ -462,7 +462,7 @@ except ImportError:
 
 <pre class=screen>
 <a><samp class=p>>>> </samp><kbd>import lxml.etree</kbd>                                                  <span>&#x2460;</span></a> 
-<samp class=p>>>> </samp><kbd>tree = lxml.etree.parse("examples/feed.xml")</kbd>
+<samp class=p>>>> </samp><kbd>tree = lxml.etree.parse("esempi/feed.xml")</kbd>
 <a><samp class=p>>>> </samp><kbd>NSMAP = {"atom": "http://www.w3.org/2005/Atom"}</kbd>                    <span>&#x2461;</span></a>
 <a><samp class=p>>>> </samp><kbd>entries = tree.xpath("//atom:category[@term='accessibility']/..",</kbd>  <span>&#x2462;</span></a>
 <samp class=p>... </samp><kbd>    namespaces=NSMAP)</kbd>
@@ -495,7 +495,7 @@ except ImportError:
 <li>In ogni momento, potete serializzare qualsiasi elemento (e i suoi figli) con la funzione <code>tostring()</code> di ElementTree <code>tostring()</code>.
 </ol>
 
-<p>Quella serializzazione vi ha sorpreso? Il modo in cui ElementTree serializza gli spazi di nomi <abbr>XML</abbr> è tecnicamente accurato ma non ottimale. Il documento <abbr>XML</abbr> di esempio all'inizio di questo capitolo definiva uno <i>spazio di nomi di default</i> (<code>xmlns="http://www.w3.org/2005/Atom"</code>). Definire uno spazio di nomi di default è utile per documenti &mdash; come le feed Atom &mdash; dove tutti gli elementi sono nello stesso spazio di nomi, perché potete dichiarare lo spazio di nomi una volta sola e dichiarare ogni elemento utilizzando semplicemente il suo nome locale (<code>&lt;feed></code>, <code>&lt;link></code>, <code>&lt;entry></code>). Non c'è alcun bisogno di usare un prefisso a meno che non vogliate dichiarare elementi appartenenti a un altro spazio di nomi.
+<p>Quella serializzazione vi ha sorpreso? Il modo in cui ElementTree serializza gli spazi di nomi <abbr>XML</abbr> è tecnicamente accurato ma non ottimale. Il documento <abbr>XML</abbr> di esempio all'inizio di questo capitolo definiva uno <i>spazio di nomi di default</i> (<code>xmlns="http://www.w3.org/2005/Atom"</code>). Definire uno spazio di nomi di default è utile per documenti &mdash; come i feed Atom &mdash; dove tutti gli elementi sono nello stesso spazio di nomi, perché potete dichiarare lo spazio di nomi una volta sola e dichiarare ogni elemento utilizzando semplicemente il suo nome locale (<code>&lt;feed></code>, <code>&lt;link></code>, <code>&lt;entry></code>). Non c'è alcun bisogno di usare un prefisso a meno che non vogliate dichiarare elementi appartenenti a un altro spazio di nomi.
 
 <p>Un riconoscitore <abbr>XML</abbr> non sarà in grado di &#8220;vedere&#8221; alcuna differenza tra un documento <abbr>XML</abbr> con uno spazio di nomi di default e un documento <abbr>XML</abbr> con uno spazio di nomi che utilizza un prefisso. La rappresentazione <abbr>DOM</abbr> che risulta da questa serializzazione:
 
@@ -505,7 +505,7 @@ except ImportError:
 
 <pre class=nd><code>&lt;feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"/></code></pre>
 
-<p>L'unica differenza concreta è che la seconda serializzazione è più corta di diversi caratteri. Se dovessimo interamente riscrivere la nostra feed di esempio con un prefisso <code>ns0:</code> in ogni tag di apertura e chiusura, aggiungeremmo 4 caratteri per tag di apertura &times; 79 tag + 4 caratteri per la dichiarazione di spazio di nomi, per un totale di 316 caratteri. Assumendo una <a href=stringhe.html#byte-arrays>codifica UTF-8</a>, questo risulta in 316 byte aggiuntivi. (Dopo aver compresso il documento tramite gzip, la differenza scende a 21 bytes, ma nondimento, 21 byte sono 21 byte.) Forse per voi non ha importanza, ma per qualcosa come una feed Atom, che potrebbe essere scaricata diverse migliaia di volte ogni volta che cambia, risparmiare alcuni byte per ogni richiesta può accumularsi velocemente.
+<p>L'unica differenza concreta è che la seconda serializzazione è più corta di diversi caratteri. Se dovessimo interamente riscrivere il nostro feed di esempio con un prefisso <code>ns0:</code> in ogni tag di apertura e chiusura, aggiungeremmo 4 caratteri per tag di apertura &times; 79 tag + 4 caratteri per la dichiarazione di spazio di nomi, per un totale di 316 caratteri. Assumendo una <a href=stringhe.html#byte-arrays>codifica UTF-8</a>, questo risulta in 316 byte aggiuntivi. (Dopo aver compresso il documento tramite gzip, la differenza scende a 21 bytes, ma nondimento, 21 byte sono 21 byte.) Forse per voi non ha importanza, ma per qualcosa come un feed Atom, che potrebbe essere scaricato diverse migliaia di volte ogni volta che cambia, risparmiare alcuni byte per ogni richiesta può accumularsi velocemente.
 
 <p>La libreria built-in ElementTree non offre questo controllo a grana fine sulla serializzazione di elementi in uno spazio di nomi, ma lxml lo fa.
 
@@ -552,7 +552,7 @@ except ImportError:
 
 <p>La specifica <abbr>XML</abbr> obbliga  tutti i riconoscitori <abbr>XML</abbr> conformanti a impiegare una &#8220;gestione degli errori draconiana.&#8221; Vale a dire, i riconoscitori si devono fermare e prendere fuoco non appena scoprono un qualsiasi tipo di errore di malformazione nel documento <abbr>XML</abbr>. Gli errori di malformazione includono tag di apertura e chiusura che non corrispondono, entità non definite, caratteri Unicode illegali e un numero di altre regole esoteriche. Questo è in netto contrasto con altri formati comuni come <abbr>HTML</abbr> &mdash; il vostro browser non smette di visualizzare una pagina web se dimenticate di chiudere un tag <abbr>HTML</abbr> o di effettuare l'escape di una E commerciale nel valore di un attributo. (&Egrave; un equivoco comune che <abbr>HTML</abbr> non abbia una gestione degli errori definita. La <a href=http://www.whatwg.org/specs/web-apps/current-work/multipage/syntax.html#parsing>gestione degli errori <abbr>HTML</abbr></a> è in realtà piuttosto ben definita, ma è significativamente più complicata di &#8220;fermati e prendi fuoco al primo errore.&#8221;)
 
-<p>Alcune persone (me compreso) credono che l'obbligo a una gestione degli errori draconiana sia stato un errore da parte degli inventori di <abbr>XML</abbr>. Non fraintendetemi; posso certmente vedere la seduzione di una semplificazione delle regole di gestione degli errori. Ma nella pratica il concetto di &#8220;malformazione&#8221; è più complicato di quanto sembra, specialmente per documenti <abbr>XML</abbr> (come le feed Atom) che sono pubblicati sul web e serviti attraverso <abbr>HTTP</abbr>. Nonostante la maturità di <abbr>XML</abbr>, che si è assestato sulla gestione draconiana degli errori nel 1997, i rilevamenti mostrano continuamente che una frazione significativa di feed Atom sul web sono piagati da errori di malformazione.
+<p>Alcune persone (me compreso) credono che l'obbligo a una gestione degli errori draconiana sia stato un errore da parte degli inventori di <abbr>XML</abbr>. Non fraintendetemi; posso certmente vedere la seduzione di una semplificazione delle regole di gestione degli errori. Ma nella pratica il concetto di &#8220;malformazione&#8221; è più complicato di quanto sembra, specialmente per documenti <abbr>XML</abbr> (come i feed Atom) che sono pubblicati sul web e serviti attraverso <abbr>HTTP</abbr>. Nonostante la maturità di <abbr>XML</abbr>, che si è assestato sulla gestione draconiana degli errori nel 1997, i rilevamenti mostrano continuamente che una frazione significativa di feed Atom sul web sono piagati da errori di malformazione.
 
 <p>Quindi, ho ragioni sia teoriche che pratiche per riconoscere documenti <abbr>XML</abbr> &#8220;a tutti i costi,&#8221; cioè per <em>non</em> fermarmi e prendere fuoco al primo errore di malformazione. Se vi trovate a voler fare questa cosa anche voi, lxml può aiutarvi.
 
@@ -564,11 +564,11 @@ except ImportError:
 ...
 &lt;/feed></code></pre>
 
-<p>Quello è un errore perché l'entità <code>&amp;hellip;</code> non è definita in <abbr>XML</abbr>. (&Egrave; definita in <abbr>HTML</abbr>.) Se provate a riconoscere questa feed <span class=wtf>broken</span> con le impostazioni di default, lxml si bloccherà sulla entità non definita.
+<p>Quello è un errore perché l'entità <code>&amp;hellip;</code> non è definita in <abbr>XML</abbr>. (&Egrave; definita in <abbr>HTML</abbr>.) Se provate a riconoscere questo feed <span class=wtf>broken</span> con le impostazioni di default, lxml si bloccherà sulla entità non definita.
 
 <pre class=screen>
 <samp class=p>>>> </samp><kbd>import lxml.etree</kbd>
-<samp class=p>>>> </samp><kbd>tree = lxml.etree.parse("examples/feed-broken.xml")</kbd>
+<samp class=p>>>> </samp><kbd>tree = lxml.etree.parse("esempi/feed-broken.xml")</kbd>
 <samp class=traceback>Traceback (most recent call last):
   File "&lt;stdin>", line 1, in &lt;module>
   File "lxml.etree.pyx", line 2693, in lxml.etree.parse (src/lxml/lxml.etree.c:52591)
@@ -585,9 +585,9 @@ lxml.etree.XMLSyntaxError: Entity 'hellip' not defined, line 3, column 28</samp>
 
 <pre class=screen>
 <a><samp class=p>>>> </samp><kbd>parser = lxml.etree.XMLParser(recover=True)</kbd>                  <span>&#x2460;</span></a>
-<a><samp class=p>>>> </samp><kbd>tree = lxml.etree.parse("examples/feed-broken.xml", parser)</kbd>  <span>&#x2461;</span></a>
+<a><samp class=p>>>> </samp><kbd>tree = lxml.etree.parse("esempi/feed-broken.xml", parser)</kbd>  <span>&#x2461;</span></a>
 <a><samp class=p>>>> </samp><kbd>parser.error_log</kbd>                                             <span>&#x2462;</span></a>
-<samp>examples/feed-broken.xml:3:28:FATAL:PARSER:ERR_UNDECLARED_ENTITY: Entity 'hellip' not defined</samp>
+<samp>esempi/feed-broken.xml:3:28:FATAL:PARSER:ERR_UNDECLARED_ENTITY: Entity 'hellip' not defined</samp>
 <samp class=p>>>> </samp><kbd>tree.findall("{http://www.w3.org/2005/Atom}title")</kbd>
 <samp>[&lt;Element {http://www.w3.org/2005/Atom}title at ead510>]</samp>
 <samp class=p>>>> </samp><kbd>title = tree.findall("{http://www.w3.org/2005/Atom}title")[0]</kbd>
