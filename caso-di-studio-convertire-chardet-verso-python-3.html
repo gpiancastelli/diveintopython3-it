@@ -42,7 +42,7 @@ del{background:#f87}
 <p><span class=fixme>[FIXME download link, possibly on chardet.feedparser.org, possibly local]</span>
 <p>Prima di cominciare la conversione, potrebbe essere d'aiuto capire come funziona il codice! Questa sezione vuole essere una breve guida alla struttura e al funzionamento del modulo <code>chardet</code>.
 <aside>Il riconoscimento di codifica è in realtà il riconoscimento di una lingua travestito.</aside>
-<p>Il punto d'entrata principale per l'algoritmo di riconoscimento è <code>universaldetector.py</code>, dove viene definita la classe <code>UniversalDetector</code>. (Potreste pensare che il punto d'entrata principale sia la funzione <code>detect()</code> in <code>chardet/__init__.py</code>, ma in realtà quella è solo una funzione di convenienza che crea un oggetto di tipo <code>UniversalDetector</code>, lo invoca, e ne restituisce risultato.)
+<p>Il punto d'ingresso principale per l'algoritmo di riconoscimento è <code>universaldetector.py</code>, dove viene definita la classe <code>UniversalDetector</code>. (Potreste pensare che il punto d'entrata principale sia la funzione <code>detect()</code> in <code>chardet/__init__.py</code>, ma in realtà quella è solo una funzione di convenienza che crea un oggetto di tipo <code>UniversalDetector</code>, lo invoca, e ne restituisce risultato.)
 <p>Ci sono 5 categorie di codifiche che <code>UniversalDetector</code> gestisce:
 <ol>
 <li><code>UTF-n</code> con <abbr title="Byte Order Mark">BOM</abbr>. Questa comprende <code>UTF-8</code>, sia le varianti <abbr title="Big Endian">BE</abbr> che <abbr title="Little Endian">LE</abbr> di <code>UTF-16</code>, e tutte e 4 le varianti di <code>UTF-32</code> con ordine di byte differente.
