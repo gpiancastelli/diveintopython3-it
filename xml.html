@@ -20,9 +20,9 @@ mark{display:inline}
 </blockquote>
 <p id=toc>&nbsp;
 <h2 id=divingin>Immersione!</h2>
-<p class=f>La maggior parte dei capitoli in questo libro si sono centrati attorno a un pezzo di codice d'esempio. Ma <abbr>XML</abbr> non è a proposito di codice; è a proposito di dati. Uno degli usi più comuni di <abbr>XML</abbr> è il &#8220;syndication feed&#8221; che elenca gli ultimi articoli di un blog, un forum, o un altro sito web frequentemente aggiornato. La maggior parte dei software <span class=wtf>di blogging</span> più popolari è in grado di produrre un feed e aggiornarla ogni volta che nuovi articoli, <span class=wtf>thread di discussione</span>, o <span class=wtf>blog post</span> vengono pubblicati. Potete seguire un blog &#8220;sottoscrivendo&#8221; il suo feed, e potete seguire blog multipli con un &#8220;<a href=http://en.wikipedia.org/wiki/List_of_feed_aggregators>aggregatore di feed</a>&#8221; dedicato come <a href=http://www.google.com/reader/>Google Reader</a>.
+<p class=f>La maggior parte dei capitoli in questo libro si sono centrati attorno a un pezzo di codice d'esempio. Ma <abbr>XML</abbr> non è a proposito di codice; è a proposito di dati. Uno degli usi più comuni di <abbr>XML</abbr> è il &#8220;syndication feed&#8221; che elenca gli ultimi articoli di un blog, un forum, o un altro sito web frequentemente aggiornato. La maggior parte dei software <span class=wtf>di blogging</span> più popolari è in grado di produrre un feed e aggiornarlo ogni volta che nuovi articoli, <span class=wtf>thread di discussione</span>, o <span class=wtf>blog post</span> vengono pubblicati. Potete seguire un blog &#8220;sottoscrivendo&#8221; il suo feed, e potete seguire blog multipli con un &#8220;<a href=http://en.wikipedia.org/wiki/List_of_feed_aggregators>aggregatore di feed</a>&#8221; dedicato come <a href=http://www.google.com/reader/>Google Reader</a>.
 
-<p>Qui, dunque, ci sono i dati <abbr>XML</abbr> con cui lavoreremo in questo capitolo. &Egrave; un feed &mdash; nello specifico, un <a class=wtf href=http://atompub.org/rfc4287.html>syndication feed Atom</a>.
+<p>Qui di seguito, dunque, trovate il documento <abbr>XML</abbr> contenente i dati con cui lavoreremo in questo capitolo. &Egrave; un feed &mdash; nello specifico, un <a href=http://atompub.org/rfc4287.html>syndication feed in formato Atom</a>.
 
 <p class=d>[<a href=esempi/feed.xml>scarica <code>feed.xml</code></a>]
 <pre><code>&lt;?xml version="1.0" encoding="utf-8"?>
@@ -103,7 +103,7 @@ mark{display:inline}
 <li>Questo è il corrispondente <i>tag di chiusura</i> dell'elemento <code>foo</code>. Allo stesso modo in cui si bilanciano le parentesi nella scrittura, in matematica, o in programmazione, ogni tag di apertura deve essere <i>chiuso</i> da un corrispondente tag di chiusura.
 </ol>
 
-<p>Gli elementi possono essere <i>innestati</i> senza alcun limite di profondità. Un elemento <code>bar</code> all'interno di un elemento <code>foo</code> si definisce come un <i>sottoelemento</i> o un elemento <i>figlio</i> di <code>foo</code>.
+<p>Gli elementi possono essere <i>annidati</i> senza alcun limite di profondità. Un elemento <code>bar</code> all'interno di un elemento <code>foo</code> si definisce come un <i>sottoelemento</i> o un elemento <i>figlio</i> di <code>foo</code>.
 
 <pre class=nd><code>&lt;foo>
   <mark>&lt;bar>&lt;/bar></mark>
@@ -123,7 +123,7 @@ mark{display:inline}
 </code></pre>
 <ol>
 <li>L'elemento <code>foo</code> possiede un attributo, chiamato <code>lang</code>. Il valore del suo attributo <code>lang</code> è <code>en</code>.
-<li>L'elemento <code>bar</code> possiede un attributo, chiamato <code>lang</code>. Il valore del suo attributo <code>lang</code> è <code>fr</code>. Questo non crea conflitti in alcun modo con l'elemento <code>foo</code>. Ogni elemento possied il proprio insieme di attributi.
+<li>L'elemento <code>bar</code> possiede un attributo, chiamato <code>lang</code>. Il valore del suo attributo <code>lang</code> è <code>fr</code>. Questo non crea conflitti in alcun modo con l'elemento <code>foo</code>. Ogni elemento possiede il proprio insieme di attributi.
 </ol>
 
 <p>Nel caso un elemento possegga più di un attributo, l'ordine degli attributi non è significativo. Gli attributi di un elemento formano un insieme non ordinato di chiavi e valori, come un dizionario Python. 
@@ -139,7 +139,7 @@ mark{display:inline}
 
 <pre class=nd><code>&lt;foo>&lt;/foo></code></pre>
 
-<p>Esiste un'abbreviazione per scrivere elementi vuoti. Inserendo un carattere <code>/</code> nel tag di apertura, potete <span class=wtf>skip</span> completamente il tag di chiusura. Il documento <abbr>XML</abbr> nell'esempio precedente potrebbe anche essere scritto in questo modo:
+<p>Gli elementi vuoti si possono scrivere in maniera abbreviata. Inserendo un carattere <code>/</code> nel tag di apertura, potete omettere completamente il tag di chiusura. Il documento <abbr>XML</abbr> nell'esempio precedente potrebbe anche essere scritto in questo modo:
 
 <pre class=nd><code>&lt;foo<mark>/</mark>></code></pre>
 
@@ -316,7 +316,7 @@ mark{display:inline}
 <li>Il quinto figlio &mdash; <code>[4]</code> in una lista i cui indici partono da <code>0</code> &mdash; è l'elemento <code>link</code>.
 <li>L'elemento <code>link</code> ha tre attributi: <code>href</code>, <code>type</code> e <code>rel</code>.
 <li>Il quarto figlio &mdash; <code>[3]</code> in una lista i cui indici partono da <code>0</code> &mdash; è l'elemento <code>updated</code>.
-<li>L'elemento <code>updated</code> non ha attributi, quindi la sua proprietà <code>.attrib</code> è semplicemente un dizionario vuoto.
+<li>L'elemento <code>updated</code> non ha attributi, quindi la sua proprietà <code>attrib</code> è semplicemente un dizionario vuoto.
 </ol>
 
 <h2 id=xml-find>Cercare nodi all'interno di un documento XML</h2>
@@ -340,7 +340,7 @@ mark{display:inline}
 <ol>
 <li>Il metodo <code>findall()</code> trova elementi figli che corrispondo a una richiesta specifica (I dettagli sul formato della richiesta arriveranno in un minuto.)
 <li>Tutti gli elementi &mdash; incluso l'elemento radice, ma anche gli elementi figli &mdash; hanno un metodo <code>findall()</code>. Il metodo trova tutti gli elementi che corrispondono tra gli elementi figli. Ma perché in questo caso non viene trovato alcun risultato? Sebbene possa non essere immediato, questa particolare richiesta cerca solo tra i figli di un elemento. Dato che l'elemento radice <code>feed</code> non ha figli chiamati <code>feed</code>, questa richiesta restituisce una lista vuota.
-<li>Anche questo risultato potrebbe sorprendervi. <a href=#divingin>C'è un elemento <code>author</code></a> in questo documento; in effetti, ce ne sono tre (uno per ogni <code>entry</code>). Ma quegli elementi <code>author</code> non sono <em>figli diretti</em> dell'elemento radice; essi sono &#8220;nipoti&#8221; (letteralmente, un elemento figlio di un elemento figlio). Se volete cercare elementi <code>author</code> a qualsiasi livello di <span class=wtf>nesting</span>, potete farlo, ma la forma della richiesta è leggermente differente.
+<li>Anche questo risultato potrebbe sorprendervi. <a href=#divingin>C'è un elemento <code>author</code></a> in questo documento; in effetti, ce ne sono tre (uno per ogni <code>entry</code>). Ma quegli elementi <code>author</code> non sono <em>figli diretti</em> dell'elemento radice; essi sono &#8220;nipoti&#8221; (letteralmente, un elemento figlio di un elemento figlio). Se volete cercare elementi <code>author</code> a qualsiasi livello di profondità, potete farlo, ma la forma della richiesta è leggermente differente.
 </ol>
 
 <pre class=screen>
@@ -356,7 +356,7 @@ mark{display:inline}
 <li>In maniera forse sorprendente, questa richiesta non trova gli elementi <code>author</code> in questo documento. Perché no? Perché questa è solo una scorciatoia per <code>tree.getroot().findall("{http://www.w3.org/2005/Atom}author")</code>, che significa &#8220;trova tutti gli elementi <code>author</code> che sono figli dell'elemento radice.&#8221; Gli elementi <code>author</code> non sono figli dell'elemento radice; sono figli degli elementi <code>entry</code>. Quindi la richiesta non restituisce alcuna corrispondenza.
 </ol>
 
-<p><em>Esiste</em> un modo per cercare gli elementi <em>discendenti</em>, <i>i.e.</i> figli, nipoti e qualsiasi elmento a qualsiasi livello di <span class=wtf>nesting</span>.
+<p><em>Esiste</em> un modo per cercare gli elementi <em>discendenti</em>, <i>i.e.</i> figli, nipoti e qualsiasi elmento a qualsiasi livello di profondità.
 
 <pre class=screen>
 <a><samp class=p>>>> </samp><kbd>all_links = tree.findall("//{http://www.w3.org/2005/Atom}link")</kbd>  <span>&#x2460;</span></a>
@@ -382,7 +382,7 @@ mark{display:inline}
  'type': 'text/html',
  'rel': 'alternate'}</samp></pre>
 <ol>
-<li>Questa richiesta &mdash; <code>//{http://www.w3.org/2005/Atom}link</code> &mdash; è molto simile agli esempi precedenti, tranne per i due caratteri di slash all'inizio della richiesta. Quei due slash significano &#8220;non cercare solo tra i figli diretti; voglio <em>qualsiasi</em> elemento, a prescindere dal livello di <span class=wtf>nesting</span>.&#8221; Quindi il risultato è una lista di quattro elementi <code>link</code>, non uno solo.
+<li>Questa richiesta &mdash; <code>//{http://www.w3.org/2005/Atom}link</code> &mdash; è molto simile agli esempi precedenti, tranne per i due caratteri di slash all'inizio della richiesta. Quei due slash significano &#8220;non cercare solo tra i figli diretti; voglio <em>qualsiasi</em> elemento, a prescindere dal livello di profondità.&#8221; Quindi il risultato è una lista di quattro elementi <code>link</code>, non uno solo.
 <li>Il primo risultato <em>è</em> un figlio diretto dell'elemento radice. Come potete vedere dai suoi attributi, questo è il collegamento alternativo a livello di feed che punta alla versione <abbr>HTML</abbr> del sito web che il feed descrive.
 <li>Gli altri tre risultati sono i collegamenti alternativi a livello di singola voce. Ogni elemento <code>entry</code> ha un singolo elemento figlio <code>link</code>, e a causa del doppio slash all'inizio della richiesta, questa richiesta li trova tutti e tre.
 </ol>
