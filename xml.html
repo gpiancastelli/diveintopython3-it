@@ -20,7 +20,7 @@ mark{display:inline}
 </blockquote>
 <p id=toc>&nbsp;
 <h2 id=divingin>Immersione!</h2>
-<p class=f>La maggior parte dei capitoli in questo libro è stata costruita attorno al codice di un programma d'esempio. Ma <abbr>XML</abbr> non ha a che fare con il codice; ha a che fare con i dati. Uno degli usi più comuni di <abbr>XML</abbr> è il &#8220;syndication feed&#8221; che elenca gli ultimi articoli di un blog, un forum, o un altro sito web frequentemente aggiornato. La maggior parte dei software <span class=wtf>di blogging</span> più popolari è in grado di produrre un feed e aggiornarlo ogni volta che nuovi articoli, <span class=wtf>thread di discussione</span>, o <span class=wtf>blog post</span> vengono pubblicati. Potete seguire un singolo blog &#8220;sottoscrivendo&#8221; il suo feed, e potete seguire più di un blog alla volta utilizzando un &#8220;<a href=http://en.wikipedia.org/wiki/List_of_feed_aggregators>aggregatore di feed</a>&#8221; dedicato come <a href=http://www.google.com/reader/>Google Reader</a>.
+<p class=f>La maggior parte dei capitoli in questo libro è stata costruita attorno al codice di un programma d'esempio. Ma <abbr>XML</abbr> non ha a che fare con il codice; ha a che fare con i dati. Uno degli usi più comuni di <abbr>XML</abbr> è il &#8220;syndication feed&#8221; che elenca gli ultimi articoli di un blog, un forum, o un altro sito web frequentemente aggiornato. La maggior parte dei software più popolari per la gestione di un blog è in grado di produrre un feed e aggiornarlo ogni volta che nuovi messaggi, discussioni, o articoli vengono pubblicati. Potete seguire un singolo blog &#8220;sottoscrivendo&#8221; il suo feed, e potete seguire più di un blog alla volta utilizzando un &#8220;<a href=http://en.wikipedia.org/wiki/List_of_feed_aggregators>aggregatore di feed</a>&#8221; dedicato come <a href=http://www.google.com/reader/>Google Reader</a>.
 
 <p>Qui di seguito, dunque, trovate il documento <abbr>XML</abbr> contenente i dati con cui lavoreremo in questo capitolo. &Egrave; un feed &mdash; nello specifico, un <a href=http://atompub.org/rfc4287.html>syndication feed in formato Atom</a>.
 
@@ -90,7 +90,7 @@ mark{display:inline}
   &lt;/entry>
 &lt;/feed></code></pre>
  
-<h2 id=xml-intro class=wtf>A 5-Minute Crash Course in XML</h2>
+<h2 id=xml-intro>Un corso intensivo di XML in 5 minuti</h2>
 
 <p>Se conoscete già <abbr>XML</abbr>, potete saltare questa sezione.
 
@@ -143,7 +143,7 @@ mark{display:inline}
 
 <pre class=nd><code>&lt;foo<mark>/</mark>></code></pre>
 
-<p>Così come le funzioni Python possono essere dichiarate in <i>moduli</i> differenti, gli elementi <abbr>XML</abbr> possono essere dichiarati in <i>spazi di nomi</i> differenti. Gli spazi di nomi generalmente <span class=wtf>look like</span> URL. Potete usare una dichiarazione <code>xmlns</code> per definire uno <i>spazio di nomi di default</i>. Una dichiarazione di spazio di nomi ha un aspetto simile a un attributo, ma viene impiegata con uno scopo differente.
+<p>Così come le funzioni Python possono essere dichiarate in <i>moduli</i> differenti, gli elementi <abbr>XML</abbr> possono essere dichiarati in <i>spazi di nomi</i> differenti. Gli spazi di nomi generalmente sono identificati da un URL. Potete usare una dichiarazione <code>xmlns</code> per definire uno <i>spazio di nomi di default</i>. Una dichiarazione di spazio di nomi ha un aspetto simile a un attributo, ma viene impiegata con uno scopo differente.
 
 <pre class=nd><code><a>&lt;feed <mark>xmlns="http://www.w3.org/2005/Atom"</mark>>  <span>&#x2460;</span></a>
 <a>  &lt;title>dive into mark&lt;/title>             <span>&#x2461;</span></a>
@@ -166,7 +166,7 @@ mark{display:inline}
 
 <p>Un qualsiasi riconoscitore <abbr>XML</abbr> considera <em>identici</em> i due documenti <abbr>XML</abbr> precedenti. Spazio di nomi + nome dell'elemento = identità del documento <abbr>XML</abbr>. I prefissi esistono solamente per fare riferimento agli spazi di nomi, così l'effettivo nome del prefisso (<code>atom</code>) è irrilevante. Gli spazi di nomi corrispondono, i nomi degli elementi corrispondono, gli attributi (o l'assenza di attributi) corrispondono e il contenuto testuale di ogni elemento corrisponde, quindi i documenti <abbr>XML</abbr> sono uguali.
 
-<p>Infine, i documenti <abbr>XML</abbr> possono contentere <a href=stringhe.html#one-ring-to-rule-them-all>informazioni sulla codifica di carattere</a> nella prima riga, prima dell'elemento radice. (Se siete curiosi di sapere come fa un documento a contenere informazioni che è necessario conoscere prima di poterlo leggere, la <a href=http://www.w3.org/TR/REC-xml/#sec-guessing-no-ext-info>Sezione F della specifica <abbr>XML</abbr></a> descrive in dettaglio come risolvere questa <span class=wtf>Catch-22</span>.)
+<p>Infine, i documenti <abbr>XML</abbr> possono contentere <a href=stringhe.html#one-ring-to-rule-them-all>informazioni sulla codifica di carattere</a> nella prima riga, prima dell'elemento radice. (Se siete curiosi di sapere come fa un documento a contenere informazioni che è necessario conoscere prima di poterlo leggere, la <a href=http://www.w3.org/TR/REC-xml/#sec-guessing-no-ext-info>Sezione F della specifica <abbr>XML</abbr></a> descrive in dettaglio come risolvere questo paradosso del Comma 22.)
 
 <pre class=nd><code>&lt;?xml version="1.0" <mark>encoding="utf-8"</mark>?></code></pre>
 
@@ -176,7 +176,7 @@ mark{display:inline}
 
 <p>Pensate a un weblog, o in effetti a qualsiasi sito web il cui contenuto venga frequentemente aggiornato, come <a href=http://www.cnn.com/>CNN.com</a>. Il sito ha un titolo (&#8220;CNN.com&#8221;), un sottotitolo (&#8220;Breaking News, U.S., World, Weather, Entertainment <i class=baa>&amp;</i> Video News&#8221;), una data per l'ultimo aggiornamento (&#8220;updated 12:43 p.m. EDT, Sat May 16, 2009&#8221;) e una lista di articoli pubblicati in tempi differenti. Anche ogni articolo ha un titolo, una data di prima pubblicazione (e magari anche una data per l'ultimo aggiornamento, se ne è stata pubblicata una modifica oppure è stato corretto un errore di battitura), e un URL unico.
 
-<p>Il formato di syndication Atom è stato progettato per catturare tutte queste informazioni in un formato standard. Il mio weblog e CNN.com sono <span class=wtf>wildly</span> differenti nel design, ambito, e pubblico, ma entrambi hanno la stessa struttura di base. CNN.com ha un titolo, il mio blog ha un titolo; CNN.com pubblica articoli, io pubblico articoli.
+<p>Il formato di syndication Atom è stato progettato per catturare tutte queste informazioni in un formato standard. Il mio weblog e CNN.com hanno un aspetto, un ambito e un pubblico largamente differente, ma entrambi hanno la stessa struttura di base. CNN.com ha un titolo, il mio blog ha un titolo; CNN.com pubblica articoli, io pubblico articoli.
 
 <p>Al livello più alto si trova l'<i>elemento radice</i>, che è lo stesso per ogni feed Atom: l'elemento <code>feed</code> nello spazio di nomi <code>http://www.w3.org/2005/Atom</code>.
 
@@ -451,14 +451,14 @@ StopIteration</samp></pre>
 <li>Il metodo <code>findall()</code>: esattamente identico.
 </ol>
 
-<p>Per documenti <abbr>XML</abbr> di grandi dimensioni, lxml è significativamente più veloce rispetto alla libreria built-in ElementTree. Se state usando solo la <abbr>API</abbr> di ElementTree e volete usarne l'implementazione più veloce disponibile, potete provare a importare lxml e <span class=wtf>fall back</span> alla libreria built-in ElementTree.
+<p>Per documenti <abbr>XML</abbr> di grandi dimensioni, lxml è significativamente più veloce rispetto alla libreria built-in ElementTree. Se state usando solo la <abbr>API</abbr> di ElementTree e volete sfruttare l'implementazione più veloce disponibile, potete provare a importare lxml e ricorrere all'alternativa built-in ElementTree solo nel caso in cui lxml non sia presente.
 
 <pre><code>try:
     from lxml import etree
 except ImportError:
     import xml.etree.ElementTree as etree</code></pre>
 
-<p>Ma lxml è molto di più che una ElementTree più veloce. Essa integra anche il supporto per espressioni XPath arbitrarie. Non cercherò di approfondire la sintassi XPath. (Su quella si potrebbe scrivere un libro intero!) Ma vi mostrerò come si integra in lxml.
+<p>Ma lxml è molto di più che una ElementTree più veloce. Essa include anche il supporto per espressioni XPath arbitrarie. Non cercherò di approfondire la sintassi XPath (ci si potrebbe scrivere un libro intero!) ma vi mostrerò come si integra in lxml.
 
 <pre class=screen>
 <a><samp class=p>>>> </samp><kbd>import lxml.etree</kbd>                                                  <span>&#x2460;</span></a> 
@@ -545,14 +545,14 @@ except ImportError:
 <li>Come vi sareste aspettati, il nuovo elemento <code>title</code> è stato creato nello spazio di nomi Atom e inserito come figlio dell'elemento <code>feed</code>. Dato che l'elemento <code>title</code> non ha contenuto testuale e non ha figli propri, lxml lo serializza come un elemento vuoto (utilizzando l'abbreviazione <code>/></code>).
 <li>Per impostare il contenuto testuale di un elemento, impostate semplicemente la sua proprietà <code>text</code>.
 <li>Ora l'elemento <code>title</code> viene serializzato insieme al suo contenuto testuale. Durante la serializzazione è necessario effettuare l'escape del contenuto testuale che contiene segni di minore oppure caratteri di E commerciale. lxml gestisce questo processo in maniera automatica.
-<li>Potete anche applicare <span class=wtf>&#8220;pretty printing&#8221;</span> alla serializzazione, che inserisce ritorni a capo dopo i tag di chiusura e prima dei tag di apertura di elementi che contengono elementi figli ma non includono contenuto testuale. In termini tecnici, lxml aggiunge &#8220;spazio bianco non significativo&#8221; per rendere il risultato più leggibile.
+<li>Potete anche utilizzare l'argomento con nome <var>pretty_print</var> per ottenere una stampa formattata del testo serializzato, in cui viene inserito un ritorno a capo dopo i tag di chiusura e prima dei tag di apertura di elementi che contengono elementi figli ma non includono contenuto testuale. In termini tecnici, lxml aggiunge &#8220;spazio bianco non significativo&#8221; per rendere il risultato più leggibile.
 </ol>
 
 <h2 id=xml-custom-parser>Personalizzare il vostro riconoscitore XML</h2>
 
 <p>La specifica <abbr>XML</abbr> obbliga  tutti i riconoscitori <abbr>XML</abbr> conformanti a impiegare una &#8220;gestione degli errori draconiana.&#8221; Vale a dire, i riconoscitori si devono fermare e prendere fuoco non appena scoprono un qualsiasi tipo di errore di malformazione nel documento <abbr>XML</abbr>. Gli errori di malformazione includono tag di apertura e chiusura che non corrispondono, entità non definite, caratteri Unicode illegali e un numero di altre regole esoteriche. Questo è in netto contrasto con altri formati comuni come <abbr>HTML</abbr> &mdash; il vostro browser non smette di visualizzare una pagina web se dimenticate di chiudere un tag <abbr>HTML</abbr> o di effettuare l'escape di una E commerciale nel valore di un attributo. (&Egrave; un equivoco comune che <abbr>HTML</abbr> non abbia una gestione degli errori definita. La <a href=http://www.whatwg.org/specs/web-apps/current-work/multipage/syntax.html#parsing>gestione degli errori <abbr>HTML</abbr></a> è in realtà piuttosto ben definita, ma è significativamente più complicata di &#8220;fermati e prendi fuoco al primo errore.&#8221;)
 
-<p>Alcune persone (me compreso) credono che l'obbligo a una gestione degli errori draconiana sia stato un errore da parte degli inventori di <abbr>XML</abbr>. Non fraintendetemi; posso certmente vedere il fascino di una semplificazione delle regole di gestione degli errori. Ma nella pratica il concetto di &#8220;malformazione&#8221; è più complicato di quanto sembra, specialmente per documenti <abbr>XML</abbr> (come i feed Atom) che sono pubblicati sul web e serviti attraverso <abbr>HTTP</abbr>. Nonostante la maturità di <abbr>XML</abbr>, che si è assestato sulla gestione draconiana degli errori nel 1997, i rilevamenti mostrano continuamente che una frazione significativa di feed Atom sul web è afflitta da errori di malformazione.
+<p>Alcune persone (me compreso) credono che l'obbligo a una gestione degli errori draconiana sia stato un errore da parte degli inventori di <abbr>XML</abbr>. Non fraintendetemi; posso certamente vedere il fascino di una semplificazione delle regole di gestione degli errori. Ma nella pratica il concetto di &#8220;malformazione&#8221; è più complicato di quanto sembra, specialmente per documenti <abbr>XML</abbr> (come i feed Atom) che sono pubblicati sul web e serviti attraverso <abbr>HTTP</abbr>. Nonostante la maturità di <abbr>XML</abbr>, che si è assestato sulla gestione draconiana degli errori nel 1997, i rilevamenti mostrano continuamente che una frazione significativa di feed Atom sul web è afflitta da errori di malformazione.
 
 <p>Quindi, ho ragioni sia teoriche che pratiche per riconoscere documenti <abbr>XML</abbr> &#8220;a tutti i costi,&#8221; cioè per <em>non</em> fermarmi e prendere fuoco al primo errore di malformazione. Se vi trovate a voler fare questa cosa anche voi, lxml può aiutarvi.
 
@@ -607,7 +607,7 @@ lxml.etree.XMLSyntaxError: Entity 'hellip' not defined, line 3, column 28</samp>
 <li>Come potete vedere dalla serializzazione, l'entità <code>&amp;hellip;</code> non è stata spostata, ma è stata semplicemente scartata.
 </ol>
 
-<p>&Egrave; importante sottolineare che <strong>non c'è alcuna garanzia di interoperabilità</strong> quando si utilizzano riconoscitori <abbr>XML</abbr> che &#8220;compensano&#8221; gli errori di malformazione. Un riconoscitore differente potrebbe decidere che ha riconosciuto l'entità <code>&amp;hellip;</code> da <abbr>HTML</abbr> e rimpiazzarla con <code>&amp;amp;hellip;</code>. Questo è &#8220;meglio&#8221;? Forse. &Egrave; &#8220;più corretto&#8221;? No, sono entrambi ugualmente scorretti. Il comportamento corretto (in accordo con la specifica <abbr>XML</abbr>) è di fermarsi e prendere fuoco. Se avete deciso di non farlo, siete abbandonati a voi stessi.
+<p>&Egrave; importante sottolineare che <strong>non c'è alcuna garanzia di interoperabilità</strong> quando si utilizzano riconoscitori <abbr>XML</abbr> che &#8220;compensano&#8221; gli errori di malformazione. Un riconoscitore differente potrebbe decidere che ha riconosciuto l'entità <code>&amp;hellip;</code> da <abbr>HTML</abbr> e rimpiazzarla con <code>&amp;amp;hellip;</code>. Questa soluzione è &#8220;migliore&#8221;? Forse. &Egrave; &#8220;più corretta&#8221;? No, entrambi i riconoscitori sbagliano allo stesso modo. Il comportamento corretto (in accordo con la specifica <abbr>XML</abbr>) è di fermarsi e prendere fuoco. Se avete deciso di non farlo, siete abbandonati a voi stessi.
 
 <h2 id=furtherreading>Letture di approfondimento</h2>
 
