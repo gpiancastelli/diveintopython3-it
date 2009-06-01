@@ -26,9 +26,9 @@ mark{display:inline}
 
 <p class=d>[<a href=esempi/feed.xml>scarica <code>feed.xml</code></a>]
 <pre><code>&lt;?xml version="1.0" encoding="utf-8"?>
-&lt;feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+&lt;feed xmlns="http://www.w3.org/2005/Atom" xml:lang="it">
   &lt;title>dive into mark&lt;/title>
-  &lt;subtitle>currently between addictions&lt;/subtitle>
+  &lt;subtitle>attualmente tra una dipendenza e l'altra&lt;/subtitle>
   &lt;id>tag:diveintomark.org,2001-07-29:/&lt;/id>
   &lt;updated>2009-03-27T21:56:07Z&lt;/updated>
   &lt;link rel="alternate" type="text/html" href="http://diveintomark.org/"/>
@@ -38,7 +38,7 @@ mark{display:inline}
       &lt;name>Mark&lt;/name>
       &lt;uri>http://diveintomark.org/&lt;/uri>
     &lt;/author>
-    &lt;title>Dive into history, 2009 edition&lt;/title>
+    &lt;title>Dive into history, edizione 2009&lt;/title>
     &lt;link rel="alternate" type="text/html"
       href="http://diveintomark.org/archives/2009/03/27/dive-into-history-2009-edition"/>
     &lt;id>tag:diveintomark.org,2009-03-27:/archives/20090327172042&lt;/id>
@@ -47,31 +47,33 @@ mark{display:inline}
     &lt;category scheme="http://diveintomark.org" term="diveintopython"/>
     &lt;category scheme="http://diveintomark.org" term="docbook"/>
     &lt;category scheme="http://diveintomark.org" term="html"/>
-  &lt;summary type="html">Putting an entire chapter on one page sounds
-    bloated, but consider this &amp;amp;mdash; my longest chapter so far
-    would be 75 printed pages, and it loads in under 5 seconds&amp;amp;hellip;
-    On dialup.&lt;/summary>
+  &lt;summary type="html">Mettere un intero capitolo in una sola pagina
+      sembra eccessivo, ma considerate questo &amp;amp;mdash; finora il mio
+      capitolo più lungo equivarrebbe a 75 pagine stampate, e si carica
+      in meno di 5 secondi&amp;amp;hellip; Su una connessione in
+      dial-up.&lt;/summary>
   &lt;/entry>
   &lt;entry>
     &lt;author>
       &lt;name>Mark&lt;/name>
       &lt;uri>http://diveintomark.org/&lt;/uri>
     &lt;/author>
-    &lt;title>Accessibility is a harsh mistress&lt;/title>
+    &lt;title>L'accessibilità è una padrona inflessibile&lt;/title>
     &lt;link rel="alternate" type="text/html"
       href="http://diveintomark.org/archives/2009/03/21/accessibility-is-a-harsh-mistress"/>
     &lt;id>tag:diveintomark.org,2009-03-21:/archives/20090321200928&lt;/id>
     &lt;updated>2009-03-22T01:05:37Z&lt;/updated>
     &lt;published>2009-03-21T20:09:28Z&lt;/published>
     &lt;category scheme="http://diveintomark.org" term="accessibility"/>
-    &lt;summary type="html">The accessibility orthodoxy does not permit people to
-      question the value of features that are rarely useful and rarely used.&lt;/summary>
+    &lt;summary type="html">L'ortodossia dell'accessibilità non permette a
+      nessuno di mettere in discussione il valore di caratteristiche che
+      sono raramente utili e raramente usate.&lt;/summary>
   &lt;/entry>
   &lt;entry>
     &lt;author>
       &lt;name>Mark&lt;/name>
     &lt;/author>
-    &lt;title>A gentle introduction to video encoding, part 1: container formats&lt;/title>
+    &lt;title>Una introduzione gentile alla codifica video, parte 1: il formato dei contenitori&lt;/title>
     &lt;link rel="alternate" type="text/html"
       href="http://diveintomark.org/archives/2008/12/18/give-part-1-container-formats"/>
     &lt;id>tag:diveintomark.org,2008-12-18:/archives/20081218155422&lt;/id>
@@ -85,8 +87,8 @@ mark{display:inline}
     &lt;category scheme="http://diveintomark.org" term="mp4"/>
     &lt;category scheme="http://diveintomark.org" term="ogg"/>
     &lt;category scheme="http://diveintomark.org" term="video"/>
-    &lt;summary type="html">These notes will eventually become part of a
-      tech talk on video encoding.&lt;/summary>
+    &lt;summary type="html">Alla fine queste note diventeranno parte di
+      una presentazione sulla tecnologia della codifica video.&lt;/summary>
   &lt;/entry>
 &lt;/feed></code></pre>
  
@@ -181,23 +183,23 @@ mark{display:inline}
 <p>Al livello più alto si trova l'<i>elemento radice</i>, che è lo stesso per ogni feed Atom: l'elemento <code>feed</code> nello spazio di nomi <code>http://www.w3.org/2005/Atom</code>.
 
 <pre><code><a>&lt;feed xmlns="http://www.w3.org/2005/Atom"  <span>&#x2460;</span></a>
-<a>      xml:lang="en">                       <span>&#x2461;</span></a></code></pre>
+<a>      xml:lang="it">                       <span>&#x2461;</span></a></code></pre>
 <ol>
 <li><code>http://www.w3.org/2005/Atom</code> è lo spazio di nomi Atom.
-<li>Qualsiasi elemento può contenere un attributo <code>xml:lang</code>, che dichiara la lingua di quell'elemento e dei suoi figli. In questo caso, l'attributo <code>xml:lang</code> è dichiarato una sola volta nell'elemento radice, il che significa che l'intero feed è in inglese.
+<li>Qualsiasi elemento può contenere un attributo <code>xml:lang</code>, che dichiara la lingua di quell'elemento e dei suoi figli. In questo caso, l'attributo <code>xml:lang</code> è dichiarato una sola volta nell'elemento radice, il che significa che l'intero feed è in italiano.
 </ol>
 
 <p>Un feed Atom contiene diversi elementi di informazione sul feed stesso. Questi sono dichiarati come figli dell'elemento radice <code>feed</code>.
 
-<pre><code>&lt;feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+<pre><code>&lt;feed xmlns="http://www.w3.org/2005/Atom" xml:lang="it">
 <a>  &lt;title>dive into mark&lt;/title>                                             <span>&#x2460;</span></a>
-<a>  &lt;subtitle>currently between addictions&lt;/subtitle>                         <span>&#x2461;</span></a>
+<a>  &lt;subtitle>attualmente tra una dipendenza e l'altra&lt;/subtitle>             <span>&#x2461;</span></a>
 <a>  &lt;id>tag:diveintomark.org,2001-07-29:/&lt;/id>                                <span>&#x2462;</span></a>
 <a>  &lt;updated>2009-03-27T21:56:07Z&lt;/updated>                                   <span>&#x2463;</span></a>
 <a>  &lt;link rel="alternate" type="text/html" href="http://diveintomark.org/"/>  <span>&#x2464;</span></a></code></pre>
 <ol>
 <li>Il titolo di questo feed è <code>dive into mark</code>. 
-<li>Il sottotitolo di questo feed è <code>currently between addictions</code>.
+<li>Il sottotitolo di questo feed è <code>attualmente tra una dipendenza e l'altra</code>.
 <li>Ogni feed necessita di un identificatore unico. Leggete la <a href=http://www.ietf.org/rfc/rfc4151.txt>RFC 4151</a> per sapre come crearne uno.
 <li>Questo feed è stata aggiornato per l'ultima volta il 27 marzo 2009, alle 21:56 GMT. Di solito, questa data è uguale alla data di ultima modifica dell'articolo più recente.
 <li>Ora le cose cominciano a diventare interessanti. Questo elemento <code>link</code> non ha contenuto testuale, ma possiede tre attributi: <code>rel</code>, <code>type</code> e <code>href</code>. Il valore di <code>rel</code> vi dice che tipo di collegamento è questo; <code>rel="alternate"</code> significa che è un collegamento a una rappresentazione alternativa per questo feed. L'attributo <code>type="text/html"</code> significa che questo è un collegamento a una pagina <abbr>HTML</abbr>. E la destinazione del collegamento viene fornita nell'attributo <code>href</code>.
@@ -216,7 +218,7 @@ mark{display:inline}
     &lt;name>Mark&lt;/name>
     &lt;uri>http://diveintomark.org/&lt;/uri>
   &lt;/author>
-<a>  &lt;title>Dive into history, 2009 edition&lt;/title>                           <span>&#x2461;</span></a>
+<a>  &lt;title>Dive into history, edizione 2009&lt;/title>                          <span>&#x2461;</span></a>
 <a>  &lt;link rel="alternate" type="text/html"                                   <span>&#x2462;</span></a>
     href="http://diveintomark.org/archives/2009/03/27/dive-into-history-2009-edition"/>
 <a>  &lt;id>tag:diveintomark.org,2009-03-27:/archives/20090327172042&lt;/id>        <span>&#x2463;</span></a>
@@ -225,14 +227,15 @@ mark{display:inline}
 <a>  &lt;category scheme="http://diveintomark.org" term="diveintopython"/>       <span>&#x2465;</span></a>
   &lt;category scheme="http://diveintomark.org" term="docbook"/>
   &lt;category scheme="http://diveintomark.org" term="html"/>
-<a>  &lt;summary type="html">Putting an entire chapter on one page sounds        <span>&#x2466;</span></a>
-    bloated, but consider this &amp;amp;mdash; my longest chapter so far
-    would be 75 printed pages, and it loads in under 5 seconds&amp;amp;hellip;
-    On dialup.&lt;/summary>
+<a>  &lt;summary type="html">Mettere un intero capitolo in una sola pagina       <span>&#x2466;</span></a>
+    sembra eccessivo, ma considerate questo &amp;amp;mdash; finora il mio
+      capitolo più lungo equivarrebbe a 75 pagine stampate, e si carica
+      in meno di 5 secondi&amp;amp;hellip; Su una connessione in
+      dial-up.&lt;/summary>
 <a>&lt;/entry>                                                                   <span>&#x2467;</span></a></code></pre>
 <ol>
 <li>L'elemento <code>author</code> vi dice chi ha scritto questo articolo: un certo tizio di nome Mark, che potete trovare a bighellonare all'indirizzo <code>http://diveintomark.org/</code>. (Questo è lo stesso indirizzo del collegamento alternativo contenuto nei metadati del feed, ma non è necessario che lo sia. Molti weblog hanno più di un autore, ognuno col proprio sito personale.)
-<li>L'elemento <code>title</code> vi dà il titolo dell'articolo, &#8220;Dive into history, 2009 edition&#8221;.
+<li>L'elemento <code>title</code> vi dà il titolo dell'articolo, &#8220;Dive into history, edizione 2009&#8221;.
 <li>Come per il collegamento alternativo a livello di feed, questo elemento <code>link</code> vi dà l'indirizzo della versione <abbr>HTML</abbr> di questo articolo.
 <li>Ogni voce, come ogni feed, necessita di un identificatore unico.
 <li>Ogni voce ha due date: la data di pubblicazione (<code>published</code>) e la data di ultima modifica (<code>updated</code>).
@@ -300,7 +303,7 @@ mark{display:inline}
 <pre class=screen>
 # continua dall'esempio precedente
 <a><samp class=p>>>> </samp><kbd>root.attrib</kbd>                           <span>&#x2460;</span></a>
-<samp>{'{http://www.w3.org/XML/1998/namespace}lang': 'en'}</samp>
+<samp>{'{http://www.w3.org/XML/1998/namespace}lang': 'it'}</samp>
 <a><samp class=p>>>> </samp><kbd>root[4]</kbd>                               <span>&#x2461;</span></a>
 <samp>&lt;Element {http://www.w3.org/2005/Atom}link at e181b0></samp>
 <a><samp class=p>>>> </samp><kbd>root[4].attrib</kbd>                        <span>&#x2462;</span></a>
@@ -312,7 +315,7 @@ mark{display:inline}
 <a><samp class=p>>>> </samp><kbd>root[3].attrib</kbd>                        <span>&#x2464;</span></a>
 <samp>{}</samp></pre>
 <ol>
-<li>La proprietà <code>attrib</code> è un dizionario degli attributi dell'elemento. Il markup originale qui era <code>&lt;feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"></code>. Il prefisso <code>xml:</code> si riferisce a uno spazio di nomi predefinito che ogni documento <abbr>XML</abbr> può usare senza doverlo dichiarare.
+<li>La proprietà <code>attrib</code> è un dizionario degli attributi dell'elemento. Il markup originale qui era <code>&lt;feed xmlns="http://www.w3.org/2005/Atom" xml:lang="it"></code>. Il prefisso <code>xml:</code> si riferisce a uno spazio di nomi predefinito che ogni documento <abbr>XML</abbr> può usare senza doverlo dichiarare.
 <li>Il quinto figlio &mdash; <code>[4]</code> in una lista i cui indici partono da <code>0</code> &mdash; è l'elemento <code>link</code>.
 <li>L'elemento <code>link</code> ha tre attributi: <code>href</code>, <code>type</code> e <code>rel</code>.
 <li>Il quarto figlio &mdash; <code>[3]</code> in una lista i cui indici partono da <code>0</code> &mdash; è l'elemento <code>updated</code>.
@@ -470,7 +473,7 @@ except ImportError:
 <samp>[&lt;Element {http://www.w3.org/2005/Atom}entry at e2b630>]</samp>
 <samp class=p>>>> </samp><kbd>entry = entries[0]</kbd>
 <a><samp class=p>>>> </samp><kbd>entry.xpath("./atom:title/text()", namespaces=nsmap)</kbd>               <span>&#x2464;</span></a>
-<samp>['Accessibility is a harsh mistress']</samp></pre>
+<samp>["L'accessibilità è una padrona inflessibile"]</samp></pre>
 <ol>
 <li>In questo esempio, scriverò <code>import lxml.etree</code> (invece di scrivere, diciamo, <code>from lxml import etree</code>) per enfatizzare che queste caratteristiche sono specifiche di lxml.
 <li>Per effettuare richieste XPath su elementi in uno spazio di nomi, avete bisogno di definire una corrispondenza tra prefissi e spazi di nomi sotto la semplice forma di un dizionario Python.
@@ -486,9 +489,9 @@ except ImportError:
 <pre class=screen>
 <samp class=p>>>> </samp><kbd>import xml.etree.ElementTree as etree</kbd>
 <a><samp class=p>>>> </samp><kbd>new_feed = etree.Element("{http://www.w3.org/2005/Atom}feed",</kbd>     <span>&#x2460;</span></a>
-<a><samp class=p>... </samp><kbd>    attrib={"{http://www.w3.org/XML/1998/namespace}lang": "en"})</kbd>  <span>&#x2461;</span></a>
+<a><samp class=p>... </samp><kbd>    attrib={"{http://www.w3.org/XML/1998/namespace}lang": "it"})</kbd>  <span>&#x2461;</span></a>
 <a><samp class=p>>>> </samp><kbd>print(etree.tostring(new_feed))</kbd>                                   <span>&#x2462;</span></a>
-<samp>&lt;ns0:feed xmlns:ns0="http://www.w3.org/2005/Atom" xml:lang="en"/></samp></pre>
+<samp>&lt;ns0:feed xmlns:ns0="http://www.w3.org/2005/Atom" xml:lang="it"/></samp></pre>
 <ol>
 <li>Per creare un nuovo elemento, istanziate la classe <code>Element</code>. Passate il nome dell'elemento (spazio di nomi + nome locale) come primo argomento. Questa istruzione crea un elemento <code>feed</code> nello spazio di nomi Atom. Questo sarà l'elemento radice del nostro nuovo documento.
 <li>Per aggiungere attributi all'elemento appena creato, passate un dizionario di nomi e valori di attributi come argomento <var>attrib</var>. Notate che i nomi di attributi dovrebbero essere nel formato standard di ElementTree <code>{<var>spaziodinomi</var>}<var>nomelocale</var></code>.
@@ -499,11 +502,11 @@ except ImportError:
 
 <p>Un riconoscitore <abbr>XML</abbr> non sarà in grado di &#8220;vedere&#8221; alcuna differenza tra un documento <abbr>XML</abbr> con uno spazio di nomi di default e un documento <abbr>XML</abbr> con uno spazio di nomi che utilizza un prefisso. La rappresentazione <abbr>DOM</abbr> che risulta da questa serializzazione:
 
-<pre class=nd><code>&lt;ns0:feed xmlns:ns0="http://www.w3.org/2005/Atom" xml:lang="en"/></code></pre>
+<pre class=nd><code>&lt;ns0:feed xmlns:ns0="http://www.w3.org/2005/Atom" xml:lang="it"/></code></pre>
 
 <p>è identica alla rappresentazione <abbr>DOM</abbr> di questa serializzazione:
 
-<pre class=nd><code>&lt;feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"/></code></pre>
+<pre class=nd><code>&lt;feed xmlns="http://www.w3.org/2005/Atom" xml:lang="it"/></code></pre>
 
 <p>L'unica differenza concreta è che la seconda serializzazione è più corta di diversi caratteri. Se dovessimo riscrivere interamente il nostro feed di esempio con un prefisso <code>ns0:</code> in ogni tag di apertura e chiusura, aggiungeremmo 4 caratteri per tag di apertura &times; 79 tag + 4 caratteri per la dichiarazione di spazio di nomi, per un totale di 316 caratteri. Assumendo una <a href=stringhe.html#byte-arrays>codifica UTF-8</a>, questo risulta in 316 byte aggiuntivi. (Dopo aver compresso il documento tramite gzip, la differenza scende a 21 byte, ma nondimento, 21 byte sono 21 byte.) Forse per voi non ha importanza, ma per qualcosa come un feed Atom, che potrebbe essere scaricato diverse migliaia di volte ogni volta che cambia, il risparmio di alcuni byte per ogni richiesta può accumularsi velocemente.
 
@@ -515,9 +518,9 @@ except ImportError:
 <a><samp class=p>>>> </samp><kbd>new_feed = lxml.etree.Element("feed", nsmap=NSMAP)</kbd>                <span>&#x2461;</span></a>
 <a><samp class=p>>>> </samp><kbd>print(lxml.etree.tounicode(new_feed))</kbd>                             <span>&#x2462;</span></a>
 <samp>&lt;feed xmlns="http://www.w3.org/2005/Atom"/></samp>
-<a><samp class=p>>>> </samp><kbd>new_feed.set("{http://www.w3.org/XML/1998/namespace}lang", "en")</kbd>  <span>&#x2463;</span></a>
+<a><samp class=p>>>> </samp><kbd>new_feed.set("{http://www.w3.org/XML/1998/namespace}lang", "it")</kbd>  <span>&#x2463;</span></a>
 <samp class=p>>>> </samp><kbd>print(lxml.etree.tounicode(new_feed))</kbd>
-<samp>&lt;feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"/></samp></pre>
+<samp>&lt;feed xmlns="http://www.w3.org/2005/Atom" xml:lang="it"/></samp></pre>
 <ol>
 <li>Per cominciare, definite una corrispondenza di spazi di nomi sotto forma di un dizionario in cui i valori siano gli sono spazi di nomi e le chiavi siano i prefissi desiderati. Usate <code>None</code> come prefisso per dichiarare efficacemente uno spazio di nomi di default.
 <li>Ora potete passare l'argomento <var>nsmap</var> specifico per lxml quando create un elemento, così lxml rispetterà i prefissi per gli spazi di nomi che avete definito.
@@ -531,13 +534,13 @@ except ImportError:
 <a><samp class=p>>>> </samp><kbd>title = lxml.etree.SubElement(new_feed, "title",</kbd>          <span>&#x2460;</span></a>
 <a><samp class=p>... </samp><kbd>    attrib={"type":"html"})</kbd>                               <span>&#x2461;</span></a>
 <samp class=p>>>> </samp><kbd>print(lxml.etree.tounicode(new_feed))</kbd>
-<samp>&lt;feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">&lt;title type="html"/>&lt;/feed></samp>
+<samp>&lt;feed xmlns="http://www.w3.org/2005/Atom" xml:lang="it">&lt;title type="html"/>&lt;/feed></samp>
 <a><samp class=p>>>> </samp><kbd>title.text = "dive into &amp;hellip;"</kbd>                         <span>&#x2462;</span></a>
 <a><samp class=p>>>> </samp><kbd>print(lxml.etree.tounicode(new_feed))</kbd>                     <span>&#x2463;</span></a>
-<samp>&lt;feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">&lt;title type="html">dive into &amp;amp;hellip;&lt;/title>&lt;/feed></samp>
+<samp>&lt;feed xmlns="http://www.w3.org/2005/Atom" xml:lang="it">&lt;title type="html">dive into &amp;amp;hellip;&lt;/title>&lt;/feed></samp>
 <a><samp class=p>>>> </samp><kbd>print(lxml.etree.tounicode(new_feed, pretty_print=True))</kbd>  <span>&#x2464;</span></a>
-<samp>&lt;feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
-&lt;title type="html">dive into&amp;amp;hellip;&lt;/title>
+<samp>&lt;feed xmlns="http://www.w3.org/2005/Atom" xml:lang="it">
+  &lt;title type="html">dive into &amp;amp;hellip;&lt;/title>
 &lt;/feed></samp></pre>
 <ol>
 <li>Per creare un elemento figlio di un elemento esistente, istanziate la classe <code>SubElement</code>. Gli unici argomenti richiesti sono l'elemento genitore (<var>new_feed</var> in questo caso) e il nome del nuovo elemento. Dato che questo elemento figlio erediterà la corrispondenza di spazi di nomi del suo genitore, qui non c'è bisogno di dichiarare nuovamente lo spazio di nomi o il prefisso.
@@ -559,7 +562,7 @@ except ImportError:
 <p>Ecco un frammento di un documento <abbr>XML</abbr> <span class=wtf>broken</span>. Ho evidenziato l'errore di malformazione.
 
 <pre class=nd><code>&lt;?xml version="1.0" encoding="utf-8"?>
-&lt;feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+&lt;feed xmlns="http://www.w3.org/2005/Atom" xml:lang="it">
   &lt;title>dive into <mark>&hellip;</mark>&lt;/title>
 ...
 &lt;/feed></code></pre>
@@ -594,7 +597,7 @@ lxml.etree.XMLSyntaxError: Entity 'hellip' not defined, line 3, column 28</samp>
 <a><samp class=p>>>> </samp><kbd>title.text</kbd>                                                   <span>&#x2463;</span></a>
 <samp>'dive into '</samp>
 <a><samp class=p>>>> </samp><kbd>print(lxml.etree.tounicode(tree.getroot()))</kbd>                  <span>&#x2464;</span></a>
-<samp>&lt;feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+<samp>&lt;feed xmlns="http://www.w3.org/2005/Atom" xml:lang="it">
   &lt;title>dive into &lt;/title>
 .
 . [il resto della serializzazione viene omesso per brevità]
