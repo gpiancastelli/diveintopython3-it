@@ -205,7 +205,7 @@ mark{display:inline}
 <li>Ora le cose cominciano a diventare interessanti. Questo elemento <code>link</code> non ha contenuto testuale, ma possiede tre attributi: <code>rel</code>, <code>type</code> e <code>href</code>. Il valore di <code>rel</code> vi dice che tipo di collegamento è questo; <code>rel="alternate"</code> significa che è un collegamento a una rappresentazione alternativa per questo feed. L'attributo <code>type="text/html"</code> significa che questo è un collegamento a una pagina <abbr>HTML</abbr>. E la destinazione del collegamento viene fornita nell'attributo <code>href</code>.
 </ol>
 
-<p>Ora sappiamo che questo è un feed per un sito chiamato &#8220;dive into mark&#8220; che è disponibile all'indirizzo <a href=http://diveintomark.org/><code>http://diveintomark.org/</code></a> e il cui aggiornamento più recente risale al 27 marzo 2009.
+<p>Ora sappiamo che questo è un feed per un sito chiamato &#8220;dive into mark&#8221; che è disponibile all'indirizzo <a href=http://diveintomark.org/><code>http://diveintomark.org/</code></a> e il cui aggiornamento più recente risale al 27 marzo 2009.
 
 <blockquote class=note>
 <p><span>&#x261E;</span>L'ordine degli elementi in un feed Atom non è rilevante, sebbene possa esserlo in alcuni documenti <abbr>XML</abbr>.
@@ -290,7 +290,7 @@ mark{display:inline}
 <ol>
 <li>Proseguendo l'esempio precedente, l'elemento radice è <code>{http://www.w3.org/2005/Atom}feed</code>.
 <li>La &#8220;lunghezza&#8221; dell'elemento radice è il numero dei suoi elementi figli.
-<li>Potete usare l'elemento stesso come un iteratore per <span class=wtf>loop through</span> tutti i suoi elementi figli.
+<li>Potete usare l'elemento stesso come un iteratore per attraversare tutti i suoi elementi figli.
 <li>Come potete vedere, ci sono effettivamente 8 elementi figli: tutti quelli che contengono metadati a livello di feed (<code>title</code>, <code>subtitle</code>, <code>id</code>, <code>updated</code> e <code>link</code>) seguiti dai tre elementi <code>entry</code>.
 </ol>
 
@@ -324,7 +324,7 @@ mark{display:inline}
 
 <h2 id=xml-find>Cercare nodi all'interno di un documento XML</h2>
 
-<p>Finora abbiamo lavorato con questo documento <abbr>XML</abbr> in maniera &#8220;top down,&#8221; dalla cima in giù, partendo dall'elemento radice, recuperando i suoi elementi figli, e così via attraverso tutto il documento. Ma molti usi di <abbr>XML</abbr> vi richiedono di trovare elementi specifici. ElementTree può fare anche questo.
+<p>Finora abbiamo lavorato con questo documento <abbr>XML</abbr> in maniera &#8220;top down,&#8221; dall'alto verso il basso, partendo dall'elemento radice, recuperando i suoi elementi figli, e così via attraverso tutto il documento. Ma molti usi di <abbr>XML</abbr> vi richiedono di trovare elementi specifici. ElementTree può fare anche questo.
 
 <pre class=screen>
 <samp class=p>>>> </samp><kbd>import xml.etree.ElementTree as etree</kbd>
@@ -433,11 +433,11 @@ StopIteration</samp></pre>
 <li>
 </ol>
 
-<p>Nel complesso, il metodo <code>findall()</code> è una caratteristica molto potente di ElementTree, ma la sintassi utilizzata nelle sue richieste può risultare un po' sorprendente. Viene ufficialmente descritta come un &#8220;<a href=http://effbot.org/zone/element-xpath.htm>supporto limitato per le espressioni XPath</a>.&#8221; <a href=http://www.w3.org/TR/xpath>XPath</a> è uno standard W3C per effettuare ricerche nei documenti <abbr>XML</abbr>. La sintassi delle richieste di ElementTree è abbastanza simile a XPath da consentire ricerche di base, ma abbastanza diversa da potervi infastidire se conoscete già XPath. Ora diamo un'occhiata a una libreria <abbr>XML</abbr> di terze parti che estende la <abbr>API</abbr> di ElementTree con un supporto completo per XPath.
+<p>Nel complesso, il metodo <code>findall()</code> è una caratteristica molto potente di ElementTree, ma la sintassi utilizzata nelle sue richieste può risultare un po' sorprendente. Viene ufficialmente descritta come un &#8220;<a href=http://effbot.org/zone/element-xpath.htm>sottoinsieme ristretto delle espressioni XPath</a>.&#8221; <a href=http://www.w3.org/TR/xpath>XPath</a> è uno standard W3C per effettuare ricerche nei documenti <abbr>XML</abbr>. La sintassi delle richieste di ElementTree è abbastanza simile a XPath da consentire ricerche di base, ma abbastanza diversa da potervi infastidire se conoscete già XPath. Ora diamo un'occhiata a una libreria <abbr>XML</abbr> di terze parti che estende la <abbr>API</abbr> di ElementTree con un supporto completo per XPath.
 
 <h2 id=xml-lxml>Proseguire con lxml</h2>
 
-<p><a href=http://codespeak.net/lxml/>lxml</a> è una libreria open source di terze parti che si basa sul popolare <a href=http://www.xmlsoft.org/>riconoscitore libxml2</a>. Fornisce una <abbr>API</abbr> compatibile al 100% con ElementTree, poi la estende con un supporto completo per XPath e alcune altre finezze. Ne esistono <a href=http://pypi.python.org/pypi/lxml/>installatori disponibili per Windows</a>, mentre gli utenti Linux dovrebbero sempre provare a usare strumenti specifici per la loro distribuzione, come <code>yum</code> o <code>apt-get</code>, che permettono di installare librerie precompilate scaricandole dai <span class=wtf>repositories</span> della distribuzione. Altrimenti, dovrete <a href=http://codespeak.net/lxml/installation.html>installare lxml manualmente</a>.
+<p><a href=http://codespeak.net/lxml/>lxml</a> è una libreria open source di terze parti che si basa sul popolare <a href=http://www.xmlsoft.org/>riconoscitore libxml2</a>. Fornisce una <abbr>API</abbr> compatibile al 100% con ElementTree, poi la estende con un supporto completo per XPath e alcune altre finezze. Ne esistono <a href=http://pypi.python.org/pypi/lxml/>pacchetti di installazione disponibili per Windows</a>, mentre gli utenti Linux dovrebbero sempre provare a usare strumenti specifici per la loro distribuzione, come <code>yum</code> o <code>apt-get</code>, che permettono di installare librerie precompilate scaricandole dagli archivi della distribuzione. Altrimenti, dovrete <a href=http://codespeak.net/lxml/installation.html>installare lxml manualmente</a>.
 
 <pre class=screen>
 <a><samp class=p>>>> </samp><kbd>from lxml import etree</kbd>                   <span>&#x2460;</span></a>
@@ -559,7 +559,7 @@ except ImportError:
 
 <p>Quindi, ho ragioni sia teoriche che pratiche per riconoscere documenti <abbr>XML</abbr> &#8220;a tutti i costi,&#8221; cioè per <em>non</em> fermarmi e prendere fuoco al primo errore di malformazione. Se vi trovate a voler fare questa cosa anche voi, lxml può aiutarvi.
 
-<p>Ecco un frammento di un documento <abbr>XML</abbr> <span class=wtf>broken</span>. Ho evidenziato l'errore di malformazione.
+<p>Ecco un frammento di un documento <abbr>XML</abbr> difettoso. Ho evidenziato l'errore di malformazione.
 
 <pre class=nd><code>&lt;?xml version="1.0" encoding="utf-8"?>
 &lt;feed xmlns="http://www.w3.org/2005/Atom" xml:lang="it">
@@ -567,7 +567,7 @@ except ImportError:
 ...
 &lt;/feed></code></pre>
 
-<p>Quello è un errore perché l'entità <code>&amp;hellip;</code> non è definita in <abbr>XML</abbr>. (&Egrave; definita in <abbr>HTML</abbr>.) Se provate a riconoscere questo feed <span class=wtf>broken</span> con le impostazioni di default, lxml si bloccherà sull'entità non definita.
+<p>Quello è un errore perché l'entità <code>&amp;hellip;</code> non è definita in <abbr>XML</abbr>. (&Egrave; definita in <abbr>HTML</abbr>.) Se provate a riconoscere questo feed difettoso con le impostazioni di default, lxml si bloccherà sull'entità non definita.
 
 <pre class=screen>
 <samp class=p>>>> </samp><kbd>import lxml.etree</kbd>
@@ -584,7 +584,7 @@ except ImportError:
   File "parser.pxi", line 565, in lxml.etree._raiseParseError (src/lxml/lxml.etree.c:68125)
 lxml.etree.XMLSyntaxError: Entity 'hellip' not defined, line 3, column 28</samp></pre>
 
-<p>Per riconoscere questo documento <abbr>XML</abbr> <span class=wtf>broken</span>, nonostante il suo errore di malformazione, avete bisogno di creare un riconoscitore <abbr>XML</abbr> personalizzato.
+<p>Per riconoscere questo documento <abbr>XML</abbr> difettoso, nonostante il suo errore di malformazione, avete bisogno di creare un riconoscitore <abbr>XML</abbr> personalizzato.
 
 <pre class=screen>
 <a><samp class=p>>>> </samp><kbd>parser = lxml.etree.XMLParser(recover=True)</kbd>                  <span>&#x2460;</span></a>
