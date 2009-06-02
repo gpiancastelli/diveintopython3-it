@@ -390,27 +390,6 @@ mark{display:inline}
 <li>Gli altri tre risultati sono i collegamenti alternativi a livello di singola voce. Ogni elemento <code>entry</code> ha un singolo elemento figlio <code>link</code> e, a causa del doppio slash all'inizio della richiesta, questa richiesta li trova tutti e tre.
 </ol>
 
-<p>Il metodo <code>findall()</code> ha altri assi nella manica.
-
-<pre class=screen>
-# continua dall'esempio precedente
-<a><samp class=p>>>> </samp><kbd>tree.findall("//{http://www.w3.org/2005/Atom}*[@href]")</kbd>                             <span>&#x2460;</span></a>
-[&lt;Element {http://www.w3.org/2005/Atom}link at eeb8a0>,
- &lt;Element {http://www.w3.org/2005/Atom}link at eeb990>,
- &lt;Element {http://www.w3.org/2005/Atom}link at eeb960>,
- &lt;Element {http://www.w3.org/2005/Atom}link at eeb9c0>]
-<a><samp class=p>>>> </samp><kbd>tree.findall("//{http://www.w3.org/2005/Atom}*[@href='http://diveintomark.org/']")</kbd>  <span>&#x2461;</span></a>
-<samp>[&lt;Element {http://www.w3.org/2005/Atom}link at eeb930>]</samp>
-<samp class=p>>>> </samp><kbd>NS = "{http://www.w3.org/2005/Atom}"</kbd>
-<a><samp class=p>>>> </samp><kbd>tree.findall("//{NS}author[{NS}uri]".format(NS=NS))</kbd>                                 <span>&#x2462;</span></a>
-<samp>[&lt;Element {http://www.w3.org/2005/Atom}author at eeba80>,
- &lt;Element {http://www.w3.org/2005/Atom}author at eebba0>]</samp></pre>
-<ol>
-<li>Questa richiesta trova tutti gli elementi nello spazio di nomi Atom, ovunque nel documento, che abbiano un attributo <code>href</code>. I caratteri <code>//</code> all'inizio della richiesta significano &#8220;elementi ovunque (non solo come figli dell'elemento radice).&#8221; <code>{http://www.w3.org/2005/Atom}</code> significa &#8220;solo elementi nello spazio di nomi Atom.&#8221; <code>*</code> significa &#8220;elementi con un qualsiasi nome locale.&#8221; E <code>[@href]</code> significa &#8220;ha un attributo <code>href</code>.&#8221;
-<li>La richiesta trova tutti gli elementi Atom con un attributo <code>href</code> il cui valore sia <code>http://diveintomark.org/</code>.
-<li>Dopo aver eseguito alcune rapide <a href=stringhe.html#formatting-strings>formattazioni di stringhe</a> (perché altrimenti le richieste composte diventano ridicolmente lunghe), questa richiesta cerca gli elementi Atom <code>author</code> che hanno un elemento Atom <code>uri</code> come figlio. Questa richiesta restituisce solo due elementi <code>author</code>, quelli nella prima e nella seconda <code>entry</code>. L'elemento <code>author</code> nell'ultima <code>entry</code> contiene solo un figlio <code>name</code>, non un <code>uri</code>.
-</ol>
-
 <p>Cosa dite? Volete la potenza del metodo <code>findall()</code>, ma preferireste lavorare con un iteratore invece che costruire una lista completa? ElementTree può fare anche questo.
 
 <pre class=screen>
@@ -437,7 +416,7 @@ StopIteration</samp></pre>
 
 <h2 id=xml-lxml>Proseguire con lxml</h2>
 
-<p><a href=http://codespeak.net/lxml/>lxml</a> è una libreria open source di terze parti che si basa sul popolare <a href=http://www.xmlsoft.org/>riconoscitore libxml2</a>. Fornisce una <abbr>API</abbr> compatibile al 100% con ElementTree, poi la estende con un supporto completo per XPath e alcune altre finezze. Ne esistono <a href=http://pypi.python.org/pypi/lxml/>pacchetti di installazione disponibili per Windows</a>, mentre gli utenti Linux dovrebbero sempre provare a usare strumenti specifici per la loro distribuzione, come <code>yum</code> o <code>apt-get</code>, che permettono di installare librerie precompilate scaricandole dagli archivi della distribuzione. Altrimenti, dovrete <a href=http://codespeak.net/lxml/installation.html>installare lxml manualmente</a>.
+<p><a href=http://codespeak.net/lxml/><code>lxml</code></a> è una libreria open source di terze parti che si basa sul popolare <a href=http://www.xmlsoft.org/>riconoscitore libxml2</a>. Fornisce una <abbr>API</abbr> compatibile al 100% con ElementTree, poi la estende con un supporto completo per XPath e alcune altre finezze. Ne esistono <a href=http://pypi.python.org/pypi/lxml/>pacchetti di installazione disponibili per Windows</a>, mentre gli utenti Linux dovrebbero sempre provare a usare strumenti specifici per la loro distribuzione, come <code>yum</code> o <code>apt-get</code>, che permettono di installare librerie precompilate scaricandole dagli archivi della distribuzione. Altrimenti, dovrete <a href=http://codespeak.net/lxml/installation.html>installare <code>lxml</code> manualmente</a>.
 
 <pre class=screen>
 <a><samp class=p>>>> </samp><kbd>from lxml import etree</kbd>                   <span>&#x2460;</span></a>
@@ -448,34 +427,56 @@ StopIteration</samp></pre>
  &lt;Element {http://www.w3.org/2005/Atom}entry at e2b510>,
  &lt;Element {http://www.w3.org/2005/Atom}entry at e2b540>]</samp></pre>
 <ol>
-<li>Una volta importata, lxml fornisce la stessa <abbr>API</abbr> della libreria built-in ElementTree.
+<li>Una volta importata, <code>lxml</code> fornisce la stessa <abbr>API</abbr> della libreria built-in ElementTree.
 <li>La funzione <code>parse()</code>: la stessa di ElementTree.
 <li>Il metodo <code>getroot()</code>: anche questo è lo stesso.
 <li>Il metodo <code>findall()</code>: esattamente identico.
 </ol>
 
-<p>Per documenti <abbr>XML</abbr> di grandi dimensioni, lxml è significativamente più veloce rispetto alla libreria built-in ElementTree. Se state usando solo la <abbr>API</abbr> di ElementTree e volete sfruttare l'implementazione più veloce disponibile, potete provare a importare lxml e ricorrere all'alternativa built-in ElementTree solo nel caso in cui lxml non sia presente.
+<p>Per documenti <abbr>XML</abbr> di grandi dimensioni, <code>lxml</code> è significativamente più veloce rispetto alla libreria built-in ElementTree. Se state usando solo la <abbr>API</abbr> di ElementTree e volete sfruttare l'implementazione più veloce disponibile, potete provare a importare <code>lxml</code> e ricorrere all'alternativa built-in ElementTree solo nel caso in cui <code>lxml</code> non sia presente.
 
 <pre><code>try:
     from lxml import etree
 except ImportError:
     import xml.etree.ElementTree as etree</code></pre>
 
-<p>Ma lxml è molto di più che una ElementTree più veloce. Essa include anche il supporto per espressioni XPath arbitrarie. Non cercherò di approfondire la sintassi XPath (ci si potrebbe scrivere un libro intero!) ma vi mostrerò come si integra in lxml.
+<p>Ma lxml è molto di più che una ElementTree più veloce. Il suo metodo <code>findall()</code> include il supporto per espressioni più complicate.
 
 <pre class=screen>
-<a><samp class=p>>>> </samp><kbd>import lxml.etree</kbd>                                                  <span>&#x2460;</span></a> 
+<a><samp class=p>>>> </samp><kbd>import lxml.etree</kbd>                                                                   <span>&#x2460;</span></a>
 <samp class=p>>>> </samp><kbd>tree = lxml.etree.parse("esempi/feed.xml")</kbd>
-<a><samp class=p>>>> </samp><kbd>NSMAP = {"atom": "http://www.w3.org/2005/Atom"}</kbd>                    <span>&#x2461;</span></a>
-<a><samp class=p>>>> </samp><kbd>entries = tree.xpath("//atom:category[@term='accessibility']/..",</kbd>  <span>&#x2462;</span></a>
+<a><samp class=p>>>> </samp><kbd>tree.findall("//{http://www.w3.org/2005/Atom}*[@href]")</kbd>                             <span>&#x2461;</span></a>
+[&lt;Element {http://www.w3.org/2005/Atom}link at eeb8a0>,
+ &lt;Element {http://www.w3.org/2005/Atom}link at eeb990>,
+ &lt;Element {http://www.w3.org/2005/Atom}link at eeb960>,
+ &lt;Element {http://www.w3.org/2005/Atom}link at eeb9c0>]
+<a><samp class=p>>>> </samp><kbd>tree.findall("//{http://www.w3.org/2005/Atom}*[@href='http://diveintomark.org/']")</kbd>  <span>&#x2462;</span></a>
+<samp>[&lt;Element {http://www.w3.org/2005/Atom}link at eeb930>]</samp>
+<samp class=p>>>> </samp><kbd>NS = "{http://www.w3.org/2005/Atom}"</kbd>
+<a><samp class=p>>>> </samp><kbd>tree.findall("//{NS}author[{NS}uri]".format(NS=NS))</kbd>                                 <span>&#x2463;</span></a>
+<samp>[&lt;Element {http://www.w3.org/2005/Atom}author at eeba80>,
+ &lt;Element {http://www.w3.org/2005/Atom}author at eebba0>]</samp></pre>
+<ol>
+<li>In questo esempio, scriverò <code>import lxml.etree</code> (invece di scrivere, diciamo, <code>from lxml import etree</code>) per enfatizzare che queste caratteristiche sono specifiche di <code>lxml</code>.
+<li>Questa richiesta trova tutti gli elementi nello spazio di nomi Atom, ovunque nel documento, che abbiano un attributo <code>href</code>. I caratteri <code>//</code> all'inizio della richiesta significano &#8220;elementi ovunque (non solo come figli dell'elemento radice).&#8221; <code>{http://www.w3.org/2005/Atom}</code> significa &#8220;solo elementi nello spazio di nomi Atom.&#8221; <code>*</code> significa &#8220;elementi con un qualsiasi nome locale.&#8221; E <code>[@href]</code> significa &#8220;ha un attributo <code>href</code>.&#8221;
+<li>La richiesta trova tutti gli elementi Atom con un attributo <code>href</code> il cui valore sia <code>http://diveintomark.org/</code>.
+<li>Dopo aver eseguito alcune rapide <a href=stringhe.html#formatting-strings>formattazioni di stringhe</a> (perché altrimenti le richieste composte diventano ridicolmente lunghe), questa richiesta cerca gli elementi Atom <code>author</code> che hanno un elemento Atom <code>uri</code> come figlio. Questa richiesta restituisce solo due elementi <code>author</code>, quelli nella prima e nella seconda <code>entry</code>. L'elemento <code>author</code> nell'ultima <code>entry</code> contiene solo un figlio <code>name</code>, non un <code>uri</code>.
+</ol>
+
+<p>Non è abbastanza per voi? <code>lxml</code> include anche il supporto per espressioni XPath arbitrarie. Non cercherò di approfondire la sintassi XPath (ci si potrebbe scrivere un libro intero!) ma vi mostrerò come si integra in <code>lxml</code>.
+
+<pre class=screen>
+<samp class=p>>>> </samp><kbd>import lxml.etree</kbd>
+<samp class=p>>>> </samp><kbd>tree = lxml.etree.parse("esempi/feed.xml")</kbd>
+<a><samp class=p>>>> </samp><kbd>NSMAP = {"atom": "http://www.w3.org/2005/Atom"}</kbd>                    <span>&#x2460;</span></a>
+<a><samp class=p>>>> </samp><kbd>entries = tree.xpath("//atom:category[@term='accessibility']/..",</kbd>  <span>&#x2461;</span></a>
 <samp class=p>... </samp><kbd>    namespaces=NSMAP)</kbd>
-<a><samp class=p>>>> </samp><kbd>entries</kbd>                                                            <span>&#x2463;</span></a>
+<a><samp class=p>>>> </samp><kbd>entries</kbd>                                                            <span>&#x2462;</span></a>
 <samp>[&lt;Element {http://www.w3.org/2005/Atom}entry at e2b630>]</samp>
 <samp class=p>>>> </samp><kbd>entry = entries[0]</kbd>
-<a><samp class=p>>>> </samp><kbd>entry.xpath("./atom:title/text()", namespaces=nsmap)</kbd>               <span>&#x2464;</span></a>
+<a><samp class=p>>>> </samp><kbd>entry.xpath("./atom:title/text()", namespaces=nsmap)</kbd>               <span>&#x2463;</span></a>
 <samp>["L'accessibilità è una padrona inflessibile"]</samp></pre>
 <ol>
-<li>In questo esempio, scriverò <code>import lxml.etree</code> (invece di scrivere, diciamo, <code>from lxml import etree</code>) per enfatizzare che queste caratteristiche sono specifiche di lxml.
 <li>Per effettuare richieste XPath su elementi in uno spazio di nomi, avete bisogno di definire una corrispondenza tra prefissi e spazi di nomi sotto la semplice forma di un dizionario Python.
 <li>Ecco una richiesta XPath. L'espressione XPath cerca gli elementi <code>category</code> (nello spazio di nomi Atom) che contengono un attributo <code>term</code> con il valore <code>accessibility</code>. Ma questo non è l'effettivo risultato della richiesta. Guardate alla fine della stringa di richiesta; avete notato quel <code>/..</code>? Questo significa &#8220;e poi restituisci l'elemento genitore dell'elemento <code>category</code> che hai appena trovato.&#8221; Così questa singola richiesta XPath troverà tutte le voci con un elemento figlio <code>&lt;category term="accessibility"></code>.
 <li>La funzione <code>xpath()</code> restituisce una lista di oggetti ElementTree. In questo documento, c'è solo una voce con un elemento <code>category</code> il cui attributo <code>term</code> abbia il valore <code>accessibility</code>.
@@ -510,7 +511,7 @@ except ImportError:
 
 <p>L'unica differenza concreta è che la seconda serializzazione è più corta di diversi caratteri. Se dovessimo riscrivere interamente il nostro feed di esempio con un prefisso <code>ns0:</code> in ogni tag di apertura e chiusura, aggiungeremmo 4 caratteri per tag di apertura &times; 79 tag + 4 caratteri per la dichiarazione di spazio di nomi, per un totale di 316 caratteri. Assumendo una <a href=stringhe.html#byte-arrays>codifica UTF-8</a>, questo risulta in 316 byte aggiuntivi. (Dopo aver compresso il documento tramite gzip, la differenza scende a 21 byte, ma nondimento, 21 byte sono 21 byte.) Forse per voi non ha importanza, ma per qualcosa come un feed Atom, che potrebbe essere scaricato diverse migliaia di volte ogni volta che cambia, il risparmio di alcuni byte per ogni richiesta può accumularsi velocemente.
 
-<p>La libreria built-in ElementTree non offre un controllo così accurato sulla serializzazione di elementi in uno spazio di nomi, ma lxml lo fa.
+<p>La libreria built-in ElementTree non offre un controllo così accurato sulla serializzazione di elementi in uno spazio di nomi, ma <code>lxml</code> lo fa.
 
 <pre class=screen>
 <samp class=p>>>> </samp><kbd>import lxml.etree</kbd>
@@ -523,9 +524,9 @@ except ImportError:
 <samp>&lt;feed xmlns="http://www.w3.org/2005/Atom" xml:lang="it"/></samp></pre>
 <ol>
 <li>Per cominciare, definite una corrispondenza di spazi di nomi sotto forma di un dizionario in cui i valori siano gli sono spazi di nomi e le chiavi siano i prefissi desiderati. Usate <code>None</code> come prefisso per dichiarare efficacemente uno spazio di nomi di default.
-<li>Ora potete passare l'argomento <var>nsmap</var> specifico per lxml quando create un elemento, così lxml rispetterà i prefissi per gli spazi di nomi che avete definito.
+<li>Ora potete passare l'argomento <var>nsmap</var> specifico per <code>lxml</code> quando create un elemento, così <code>lxml</code> rispetterà i prefissi per gli spazi di nomi che avete definito.
 <li>Come vi sareste aspettati, questa serializzazione definisce lo spazio di nomi Atom come spazio di nomi di default e dichiara l'elemento <code>feed</code> senza un prefisso per lo spazio di nomi.
-<li>Oops, abbiamo dimenticato di aggiungere l'attributo <code>xml:lang</code>. Potete sempre aggiungere attributi a qualsiasi elemento tramite il metodo <code>set()</code>. Esso prende due argomenti: il nome dell'attributo nel formato standard di ElementTree, poi il valore dell'attributo. (Questo metodo non è specifico per lxml. L'unica parte specifica per lxml in questo esempio era l'argomento <var>nsmap</var> usato per controllare i prefissi degli spazi di nomi nell'uscita serializzata.)
+<li>Oops, abbiamo dimenticato di aggiungere l'attributo <code>xml:lang</code>. Potete sempre aggiungere attributi a qualsiasi elemento tramite il metodo <code>set()</code>. Esso prende due argomenti: il nome dell'attributo nel formato standard di ElementTree, poi il valore dell'attributo. (Questo metodo non è specifico per <code>lxml</code>. L'unica parte specifica per <code>lxml</code> in questo esempio era l'argomento <var>nsmap</var> usato per controllare i prefissi degli spazi di nomi nell'uscita serializzata.)
 </ol>
 
 <p>I documenti <abbr>XML</abbr> si limitano ad avere un elemento per documento? No, naturalmente no. Potete facilmente creare anche elementi figli.
@@ -545,19 +546,19 @@ except ImportError:
 <ol>
 <li>Per creare un elemento figlio di un elemento esistente, istanziate la classe <code>SubElement</code>. Gli unici argomenti richiesti sono l'elemento genitore (<var>new_feed</var> in questo caso) e il nome del nuovo elemento. Dato che questo elemento figlio erediterà la corrispondenza di spazi di nomi del suo genitore, qui non c'è bisogno di dichiarare nuovamente lo spazio di nomi o il prefisso.
 <li>Potete anche passare in ingresso un dizionario di attributi in cui le chiavi siano i nomi degli attributi e i valori siano i valori degli attributi.
-<li>Come vi sareste aspettati, il nuovo elemento <code>title</code> è stato creato nello spazio di nomi Atom e inserito come figlio dell'elemento <code>feed</code>. Dato che l'elemento <code>title</code> non ha contenuto testuale e non ha figli propri, lxml lo serializza come un elemento vuoto (utilizzando l'abbreviazione <code>/></code>).
+<li>Come vi sareste aspettati, il nuovo elemento <code>title</code> è stato creato nello spazio di nomi Atom e inserito come figlio dell'elemento <code>feed</code>. Dato che l'elemento <code>title</code> non ha contenuto testuale e non ha figli propri, <code>lxml</code> lo serializza come un elemento vuoto (utilizzando l'abbreviazione <code>/></code>).
 <li>Per impostare il contenuto testuale di un elemento, impostate semplicemente la sua proprietà <code>text</code>.
-<li>Ora l'elemento <code>title</code> viene serializzato insieme al suo contenuto testuale. Durante la serializzazione è necessario effettuare l'escape del contenuto testuale che contiene segni di minore oppure caratteri di E commerciale. lxml gestisce questo processo in maniera automatica.
-<li>Potete anche utilizzare l'argomento con nome <var>pretty_print</var> per ottenere una stampa formattata del testo serializzato, in cui viene inserito un ritorno a capo dopo i tag di chiusura e prima dei tag di apertura di elementi che contengono elementi figli ma non includono contenuto testuale. In termini tecnici, lxml aggiunge &#8220;spazio bianco non significativo&#8221; per rendere il risultato più leggibile.
+<li>Ora l'elemento <code>title</code> viene serializzato insieme al suo contenuto testuale. Durante la serializzazione è necessario effettuare l'escape del contenuto testuale che contiene segni di minore oppure caratteri di E commerciale. <code>lxml</code> gestisce questo processo in maniera automatica.
+<li>Potete anche utilizzare l'argomento con nome <var>pretty_print</var> per ottenere una stampa formattata del testo serializzato, in cui viene inserito un ritorno a capo dopo i tag di chiusura e prima dei tag di apertura di elementi che contengono elementi figli ma non includono contenuto testuale. In termini tecnici, <code>lxml</code> aggiunge &#8220;spazio bianco non significativo&#8221; per rendere il risultato più leggibile.
 </ol>
 
-<h2 id=xml-custom-parser>Personalizzare il vostro riconoscitore XML</h2>
+<h2 id=xml-custom-parser>Riconoscere documenti XML contenenti errori di malformazione</h2>
 
 <p>La specifica <abbr>XML</abbr> obbliga  tutti i riconoscitori <abbr>XML</abbr> conformanti a impiegare una &#8220;gestione degli errori draconiana.&#8221; Vale a dire, i riconoscitori si devono fermare e prendere fuoco non appena scoprono un qualsiasi tipo di errore di malformazione nel documento <abbr>XML</abbr>. Gli errori di malformazione includono tag di apertura e chiusura che non corrispondono, entità non definite, caratteri Unicode illegali e un numero di altre regole esoteriche. Questo è in netto contrasto con altri formati comuni come <abbr>HTML</abbr> &mdash; il vostro browser non smette di visualizzare una pagina web se dimenticate di chiudere un tag <abbr>HTML</abbr> o di effettuare l'escape di una E commerciale nel valore di un attributo. (&Egrave; un equivoco comune che <abbr>HTML</abbr> non abbia una gestione degli errori definita. La <a href=http://www.whatwg.org/specs/web-apps/current-work/multipage/syntax.html#parsing>gestione degli errori <abbr>HTML</abbr></a> è in realtà piuttosto ben definita, ma è significativamente più complicata di &#8220;fermati e prendi fuoco al primo errore.&#8221;)
 
 <p>Alcune persone (me compreso) credono che l'obbligo a una gestione degli errori draconiana sia stato un errore da parte degli inventori di <abbr>XML</abbr>. Non fraintendetemi; posso certamente vedere il fascino di una semplificazione delle regole di gestione degli errori. Ma nella pratica il concetto di &#8220;malformazione&#8221; è più complicato di quanto sembra, specialmente per documenti <abbr>XML</abbr> (come i feed Atom) che sono pubblicati sul web e serviti attraverso <abbr>HTTP</abbr>. Nonostante la maturità di <abbr>XML</abbr>, che si è assestato sulla gestione draconiana degli errori nel 1997, i rilevamenti mostrano continuamente che una frazione significativa di feed Atom sul web è afflitta da errori di malformazione.
 
-<p>Quindi, ho ragioni sia teoriche che pratiche per riconoscere documenti <abbr>XML</abbr> &#8220;a tutti i costi,&#8221; cioè per <em>non</em> fermarmi e prendere fuoco al primo errore di malformazione. Se vi trovate a voler fare questa cosa anche voi, lxml può aiutarvi.
+<p>Quindi, ho ragioni sia teoriche che pratiche per riconoscere documenti <abbr>XML</abbr> &#8220;a tutti i costi,&#8221; cioè per <em>non</em> fermarmi e prendere fuoco al primo errore di malformazione. Se vi trovate a voler fare questa cosa anche voi, <code>lxml</code> può aiutarvi.
 
 <p>Ecco un frammento di un documento <abbr>XML</abbr> difettoso. Ho evidenziato l'errore di malformazione.
 
@@ -567,7 +568,7 @@ except ImportError:
 ...
 &lt;/feed></code></pre>
 
-<p>Quello è un errore perché l'entità <code>&amp;hellip;</code> non è definita in <abbr>XML</abbr>. (&Egrave; definita in <abbr>HTML</abbr>.) Se provate a riconoscere questo feed difettoso con le impostazioni di default, lxml si bloccherà sull'entità non definita.
+<p>Quello è un errore perché l'entità <code>&amp;hellip;</code> non è definita in <abbr>XML</abbr>. (&Egrave; definita in <abbr>HTML</abbr>.) Se provate a riconoscere questo feed difettoso con le impostazioni di default, <code>lxml</code> si bloccherà sull'entità non definita.
 
 <pre class=screen>
 <samp class=p>>>> </samp><kbd>import lxml.etree</kbd>
@@ -604,7 +605,7 @@ lxml.etree.XMLSyntaxError: Entity 'hellip' not defined, line 3, column 28</samp>
 .</samp></pre>
 <ol>
 <li>Per creare un riconoscitore personalizzato, istanziate la classe <code>lxml.etree.XMLParser</code>. Può prendere <a href=http://codespeak.net/lxml/parsing.html#parser-options>un numero di differenti argomenti con nome</a>. Quello a cui siamo interessati qui è l'argomento <var>recover</var>. Quando viene impostato a <code>True</code>, il riconoscitore <abbr>XML</abbr> farà del suo meglio per &#8220;compensare&#8221; gli errori di malformazione.
-<li>Per riconoscere un documento <abbr>XML</abbr> utilizzando il vostro riconoscitore personalizzato, passate l'oggetto <var>parser</var> come secondo argomento alla funzione <code>parse()</code>. Notate che lxml non solleva alcuna eccezione relativa all'entità <code>&amp;hellip;</code> non definita.
+<li>Per riconoscere un documento <abbr>XML</abbr> utilizzando il vostro riconoscitore personalizzato, passate l'oggetto <var>parser</var> come secondo argomento alla funzione <code>parse()</code>. Notate che <code>lxml</code> non solleva alcuna eccezione relativa all'entità <code>&amp;hellip;</code> non definita.
 <li>Il riconoscitore mantiene un registro degli errori di malformazione che ha incontrato. (Questo è effettivamente vero a prescindere dal fatto di averlo impostato per compensare quegli errori oppure no.)
 <li>Dato che non sapeva cosa fare con l'entità <code>&amp;hellip;</code> non definita, il riconoscitore l'ha semplicemente scartata in silenzio. Il contenuto testuale dell'elemento <code>title</code> diventa <code>"dive into "</code>.
 <li>Come potete vedere dalla serializzazione, l'entità <code>&amp;hellip;</code> non è stata spostata, ma è stata semplicemente scartata.
@@ -620,9 +621,9 @@ lxml.etree.XMLSyntaxError: Entity 'hellip' not defined, line 3, column 28</samp>
 <li><a href=http://effbot.org/zone/element.htm>Elementi e alberi di elementi</a>
 <li><a href=http://effbot.org/zone/element-xpath.htm>Il supporto XPath in ElementTree</a>
 <li><a href=http://effbot.org/zone/element-iterparse.htm>La funzione iterparse di ElementTree</a>
-<li><a href=http://codespeak.net/lxml/>lxml</a>
-<li><a href=http://codespeak.net/lxml/1.3/parsing.html>Riconoscere <abbr>XML</abbr> e <abbr>HTML</abbr> con lxml</a>
-<li><a href=http://codespeak.net/lxml/1.3/xpathxslt.html>Usare XPath e <abbr>XSLT</abbr> con lxml</a>
+<li><a href=http://codespeak.net/lxml/><code>lxml</code></a>
+<li><a href=http://codespeak.net/lxml/1.3/parsing.html>Riconoscere <abbr>XML</abbr> e <abbr>HTML</abbr> con <code>lxml</code></a>
+<li><a href=http://codespeak.net/lxml/1.3/xpathxslt.html>Usare XPath e <abbr>XSLT</abbr> con <code>lxml</code></a>
 </ul>
 
 <p class=c>&copy; 2001&ndash;9 <a href=informazioni-sul-libro.html>Mark Pilgrim</a><br>
