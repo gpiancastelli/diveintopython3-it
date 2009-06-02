@@ -10,6 +10,8 @@ body{counter-reset:h1 13}
 mark{display:inline}
 </style>
 <link rel=stylesheet media='only screen and (max-device-width: 480px)' href=mobile.css>
+<link rel=stylesheet media=print href=print.css>
+<meta name=viewport content='initial-scale=1.0'>
 </head>
 <form action=http://www.google.com/cse><div><input type=hidden name=cx value=014021643941856155761:l5eihuescdw><input type=hidden name=ie value=UTF-8>&nbsp;<input name=q size=25>&nbsp;<input type=submit name=root value=Search></div></form>
 <p>Voi siete qui: <a href=index.html>Home</a> <span>&#8227;</span> <a href=table-of-contents.html#xml>Dive Into Python 3</a> <span>&#8227;</span>
@@ -91,7 +93,9 @@ mark{display:inline}
       una presentazione sulla tecnologia della codifica video.&lt;/summary>
   &lt;/entry>
 &lt;/feed></code></pre>
- 
+
+<p class=a>&#x2042;
+
 <h2 id=xml-intro>Un corso intensivo di XML in 5 minuti</h2>
 
 <p>Se conoscete già <abbr>XML</abbr>, potete saltare questa sezione.
@@ -174,6 +178,8 @@ mark{display:inline}
 
 <p>E ora conoscete quel tanto di <abbr>XML</abbr> che vi basta per essere pericolosi!
 
+<p class=a>&#x2042;
+
 <h2 id=xml-structure>La struttura di un feed Atom</h2>
 
 <p>Pensate a un weblog, o in effetti a qualsiasi sito web il cui contenuto venga frequentemente aggiornato, come <a href=http://www.cnn.com/>CNN.com</a>. Il sito ha un titolo (&#8220;CNN.com&#8221;), un sottotitolo (&#8220;Breaking News, U.S., World, Weather, Entertainment <i class=baa>&amp;</i> Video News&#8221;), una data per l'ultimo aggiornamento (&#8220;updated 12:43 p.m. EDT, Sat May 16, 2009&#8221;) e una lista di articoli pubblicati in tempi differenti. Anche ogni articolo ha un titolo, una data di prima pubblicazione (e magari anche una data per l'ultimo aggiornamento, se ne è stata pubblicata una modifica oppure è stato corretto un errore di battitura), e un URL unico.
@@ -243,6 +249,8 @@ mark{display:inline}
 <li>L'elemento <code>summary</code> fornisce un breve riepilogo dell'articolo. (Esiste anche un elemento <code>content</code>, che qui non viene mostrato, da utilizzare se volete includere il testo completo dell'articolo nel vostro feed.) Questo elemento <code>summary</code> usa l'attributo <code>type="html"</code> specifico di Atom per indicare che questo riepilogo non è in formato di testo semplice, ma è un frammento di <abbr>HTML</abbr>. Questo dettaglio è importante, dato che il riepilogo contiene entità specifiche di <abbr>HTML</abbr> (<code>&amp;mdash;</code> e <code>&amp;hellip;</code>) che dovrebbero essere rappresentate come &#8220;&mdash;&#8221; e &#8220;&hellip;&#8221; piuttosto che visualizzate direttamente.
 <li>Infine, il tag di chiusura per l'elemento <code>entry</code> segnala la fine dei metadati per questo articolo.
 </ol>
+
+<p class=a>&#x2042;
 
 <h2 id=xml-parse>Riconoscere XML</h2>
 
@@ -321,6 +329,8 @@ mark{display:inline}
 <li>Il quarto figlio &mdash; <code>[3]</code> in una lista i cui indici partono da <code>0</code> &mdash; è l'elemento <code>updated</code>.
 <li>L'elemento <code>updated</code> non ha attributi, quindi la sua proprietà <code>attrib</code> è semplicemente un dizionario vuoto.
 </ol>
+
+<p class=a>&#x2042;
 
 <h2 id=xml-find>Cercare nodi all'interno di un documento XML</h2>
 
@@ -414,6 +424,8 @@ StopIteration</samp></pre>
 
 <p>Nel complesso, il metodo <code>findall()</code> è una caratteristica molto potente di ElementTree, ma la sintassi utilizzata nelle sue richieste può risultare un po' sorprendente. Viene ufficialmente descritta come un &#8220;<a href=http://effbot.org/zone/element-xpath.htm>sottoinsieme ristretto delle espressioni XPath</a>.&#8221; <a href=http://www.w3.org/TR/xpath>XPath</a> è uno standard W3C per effettuare ricerche nei documenti <abbr>XML</abbr>. La sintassi delle richieste di ElementTree è abbastanza simile a XPath da consentire ricerche di base, ma abbastanza diversa da potervi infastidire se conoscete già XPath. Ora diamo un'occhiata a una libreria <abbr>XML</abbr> di terze parti che estende la <abbr>API</abbr> di ElementTree con un supporto completo per XPath.
 
+<p class=a>&#x2042;
+
 <h2 id=xml-lxml>Proseguire con lxml</h2>
 
 <p><a href=http://codespeak.net/lxml/><code>lxml</code></a> è una libreria open source di terze parti che si basa sul popolare <a href=http://www.xmlsoft.org/>riconoscitore libxml2</a>. Fornisce una <abbr>API</abbr> compatibile al 100% con ElementTree, poi la estende con un supporto completo per XPath e alcune altre finezze. Ne esistono <a href=http://pypi.python.org/pypi/lxml/>pacchetti di installazione disponibili per Windows</a>, mentre gli utenti Linux dovrebbero sempre provare a usare strumenti specifici per la loro distribuzione, come <code>yum</code> o <code>apt-get</code>, che permettono di installare librerie precompilate scaricandole dagli archivi della distribuzione. Altrimenti, dovrete <a href=http://codespeak.net/lxml/installation.html>installare <code>lxml</code> manualmente</a>.
@@ -482,6 +494,8 @@ except ImportError:
 <li>La funzione <code>xpath()</code> restituisce una lista di oggetti ElementTree. In questo documento, c'è solo una voce con un elemento <code>category</code> il cui attributo <code>term</code> abbia il valore <code>accessibility</code>.
 <li>Le espressioni XPath non restituiscono sempre una lista di elementi. Tecnicamente, la rappresentazione <abbr>DOM</abbr> di un documento <abbr>XML</abbr> non contiene elementi, ma contiene <i>nodi</i>. A seconda del loro tipo, i nodi possono essere elementi, attributi, o anche contenuti testuali. Il risultato di una richiesta XPath è una lista di nodi. Questa richiesta restituisce una lista di nodi di testo: il contenuto testuale (<code>text()</code>) dell'elemento <code>title</code> (<code>atom:title</code>) che è un figlio dell'elemento corrente (<code>./</code>).
 </ol>
+
+<p class=a>&#x2042;
 
 <h2 id=xml-generate>Generare XML</h2>
 
@@ -552,6 +566,8 @@ except ImportError:
 <li>Potete anche utilizzare l'argomento con nome <var>pretty_print</var> per ottenere una stampa formattata del testo serializzato, in cui viene inserito un ritorno a capo dopo i tag di chiusura e prima dei tag di apertura di elementi che contengono elementi figli ma non includono contenuto testuale. In termini tecnici, <code>lxml</code> aggiunge &#8220;spazio bianco non significativo&#8221; per rendere il risultato più leggibile.
 </ol>
 
+<p class=a>&#x2042;
+
 <h2 id=xml-custom-parser>Riconoscere documenti XML contenenti errori di malformazione</h2>
 
 <p>La specifica <abbr>XML</abbr> obbliga  tutti i riconoscitori <abbr>XML</abbr> conformanti a impiegare una &#8220;gestione degli errori draconiana.&#8221; Vale a dire, i riconoscitori si devono fermare e prendere fuoco non appena scoprono un qualsiasi tipo di errore di malformazione nel documento <abbr>XML</abbr>. Gli errori di malformazione includono tag di apertura e chiusura che non corrispondono, entità non definite, caratteri Unicode illegali e un numero di altre regole esoteriche. Questo è in netto contrasto con altri formati comuni come <abbr>HTML</abbr> &mdash; il vostro browser non smette di visualizzare una pagina web se dimenticate di chiudere un tag <abbr>HTML</abbr> o di effettuare l'escape di una E commerciale nel valore di un attributo. (&Egrave; un equivoco comune che <abbr>HTML</abbr> non abbia una gestione degli errori definita. La <a href=http://www.whatwg.org/specs/web-apps/current-work/multipage/syntax.html#parsing>gestione degli errori <abbr>HTML</abbr></a> è in realtà piuttosto ben definita, ma è significativamente più complicata di &#8220;fermati e prendi fuoco al primo errore.&#8221;)
@@ -612,6 +628,8 @@ lxml.etree.XMLSyntaxError: Entity 'hellip' not defined, line 3, column 28</samp>
 </ol>
 
 <p>&Egrave; importante sottolineare che <strong>non c'è alcuna garanzia di interoperabilità</strong> quando si utilizzano riconoscitori <abbr>XML</abbr> che &#8220;compensano&#8221; gli errori di malformazione. Un riconoscitore differente potrebbe decidere che ha riconosciuto l'entità <code>&amp;hellip;</code> da <abbr>HTML</abbr> e rimpiazzarla con <code>&amp;amp;hellip;</code>. Questa soluzione è &#8220;migliore&#8221;? Forse. &Egrave; &#8220;più corretta&#8221;? No, entrambi i riconoscitori sbagliano allo stesso modo. Il comportamento corretto (in accordo con la specifica <abbr>XML</abbr>) è di fermarsi e prendere fuoco. Se avete deciso di non farlo, siete abbandonati a voi stessi.
+
+<p class=a>&#x2042;
 
 <h2 id=furtherreading>Letture di approfondimento</h2>
 

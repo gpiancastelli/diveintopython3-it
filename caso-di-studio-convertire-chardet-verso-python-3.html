@@ -6,12 +6,14 @@
 <link rel=stylesheet href=dip3.css>
 <link rel=stylesheet href=dip3-it.css>
 <style>
-body{counter-reset:h1 20}
+body{counter-reset:h1 19}
 ins,del{line-height:2.154;text-decoration:none;font-style:normal;display:inline-block;width:100%}
 ins{background:#9f9}
 del{background:#f87}
 </style>
 <link rel=stylesheet media='only screen and (max-device-width: 480px)' href=mobile.css>
+<link rel=stylesheet media=print href=print.css>
+<meta name=viewport content='initial-scale=1.0'>
 </head>
 <form action=http://www.google.com/cse><div><input type=hidden name=cx value=014021643941856155761:l5eihuescdw><input type=hidden name=ie value=UTF-8>&nbsp;<input name=q size=25>&nbsp;<input type=submit name=sa value=Search></div></form>
 <p>Voi siete qui: <a href=index.html>Home</a> <span>&#8227;</span> <a href=table-of-contents.html#case-study-porting-chardet-to-python-3>Dive Into Python 3</a> <span>&#8227;</span>
@@ -28,6 +30,8 @@ del{background:#f87}
 <p>Uno Unipony, per così dire.
 <p>Mi accontenterò del riconoscimento automatico delle codifiche di carattere.
 
+<p class=a>&#x2042;
+
 <h2 id=faq.what>Che cos'è il riconoscimento automatico delle codifiche di carattere?</h2>
 <p>Significa prendere una sequenza di byte in una codifica di carattere sconosciuta e cercare di determinare la codifica in modo da poter leggere il testo. &Egrave; come decifrare un codice quando non avete la chiave di cifratura.
 
@@ -37,6 +41,8 @@ del{background:#f87}
 
 <h3 id=faq.who>Esiste un algoritmo di questo tipo?</h3>
 <p>A quanto pare, sì. Tutti browser più diffusi usano il riconoscimento automatico delle codifiche di carattere, perché il web è pieno di pagine che non hanno alcuna informazione sulla loro codifica. <a href=http://lxr.mozilla.org/seamonkey/source/extensions/universalchardet/src/base/>Mozilla Firefox contiene una libreria per il riconoscimento automatico delle codifiche</a> distribuita sotto licenza open source. <a href=http://chardet.feedparser.org/>Io ho convertito questa libreria in Python 2</a> e ho chiamato il modulo <code>chardet</code>. Questo capitolo vi illustrerà passo per passo il processo di conversione del modulo <code>chardet</code> da Python 2 a Python 3.
+
+<p class=a>&#x2042;
 
 <h2 id=divingin2>Introduzione al modulo <code>chardet</code></h2>
 <p><span class=fixme>[FIXME download link, possibly on chardet.feedparser.org, possibly local]</span>
@@ -69,6 +75,9 @@ del{background:#f87}
 <p>L'ebraico viene trattato come un caso a parte. Se il testo sembra essere ebraico sulla base dell'analisi di distribuzione a 2 caratteri, la sonda <code>HebrewProber</code> (definita in <code>hebrewprober.py</code>) prova a distinguere tra ebraico visuale (dove il testo sorgente viene in realtà memorizzato &#8220;all'indietro&#8221; riga per riga e poi visualizzato così com'è in modo da poter essere letto da destra verso sinistra) ed ebraico logico (dove il testo sorgente viene memorizzato nell'ordine di lettura e poi riportato da destra verso sinistra dal programma che lo visualizza). Dato che alcuni caratteri sono codificati in maniera differente a seconda che compaiano nel mezzo o alla fine di una parola, possiamo fare un'ipotesi ragionevole a proposito della direzione del testo sorgente, e restituire la codifica appropriata (<code>windows-1255</code> per l'ebraico logico, oppure <code>ISO-8859-8</code> per l'ebraico visuale).
 <h3 id=how.windows1252><code>windows-1252</code></h3>
 <p>Se <code>UniversalDetector</code> riconosce un carattere high-bit nel testo, ma nessuna delle altre sonde per codifiche multi-byte o a singolo byte restituisce un risultato di confidenza, allora crea una sonda <code>Latin1Prober</code> (definita in <code>latin1prober.py</code>) per cercare di riconoscere testo inglese in una codifica <code>windows-1252</code>. Questo riconscimento è intrinsecamente inaffidabile, perché le lettere inglesi sono rappresentate allo stesso modo in molte codifiche differenti. L'unico modo di distinguere <code>windows-1252</code> è attraverso simboli comunemente usati come virgolette e apostrofi tipografici, simboli di copyright e simili. <code>Latin1Prober</code> riduce automaticamente la propria stima di confidenza per permettere a sonde più accurate di prevalere nel caso sia possibile.
+
+<p class=a>&#x2042;
+
 <h2 id=running2to3>Eseguire <code>2to3</code></h2>
 <p>Ora effettueremo la migrazione del modulo <code>chardet</code> da Python 2 a Python 3. Python 3 viene distribuito con uno script di utilità chiamato <code>2to3</code>, che prende in ingresso il vostro codice sorgente in Python 2 e lo converte automaticamente verso Python 3 tanto quanto gli è possibile. In alcuni casi le modifiche sono semplici &mdash; una funzione è stata rinominata oppure spostata in un modulo differente &mdash; ma in altri casi possono diventare piuttosto complesse. Per avere un'idea di tutto quello che lo script <em>può</em> fare, fate riferimento all'appendice <a href=convertire-codice-verso-python-3-con-2to3.html>Convertire codice verso Python 3 con <code>2to3</code></a>. In questo capitolo, cominceremo col lanciare <code>2to3</code> sul package <code>chardet</code>, ma come vedrete ci sarà ancora molto lavoro da fare dopo che gli strumenti automatici avranno eseguito i loro incantesimi.
 <p>Il package <code>chardet</code> è suddiviso in molti file diversi, tutti nella stessa directory. Lo script <code>2to3</code> facilita la conversione di più file in una volta: basta passargli una directory come argomento dalla linea di comando, e <code>2to3</code> convertirà ognuno dei file a turno.
@@ -571,6 +580,9 @@ RefactoringTool: Files that were modified:
 RefactoringTool: test.py</samp></pre>
 <p><span class=fixme>[FIXME explain the difference in import syntax]</span>
 <p>Be', non è stato così difficile. Ci sono state solo alcune istruzioni di <code>import</code> e <code>print</code> da convertire. &Egrave; il momento di eseguire la nuova versione. Pensate che funzionerà?
+
+<p class=a>&#x2042;
+
 <h2 id=manual>Risolvere quello che <code>2to3</code> non può</h2>
 <h3 id=falseisinvalidsyntax><code>False</code> è sintassi non valida</h3>
 <aside>Avete i test, giusto?</aside>
@@ -591,8 +603,8 @@ if not hasattr(__builtin__, 'False'):
 else:
     False = __builtin__.False
     True = __builtin__.True</code></pre>
-<p>Questo frammento di codice è progettato per permettere a questa libreria di venire eseguita dalle versioni più vecchie di Python 2. Prima della versione 2.3 <span class=fixme>[FIXME-LINK]</span>, Python non aveva alcun tipo <code>Boolean</code>. Questo codice riconosce l'assenza delle costanti built-in <code>True</code> e <code>False</code> e le definisce nel caso sia necessario.
-<p>Comunque, Python 3 avrà sempre un tipo <code>Boolean</code>, quindi questo intero frammento di codice è superfluo. La soluzione più semplice consiste nel sostituire tutte le istanze di <code>constants.True</code> e <code>constants.False</code> con <code>True</code> e <code>False</code> rispettivamente e poi cancellare questo codice ormai inutile da <code>constants.py</code>.
+<p>Questo frammento di codice è progettato per permettere a questa libreria di venire eseguita dalle versioni più vecchie di Python 2. Prima della versione 2.3 <span class=fixme>[FIXME-LINK]</span>, Python non aveva alcun tipo <code>bool</code>. Questo codice riconosce l'assenza delle costanti built-in <code>True</code> e <code>False</code> e le definisce nel caso sia necessario.
+<p>Comunque, Python 3 avrà sempre un tipo <code>bool</code>, quindi questo intero frammento di codice è superfluo. La soluzione più semplice consiste nel sostituire tutte le istanze di <code>constants.True</code> e <code>constants.False</code> con <code>True</code> e <code>False</code> rispettivamente e poi cancellare questo codice ormai inutile da <code>constants.py</code>.
 <p>Così questa riga in <code>universaldetector.py</code>:
 <pre><code>self.done = constants.False</code></pre>
 <p>Diventa
@@ -616,6 +628,7 @@ ImportError: No module named constants</samp></pre>
 <pre><code>from . import constants
 import sys</code></pre>
 <p>Ci sono variazioni di questo problema sparse in tutta la libreria <code>chardet</code>. In alcuni posti è &#8220;<code>import constants, sys</code>&#8221;; in altri posti, è &#8220;<code>import constants, re</code>&#8221;. La soluzione è la stessa: dividete manualmente l'istruzione di <code>import</code> in due righe, una per quella relativa, l'altra per quella assoluta.
+<p class=fixme>FIXME-xref a una sezione al momento ancora da scrivere sulle convenzioni di stile suggerite dalla PEP 8 (che dica che dovreste mettere ogni singola importazione su una singola riga)
 <p>Procediamo!
 <h3 id=namefileisnotdefined>Il nome <var>'file'</var> non è definito</h3>
 <aside>open() è il nuovo file(). PapayaWhip è il nuovo nero.</aside>
@@ -661,7 +674,7 @@ TypeError: can't use a string pattern on a bytes-like object</samp></pre>
 for line in open(f, 'rb'):
     u.feed(line)</code></pre>
 <aside>Non un vettore di caratteri, ma un vettore di byte.</aside>
-<p>E qui troviamo la nostra risposta: nel metodo <code>UniversalDetector.feed()</code>, <var>aBuf</var> è una riga letta da un file su disco. Guardate attentamente i parametri utilizzati per aprire il file: <code>'rb'</code>. <code>'r'</code> sta per &#8220;read&#8221;, lettura; OK, grazie tante, stiamo leggendo il file. Ah, ma <code>'b'</code> sta per &#8220;binary&#8221;, binario. Senza il flag <code>'b'</code>, questo ciclo <code>for</code> leggerebbe il file, riga per riga, e convertirebbe ogni riga in una stringa &mdash; un array di caratteri Unicode &mdash; in accordo con la codifica di carattere di default del sistema. (Potreste utilizzare una codifica diversa tramite un altro parametro di <code>open()</code>, ma non preoccupatevi di questo adesso.) Ma con il flag <code>'b'</code>, questo ciclo <code>for</code> legge il file riga per riga e memorizza ogni riga esattamente come appare nel file, sotto forma di un array di byte. Quell'array di byte viene passato a <code>UniversalDetector.feed()</code> e alla fine viene passato alla espressione regolare precompilata, <var>self._highBitDetector</var>, per cercare i&hellip; caratteri high-bit. Ma non abbiamo caratteri. Abbiamo byte. Oops.
+<p>E qui troviamo la nostra risposta: nel metodo <code>UniversalDetector.feed()</code>, <var>aBuf</var> è una riga letta da un file su disco. Guardate attentamente i parametri utilizzati per aprire il file: <code>'rb'</code>. <code>'r'</code> sta per &#8220;read&#8221;, lettura; OK, grazie tante, stiamo leggendo il file. Ah, ma <code>'b'</code> sta per &#8220;binary&#8221;, binario. Senza il flag <code>'b'</code>, questo ciclo <code>for</code> leggerebbe il file, riga per riga, e convertirebbe ogni riga in una stringa &mdash; un array di caratteri Unicode &mdash; in accordo con la codifica di carattere di default del sistema. (Potreste utilizzare una codifica diversa tramite un altro parametro della funzione <code>open()</code>, ma non preoccupatevi di questo adesso.) Ma con il flag <code>'b'</code>, questo ciclo <code>for</code> legge il file riga per riga e memorizza ogni riga esattamente come appare nel file, sotto forma di un array di byte. Quell'array di byte viene passato a <code>UniversalDetector.feed()</code> e alla fine viene passato alla espressione regolare precompilata, <var>self._highBitDetector</var>, per cercare i&hellip; caratteri high-bit. Ma non abbiamo caratteri. Abbiamo byte. Oops.
 <p>Quello su cui abbiamo bisogno che l'espressione regolare effettui la ricerca non è un array di caratteri, ma un array di byte.
 <p>Una volta che realizzate questo, la soluzione non è difficile. Le espressioni regolari definite come stringhe possono effettuare ricerche sulle stringe. Le espressioni regolari definite come array di byte possono effettuare ricerche sugli array di byte. Per definire un pattern come un array di byte, cambiamo semplicemente il tipo dell'argomento che usiamo per definire l'espressione regolare ad array di byte. (C'è un altro caso di questo stesso problema, proprio nella riga successiva.)
 <pre><code>  class UniversalDetector:
@@ -1170,6 +1183,9 @@ tests\EUC-JP\arclamp.jp.xml                                  EUC-JP with confide
 .
 316 tests</samp></pre>
 <p>Porca puttana, funziona davvero! <em><a href=http://www.hampsterdance.com/>/me fa una piccola danza</a></em>
+
+<p class=a>&#x2042;
+
 <h2 id=summary>Riepilogo</h2>
 <p>Che cosa abbiamo imparato?
 <ol>
@@ -1179,7 +1195,7 @@ tests\EUC-JP\arclamp.jp.xml                                  EUC-JP with confide
 <li><em>Voi</em> avete bisogno di capire il vostro programma. A fondo. Preferibilmente perché lo avete scritto, ma è necessario almeno che vi troviate a vostro agio con tutte le sue stranezze e i suoi angoli ammuffiti. I bug si annidano ovunque.
 <li>I test sono essenziali. Non convertite nulla senza di loro. Non provateci nemmeno. L'<em>unica</em> ragione per cui ho una qualche confidenza che <code>chardet</code> funzioni in Python 3 è perché avevo una serie di test che esercitava ogni riga di codice nell'intera libreria. Non sarei <em>mai</em> riuscito a trovare la metà di questi problemi facendo una ricerca manuale.
 </ol>
-<p class=nav><a rel=prev class=todo><span>&#x261C;</span></a> <a rel=next href=convertire-codice-verso-python-3-con-2to3.html title="avanti a &#8220;Convertire codice verso Python 3 con 2to3&#8221;"><span>&#x261E;</span></a>
+<p class=nav><a rel=prev class=todo><span>&#x261C;</span></a> <a rel=next class=todo><span>&#x261E;</span></a>
 <p class=c>&copy; 2001&ndash;9 <a href=informazioni-sul-libro.html>Mark Pilgrim</a><br>
 &copy; 2009 <a href=informazioni-sulla-traduzione.html>Giulio Piancastelli</a> per la traduzione italiana
 <script src=jquery.js></script>

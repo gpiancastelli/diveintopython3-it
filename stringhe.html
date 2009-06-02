@@ -9,6 +9,8 @@
 body{counter-reset:h1 3}
 </style>
 <link rel=stylesheet media='only screen and (max-device-width: 480px)' href=mobile.css>
+<link rel=stylesheet media=print href=print.css>
+<meta name=viewport content='initial-scale=1.0'>
 </head>
 <form action=http://www.google.com/cse><div><input type=hidden name=cx value=014021643941856155761:l5eihuescdw><input type=hidden name=ie value=UTF-8>&nbsp;<input name=q size=25>&nbsp;<input type=submit name=sa value=Search></div></form>
 <p>Voi siete qui: <a href=index.html>Home</a> <span>&#8227;</span> <a href=table-of-contents.html#strings>Dive Into Python 3</a> <span>&#8227;</span>
@@ -46,6 +48,8 @@ Il tuo alfabeto termina dove il mio inizia! <span>&#x275E;</span><br>&mdash; Dr.
 
 <p>E ora piangete pure, perché tutto quello che pensavate di sapere sulle stringhe è sbagliato, e il &#8220;testo semplice&#8221; non esiste.
 
+<p class=a>&#x2042;
+
 <h2 id=one-ring-to-rule-them-all>Unicode</h2>
 
 <p><i>Entra Unicode.</i>
@@ -74,6 +78,8 @@ Il tuo alfabeto termina dove il mio inizia! <span>&#x275E;</span><br>&mdash; Dr.
 
 <p>Vantaggi: la codifica dei caratteri <abbr>ASCII</abbr> comuni è super-efficiente. Per i caratteri Extended Latin non è peggiore rispetto alla codifica UTF-16, e per i caratteri cinesi è migliore rispetto a UTF-32. In più (e dovete fidarvi di me su questo, perché non vi mostrerò i calcoli), grazie alla natura esatta delle manipolazioni sui bit, non ci sono problemi di ordinamento dei byte. Un documento codificato in UTF-8 usa esattamente lo stesso flusso di byte su qualsiasi computer.
 
+<p class=a>&#x2042;
+
 <h2 id=divingin>Immersione!</h2>
 
 <p>In Python 3, tutte le stringhe sono sequenze di caratteri Unicode. Non esistono stringhe Python codificate in UTF-8, o stringhe Python codificate in CP-1252. "Questa stringa è in UTF-8?" è una domanda non valida. UTF-8 è un modo di codificare caratteri come sequenze di byte. Se volete prendere una stringa e trasformarla in una sequenza di byte attraverso una particolare codifica di carattere, Python 3 vi può aiutare. Se volete prendere una sequenza di byte e trasformarla in una stringa, Python 3 può aiutarvi anche in questo caso. I byte non sono caratteri; i byte sono byte. I caratteri sono un'astrazione. Una stringa è una sequenza di quelle astrazioni.
@@ -92,6 +98,8 @@ Il tuo alfabeto termina dove il mio inizia! <span>&#x275E;</span><br>&mdash; Dr.
 <li>Esattamente come ottenete singoli elementi da una lista, potete ottenere singoli caratteri da una stringa usando la notazione a indice.
 <li>Esattamente come con le liste, potete concatenare le stringhe utilizzando l'operatore <code>+</code>.
 </ol>
+
+<p class=a>&#x2042;
 
 <h2 id=formatting-strings>Formattare le stringhe</h2>
 
@@ -212,6 +220,8 @@ def approximate_size(size, a_kilobyte_is_1024_bytes=True):
 
 <p>Per tutti i dettagli più intricati sulle specifiche di formato, consultate la sezione <a href=http://docs.python.org/3.0/library/string.html#format-specification-mini-language>Format Specification Mini-Language</a> nella documentazione ufficiale di Python.
 
+<p class=a>&#x2042;
+
 <h2 id=common-string-methods>Altri metodi di uso comune per le stringhe</h2>
 
 <p>Oltre alla formattazione, le stringhe possono effettuare un numero di altre operazioni utili.
@@ -259,6 +269,8 @@ experience of years.</samp>
 <li>Ora abbiamo una lista di stringhe, ognuna con una chiave, seguita da un segno di uguale, seguito da un valore. Vogliamo iterare sull'intera lista e dividere ogni stringa in due stringhe in corrispondenza del primo segno di uguale. (In teoria, anche un valore potrebbe contenere un segno di uguale. Se avessimo usato <code>'key=value=foo'.split('=')</code>, avremmo ottenuto una lista di tre elementi, <code>['key', 'value', 'foo']</code>.)
 <li>Infine, Python può trasformare quella lista-di-liste in un dizionario semplicemente passandola alla funzione <code>dict()</code>.
 </ol>
+
+<p class=a>&#x2042;
 
 <h2 id=byte-arrays>Stringhe vs. byte</h2>
 
@@ -364,6 +376,8 @@ TypeError: Can't convert 'bytes' object to str implicitly</samp>
 <li>Questa è una stringa. Ha nove caratteri. &Egrave; la sequenza di caratteri che si ottiene decodificando <var>by</var> con l'algoritmo di codifica Big5. &Egrave; identica alla stringa originale.
 </ol>
 
+<p class=a>&#x2042;
+
 <h2 id=py-encoding>Post Scriptum: codifica di caratteri per il codice sorgente Python</h2>
 
 <p>Python 3 assume che il vostro codice sorgente &mdash; <i>i.e.</i> ogni file <code>.py</code> &mdash; sia codificato in UTF-8.
@@ -382,6 +396,8 @@ TypeError: Can't convert 'bytes' object to str implicitly</samp>
 # -*- coding: windows-1252 -*-</code></pre>
 
 <p>Per maggiori informazioni, consultate la <a href=http://www.python.org/dev/peps/pep-0263/><abbr>PEP</abbr> 263: Defining Python Source Code Encodings</a>.
+
+<p class=a>&#x2042;
 
 <h2 id=furtherreading>Letture di approfondimento</h2>
 

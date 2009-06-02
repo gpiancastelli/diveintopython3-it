@@ -9,6 +9,8 @@
 body{counter-reset:h1 2}
 </style>
 <link rel=stylesheet media='only screen and (max-device-width: 480px)' href=mobile.css>
+<link rel=stylesheet media=print href=print.css>
+<meta name=viewport content='initial-scale=1.0'>
 </head>
 <form action=http://www.google.com/cse><div><input type=hidden name=cx value=014021643941856155761:l5eihuescdw><input type=hidden name=ie value=UTF-8>&nbsp;<input name=q size=25>&nbsp;<input type=submit name=root value=Search></div></form>
 <p>Voi siete qui: <a href=index.html>Home</a> <span>&#8227;</span> <a href=table-of-contents.html#tipi-di-dato-nativi>Dive Into Python 3</a> <span>&#8227;</span>
@@ -19,7 +21,7 @@ body{counter-reset:h1 2}
 </blockquote>
 <p id=toc>&nbsp;
 <h2 id=divingin>Immersione!</h2>
-<p class=f>Mettete da parte <a href=il-vostro-primo-programma-python.html>il vostro primo programma Python</a> per un minuto, e parliamo di tipi di dato. In Python, <a href=il-vostro-primo-programma-python.html#datatypes>ogni variabile ha un tipo di dato</a>, ma non avete bisogno di dichiararlo esplicitamente. In base all'assegnamento originale di ogni variabile, Python capisce di quale tipo è e ne tiene traccia internamente.
+<p class=f>Mettete da parte <a href=il-vostro-primo-programma-python.html>il vostro primo programma Python</a> per un minuto, e parliamo di tipi di dato. In Python, <a href=il-vostro-primo-programma-python.html#declaringfunctions>ogni variabile ha un tipo di dato</a>, ma non avete bisogno di dichiararlo esplicitamente. In base all'assegnamento originale di ogni variabile, Python capisce di quale tipo è e ne tiene traccia internamente.
 <p>Python ha molti tipi di dato nativi. Questi sono quelli più importanti:
 <ol>
 <li><b>Booleani</b>: sono solamente <code>True</code> oppure <code>False</code>.
@@ -32,6 +34,9 @@ body{counter-reset:h1 2}
 </ol>
 <p>Naturalmente, ci sono molti più tipi di questi sette. <a href=il-vostro-primo-programma-python.html#everythingisanobject>Ogni cosa è un oggetto</a> in Python, quindi ci sono anche tipi come <i>modulo</i>, <i>funzione</i>, <i>classe</i>, <i>metodo</i>, <i>file</i>, e persino <i>codice compilato</i>. Ne avete già visti alcuni: <a href=il-vostro-primo-programma-python.html#runningscripts>i moduli hanno un nome</a>, <a href=il-vostro-primo-programma-python.html#docstrings>le funzioni posseggono una <code>docstring</code></a>, <i class=baa>&amp;</i>c. Imparerete cosa sono le classi in <span class=fixme>[FIXME xref]</span> e cosa sono i file in <span class=fixme>[FIXME xref]</span>.
 <p>Stringhe e byte sono abbastanza importanti &mdash; e abbastanza complicati &mdash; da essere trattati in un capitolo a parte. Diamo un'occhiata agli altri per primi.
+
+<p class=a>&#x2042;
+
 <h2 id=booleans>Booleani</h2>
 <aside>Potete usare virtualmente qualsiasi espressione in un contesto logico.</aside>
 <p>I dati di tipo booleano sono veri o falsi. Python ha due costanti, <code>True</code> e <code>False</code>, che possono essere usate per assegnare direttamente valori di tipo booleano. Anche le espressioni possono essere valutate come valori booleani. In certi posti (come le istruzioni <code>if</code>), Python si aspetta una espressione da valutare come un valore booleano. Questi posti sono chiamati <i>contesti logici</i>. Potete virtualmente usare qualsiasi espressione in un contesto logico, e Python proverà a determinarne il valore di verità. Tipi di dato differenti hanno regole differenti per decidere se un loro valore è vero o falso in un contesto logico. (Questa frase avrà più senso una volta che avrete visto alcuni esempi concreti più in là in questo capitolo.)
@@ -49,6 +54,9 @@ body{counter-reset:h1 2}
 <samp class=p>>>> </samp><kbd>size = -1</kbd>
 <samp class=p>>>> </samp><kbd>size &lt; 0</kbd>
 <samp>True</samp></pre>
+
+<p class=a>&#x2042;
+
 <h2 id=numbers>Numeri</h2>
 <p>I numeri sono impressionanti. Ce ne sono così tanti tra cui scegliere. Python supporta sia gli interi che i numeri in virgola mobile. Non c'è alcuna dichiarazione di tipo per distinguerli; Python è in grado di farlo grazie alla presenza o meno del punto decimale.
 <pre class=screen>
@@ -181,6 +189,9 @@ body{counter-reset:h1 2}
 <li>I numeri in virgola mobile diversi da zero sono veri; <code>0.0</code> è falso. Fate attenzione! Se c'è anche il più piccolo errore di arrotondamento (non impossibile, come avete visto nella precedente sezione) allora Python opererà su <code>0.0000000000001</code> invece di <code>0</code> e restituirà <code>True</code>.
 <li>Anche le frazioni possono essere usate in un contesto logico. <code>Fraction(0, n)</code> è falso per tutti i valori di <var>n</var>. Tutte le altre frazioni sono vere.
 </ol>
+
+<p class=a>&#x2042;
+
 <h2 id=lists>Liste</h2>
 <p>Le liste sono il mulo da soma dei tipi di dato Python. Quando dico &#8220;lista,&#8221; potreste pensare &#8220;array la cui dimensione devo dichiarare in anticipo, e che può solo contenere elementi di uno stesso tipo, <i class=baa>&amp;</i>c.&#8221; Non pensatelo. Le liste sono molto più fighe di così.
 <blockquote class="note compare perl5">
@@ -325,9 +336,13 @@ ValueError: list.index(x): x not in list</samp></pre>
 <li>Qualsiasi lista con almeno un elemento è vera. Il valore degli elementi è irrilevante.
 </ol>
 <!--
+<p class=a>&#x2042;
+
 <h2 id=sets>Sets</h2>
 <p>FIXME
 -->
+<p class=a>&#x2042;
+
 <h2 id=dictionaries>Dizionari</h2>
 <p>Uno dei più importanti tipi di dato Python è il dizionario, che definisce relazioni di tipo uno-a-uno tra chiavi e valori.
 <blockquote class="note compare perl5">
@@ -418,6 +433,9 @@ KeyError: 'db.diveintopython3.org'</samp></pre>
 <li>In un contesto logico, un dizionario vuoto è falso.
 <li>Qualsiasi dizionario con almeno una coppia chiave-valore è vero.
 </ol>
+
+<p class=a>&#x2042;
+
 <h2 id=none><code>None</code></h2>
 <p><code>None</code> è una costante speciale in Python. &Egrave; un valore nullo. <code>None</code> non è la stessa cosa di <code>False</code>. <code>None</code> non è <code>0</code>. <code>None</code> non è una stringa vuota. Confrontare <code>None</code> con qualcos'altro che non sia <code>None</code> restituirà sempre <code>False</code>.
 <p><code>None</code> è l'unico valore nullo. Ha un proprio tipo di dato (<code>NoneType</code>). Potete assegnare <code>None</code> a qualsiasi variabile, ma non potete creare altri oggetti di tipo <code>NoneType</code>. Tutte le varibili il cui valore è <code>None</code> sono uguali tra loro.
@@ -452,6 +470,9 @@ KeyError: 'db.diveintopython3.org'</samp></pre>
 <samp>no, è falso</samp>
 <samp class=p>>>> </samp><kbd>is_it_true(not None)</kbd>
 <samp>sì, è vero</samp></pre>
+
+<p class=a>&#x2042;
+
 <h2 id=furtherreading>Letture di approfondimento</h2>
 <ul>
 <li><a href=http://docs.python.org/3.0/library/fractions.html>The <code>fractions</code> module</a>

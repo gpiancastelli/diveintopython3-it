@@ -8,6 +8,8 @@
 body{counter-reset:h1 7}
 </style>
 <link rel=stylesheet media='only screen and (max-device-width: 480px)' href=mobile.css>
+<link rel=stylesheet media=print href=print.css>
+<meta name=viewport content='initial-scale=1.0'>
 </head>
 <form action=http://www.google.com/cse><div><input type=hidden name=cx value=014021643941856155761:l5eihuescdw><input type=hidden name=ie value=UTF-8>&nbsp;<input name=q size=25>&nbsp;<input type=submit name=sa value=Search></div></form>
 <p>Voi siete qui: <a href=index.html>Home</a> <span>&#8227;</span> <a href=table-of-contents.html#advanced-iterators>Dive Into Python 3</a> <span>&#8227;</span>
@@ -81,6 +83,8 @@ if __name__ == '__main__':
 <samp>SEND + MORE == MONEY
 9567 + 1085 == 10652</samp></pre>
 
+<p class=a>&#x2042;
+
 <h2 id=re-findall>Trovare tutte le occorrenze di un pattern</h2>
 
 <p>La prima cosa che fa questo risolutore di alfametica è trovare tutte le lettere (A&ndash;Z) nel rompicapo.
@@ -95,6 +99,8 @@ if __name__ == '__main__':
 <li>Il modulo <code>re</code> è l'implementazione Python delle <a href=espressioni-regolari.html>espressioni regolari</a>. Include un'elegante funzione chiamata <code>findall()</code> che accetta un pattern di espressione regolare e una stringa, e trova tutte le occorrenze del pattern all'interno della stringa. In questo caso, il pattern corrisponde a sequenze di numeri. La funzione <code>findall()</code> restituisce una lista di tutte le sottostringhe che corrispondono al pattern.
 <li>Qui il pattern di espressione regolare corrisponde a sequenze di lettere. Ancora, il valore di ritorno è una lista, e ogni elemento nella lista è una stringa che corrisponde a quel pattern di espressione regolare.
 </ol>
+
+<p class=a>&#x2042;
 
 <h2 id=unique-items>Trovare elementi unici in una sequenza</h2>
 
@@ -125,6 +131,8 @@ if __name__ == '__main__':
 
 <p>Questa lista viene successivamente usata per assegnare le cifre ai caratteri man mano che il risolutore itera attraverso le possibili soluzioni.
 
+<p class=a>&#x2042;
+
 <h2 id=assert>Fare asserzioni</h2>
 
 <p>Come molti linguaggi di programmazione, Python possiede una istruzione <code>assert</code>. Ecco come funziona.
@@ -152,6 +160,8 @@ AssertionError</samp></pre>
 <p>Ma è leggermente più facile da leggere e scrivere.
 
 <p>Il risolutore di alfametica usa proprio questa istruzione di <code>assert</code> per interrompere la propria esecuzione nel caso il rompicapo contenga più di dieci singole lettere. Dato che a ogni lettera va assegnata una singola cifra, e ci sono solo dieci cifre, un rompicapo con più di dieci singole lettere non è risolvibile.
+
+<p class=a>&#x2042;
 
 <h2 id=generator-expressions>Espressioni generatore</h2>
 
@@ -182,6 +192,8 @@ AssertionError</samp></pre>
         yield ord(c)
 
 gen = ord_map(unique_characters)</code></pre>
+
+<p class=a>&#x2042;
 
 <h2 id=permutations>Calcolare le permutazioni&hellip; in maniera ritardata!</h2>
 
@@ -246,6 +258,8 @@ StopIteration</samp>
 <li>La prima permutazione dei 3 elementi in <code>['A', 'B', 'C']</code>, presi 3 alla volta, è <code>('A', 'B', 'C')</code>. Esistono altre cinque permutazioni &mdash; gli stessi tre caratteri in ogni ordine possibile.
 <li>Dato che la funzione <code>permutations()</code> restituisce sempre un iteratore, si può facilmente effettuare il debug sulle permutazioni passando l'iteratore alla funzione built-in <code>list()</code> per vedere immediatamente tutte le permutazioni.
 </ol>
+
+<p class=a>&#x2042;
 
 <h2 id=more-itertools>Altra roba divertente nel modulo <code>itertools</code></h2>
 <pre class=screen>
@@ -370,6 +384,8 @@ for guess in itertools.permutations(digits, len(characters)):
 
 <p>Ma cos'è questo metodo <code>translate()</code>? Ah, ora state arrivando alla parte <em>davvero</em> divertente.
 
+<p class=a>&#x2042;
+
 <h2 id=string-translate>Un nuovo tipo di manipolazione di stringhe</h2>
 
 <p>Le stringhe Python hanno molti metodi. Avete imparato alcuni di quei metodi nel <a href=stringhe.html>capitolo sulle stringhe</a>: <code>lower()</code>, <code>count()</code>, e <code>format()</code>. Ora voglio introdurvi a una tecnica di manipolazione di stringhe molto potente ma poco conosciuta: il metodo <code>translate()</code>.
@@ -408,6 +424,8 @@ for guess in itertools.permutations(digits, len(characters)):
 </ol>
 
 <p>Piuttosto impressionante. Ma cosa potete fare con una stringa che casualmente rappresenta una espressione Python valida?
+
+<p class=a>&#x2042;
 
 <h2 id=eval>Valutare stringhe arbitrarie come espressioni Python</h2>
 
@@ -540,6 +558,8 @@ NameError: name '__import__' is not defined</samp></pre>
 
 <p>Quindi, alla fine, <em>è</em> possibile valutare in sicurezza espressioni Python non affidabili. Passare <code>{"__builtins__": None}</code> come secondo parametro alla funzione <code>eval()</code> non è intuitivo (e non è il comportamento di default) ma funziona. Se capite <em>perché</em> funziona, sarà meno probabile che usiate <code>eval()</code> in maniera scorretta, in un modo che funziona con ingressi affidabili ma che ha conseguenze potenzialmente devastanti con ingressi non affidabili.
 
+<p class=a>&#x2042;
+
 <h2 id=alphametics-finale class=wtf>Putting It All Together</h2>
 
 <p>Ricapitolando: questo programma risolve rompicapi alfametici utilizzando la forza bruta, <i>i.e.</i> attraverso una ricerca completa di tutte le possibili soluzioni. Per fare questo, il programma&hellip;
@@ -556,6 +576,8 @@ NameError: name '__import__' is not defined</samp></pre>
 </ol>
 
 <p>&hellip;in sole 14 righe di codice.
+
+<p class=a>&#x2042;
 
 <h2 id=furtherreading>Letture di approfondimento</h2>
 
