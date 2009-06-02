@@ -9,6 +9,8 @@
 body{counter-reset:h1 10}
 </style>
 <link rel=stylesheet media='only screen and (max-device-width: 480px)' href=mobile.css>
+<link rel=stylesheet media=print href=print.css>
+<meta name=viewport content='initial-scale=1.0'>
 </head>
 <form action=http://www.google.com/cse><div><input type=hidden name=cx value=014021643941856155761:l5eihuescdw><input type=hidden name=ie value=UTF-8>&nbsp;<input name=q size=25>&nbsp;<input type=submit name=root value=Search></div></form>
 <p>Voi siete qui: <a href=index.html>Home</a> <span>&#8227;</span> <a href=table-of-contents.html#refactoring>Dive Into Python 3</a> <span>&#8227;</span>
@@ -77,7 +79,7 @@ FAILED (failures=1)</samp></pre>
 <a>    if not s:  <span>&#x2460;</span></a>
         raise InvalidRomanNumeralError, 'Input can not be blank'
     if not re.search(romanNumeralPattern, s):
-        raise InvalidRomanNumeralError, 'Invalid Roman numeral: %s' % s
+        raise InvalidRomanNumeralError, 'Invalid Roman numeral: {0}'.format(s)
 
     result = 0
     index = 0
@@ -114,6 +116,8 @@ Ran 11 tests in 0.156s
 </ol>
 
 <p>Programmare in questo modo non rende più facile la correzione dei bug. Per i bug più semplici (come questo) bastano test semplici; bug complessi richiederanno test complessi. In un processo di sviluppo guidato dai test, potrebbe <em>sembrare</em> che ci voglia più tempo per correggere un bug, dato che prima avete bisogno di esprimere la sostanza del bug sotto forma di codice (per scrivere il test), e poi dovete correggere il bug vero e proprio. Successivamente, se il test non ha immediatamente successo, avete bisogno di capire se la correzione era sbagliata, o se è il test stesso ad avere un bug. Comunque, nel lungo periodo, lavorare spostandovi continuamente avanti e indietro tra il codice del test e il codice che state collaudando vi ricompenserà, perché rende molto più probabile che i bug vengano corretti al primo tentativo. In più, visto che potete facilmente rieseguire <em>tutti</em> i test insieme a quello nuovo, avete molte meno probabilità di guastare il vecchio codice quando state aggiustando quello nuovo. Il test di unità di oggi è il test di regressione di domani.
+
+<p class=a>&#x2042;
 
 <h2 id=changing-requirements>Gestire il cambiamento dei requisiti</h2>
 <p>Nonostante facciate del vostro meglio per tenere i vostri committenti con i piedi ben piantati per terra in modo da ottenere requisiti precisi sotto la minaccia di orribili torture a base di forbici e cera calda, i requisiti cambieranno. La maggior parte dei committenti non sa cosa vuole fino a quando non la vede, e anche se lo sapesse, non sarebbe così brava a descrivere ciò che vuole in maniera sufficientemente precisa da risultare utile. E anche se lo fosse, vorrebbe comunque di più nella versione successiva. Quindi siate preparati ad aggiornare i vostri test man mano che i requisiti cambiano.
@@ -289,6 +293,8 @@ Ran 12 tests in 0.203s
 
 <p>Un insieme completo di test di unità ci permette di non dover mai fare affidamento su un programmatore che dice &#8220;Fidati di me.&#8221;
 
+<p class=a>&#x2042;
+
 <h2 id=refactoring>Refactoring</h2>
 
 <p>La cosa migliore di un collaudo di unità completo non è la sensazione che provate quando tutti i vostri test hanno finalmente successo, e nemmeno la sensazione che provate quando qualcun altro vi accusa di aver guastato il suo codice e voi potete effettivamente <em>dimostrare</em> che non lo avete fatto. La cosa migliore dei test di unità è che vi danno la libertà di applicare il refactoring sistematicamente.
@@ -451,6 +457,8 @@ OK</samp></pre>
 <li>Specialmente quando sono coinvolte espressioni regolari.
 <li>I test di unità posso darvi la sicurezza necessaria per effettuare il refactoring su larga scala.
 </ul>
+
+<p class=a>&#x2042;
 
 <h2 id=summary>Riepilogo</h2>
 

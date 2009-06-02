@@ -12,6 +12,8 @@ td,th{border:1px solid #bbb;padding:0 1.75em}
 th{text-align:left}
 </style>
 <link rel=stylesheet media='only screen and (max-device-width: 480px)' href=mobile.css>
+<link rel=stylesheet media=print href=print.css>
+<meta name=viewport content='initial-scale=1.0'>
 </head>
 <form action=http://www.google.com/cse><div><input type=hidden name=cx value=014021643941856155761:l5eihuescdw><input type=hidden name=ie value=UTF-8>&nbsp;<input name=q size=25>&nbsp;<input type=submit name=sa value=Search></div></form>
 <p>Voi siete qui: <a href=index.html>Home</a> <span>&#8227;</span> <a href=table-of-contents.html#il-vostro-primo-programma-python>Dive Into Python 3</a> <span>&#8227;</span>
@@ -68,6 +70,8 @@ if __name__ == "__main__":
 <p>Guardate in fondo allo script e vedrete due chiamate a <code>print(approximate_size(<var>arguments</var>))</code>. Queste sono invocazioni di funzione &mdash; prima chiamano la funzione <code>approximate_size()</code> passandole un certo numero di argomenti, poi prendono il valore di ritorno e lo passano direttamente alla funzione <code>print()</code>. La funzione <code>print()</code> è predefinita; non ne vedrete mai la dichiarazione esplicita. Potete semplicemente usarla, sempre e dovunque. (Ci sono un sacco di funzioni predefinite, e un sacco di altre funzioni che sono suddivise in <i>moduli</i>. Pazienta, cavalletta.)
 
 <p>Quindi perché l'esecuzione dello script dalla linea di comando vi restituisce ogni volta gli stessi risultati? Ci arriveremo. Prima di tutto, diamo un'occhiata alla funzione <code>approximate_size()</code>.
+
+<p class=a>&#x2042;
 
 <h2 id=declaringfunctions>Dichiarare funzioni</h2>
 <p>Python vi permette di definire funzioni come la maggior parte degli altri linguaggi, ma non utilizza file di intestazione separati come il <abbr>C++</abbr> o sezioni di <code>interface</code>/<code>implementation</code> come il Pascal. Quando avete bisogno di una funzione, vi basta dichiararla, in questo modo:  
@@ -128,10 +132,12 @@ SyntaxError: non-keyword arg after keyword arg</samp></pre>
 <li>Anche questa invocazione fallisce, per lo stesso motivo della precedente. Vi sorprende? Dopo tutto, avete passato <code>4000</code> come valore per l'argomento chiamato <code>size</code>, poi &#8220;ovviamente&#8221; intendevate passare quel valore <code>False</code> all'argomento <var>a_kilobyte_is_1024_bytes</var>. Ma Python non funziona in questo modo. Appena utilizzate un argomento con nome, anche tutti gli argomenti alla destra di quell'argomento devono essere argomenti con nome.
 </ol>
 
+<p class=a>&#x2042;
+
 <h2 id=readability>Scrivere codice leggibile</h2>
 <p>Non vi annoierò con una lunga predica sull'importanza di documentare il vostro codice. Vi basti sapere che il codice viene scritto una volta sola ma letto molte volte, e che i lettori più importanti del vostro codice siete voi stessi, sei mesi dopo averlo scritto (cioè dopo che vi siete dimenticati tutto ma avete bisogno di correggere qualcosa). Python facilita la scrittura di codice leggibile, perciò avantaggiatevene. Fra sei mesi mi ringrazierete.
 <h3 id=docstrings>Stringhe di documentazione</h3>
-<p>Potete documentare una funzione Python aggiungendole una stringa di documentazione (chiamata <code>docstring</code> per brevità). Nel nostro programma, la funzione <code>approximate_size</code> è stata dotata di una <code>docstring</code>:
+<p>Potete documentare una funzione Python aggiungendole una stringa di documentazione (chiamata <code>docstring</code> per brevità). Nel nostro programma, la funzione <code>approximate_size()</code> è stata dotata di una <code>docstring</code>:
 <pre><code>def approximate_size(size, a_kilobyte_is_1024_bytes=True):
     """Convert a file size to human-readable form.
 
@@ -152,6 +158,9 @@ SyntaxError: non-keyword arg after keyword arg</samp></pre>
 <blockquote class=note>
 <p><span>&#x261E;</span>Molti <abbr>IDE</abbr> per Python usano le <code>docstring</code> per fornire documentazione sensibile al contesto, in modo che quando scrivete il nome di una funzione la sua <code>docstring</code> appaia sotto forma di suggerimento. Questa caratteristica può essere incredibilmente utile, ma lo è solamente tanto quanto le <code>docstring</code> che scrivete.
 </blockquote>
+
+<p class=a>&#x2042;
+
 <h2 id=everythingisanobject>Ogni cosa è un oggetto</h2>
 <p>Nel caso vi fosse sfuggito, ho appena detto che le funzioni Python hanno delle proprietà, e che quelle proprietà sono disponibili a tempo di esecuzione. Una funzione, come ogni altra cosa in Python, è un oggetto.
 <p>Lanciate la shell interattiva di Python e seguitemi attraverso questa serie di istruzioni:
@@ -214,6 +223,9 @@ SyntaxError: non-keyword arg after keyword arg</samp></pre>
 <p>Tuttavia, questo non risponde alla domanda fondamentale: che cos'è un oggetto? Linguaggi di programmazione differenti definiscono &#8220;oggetto&#8221; in modi differenti. In alcuni, significa che <em>tutti</em> gli oggetti <em>devono</em> avere proprietà e metodi; in altri, significa che tutti gli oggetti sono estendibili. In Python, la definizione è più lasca. Alcuni oggetti non hanno proprietà né metodi, <em>ma potrebbero averli</em>. Non tutti gli oggetti sono estendibili. Ma ogni cosa è un oggetto nel senso che può essere assegnata a una variabile o passata come argomento a una funzione.
 <p>Potreste aver udito il termine &#8220;oggetto di prima classe&#8221; in altri contesti legati alla programmazione. In Python, le funzioni sono <i>oggetti di prima classe</i>. Potete passare una funzione come argomento a un'altra funzione. I moduli sono <i>oggetti di prima classe</i>. Potete passare un intero modulo come argomento a una funzione. Le classi sono oggetti di prima classe, e anche le singole istanze di una classe sono oggetti di prima classe.
 <p>Questo concetto è importante, quindi lo ripeterò nel caso vi fosse sfuggito le prime volte: <em>ogni cosa in Python è un oggetto</em>. Le strighe sono oggetti. Le liste sono oggetti. Le funzioni sono oggetti. Le classi sono oggetti. Le istanze di una classe sono oggetti. Persino i moduli sono oggetti.
+
+<p class=a>&#x2042;
+
 <h2 id=indentingcode>Indentare il codice</h2>
 <p>Le funzioni Python non cominciano esplicitamente con <code>begin</code> né terminano con <code>end</code>, e non ci sono parentesi graffe a indicare dove il codice della funzione inizia e finisce. I due punti (<code>:</code>) e l'indentazione del codice stesso sono gli unici delimitatori.
 <pre><code>
@@ -239,6 +251,9 @@ SyntaxError: non-keyword arg after keyword arg</samp></pre>
 <blockquote class="note compare java">
 <p><span>&#x261E;</span>Python usa i ritorni a capo per separare le istruzioni e i due punti e l'indentazione per separare i blocchi di codice. <abbr>C++</abbr> e Java usano i punti e virgola per separare le istruzioni e le parentesi graffe per separare i blocchi di codice.
 </blockquote>
+
+<p class=a>&#x2042;
+
 <h2 id=runningscripts>Eseguire gli script</h2>
 <aside>Ogni cosa in Python è un oggetto.</aside>
 <p>I moduli Python sono oggetti e hanno diverse proprietà utili. Potete sfruttare questa caratteristica per collaudare facilmente i vostri moduli mentre li scrivete, includendo uno speciale blocco di codice che viene eseguito quando lanciate il file Python dalla linea di comando. Considerate le ultime righe di <code>humansize.py</code>:
@@ -260,6 +275,9 @@ if __name__ == "__main__":
 <samp>1.0 TB
 931.3 GiB</samp></pre>
 <p>E questo è il vostro primo programma Python!
+
+<p class=a>&#x2042;
+
 <h2 id=furtherreading>Letture di approfondimento</h2>
 <ul>
 <li><a href=http://www.python.org/dev/peps/pep-0257/>PEP 257: Docstring Conventions</a> spiega cosa distingue una buona <code>docstring</code> da una <code>docstring</code> eccellente.

@@ -9,6 +9,8 @@
 body{counter-reset:h1 6}
 </style>
 <link rel=stylesheet media='only screen and (max-device-width: 480px)' href=mobile.css>
+<link rel=stylesheet media=print href=print.css>
+<meta name=viewport content='initial-scale=1.0'>
 </head>
 <form action=http://www.google.com/cse><div><input type=hidden name=cx value=014021643941856155761:l5eihuescdw><input type=hidden name=ie value=UTF-8>&nbsp;<input name=q size=25>&nbsp;<input type=submit name=sa value=Search></div></form>
 <p>Voi siete qui: <a href=index.html>Home</a> <span>&#8227;</span> <a href=table-of-contents.html#iterators-and-generators>Dive Into Python 3</a> <span>&#8227;</span>
@@ -46,6 +48,8 @@ body{counter-reset:h1 6}
 <pre><code>class Fib:</code></pre>
 
 <p><code>class</code>? Classe? Che cos'è una classe?
+
+<p class=a>&#x2042;
 
 <h2 id=defining-classes>Definire le classi</h2>
 
@@ -87,6 +91,8 @@ class Fib:
 
 <p>Nel metodo <code>__init__()</code>, <var>self</var> si riferisce all'oggetto appena creato; in altri metodi della classe, si riferisce all'istanza il cui metodo è stato invocato. Sebbene abbiate bisogno di specificare esplicitamente <var>self</var> quando definite il metodo, <em>non</em> dovete specificarlo quando chiamate il metodo; Python lo aggiungerà per voi automaticamente.
 
+<p class=a>&#x2042;
+
 <h2 id=instantiating-classes>Istanziare le classi</h2>
 
 <p>Istanziare le classi in Python è semplice. Per istanziare una classe, vi basta invocare la classe come se fosse una funzione, passando gli argomenti richiesti dal metodo <code>__init__()</code>. Il valore di ritorno sarà l'oggetto appena creato.
@@ -109,6 +115,8 @@ class Fib:
 <blockquote class="note compare java">
 <p><span>&#x261E;</span>In Python, vi basta invocare una classe come se fosse una funzione per creare una nuova istanza della classe. Non c'è nessun operatore <code>new</code> esplicito come in <abbr>C++</abbr> o Java.
 </blockquote>
+
+<p class=a>&#x2042;
 
 <h2 id=instance-variables>Variabili di istanza</h2>
 
@@ -145,6 +153,8 @@ class Fib:
 <samp>100</samp>
 <samp class=p>>>> </samp><kbd>fib2.max</kbd>
 <samp>200</samp></pre>
+
+<p class=a>&#x2042;
 
 <h2 id=a-fibonacci-iterator>Un iteratore di Fibonacci</h2>
 
@@ -192,6 +202,8 @@ class Fib:
 <li>Per &#8220;attraversare&#8221; l'iteratore, il ciclo <code>for</code> chiama <code>next(fib_iter)</code>, che chiama il metodo <code>__next__()</code> sull'oggetto <var>fib_iter</var>, che calcola il successivo numero di Fibonacci e restituisce un valore. Il ciclo <code>for</code> prende questo valore e lo assegna a <var>n</var>, poi esegue il corpo del ciclo <code>for</code> per quel valore di <var>n</var>.
 <li>Come fa il ciclo <code>for</code> a sapere quando fermarsi? Sono contento che lo abbiate chiesto! Quando <code>next(fib_iter)</code> solleva una eccezione di tipo <code>StopIteration</code>, il ciclo <code>for</code> sopprimerà l'eccezione e uscirà normalmente. (Ogni altra eccezione vi passerà attraverso e verrà sollevata come al solito.) E dove avete visto una eccezione di tipo <code>StopIteration</code>? Nel metodo <code>__next__()</code>, naturalmente!
 </ul>
+
+<p class=a>&#x2042;
 
 <h2 id=a-plural-rule-iterator>Un iteratore di regole per i sostantivi plurali</h2>
 
@@ -352,6 +364,8 @@ rules = LazyRules()</code></pre>
 <li><strong>Prestazioni massime.</strong> L'esempio precedente avrebbe letto tutto il file e costruito funzioni dinamicamente ogni volta che volevate pluralizzare una parola. Questa versione memorizza le funzioni non appena vengono costruite, e nel caso peggiore leggerà tutto il file dei pattern una volta sola, a prescindere dal numero di parole che pluralizzate.
 <li><strong>Separazione di codice e dati.</strong> Tutti i pattern sono archiviati in un file separato. Il codice è codice, i dati sono dati, &#8220;e mai i due si incontreranno.&#8221;
 </ol>
+
+<p class=a>&#x2042;
 
 <h2 id=furtherreading>Letture di approfondimento</h2>
 <ul>

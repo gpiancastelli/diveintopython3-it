@@ -19,6 +19,8 @@ th,td,td pre{margin:0}
 td pre{padding:0;border:0}
 </style>
 <link rel=stylesheet media='only screen and (max-device-width: 480px)' href=mobile.css>
+<link rel=stylesheet media=print href=print.css>
+<meta name=viewport content='initial-scale=1.0'>
 </head>
 <form action=http://www.google.com/cse><div><input type=hidden name=cx value=014021643941856155761:l5eihuescdw><input type=hidden name=ie value=UTF-8>&nbsp;<input name=q size=25>&nbsp;<input type=submit name=sa value=Search></div></form>
 <p>Voi siete qui: <a href=index.html>Home</a> <span>&#8227;</span> <a href=table-of-contents.html#porting-code-to-python-3-with-2to3>Dive Into Python 3</a> <span>&#8227;</span>
@@ -341,7 +343,7 @@ except ImportError:
 <li>Il modulo <code>queue</code> implementa una coda che supporta produttori e consumatori multipli.
 <li>Il modulo <code>socketserver</code> fornisce classi base generiche per implementare differenti tipi di server per le socket.
 <li>Il modulo <code>configparser</code> riconosce i file di configurazione sullo stile dei file <abbr>INI</abbr>.
-<li>Il modulo <code>reprlib</code> reimplementa la funzione built-in <code>repr()</code> introducendo alcuni limiti sulla dimensione delle stringhe risultanti.
+<li>Il modulo <code>reprlib</code> reimplementa la funzione built-in <code>repr()</code> introducendo controlli aggiuntivi su quanto possono essere lunghe le rappresentazioni prima di venire troncate.
 <li>Il modulo <code>subprocess</code> vi permette di creare processi, connettervi alle loro pipe e ottenere i loro codici di ritorno.
 </ol>
 <h2 id=import>Importazioni relative all'interno di un package</h2>
@@ -792,7 +794,7 @@ except:
 <li>Potete definire funzioni <code>lambda</code> che accettano più argomenti. Senza parentesi attorno agli argomenti, Python 2 le tratta semplicemente come funzioni <code>lambda</code> con argomenti multipli, in modo che all'interno della funzione <code>lambda</code> possiate riferirvi agli argomenti tramite il loro nome, esattamente come avviene per ogni altra funzione. Questa sintassi funziona ancora in Python 3.
 </ol>
 <h2 id=methodattrs>Proprietà speciali dei metodi</h2>
-<p>In Python 2, i metodi di classe possono fare riferimento all'oggetto classe in cui sono definiti, così come all'oggetto metodo stesso. <code>im_self</code> è l'istanza dell'oggetto classe; la classe <code>im_func</code> rappresenta l'oggetto funzione; <code>im_class</code> è la classe di <code>im_self</code> (per metodi legati) o la classe che ha chiesto quel metodo (per metodi non legati). In Python 3, queste proprietà speciali dei metodi sono state rinominate per seguire le convenzioni sui nomi delle altre proprietà.
+<p>In Python 2, i metodi di classe possono fare riferimento all'oggetto classe in cui sono definiti, così come all'oggetto metodo stesso. <code>im_self</code> è l'istanza dell'oggetto classe; <code>im_func</code> rappresenta l'oggetto funzione; <code>im_class</code> è la classe di <code>im_self</code>. In Python 3, queste proprietà speciali dei metodi sono state rinominate per seguire le convenzioni sui nomi delle altre proprietà.
 <table>
 <tr><th>Note
 <th>Python 2
@@ -805,7 +807,7 @@ except:
 <td><code>aClassInstance.aClassMethod.__self__</code>
 <tr><th>
 <td><code>aClassInstance.aClassMethod.im_class</code>
-<td><code>aClassInstance.aClassMethod.self.__class__</code>
+<td><code>aClassInstance.aClassMethod.__self__.__class__</code>
 </table>
 <h2 id=nonzero>Il metodo speciale <code>__nonzero__</code></h2>
 <p>In Python 2, potevate costruire una vostra classe permettendole di essere usata in un contesto booleano. Per esempio, potevate istanziare la classe e poi usare l'istanza in una istruzione <code>if</code>. Per fare questo, definivate un metodo speciale <code>__nonzero__()</code> che restituiva <code>True</code> o <code>False</code> e veniva chiamato ogni volta che l'istanza era usata in un contesto booleano. In Python 3 potete ancora farlo, ma il nome del metodo è stato cambiato in <code>__bool__()</code>.
@@ -1057,7 +1059,7 @@ except:
 <td><code>{i for i in a_sequence}</code>
 </table>
 <h3 id=buffer>La funzione globale <code>buffer()</code> (esplicita)</h3>
-<p>Gli oggetti Python implementati in C possono esportare una &#8220;interfaccia di buffer,&#8221; che è un blocco di memoria direttamente accessibile in lettura e scrittura senza effettuare copie. (Questo è esattamente potente e spaventoso quanto sembra.) In Python 3, <code>buffer()</code> è stata rinominata a <code>memoryview()</code>. (&Egrave; un po' più complicato di così, ma potete quasi certamente ignorare le differenze.)
+<p>Gli oggetti Python implementati in C possono esportare una &#8220;interfaccia di buffer,&#8221; che permette ad altro codice Python di leggere e scrivere direttamente un blocco di memoria. (Questo è esattamente potente e spaventoso quanto sembra.) In Python 3, <code>buffer()</code> è stata rinominata a <code>memoryview()</code>. (&Egrave; un po' più complicato di così, ma potete quasi certamente ignorare le differenze.)
 <blockquote class=note>
 <p><span>&#x261E;</span>Lo script <code>2to3</code> non correggerà la funzione <code>buffer()</code> di default. Per abilitare questa correzione, specificate <kbd>-f buffer</kbd> sulla linea di comando quando chiamate <code>2to3</code>.
 </blockquote>
@@ -1113,7 +1115,7 @@ do_stuff(a_list)</code></pre>
 do_stuff(a_list)</code></pre>
 </table>
 <p><span class=fixme>FIXME: once the rest of the book is written, this appendix should contain copious links back to any chapter or section that touches on these features.</span>
-<p class=nav><a rel=prev href=caso-di-studio-convertire-chardet-verso-python-3.html title="indietro a &#8220;Caso di studio: convertire chardet verso Python 3&#8221;"><span>&#x261C;</span></a> <a rel=next href=nomi-dei-metodi-speciali.html title="avanti a &#8220;Nomi dei metodi speciali&#8221;"><span>&#x261E;</span></a>
+<p class=nav><a rel=prev class=todo><span>&#x261C;</span></a> <a rel=next href=nomi-dei-metodi-speciali.html title="avanti a &#8220;Nomi dei metodi speciali&#8221;"><span>&#x261E;</span></a>
 <p class=c>&copy; 2001&ndash;9 <a href=informazioni-sul-libro.html>Mark Pilgrim</a><br>
 &copy; 2009 <a href=informazioni-sulla-traduzione.html>Giulio Piancastelli</a> per la traduzione italiana
 <script src=jquery.js></script>

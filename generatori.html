@@ -9,6 +9,8 @@
 body{counter-reset:h1 5}
 </style>
 <link rel=stylesheet media='only screen and (max-device-width: 480px)' href=mobile.css>
+<link rel=stylesheet media=print href=print.css>
+<meta name=viewport content='initial-scale=1.0'>
 </head>
 <form action=http://www.google.com/cse><div><input type=hidden name=cx value=014021643941856155761:l5eihuescdw><input type=hidden name=ie value=UTF-8>&nbsp;<input name=q size=25>&nbsp;<input type=submit name=sa value=Search></div></form>
 <p>Voi siete qui: <a href=index.html>Home</a> <span>&#8227;</span> <a href=table-of-contents.html#iterators-and-generators>Dive Into Python 3</a> <span>&#8227;</span>
@@ -32,6 +34,9 @@ body{counter-reset:h1 5}
 <p>(Lo so, ci sono un sacco di eccezioni. <i>Man</i> diventa <i>men</i> e <i>woman</i> diventa <i>women</i>, ma <i>human</i> diventa <i>humans</i>. <i>Mouse</i> diventa <i>mice</i> e <i>louse</i> diventa <i>lice</i>, ma <i>house</i> diventa <i>houses</i>. <i>Knife</i> diventa <i>knives</i> e <i>wife</i> diventa <i>wives</i>, ma <i>lowlife</i> diventa <i>lowlifes</i>. E non fatemi parlare delle invariabili, parole che sono il loro stesso plurale come <i>sheep</i>, <i>deer</i> e <i>haiku</i>.)
 <p>In altre lingue, ovviamente, le cose sono completamente differenti.
 <p>Progettiamo una libreria Python per pluralizzare automaticamente i sostantivi inglesi. Cominceremo giusto con queste quattro regole, ma tenete a mente che dovrete inevitabilmente aggiungerne altre.
+
+<p class=a>&#x2042;
+
 <h2 id=i-know>Ci sono, usiamo le espressioni regolari!</h2>
 <p>E così state esaminando le parole, il che significa, almeno in inglese, che state esaminando stringhe di caratteri. Avete regole che dicono che dovete trovare combinazioni differenti di caratteri, e poi operare su quelle combinazioni in modi differenti. Questo sembra un lavoro per le espressioni regolari!
 <p class=d>[<a href=esempi/plural1.py>scarica <code>plural1.py</code></a>]
@@ -116,6 +121,8 @@ def plural(noun):
 </ol>
 <p>Le sostituzioni di espressioni regolari sono estremamente potenti, e la sintassi <code>\1</code> le rende ancora più potenti. Ma combinare entrambe le operazioni in un'unica espressione regolare è anche più difficile da leggere, e non corrisponde direttamente al modo in cui avete precedentemente descritto le regole per la pluralizzazione. Avete originariamente esposto le regole come &#8220;se la parola finisce con S, X, o Z, allora aggiungete ES&#8221;. Se guardate questa funzione, ci sono due righe di codice che dicono esattamente &#8220;se la parola finisce con S, X, o Z, allora aggiungete ES&#8221;. Non potete essere più diretti di così. 
 
+<p class=a>&#x2042;
+
 <h2 id=a-list-of-functions>Una lista di funzioni</h2>
 
 <p>Ora state per aggiungere un livello di astrazione. Avete cominciato definendo una lista di regole: se accade questo, fai quello, altrimenti vai alla prossima regola. Complichiamo temporaneamente parte del programma in modo da semplificarne un'altra parte.
@@ -194,6 +201,8 @@ def plural(noun):
 
 <p>Ma questa è solo una pietra miliare verso la prossima sezione. Proseguiamo&hellip;
 
+<p class=a>&#x2042;
+
 <h2 id=a-list-of-patterns>Una lista di pattern</h2>
 
 <p>Definire separatamente una funzione con un proprio nome per ogni regola di ricerca e sostituzione non è realmente necessario. Non le chiamate mai direttamente; le aggiungete alla lista <var>rules</var> e le chiamate attraverso di essa. In più, ogni funzione segue uno di due schemi. Tutte le funzioni di ricerca chiamano <code>re.search()</code> e tutte le funzioni di sostituzione chiamano <code>re.sub()</code>. Evidenziamo gli schemi in modo che definire nuove regole diventi più semplice.
@@ -210,7 +219,7 @@ def build_match_and_apply_functions(pattern, search, replace):
 <ol>
 <li><code>build_match_and_apply_functions()</code> è una funzione che costruisce dinamicamente altre funzioni. Accetta in ingresso <var>pattern</var>, <var>search</var> e <var>replace</var>, poi definisce una funzione <code>matches_rule()</code> che chiama <code>re.search()</code> con il <var>pattern</var> che è stato passato alla funzione <code>build_match_and_apply_functions()</code>, e con la parola <var>word</var> che è stata passata alla funzione <code>matches_rule()</code> che state costruendo. Whoa.
 <li>La funzione di sostituzione viene costruita allo stesso modo. Essa accetta un parametro, e chiama <code>re.sub()</code> utilizzando sia i parametri <var>search</var> e <var>replace</var> che sono stati passati alla funzione <code>build_match_and_apply_functions()</code>, sia la parola <var>word</var> che è stata passata alla funzione <code>apply_rule()</code> stessa. Questa tecnica di usare i valori di parametri esterni all'interno di una funzione dinamica è chiamata <em>chiusura</em>. State essenzialmente definendo delle costanti nell'ambito della funzione di sostituzione che state costruendo; quest'ultima accetta un parametro (<var>word</var>), ma poi agisce su quello più altri due valori (<var>search</var> e <var>replace</var>) che sono stati impostati nel momento in cui la funzione di sostituzione è stata definita.
-<li>Infine, la funzione <code>build_match_and_apply_functions()</code> restituisce una lista di due valori: le due funzioni che avete appena creato. Le costanti definite in quelle funzioni (<var>pattern</var> nell'ambito di <var>match_rule</var>, e <var>search</var> e <var>replace</var> nell'ambito di <var>apply_rule</var>) mantengono il loro valore in quelle funzioni persino dopo che <code>build_match_and_apply_functions()</code> le ha restituite. Questo è estremamente figo.
+<li>Infine, la funzione <code>build_match_and_apply_functions()</code> restituisce una lista di due valori: le due funzioni che avete appena creato. Le costanti definite in quelle funzioni (<var>pattern</var> nell'ambito di <code>match_rule()</code>, e <var>search</var> e <var>replace</var> nell'ambito di <code>apply_rule()</code>) mantengono il loro valore in quelle funzioni persino dopo che <code>build_match_and_apply_functions()</code> le ha restituite. Questo è estremamente figo.
 </ol>
 
 <p>Se questo risulta incredibilmente confuso (e dovrebbe, è roba strana), potrebbe diventare più chiaro nel momento in cui vedete come si usa.
@@ -239,6 +248,8 @@ def build_match_and_apply_functions(pattern, search, replace):
 <ol>
 <li>Visto che la lista <var>rules</var> è la stessa dell'esempio precedente (davvero, lo è), non dovrebbe sorprendervi che la funzione <code>plural()</code> non sia cambiata per niente. Rimane completamente generica; prende una lista di funzioni di regole e le chiama in ordine. Non si preoccupa di come le regole sono definite. Nell'esempio precedente, le regole erano definite come funzioni separate con un proprio nome. Ora sono costruite dinamicamente attraverso la corrispondenza tra una lista di stringhe e il valore di ritorno della funzione <code>build_match_and_apply_functions()</code>. Non ha importanza; la funzione <code>plural()</code> continua a lavorare nello stesso modo.
 </ol>
+
+<p class=a>&#x2042;
 
 <h2 id=a-file-of-patterns>Un file di pattern</h2>
 
@@ -284,6 +295,8 @@ finally:
 </ol>
 
 <p>In questo caso il miglioramento è che avete completamente isolato le regole di pluralizzazione in un file esterno, in modo che possa essere gestito separatamente dal codice che lo utilizza. Il codice è codice, i dati sono dati, e la vita è bella.
+
+<p class=a>&#x2042;
 
 <h2 id=generators>Generatori</h2>
 
@@ -387,6 +400,8 @@ def plural(noun):
 <p>E se poteste avere il meglio dei due mondi? Minimo costo di inizializzazione (evitando di eseguire codice alla chiamata di <code>import</code>) <em>e</em> massime prestazioni (evitando di costruire sempre le stesse funzioni ogni volta). Oh, e volete ancora mantenere le regole in un file separato (perché il codice è codice, e i dati sono dati), fino a quando non dobbiate leggere la stessa riga due volte.
 
 <p>Per farlo, avrete bisogno di costruire un vostro iteratore. Ma prima che possiate fare <em>questo</em>, dovete imparare le classi Python.
+
+<p class=a>&#x2042;
 
 <h2 id=furtherreading>Letture di approfondimento</h2>
 <ul>
