@@ -2,7 +2,7 @@
 <head>
 <meta charset=utf-8>
 <title>Stringhe - Dive into Python 3</title>
-<!--[if IE]><script src=html5.js></script><![endif]-->
+<!--[if IE]><script src=j/html5.js></script><![endif]-->
 <link rel=stylesheet href=dip3.css>
 <link rel=stylesheet href=dip3-it.css>
 <style>
@@ -14,7 +14,7 @@ body{counter-reset:h1 3}
 </head>
 <form action=http://www.google.com/cse><div><input type=hidden name=cx value=014021643941856155761:l5eihuescdw><input type=hidden name=ie value=UTF-8>&nbsp;<input name=q size=25>&nbsp;<input type=submit name=sa value=Search></div></form>
 <p>Voi siete qui: <a href=index.html>Home</a> <span>&#8227;</span> <a href=table-of-contents.html#strings>Dive Into Python 3</a> <span>&#8227;</span>
-<p id=level>Livello di difficoltà: <span title=intermedio>&#x2666;&#x2666;&#x2666;&#x2662;&#x2662;</span>
+<p id=level>Livello di difficoltà: <span class=u title=intermedio>&#x2666;&#x2666;&#x2666;&#x2662;&#x2662;</span>
 <h1>Stringhe</h1>
 <blockquote class=q>
 <p><span>&#x275D;</span> Ti dico questo in nome della nostra amicizia.<br>
@@ -52,7 +52,7 @@ Il tuo alfabeto termina dove il mio inizia! <span>&#x275E;</span><br>&mdash; Dr.
 
 <h2 id=one-ring-to-rule-them-all>Unicode</h2>
 
-<p><i>Entra Unicode.</i>
+<p><i>Entra <dfn>Unicode</dfn>.</i>
 
 <p>Unicode è un sistema progettato per rappresentare <em>qualsiasi</em> carattere proveniente da <em>qualsiasi</em> lingua. Unicode rappresenta ogni lettera, carattere, o ideogramma come un numero di 4 byte. Ogni numero rappresenta un unico carattere usato in almeno una delle lingue del mondo. (Non tutti i numeri sono utilizzati, ma più di 65535 lo sono, quindi 2 byte non sarebbero stati sufficienti.) I caratteri che sono usati in più di una lingua corrispondono generalmente allo stesso numero, a meno che non ci sia una buona ragione etimologica per non farlo. In ogni caso, c'è esattamente 1 numero per carattere, ed esattamente 1 carattere per numero. Ogni numero rappresenta sempre solo un carattere; non ci sono &#8220;modalità&#8221; di cui tenere traccia. <code>U+0041</code> è sempre <code>'A'</code>, anche se la vostra lingua non possiede alcuna <code>'A'</code>.
 
@@ -94,9 +94,9 @@ Il tuo alfabeto termina dove il mio inizia! <span>&#x275E;</span><br>&mdash; Dr.
 <samp>'深入 Python 3'</samp></pre>
 <ol>
 <li>Per creare una stringa, racchiudetela tra virgolette. Le stringhe Python possono essere definite utilizzando apici (<code>'</code>) oppure virgolette (<code>"</code>).<!--"-->
-<li>La funzione built-in <code>len()</code> restituisce la lunghezza della stringa, <i>i.e.</i> il numero di caratteri. Questa è la stessa funzione che utilizzate per <a href=tipi-di-dato-nativi.html#extendinglists>trovare la lunghezza di una lista</a>. Una stringa è come una lista di caratteri.
+<li>La funzione built-in <code><dfn>len</dfn>()</code> restituisce la lunghezza della stringa, <i>i.e.</i> il numero di caratteri. Questa è la stessa funzione che utilizzate per <a href=tipi-di-dato-nativi.html#extendinglists>trovare la lunghezza di una lista</a>. Una stringa è come una lista di caratteri.
 <li>Esattamente come ottenete singoli elementi da una lista, potete ottenere singoli caratteri da una stringa usando la notazione a indice.
-<li>Esattamente come con le liste, potete concatenare le stringhe utilizzando l'operatore <code>+</code>.
+<li>Esattamente come con le liste, potete <dfn>concatenare</dfn> le stringhe utilizzando l'operatore <code>+</code>.
 </ol>
 
 <p class=a>&#x2042;
@@ -140,7 +140,7 @@ def approximate_size(size, a_kilobyte_is_1024_bytes=True):
 <li>C'è una&hellip; whoa, che diavolo è quello?
 </ol>
 
-<p>Python 3 supporta la formattazione di valori in stringhe. Sebbene questo possa includere espressioni molto complicate, l'uso più basilare consiste nell'inserire un valore in una stringa con un singolo segnaposto.
+<p>Python 3 supporta la <dfn>formattazione</dfn> di valori in stringhe. Sebbene questo possa includere espressioni molto complicate, l'uso più basilare consiste nell'inserire un valore in una stringa con un singolo segnaposto.
 
 <pre class=screen>
 <samp class=p>>>> </samp><kbd>username = "mark"</kbd>
@@ -149,7 +149,7 @@ def approximate_size(size, a_kilobyte_is_1024_bytes=True):
 <samp>"mark's password is PapayaWhip"</samp></pre>
 <ol>
 <li>No, la mia password non è davvero <kbd>PapayaWhip</kbd>.
-<li>Ci sono un sacco di cose che stanno succedendo qui. Prima di tutto, c'è una chiamata di metodo su un letterale stringa. <em>Le stringhe sono oggetti</em>, e gli oggetti hanno metodi. Secondo, l'intera espressione viene valutata come una stringa. Terzo, <code>{0}</code> e <code>{1}</code> sono <i>campi di sostituzione</i>, che vengono rimpiazzati dagli argomenti passati al metodo <code>format()</code>.
+<li>Ci sono un sacco di cose che stanno succedendo qui. Prima di tutto, c'è una chiamata di metodo su un letterale stringa. <em>Le stringhe sono oggetti</em>, e gli oggetti hanno metodi. Secondo, l'intera espressione viene valutata come una stringa. Terzo, <code>{0}</code> e <code>{1}</code> sono <i>campi di sostituzione</i>, che vengono rimpiazzati dagli argomenti passati al metodo <code><dfn>format</dfn>()</code>.
 </ol>
 
 <h3 id=compound-field-names>Nomi di campo composti</h3>
@@ -209,7 +209,7 @@ def approximate_size(size, a_kilobyte_is_1024_bytes=True):
 <p><code>{1}</code> viene rimpiazzato dal secondo argomento passato al metodo <code>format()</code>, che è <var>suffix</var>. Ma che cos'è <code>{0:.1f}</code>? &Egrave; due cose: <code>{0}</code>, che riconoscerete, e <code>:.1f</code>, che non riconoscerete. La seconda metà (dai due punti in poi compresi) definisce una <i>specifica di formato</i>, che raffina ulteriormente il modo in cui la variabile rimpiazzata dovrà essere formattata.
 
 <blockquote class="note compare clang">
-<p><span>&#x261E;</span>Le specifiche di formato vi permettono di manipolare il testo di sostituzione in una varietà di modi utili, come la funzione <code>printf()</code> in C. Potete aggiungere blocchi di zeri o spazi, allineare stringhe, controllare la precisione dei decimali, e persino convertire numeri in esadecimali.
+<p><span>&#x261E;</span>Le specifiche di formato vi permettono di manipolare il testo di sostituzione in una varietà di modi utili, come la funzione <code><dfn>printf</dfn>()</code> in C. Potete aggiungere blocchi di zeri o spazi, allineare stringhe, controllare la precisione dei decimali, e persino convertire numeri in esadecimali.
 </blockquote>
 
 <p>Nell'ambito di un campo di sostituzione, i due punti (<code>:</code>) segnano l'inizio della specifica di formato. La specifica di formato &#8220;<code>.1</code>&#8221; significa &#8220;arrotonda al decimale più vicino&#8221; (<i>i.e.</i> mostra solo una cifra dopo il punto decimale). La specifica di formato &#8220;<code>f</code>&#8221; significa &#8220;numero in virgola fissa&#8221; (al contrario della notazione esponenziale o di qualche altra rappresentazione decimale). Quindi, data una dimensione <var>size</var> di <code>698.25</code> e un suffisso <var>suffix</var> di <code>'GB'</code>, la stringa formattata diventerà <code>'698.3 GB'</code>, perché <code>698.25</code> viene arrotondato alla prima cifra decimale, e il suffisso è aggiunto dopo il numero.
@@ -244,8 +244,8 @@ experience of years.</samp>
 <a><samp class=p>>>> </samp><kbd>s.lower().count("f")</kbd>               <span>&#x2463;</span></a>
 <samp>6</samp></pre>
 <ol>
-<li>Potete introdurre stringhe su più righe nella shell interattiva di Python. Una volta che avete cominciato una stringa su più righe con le triple virgolette, vi basta premere <kbd>ENTER</kbd> e la shell interattiva vi permetterà di continuare la stringa. Digitare le triple virgolette di chiusura termina la stringa, e il successivo <kbd>ENTER</kbd> eseguirà il comando (in questo caso, l'assegnamento della stringa a <var>s</var>).
-<li>Il metodo <code>splitlines()</code> prende una stringa multi-riga e restituisce una lista di stringhe, una per ogni riga di quella originale. Notate che i caratteri di a capo alla fine di ogni linea non sono inclusi.
+<li>Potete introdurre stringhe <dfn>multiriga</dfn> nella shell interattiva di Python. Una volta che avete cominciato una stringa su più righe con le triple virgolette, vi basta premere <kbd>ENTER</kbd> e la shell interattiva vi permetterà di continuare la stringa. Digitare le triple virgolette di chiusura termina la stringa, e il successivo <kbd>ENTER</kbd> eseguirà il comando (in questo caso, l'assegnamento della stringa a <var>s</var>).
+<li>Il metodo <code><dfn>splitlines</dfn>()</code> prende una stringa multiriga e restituisce una lista di stringhe, una per ogni riga di quella originale. Notate che i caratteri di a capo alla fine di ogni linea non sono inclusi.
 <li>Il metodo <code>lower()</code> converte l'intera stringa in minuscolo. (Similmente, il metodo <code>upper()</code> converte una stringa in maiuscolo.) 
 <li>Il metodo <code>count()</code> conta il numero di occorrenze di una sottostringa. Sì, ci sono davvero sei &#8220;f&#8221; in quella frase!
 </ol>
@@ -265,7 +265,7 @@ experience of years.</samp>
 <samp>{'password': 'PapayaWhip', 'user': 'pilgrim', 'database': 'master'}</samp></pre>
 
 <ol>
-<li>Il metodo <code>split()</code> delle stringhe prende un argomento, un delimitatore, e divide la stringa in una lista di stringhe in corrispondenza del delimitatore. In questo caso, il delimitatore è un carattere di E commerciale, ma potrebbe essere qualsiasi cosa.
+<li>Il metodo <code><dfn>split</dfn>()</code> delle stringhe prende un argomento, un delimitatore, e divide la stringa in una lista di stringhe in corrispondenza del delimitatore. In questo caso, il delimitatore è un carattere di E commerciale, ma potrebbe essere qualsiasi cosa.
 <li>Ora abbiamo una lista di stringhe, ognuna con una chiave, seguita da un segno di uguale, seguito da un valore. Vogliamo iterare sull'intera lista e dividere ogni stringa in due stringhe in corrispondenza del primo segno di uguale. (In teoria, anche un valore potrebbe contenere un segno di uguale. Se avessimo usato <code>'key=value=foo'.split('=')</code>, avremmo ottenuto una lista di tre elementi, <code>['key', 'value', 'foo']</code>.)
 <li>Infine, Python può trasformare quella lista-di-liste in un dizionario semplicemente passandola alla funzione <code>dict()</code>.
 </ol>
@@ -274,7 +274,7 @@ experience of years.</samp>
 
 <h2 id=byte-arrays>Stringhe vs. byte</h2>
 
-<p>I byte sono byte; i caratteri sono un'astrazione. Una sequenza immutabile di caratteri Unicode si chiama <i>stringa</i>. Una sequenza immutabile di numeri-tra-0-e-255 si chiama oggetto <i>byte</i>.
+<p>I <dfn>byte</dfn> sono byte; i caratteri sono un'astrazione. Una sequenza immutabile di caratteri Unicode si chiama <i>stringa</i>. Una sequenza immutabile di numeri-tra-0-e-255 si chiama oggetto <i>byte</i>.
 
 <pre class=screen>
 <a><samp class=p>>>> </samp><kbd>by = b'abcd\x65'</kbd>  <span>&#x2460;</span></a>
@@ -296,7 +296,7 @@ experience of years.</samp>
   File "&lt;stdin>", line 1, in &lt;module>
 TypeError: 'bytes' object does not support item assignment</samp></pre>
 <ol>
-<li>Per definire un oggetto <code>bytes</code>, usate la sintassi <code>b''</code> per i &#8220;letterali byte.&#8221; Ogni byte nel letterale byte può essere un carattere <abbr>ASCII</abbr> o un numero esadecimale codificato da <code>\x00</code> a <code>\xff</code> (0&ndash;255).
+<li>Per definire un oggetto <code><dfn>bytes</dfn></code>, usate la sintassi <code>b''</code> per i &#8220;letterali byte.&#8221; Ogni byte nel letterale byte può essere un carattere <abbr>ASCII</abbr> o un numero esadecimale codificato da <code>\x00</code> a <code>\xff</code> (0&ndash;255).
 <li>Il tipo di un oggetto <code>bytes</code> è <code>bytes</code>.
 <li>Esattamente come con le liste e le stringhe, potete ottenere la lunghezza di un oggetto <code>bytes</code> con la funzione built-in <code>len()</code>.
 <li>Esattamente come con le liste e le stringhe, potete usare l'operatore <code>+</code> per concatenare oggetti <code>bytes</code>. Il risultato è un nuovo oggetto <code>bytes</code>.
@@ -338,11 +338,11 @@ TypeError: Can't convert 'bytes' object to str implicitly</samp>
 <samp>1</samp></pre>
 <ol>
 <li>Non potete concatenare stringhe e byte. Sono due tipi di dati differenti.
-<li>Non potete contare le occorrenze di byte in una stringa, perché non c'è alcun byte in una stringa. Una stringa è una sequenza di caratteri. Forse intendevate &#8220;conta le occorrenze della stringa che si otterrebbe dopo aver decodificato questa sequenza di byte in una particolare codifica di caratteri&#8221;? Ebbene, allora, dovete dirlo esplicitamente. Python 3 non convertirà implicitamente byte in stringhe o stringhe in byte.
+<li>Non potete contare le occorrenze di byte in una stringa, perché non c'è alcun byte in una stringa. Una stringa è una sequenza di caratteri. Forse intendevate &#8220;conta le occorrenze della stringa che si otterrebbe dopo aver decodificato questa sequenza di byte in una particolare codifica di caratteri&#8221;? Ebbene, allora, dovete dirlo esplicitamente. Python 3 non convertirà <dfn>implicitamente</dfn> byte in stringhe o stringhe in byte.
 <li>Per una sorprendente coincidenza, questa riga di codice dice &#8220;conta le occorrenze della stringa che si otterrebbe dopo aver decodificato questa sequenza di byte in una particolare codifica di caratteri.&#8221;
 </ol>
 
-<p>Ed ecco il collegamento tra stringhe e byte: gli oggetti <code>bytes</code> hanno un metodo <code>decode()</code> che prende una codifica di caratteri e restituisce una stringa, e le stringhe hanno un metodo <code>encode()</code> che prende una codifica di caratteri e restituisce un oggetto <code>bytes</code>. Nell'esempio precedente, la decodifica era relativamente semplice &mdash; convertire una sequenza di byte in una stringa di caratteri attraverso la codifica <abbr>ASCII</abbr>. Ma lo stesso procedimento funziona con qualsiasi codifica che supporti i caratteri della stringa &mdash; persino codifiche legacy (non Unicode).
+<p>Ed ecco il collegamento tra stringhe e byte: gli oggetti <code>bytes</code> hanno un metodo <code><dfn>decode</dfn>()</code> che prende una codifica di caratteri e restituisce una stringa, e le stringhe hanno un metodo <code><dfn>encode</dfn>()</code> che prende una codifica di caratteri e restituisce un oggetto <code>bytes</code>. Nell'esempio precedente, la decodifica era relativamente semplice &mdash; convertire una sequenza di byte in una stringa di caratteri attraverso la codifica <abbr>ASCII</abbr>. Ma lo stesso procedimento funziona con qualsiasi codifica che supporti i caratteri della stringa &mdash; persino codifiche legacy (non Unicode).
 
 <pre class=screen>
 <a><samp class=p>>>> </samp><kbd>a_string = '深入 Python'</kbd>         <span>&#x2460;</span></a>
@@ -383,7 +383,7 @@ TypeError: Can't convert 'bytes' object to str implicitly</samp>
 <p>Python 3 assume che il vostro codice sorgente &mdash; <i>i.e.</i> ogni file <code>.py</code> &mdash; sia codificato in UTF-8.
 
 <blockquote class="note compare python2">
-<p><span>&#x261E;</span>In Python 2, la codifica di default per i file <code>.py</code> era <abbr>ASCII</abbr>. In Python 3, <a href=http://www.python.org/dev/peps/pep-3120/>la codifica di default è UTF-8</a>.
+<p><span>&#x261E;</span>In Python 2, la codifica di <dfn>default</dfn> per i file <code>.py</code> era <abbr>ASCII</abbr>. In Python 3, <a href=http://www.python.org/dev/peps/pep-3120/>la codifica di default è UTF-8</a>.
 </blockquote>
 
 <p>Se volete usare una codifica differente nel vostro codice Python, potete inserire una dichiarazione di codifica nella prima riga di ogni file. Questa dichiarazione definisce windows-1252 come codifica di un file <code>.py</code>
@@ -437,5 +437,5 @@ TypeError: Can't convert 'bytes' object to str implicitly</samp>
 
 <p class=c>&copy; 2001&ndash;9 <a href=informazioni-sul-libro.html>Mark Pilgrim</a><br>
 &copy; 2009 <a href=informazioni-sulla-traduzione.html>Giulio Piancastelli</a> per la traduzione italiana
-<script src=jquery.js></script>
-<script src=dip3.js></script>
+<script src=j/jquery.js></script>
+<script src=j/dip3.js></script>
