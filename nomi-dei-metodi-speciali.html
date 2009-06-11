@@ -46,23 +46,23 @@ td a:link, td a:visited{border:0}
 <tr><th>&#x2460;
 <td>inizializzare un'istanza
 <td><code>x = MyClass()</code>
-<td><code>x.__init__()</code>
+<td><code>x.<dfn>__init__</dfn>()</code>
 <tr><th>&#x2461;
 <td>la rappresentazione &#8220;ufficiale&#8221; sotto forma di stringa
-<td><code>repr(x)</code>
-<td><code>x.__repr__()</code>
+<td><code><dfn>repr</dfn>(x)</code>
+<td><code>x.<dfn>__repr__</dfn>()</code>
 <tr><th>&#x2462;
 <td>la rappresentazione &#8220;informale&#8221; sotto forma di stringa
-<td><code>str(x)</code>
-<td><code>x.__str__()</code>
+<td><code><dfn>str</dfn>(x)</code>
+<td><code>x.<dfn>__str__</dfn>()</code>
 <tr><th>&#x2463;
 <td>la rappresentazione &#8220;informale&#8221; sotto forma di array di byte
-<td><code>bytes(x)</code>
-<td><code>x.__bytes__()</code>
+<td><code><dfn>bytes</dfn>(x)</code>
+<td><code>x.<dfn>__bytes__</dfn>()</code>
 <tr><th>&#x2464;
 <td>la rappresentazione sotto forma di stringa formattata
 <td><code>format(x)</code>
-<td><code>x.__format__(<var>format_spec</var>)</code>
+<td><code>x.<dfn>__format__</dfn>(<var>format_spec</var>)</code>
 </table>
 <ol>
 <li>Il metodo <code>__init__()</code> viene invocato <em>dopo</em> che l'istanza è stata creata. Se volete controllare l'effettivo processo di creazione, usate <a href=#esoterica>il metodo <code>__new__()</code></a>.
@@ -83,16 +83,16 @@ td a:link, td a:visited{border:0}
 <th>E Python invoca&hellip;
 <tr><th>&#x2460;
 <td>iterare attraverso una sequenza
-<td><code>iter(seq)</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__iter__><code>seq.__iter__()</code></a>
+<td><code><dfn>iter</dfn>(seq)</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__iter__><code>seq.<dfn>__iter__</dfn>()</code></a>
 <tr><th>&#x2461;
 <td>ottenere il valore successivo da un iteratore
-<td><code>next(seq)</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__next__><code>seq.__next__()</code></a>
+<td><code><dfn>next</dfn>(seq)</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__next__><code>seq.<dfn>__next__</dfn>()</code></a>
 <tr><th>&#x2462;
 <td>creare un iteratore in ordine inverso
-<td><code>reversed(seq)</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__reversed__><code>seq.__reversed__()</code></a>
+<td><code><dfn>reversed</dfn>(seq)</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__reversed__><code>seq.<dfn>__reversed__</dfn>()</code></a>
 </table>
 <ol>
 <li>Il metodo <code>__iter__()</code> viene invocato ogni volta che create un nuovo iteratore. &Egrave; un buon posto per inizializzare valori che saranno poi necessari durante l'iterazione.
@@ -112,23 +112,23 @@ td a:link, td a:visited{border:0}
 <tr><th>&#x2460;
 <td>ottenere (incondizionatamente) una proprietà calcolata
 <td><code>x.my_property</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__getattribute__><code>x.__getattribute__(<var>"my_property"</var>)</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__getattribute__><code>x.<dfn>__getattribute__</dfn>(<var>"my_property"</var>)</code></a>
 <tr><th>&#x2461;
 <td>ottenere (alternativamente) una proprietà calcolata
 <td><code>x.my_property</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__getattr__><code>x.__getattr__(<var>"my_property"</var>)</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__getattr__><code>x.<dfn>__getattr__</dfn>(<var>"my_property"</var>)</code></a>
 <tr><th>&#x2462;
 <td>impostare il valore di una proprietà
 <td><code>x.my_property = value</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__setattr__><code>x.__setattr__(<var>"my_property"</var>, <var>value</var>)</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__setattr__><code>x.<dfn>__setattr__</dfn>(<var>"my_property"</var>, <var>value</var>)</code></a>
 <tr><th>&#x2463;
 <td>eliminare una proprietà
 <td><code>del x.my_property</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__delattr__><code>x.__delattr__(<var>"my_property"</var>)</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__delattr__><code>x.<dfn>__delattr__</dfn>(<var>"my_property"</var>)</code></a>
 <tr><th>&#x2464;
 <td>elencare tutte le proprietà e i metodi
 <td><code>dir(x)</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__dir__><code>x.__dir__()</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__dir__><code>x.<dfn>__dir__</dfn>()</code></a>
 </table>
 <ol>
 <li>Se la vostra classe definisce un metodo <code>__getattribute__()</code>, Python lo invocherà <em>ogni volta che fate riferimento al nome di una proprietà o di un metodo qualsiasi</em> (a parte i nomi dei metodi speciali, dato che questo causerebbe uno spiacevole ciclo infinito).
@@ -218,10 +218,10 @@ AttributeError</samp></pre>
 <tr><th>
 <td>&#8220;invocare&#8221; un'istanza come una funzione
 <td><code>my_instance()</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__call__><code>my_instance.__call__()</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__call__><code>my_instance.<dfn>__call__</dfn>()</code></a>
 </table>
 
-<p>Il <a href=http://docs.python.org/3.0/library/zipfile.html>modulo <code>zipfile</code></a> usa questa tecnica per definire una classe che possa decodificare un file zip criptato con una data password. L'algoritmo di decodifica per i file zip richiede di memorizzare uno stato durante l'esecuzione. Definire il decodificatore come una classe vi permette di mantenere questo stato all'interno di una singola istanza di tale classe. Lo stato viene inizializzato nel metodo <code>__init__()</code> e aggiornato man mano che il file viene decodificato. Ma dato che la classe è anche &#8220;invocabile&#8221; come una funzione, potete passare l'istanza come primo argomento alla funzione <code>map()</code>, in questo modo:
+<p>Il <a href=http://docs.python.org/3.0/library/zipfile.html>modulo <code>zipfile</code></a> usa questa tecnica per definire una classe che possa <dfn>decodificare</dfn> un file <dfn>zip</dfn> <dfn>criptato</dfn> con una data password. L'algoritmo di <dfn>decodifica</dfn> per i file zip richiede di memorizzare uno stato durante l'esecuzione. Definire il decodificatore come una classe vi permette di mantenere questo stato all'interno di una singola istanza di tale classe. Lo stato viene inizializzato nel metodo <code>__init__()</code> e aggiornato man mano che il file viene <dfn>decodificato</dfn>. Ma dato che la classe è anche &#8220;invocabile&#8221; come una funzione, potete passare l'istanza come primo argomento alla funzione <code>map()</code>, in questo modo:
 
 <pre><code>
 # estratto da zipfile.py
@@ -266,12 +266,12 @@ bytes = zef_file.read(12)
 <th>E Python invoca&hellip;
 <tr><th>
 <td>la lunghezza di una sequenza
-<td><code>len(seq)</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__len__><code>seq.__len__()</code></a>
+<td><code><dfn>len</dfn>(seq)</code>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__len__><code>seq.<dfn>__len__</dfn>()</code></a>
 <tr><th>
 <td>sapere se una sequenza contiene uno specifico valore
 <td><code>x in seq</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__contains__><code>seq.__contains__(<var>x</var>)</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__contains__><code>seq.<dfn>__contains__</dfn>(<var>x</var>)</code></a>
 </table>
 
 <p id=acts-like-list-example>Il <a href=http://docs.python.org/3.0/library/cgi.html>modulo <code>cgi</code></a> sfrutta questi metodi nella sua classe <code>FieldStorage</code>, che rappresenta tutti i campi di una form o i parametri di richiesta inviati a una pagina web dinamica.
@@ -314,19 +314,19 @@ class FieldStorage:
 <tr><th>
 <td>ottenere un valore tramite la sua chiave
 <td><code>x[key]</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__getitem__><code>x.__getitem__(<var>"key"</var>)</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__getitem__><code>x.<dfn>__getitem__</dfn>(<var>"key"</var>)</code></a>
 <tr><th>
 <td>impostare un valore tramite la sua chiave
 <td><code>x[key] = value</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__setitem__><code>x.__setitem__(<var>"key"</var>, <var>value</var>)</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__setitem__><code>x.<dfn>__setitem__</dfn>(<var>"key"</var>, <var>value</var>)</code></a>
 <tr><th>
 <td>eliminare una coppia chiave-valore
 <td><code>del x[key]</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__delitem__><code>x.__delitem__(<var>"key"</var>)</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__delitem__><code>x.<dfn>__delitem__</dfn>(<var>"key"</var>)</code></a>
 <tr><th>
 <td>fornire un valore di default per chiavi mancanti
 <td><code>x[nonexistent_key]</code>
-<td><a href=http://docs.python.org/3.0/library/collections.html#collections.defaultdict.__missing__><code>x.__missing__(<var>"nonexistent_key"</var>)</code></a>
+<td><a href=http://docs.python.org/3.0/library/collections.html#collections.defaultdict.__missing__><code>x.<dfn>__missing__</dfn>(<var>"nonexistent_key"</var>)</code></a>
 </table>
 
 <p>La <a href=#acts-like-list-example>classe <code>FieldStorage</code></a> del <a href=http://docs.python.org/3.0/library/cgi.html>modulo <code>cgi</code></a> definisce anche questi metodi speciali, in modo che possiate fare cose come queste:
@@ -362,7 +362,7 @@ class FieldStorage:
 
 <h2 id=acts-like-number>Classi che si comportano come numeri</h2>
 
-<p>Usando i metodi speciali appropriati, potete definire classi che si comportano come numeri. Questo significa che potete sommarle, sottrarle ed eseguire su di esse altre operazioni matematiche. Questo è il modo in cui <a href=advanced-classes.html#implementing-fractions>sono realizzate le frazioni</a> &mdash; la classe <code>Fraction</code> implementa questi metodi speciali, in modo che possiate fare cose come questa:
+<p>Usando i metodi speciali appropriati, potete definire classi che si comportano come numeri. Questo significa che potete sommarle, sottrarle ed eseguire su di esse altre operazioni matematiche. Questo è il modo in cui <a href=advanced-classes.html#implementing-fractions>sono realizzate le <dfn>frazioni</dfn></a> &mdash; la classe <code><dfn>Fraction</dfn></code> implementa questi metodi speciali, in modo che possiate fare cose come questa:
 
 <pre class=screen>
 <samp class=p>>>> </samp><kbd>from fractions import Fraction</kbd>
@@ -380,55 +380,55 @@ class FieldStorage:
 <tr><th>
 <td>addizione
 <td><code>x + y</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__add__><code>x.__add__(<var>y</var>)</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__add__><code>x.<dfn>__add__</dfn>(<var>y</var>)</code></a>
 <tr><th>
 <td>sottrazione
 <td><code>x - y</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__sub__><code>x.__sub__(<var>y</var>)</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__sub__><code>x.<dfn>__sub__</dfn>(<var>y</var>)</code></a>
 <tr><th>
 <td>moltiplicazione
 <td><code>x * y</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__mul__><code>x.__mul__(<var>y</var>)</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__mul__><code>x.<dfn>__mul__</dfn>(<var>y</var>)</code></a>
 <tr><th>
 <td>divisione
 <td><code>x / y</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__truediv__><code>x.__truediv__(<var>y</var>)</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__truediv__><code>x.<dfn>__truediv__</dfn>(<var>y</var>)</code></a>
 <tr><th>
 <td>divisione intera
 <td><code>x // y</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__floordiv__><code>x.__floordiv__(<var>y</var>)</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__floordiv__><code>x.<dfn>__floordiv__</dfn>(<var>y</var>)</code></a>
 <tr><th>
 <td>modulo (resto)
 <td><code>x % y</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__mod__><code>x.__mod__(<var>y</var>)</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__mod__><code>x.<dfn>__mod__</dfn>(<var>y</var>)</code></a>
 <tr><th>
 <td>divisione intera <i class=baa>&amp;</i> modulo
 <td><code>divmod(x, y)</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__divmod__><code>x.__divmod__(<var>y</var>)</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__divmod__><code>x.<dfn>__divmod__</dfn>(<var>y</var>)</code></a>
 <tr><th>
 <td>elevamento a potenza
 <td><code>x ** y</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__pow__><code>x.__pow__(<var>y</var>)</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__pow__><code>x.<dfn>__pow__</dfn>(<var>y</var>)</code></a>
 <tr><th>
 <td>scorrimento a sinistra
 <td><code>x &lt;&lt; y</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__lshift__><code>x.__lshift__(<var>y</var>)</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__lshift__><code>x.<dfn>__lshift__</dfn>(<var>y</var>)</code></a>
 <tr><th>
 <td>scorrimento a destra
 <td><code>x >> y</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__rshift__><code>x.__rshift__(<var>y</var>)</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__rshift__><code>x.<dfn>__rshift__</dfn>(<var>y</var>)</code></a>
 <tr><th>
 <td><code>and</code> bit per bit
 <td><code>x &amp; y</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__and__><code>x.__and__(<var>y</var>)</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__and__><code>x.<dfn>__and__</dfn>(<var>y</var>)</code></a>
 <tr><th>
 <td><code>xor</code> bit per bit
 <td><code>x ^ y</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__xor__><code>x.__xor__(<var>y</var>)</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__xor__><code>x.<dfn>__xor__</dfn>(<var>y</var>)</code></a>
 <tr><th>
 <td><code>or</code> bit per bit
 <td><code>x | y</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__or__><code>x.__or__(<var>y</var>)</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__or__><code>x.<dfn>__or__</dfn>(<var>y</var>)</code></a>
 </table>
 
 <p>Tutto questo va bene se <var>x</var> è un'istanza di una classe che implementa questi metodi. Ma cosa succede se non ne implementa uno? O peggio, cosa succede se lo implementa, ma non può gestire certi tipi di argomenti? Per esempio:
@@ -458,55 +458,55 @@ class FieldStorage:
 <tr><th>
 <td>addizione
 <td><code>x + y</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__radd__><code>y.__radd__(<var>x</var>)</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__radd__><code>y.<dfn>__radd__</dfn>(<var>x</var>)</code></a>
 <tr><th>
 <td>sottrazione
 <td><code>x - y</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__rsub__><code>y.__rsub__(<var>x</var>)</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__rsub__><code>y.<dfn>__rsub__</dfn>(<var>x</var>)</code></a>
 <tr><th>
 <td>moltiplicazione
 <td><code>x * y</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__rmul__><code>y.__rmul__(<var>x</var>)</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__rmul__><code>y.<dfn>__rmul__</dfn>(<var>x</var>)</code></a>
 <tr><th>
 <td>divisione
 <td><code>x / y</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__rtruediv__><code>y.__rtruediv__(<var>x</var>)</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__rtruediv__><code>y.<dfn>__rtruediv__</dfn>(<var>x</var>)</code></a>
 <tr><th>
 <td>divisione intera
 <td><code>x // y</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__rfloordiv__><code>y.__rfloordiv__(<var>x</var>)</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__rfloordiv__><code>y.<dfn>__rfloordiv__</dfn>(<var>x</var>)</code></a>
 <tr><th>
 <td>modulo (resto)
 <td><code>x % y</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__rmod__><code>y.__rmod__(<var>x</var>)</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__rmod__><code>y.<dfn>__rmod__</dfn>(<var>x</var>)</code></a>
 <tr><th>
 <td>divisione intera <i class=baa>&amp;</i> modulo
 <td><code>divmod(x, y)</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__rdivmod__><code>y.__rdivmod__(<var>x</var>)</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__rdivmod__><code>y.<dfn>__rdivmod__</dfn>(<var>x</var>)</code></a>
 <tr><th>
 <td>elevamento a potenza
 <td><code>x ** y</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__rpow__><code>y.__rpow__(<var>x</var>)</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__rpow__><code>y.<dfn>__rpow__</dfn>(<var>x</var>)</code></a>
 <tr><th>
 <td>scorrimento a sinistra
 <td><code>x &lt;&lt; y</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__rlshift__><code>y.__rlshift__(<var>x</var>)</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__rlshift__><code>y.<dfn>__rlshift__</dfn>(<var>x</var>)</code></a>
 <tr><th>
 <td>scorrimento a destra
 <td><code>x >> y</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__rrshift__><code>y.__rrshift__(<var>x</var>)</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__rrshift__><code>y.<dfn>__rrshift__</dfn>(<var>x</var>)</code></a>
 <tr><th>
 <td><code>and</code> bit per bit
 <td><code>x &amp; y</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__rand__><code>y.__rand__(<var>x</var>)</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__rand__><code>y.<dfn>__rand__</dfn>(<var>x</var>)</code></a>
 <tr><th>
 <td><code>xor</code> bit per bit
 <td><code>x ^ y</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__rxor__><code>y.__rxor__(<var>x</var>)</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__rxor__><code>y.<dfn>__rxor__</dfn>(<var>x</var>)</code></a>
 <tr><th>
 <td><code>or</code> bit per bit
 <td><code>x | y</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__ror__><code>y.__ror__(<var>x</var>)</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__ror__><code>y.<dfn>__ror__</dfn>(<var>x</var>)</code></a>
 </table>
 
 <p>Ma aspettate! C'è di più! Se state eseguendo operazioni &#8220;in loco&#8221;, come <code>x /= 3</code>, ci sono ancora altri metodi speciali aggiuntivi che potete definire.
@@ -519,51 +519,51 @@ class FieldStorage:
 <tr><th>
 <td>addizione in loco
 <td><code>x += y</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__iadd__><code>x.__iadd__(<var>y</var>)</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__iadd__><code>x.<dfn>__iadd__</dfn>(<var>y</var>)</code></a>
 <tr><th>
 <td>sottrazione in loco
 <td><code>x -= y</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__isub__><code>x.__isub__(<var>y</var>)</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__isub__><code>x.<dfn>__isub__</dfn>(<var>y</var>)</code></a>
 <tr><th>
 <td>moltiplicazione in loco
 <td><code>x *= y</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__imul__><code>x.__imul__(<var>y</var>)</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__imul__><code>x.<dfn>__imul__</dfn>(<var>y</var>)</code></a>
 <tr><th>
 <td>divisione in loco
 <td><code>x /= y</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__itruediv__><code>x.__itruediv__(<var>y</var>)</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__itruediv__><code>x.<dfn>__itruediv__</dfn>(<var>y</var>)</code></a>
 <tr><th>
 <td>divisione intera in loco
 <td><code>x //= y</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__ifloordiv__><code>x.__ifloordiv__(<var>y</var>)</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__ifloordiv__><code>x.<dfn>__ifloordiv__</dfn>(<var>y</var>)</code></a>
 <tr><th>
 <td>modulo in loco
 <td><code>x %= y</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__imod__><code>x.__imod__(<var>y</var>)</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__imod__><code>x.<dfn>__imod__</dfn>(<var>y</var>)</code></a>
 <tr><th>
 <td>elevamento a potenza in loco
 <td><code>x **= y</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__ipow__><code>x.__ipow__(<var>y</var>)</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__ipow__><code>x.<dfn>__ipow__</dfn>(<var>y</var>)</code></a>
 <tr><th>
 <td>scorrimento a sinistra in loco
 <td><code>x &lt;&lt;= y</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__ilshift__><code>x.__ilshift__(<var>y</var>)</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__ilshift__><code>x.<dfn>__ilshift__</dfn>(<var>y</var>)</code></a>
 <tr><th>
 <td>scorrimento a destra in loco
 <td><code>x >>= y</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__irshift__><code>x.__irshift__(<var>y</var>)</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__irshift__><code>x.<dfn>__irshift__</dfn>(<var>y</var>)</code></a>
 <tr><th>
 <td><code>and</code> bit per bit in loco
 <td><code>x &amp;= y</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__iand__><code>x.__iand__(<var>y</var>)</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__iand__><code>x.<dfn>__iand__</dfn>(<var>y</var>)</code></a>
 <tr><th>
 <td><code>xor</code> bit per bit in loco
 <td><code>x ^= y</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__ixor__><code>x.__ixor__(<var>y</var>)</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__ixor__><code>x.<dfn>__ixor__</dfn>(<var>y</var>)</code></a>
 <tr><th>
 <td><code>or</code> bit per bit in loco
 <td><code>x |= y</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__ior__><code>x.__ior__(<var>y</var>)</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__ior__><code>x.<dfn>__ior__</dfn>(<var>y</var>)</code></a>
 </table>
 
 <p>Notate che la maggior parte dei metodi per le operazioni in loco non è richiesta. Se non definite il metodo per una particolare operazione in loco, Python proverà a utilizzare gli altri metodi. Per esempio, cercando di eseguire l'espressione <code>x /= y</code>, Python proverà a:
@@ -586,55 +586,55 @@ class FieldStorage:
 <tr><th>
 <td>un numero negativo
 <td><code>-x</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__neg__><code>x.__neg__()</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__neg__><code>x.<dfn>__neg__</dfn>()</code></a>
 <tr><th>
 <td>un numero positivo
 <td><code>+x</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__pos__><code>x.__pos__()</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__pos__><code>x.<dfn>__pos__</dfn>()</code></a>
 <tr><th>
 <td>il valore assoluto
 <td><code>abs(x)</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__abs__><code>x.__abs__()</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__abs__><code>x.<dfn>__abs__</dfn>()</code></a>
 <tr><th>
 <td>l'inverso
 <td><code>~x</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__invert__><code>x.__invert__()</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__invert__><code>x.<dfn>__invert__</dfn>()</code></a>
 <tr><th>
 <td>un numero complesso
 <td><code>complex(x)</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__complex__><code>x.__complex__()</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__complex__><code>x.<dfn>__complex__</dfn>()</code></a>
 <tr><th>
 <td>un numero intero
 <td><code>int(x)</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__int__><code>x.__int__()</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__int__><code>x.<dfn>__int__</dfn>()</code></a>
 <tr><th>
 <td>un numero in virgola mobile
 <td><code>float(x)</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__float__><code>x.__float__()</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__float__><code>x.<dfn>__float__</dfn>()</code></a>
 <tr><th>
 <td>un numero arrotondato all'intero più vicino
 <td><code>round(x)</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__round__><code>x.__round__()</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__round__><code>x.<dfn>__round__</dfn>()</code></a>
 <tr><th>
 <td>un numero arrotondato alla <var>n</var>-sima cifra
 <td><code>round(x, n)</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__round__><code>x.__round__(n)</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__round__><code>x.<dfn>__round__</dfn>(n)</code></a>
 <tr><th>
 <td>il più piccolo intero che sia <code>>= x</code>
 <td><code>math.ceil(x)</code>
-<td><a href=http://docs.python.org/3.0/library/math.html#math.ceil><code>x.__ceil__()</code></a>
+<td><a href=http://docs.python.org/3.0/library/math.html#math.ceil><code>x.<dfn>__ceil__</dfn>()</code></a>
 <tr><th>
 <td>il più grande intero che sia <code>&lt;= x</code>
 <td><code>math.floor(x)</code>
-<td><a href=http://docs.python.org/3.0/library/math.html#math.floor><code>x.__floor__()</code></a>
+<td><a href=http://docs.python.org/3.0/library/math.html#math.floor><code>x.<dfn>__floor__</dfn>()</code></a>
 <tr><th>
 <td>troncare <code>x</code> all'intero più vicino verso lo <code>0</code>
 <td><code>math.trunc(x)</code>
-<td><a href=http://docs.python.org/3.0/library/math.html#math.trunc><code>x.__trunc__()</code></a>
+<td><a href=http://docs.python.org/3.0/library/math.html#math.trunc><code>x.<dfn>__trunc__</dfn>()</code></a>
 <tr><th><a href=http://www.python.org/dev/peps/pep-0357/>PEP 357</a>
 <td>usare un numero come indice di lista
 <td><code>a_list[<var>x</var>]</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__index__><code>x.__index__()</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__index__><code>x.<dfn>__index__</dfn>()</code></a>
 </table>
 
 <h2 id=rich-comparisons>Classi che possono essere confrontate</h2>
@@ -649,31 +649,31 @@ class FieldStorage:
 <tr><th>
 <td>uguaglianza
 <td><code>x == y</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__eq__><code>x.__eq__(<var>y</var>)</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__eq__><code>x.<dfn>__eq__</dfn>(<var>y</var>)</code></a>
 <tr><th>
 <td>disuguaglianza
 <td><code>x != y</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__ne__><code>x.__ne__(<var>y</var>)</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__ne__><code>x.<dfn>__ne__</dfn>(<var>y</var>)</code></a>
 <tr><th>
 <td>minore di
 <td><code>x &lt; y</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__lt__><code>x.__lt__(<var>y</var>)</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__lt__><code>x.<dfn>__lt__</dfn>(<var>y</var>)</code></a>
 <tr><th>
 <td>minore o uguale a
 <td><code>x &lt;= y</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__le__><code>x.__le__(<var>y</var>)</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__le__><code>x.<dfn>__le__</dfn>(<var>y</var>)</code></a>
 <tr><th>
 <td>maggiore di
 <td><code>x >  y</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__gt__><code>x.__gt__(<var>y</var>)</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__gt__><code>x.<dfn>__gt__</dfn>(<var>y</var>)</code></a>
 <tr><th>
 <td>maggiore o uguale a
 <td><code>x >= y</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__ge__><code>x.__ge__(<var>y</var>)</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__ge__><code>x.<dfn>__ge__</dfn>(<var>y</var>)</code></a>
 <tr><th>
 <td>un valore di verità in un contesto logico
 <td><code>if x:</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__bool__><code>x.__bool__()</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__bool__><code>x.<dfn>__bool__</dfn>()</code></a>
 </table>
 
 <h2 id=pickle>Classi che possono essere serializzate</h2>
@@ -689,31 +689,31 @@ class FieldStorage:
 <tr><th>
 <td>la copia di un oggetto
 <td><code>copy.copy(x)</code>
-<td><a href=http://docs.python.org/3.0/library/copy.html><code>x.__copy__()</code></a>
+<td><a href=http://docs.python.org/3.0/library/copy.html><code>x.<dfn>__copy__</dfn>()</code></a>
 <tr><th>
 <td>la copia in profondità di un oggetto
 <td><code>copy.deepcopy(x)</code>
-<td><a href=http://docs.python.org/3.0/library/copy.html><code>x.__deepcopy__()</code></a>
+<td><a href=http://docs.python.org/3.0/library/copy.html><code>x.<dfn>__deepcopy__</dfn>()</code></a>
 <tr><th>
 <td>ottenere lo stato di un oggetto prima della serializzazione
 <td><code>pickle.dump(x, <var>file</var>)</code>
-<td><a href=http://docs.python.org/3.0/library/pickle.html#pickle-state><code>x.__getstate__()</code></a>
+<td><a href=http://docs.python.org/3.0/library/pickle.html#pickle-state><code>x.<dfn>__getstate__</dfn>()</code></a>
 <tr><th>
 <td>serializzare un oggetto
 <td><code>pickle.dump(x, <var>file</var>)</code>
-<td><a href=http://docs.python.org/3.0/library/pickle.html#pickling-class-instances><code>x.__reduce__()</code></a>
+<td><a href=http://docs.python.org/3.0/library/pickle.html#pickling-class-instances><code>x.<dfn>__reduce__</dfn>()</code></a>
 <tr><th>
 <td>serializzare un oggetto (con un nuovo protocollo di pickling)
 <td><code>pickle.dump(x, <var>file</var>, <var>protocol_version</var>)</code>
-<td><a href=http://docs.python.org/3.0/library/pickle.html#pickling-class-instances><code>x.__reduce_ex__(<var>protocol_version</var>)</code></a>
+<td><a href=http://docs.python.org/3.0/library/pickle.html#pickling-class-instances><code>x.<dfn>__reduce_ex__</dfn>(<var>protocol_version</var>)</code></a>
 <tr><th>
 <td>controllare come un oggetto viene creato durante la deserializzazione
 <td><code>x = pickle.load(<var>file</var>)</code>
-<td><a href=http://docs.python.org/3.0/library/pickle.html#pickling-class-instances><code>x.__getnewargs__()</code></a>
+<td><a href=http://docs.python.org/3.0/library/pickle.html#pickling-class-instances><code>x.<dfn>__getnewargs__</dfn>()</code></a>
 <tr><th>
 <td>ripristinare lo stato di un oggetto dopo la deserializzazione
 <td><code>x = pickle.load(<var>file</var>)</code>
-<td><a href=http://docs.python.org/3.0/library/pickle.html#pickle-state><code>x.__setstate__()</code></a>
+<td><a href=http://docs.python.org/3.0/library/pickle.html#pickle-state><code>x.<dfn>__setstate__</dfn>()</code></a>
 </table>
 
 <h2 id=context-managers>Classi che possono essere usate in un blocco <code>with</code></h2>
@@ -730,11 +730,11 @@ class FieldStorage:
 <tr><th>
 <td>fare qualcosa di speciale quando entrate in un blocco <code>with</code>
 <td><code>with x:</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__enter__><code>x.__enter__()</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__enter__><code>x.<dfn>__enter__</dfn>()</code></a>
 <tr><th>
 <td>fare qualcosa di speciale quando lasciate un blocco <code>with</code>
 <td><code>with x:</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__exit__><code>x.__exit__()</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__exit__><code>x.<dfn>__exit__</dfn>()</code></a>
 </table>
 
 <p>Ecco come <span class=fixme>[FIXME-xref]</span> funziona l'idioma <code>with <var>file</var></code>.
@@ -779,43 +779,43 @@ def __exit__(self, *args) -> None:
 <tr><th>
 <td>il costruttore di una classe
 <td><code>x = MyClass()</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__new__><code>x.__new__()</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__new__><code>x.<dfn>__new__</dfn>()</code></a>
 <tr><th>
 <td>il distruttore di una classe
 <td><code>del x</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__del__><code>x.__del__()</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__del__><code>x.<dfn>__del__</dfn>()</code></a>
 <tr><th>
 <td>che solo uno specifico insieme di proprietà sia definito
 <td>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__slots__><code>x.__slots__()</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__slots__><code>x.<dfn>__slots__</dfn>()</code></a>
 <tr><th>
 <td>un valore di hash personalizzato
 <td><code>hash(x)</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__hash__><code>x.__hash__()</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__hash__><code>x.<dfn>__hash__</dfn>()</code></a>
 <tr><th>
 <td>ottenere il valore di una proprietà
 <td><code>x.color</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__get__><code>type(x).__dict__['color'].__get__(x, type(x))</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__get__><code>type(x).<dfn>__dict__</dfn>['color'].__get__(x, type(x))</code></a>
 <tr><th>
 <td>impostare il valore di una proprietà
 <td><code>x.color = 'PapayaWhip'</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__set__><code>type(x).__dict__['color'].__set__(x, 'PapayaWhip')</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__set__><code>type(x).<dfn>__dict__</dfn>['color'].__set__(x, 'PapayaWhip')</code></a>
 <tr><th>
 <td>eliminare una proprietà
 <td><code>del x.color</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__delete__><code>type(x).__dict__['color'].__del__(x)</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__delete__><code>type(x).<dfn>__dict__</dfn>['color'].__del__(x)</code></a>
 <tr><th>
 <td>controllare se un oggetto è istanza della vostra classe
 <td><code>isinstance(x, MyClass)</code>
-<td><a href=http://www.python.org/dev/peps/pep-3119/#overloading-isinstance-and-issubclass><code>MyClass.__instancecheck__(x)</code></a>
+<td><a href=http://www.python.org/dev/peps/pep-3119/#overloading-isinstance-and-issubclass><code>MyClass.<dfn>__instancecheck__</dfn>(x)</code></a>
 <tr><th>
 <td>controllare se una classe è sottoclasse di una vostra classe
 <td><code>issubclass(C, MyClass)</code>
-<td><a href=http://www.python.org/dev/peps/pep-3119/#overloading-isinstance-and-issubclass><code>MyClass.__subclasscheck__(C)</code></a>
+<td><a href=http://www.python.org/dev/peps/pep-3119/#overloading-isinstance-and-issubclass><code>MyClass.<dfn>__subclasscheck__</dfn>(C)</code></a>
 <tr><th>
 <td>controllare se una classe è sottoclasse di una vostra classe astratta di base
 <td><code>issubclass(C, MyABC)</code>
-<td><a href=http://docs.python.org/3.0/library/abc.html#abc.ABCMeta.__subclasshook__><code>MyABC.__subclasshook__(C)</code></a>
+<td><a href=http://docs.python.org/3.0/library/abc.html#abc.ABCMeta.__subclasshook__><code>MyABC.<dfn>__subclasshook__</dfn>(C)</code></a>
 </table>
 
 <p class=nav><a rel=prev href=convertire-codice-verso-python-3-con-2to3.html title="indietro a &#8220;Convertire codice verso Python 3 con 2to3&#8221;"><span>&#x261C;</span></a> <a rel=next class=todo><span>&#x261E;</span></a>
