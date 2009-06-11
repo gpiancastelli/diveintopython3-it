@@ -1,40 +1,37 @@
-'''Pluralize English nouns (stage 3)
+from alphametics import solve
+import unittest
 
-Command line usage:
-$ python plural3.py noun
-nouns
-'''
+class KnownValues(unittest.TestCase):
+    def test_out(self):
+        '''TO + GO == OUT'''
+        self.assertEqual(solve('TO + GO == OUT'), '21 + 81 == 102')
 
-import re
+    def test_too(self):
+        '''I + DID == TOO'''
+        self.assertEqual(solve('I + DID == TOO'), '9 + 191 == 200')
 
-def build_match_and_apply_functions(pattern, search, replace):
-    def matches_rule(word):
-        return re.search(pattern, word)
-    def apply_rule(word):
-        return re.sub(search, replace, word)
-    return [matches_rule, apply_rule]
+    def test_mom(self):
+        '''AS + A == MOM'''
+        self.assertEqual(solve('AS + A == MOM'), '92 + 9 == 101')
 
-patterns = \
-  [
-    ['[sxz]$',           '$',  'es'],
-    ['[^aeioudgkprt]h$', '$',  'es'],
-    ['(qu|[^aeiou])y$',  'y$', 'ies'],
-    ['$',                '$',  's']
-  ]
-rules = [build_match_and_apply_functions(pattern, search, replace)
-         for (pattern, search, replace) in patterns]
+    def test_best(self):
+        '''HES + THE == BEST'''
+        self.assertEqual(solve('HES + THE == BEST'), '426 + 842 == 1268')
 
-def plural(noun):
-    for matches_rule, apply_rule in rules:
-        if matches_rule(noun):
-            return apply_rule(noun)
+    def test_late(self):
+        '''NO + NO + TOO == LATE'''
+        self.assertEqual(solve('NO + NO + TOO == LATE'), '74 + 74 + 944 == 1092')
+
+    def test_onze(self):
+        '''UN + UN + NEUF == ONZE'''
+        self.assertEqual(solve('UN + UN + NEUF == ONZE'), '81 + 81 + 1987 == 2149')
+
+    def test_deux(self):
+        '''UN + DEUX + DEUX + DEUX + DEUX == NEUF'''
+        self.assertEqual(solve('UN + DEUX + DEUX + DEUX + DEUX == NEUF'), '25 + 1326 + 1326 + 1326 + 1326 == 5329')
 
 if __name__ == '__main__':
-    import sys
-    if sys.argv[1:]:
-        print(plural(sys.argv[1]))
-    else:
-        print(__doc__)
+    unittest.main()
 
 # Copyright (c) 2009, Mark Pilgrim, All rights reserved.
 # 

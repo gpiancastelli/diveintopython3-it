@@ -6,9 +6,9 @@
 <link rel=stylesheet href=dip3.css>
 <link rel=stylesheet href=dip3-it.css>
 <style>
-h1:before{counter-increment:h1;content:"Appendice B. "}
-h2:before{counter-increment:h2;content:"B." counter(h2) ". "}
-h3:before{counter-increment:h3;content:"B." counter(h2) "." counter(h3) ". "}
+h1:before{counter-increment:h1;content:'Appendice B. '}
+h2:before{counter-increment:h2;content:'B.' counter(h2) '. '}
+h3:before{counter-increment:h3;content:'B.' counter(h2) '.' counter(h3) '. '}
 tr + tr th:first-child{font:medium 'Arial Unicode MS',FreeSerif,OpenSymbol,'DejaVu Sans',sans-serif}
 table{width:100%;border-collapse:collapse}
 th,td{width:30%;padding:0 0.5em;border:1px solid #bbb}
@@ -112,19 +112,19 @@ td a:link, td a:visited{border:0}
 <tr><th>&#x2460;
 <td>ottenere (incondizionatamente) una proprietà calcolata
 <td><code>x.my_property</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__getattribute__><code>x.<dfn>__getattribute__</dfn>(<var>"my_property"</var>)</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__getattribute__><code>x.<dfn>__getattribute__</dfn>(<var>'my_property'</var>)</code></a>
 <tr><th>&#x2461;
 <td>ottenere (alternativamente) una proprietà calcolata
 <td><code>x.my_property</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__getattr__><code>x.<dfn>__getattr__</dfn>(<var>"my_property"</var>)</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__getattr__><code>x.<dfn>__getattr__</dfn>(<var>'my_property'</var>)</code></a>
 <tr><th>&#x2462;
 <td>impostare il valore di una proprietà
 <td><code>x.my_property = value</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__setattr__><code>x.<dfn>__setattr__</dfn>(<var>"my_property"</var>, <var>value</var>)</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__setattr__><code>x.<dfn>__setattr__</dfn>(<var>'my_property'</var>, <var>value</var>)</code></a>
 <tr><th>&#x2463;
 <td>eliminare una proprietà
 <td><code>del x.my_property</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__delattr__><code>x.<dfn>__delattr__</dfn>(<var>"my_property"</var>)</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__delattr__><code>x.<dfn>__delattr__</dfn>(<var>'my_property'</var>)</code></a>
 <tr><th>&#x2464;
 <td>elencare tutte le proprietà e i metodi
 <td><code>dir(x)</code>
@@ -132,7 +132,7 @@ td a:link, td a:visited{border:0}
 </table>
 <ol>
 <li>Se la vostra classe definisce un metodo <code>__getattribute__()</code>, Python lo invocherà <em>ogni volta che fate riferimento al nome di una proprietà o di un metodo qualsiasi</em> (a parte i nomi dei metodi speciali, dato che questo causerebbe uno spiacevole ciclo infinito).
-<li>Se la vostra classe definisce un metodo <code>__getattr__()</code>, Python lo invocherà solo dopo aver cercato la proprietà in tutti i posti in cui viene cercata normalmente. Se un'istanza <var>x</var> definise una proprietà <var>color</var>, l'accesso a <var>x.color</var> <em>non</em> causerà l'invocazione di <code>x.__getattr__("color")</code> ma restituirà semplicemente il valore di <var>x.color</var> già definito.
+<li>Se la vostra classe definisce un metodo <code>__getattr__()</code>, Python lo invocherà solo dopo aver cercato la proprietà in tutti i posti in cui viene cercata normalmente. Se un'istanza <var>x</var> definise una proprietà <var>color</var>, l'accesso a <var>x.color</var> <em>non</em> causerà l'invocazione di <code>x.__getattr__('color')</code> ma restituirà semplicemente il valore di <var>x.color</var> già definito.
 <li>Il metodo <code>__setattr__()</code> viene invocato ogni volta che assegnate un valore a una proprietà.
 <li>Il metodo <code>__delattr__()</code> viene invocato ogni volta che eliminate una proprietà.
 <li>Il metodo <code>__dir__()</code> è utile se definite un metodo <code>__getattr__()</code> o un metodo <code>__getattribute__()</code>. Generalmente, l'invocazione di <code>dir(x)</code> elenca solo le proprietà e i metodi normali. Se il vostro metodo <code>__getattr__()</code> gestisce dinamicamente una proprietà <var>color</var>, <code>dir(x)</code> non mostrerà <var>color</var> come una delle proprietà disponibili. Fornire una vostra implementazione del metodo <code>__dir__()</code> vi permette di mostrare <var>color</var> nell'elenco delle proprietà disponibili, venendo in aiuto ad altri programmatori che vorrebbero usare la vostra classe senza doverne esaminare i dettagli interni.
@@ -143,19 +143,19 @@ td a:link, td a:visited{border:0}
 <pre class=screen>
 <code>class Dynamo:
     def __getattr__(self, key):
-<a>        if key == "color":         <span>&#x2460;</span></a>
-            return "PapayaWhip"
+<a>        if key == 'color':         <span>&#x2460;</span></a>
+            return 'PapayaWhip'
         else:
 <a>            raise AttributeError   <span>&#x2461;</span></a></code>
 
 <samp class=p>>>> </samp><kbd>dyn = Dynamo()</kbd>
 <a><samp class=p>>>> </samp><kbd>dyn.color</kbd>                      <span>&#x2462;</span></a>
 <samp>'PapayaWhip'</samp>
-<samp class=p>>>> </samp><kbd>dyn.color = "LemonChiffon"</kbd>
+<samp class=p>>>> </samp><kbd>dyn.color = 'LemonChiffon'</kbd>
 <a><samp class=p>>>> </samp><kbd>dyn.color</kbd>                      <span>&#x2463;</span></a>
 <samp>'LemonChiffon'</samp></pre>
 <ol>
-<li>Il nome della proprietà viene passato al metodo <code>__getattr__()</code> sotto forma di stringa. Se il nome è <code>"color"</code>, il metodo restituisce un valore. (In questo caso, il valore è solo una stringa costante, ma normalmente effettuereste una qualche sorta di computazione e ne restituireste il risultato.)
+<li>Il nome della proprietà viene passato al metodo <code>__getattr__()</code> sotto forma di stringa. Se il nome è <code>'color'</code>, il metodo restituisce un valore. (In questo caso, il valore è solo una stringa costante, ma normalmente effettuereste una qualche sorta di computazione e ne restituireste il risultato.)
 <li>Se il nome della proprietà è sconosciuto, il metodo <code>__getattr__()</code> deve sollevare un'eccezione di tipo <code>AttributeError</code>, altrimenti il vostro codice fallirà silenziosamente quando accedete a proprietà non definite. (Tecnicamente, se il metodo non solleva un'eccezione o restituisce esplicitamente un valore, allora restituisce <code>None</code>, il valore nullo di Python. In questo caso, <em>tutte</em> le proprietà non esplicitamente definite varrebbero <code>None</code>, che quasi sicuramente non è quello che volete.)
 <li>L'istanza <var>dyn</var> non ha una proprietà chiamata <var>color</var>, quindi il metodo <code>__getattr__()</code> viene invocato per fornirne il valore calcolato.
 <li>Dopo aver esplicitamente impostato <var>dyn.color</var>, il metodo <code>__getattr__()</code> non viene più invocato per fornire il valore di <var>dyn.color</var>, perché <var>dyn.color</var> è già definita in questa istanza.
@@ -167,16 +167,16 @@ td a:link, td a:visited{border:0}
 <code>class SuperDynamo:
     def __getattribute__(self, key):
         if key == 'color':
-            return "PapayaWhip"
+            return 'PapayaWhip'
         else:
             raise AttributeError</code>
 
 <samp class=p>>>> </samp><kbd>dyn = SuperDynamo()</kbd>
 <a><samp class=p>>>> </samp><kbd>dyn.color</kbd>                      <span>&#x2460;</span></a>
-<samp>"PapayaWhip"</samp>
-<samp class=p>>>> </samp><kbd>dyn.color = "LemonChiffon"</kbd>
+<samp>'PapayaWhip'</samp>
+<samp class=p>>>> </samp><kbd>dyn.color = 'LemonChiffon'</kbd>
 <a><samp class=p>>>> </samp><kbd>dyn.color</kbd>                      <span>&#x2461;</span></a>
-<samp>"PapayaWhip"</samp></pre>
+<samp>'PapayaWhip'</samp></pre>
 <ol>
 <li>Il metodo <code>__getattribute__()</code> viene invocato per fornire il valore di <var>dyn.color</var>.
 <li>Anche dopo aver esplicitamente impostato <var>dyn.color</var>, il metodo <code>__getattribute__()</code> <em>viene ancora invocato</em> per fornirne il valore. Se esiste, il metodo <code>__getattribute__()</code> <em>viene invocato incondizionatamente</em> per ogni accesso a proprietà e metodi, anche per proprietà che avete esplicitamente impostato dopo la creazione di un'istanza.
@@ -280,7 +280,7 @@ bytes = zef_file.read(12)
 # Uno script che risponde a http://example.com/search?q=cgi
 import cgi
 fs = cgi.FieldStorage()
-<a>if "q" in fs:                                               <span>&#x2460;</span></a>
+<a>if 'q' in fs:                                               <span>&#x2460;</span></a>
   do_search()
 
 # Un estratto da cgi.py che spiega come funziona lo script
@@ -290,7 +290,7 @@ class FieldStorage:
 .
 <a>    def __contains__(self, key):                            <span>&#x2461;</span></a>
         if self.list is None:
-            raise TypeError("not indexable")
+            raise TypeError('not indexable')
 <a>        return any(item.name == key for item in self.list)  <span>&#x2462;</span></a>
 
 <a>    def __len__(self):                                      <span>&#x2463;</span></a>
@@ -298,7 +298,7 @@ class FieldStorage:
 <ol>
 <li>Una volta creata un'istanza della classe <code>cgi.FieldStorage</code>, potete usare l'operatore &#8220;<code>in</code>&#8221; per controllare se un particolare parametro è stato incluso nella stringa di richiesta.
 <li>Il metodo <code>__contains__()</code> è la magia che fa funzionare quel controllo.
-<li>Quando dite <code>if "q" in fs</code>, Python cerca nell'oggetto <var>fs</var> il metodo <code>__contains__()</code>, che è definito in <code>cgi.py</code>. Il valore <code>"q"</code> è passato al metodo <code>__contains__()</code> come argomento <var>key</var>.
+<li>Quando dite <code>if 'q' in fs</code>, Python cerca nell'oggetto <var>fs</var> il metodo <code>__contains__()</code>, che è definito in <code>cgi.py</code>. Il valore <code>'q'</code> è passato al metodo <code>__contains__()</code> come argomento <var>key</var>.
 <li>La stessa classe <code>FieldStorage</code> è in grado di restituire il valore della propria lunghezza, quindi <code>len(<var>fs</var>)</code> invocherà il metodo <code>__len__()</code> sull'istanza della classe <code>FieldStorage</code> per restituire il numero di parametri di richiesta che sono stati identificati.
 </ol>
 
@@ -314,19 +314,19 @@ class FieldStorage:
 <tr><th>
 <td>ottenere un valore tramite la sua chiave
 <td><code>x[key]</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__getitem__><code>x.<dfn>__getitem__</dfn>(<var>"key"</var>)</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__getitem__><code>x.<dfn>__getitem__</dfn>(<var>'key'</var>)</code></a>
 <tr><th>
 <td>impostare un valore tramite la sua chiave
 <td><code>x[key] = value</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__setitem__><code>x.<dfn>__setitem__</dfn>(<var>"key"</var>, <var>value</var>)</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__setitem__><code>x.<dfn>__setitem__</dfn>(<var>'key'</var>, <var>value</var>)</code></a>
 <tr><th>
 <td>eliminare una coppia chiave-valore
 <td><code>del x[key]</code>
-<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__delitem__><code>x.<dfn>__delitem__</dfn>(<var>"key"</var>)</code></a>
+<td><a href=http://www.python.org/doc/3.0/reference/datamodel.html#object.__delitem__><code>x.<dfn>__delitem__</dfn>(<var>'key'</var>)</code></a>
 <tr><th>
 <td>fornire un valore di default per chiavi mancanti
 <td><code>x[nonexistent_key]</code>
-<td><a href=http://docs.python.org/3.0/library/collections.html#collections.defaultdict.__missing__><code>x.<dfn>__missing__</dfn>(<var>"nonexistent_key"</var>)</code></a>
+<td><a href=http://docs.python.org/3.0/library/collections.html#collections.defaultdict.__missing__><code>x.<dfn>__missing__</dfn>(<var>'nonexistent_key'</var>)</code></a>
 </table>
 
 <p>La <a href=#acts-like-list-example>classe <code>FieldStorage</code></a> del <a href=http://docs.python.org/3.0/library/cgi.html>modulo <code>cgi</code></a> definisce anche questi metodi speciali, in modo che possiate fare cose come queste:
@@ -335,8 +335,8 @@ class FieldStorage:
 # Uno script che risponde a http://example.com/search?q=cgi
 import cgi
 fs = cgi.FieldStorage()
-if "q" in fs:
-<a>  do_search(fs["q"])                              <span>&#x2460;</span></a>
+if 'q' in fs:
+<a>  do_search(fs['q'])                              <span>&#x2460;</span></a>
 
 # Un estratto da cgi.py che spiega come funziona lo script
 class FieldStorage:
@@ -345,7 +345,7 @@ class FieldStorage:
 .
 <a>    def __getitem__(self, key):                   <span>&#x2461;</span></a>
         if self.list is None:
-            raise TypeError("not indexable")
+            raise TypeError('not indexable')
         found = []
         for item in self.list:
             if item.name == key: found.append(item)
@@ -356,8 +356,8 @@ class FieldStorage:
         else:
             return found</code></pre>
 <ol>
-<li>L'oggetto <var>fs</var> è un'istanza di <code>cgi.FieldStorage</code>, tuttavia potete valutare espressioni come <code>fs["q"]</code>.
-<li><code>fs["q"]</code> invoca il metodo <code>__getitem__()</code> con il parametro <var>key</var> impostato a <code>"q"</code>. Quindi controlla se la lista di parametri di richiesta che mantiene internamente (<var>self.list</var>) contiene un elemento la cui proprietà <code>name</code> corrisponde alla chiave data.
+<li>L'oggetto <var>fs</var> è un'istanza di <code>cgi.FieldStorage</code>, tuttavia potete valutare espressioni come <code>fs['q']</code>.
+<li><code>fs['q']</code> invoca il metodo <code>__getitem__()</code> con il parametro <var>key</var> impostato a <code>'q'</code>. Quindi controlla se la lista di parametri di richiesta che mantiene internamente (<var>self.list</var>) contiene un elemento la cui proprietà <code>name</code> corrisponde alla chiave data.
 </ol>
 
 <h2 id=acts-like-number>Classi che si comportano come numeri</h2>
@@ -743,19 +743,19 @@ class FieldStorage:
 
 <pre><code># estratto da io.py:
 def _checkClosed(self, msg=None):
-    """Internal: raise an ValueError if file is closed
-    """
+    '''Internal: raise an ValueError if file is closed
+    '''
     if self.closed:
-        raise ValueError("I/O operation on closed file."
+        raise ValueError('I/O operation on closed file.'
                          if msg is None else msg)
 
-def __enter__(self) -> "IOBase":
-    """Context management protocol.  Returns self."""
+def __enter__(self) -> 'IOBase':
+    '''Context management protocol.  Returns self.'''
 <a>    self._checkClosed()                                <span>&#x2460;</span></a>
 <a>    return self                                        <span>&#x2461;</span></a>
 
 def __exit__(self, *args) -> None:
-    """Context management protocol.  Calls close()"""
+    '''Context management protocol.  Calls close()'''
 <a>    self.close()                                       <span>&#x2462;</span></a></code></pre>
 <ol>
 <li>L'oggetto file definisce sia un metodo <code>__enter__()</code> che un metodo <code>__exit__()</code>. Il metodo <code>__enter__()</code> verifica che il file sia aperto: se non lo è, il metodo <code>_checkClosed()</code> solleva un'eccezione.
@@ -818,7 +818,7 @@ def __exit__(self, *args) -> None:
 <td><a href=http://docs.python.org/3.0/library/abc.html#abc.ABCMeta.__subclasshook__><code>MyABC.<dfn>__subclasshook__</dfn>(C)</code></a>
 </table>
 
-<p class=nav><a rel=prev href=convertire-codice-verso-python-3-con-2to3.html title="indietro a &#8220;Convertire codice verso Python 3 con 2to3&#8221;"><span>&#x261C;</span></a> <a rel=next class=todo><span>&#x261E;</span></a>
+<p class=nav><a rel=prev href=convertire-codice-verso-python-3-con-2to3.html title='indietro a &#8220;Convertire codice verso Python 3 con 2to3&#8221;'><span>&#x261C;</span></a> <a rel=next class=todo><span>&#x261E;</span></a>
 <p class=c>&copy; 2001&ndash;9 <a href=informazioni-sul-libro.html>Mark Pilgrim</a><br>
 &copy; 2009 <a href=informazioni-sulla-traduzione.html>Giulio Piancastelli</a> per la traduzione italiana
 <script src=j/jquery.js></script>

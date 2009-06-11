@@ -24,7 +24,7 @@ body{counter-reset:h1 10}
 <p class=f>Nonostante facciate del vostro meglio per scrivere test di unità completi, i bug capitano. Cosa intendo quando parlo di &#8220;bug&#8221;? Un bug è un test che non avete ancora scritto.
 
 <pre class=screen><samp class=p>>>> </samp><kbd>import roman7</kbd>
-<a><samp class=p>>>> </samp><kbd>roman7.from_roman("")</kbd> <span>&#x2460;</span></a>
+<a><samp class=p>>>> </samp><kbd>roman7.from_roman('')</kbd> <span>&#x2460;</span></a>
 <samp>0</samp></pre>
 <ol>
 <li>Ricordate quando, nel <span class=fixme>[FIXME-xref]</span> capitolo precedente, continuavate a notare che una stringa vuota sarebbe stata riconosciuta dall'espressione regolare che stavate usando per controllare i numeri romani validi? Ebbene, questo è ancora vero per la versione finale dell'espressione regolare. Ma è un bug; in realtà, vorreste che una stringa vuota sollevasse un'eccezione di tipo <code>InvalidRomanNumeralError</code> esattamente come ogni altra sequenza di caratteri che non rappresenta un numero romano valido.
@@ -37,8 +37,8 @@ body{counter-reset:h1 10}
     .
     .
     def testBlank(self):
-        """from_roman should fail with blank string"""
-<a>        self.assertRaises(roman6.InvalidRomanNumeralError, roman6.from_roman, "") <span>&#x2460;</span></a></code></pre>
+        '''from_roman should fail with blank string'''
+<a>        self.assertRaises(roman6.InvalidRomanNumeralError, roman6.from_roman, '') <span>&#x2460;</span></a></code></pre>
 <ol>
 <li>Qui le cose sono piuttosto semplici. Chiamate <code>from_roman()</code> con una stringa vuota, e vi assicurate che sollevi un'eccezione di tipo <code>InvalidRomanNumeralError</code>. La parte difficile è stata trovare il bug; ora che lo conoscete, scrivere un test per verificarlo è la parte facile.
 </ol>
@@ -64,7 +64,7 @@ FAIL: from_roman should fail with blank string
 ----------------------------------------------------------------------
 Traceback (most recent call last):
   File "romantest8.py", line 117, in test_blank
-    self.assertRaises(roman8.InvalidRomanNumeralError, roman8.from_roman, "")
+    self.assertRaises(roman8.InvalidRomanNumeralError, roman8.from_roman, '')
 <mark>AssertionError: InvalidRomanNumeralError not raised by from_roman</mark>
 
 ----------------------------------------------------------------------
@@ -75,7 +75,7 @@ FAILED (failures=1)</samp></pre>
 <p><em>Adesso</em> potete correggere il bug.
 
 <pre><code>def from_roman(s):
-    """convert Roman numeral to integer"""
+    '''convert Roman numeral to integer'''
 <a>    if not s:  <span>&#x2460;</span></a>
         raise InvalidRomanNumeralError, 'Input can not be blank'
     if not re.search(romanNumeralPattern, s):
@@ -139,7 +139,7 @@ class KnownValues(unittest.TestCase):
 
 class ToRomanBadInput(unittest.TestCase):
     def test_too_large(self):
-        """to_roman should fail with large input"""
+        '''to_roman should fail with large input'''
 <a>        self.assertRaises(roman8.OutOfRangeError, roman8.to_roman, 5000)  <span>&#x2461;</span></a>
 
     .
@@ -148,7 +148,7 @@ class ToRomanBadInput(unittest.TestCase):
 
 class FromRomanBadInput(unittest.TestCase):
     def test_too_many_repeated_numerals(self):
-        """from_roman should fail with too many repeated numerals"""
+        '''from_roman should fail with too many repeated numerals'''
 <a>        for s in ('MMMMM', 'DD', 'CCCC', 'LL', 'XXXX', 'VV', 'IIII'):     <span>&#x2462;</span></a>
             self.assertRaises(roman8.InvalidRomanNumeralError, roman8.from_roman, s)
 
@@ -158,7 +158,7 @@ class FromRomanBadInput(unittest.TestCase):
 
 class RoundtripCheck(unittest.TestCase):
     def test_roundtrip(self):
-        """from_roman(to_roman(n))==n for all n"""
+        '''from_roman(to_roman(n))==n for all n'''
 <a>        for integer in range(1, 5000):                                    <span>&#x2463;</span></a>
             numeral = roman8.to_roman(integer)
             result = roman8.from_roman(numeral)
@@ -194,7 +194,7 @@ Traceback (most recent call last):
   File "romantest9.py", line 82, in test_from_roman_known_values
     result = roman9.from_roman(numeral)
   File "C:\home\diveintopython3\examples\roman9.py", line 60, in from_roman
-    raise InvalidRomanNumeralError("Invalid Roman numeral: {0}".format(s))
+    raise InvalidRomanNumeralError('Invalid Roman numeral: {0}'.format(s))
 <mark>roman9.InvalidRomanNumeralError: Invalid Roman numeral: MMMM</mark>
 
 ======================================================================
@@ -204,7 +204,7 @@ Traceback (most recent call last):
   File "romantest9.py", line 76, in test_to_roman_known_values
     result = roman9.to_roman(integer)
   File "C:\home\diveintopython3\examples\roman9.py", line 42, in to_roman
-    raise OutOfRangeError("number out of range (must be 0..3999)")
+    raise OutOfRangeError('number out of range (must be 0..3999)')
 <mark>roman9.OutOfRangeError: number out of range (must be 0..3999)</mark>
 
 ======================================================================
@@ -214,7 +214,7 @@ Traceback (most recent call last):
   File "romantest9.py", line 131, in testSanity
     numeral = roman9.to_roman(integer)
   File "C:\home\diveintopython3\examples\roman9.py", line 42, in to_roman
-    raise OutOfRangeError("number out of range (must be 0..3999)")
+    raise OutOfRangeError('number out of range (must be 0..3999)')
 <mark>roman9.OutOfRangeError: number out of range (must be 0..3999)</mark>
 
 ----------------------------------------------------------------------
@@ -231,7 +231,7 @@ FAILED (errors=3)</samp></pre>
 
 <p class=d>[<a href=esempi/roman9.py>scarica <code>roman9.py</code></a>]
 <pre><code>
-roman_numeral_pattern = re.compile("""
+roman_numeral_pattern = re.compile('''
     ^                   # beginning of string
 <a>    M{0,4}              # thousands - 0 to 4 M's  <span>&#x2460;</span></a>
     (CM|CD|D?C{0,3})    # hundreds - 900 (CM), 400 (CD), 0-300 (0 to 3 C's),
@@ -241,16 +241,16 @@ roman_numeral_pattern = re.compile("""
     (IX|IV|V?I{0,3})    # ones - 9 (IX), 4 (IV), 0-3 (0 to 3 I's),
                         #        or 5-8 (V, followed by 0 to 3 I's)
     $                   # end of string
-    """, re.VERBOSE)
+    ''', re.VERBOSE)
 
 def to_roman(n):
-    """convert integer to Roman numeral"""
+    '''convert integer to Roman numeral'''
 <a>    if not (0 < n < 5000):                        <span>&#x2461;</span></a>
-        raise OutOfRangeError("number out of range (must be 0..4999)")
+        raise OutOfRangeError('number out of range (must be 0..4999)')
     if not isinstance(n, int):
-        raise NotIntegerError("non-integers can not be converted")
+        raise NotIntegerError('non-integers can not be converted')
 
-    result = ""
+    result = ''
     for numeral, integer in roman_numeral_map:
         while n >= integer:
             result += numeral
@@ -301,7 +301,7 @@ Ran 12 tests in 0.203s
 
 <p>Il refactoring è il procedimento tramite il quale si modifica codice già funzionante allo scopo di farlo funzionare meglio. Di solito, &#8220;meglio&#8221; significa &#8220;più velocemente&#8221;, ma può anche voler dire &#8220;usando meno memoria&#8221;, oppure &#8220;usando meno spazio su disco&#8221;, o semplicemente &#8220;in maniera più elegante&#8221;. Qualsiasi cosa voglia dire per voi, per il vostro progetto, nel vostro ambiente, il refactoring è importante per la salute a lungo termine di qualsiasi programma.
 
-<p>Nel nostro caso, &#8220;meglio&#8221; significa sia &#8220;più velocemente&#8221; che &#8220;in maniera più facile da mantenere.&#8221; Nello specifico, la funzione <code>from_roman()</code> è lenta e più complessa di quanto vorrei, a causa di quella grossa e disgustosa espressione regolare che usate per validare i numeri romani. Ora, potreste pensare, "Certo, l'espressione regolare è lunga e intricata, ma in quale altro modo si suppone che io controlli che una stringa arbitraria sia un numero romano valido?"
+<p>Nel nostro caso, &#8220;meglio&#8221; significa sia &#8220;più velocemente&#8221; che &#8220;in maniera più facile da mantenere.&#8221; Nello specifico, la funzione <code>from_roman()</code> è lenta e più complessa di quanto vorrei, a causa di quella grossa e disgustosa espressione regolare che usate per validare i numeri romani. Ora, potreste pensare, &#8220;Certo, l'espressione regolare è lunga e intricata, ma in quale altro modo si suppone che io controlli che una stringa arbitraria sia un numero romano valido?&#8221;
 
 <p>Risposta: di numeri romani validi ce ne sono solo 5000; perché non costruite semplicemente una tabella di ricerca? Questa idea diventa ancora migliore nel momento in cui realizzate che <em>non avete per niente bisogno di usare un'espressione regolare</em>. Mentre costruite la tabella di ricerca per convertire i numeri interi in numeri romani, potete costruire la tabella di ricerca inversa per convertire i numeri romani in interi. Nel momento in cui avete bisogno di controllare se una stringa arbitraria è un numero romano valido, avrete già raccolto tutti i numeri romani validi. La &#8220;verifica&#8221; si riduce a un singolo accesso a un dizionario.
 
@@ -330,26 +330,26 @@ to_roman_table = [ None ]
 from_roman_table = {}
 
 def to_roman(n):
-    """convert integer to Roman numeral"""
+    '''convert integer to Roman numeral'''
     if not (0 < n < 5000):
-        raise OutOfRangeError("number out of range (must be 1..4999)")
+        raise OutOfRangeError('number out of range (must be 1..4999)')
     if int(n) != n:
-        raise NotIntegerError("non-integers can not be converted")
+        raise NotIntegerError('non-integers can not be converted')
     return to_roman_table[n]
 
 def from_roman(s):
-    """convert Roman numeral to integer"""
+    '''convert Roman numeral to integer'''
     if not isinstance(s, str):
-        raise InvalidRomanNumeralError("Input must be a string")
+        raise InvalidRomanNumeralError('Input must be a string')
     if not s:
-        raise InvalidRomanNumeralError("Input can not be blank")
+        raise InvalidRomanNumeralError('Input can not be blank')
     if s not in from_roman_table:
-        raise InvalidRomanNumeralError("Invalid Roman numeral: {0}".format(s))
+        raise InvalidRomanNumeralError('Invalid Roman numeral: {0}'.format(s))
     return from_roman_table[s]
 
 def build_lookup_tables():
     def to_roman(n):
-        result = ""
+        result = ''
         for numeral, integer in roman_numeral_map:
             if n >= integer:
                 result = numeral
@@ -381,7 +381,7 @@ from_roman_table = {}
 .
 def build_lookup_tables():
 <a>    def to_roman(n):                                <span>&#x2460;</span></a>
-        result = ""
+        result = ''
         for numeral, integer in roman_numeral_map:
             if n >= integer:
                 result = numeral
@@ -404,21 +404,21 @@ def build_lookup_tables():
 <p>Una volta che le tabelle di ricerca sono popolate, il resto del codice è sia semplice che veloce.
 
 <pre><code>def to_roman(n):
-    """convert integer to Roman numeral"""
+    '''convert integer to Roman numeral'''
     if not (0 < n < 5000):
-        raise OutOfRangeError("number out of range (must be 1..4999)")
+        raise OutOfRangeError('number out of range (must be 1..4999)')
     if int(n) != n:
-        raise NotIntegerError("non-integers can not be converted")
+        raise NotIntegerError('non-integers can not be converted')
 <a>    return to_roman_table[n]                                            <span>&#x2460;</span></a>
 
 def from_roman(s):
-    """convert Roman numeral to integer"""
+    '''convert Roman numeral to integer'''
     if not isinstance(s, str):
-        raise InvalidRomanNumeralError("Input must be a string")
+        raise InvalidRomanNumeralError('Input must be a string')
     if not s:
-        raise InvalidRomanNumeralError("Input can not be blank")
+        raise InvalidRomanNumeralError('Input can not be blank')
     if s not in from_roman_table:
-        raise InvalidRomanNumeralError("Invalid Roman numeral: {0}".format(s))
+        raise InvalidRomanNumeralError('Invalid Roman numeral: {0}'.format(s))
 <a>    return from_roman_table[s]                                          <span>&#x2461;</span></a></code></pre>
 <ol>
 <li>Dopo aver fatto gli stessi controlli di prima sugli estremi, la funzione <code>to_roman()</code> si limita a trovare il valore appropriato nella tabella di ricerca e a restituirlo.
@@ -475,6 +475,7 @@ OK</samp></pre>
 <li>Applicate sistematicamente il refactoring per migliorare prestazioni, scalabilità, leggibilità, manutenibilità, o qualsiasi altra -ilità che vi manca.
 </ul>
 
+<p class=v><a rel=prev class=todo><span>&#x261C;</span></a> <a rel=next class=todo><span>&#x261E;</span></a>
 <p class=c>&copy; 2001&ndash;9 <a href=informazioni-sul-libro.html>Mark Pilgrim</a><br>
 &copy; 2009 <a href=informazioni-sulla-traduzione.html>Giulio Piancastelli</a> per la traduzione italiana
 <script src=j/jquery.js></script>

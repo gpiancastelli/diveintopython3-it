@@ -30,7 +30,7 @@ th{text-align:left}
             1024: ['KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB']}
 
 def approximate_size(size, a_kilobyte_is_1024_bytes=True):
-    """Convert a file size to human-readable form.
+    '''Convert a file size to human-readable form.
 
     Keyword arguments:
     size -- file size in bytes
@@ -39,7 +39,7 @@ def approximate_size(size, a_kilobyte_is_1024_bytes=True):
 
     Returns: string
 
-    """
+    '''
     if size &lt; 0:
         raise ValueError('number must be non-negative')
 
@@ -47,11 +47,11 @@ def approximate_size(size, a_kilobyte_is_1024_bytes=True):
     for suffix in SUFFIXES[multiple]:
         size /= multiple
         if size &lt; multiple:
-            return "{0:.1f} {1}".format(size, suffix)
+            return '{0:.1f} {1}'.format(size, suffix)
 
     raise ValueError('number too large')
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     print(approximate_size(1000000000000, False))
     print(approximate_size(1000000000000))</code></pre>
 <p>Ora eseguiamo il programma dalla linea di comando. Sotto Windows, avremo qualcosa di simile a questo:
@@ -83,7 +83,7 @@ if __name__ == "__main__":
 <p><span>&#x261E;</span>In alcuni linguaggi, le funzioni (che restituiscono un valore) cominciano con <code>function</code>, e le procedure (che non restituiscono un valore) cominciano con <code>sub</code>. Non ci sono procedure in Python. Ci sono solo funzioni, tutte le funzioni restituiscono un valore (anche se è <code>None</code>) e tutte le funzioni cominciano con <code>def</code>.
 </blockquote>
 <p>La funzione <code>approximate_size()</code> accetta due argomenti &mdash; <var>size</var> e <var>a_kilobyte_is_1024_bytes</var> &mdash; ma nessun argomento dichiara il proprio tipo. In Python, le variabili non sono mai esplicitamente tipate. L'interprete Python capisce da solo qual è il tipo di una variable e ne tiene traccia internamente.
-<blockquote class="note compare java">
+<blockquote class='note compare java'>
 <p><span>&#x261E;</span>In Java e in altri linguaggi staticamente tipati, dovete dichiarare il tipo del valore di ritorno e di ogni argomento della funzione. In Python, i tipi non vengono mai dichiarati. Sulla base del valore che viene assegnato, Python tiene traccia del tipo di dato internamente.
 </blockquote>
 
@@ -100,7 +100,7 @@ if __name__ == "__main__":
 <p>Ora guardate in fondo allo script:
 
 <pre><code>
-if __name__ == "__main__":
+if __name__ == '__main__':
 <a>    print(approximate_size(1000000000000, False))  <span>&#x2460;</span></a>
 <a>    print(approximate_size(1000000000000))         <span>&#x2461;</span></a></code></pre>
 <ol>
@@ -139,7 +139,7 @@ SyntaxError: non-keyword arg after keyword arg</samp></pre>
 <h3 id=docstrings>Stringhe di documentazione</h3>
 <p>Potete documentare una funzione Python aggiungendole una stringa di documentazione (chiamata <code>docstring</code> per brevità). Nel nostro programma, la funzione <code>approximate_size()</code> è stata dotata di una <code>docstring</code>:
 <pre><code>def approximate_size(size, a_kilobyte_is_1024_bytes=True):
-    """Convert a file size to human-readable form.
+    '''Convert a file size to human-readable form.
 
     Keyword arguments:
     size -- file size in bytes
@@ -148,10 +148,10 @@ SyntaxError: non-keyword arg after keyword arg</samp></pre>
 
     Returns: string
 
-    """</code></pre>
+    '''</code></pre>
 <aside>Ogni funzione merita una docstring decente.</aside>
 <p>Le triple virgolette servono per rappresentare una stringa su più righe. Ogni cosa tra le virgolette di inizio e di fine è parte di una singola stringa, inclusi i ritorni a capo, gli spazi bianchi all'inizio di una riga, e altri caratteri di virgolette. Le triple virgolette si possono usare dovunque, ma le vedrete sfruttate soprattutto nella definizione di una <code>docstring</code>.
-<blockquote class="note compare perl5">
+<blockquote class='note compare perl5'>
 <p><span>&#x261E;</span>Le triple virgolette sono anche un modo facile per definire una stringa che contiene sia apici che virgolette, come <code>qq/.../</code> in Perl 5.
 </blockquote>
 <p>Tutto quello che si trova tra le triple virgolette rappresenta la <code>docstring</code> della funzione, che documenta quello che la funzione fa. Una <code>docstring</code>, se esiste, deve essere la prima cosa definita in una funzione (cioè, nella riga subito dopo la dichiarazione di funzione). Non avete tecnicamente bisogno di dotare la vostra funzione di una <code>docstring</code>, ma dovreste sempre farlo. So che lo avete sentito in ogni corso di programmazione che avete seguito, ma Python vi dà un incentivo aggiuntivo: la <code>docstring</code> è disponibile a tempo di esecuzione sotto forma di proprietà della funzione.
@@ -184,7 +184,7 @@ SyntaxError: non-keyword arg after keyword arg</samp></pre>
 <li>Quando volete usare funzioni definite in moduli importati, dovete includere il nome del modulo. Quindi non potete semplicemente dire <code>approximate_size</code>; deve essere <code>humansize.approximate_size</code>. Se avete usato le classi in Java, la sintassi dovrebbe risultarvi vagamente familiare.
 <li>Invece di invocare la funzione, avete richiesto una delle sue proprietà, <code>__doc__</code>.
 </ol>
-<blockquote class="note compare perl5">
+<blockquote class='note compare perl5'>
 <p><span>&#x261E;</span><code>import</code> in Python è come <code>require</code> in Perl. Una volta che avete importato un modulo Python tramite <code>import</code>, potete accedere alle sue funzioni con la sintassi <code><var>modulo</var>.<var>funzione</var></code>; una volta che avete richiesto un modulo Perl tramite <code>require</code>, potete accedere alle sue funzioni con la sintassi <code><var>modulo</var>::<var>funzione</var></code>.
 </blockquote>
 <h3 id=importsearchpath>Il percorso di ricerca di <code>import</code></h3>
@@ -214,7 +214,7 @@ SyntaxError: non-keyword arg after keyword arg</samp></pre>
 <ol>
 <li>Importare il modulo <code>sys</code> rende disponibili tutte le sue funzioni e proprietà.
 <li><code>sys.path</code> è una lista di nomi di directory che costituiscono il percorso di ricerca corrente. (Il vostro apparirà diverso, a seconda del vostro sistema operativo, della versione di Python che state eseguendo e di dove è stata originariamente installata.) Python cercherà attraverso queste directory (in questo ordine) un file con estensione <code>.py</code> il cui nome corrisponda a quello che state tentando di importare.
-<li>In realtà, ho mentito; la verità è più complicata di così, perché non tutti i moduli sono memorizzati come file <code>.py</code>. Alcuni, come il modulo <code>sys</code>, sono moduli &#8220;built-in&#8221;, integrati direttamente all'interno dell'interprete Python. I moduli built-in si comportano esattamente come gli altri moduli, ma il loro codice sorgente Python non è disponibile, perché non sono scritti in Python! (Il modulo <code>sys</code> è scritto in <abbr>C</abbr>.)
+<li>In realtà, ho mentito; la verità è più complicata di così, perché non tutti i moduli sono memorizzati come file <code>.py</code>. Alcuni, come il modulo <code>sys</code>, sono moduli <i>built-in</i>, integrati direttamente all'interno dell'interprete Python. I moduli built-in si comportano esattamente come gli altri moduli, ma il loro codice sorgente Python non è disponibile, perché non sono scritti in Python! (Il modulo <code>sys</code> è scritto in <abbr>C</abbr>.)
 <li>Potete aggiungere a tempo di esecuzione una nuova directory al percorso di ricerca di Python aggiungendo il nome della directory a <code>sys.path</code>; successivamente, Python guarderà anche in quella directory ogni volta che provate a importare un modulo. L'effetto dura fino a quando l'interprete Python è in esecuzione.
 <li>Usando <code>sys.path.insert(0, <var>new_path</var>)</code>, avete inserito una nuova directory come primo elemento della lista <code>sys.path</code>, quindi all'inizio del percorso di ricerca di Python. Questo è quasi sempre quello che volete. In caso di un conflitto di nomi (per esempio, nel caso l'interprete Python includa la versione 2 di una particolare libreria ma voi vogliate usarne la versione 3), questo vi assicura che saranno i vostri moduli a essere trovati e utilizzati invece dei moduli distribuiti insieme all'interprete Python.
 </ol>
@@ -237,7 +237,7 @@ SyntaxError: non-keyword arg after keyword arg</samp></pre>
 <a>    for suffix in SUFFIXES[multiple]:                       <span>&#x2464;</span></a>
         size /= multiple
         if size &lt; multiple:
-            return "{0:.1f} {1}".format(size, suffix)
+            return '{0:.1f} {1}'.format(size, suffix)
 
     raise ValueError('number too large')</code></pre>
 <ol>
@@ -248,7 +248,7 @@ SyntaxError: non-keyword arg after keyword arg</samp></pre>
 <li>Anche il ciclo <code>for</code> segnala l'inizio di un blocco di codice. I blocchi di codice possono contenere più righe, fino a quando esse sono indentate della stessa quantità. Questo ciclo <code>for</code> contiene tre righe di codice. Non c'è nessun'altra sintassi speciale per blocchi di codice su più righe. Indentate e andate avanti con la vostra vita.
 </ol>
 <p>Dopo alcune proteste iniziali e diverse analogie maliziose al Fortran, vi riappacificherete con questa caratteristica di Python e comincerete a vederne i lati positivi. Uno dei maggiori benefici è che tutti i programmi Python appaiono simili, in quanto l'indentazione è un requisito del linguaggio e non una questione di stile. Questo rende più facile leggere e comprendere il codice Python scritto da altre persone.
-<blockquote class="note compare java">
+<blockquote class='note compare java'>
 <p><span>&#x261E;</span>Python usa i ritorni a capo per separare le istruzioni e i due punti e l'indentazione per separare i blocchi di codice. <abbr>C++</abbr> e Java usano i punti e virgola per separare le istruzioni e le parentesi graffe per separare i blocchi di codice.
 </blockquote>
 
@@ -258,10 +258,10 @@ SyntaxError: non-keyword arg after keyword arg</samp></pre>
 <aside>Ogni cosa in Python è un oggetto.</aside>
 <p>I moduli Python sono oggetti e hanno diverse proprietà utili. Potete sfruttare questa caratteristica per collaudare facilmente i vostri moduli mentre li scrivete, includendo uno speciale blocco di codice che viene eseguito quando lanciate il file Python dalla linea di comando. Considerate le ultime righe di <code>humansize.py</code>:
 <pre><code>
-if __name__ == "__main__":
+if __name__ == '__main__':
     print(approximate_size(1000000000000, False))
     print(approximate_size(1000000000000))</code></pre>
-<blockquote class="note compare clang">
+<blockquote class='note compare clang'>
 <p><span>&#x261E;</span>Come il <abbr>C</abbr>, Python usa <code>==</code> per il confronto e <code>=</code> per l'assegnamento. A differenza del <abbr>C</abbr>, Python non supporta l'assegnamento in linea, quindi non c'è alcuna possibilità di assegnare accidentalmente il valore che pensavate di stare confrontando.
 </blockquote>
 <p>Che cosa rende speciale questa istruzione <code>if</code>? Ebbene, i moduli sono oggetti, e tutti i moduli hanno la proprietà built-in <code>__name__</code>. Il valore della proprietà <code>__name__</code> di un modulo dipende da come state usando il modulo. Se importate un modulo, allora <code>__name__</code> sarà il nome del file del modulo, senza il percorso e l'estensione. 
@@ -285,7 +285,7 @@ if __name__ == "__main__":
 <li><a href=http://www.python.org/dev/peps/pep-0008/>PEP 8: Style Guide for Python Code</a> descrive il buon stile di indentazione.
 <li><a href=http://docs.python.org/3.0/reference/><cite>Python Reference Manual</cite></a> spiega cosa significa dire che <a href=http://docs.python.org/3.0/reference/datamodel.html#objects-values-and-types>ogni cosa in Python è un oggetto</a>, perché alcune persone sono <a href=http://www.douglasadams.com/dna/pedants.html>pedanti</a> e adorano discutere questo tipo di cose in lungo e in largo.
 </ul>
-<p class=nav><a rel=prev class=todo><span>&#x261C;</span></a> <a rel=next href=tipi-di-dato-nativi.html title="avanti a &#8220;Tipi di dato nativi&#8221;"><span>&#x261E;</span></a>
+<p class=nav><a rel=prev class=todo><span>&#x261C;</span></a> <a rel=next href=tipi-di-dato-nativi.html title='avanti a &#8220;Tipi di dato nativi&#8221;'><span>&#x261E;</span></a>
 <p class=c>&copy; 2001&ndash;9 <a href=informazioni-sul-libro.html>Mark Pilgrim</a><br>
 &copy; 2009 <a href=informazioni-sulla-traduzione.html>Giulio Piancastelli</a> per la traduzione italiana
 <script src=j/jquery.js></script>
