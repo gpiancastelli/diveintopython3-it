@@ -24,7 +24,7 @@ body{counter-reset:h1 4}
 <p class=f>Ogni moderno linguaggio di programmazione include funzioni built-in per lavorare con le stringhe. In Python, le stringhe posseggono metodi per effettuare ricerche e sostituzioni: <code>index()</code>, <code>find()</code>, <code>split()</code>, <code>count()</code>, <code>replace()</code>, <i class=baa>&amp;</i>c. Ma questi metodi si limitano a gestire i casi più semplici. Per esempio, il metodo <code>index()</code> cerca una singola sottostringa costante, e la ricerca è sempre sensibile alle maiuscole. Per fare ricerche insensibili alle maiuscole di una stringa <var>s</var>, dovete chiamare <code>s.lower()</code> oppure <code>s.upper()</code> e assicurarvi che le vostre stringhe di ricerca contengano i caratteri appropriati per corrispondere. I metodi <code>replace()</code> e <code>split()</code> hanno le stesse limitazioni.
 <p>Se il vostro obiettivo può essere raggiunto con i metodi delle stringhe, dovreste usarli. Sono veloci, semplici e facili da leggere, e c'è molto da dire a favore del codice veloce, semplice e leggibile. Ma se state lavorando con le stringhe attraverso una grande quantità di funzioni differenti e una serie di istruzioni <code>if</code> per gestire casi particolari, o se state combinando tra loro chiamate a <code>split()</code> e <code>join()</code> per affettare e ricomporre le vostre stringhe, potreste aver bisogno di avvalervi delle espressioni regolari.
 <p>Le espressioni regolari sono un modo potente e (per la maggior parte) standard per cercare, sostituire, e riconoscere testo attraverso complessi pattern di caratteri. Sebbene la sintassi delle espressioni regolari sia ermetica e diversa dal normale codice, il risultato potrebbe rivelarsi <em>più</em> leggibile di una soluzione manuale che usa una lunga catena di funzioni per le stringhe. Le espressioni regolari vi permettono anche di inserire commenti al loro interno, in modo che possiate documentare le singole parti che le compongono.
-<blockquote class="note compare perl5">
+<blockquote class='note compare perl5'>
 <p><span>&#x261E;</span>Se avete usato le espressioni regolari in altri linguaggi (come Perl 5), la sintassi utilizzata da Python vi sarà molto familiare. Leggete il riepilogo della documentazione ufficiale sul <a href=http://docs.python.org/dev/library/re.html#module-contents>modulo <code>re</code></a> per avere una descrizione delle funzioni disponibili e dei loro argomenti.
 </blockquote>
 
@@ -262,7 +262,7 @@ body{counter-reset:h1 4}
 </ul>
 <p>Queste differenze diventeranno più chiare con un esempio. Rivediamo l'espressione regolare compatta con la quale stavate lavorando e trasformiamola in una espressione regolare verbosa. Questo esempio mostra come fare.
 <pre class=screen>
-<samp class=p>>>> </samp><kbd>pattern = """
+<samp class=p>>>> </samp><kbd>pattern = '''
     ^                   # inizio della stringa
     M{0,3}              # migliaia - da 0 a 3 M
     (CM|CD|D?C{0,3})    # centinaia - 900 (CM), 400 (CD), 0-300 (da 0 a 3 C),
@@ -272,7 +272,7 @@ body{counter-reset:h1 4}
     (IX|IV|V?I{0,3})    # unità - 9 (IX), 4 (IV), 0-3 (da 0 a 3 I),
                         #         o 5-8 (V, seguita da 0 fino a 3 I)
     $                   # fine della stringa
-    """</kbd>
+    '''</kbd>
 <a><samp class=p>>>> </samp><kbd>re.search(pattern, 'M', re.VERBOSE)</kbd>                 <span>&#x2460;</span></a>
 <samp>&lt;_sre.SRE_Match object at 0x008EEB48></samp>
 <a><samp class=p>>>> </samp><kbd>re.search(pattern, 'MCMLXXXIX', re.VERBOSE)</kbd>         <span>&#x2461;</span></a>
@@ -440,7 +440,7 @@ body{counter-reset:h1 4}
 <li><code>(x)</code> in generale è un <em>gruppo di memorizzazione</em>. Potete ottenere il valore di ciò che vi corrisponde usando il metodo <code>groups()</code> dell'oggetto restituito da <code>re.search()</code>.
 </ul>
 <p>Le espressioni regolari sono estremamente potenti, ma non sono la soluzione corretta per tutti i problemi. Dovreste imparare a conoscerle abbastanza da sapere quando sono appropriate, quando risolveranno i vostri problemi, e quando causeranno più problemi di quelli che risolvono.
-<p class=nav><a rel=prev href=stringhe.html title="indietro a &#8220;Stringhe&#8221;"><span>&#x261C;</span></a> <a rel=next href=generatori.html title="avanti a &#8220;Generatori&#8221;"><span>&#x261E;</span></a>
+<p class=nav><a rel=prev href=stringhe.html title='indietro a &#8220;Stringhe&#8221;'><span>&#x261C;</span></a> <a rel=next href=generatori.html title='avanti a &#8220;Generatori&#8221;'><span>&#x261E;</span></a>
 <p class=c>&copy; 2001&ndash;9 <a href=informazioni-sul-libro.html>Mark Pilgrim</a><br>
 &copy; 2009 <a href=informazioni-sulla-traduzione.html>Giulio Piancastelli</a> per la traduzione italiana
 <script src=j/jquery.js></script>

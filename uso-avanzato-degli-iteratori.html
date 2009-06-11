@@ -392,7 +392,7 @@ for guess in itertools.permutations(digits, len(characters)):
 <p>Le stringhe Python hanno molti metodi. Avete imparato alcuni di quei metodi nel <a href=stringhe.html>capitolo sulle stringhe</a>: <code>lower()</code>, <code>count()</code>, e <code>format()</code>. Ora voglio introdurvi a una tecnica di manipolazione di stringhe molto potente ma poco conosciuta: il metodo <code>translate()</code>.
 
 <pre class=screen>
-<a><samp class=p>>>> </samp><kbd>translation_table = {ord("A"): ord("O")}</kbd>  <span>&#x2460;</span></a>
+<a><samp class=p>>>> </samp><kbd>translation_table = {ord('A'): ord('O')}</kbd>  <span>&#x2460;</span></a>
 <a><samp class=p>>>> </samp><kbd>translation_table</kbd>                         <span>&#x2461;</span></a>
 <samp>{65: 79}</samp>
 <a><samp class=p>>>> </samp><kbd>'MARK'.translate(translation_table)</kbd>       <span>&#x2462;</span></a>
@@ -415,7 +415,7 @@ for guess in itertools.permutations(digits, len(characters)):
 <a><samp class=p>>>> </samp><kbd>translation_table = dict(zip(characters, guess))</kbd>     <span>&#x2462;</span></a>
 <samp class=p>>>> </samp><kbd>translation_table</kbd>
 <samp>{68: 55, 69: 53, 77: 49, 78: 54, 79: 48, 82: 56, 83: 57, 89: 50}</samp>
-<a><samp class=p>>>> </samp><kbd>"SEND + MORE == MONEY".translate(translation_table)</kbd>  <span>&#x2463;</span></a>
+<a><samp class=p>>>> </samp><kbd>'SEND + MORE == MONEY'.translate(translation_table)</kbd>  <span>&#x2463;</span></a>
 <samp>'9567 + 1085 == 10652'</samp></pre>
 <ol>
 <li>Usando una <a href=#generator-expressions>espressione generatore</a>, calcoliamo velocemente i valori in byte per ogni carattere in una stringa. <var>characters</var> è un esempio dei valori di <var>sorted_characters</var> nella funzione <code>alphametics.solve()</code>.
@@ -491,7 +491,7 @@ for guess in itertools.permutations(digits, len(characters)):
 <li>Non fate nemmeno questo.
 </ol>
 
-<p class=c style="font-size:1000%;font-weight:bold;line-height:1;margin:0.7em 0">eval() è MALVAGIA
+<p class=c style='font-size:1000%;font-weight:bold;line-height:1;margin:0.7em 0'>eval() è MALVAGIA
 
 <p>Be', la parte malvagia è la valutazione di espressioni arbitrarie provenienti da sorgenti non affidabili. Dovreste usare <code>eval()</code> solo su ingressi affidabili. Naturalmente, il trucco è scoprire cos'è &#8220;affidabile.&#8221 Ma ecco qualcosa che so di sicuro: <b>NON</b> dovreste prendere questo risolutore di alfametica e metterlo su Internet come un piccolo servizio web divertente. Non fate l'errore di pensare &#8220;Gosh, la funzione effettua un sacco di manipolazioni di stringhe prima di ottenere una stringa da valutare; <em>non riesco a immaginare</em> come qualcuno potrebbe servirsene.&#8221; Qualcuno <b>SCOPRIR&Agrave;</b> come infilare codice eseguibile pericoloso attraverso tutte quelle manipolazioni di stringhe (<a href=http://www.matasano.com/log/1032/this-new-vulnerability-dowds-inhuman-flash-exploit/>sono accadute cose anche più strane</a>), e poi potrete dare al vostro server il bacio d'addio.
 
@@ -592,8 +592,9 @@ NameError: name '__import__' is not defined</samp></pre>
 
 <p>Molti, moltissimi ringraziamenti a Raymond Hettinger per aver accettato di ridistribuire il suo codice con una licenza diversa in modo che io potessi convertirlo verso Python 3 e usarlo come base per questo capitolo.
 
-<p class=nav><a rel=prev href=iteratori.html title="indietro a &#8220;Iteratori&#8221;"><span>&#x261C;</span></a> <a rel=next href=test-di-unità.html title="avanti a &#8220;Test di unità&#8221;"><span>&#x261E;</span></a>
+<p class=v><a href=iteratori.html rel=prev title='indietro a &#8220;Iteratori&#8221;'><span class=u>&#x261C;</span></a> <a href=test-di-unità.html rel=next title='avanti a &#8220;Test di unità&#8221;'><span class=u>&#x261E;</span></a>
 
+<p class=v><a rel=prev class=todo><span class=u>&#x261C;</span></a> <a rel=next class=todo><span class=u>&#x261E;</span></a>
 <p class=c>&copy; 2001&ndash;9 <a href=informazioni-sul-libro.html>Mark Pilgrim</a><br>
 &copy; 2009 <a href=informazioni-sulla-traduzione.html>Giulio Piancastelli</a> per la traduzione italiana
 <script src=j/jquery.js></script>

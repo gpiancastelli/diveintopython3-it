@@ -6,9 +6,9 @@
 <link rel=stylesheet href=dip3.css>
 <link rel=stylesheet href=dip3-it.css>
 <style>
-h1:before{counter-increment:h1;content:"Appendice A. "}
-h2:before{counter-increment:h2;content:"A." counter(h2) ". "}
-h3:before{counter-increment:h3;content:"A." counter(h2) "." counter(h3) ". "}
+h1:before{counter-increment:h1;content:'Appendice A. '}
+h2:before{counter-increment:h2;content:'A.' counter(h2) '. '}
+h3:before{counter-increment:h3;content:'A.' counter(h2) '.' counter(h3) '. '}
 tr + tr th:first-child{font:medium 'Arial Unicode MS',FreeSerif,OpenSymbol,'DejaVu Sans',sans-serif}
 table{width:100%;border-collapse:collapse}
 th,td{width:45%;padding:0 0.5em;border:1px solid #bbb}
@@ -20,9 +20,9 @@ td pre{padding:0;border:0}
 </style>
 <link rel=stylesheet media='only screen and (max-device-width: 480px)' href=mobile.css>
 <link rel=stylesheet media=print href=print.css>
-<meta name=viewport content='initial-scale=1.0'>
+<meta content='initial-scale=1.0' name=viewport>
 </head>
-<form action=http://www.google.com/cse><div><input type=hidden name=cx value=014021643941856155761:l5eihuescdw><input type=hidden name=ie value=UTF-8>&nbsp;<input name=q size=25>&nbsp;<input type=submit name=sa value=Search></div></form>
+<form action=http://www.google.com/cse><div><input type=hidden name=cx value=014021643941856155761:l5eihuescdw><input name=ie type=hidden value=UTF-8>&nbsp;<input name=q size=25>&nbsp;<input name=sa type=submit value=Search></div></form>
 <p>Voi siete qui: <a href=index.html>Home</a> <span>&#8227;</span> <a href=table-of-contents.html#porting-code-to-python-3-with-2to3>Dive Into Python 3</a> <span>&#8227;</span>
 <p id=level>Livello di difficoltà: <span class=u title=pro>&#x2666;&#x2666;&#x2666;&#x2666;&#x2666;</span>
 <h1>Convertire codice verso Python 3 con <code>2to3</code></h1>
@@ -68,11 +68,11 @@ td pre{padding:0;border:0}
 <th>Python 2
 <th>Python 3
 <tr><th>&#x2460;
-<td><code>u"PapayaWhip"</code>
-<td><code>"PapayaWhip"</code>
+<td><code>u'PapayaWhip'</code>
+<td><code>'PapayaWhip'</code>
 <tr><th>&#x2461;
-<td><code>ur"PapayaWhip\foo"</code>
-<td><code>r"PapayaWhip\foo"</code>
+<td><code>ur'PapayaWhip\foo'</code>
+<td><code>r'PapayaWhip\foo'</code>
 </table>
 <ol>
 <li>I letterali stringa Unicode sono semplicemente convertiti in letterali stringa, che in Python 3 sono sempre di tipo Unicode.
@@ -142,8 +142,8 @@ td pre{padding:0;border:0}
 <th>Python 2
 <th>Python 3
 <tr><th>&#x2460;
-<td><code>a_dictionary.has_key("PapayaWhip")</code>
-<td><code>"PapayaWhip" in a_dictionary</code>
+<td><code>a_dictionary.has_key('PapayaWhip')</code>
+<td><code>'PapayaWhip' in a_dictionary</code>
 <tr><th>&#x2461;</th >
 <td><code>a_dictionary.has_key(x) or a_dictionary.has_key(y)</code>
 <td><code>x in a_dictionary or y in a_dictionary</code>
@@ -548,8 +548,8 @@ reduce(a, b, c)</code></pre>
 <th>Python 2
 <th>Python 3
 <tr><th>
-<td><code><dfn>execfile</dfn>("a_filename")</code>
-<td><code>exec(compile(open("a_filename").read(), "a_filename", "exec"))</code>
+<td><code><dfn>execfile</dfn>('a_filename')</code>
+<td><code>exec(compile(open('a_filename').read(), 'a_filename', 'exec'))</code>
 </table>
 <blockquote class=note>
 <p><span>&#x261E;</span>La versione di 2to3 rilasciata con Python 3.0 non corregge l'istruzione <code>execfile</code> automaticamente. La correzione è apparsa per la prima volta nello script <code>2to3</code> che verrà rilasciato con Python 3.1.
@@ -564,8 +564,8 @@ reduce(a, b, c)</code></pre>
 <td><code>`x`</code>
 <td><code>repr(x)</code>
 <tr><th>&#x2461;
-<td><code>`"PapayaWhip" + `2``</code>
-<td><code>repr("PapayaWhip" + repr(2))</code>
+<td><code>`'PapayaWhip' + `2``</code>
+<td><code>repr('PapayaWhip' + repr(2))</code>
 </table>
 <ol>
 <li>Ricordate, <var>x</var> può essere qualsiasi cosa &mdash; una classe, una funzione, un modulo, un tipo di dati primitivo, ecc. La funzione <code>repr()</code> lavora su tutto.
@@ -627,13 +627,13 @@ except:
 <td><code><dfn>raise</dfn> MyException</code>
 <td><i>unchanged</i>
 <tr><th>&#x2461;
-<td><code>raise MyException, "error message"</code>
-<td><code>raise MyException("error message")</code>
+<td><code>raise MyException, 'error message'</code>
+<td><code>raise MyException('error message')</code>
 <tr><th>&#x2462;
-<td><code>raise MyException, "error message", a_traceback</code>
-<td><code>raise MyException("error message").with_traceback(a_traceback)</code>
+<td><code>raise MyException, 'error message', a_traceback</code>
+<td><code>raise MyException('error message').with_traceback(a_traceback)</code>
 <tr><th>&#x2463;
-<td><code>raise "error message"</code>
+<td><code>raise 'error message'</code>
 <td><i>unsupported</i>
 </table>
 <ol>
@@ -652,10 +652,10 @@ except:
 <td><code>a_generator.throw(MyException)</code>
 <td><i>no change</i>
 <tr><th>&#x2461;
-<td><code>a_generator.throw(MyException, "error message")</code>
-<td><code>a_generator.throw(MyException("error message"))</code>
+<td><code>a_generator.throw(MyException, 'error message')</code>
+<td><code>a_generator.throw(MyException('error message'))</code>
 <tr><th>&#x2462;
-<td><code>a_generator.throw("error message")</code>
+<td><code>a_generator.throw('error message')</code>
 <td><i>unsupported</i>
 </table>
 <ol>
@@ -702,8 +702,8 @@ except:
 <td><code>raw_input()</code>
 <td><code>input()</code>
 <tr><th>&#x2461;
-<td><code>raw_input("prompt")</code>
-<td><code>input("prompt")</code>
+<td><code>raw_input('prompt')</code>
+<td><code>input('prompt')</code>
 <tr><th>&#x2462;
 <td><code>input()</code>
 <td><code>eval(input())</code>
@@ -767,7 +767,7 @@ except:
 <li>Se eravate soliti chiamare <code>xreadlines()</code> senza argomenti, <code>2to3</code> convertirà la chiamata al solo oggetto file. In Python 3, si effettua così la stessa operazione: leggere il file una riga alla volta ed eseguire il corpo del ciclo <code>for</code>.
 <li>Se eravate soliti chiamare <code>xreadlines()</code> con un argomento (il numero di righe da leggere alla volta), continuate a farlo. Funziona ancora in Python 3, e <code>2to3</code> non lo cambierà.
 </ol>
-<p class=c><span style="font-size:56px;line-height:0.88">&#x2603;</span>
+<p class=c><span style='font-size:56px;line-height:0.88'>&#x2603;</span>
 <h2 id=tuple_params>Funzioni <code>lambda</code> che accettano una tupla invece di parametri multipli</h2>
 <p>In Python 2, potevate definire una funzione <code><dfn>lambda</dfn></code> anonima che accettava parametri multipli scrivendola in modo che accettasse una tupla con uno specifico numero di elementi. In effetti, Python 2 avrebbe &#8220;spacchettato&#8221; la tupla negli argomenti con nome, a cui poi avreste potuto riferirvi (attraverso il nome) all'interno dalla funzione <code>lambda</code>. In Python 3, potete ancora passare una tupla a una funzione <code>lambda</code>, ma l'interprete Python non spacchetterà la tupla in argomenti con nome. Invece, dovrete riferirvi ad ogni argomento tramite l'indice della sua posizione.
 <table>
@@ -867,7 +867,7 @@ except:
 <th>Python 3
 <tr><th>
 <td><code>callable(anything)</code>
-<td><code>hasattr(anything, "__call__")</code>
+<td><code>hasattr(anything, '__call__')</code>
 </table>
 <h2 id=zip>La funzione globale <code>zip()</code></h2>
 <p>In Python 2, la funzione globale <code><dfn>zip</dfn>()</code> prendeva un qualsiasi numero di sequenze e restituiva una lista di tuple. La prima tupla conteneva il primo elemento di ogni sequenza, la seconda tupla conteneva il secondo elemento di ogni sequenza e così via. In Python 3, <code>zip()</code> restituisce un iteratore invece di una lista.
@@ -1115,7 +1115,7 @@ do_stuff(a_list)</code></pre>
 do_stuff(a_list)</code></pre>
 </table>
 <p><span class=fixme>FIXME: once the rest of the book is written, this appendix should contain copious links back to any chapter or section that touches on these features.</span>
-<p class=nav><a rel=prev class=todo><span>&#x261C;</span></a> <a rel=next href=nomi-dei-metodi-speciali.html title="avanti a &#8220;Nomi dei metodi speciali&#8221;"><span>&#x261E;</span></a>
+<p class=nav><a rel=prev class=todo><span>&#x261C;</span></a> <a rel=next href=nomi-dei-metodi-speciali.html title='avanti a &#8220;Nomi dei metodi speciali&#8221;'><span>&#x261E;</span></a>
 <p class=c>&copy; 2001&ndash;9 <a href=informazioni-sul-libro.html>Mark Pilgrim</a><br>
 &copy; 2009 <a href=informazioni-sulla-traduzione.html>Giulio Piancastelli</a> per la traduzione italiana
 <script src=j/jquery.js></script>

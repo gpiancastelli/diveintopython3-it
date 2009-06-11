@@ -96,7 +96,7 @@ body{counter-reset:h1 2}
 <li>I numeri in virgola mobile sono accurati fino a 15 decimali.
 <li>Gli interi possono essere arbitrariamente grandi.
 </ol>
-<blockquote class="note compare python2">
+<blockquote class='note compare python2'>
 <p><span>&#x261E;</span>Python 2 aveva tipi separati per <code>int</code> e <code>long</code>. Il tipo di dato <code>int</code> era limitato da <code>sys.maxint</code>, che variava a seconda della piattaforma ma normalmente valeva <code>2<sup>32</sup>-1</code>. Python 3 ha un solo tipo per i numeri interi, che si comporta per la maggior parte come il vecchio tipo <code>long</code> di Python 2. Si veda la <a href=http://www.python.org/dev/peps/pep-0237><abbr>PEP</abbr> 237</a> per i dettagli.
 </blockquote>
 <h3 id=common-numerical-operations>Operazioni numeriche comuni</h3>
@@ -123,7 +123,7 @@ body{counter-reset:h1 2}
 <li>L'operatore <code>**</code> significa &#8220;elevato alla potenza di.&#8221;  <code>11<sup>2</sup></code> vale <code>121</code>.
 <li>L'operatore <code>%</code> dà il resto dopo aver effettuato una divisione di tipo intero. <code>11</code> diviso per <code>2</code> vale <code>5</code> con il resto di <code>1</code>, quindi il risultato in questo caso è <code>1</code>.
 </ol>
-<blockquote class="note compare python2">
+<blockquote class='note compare python2'>
 <p><span>&#x261E;</span>In Python 2, l'operatore <code>/</code> normalmente effettuava una divisione di tipo intero, ma avreste potuto farlo comportare come la divisione in virgola mobile includendo una speciale direttiva nel vostro codice. In Python 3, l'operatore <code>/</code> effettua sempre una divisione in virgola mobile. Si veda la <a href=http://www.python.org/dev/peps/pep-0238/><abbr>PEP</abbr> 238</a> per i dettagli.
 </blockquote>
 <h3 id=fractions>Frazioni</h3>
@@ -164,9 +164,9 @@ body{counter-reset:h1 2}
 <pre class=screen>
 <a><samp class=p>>>> </samp><kbd>def is_it_true(anything):</kbd>             <span>&#x2460;</span></a>
 <samp class=p>... </samp><kbd>  if anything:</kbd>
-<samp class=p>... </samp><kbd>    print("sì, è vero")</kbd>
+<samp class=p>... </samp><kbd>    print('sì, è vero')</kbd>
 <samp class=p>... </samp><kbd>  else:</kbd>
-<samp class=p>... </samp><kbd>    print("no, è falso")</kbd>
+<samp class=p>... </samp><kbd>    print('no, è falso')</kbd>
 <samp class=p>...</samp>
 <a><samp class=p>>>> </samp><kbd>is_it_true(1)</kbd>                         <span>&#x2461;</span></a>
 <samp>sì, è vero</samp>
@@ -194,10 +194,10 @@ body{counter-reset:h1 2}
 
 <h2 id=lists>Liste</h2>
 <p>Le liste sono il mulo da soma dei tipi di dato Python. Quando dico &#8220;lista,&#8221; potreste pensare &#8220;array la cui dimensione devo dichiarare in anticipo, e che può solo contenere elementi di uno stesso tipo, <i class=baa>&amp;</i>c.&#8221; Non pensatelo. Le liste sono molto più fighe di così.
-<blockquote class="note compare perl5">
+<blockquote class='note compare perl5'>
 <p><span>&#x261E;</span>Una lista in Python è come un array in Perl 5. In Perl 5, variabili che memorizzano un array cominciano sempre con il carattere <code>@</code>; in Python, le variabili possono essere chiamate in qualsiasi modo, e Python tiene traccia del tipo di dato internamente.
 </blockquote>
-<blockquote class="note compare java">
+<blockquote class='note compare java'>
 <p><span>&#x261E;</span>Una lista in Python è molto di più di un array in Java (anche se può essere usata come tale se questo è tutto quello che volete dalla vita). Una analogia migliore sarebbe quella con la classe <code>ArrayList</code>, che può contenere oggetti di tipo arbitrario e può espandersi dinamicamente man mano che nuovi elementi vengono aggiunti.
 </blockquote>
 <h3 id=creatinglists>Creare una lista</h3>
@@ -320,9 +320,9 @@ ValueError: list.index(x): x not in list</samp></pre>
 <pre class=screen>
 <samp class=p>>>> </samp><kbd>def is_it_true(anything):</kbd>
 <samp class=p>... </samp><kbd>  if anything:</kbd>
-<samp class=p>... </samp><kbd>    print("sì, è vero")</kbd>
+<samp class=p>... </samp><kbd>    print('sì, è vero')</kbd>
 <samp class=p>... </samp><kbd>  else:</kbd>
-<samp class=p>... </samp><kbd>    print("no, è falso")</kbd>
+<samp class=p>... </samp><kbd>    print('no, è falso')</kbd>
 <samp class=p>...</samp>
 <a><samp class=p>>>> </samp><kbd>is_it_true([])</kbd>             <span>&#x2461;</span></a>
 <samp>no, è falso</samp>
@@ -345,44 +345,44 @@ ValueError: list.index(x): x not in list</samp></pre>
 
 <h2 id=dictionaries>Dizionari</h2>
 <p>Uno dei più importanti tipi di dato Python è il dizionario, che definisce relazioni di tipo uno-a-uno tra chiavi e valori.
-<blockquote class="note compare perl5">
+<blockquote class='note compare perl5'>
 <p><span>&#x261E;</span>Un dizionario in Python è come un hash in Perl 5. In Perl 5, variabili che memorizzano hash cominciano sempre con il carattere <code>%</code>. In Python, le variabili possono essere chiamate in qualsiasi modo, e Python tiene traccia del tipo di dato internamente.
 </blockquote>
 <h3 id=creating-dictionaries>Creare un dizionario</h3>
 <p>Creare un dizionario è facile. La sintassi è simile agli <a href=#sets>insiemi</a>, ma invece di valori avete coppie chiave-valore. Una volta che avete un dizionario, potete recuperarne i valori attraverso le loro chiavi.
 <pre class=screen>
-<a><samp class=p>>>> </samp><kbd>a_dict = {"server":"db.diveintopython3.org", "database":"mysql"}</kbd>  <span>&#x2460;</span></a>
+<a><samp class=p>>>> </samp><kbd>a_dict = {'server':'db.diveintopython3.org', 'database':'mysql'}</kbd>  <span>&#x2460;</span></a>
 <samp class=p>>>> </samp><kbd>a_dict</kbd>
 <samp>{'server': 'db.diveintopython3.org', 'database': 'mysql'}</samp>
-<a><samp class=p>>>> </samp><kbd>a_dict["server"]</kbd>                                                  <span>&#x2461;</span></a>
+<a><samp class=p>>>> </samp><kbd>a_dict['server']</kbd>                                                  <span>&#x2461;</span></a>
 'db.diveintopython3.org'
-<a><samp class=p>>>> </samp><kbd>a_dict["database"]</kbd>                                                <span>&#x2462;</span></a>
+<a><samp class=p>>>> </samp><kbd>a_dict['database']</kbd>                                                <span>&#x2462;</span></a>
 'mysql'
-<a><samp class=p>>>> </samp><kbd>a_dict["db.diveintopython3.org"]</kbd>                                  <span>&#x2463;</span></a>
+<a><samp class=p>>>> </samp><kbd>a_dict['db.diveintopython3.org']</kbd>                                  <span>&#x2463;</span></a>
 <samp class=traceback>Traceback (most recent call last):
   File "&lt;stdin>", line 1, in &lt;module>
 KeyError: 'db.diveintopython3.org'</samp></pre>
 <ol>
 <li>Per prima cosa, create un nuovo dizionario con due elementi e assegnatelo alla variabile <var>a_dict</var>. Ogni elemento è una coppia chiave-valore, e l'intero insieme di elementi è racchiuso tra parentesi graffe.
-<li><code>'server'</code> è una chiave, e il suo valore associato, riferito da <code>a_dict["server"]</code>, è <code>'db.diveintopython3.org'</code>.
-<li><code>'database'</code> è una chiave, e il suo valore associato, riferito da <code>a_dict["database"]</code>, è <code>'mysql'</code>.
-<li>Potete ottenere i valori attraverso le chiavi, ma non potete ottenere le chiavi attraverso i valori. Quindi, <code>a_dict["server"]</code> è <code>'db.diveintopython3.org'</code>, ma <code>a_dict["db.diveintopython3.org"]</code> solleva una eccezione, perché <code>'db.diveintopython3.org'</code> non è una chiave.
+<li><code>'server'</code> è una chiave, e il suo valore associato, riferito da <code>a_dict['server']</code>, è <code>'db.diveintopython3.org'</code>.
+<li><code>'database'</code> è una chiave, e il suo valore associato, riferito da <code>a_dict['database']</code>, è <code>'mysql'</code>.
+<li>Potete ottenere i valori attraverso le chiavi, ma non potete ottenere le chiavi attraverso i valori. Quindi, <code>a_dict['server']</code> è <code>'db.diveintopython3.org'</code>, ma <code>a_dict['db.diveintopython3.org']</code> solleva una eccezione, perché <code>'db.diveintopython3.org'</code> non è una chiave.
 </ol>
 <h3 id=modifying-dictionaries>Modificare un dizionario</h3>
 <p>I dizionari non hanno alcun limite predefinito sulla propria dimensione. Potete aggiungere nuove coppie chiave-valore a un dizionario in ogni momento, oppure potete modificare il valore di una chiave esistente. Continuando dall'esempio precedente:
 <pre class=screen>
 <samp class=p>>>> </samp><kbd>a_dict</kbd>
 <samp>{'server': 'db.diveintopython3.org', 'database': 'mysql'}</samp>
-<a><samp class=p>>>> </samp><kbd>a_dict["database"] = "blog"</kbd>  <span>&#x2460;</span></a>
+<a><samp class=p>>>> </samp><kbd>a_dict['database'] = 'blog'</kbd>  <span>&#x2460;</span></a>
 <samp class=p>>>> </samp><kbd>a_dict</kbd>
 <samp>{'server': 'db.diveintopython3.org', 'database': 'blog'}</samp>
-<a><samp class=p>>>> </samp><kbd>a_dict["user"] = "mark"</kbd>      <span>&#x2461;</span></a>
+<a><samp class=p>>>> </samp><kbd>a_dict['user'] = 'mark'</kbd>      <span>&#x2461;</span></a>
 <a><samp class=p>>>> </samp><kbd>a_dict</kbd>                       <span>&#x2462;</span></a>
 <samp>{'server': 'db.diveintopython3.org', 'user': 'mark', 'database': 'blog'}</samp>
-<a><samp class=p>>>> </samp><kbd>a_dict["user"] = "dora"</kbd>      <span>&#x2463;</span></a>
+<a><samp class=p>>>> </samp><kbd>a_dict['user'] = 'dora'</kbd>      <span>&#x2463;</span></a>
 <samp class=p>>>> </samp><kbd>a_dict</kbd>
 <samp>{'server': 'db.diveintopython3.org', 'user': 'dora', 'database': 'blog'}</samp>
-<a><samp class=p>>>> </samp><kbd>a_dict["User"] = "mark"</kbd>      <span>&#x2464;</span></a>
+<a><samp class=p>>>> </samp><kbd>a_dict['User'] = 'mark'</kbd>      <span>&#x2464;</span></a>
 <samp class=p>>>> </samp><kbd>a_dict</kbd>
 <samp>{'User': 'mark', 'server': 'db.diveintopython3.org', 'user': 'dora', 'database': 'blog'}</samp></pre>
 <ol>
@@ -421,9 +421,9 @@ KeyError: 'db.diveintopython3.org'</samp></pre>
 <pre class=screen>
 <samp class=p>>>> </samp><kbd>def is_it_true(anything):</kbd>
 <samp class=p>... </samp><kbd>  if anything:</kbd>
-<samp class=p>... </samp><kbd>    print("sì, è vero")</kbd>
+<samp class=p>... </samp><kbd>    print('sì, è vero')</kbd>
 <samp class=p>... </samp><kbd>  else:</kbd>
-<samp class=p>... </samp><kbd>    print("no, è falso")</kbd>
+<samp class=p>... </samp><kbd>    print('no, è falso')</kbd>
 <samp class=p>...</samp>
 <a><samp class=p>>>> </samp><kbd>is_it_true({})</kbd>             <span>&#x2460;</span></a>
 <samp>no, è falso</samp>
@@ -462,9 +462,9 @@ KeyError: 'db.diveintopython3.org'</samp></pre>
 <pre class=screen>
 <samp class=p>>>> </samp><kbd>def is_it_true(anything):</kbd>
 <samp class=p>... </samp><kbd>  if anything:</kbd>
-<samp class=p>... </samp><kbd>    print("sì, è vero")</kbd>
+<samp class=p>... </samp><kbd>    print('sì, è vero')</kbd>
 <samp class=p>... </samp><kbd>  else:</kbd>
-<samp class=p>... </samp><kbd>    print("no, è falso")</kbd>
+<samp class=p>... </samp><kbd>    print('no, è falso')</kbd>
 <samp class=p>...</samp>
 <samp class=p>>>> </samp><kbd>is_it_true(None)</kbd>
 <samp>no, è falso</samp>
@@ -480,7 +480,7 @@ KeyError: 'db.diveintopython3.org'</samp></pre>
 <li><a href=http://www.python.org/dev/peps/pep-0237/><abbr>PEP</abbr> 237: Unifying Long Integers and Integers</a>
 <li><a href=http://www.python.org/dev/peps/pep-0238/><abbr>PEP</abbr> 238: Changing the Division Operator</a>
 </ul>
-<p class=nav><a rel=prev href=il-vostro-primo-programma-python.html title="indietro a &#8220;Il vostro primo programma Python&#8221;"><span>&#x261C;</span></a> <a rel=next href=stringhe.html title="avanti a &#8220;Stringhe&#8221;"><span>&#x261E;</span></a>
+<p class=nav><a rel=prev href=il-vostro-primo-programma-python.html title='indietro a &#8220;Il vostro primo programma Python&#8221;'><span>&#x261C;</span></a> <a rel=next href=stringhe.html title='avanti a &#8220;Stringhe&#8221;'><span>&#x261E;</span></a>
 <p class=c>&copy; 2001&ndash;9 <a href=informazioni-sul-libro.html>Mark Pilgrim</a><br>
 &copy; 2009 <a href=informazioni-sulla-traduzione.html>Giulio Piancastelli</a> per la traduzione italiana
 <script src=j/jquery.js></script>
