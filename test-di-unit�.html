@@ -204,8 +204,8 @@ while n >= integer:
     print('subtracting {0} from input, adding {1} to output'.format(integer, numeral))</code></pre>
 <p>Con l'istruzione <code>print()</code> di debug, il risultato somiglia al seguente:
 <pre class=screen>
-<samp class=p>>>> </samp><kbd>import roman1</kbd>
-<samp class=p>>>> </samp><kbd>roman1.to_roman(1424)</kbd>
+<samp class=p>>>> </samp><kbd class=pp>import roman1</kbd>
+<samp class=p>>>> </samp><kbd class=pp>roman1.to_roman(1424)</kbd>
 <samp>subtracting 1000 from input, adding M to output
 subtracting 400 from input, adding CD to output
 subtracting 10 from input, adding X to output
@@ -232,13 +232,13 @@ OK</samp></pre>
 <aside>Il modo che ha Python di fermarsi e prendere fuoco è sollevare una eccezione.</aside>
 <p>Non è sufficiente verificare che una funzione abbia successo quando le viene dato un ingresso valido; dovete anche verificare che fallisca quando le viene dato un ingresso non valido. E non un qualsiasi tipo di fallimento; la funzione deve fallire nel modo che vi aspettate.
 <pre class=screen>
-<samp class=p>>>> </samp><kbd>import roman1</kbd>
-<samp class=p>>>> </samp><kbd>roman1.to_roman(4000)</kbd>
-<samp>'MMMM'</samp>
-<samp class=p>>>> </samp><kbd>roman1.to_roman(5000)</kbd>
-<samp>'MMMMM'</samp>
-<a><samp class=p>>>> </samp><kbd>roman1.to_roman(9000)</kbd>  <span class=u>&#x2460;</span></a>
-<samp>'MMMMMMMMM'</samp></pre>
+<samp class=p>>>> </samp><kbd class=pp>import roman1</kbd>
+<samp class=p>>>> </samp><kbd class=pp>roman1.to_roman(4000)</kbd>
+<samp class=pp>'MMMM'</samp>
+<samp class=p>>>> </samp><kbd class=pp>roman1.to_roman(5000)</kbd>
+<samp class=pp>'MMMMM'</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>roman1.to_roman(9000)</kbd>  <span class=u>&#x2460;</span></a>
+<samp class=pp>'MMMMMMMMM'</samp></pre>
 <ol>
 <li>Questo non è assolutamente quello che volete &mdash; quello non è nemmeno un numero romano valido! In effetti, ognuno di questi numeri è fuori dall'intervallo degli ingressi accettabili, ma la funzione restituisce comunque un finto valore. Restituire silenziosamente valori sbagliati è <em>maaaaaaale</em>; se un programma deve fallire, è molto meglio che fallisca velocemente e rumorosamente. &#8220;Fermati e prendi fuoco,&#8221; come si dice in gergo. Il modo che ha Python di fermarsi e prendere fuoco è sollevare una eccezione.
 </ol>
@@ -347,11 +347,11 @@ OK</samp></pre>
 <p>Insieme al collaudo per numeri troppo grandi, avete anche bisogno di collaudare numeri che siano troppo piccoli. Come <a href=#divingin>abbiamo notato nei nostri requisiti funzionali</a>, i numeri romani non posso esprimere lo <code>0</code> o i numeri negativi.
 
 <pre class=screen>
-<samp class=p>>>> </samp><kbd>import roman2</kbd>
-<samp class=p>>>> </samp><kbd>roman2.to_roman(0)</kbd>
-<samp>''</samp>
-<samp class=p>>>> </samp><kbd>roman2.to_roman(-1)</kbd>
-<samp>''</samp></pre>
+<samp class=p>>>> </samp><kbd class=pp>import roman2</kbd>
+<samp class=p>>>> </samp><kbd class=pp>roman2.to_roman(0)</kbd>
+<samp class=pp>''</samp>
+<samp class=p>>>> </samp><kbd class=pp>roman2.to_roman(-1)</kbd>
+<samp class=pp>''</samp></pre>
 
 <p><em>Questo</em> non va bene. Aggiungiamo dei test per ognuna di queste condizioni.
 
@@ -444,11 +444,11 @@ OK</samp></pre>
 <p>C'era ancora un <a href=#divingin>requisito funzionale</a> per la conversione dei numeri in numeri romani: gestire i numeri non interi.
 
 <pre class=screen>
-<samp class=p>>>> </samp><kbd>import roman3</kbd>
-<a><samp class=p>>>> </samp><kbd>roman3.to_roman(0.5)</kbd>  <span class=u>&#x2460;</span></a>
-<samp>''</samp>
-<a><samp class=p>>>> </samp><kbd>roman3.to_roman(1.5)</kbd>  <span class=u>&#x2461;</span></a>
-<samp>'I'</samp></pre>
+<samp class=p>>>> </samp><kbd class=pp>import roman3</kbd>
+<a><samp class=p>>>> </samp><kbd class=pp>roman3.to_roman(0.5)</kbd>  <span class=u>&#x2460;</span></a>
+<samp class=pp>''</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>roman3.to_roman(1.5)</kbd>  <span class=u>&#x2461;</span></a>
+<samp class=pp>'I'</samp></pre>
 <ol>
 <li>Oh, questo non va bene.
 <li>Oh, questo è ancora peggio. Entrambi i casi dovrebbero sollevare una eccezione. Invece, danno risultati fasulli.

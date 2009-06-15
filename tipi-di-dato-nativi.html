@@ -45,29 +45,29 @@ body{counter-reset:h1 2}
     raise ValueError('number must be non-negative')</code></pre>
 <p><var>size</var> è un intero, <code>0</code> è un intero, e <code>&lt;</code> è un operatore numerico. Il risultato dell'espressione <code>size &lt; 0</code> è sempre un booleano. Potete verificarlo voi stessi nella shell interattiva di Python:
 <pre class=screen>
-<samp class=p>>>> </samp><kbd>size = 1</kbd>
-<samp class=p>>>> </samp><kbd>size &lt; 0</kbd>
-<samp>False</samp>
-<samp class=p>>>> </samp><kbd>size = 0</kbd>
-<samp class=p>>>> </samp><kbd>size &lt; 0</kbd>
-<samp>False</samp>
-<samp class=p>>>> </samp><kbd>size = -1</kbd>
-<samp class=p>>>> </samp><kbd>size &lt; 0</kbd>
-<samp>True</samp></pre>
+<samp class=p>>>> </samp><kbd class=pp>size = 1</kbd>
+<samp class=p>>>> </samp><kbd class=pp>size &lt; 0</kbd>
+<samp class=pp>False</samp>
+<samp class=p>>>> </samp><kbd class=pp>size = 0</kbd>
+<samp class=p>>>> </samp><kbd class=pp>size &lt; 0</kbd>
+<samp class=pp>False</samp>
+<samp class=p>>>> </samp><kbd class=pp>size = -1</kbd>
+<samp class=p>>>> </samp><kbd class=pp>size &lt; 0</kbd>
+<samp class=pp>True</samp></pre>
 
 <p class=a>&#x2042;
 
 <h2 id=numbers>Numeri</h2>
 <p>I numeri sono impressionanti. Ce ne sono così tanti tra cui scegliere. Python supporta sia gli interi che i numeri in virgola mobile. Non c'è alcuna dichiarazione di tipo per distinguerli; Python è in grado di farlo grazie alla presenza o meno del punto decimale.
 <pre class=screen>
-<a><samp class=p>>>> </samp><kbd>type(1)</kbd>                 <span class=u>&#x2460;</span></a>
-<samp>&lt;class 'int'></samp>
-<a><samp class=p>>>> </samp><kbd>1 + 1</kbd>                   <span class=u>&#x2461;</span></a>
-<samp>2</samp>
-<a><samp class=p>>>> </samp><kbd>1 + 1.0</kbd>                 <span class=u>&#x2462;</span></a>
-<samp>2.0</samp>
-<samp class=p>>>> </samp><kbd>type(2.0)</kbd>
-<samp>&lt;class 'float'></samp></pre>
+<a><samp class=p>>>> </samp><kbd class=pp>type(1)</kbd>                 <span class=u>&#x2460;</span></a>
+<samp class=pp>&lt;class 'int'></samp>
+<a><samp class=p>>>> </samp><kbd class=pp>1 + 1</kbd>                   <span class=u>&#x2461;</span></a>
+<samp class=pp>2</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>1 + 1.0</kbd>                 <span class=u>&#x2462;</span></a>
+<samp class=pp>2.0</samp>
+<samp class=p>>>> </samp><kbd class=pp>type(2.0)</kbd>
+<samp class=pp>&lt;class 'float'></samp></pre>
 <ol>
 <li>Potete usare la funzione <code>type()</code> per controllare il tipo di qualsiasi valore o variabile. Come vi sareste aspettati, <code>1</code> è un <code>int</code>.
 <li>Aggiungere un <code>int</code> a un <code>int</code> dà come risultato un <code>int</code>.
@@ -76,18 +76,18 @@ body{counter-reset:h1 2}
 <h3 id=number-coercion>Convertire interi a reali e viceversa</h3>
 <p>Come avete appena visto, alcuni operatori (come l'addizione) convertono implicitamente gli interi in numeri in virgola mobile su necessità. Potete anche convertirli esplicitamente voi stessi.
 <pre class=screen>
-<a><samp class=p>>>> </samp><kbd>float(2)</kbd>                <span class=u>&#x2460;</span></a>
-<samp>2.0</samp>
-<a><samp class=p>>>> </samp><kbd>int(2.0)</kbd>                <span class=u>&#x2461;</span></a>
-<samp>2</samp>
-<a><samp class=p>>>> </samp><kbd>int(2.5)</kbd>                <span class=u>&#x2462;</span></a>
-<samp>2</samp>
-<a><samp class=p>>>> </samp><kbd>int(-2.5)</kbd>               <span class=u>&#x2463;</span></a>
-<samp>-2</samp>
-<a><samp class=p>>>> </samp><kbd>1.12345678901234567890</kbd>  <span class=u>&#x2464;</span></a>
-<samp>1.1234567890123457</samp>
-<a><samp class=p>>>> </samp><kbd>type(1000000000000000)</kbd>  <span class=u>&#x2465;</span></a>
-<samp>&lt;class 'int'></samp></pre>
+<a><samp class=p>>>> </samp><kbd class=pp>float(2)</kbd>                <span class=u>&#x2460;</span></a>
+<samp class=pp>2.0</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>int(2.0)</kbd>                <span class=u>&#x2461;</span></a>
+<samp class=pp>2</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>int(2.5)</kbd>                <span class=u>&#x2462;</span></a>
+<samp class=pp>2</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>int(-2.5)</kbd>               <span class=u>&#x2463;</span></a>
+<samp class=pp>-2</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>1.12345678901234567890</kbd>  <span class=u>&#x2464;</span></a>
+<samp class=pp>1.1234567890123457</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>type(1000000000000000)</kbd>  <span class=u>&#x2465;</span></a>
+<samp class=pp>&lt;class 'int'></samp></pre>
 <ol>
 <li>Potete convertire esplicitamente un <code>int</code> in un <code>float</code> chiamando la funzione <code>float()</code>.
 <li>Naturalmente, potete anche convertire esplicitamente un <code>float</code> in un <code>int</code> chiamando <code>int()</code>.
@@ -102,18 +102,18 @@ body{counter-reset:h1 2}
 <h3 id=common-numerical-operations>Operazioni numeriche comuni</h3>
 <p>Potete fare ogni tipo di operazioni con i numeri.
 <pre class=screen>
-<a><samp class=p>>>> </samp><kbd>11 / 2</kbd>      <span class=u>&#x2460;</span></a>
-<samp>5.5</samp>
-<a><samp class=p>>>> </samp><kbd>11 // 2</kbd>     <span class=u>&#x2461;</span></a>
-<samp>5</samp>
-<a><samp class=p>>>> </samp><kbd>&minus;11 // 2</kbd>    <span class=u>&#x2462;</span></a>
-<samp>&minus;6</samp>
-<a><samp class=p>>>> </samp><kbd>11.0 // 2</kbd>   <span class=u>&#x2463;</span></a>
-<samp>5.0</samp>
-<a><samp class=p>>>> </samp><kbd>11 ** 2</kbd>     <span class=u>&#x2464;</span></a>
-<samp>121</samp>
-<a><samp class=p>>>> </samp><kbd>11 % 2</kbd>      <span class=u>&#x2465;</span></a>
-<samp>1</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>11 / 2</kbd>      <span class=u>&#x2460;</span></a>
+<samp class=pp>5.5</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>11 // 2</kbd>     <span class=u>&#x2461;</span></a>
+<samp class=pp>5</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>&minus;11 // 2</kbd>    <span class=u>&#x2462;</span></a>
+<samp class=pp>&minus;6</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>11.0 // 2</kbd>   <span class=u>&#x2463;</span></a>
+<samp class=pp>5.0</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>11 ** 2</kbd>     <span class=u>&#x2464;</span></a>
+<samp class=pp>121</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>11 % 2</kbd>      <span class=u>&#x2465;</span></a>
+<samp class=pp>1</samp>
 </pre>
 <ol>
 <li>L'operatore <code>/</code> esegue la divisione in virgola mobile. Restituisce un <code>float</code> anche se sia il numeratore che il denominatore sono numeri di tipo <code>int</code>.
@@ -129,14 +129,14 @@ body{counter-reset:h1 2}
 <h3 id=fractions>Frazioni</h3>
 <p>Python non si limita agli interi e ai numeri in virgola mobile. Può anche fare tutta quella matematica elaborata che avete imparato al liceo e poi prontamente dimenticato.
 <pre class=screen>
-<a><samp class=p>>>> </samp><kbd>import fractions</kbd>              <span class=u>&#x2460;</span></a>
-<a><samp class=p>>>> </samp><kbd>x = fractions.Fraction(1, 3)</kbd>  <span class=u>&#x2461;</span></a>
-<samp class=p>>>> </samp><kbd>x</kbd>
-<samp>Fraction(1, 3)</samp>
-<a><samp class=p>>>> </samp><kbd>x * 2</kbd>                         <span class=u>&#x2462;</span></a>
-<samp>Fraction(2, 3)</samp>
-<a><samp class=p>>>> </samp><kbd>fractions.Fraction(6, 4)</kbd>      <span class=u>&#x2463;</span></a>
-<samp>Fraction(3, 2)</samp></pre>
+<a><samp class=p>>>> </samp><kbd class=pp>import fractions</kbd>              <span class=u>&#x2460;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>x = fractions.Fraction(1, 3)</kbd>  <span class=u>&#x2461;</span></a>
+<samp class=p>>>> </samp><kbd class=pp>x</kbd>
+<samp class=pp>Fraction(1, 3)</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>x * 2</kbd>                         <span class=u>&#x2462;</span></a>
+<samp class=pp>Fraction(2, 3)</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>fractions.Fraction(6, 4)</kbd>      <span class=u>&#x2463;</span></a>
+<samp class=pp>Fraction(3, 2)</samp></pre>
 <ol>
 <li>Per cominciare a usare le frazioni, importate il modulo <code>fractions</code>.
 <li>Per definire una frazione, create un oggetto <code>Fraction</code> e passategli il numeratore e il denominatore.
@@ -146,13 +146,13 @@ body{counter-reset:h1 2}
 <h3 id=trig>Trigonometria</h3>
 <p>Potete anche operare con la trigonometria di base in Python.
 <pre class=screen>
-<samp class=p>>>> </samp><kbd>import math</kbd>
-<a><samp class=p>>>> </samp><kbd>math.pi</kbd>                <span class=u>&#x2460;</span></a>
-<samp>3.1415926535897931</samp>
-<a><samp class=p>>>> </samp><kbd>math.sin(math.pi / 2)</kbd>  <span class=u>&#x2461;</span></a>
-<samp>1.0</samp>
-<a><samp class=p>>>> </samp><kbd>math.tan(math.pi / 4)</kbd>  <span class=u>&#x2462;</span></a>
-<samp>0.99999999999999989</samp></pre>
+<samp class=p>>>> </samp><kbd class=pp>import math</kbd>
+<a><samp class=p>>>> </samp><kbd class=pp>math.pi</kbd>                <span class=u>&#x2460;</span></a>
+<samp class=pp>3.1415926535897931</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>math.sin(math.pi / 2)</kbd>  <span class=u>&#x2461;</span></a>
+<samp class=pp>1.0</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>math.tan(math.pi / 4)</kbd>  <span class=u>&#x2462;</span></a>
+<samp class=pp>0.99999999999999989</samp></pre>
 <ol>
 <li>Il modulo <code>math</code> include una costante per &pi;, il rapporto tra la circonferenza di un cerchio e il suo diametro.
 <li>Il modulo <code>math</code> contiene tutte le funzioni trigonometriche di base, comprese <code>sin()</code>, <code>cos()</code>, <code>tan()</code>, e varianti come <code>asin()</code>.
@@ -162,26 +162,26 @@ body{counter-reset:h1 2}
 <aside>I valori uguali a zero sono falsi, e i valori diversi da zero sono veri.</aside>
 <p>Potete usare i numeri <a href=#booleans>in un contesto logico</a>, come una istruzione <code>if</code>. I valori uguali a zero sono falsi, e i valori diversi da zero sono veri.
 <pre class=screen>
-<a><samp class=p>>>> </samp><kbd>def is_it_true(anything):</kbd>             <span class=u>&#x2460;</span></a>
-<samp class=p>... </samp><kbd>  if anything:</kbd>
-<samp class=p>... </samp><kbd>    print('sì, è vero')</kbd>
-<samp class=p>... </samp><kbd>  else:</kbd>
-<samp class=p>... </samp><kbd>    print('no, è falso')</kbd>
+<a><samp class=p>>>> </samp><kbd class=pp>def is_it_true(anything):</kbd>             <span class=u>&#x2460;</span></a>
+<samp class=p>... </samp><kbd class=pp>  if anything:</kbd>
+<samp class=p>... </samp><kbd class=pp>    print('sì, è vero')</kbd>
+<samp class=p>... </samp><kbd class=pp>  else:</kbd>
+<samp class=p>... </samp><kbd class=pp>    print('no, è falso')</kbd>
 <samp class=p>...</samp>
-<a><samp class=p>>>> </samp><kbd>is_it_true(1)</kbd>                         <span class=u>&#x2461;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>is_it_true(1)</kbd>                         <span class=u>&#x2461;</span></a>
 <samp>sì, è vero</samp>
-<samp class=p>>>> </samp><kbd>is_it_true(-1)</kbd>
+<samp class=p>>>> </samp><kbd class=pp>is_it_true(-1)</kbd>
 <samp>sì, è vero</samp>
-<samp class=p>>>> </samp><kbd>is_it_true(0)</kbd>
+<samp class=p>>>> </samp><kbd class=pp>is_it_true(0)</kbd>
 <samp>no, è falso</samp>
-<a><samp class=p>>>> </samp><kbd>is_it_true(0.1)</kbd>                       <span class=u>&#x2462;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>is_it_true(0.1)</kbd>                       <span class=u>&#x2462;</span></a>
 <samp>sì, è vero</samp>
-<samp class=p>>>> </samp><kbd>is_it_true(0.0)</kbd>
+<samp class=p>>>> </samp><kbd class=pp>is_it_true(0.0)</kbd>
 <samp>no, è falso</samp>
-<samp class=p>>>> </samp><kbd>import fractions</kbd>
-<a><samp class=p>>>> </samp><kbd>is_it_true(fractions.Fraction(1, 2))</kbd>  <span class=u>&#x2463;</span></a>
+<samp class=p>>>> </samp><kbd class=pp>import fractions</kbd>
+<a><samp class=p>>>> </samp><kbd class=pp>is_it_true(fractions.Fraction(1, 2))</kbd>  <span class=u>&#x2463;</span></a>
 <samp>sì, è vero</samp>
-<samp class=p>>>> </samp><kbd>is_it_true(fractions.Fraction(0, 1))</kbd>
+<samp class=p>>>> </samp><kbd class=pp>is_it_true(fractions.Fraction(0, 1))</kbd>
 <samp>no, è falso</samp></pre>
 <ol>
 <li>Sapevate di poter definire le vostre funzioni nella shell interattiva di Python? Vi basta premere <kbd>ENTER</kbd> alla fine di ogni riga, ed <kbd>ENTER</kbd> su una riga vuota per concludere la definizione.
@@ -203,17 +203,17 @@ body{counter-reset:h1 2}
 <h3 id=creatinglists>Creare una lista</h3>
 <p>Creare una lista è facile: usate le parentesi quadre per racchiudere una lista di valori separati da virgole.
 <pre class=screen>
-<a><samp class=p>>>> </samp><kbd>a_list = ['a', 'b', 'mpilgrim', 'z', 'example']</kbd>  <span class=u>&#x2460;</span></a>
-<samp class=p>>>> </samp><kbd>a_list</kbd>
+<a><samp class=p>>>> </samp><kbd class=pp>a_list = ['a', 'b', 'mpilgrim', 'z', 'example']</kbd>  <span class=u>&#x2460;</span></a>
+<samp class=p>>>> </samp><kbd class=pp>a_list</kbd>
 ['a', 'b', 'mpilgrim', 'z', 'example']
-<a><samp class=p>>>> </samp><kbd>a_list[0]</kbd>                                        <span class=u>&#x2461;</span></a>
-<samp>'a'</samp>
-<a><samp class=p>>>> </samp><kbd>a_list[4]</kbd>                                        <span class=u>&#x2462;</span></a>
-<samp>'example'</samp>
-<a><samp class=p>>>> </samp><kbd>a_list[-1]</kbd>                                       <span class=u>&#x2463;</span></a>
-<samp>'example'</samp>
-<a><samp class=p>>>> </samp><kbd>a_list[-3]</kbd>                                       <span class=u>&#x2464;</span></a>
-<samp>'mpilgrim'</samp></pre>
+<a><samp class=p>>>> </samp><kbd class=pp>a_list[0]</kbd>                                        <span class=u>&#x2461;</span></a>
+<samp class=pp>'a'</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>a_list[4]</kbd>                                        <span class=u>&#x2462;</span></a>
+<samp class=pp>'example'</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>a_list[-1]</kbd>                                       <span class=u>&#x2463;</span></a>
+<samp class=pp>'example'</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>a_list[-3]</kbd>                                       <span class=u>&#x2464;</span></a>
+<samp class=pp>'mpilgrim'</samp></pre>
 <ol>
 <li>Per prima cosa, definite una lista di cinque elementi. Notate che essi mantengono il loro ordine originale. Questo non è un caso. Una lista è un insieme ordinato di elementi.
 <li>Una lista può essere usata come un array il cui indice parte da zero. Il primo elemento di una lista non vuota è sempre <code>a_list[0]</code>.
@@ -225,20 +225,20 @@ body{counter-reset:h1 2}
 <aside>a_list[0] è il primo elemento di a_list.</aside>
 <p>Una volta che avete definito una lista, potete ottenerne una parte qualsiasi sotto forma di una nuova lista. Questa operazione si chiama <i>affettare</i> la lista.
 <pre class=screen>
-<samp class=p>>>> </samp><kbd>a_list</kbd>
-<samp>['a', 'b', 'mpilgrim', 'z', 'example']</samp>
-<a><samp class=p>>>> </samp><kbd>a_list[1:3]</kbd>            <span class=u>&#x2460;</span></a>
-<samp>['b', 'mpilgrim']</samp>
-<a><samp class=p>>>> </samp><kbd>a_list[1:-1]</kbd>           <span class=u>&#x2461;</span></a>
-<samp>['b', 'mpilgrim', 'z']</samp>
-<a><samp class=p>>>> </samp><kbd>a_list[0:3]</kbd>            <span class=u>&#x2462;</span></a>
-<samp>['a', 'b', 'mpilgrim']</samp>
-<a><samp class=p>>>> </samp><kbd>a_list[:3]</kbd>             <span class=u>&#x2463;</span></a>
-<samp>['a', 'b', 'mpilgrim']</samp>
-<a><samp class=p>>>> </samp><kbd>a_list[3:]</kbd>             <span class=u>&#x2464;</span></a>
-<samp>['z', 'example']</samp>
-<a><samp class=p>>>> </samp><kbd>a_list[:]</kbd>              <span class=u>&#x2465;</span></a>
-['a', 'b', 'mpilgrim', 'z', 'example']</pre>
+<samp class=p>>>> </samp><kbd class=pp>a_list</kbd>
+<samp class=pp>['a', 'b', 'mpilgrim', 'z', 'example']</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>a_list[1:3]</kbd>            <span class=u>&#x2460;</span></a>
+<samp class=pp>['b', 'mpilgrim']</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>a_list[1:-1]</kbd>           <span class=u>&#x2461;</span></a>
+<samp class=pp>['b', 'mpilgrim', 'z']</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>a_list[0:3]</kbd>            <span class=u>&#x2462;</span></a>
+<samp class=pp>['a', 'b', 'mpilgrim']</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>a_list[:3]</kbd>             <span class=u>&#x2463;</span></a>
+<samp class=pp>['a', 'b', 'mpilgrim']</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>a_list[3:]</kbd>             <span class=u>&#x2464;</span></a>
+<samp class=pp>['z', 'example']</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>a_list[:]</kbd>              <span class=u>&#x2465;</span></a>
+<samp class=pp>['a', 'b', 'mpilgrim', 'z', 'example']</samp></pre>
 <ol>
 <li>Potete ottenere una parte di una lista, chiamata &#8220;fetta&#8221;, specificando due indici. Il valore di ritorno è una nuova lista che contiene tutti gli elementi della lista, in ordine, a cominciare dal primo indice della fetta (in questo caso <code>a_list[1]</code>), fino al secondo indice della fetta escluso (in questo caso <code>a_list[3]</code>).
 <li>Affettare una lista funziona anche se uno o entrambi gli indici della fetta sono negativi. Se vi è d'aiuto, potete pensarla in questo modo: leggendo la lista da sinistra a destra, il primo indice della fetta indica il primo elemento che volete, e il secondo indice della fetta indica il primo elemento che non volete. Il valore di ritorno è tutto quello che sta in mezzo.
@@ -250,19 +250,19 @@ body{counter-reset:h1 2}
 <h3 id=extendinglists>Aggiungere elementi a una lista</h3>
 <p>Ci sono quattro modi per aggiungere un elemento a una lista.
 <pre class=screen>
-<samp class=p>>>> </samp><kbd>a_list = ['a']</kbd>
-<a><samp class=p>>>> </samp><kbd>a_list = a_list + [2.0, 3]</kbd>    <span class=u>&#x2460;</span></a>
-<samp class=p>>>> </samp><kbd>a_list</kbd>
-<samp>['a', 2.0, 3]</samp>
-<a><samp class=p>>>> </samp><kbd>a_list.append(True)</kbd>           <span class=u>&#x2461;</span></a>
-<samp class=p>>>> </samp><kbd>a_list</kbd>
-<samp>['a', 2.0, 3, True]</samp>
-<a><samp class=p>>>> </samp><kbd>a_list.extend(['four', 'e'])</kbd>  <span class=u>&#x2462;</span></a>
-<samp class=p>>>> </samp><kbd>a_list</kbd>
-<samp>['a', 2.0, 3, True, 'four', 'e']</samp>
-<a><samp class=p>>>> </samp><kbd>a_list.insert(1, 'a')</kbd>         <span class=u>&#x2463;</span></a>
-<samp class=p>>>> </samp><kbd>a_list</kbd>
-<samp>['a', 'a', 2.0, 3, True, 'four', 'e']</samp></pre>
+<samp class=p>>>> </samp><kbd class=pp>a_list = ['a']</kbd>
+<a><samp class=p>>>> </samp><kbd class=pp>a_list = a_list + [2.0, 3]</kbd>    <span class=u>&#x2460;</span></a>
+<samp class=p>>>> </samp><kbd class=pp>a_list</kbd>
+<samp class=pp>['a', 2.0, 3]</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>a_list.append(True)</kbd>           <span class=u>&#x2461;</span></a>
+<samp class=p>>>> </samp><kbd class=pp>a_list</kbd>
+<samp class=pp>['a', 2.0, 3, True]</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>a_list.extend(['four', 'e'])</kbd>  <span class=u>&#x2462;</span></a>
+<samp class=p>>>> </samp><kbd class=pp>a_list</kbd>
+<samp class=pp>['a', 2.0, 3, True, 'four', 'e']</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>a_list.insert(1, 'a')</kbd>         <span class=u>&#x2463;</span></a>
+<samp class=p>>>> </samp><kbd class=pp>a_list</kbd>
+<samp class=pp>['a', 'a', 2.0, 3, True, 'four', 'e']</samp></pre>
 <ol>
 <li>L'operatore <code>+</code> concatena liste. Una lista può contenere qualsiasi numero di elementi; non c'è alcun limite sulle dimensioni (a parte la memoria disponibile). Una lista può contenere elementi di ogni tipo di dato; non c'è bisogno che siano tutti dello stesso tipo. Qui abbiamo una lista contenente una stringa, un numero in virgola mobile, e un intero.
 <li>Il metodo <code>append()</code> aggiunge un singolo elemento alla fine di una lista. (Ora abbiamo <em>quattro</em> tipi di dato differenti nella lista!)
@@ -271,21 +271,21 @@ body{counter-reset:h1 2}
 </ol>
 <p>Diamo un'occhiata più da vicino alle differenze tra <code>append()</code> ed <code>extend()</code>.
 <pre class=screen>
-<samp class=p>>>> </samp><kbd>a_list = ['a', 'b', 'c']</kbd>
-<a><samp class=p>>>> </samp><kbd>a_list.extend(['d', 'e', 'f'])</kbd>  <span class=u>&#x2460;</span></a>
-<samp class=p>>>> </samp><kbd>a_list</kbd>
-<samp>['a', 'b', 'c', 'd', 'e', 'f']</samp>
-<a><samp class=p>>>> </samp><kbd>len(a_list)</kbd>                     <span class=u>&#x2461;</span></a>
-<samp>6</samp>
-<samp class=p>>>> </samp><kbd>a_list[-1]</kbd>
-<samp>'f'</samp>
-<a><samp class=p>>>> </samp><kbd>a_list.append(['g', 'h', 'i'])</kbd>  <span class=u>&#x2462;</span></a>
-<samp class=p>>>> </samp><kbd>a_list</kbd>
-<samp>['a', 'b', 'c', 'd', 'e', 'f', ['g', 'h', 'i']]</samp>
-<a><samp class=p>>>> </samp><kbd>len(a_list)</kbd>                     <span class=u>&#x2463;</span></a>
-<samp>7</samp>
-<samp class=p>>>> </samp><kbd>a_list[-1]</kbd>
-<samp>['g', 'h', 'i']</samp></pre>
+<samp class=p>>>> </samp><kbd class=pp>a_list = ['a', 'b', 'c']</kbd>
+<a><samp class=p>>>> </samp><kbd class=pp>a_list.extend(['d', 'e', 'f'])</kbd>  <span class=u>&#x2460;</span></a>
+<samp class=p>>>> </samp><kbd class=pp>a_list</kbd>
+<samp class=pp>['a', 'b', 'c', 'd', 'e', 'f']</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>len(a_list)</kbd>                     <span class=u>&#x2461;</span></a>
+<samp class=pp>6</samp>
+<samp class=p>>>> </samp><kbd class=pp>a_list[-1]</kbd>
+<samp class=pp>'f'</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>a_list.append(['g', 'h', 'i'])</kbd>  <span class=u>&#x2462;</span></a>
+<samp class=p>>>> </samp><kbd class=pp>a_list</kbd>
+<samp class=pp>['a', 'b', 'c', 'd', 'e', 'f', ['g', 'h', 'i']]</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>len(a_list)</kbd>                     <span class=u>&#x2463;</span></a>
+<samp class=pp>7</samp>
+<samp class=p>>>> </samp><kbd class=pp>a_list[-1]</kbd>
+<samp class=pp>['g', 'h', 'i']</samp></pre>
 <ol>
 <li>Il metodo <code>extend()</code> prende un singolo argomento, che è sempre una lista, e aggiunge ogni elemento di quella lista ad <var>a_list</var>.
 <li>Se cominciate con una lista di tre elementi e la estendete con una lista di altri tre elementi, terminerete con una lista di sei elementi.
@@ -294,16 +294,16 @@ body{counter-reset:h1 2}
 </ol>
 <h3 id=searchinglists>Cercare valori in una lista</h3>
 <pre class=screen>
-<samp class=p>>>> </samp><kbd>a_list = ['a', 'b', 'new', 'mpilgrim', 'new']</kbd>
-<a><samp class=p>>>> </samp><kbd>'mpilgrim' in a_list</kbd>      <span class=u>&#x2460;</span></a>
-<samp>True</samp>
-<a><samp class=p>>>> </samp><kbd>a_list.index('mpilgrim')</kbd>  <span class=u>&#x2461;</span></a>
-<samp>3</samp>
-<a><samp class=p>>>> </samp><kbd>a_list.index('new')</kbd>       <span class=u>&#x2462;</span></a>
-<samp>2</samp>
-<a><samp class=p>>>> </samp><kbd>'c' in a_list</kbd>             <span class=u>&#x2463;</span></a>
-<samp>False</samp>
-<a><samp class=p>>>> </samp><kbd>a_list.index('c')</kbd>         <span class=u>&#x2464;</span></a>
+<samp class=p>>>> </samp><kbd class=pp>a_list = ['a', 'b', 'new', 'mpilgrim', 'new']</kbd>
+<a><samp class=p>>>> </samp><kbd class=pp>'mpilgrim' in a_list</kbd>      <span class=u>&#x2460;</span></a>
+<samp class=pp>True</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>a_list.index('mpilgrim')</kbd>  <span class=u>&#x2461;</span></a>
+<samp class=pp>3</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>a_list.index('new')</kbd>       <span class=u>&#x2462;</span></a>
+<samp class=pp>2</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>'c' in a_list</kbd>             <span class=u>&#x2463;</span></a>
+<samp class=pp>False</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>a_list.index('c')</kbd>         <span class=u>&#x2464;</span></a>
 <samp class=traceback>Traceback (innermost last):
   File "&lt;interactive input>", line 1, in ?
 ValueError: list.index(x): x not in list</samp></pre>
@@ -318,17 +318,17 @@ ValueError: list.index(x): x not in list</samp></pre>
 <aside>Le liste vuote sono false; tutte le altre liste sono vere.</aside>
 <p>Potete usare una lista anche in <a href=#booleans>un contesto logico</a>, come quello di una istruzione <code>if</code>.
 <pre class=screen>
-<samp class=p>>>> </samp><kbd>def is_it_true(anything):</kbd>
-<samp class=p>... </samp><kbd>  if anything:</kbd>
-<samp class=p>... </samp><kbd>    print('sì, è vero')</kbd>
-<samp class=p>... </samp><kbd>  else:</kbd>
-<samp class=p>... </samp><kbd>    print('no, è falso')</kbd>
+<samp class=p>>>> </samp><kbd class=pp>def is_it_true(anything):</kbd>
+<samp class=p>... </samp><kbd class=pp>  if anything:</kbd>
+<samp class=p>... </samp><kbd class=pp>    print('sì, è vero')</kbd>
+<samp class=p>... </samp><kbd class=pp>  else:</kbd>
+<samp class=p>... </samp><kbd class=pp>    print('no, è falso')</kbd>
 <samp class=p>...</samp>
-<a><samp class=p>>>> </samp><kbd>is_it_true([])</kbd>             <span class=u>&#x2461;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>is_it_true([])</kbd>             <span class=u>&#x2461;</span></a>
 <samp>no, è falso</samp>
-<a><samp class=p>>>> </samp><kbd>is_it_true(['a'])</kbd>          <span class=u>&#x2462;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>is_it_true(['a'])</kbd>          <span class=u>&#x2462;</span></a>
 <samp>sì, è vero</samp>
-<a><samp class=p>>>> </samp><kbd>is_it_true([False])</kbd>        <span class=u>&#x2463;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>is_it_true([False])</kbd>        <span class=u>&#x2463;</span></a>
 <samp>sì, è vero</samp></pre>
 <ol>
 <li>In un contesto logico, una lista vuota è falsa.
@@ -351,14 +351,14 @@ ValueError: list.index(x): x not in list</samp></pre>
 <h3 id=creating-dictionaries>Creare un dizionario</h3>
 <p>Creare un dizionario è facile. La sintassi è simile agli <a href=#sets>insiemi</a>, ma invece di valori avete coppie chiave-valore. Una volta che avete un dizionario, potete recuperarne i valori attraverso le loro chiavi.
 <pre class=screen>
-<a><samp class=p>>>> </samp><kbd>a_dict = {'server':'db.diveintopython3.org', 'database':'mysql'}</kbd>  <span class=u>&#x2460;</span></a>
-<samp class=p>>>> </samp><kbd>a_dict</kbd>
-<samp>{'server': 'db.diveintopython3.org', 'database': 'mysql'}</samp>
-<a><samp class=p>>>> </samp><kbd>a_dict['server']</kbd>                                                  <span class=u>&#x2461;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>a_dict = {'server':'db.diveintopython3.org', 'database':'mysql'}</kbd>  <span class=u>&#x2460;</span></a>
+<samp class=p>>>> </samp><kbd class=pp>a_dict</kbd>
+<samp class=pp>{'server': 'db.diveintopython3.org', 'database': 'mysql'}</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>a_dict['server']</kbd>                                                  <span class=u>&#x2461;</span></a>
 'db.diveintopython3.org'
-<a><samp class=p>>>> </samp><kbd>a_dict['database']</kbd>                                                <span class=u>&#x2462;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>a_dict['database']</kbd>                                                <span class=u>&#x2462;</span></a>
 'mysql'
-<a><samp class=p>>>> </samp><kbd>a_dict['db.diveintopython3.org']</kbd>                                  <span class=u>&#x2463;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>a_dict['db.diveintopython3.org']</kbd>                                  <span class=u>&#x2463;</span></a>
 <samp class=traceback>Traceback (most recent call last):
   File "&lt;stdin>", line 1, in &lt;module>
 KeyError: 'db.diveintopython3.org'</samp></pre>
@@ -371,20 +371,20 @@ KeyError: 'db.diveintopython3.org'</samp></pre>
 <h3 id=modifying-dictionaries>Modificare un dizionario</h3>
 <p>I dizionari non hanno alcun limite predefinito sulla propria dimensione. Potete aggiungere nuove coppie chiave-valore a un dizionario in ogni momento, oppure potete modificare il valore di una chiave esistente. Continuando dall'esempio precedente:
 <pre class=screen>
-<samp class=p>>>> </samp><kbd>a_dict</kbd>
-<samp>{'server': 'db.diveintopython3.org', 'database': 'mysql'}</samp>
-<a><samp class=p>>>> </samp><kbd>a_dict['database'] = 'blog'</kbd>  <span class=u>&#x2460;</span></a>
-<samp class=p>>>> </samp><kbd>a_dict</kbd>
-<samp>{'server': 'db.diveintopython3.org', 'database': 'blog'}</samp>
-<a><samp class=p>>>> </samp><kbd>a_dict['user'] = 'mark'</kbd>      <span class=u>&#x2461;</span></a>
-<a><samp class=p>>>> </samp><kbd>a_dict</kbd>                       <span class=u>&#x2462;</span></a>
-<samp>{'server': 'db.diveintopython3.org', 'user': 'mark', 'database': 'blog'}</samp>
-<a><samp class=p>>>> </samp><kbd>a_dict['user'] = 'dora'</kbd>      <span class=u>&#x2463;</span></a>
-<samp class=p>>>> </samp><kbd>a_dict</kbd>
-<samp>{'server': 'db.diveintopython3.org', 'user': 'dora', 'database': 'blog'}</samp>
-<a><samp class=p>>>> </samp><kbd>a_dict['User'] = 'mark'</kbd>      <span class=u>&#x2464;</span></a>
-<samp class=p>>>> </samp><kbd>a_dict</kbd>
-<samp>{'User': 'mark', 'server': 'db.diveintopython3.org', 'user': 'dora', 'database': 'blog'}</samp></pre>
+<samp class=p>>>> </samp><kbd class=pp>a_dict</kbd>
+<samp class=pp>{'server': 'db.diveintopython3.org', 'database': 'mysql'}</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>a_dict['database'] = 'blog'</kbd>  <span class=u>&#x2460;</span></a>
+<samp class=p>>>> </samp><kbd class=pp>a_dict</kbd>
+<samp class=pp>{'server': 'db.diveintopython3.org', 'database': 'blog'}</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>a_dict['user'] = 'mark'</kbd>      <span class=u>&#x2461;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>a_dict</kbd>                       <span class=u>&#x2462;</span></a>
+<samp class=pp>{'server': 'db.diveintopython3.org', 'user': 'mark', 'database': 'blog'}</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>a_dict['user'] = 'dora'</kbd>      <span class=u>&#x2463;</span></a>
+<samp class=p>>>> </samp><kbd class=pp>a_dict</kbd>
+<samp class=pp>{'server': 'db.diveintopython3.org', 'user': 'dora', 'database': 'blog'}</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>a_dict['User'] = 'mark'</kbd>      <span class=u>&#x2464;</span></a>
+<samp class=p>>>> </samp><kbd class=pp>a_dict</kbd>
+<samp class=pp>{'User': 'mark', 'server': 'db.diveintopython3.org', 'user': 'dora', 'database': 'blog'}</samp></pre>
 <ol>
 <li>Non potete avere chiavi duplicate in un dizionario. Assegnare un valore a una chiave esistente cancellerà il vecchio valore.
 <li>Potete aggiungere nuove coppie chiave-valore in ogni momento. Questa sintassi è identica a quella per modificare valori già esistenti.
@@ -399,16 +399,16 @@ KeyError: 'db.diveintopython3.org'</samp></pre>
             1024: ['KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB']}</code></pre>
 <p>Analizziamo questo oggetto nella shell interattiva.
 <pre class=screen>
-<samp class=p>>>> </samp><kbd>SUFFIXES = {1000: ['KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],</kbd>
-<samp class=p>... </samp><kbd>            1024: ['KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB']}</kbd>
-<a><samp class=p>>>> </samp><kbd>len(SUFFIXES)</kbd>      <span class=u>&#x2460;</span></a>
-<samp>2</samp>
-<a><samp class=p>>>> </samp><kbd>SUFFIXES[1000]</kbd>     <span class=u>&#x2461;</span></a>
-<samp>['KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']</samp>
-<a><samp class=p>>>> </samp><kbd>SUFFIXES[1024]</kbd>     <span class=u>&#x2462;</span></a>
-<samp>['KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB']</samp>
-<a><samp class=p>>>> </samp><kbd>SUFFIXES[1000][3]</kbd>  <span class=u>&#x2463;</span></a>
-<samp>'TB'</samp></pre>
+<samp class=p>>>> </samp><kbd class=pp>SUFFIXES = {1000: ['KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],</kbd>
+<samp class=p>... </samp><kbd class=pp>            1024: ['KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB']}</kbd>
+<a><samp class=p>>>> </samp><kbd class=pp>len(SUFFIXES)</kbd>      <span class=u>&#x2460;</span></a>
+<samp class=pp>2</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>SUFFIXES[1000]</kbd>     <span class=u>&#x2461;</span></a>
+<samp class=pp>['KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>SUFFIXES[1024]</kbd>     <span class=u>&#x2462;</span></a>
+<samp class=pp>['KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB']</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>SUFFIXES[1000][3]</kbd>  <span class=u>&#x2463;</span></a>
+<samp class=pp>'TB'</samp></pre>
 <ol>
 <li>Come per le <a href=#lists>liste</a><!-- and <a href=#sets>sets</a>-->, la funzione <code>len()</code> vi restituisce il numero di oggetti in un dizionario.
 <li><code>1000</code> è una chiave nel dizionario <code>SUFFIXES</code>; il suo valore è una lista di otto elementi (otto stringhe, per essere precisi).
@@ -419,15 +419,15 @@ KeyError: 'db.diveintopython3.org'</samp></pre>
 <aside>I dizionari vuoti sono falsi; tutti gli altri dizionari sono veri.</aside>
 <p>Potete usare i dizionari anche in <a href=#booleans>un contesto logico</a>, come quello di una istruzione <code>if</code>.
 <pre class=screen>
-<samp class=p>>>> </samp><kbd>def is_it_true(anything):</kbd>
-<samp class=p>... </samp><kbd>  if anything:</kbd>
-<samp class=p>... </samp><kbd>    print('sì, è vero')</kbd>
-<samp class=p>... </samp><kbd>  else:</kbd>
-<samp class=p>... </samp><kbd>    print('no, è falso')</kbd>
+<samp class=p>>>> </samp><kbd class=pp>def is_it_true(anything):</kbd>
+<samp class=p>... </samp><kbd class=pp>  if anything:</kbd>
+<samp class=p>... </samp><kbd class=pp>    print('sì, è vero')</kbd>
+<samp class=p>... </samp><kbd class=pp>  else:</kbd>
+<samp class=p>... </samp><kbd class=pp>    print('no, è falso')</kbd>
 <samp class=p>...</samp>
-<a><samp class=p>>>> </samp><kbd>is_it_true({})</kbd>             <span class=u>&#x2460;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>is_it_true({})</kbd>             <span class=u>&#x2460;</span></a>
 <samp>no, è falso</samp>
-<a><samp class=p>>>> </samp><kbd>is_it_true({'a': 1})</kbd>       <span class=u>&#x2461;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>is_it_true({'a': 1})</kbd>       <span class=u>&#x2461;</span></a>
 <samp>sì, è vero</samp></pre>
 <ol>
 <li>In un contesto logico, un dizionario vuoto è falso.
@@ -440,35 +440,35 @@ KeyError: 'db.diveintopython3.org'</samp></pre>
 <p><code>None</code> è una costante speciale in Python. &Egrave; un valore nullo. <code>None</code> non è la stessa cosa di <code>False</code>. <code>None</code> non è <code>0</code>. <code>None</code> non è una stringa vuota. Confrontare <code>None</code> con qualcos'altro che non sia <code>None</code> restituirà sempre <code>False</code>.
 <p><code>None</code> è l'unico valore nullo. Ha un proprio tipo di dato (<code>NoneType</code>). Potete assegnare <code>None</code> a qualsiasi variabile, ma non potete creare altri oggetti di tipo <code>NoneType</code>. Tutte le varibili il cui valore è <code>None</code> sono uguali tra loro.
 <pre class=screen>
-<samp class=p>>>> </samp><kbd>type(None)</kbd>
-<samp>&lt;class 'NoneType'></samp>
-<samp class=p>>>> </samp><kbd>None == False</kbd>
-<samp>False</samp>
-<samp class=p>>>> </samp><kbd>None == 0</kbd>
-<samp>False</samp>
-<samp class=p>>>> </samp><kbd>None == ''</kbd>
-<samp>False</samp>
-<samp class=p>>>> </samp><kbd>None == None</kbd>
-<samp>True</samp>
-<samp class=p>>>> </samp><kbd>x = None</kbd>
-<samp class=p>>>> </samp><kbd>x == None</kbd>
-<samp>True</samp>
-<samp class=p>>>> </samp><kbd>y = None</kbd>
-<samp class=p>>>> </samp><kbd>x == y</kbd>
-<samp>True</samp>
+<samp class=p>>>> </samp><kbd class=pp>type(None)</kbd>
+<samp class=pp>&lt;class 'NoneType'></samp>
+<samp class=p>>>> </samp><kbd class=pp>None == False</kbd>
+<samp class=pp>False</samp>
+<samp class=p>>>> </samp><kbd class=pp>None == 0</kbd>
+<samp class=pp>False</samp>
+<samp class=p>>>> </samp><kbd class=pp>None == ''</kbd>
+<samp class=pp>False</samp>
+<samp class=p>>>> </samp><kbd class=pp>None == None</kbd>
+<samp class=pp>True</samp>
+<samp class=p>>>> </samp><kbd class=pp>x = None</kbd>
+<samp class=p>>>> </samp><kbd class=pp>x == None</kbd>
+<samp class=pp>True</samp>
+<samp class=p>>>> </samp><kbd class=pp>y = None</kbd>
+<samp class=p>>>> </samp><kbd class=pp>x == y</kbd>
+<samp class=pp>True</samp>
 </pre>
 <h3 id=none-in-a-boolean-context><code>None</code> in un contesto logico</h3>
 <p>In <a href=#booleans>un contesto logico</a>, <code>None</code> è falso e <code>not None</code> è vero.
 <pre class=screen>
-<samp class=p>>>> </samp><kbd>def is_it_true(anything):</kbd>
-<samp class=p>... </samp><kbd>  if anything:</kbd>
-<samp class=p>... </samp><kbd>    print('sì, è vero')</kbd>
-<samp class=p>... </samp><kbd>  else:</kbd>
-<samp class=p>... </samp><kbd>    print('no, è falso')</kbd>
+<samp class=p>>>> </samp><kbd class=pp>def is_it_true(anything):</kbd>
+<samp class=p>... </samp><kbd class=pp>  if anything:</kbd>
+<samp class=p>... </samp><kbd class=pp>    print('sì, è vero')</kbd>
+<samp class=p>... </samp><kbd class=pp>  else:</kbd>
+<samp class=p>... </samp><kbd class=pp>    print('no, è falso')</kbd>
 <samp class=p>...</samp>
-<samp class=p>>>> </samp><kbd>is_it_true(None)</kbd>
+<samp class=p>>>> </samp><kbd class=pp>is_it_true(None)</kbd>
 <samp>no, è falso</samp>
-<samp class=p>>>> </samp><kbd>is_it_true(not None)</kbd>
+<samp class=p>>>> </samp><kbd class=pp>is_it_true(not None)</kbd>
 <samp>sì, è vero</samp></pre>
 
 <p class=a>&#x2042;

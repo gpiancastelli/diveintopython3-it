@@ -148,12 +148,12 @@ td a:link, td a:visited{border:0}
         else:
 <a>            raise AttributeError   <span class=u>&#x2461;</span></a></code>
 
-<samp class=p>>>> </samp><kbd>dyn = Dynamo()</kbd>
-<a><samp class=p>>>> </samp><kbd>dyn.color</kbd>                      <span class=u>&#x2462;</span></a>
-<samp>'PapayaWhip'</samp>
-<samp class=p>>>> </samp><kbd>dyn.color = 'LemonChiffon'</kbd>
-<a><samp class=p>>>> </samp><kbd>dyn.color</kbd>                      <span class=u>&#x2463;</span></a>
-<samp>'LemonChiffon'</samp></pre>
+<samp class=p>>>> </samp><kbd class=pp>dyn = Dynamo()</kbd>
+<a><samp class=p>>>> </samp><kbd class=pp>dyn.color</kbd>                      <span class=u>&#x2462;</span></a>
+<samp class=pp>'PapayaWhip'</samp>
+<samp class=p>>>> </samp><kbd class=pp>dyn.color = 'LemonChiffon'</kbd>
+<a><samp class=p>>>> </samp><kbd class=pp>dyn.color</kbd>                      <span class=u>&#x2463;</span></a>
+<samp class=pp>'LemonChiffon'</samp></pre>
 <ol>
 <li>Il nome della proprietà viene passato al metodo <code>__getattr__()</code> sotto forma di stringa. Se il nome è <code>'color'</code>, il metodo restituisce un valore. (In questo caso, il valore è solo una stringa costante, ma normalmente effettuereste una qualche sorta di computazione e ne restituireste il risultato.)
 <li>Se il nome della proprietà è sconosciuto, il metodo <code>__getattr__()</code> deve sollevare un'eccezione di tipo <code>AttributeError</code>, altrimenti il vostro codice fallirà silenziosamente quando accedete a proprietà non definite. (Tecnicamente, se il metodo non solleva un'eccezione o restituisce esplicitamente un valore, allora restituisce <code>None</code>, il valore nullo di Python. In questo caso, <em>tutte</em> le proprietà non esplicitamente definite varrebbero <code>None</code>, che quasi sicuramente non è quello che volete.)
@@ -171,12 +171,12 @@ td a:link, td a:visited{border:0}
         else:
             raise AttributeError</code>
 
-<samp class=p>>>> </samp><kbd>dyn = SuperDynamo()</kbd>
-<a><samp class=p>>>> </samp><kbd>dyn.color</kbd>                      <span class=u>&#x2460;</span></a>
-<samp>'PapayaWhip'</samp>
-<samp class=p>>>> </samp><kbd>dyn.color = 'LemonChiffon'</kbd>
-<a><samp class=p>>>> </samp><kbd>dyn.color</kbd>                      <span class=u>&#x2461;</span></a>
-<samp>'PapayaWhip'</samp></pre>
+<samp class=p>>>> </samp><kbd class=pp>dyn = SuperDynamo()</kbd>
+<a><samp class=p>>>> </samp><kbd class=pp>dyn.color</kbd>                      <span class=u>&#x2460;</span></a>
+<samp class=pp>'PapayaWhip'</samp>
+<samp class=p>>>> </samp><kbd class=pp>dyn.color = 'LemonChiffon'</kbd>
+<a><samp class=p>>>> </samp><kbd class=pp>dyn.color</kbd>                      <span class=u>&#x2461;</span></a>
+<samp class=pp>'PapayaWhip'</samp></pre>
 <ol>
 <li>Il metodo <code>__getattribute__()</code> viene invocato per fornire il valore di <var>dyn.color</var>.
 <li>Anche dopo aver esplicitamente impostato <var>dyn.color</var>, il metodo <code>__getattribute__()</code> <em>viene ancora invocato</em> per fornirne il valore. Se esiste, il metodo <code>__getattribute__()</code> <em>viene invocato incondizionatamente</em> per ogni accesso a proprietà e metodi, anche per proprietà che avete esplicitamente impostato dopo la creazione di un'istanza.
@@ -195,8 +195,8 @@ td a:link, td a:visited{border:0}
     def swim(self):
         pass</code>
 
-<samp class=p>>>> </samp><kbd>hero = Rastan()</kbd>
-<a><samp class=p>>>> </samp><kbd>hero.swim()</kbd>                        <span class=u>&#x2461;</span></a>
+<samp class=p>>>> </samp><kbd class=pp>hero = Rastan()</kbd>
+<a><samp class=p>>>> </samp><kbd class=pp>hero.swim()</kbd>                        <span class=u>&#x2461;</span></a>
 <samp class=traceback>Traceback (most recent call last):
   File "&lt;stdin>", line 1, in &lt;module>
   File "&lt;stdin>", line 3, in __getattribute__
@@ -362,10 +362,10 @@ class FieldStorage:
 <p>Usando i metodi speciali appropriati, potete definire classi che si comportano come numeri. Questo significa che potete sommarle, sottrarle ed eseguire su di esse altre operazioni matematiche. Questo è il modo in cui <a href=advanced-classes.html#implementing-fractions>sono realizzate le <dfn>frazioni</dfn></a> &mdash; la classe <code><dfn>Fraction</dfn></code> implementa questi metodi speciali, in modo che possiate fare cose come questa:
 
 <pre class=screen>
-<samp class=p>>>> </samp><kbd>from fractions import Fraction</kbd>
-<samp class=p>>>> </samp><kbd>x = Fraction(1, 3)</kbd>
-<samp class=p>>>> </samp><kbd>x / 3</kbd>
-<samp>Fraction(1, 9)</samp></pre>
+<samp class=p>>>> </samp><kbd class=pp>from fractions import Fraction</kbd>
+<samp class=p>>>> </samp><kbd class=pp>x = Fraction(1, 3)</kbd>
+<samp class=p>>>> </samp><kbd class=pp>x / 3</kbd>
+<samp class=pp>Fraction(1, 9)</samp></pre>
 
 <p>Ecco la lista completa dei metodi speciali che dovete implementare per avere una classe simile ai numeri.
 
@@ -431,10 +431,10 @@ class FieldStorage:
 <p>Tutto questo va bene se <var>x</var> è un'istanza di una classe che implementa questi metodi. Ma cosa succede se non ne implementa uno? O peggio, cosa succede se lo implementa, ma non può gestire certi tipi di argomenti? Per esempio:
 
 <pre class=screen>
-<samp class=p>>>> </samp><kbd>from fractions import Fraction</kbd>
-<samp class=p>>>> </samp><kbd>x = Fraction(1, 3)</kbd>
-<samp class=p>>>> </samp><kbd>1 / x</kbd>
-<samp>Fraction(3, 1)</samp></pre>
+<samp class=p>>>> </samp><kbd class=pp>from fractions import Fraction</kbd>
+<samp class=p>>>> </samp><kbd class=pp>x = Fraction(1, 3)</kbd>
+<samp class=p>>>> </samp><kbd class=pp>1 / x</kbd>
+<samp class=pp>Fraction(3, 1)</samp></pre>
 
 <p>Questo <em>non</em> è il caso in cui un oggetto <code>Fraction</code> viene diviso per un intero (come nell'esempio precedente). Quel caso era semplice: <code>x / 3</code> invoca <code>x.__truediv__(3)</code> e il metodo <code>__truediv__()</code> della classe <code>Fraction</code> gestisce tutta la matematica coinvolta. Ma gli interi non &#8220;sanno&#8221; come fare operazioni aritmetiche con le frazioni. Quindi come mai questo esempio funziona?
 

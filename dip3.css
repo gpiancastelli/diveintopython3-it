@@ -198,10 +198,8 @@ pre a, .w a {
 dfn {
   font-style: normal;
 }
-kbd, mark {
-  font-weight: bold;
-}
 mark {
+  font-weight: bold;
   display: inline-block;
   width: 100%;
   background: #ff8;
