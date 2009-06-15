@@ -110,17 +110,17 @@ if __name__ == '__main__':
 <p>I valori degli argomenti di una funzione possono anche essere passati per nome.
 
 <pre class=screen>
-<samp class=p>>>> </samp><kbd>from humansize import approximate_size</kbd>
-<a><samp class=p>>>> </samp><kbd>approximate_size(4000, a_kilobyte_is_1024_bytes=False)</kbd>       <span class=u>&#x2460;</span></a>
-<samp>'4.0 KB'</samp>
-<a><samp class=p>>>> </samp><kbd>approximate_size(size=4000, a_kilobyte_is_1024_bytes=False)</kbd>  <span class=u>&#x2461;</span></a>
-<samp>'4.0 KB'</samp>
-<a><samp class=p>>>> </samp><kbd>approximate_size(a_kilobyte_is_1024_bytes=False, size=4000)</kbd>  <span class=u>&#x2462;</span></a>
-<samp>'4.0 KB'</samp>
-<a><samp class=p>>>> </samp><kbd>approximate_size(a_kilobyte_is_1024_bytes=False, 4000)</kbd>       <span class=u>&#x2463;</span></a>
+<samp class=p>>>> </samp><kbd class=pp>from humansize import approximate_size</kbd>
+<a><samp class=p>>>> </samp><kbd class=pp>approximate_size(4000, a_kilobyte_is_1024_bytes=False)</kbd>       <span class=u>&#x2460;</span></a>
+<samp class=pp>'4.0 KB'</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>approximate_size(size=4000, a_kilobyte_is_1024_bytes=False)</kbd>  <span class=u>&#x2461;</span></a>
+<samp class=pp>'4.0 KB'</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>approximate_size(a_kilobyte_is_1024_bytes=False, size=4000)</kbd>  <span class=u>&#x2462;</span></a>
+<samp class=pp>'4.0 KB'</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>approximate_size(a_kilobyte_is_1024_bytes=False, 4000)</kbd>       <span class=u>&#x2463;</span></a>
 <samp class=traceback>  File "&lt;stdin>", line 1
 SyntaxError: non-keyword arg after keyword arg</samp>
-<a><samp class=p>>>> </samp><kbd>approximate_size(size=4000, False)</kbd>                           <span class=u>&#x2464;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>approximate_size(size=4000, False)</kbd>                           <span class=u>&#x2464;</span></a>
 <samp class=traceback>  File "&lt;stdin>", line 1
 SyntaxError: non-keyword arg after keyword arg</samp></pre>
 <ol>
@@ -164,10 +164,10 @@ SyntaxError: non-keyword arg after keyword arg</samp></pre>
 <p>Nel caso vi fosse sfuggito, ho appena detto che le funzioni Python hanno delle proprietà, e che quelle proprietà sono disponibili a tempo di esecuzione. Una funzione, come ogni altra cosa in Python, è un oggetto.
 <p>Lanciate la shell interattiva di Python e seguitemi attraverso questa serie di istruzioni:
 <pre class=screen>
-<a><samp class=p>>>> </samp><kbd>import humansize</kbd>                               <span class=u>&#x2460;</span></a>
-<a><samp class=p>>>> </samp><kbd>print(humansize.approximate_size(4096, True))</kbd>  <span class=u>&#x2461;</span></a>
-<samp>4.0 KiB</samp>
-<a><samp class=p>>>> </samp><kbd>print(humansize.approximate_size.__doc__)</kbd>      <span class=u>&#x2462;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>import humansize</kbd>                               <span class=u>&#x2460;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>print(humansize.approximate_size(4096, True))</kbd>  <span class=u>&#x2461;</span></a>
+<samp class=pp>4.0 KiB</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>print(humansize.approximate_size.__doc__)</kbd>      <span class=u>&#x2462;</span></a>
 <samp>Convert a file size to human-readable form.
 
     Keyword arguments:
@@ -189,20 +189,20 @@ SyntaxError: non-keyword arg after keyword arg</samp></pre>
 <h3 id=importsearchpath>Il percorso di ricerca di <code>import</code></h3>
 <p>Prima di proseguire, voglio menzionare brevemente il percorso di ricerca delle librerie. Python guarda in diversi posti quando provate a importare un modulo. Nello specifico, guarda in tutte le directory definite in <code>sys.path</code>. Questa proprietà è semplicemente una lista, e potete facilmente vederla o modificarla con i metodi standard per le liste. (Imparerete di più sulle liste nel capitolo sui <a href=tipi-di-dato-nativi.html>Tipi di dato nativi</a>.)
 <pre class=screen>
-<a><samp class=p>>>> </samp><kbd>import sys</kbd>                           <span class=u>&#x2460;</span></a>
-<a><samp class=p>>>> </samp><kbd>sys.path</kbd>                             <span class=u>&#x2461;</span></a>
-<samp>['', 
+<a><samp class=p>>>> </samp><kbd class=pp>import sys</kbd>                           <span class=u>&#x2460;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>sys.path</kbd>                             <span class=u>&#x2461;</span></a>
+<samp class=pp>['', 
  '/usr/lib/python30.zip', 
  '/usr/lib/python3.0',
  '/usr/lib/python3.0/plat-linux2@EXTRAMACHDEPPATH@', 
  '/usr/lib/python3.0/lib-dynload', 
  '/usr/lib/python3.0/dist-packages', 
  '/usr/local/lib/python3.0/dist-packages']</samp>
-<a><samp class=p>>>> </samp><kbd>sys</kbd>                                  <span class=u>&#x2462;</span></a>
-<samp>&lt;module 'sys' (built-in)></samp>
-<a><samp class=p>>>> </samp><kbd>sys.path.insert(0, '/home/mark/py')</kbd>  <span class=u>&#x2463;</span></a>
-<a><samp class=p>>>> </samp><kbd>sys.path</kbd>                             <span class=u>&#x2464;</span></a>
-<samp>['/home/mark/py', 
+<a><samp class=p>>>> </samp><kbd class=pp>sys</kbd>                                  <span class=u>&#x2462;</span></a>
+<samp class=pp>&lt;module 'sys' (built-in)></samp>
+<a><samp class=p>>>> </samp><kbd class=pp>sys.path.insert(0, '/home/mark/py')</kbd>  <span class=u>&#x2463;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>sys.path</kbd>                             <span class=u>&#x2464;</span></a>
+<samp class=pp>['/home/mark/py', 
  '', 
  '/usr/lib/python30.zip', 
  '/usr/lib/python3.0', 
@@ -264,9 +264,9 @@ if __name__ == '__main__':
 </blockquote>
 <p>Che cosa rende speciale questa istruzione <code>if</code>? Ebbene, i moduli sono oggetti, e tutti i moduli hanno la proprietà built-in <code>__name__</code>. Il valore della proprietà <code>__name__</code> di un modulo dipende da come state usando il modulo. Se importate un modulo, allora <code>__name__</code> sarà il nome del file del modulo, senza il percorso e l'estensione. 
 <pre class=screen>
-<samp class=p>>>> </samp><kbd>import humansize</kbd>
-<samp class=p>>>> </samp><kbd>humansize.__name__</kbd>
-<samp>'humansize'</samp></pre>
+<samp class=p>>>> </samp><kbd class=pp>import humansize</kbd>
+<samp class=p>>>> </samp><kbd class=pp>humansize.__name__</kbd>
+<samp class=pp>'humansize'</samp></pre>
 <p>Ma potete anche eseguire direttamente il modulo come un programma a sé, nel qual caso <code>__name__</code> sarà lo speciale valore di default <code>__main__</code>. Nel nostro esempio, Python valuterà l'istruzione <code>if</code>, troverà una espressione vera, ed eseguirà il blocco di codice corrispondente. In questo caso, per stampare due valori.
 <pre class=screen>
 <samp class=p>c:\home\diveintopython3> </samp><kbd>c:\python30\python.exe humansize.py</kbd>

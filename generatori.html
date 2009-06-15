@@ -58,15 +58,15 @@ def plural(noun):
 
 <p>Diamo un'occhiata più dettagliata alle sostituzioni di espressioni regolari.
 <pre class=screen>
-<samp class=p>>>> </samp><kbd>import re</kbd>
-<a><samp class=p>>>> </samp><kbd>re.search('[abc]', 'Mark')</kbd>    <span class=u>&#x2460;</span></a>
+<samp class=p>>>> </samp><kbd class=pp>import re</kbd>
+<a><samp class=p>>>> </samp><kbd class=pp>re.search('[abc]', 'Mark')</kbd>    <span class=u>&#x2460;</span></a>
 &lt;_sre.SRE_Match object at 0x001C1FA8>
-<a><samp class=p>>>> </samp><kbd>re.sub('[abc]', 'o', 'Mark')</kbd>  <span class=u>&#x2461;</span></a>
-<samp>'Mork'</samp>
-<a><samp class=p>>>> </samp><kbd>re.sub('[abc]', 'o', 'rock')</kbd>  <span class=u>&#x2462;</span></a>
-<samp>'rook'</samp>
-<a><samp class=p>>>> </samp><kbd>re.sub('[abc]', 'o', 'caps')</kbd>  <span class=u>&#x2463;</span></a>
-<samp>'oops'</samp></pre>
+<a><samp class=p>>>> </samp><kbd class=pp>re.sub('[abc]', 'o', 'Mark')</kbd>  <span class=u>&#x2461;</span></a>
+<samp class=pp>'Mork'</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>re.sub('[abc]', 'o', 'rock')</kbd>  <span class=u>&#x2462;</span></a>
+<samp class=pp>'rook'</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>re.sub('[abc]', 'o', 'caps')</kbd>  <span class=u>&#x2463;</span></a>
+<samp class=pp>'oops'</samp></pre>
 <ol>
 <li>La stringa <code>Mark</code> contiene <code>a</code>, <code>b</code>, oppure <code>c</code>? Sì, contiene <code>a</code>.
 <li>OK, adesso trova <code>a</code>, <code>b</code>, oppure <code>c</code>, e sostituiscilo con <code>o</code>. <code>Mark</code> diventa <code>Mork</code>.
@@ -94,14 +94,14 @@ def plural(noun):
 <p>Diamo una occhiata più dettagliata alla negazione nelle espressioni regolari.
 
 <pre class=screen>
-<samp class=p>>>> </samp><kbd>import re</kbd>
-<a><samp class=p>>>> </samp><kbd>re.search('[^aeiou]y$', 'vacancy')</kbd>  <span class=u>&#x2460;</span></a>
+<samp class=p>>>> </samp><kbd class=pp>import re</kbd>
+<a><samp class=p>>>> </samp><kbd class=pp>re.search('[^aeiou]y$', 'vacancy')</kbd>  <span class=u>&#x2460;</span></a>
 &lt;_sre.SRE_Match object at 0x001C1FA8>
-<a><samp class=p>>>> </samp><kbd>re.search('[^aeiou]y$', 'boy')</kbd>      <span class=u>&#x2461;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>re.search('[^aeiou]y$', 'boy')</kbd>      <span class=u>&#x2461;</span></a>
 <samp class=p>>>> </samp>
-<samp class=p>>>> </samp><kbd>re.search('[^aeiou]y$', 'day')</kbd>
+<samp class=p>>>> </samp><kbd class=pp>re.search('[^aeiou]y$', 'day')</kbd>
 <samp class=p>>>> </samp>
-<a><samp class=p>>>> </samp><kbd>re.search('[^aeiou]y$', 'pita')</kbd>     <span class=u>&#x2462;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>re.search('[^aeiou]y$', 'pita')</kbd>     <span class=u>&#x2462;</span></a>
 <samp class=p>>>> </samp></pre>
 <ol>
 <li><code>vacancy</code> corrisponde a questa espressione regolare, perché finisce con <code>cy</code> e <code>c</code> non è <code>a</code>, <code>e</code>, <code>i</code>, <code>o</code>, oppure <code>u</code>.
@@ -109,12 +109,12 @@ def plural(noun):
 <li><code>pita</code> non corrisponde, perché non termina in <code>y</code>.
 </ol>
 <pre class=screen>
-<a><samp class=p>>>> </samp><kbd>re.sub('y$', 'ies', 'vacancy')</kbd>               <span class=u>&#x2460;</span></a>
-<samp>'vacancies'</samp>
-<samp class=p>>>> </samp><kbd>re.sub('y$', 'ies', 'agency')</kbd>
-<samp>'agencies'</samp>
-<a><samp class=p>>>> </samp><kbd>re.sub('([^aeiou])y$', r'\1ies', 'vacancy')</kbd>  <span class=u>&#x2461;</span></a>
-<samp>'vacancies'</samp></pre>
+<a><samp class=p>>>> </samp><kbd class=pp>re.sub('y$', 'ies', 'vacancy')</kbd>               <span class=u>&#x2460;</span></a>
+<samp class=pp>'vacancies'</samp>
+<samp class=p>>>> </samp><kbd class=pp>re.sub('y$', 'ies', 'agency')</kbd>
+<samp class=pp>'agencies'</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>re.sub('([^aeiou])y$', r'\1ies', 'vacancy')</kbd>  <span class=u>&#x2461;</span></a>
+<samp class=pp>'vacancies'</samp></pre>
 <ol>
 <li>Questa espressione regolare trasforma <code>vacancy</code> in <code>vacancies</code> e <code>agency</code> in <code>agencies</code>, che è quello che volevate. Notate che trasformerebbe anche <code>boy</code> in <code>boies</code>, ma questo non succederà mai nella funzione <code>plural()</code> perché avete utilizzato <code>re.search()</code> per capire se è il caso di applicare <code>re.sub()</code> o meno.
 <li>Giusto di passaggio, voglio sottolineare che è possibile combinare queste due espressioni regolari (una per scoprire se la regola è applicabile, l'altra per applicarla effettivamente) in una singola espressione regolare. Questa riga mostra come apparirebbe l'espressione combinata. La maggior parte di essa dovrebbe sembrare familiare: state usando un gruppo da memorizzare, che avete imparato nella sezione <a href=espressioni-regolari.html#phonenumbers>Caso di studio: riconoscere i numeri di telefono</a>. Qui il gruppo viene usato per memorizzare il carattere prima della lettera <code>y</code>. Poi, nella stringa di sostituzione, usate una nuova sintassi, <code>\1</code>, che significa &#8220;ehi, hai presente quel primo gruppo che hai memorizzato? Mettilo proprio qui.&#8221; In questo caso, avete memorizzato la <code>c</code> prima della <code>y</code>; quando fate la sostituzione, sostituite <code>c</code> al posto di <code>c</code>, e <code>ies</code> al posto di <code>y</code>. (Se avete memorizzato più di un gruppo, potete usare <code>\2</code> e <code>\3</code> e così via.)
@@ -315,23 +315,23 @@ def plural(noun):
 <p>Come cavolo funziona <em>questo</em>? Diamo prima un'occhiata dalla shell interattiva.
 
 <pre class=screen>
-<samp class=p>>>> </samp><kbd>def make_counter(x):</kbd>
-<samp class=p>... </samp><kbd>    print('entering make_counter')</kbd>
-<samp class=p>... </samp><kbd>    while True:</kbd>
-<a><samp class=p>... </samp><kbd>        yield x</kbd>                    <span class=u>&#x2460;</span></a>
-<samp class=p>... </samp><kbd>        print('incrementing x')</kbd>
-<samp class=p>... </samp><kbd>        x = x + 1</kbd>
+<samp class=p>>>> </samp><kbd class=pp>def make_counter(x):</kbd>
+<samp class=p>... </samp><kbd class=pp>    print('entering make_counter')</kbd>
+<samp class=p>... </samp><kbd class=pp>    while True:</kbd>
+<a><samp class=p>... </samp><kbd class=pp>        yield x</kbd>                    <span class=u>&#x2460;</span></a>
+<samp class=p>... </samp><kbd class=pp>        print('incrementing x')</kbd>
+<samp class=p>... </samp><kbd class=pp>        x = x + 1</kbd>
 <samp class=p>... </samp>
-<a><samp class=p>>>> </samp><kbd>counter = make_counter(2)</kbd>          <span class=u>&#x2461;</span></a>
-<a><samp class=p>>>> </samp><kbd>counter</kbd>                            <span class=u>&#x2462;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>counter = make_counter(2)</kbd>          <span class=u>&#x2461;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>counter</kbd>                            <span class=u>&#x2462;</span></a>
 &lt;generator object at 0x001C9C10>
-<a><samp class=p>>>> </samp><kbd>next(counter)</kbd>                      <span class=u>&#x2463;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>next(counter)</kbd>                      <span class=u>&#x2463;</span></a>
 <samp>entering make_counter
 2</samp>
-<a><samp class=p>>>> </samp><kbd>next(counter)</kbd>                      <span class=u>&#x2464;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>next(counter)</kbd>                      <span class=u>&#x2464;</span></a>
 <samp>incrementing x
 3</samp>
-<a><samp class=p>>>> </samp><kbd>next(counter)</kbd>                      <span class=u>&#x2465;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>next(counter)</kbd>                      <span class=u>&#x2465;</span></a>
 <samp>incrementing x
 4</samp></pre>
 <ol>
@@ -364,10 +364,10 @@ def plural(noun):
 <p>Quindi avete una funzione che produce in uscita numeri di Fibonacci successivi. Certo, potreste farlo con la ricorsione, ma questo modo è più facile da leggere. In più, funziona bene con i cicli <code>for</code>.
 
 <pre class=screen>
-<samp class=p>>>> </samp><kbd>from fibonacci import fib</kbd>
-<a><samp class=p>>>> </samp><kbd>for n in fib(1000):</kbd>  <span class=u>&#x2460;</span></a>
-<a><samp class=p>... </samp><kbd>    print(n, end=' ')</kbd>    <span class=u>&#x2461;</span></a>
-<samp>0 1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987</samp></pre>
+<samp class=p>>>> </samp><kbd class=pp>from fibonacci import fib</kbd>
+<a><samp class=p>>>> </samp><kbd class=pp>for n in fib(1000):</kbd>  <span class=u>&#x2460;</span></a>
+<a><samp class=p>... </samp><kbd class=pp>    print(n, end=' ')</kbd>    <span class=u>&#x2461;</span></a>
+<samp class=pp>0 1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987</samp></pre>
 <ol>
 <li>Potete usare un generatore come <code>fib()</code> direttamente in un ciclo <code>for</code>. Il ciclo <code>for</code> chiamerà automaticamente la funzione <code>next()</code> per ottenere valori dal generatore <code>fib()</code> e assegnarli alla variabile di indice del ciclo <code>for</code> (<var>n</var>).
 <li>A ogni iterazione nel ciclo <code>for</code>, <var>n</var> ottiene un nuovo valore dalla istruzione <code>yield</code> in <code>fib()</code>, e tutto quello che dovete fare è stamparlo. Una volta che <code>fib()</code> ha finito i numeri (<var>a</var> diventa più grande di <var>max</var>, che nel nostro caso è <code>1000</code>) allora il ciclo <code>for</code> si conclude normalmente.

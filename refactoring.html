@@ -23,9 +23,9 @@ body{counter-reset:h1 10}
 <h2 id=divingin>Immersione!</h2>
 <p class=f>Nonostante facciate del vostro meglio per scrivere test di unità completi, i bug capitano. Cosa intendo quando parlo di &#8220;bug&#8221;? Un bug è un test che non avete ancora scritto.
 
-<pre class=screen><samp class=p>>>> </samp><kbd>import roman7</kbd>
-<a><samp class=p>>>> </samp><kbd>roman7.from_roman('')</kbd> <span class=u>&#x2460;</span></a>
-<samp>0</samp></pre>
+<pre class=screen><samp class=p>>>> </samp><kbd class=pp>import roman7</kbd>
+<a><samp class=p>>>> </samp><kbd class=pp>roman7.from_roman('')</kbd> <span class=u>&#x2460;</span></a>
+<samp class=pp>0</samp></pre>
 <ol>
 <li>Ricordate quando, nel <span class=fixme>[FIXME-xref]</span> capitolo precedente, continuavate a notare che una stringa vuota sarebbe stata riconosciuta dall'espressione regolare che stavate usando per controllare i numeri romani validi? Ebbene, questo è ancora vero per la versione finale dell'espressione regolare. Ma è un bug; in realtà, vorreste che una stringa vuota sollevasse un'eccezione di tipo <code>InvalidRomanNumeralError</code> esattamente come ogni altra sequenza di caratteri che non rappresenta un numero romano valido.
 </ol>

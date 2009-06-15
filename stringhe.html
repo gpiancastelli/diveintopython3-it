@@ -85,13 +85,13 @@ Il tuo alfabeto termina dove il mio inizia! <span class=u>&#x275E;</span><br>&md
 <p>In Python 3, tutte le stringhe sono sequenze di caratteri Unicode. Non esistono stringhe Python codificate in UTF-8, o stringhe Python codificate in CP-1252. &#8220;Questa stringa è in UTF-8?&#8221; è una domanda non valida. UTF-8 è un modo di codificare caratteri come sequenze di byte. Se volete prendere una stringa e trasformarla in una sequenza di byte attraverso una particolare codifica di carattere, Python 3 vi può aiutare. Se volete prendere una sequenza di byte e trasformarla in una stringa, Python 3 può aiutarvi anche in questo caso. I byte non sono caratteri; i byte sono byte. I caratteri sono un'astrazione. Una stringa è una sequenza di quelle astrazioni.
 
 <pre class=screen>
-<a><samp class=p>>>> </samp><kbd>s = '深入 Python'</kbd>    <span class=u>&#x2460;</span></a>
-<a><samp class=p>>>> </samp><kbd>len(s)</kbd>               <span class=u>&#x2461;</span></a>
-<samp>9</samp>
-<a><samp class=p>>>> </samp><kbd>s[0]</kbd>                 <span class=u>&#x2462;</span></a>
-<samp>'深'</samp>
-<a><samp class=p>>>> </samp><kbd>s + ' 3'</kbd>             <span class=u>&#x2463;</span></a>
-<samp>'深入 Python 3'</samp></pre>
+<a><samp class=p>>>> </samp><kbd class=pp>s = '深入 Python'</kbd>    <span class=u>&#x2460;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>len(s)</kbd>               <span class=u>&#x2461;</span></a>
+<samp class=pp>9</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>s[0]</kbd>                 <span class=u>&#x2462;</span></a>
+<samp class=pp>'深'</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>s + ' 3'</kbd>             <span class=u>&#x2463;</span></a>
+<samp class=pp>'深入 Python 3'</samp></pre>
 <ol>
 <li>Per creare una stringa, racchiudetela tra virgolette. Le stringhe Python possono essere definite utilizzando apici (<code>'</code>) oppure virgolette (<code>"</code>).<!--"-->
 <li>La funzione built-in <code><dfn>len</dfn>()</code> restituisce la lunghezza della stringa, <i>i.e.</i> il numero di caratteri. Questa è la stessa funzione che utilizzate per <a href=tipi-di-dato-nativi.html#extendinglists>trovare la lunghezza di una lista</a>. Una stringa è come una lista di caratteri.
@@ -142,10 +142,10 @@ def approximate_size(size, a_kilobyte_is_1024_bytes=True):
 <p>Python 3 supporta la <dfn>formattazione</dfn> di valori in stringhe. Sebbene questo possa includere espressioni molto complicate, l'uso più basilare consiste nell'inserire un valore in una stringa con un singolo segnaposto.
 
 <pre class=screen>
-<samp class=p>>>> </samp><kbd>username = 'mark'</kbd>
-<a><samp class=p>>>> </samp><kbd>password = 'PapayaWhip'</kbd>                             <span class=u>&#x2460;</span></a>
-<a><samp class=p>>>> </samp><kbd>"{0}'s password is {1}".format(username, password)</kbd>  <span class=u>&#x2461;</span></a>
-<samp>"mark's password is PapayaWhip"</samp></pre>
+<samp class=p>>>> </samp><kbd class=pp>username = 'mark'</kbd>
+<a><samp class=p>>>> </samp><kbd class=pp>password = 'PapayaWhip'</kbd>                             <span class=u>&#x2460;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>"{0}'s password is {1}".format(username, password)</kbd>  <span class=u>&#x2461;</span></a>
+<samp class=pp>"mark's password is PapayaWhip"</samp></pre>
 <ol>
 <li>No, la mia password non è davvero <kbd>PapayaWhip</kbd>.
 <li>Ci sono un sacco di cose che stanno succedendo qui. Prima di tutto, c'è una chiamata di metodo su un letterale stringa. <em>Le stringhe sono oggetti</em>, e gli oggetti hanno metodi. Secondo, l'intera espressione viene valutata come una stringa. Terzo, <code>{0}</code> e <code>{1}</code> sono <i>campi di sostituzione</i>, che vengono rimpiazzati dagli argomenti passati al metodo <code><dfn>format</dfn>()</code>.
@@ -156,12 +156,12 @@ def approximate_size(size, a_kilobyte_is_1024_bytes=True):
 <p>L'esempio precedente mostra il caso più semplice, dove i campi di sostituzione sono semplicemente interi. I campi di sostituzione interi sono trattati come indici di posizione nella lista di argomenti del metodo <code>format()</code>. Questo significa che <code>{0}</code> è rimpiazzato dal primo argomento (<var>username</var> in questo caso), <code>{1}</code> è rimpiazzato dal secondo argomento (<var>password</var>), <i class=baa>&amp;</i>c. Potete avere tanti indici di posizione quanti sono gli argomenti, e potete avere tanti argomenti quanti ne volete. Ma i campi di sostituzione sono molto più potenti di così.
 
 <pre class=screen>
-<samp class=p>>>> </samp><kbd>import humansize</kbd>
-<a><samp class=p>>>> </samp><kbd>si_suffixes = humansize.SUFFIXES[1000]</kbd>      <span class=u>&#x2460;</span></a>
-<samp class=p>>>> </samp><kbd>si_suffixes</kbd>
-<samp>['KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']</samp>
-<a><samp class=p>>>> </samp><kbd>'1000{0[0]} = 1{0[1]}'.format(si_suffixes)</kbd>  <span class=u>&#x2461;</span></a>
-<samp>'1000KB = 1MB'</samp>
+<samp class=p>>>> </samp><kbd class=pp>import humansize</kbd>
+<a><samp class=p>>>> </samp><kbd class=pp>si_suffixes = humansize.SUFFIXES[1000]</kbd>      <span class=u>&#x2460;</span></a>
+<samp class=p>>>> </samp><kbd class=pp>si_suffixes</kbd>
+<samp class=pp>['KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>'1000{0[0]} = 1{0[1]}'.format(si_suffixes)</kbd>  <span class=u>&#x2461;</span></a>
+<samp class=pp>'1000KB = 1MB'</samp>
 </pre>
 <ol>
 <li>Invece di chiamare una funzione qualsiasi nel modulo <code>humansize</code>, state recuperando una delle strutture dati che il modulo definisce: la lista dei suffissi (potenze-di-1000) del Sistema internazionale di unità di misura (&#8220;SI&#8221;).
@@ -182,10 +182,10 @@ def approximate_size(size, a_kilobyte_is_1024_bytes=True):
 <p>Giusto per impressionarvi, eccovi un esempio che combina tutti i nomi appena visti:
 
 <pre class=screen>
-<samp class=p>>>> </samp><kbd>import humansize</kbd>
-<samp class=p>>>> </samp><kbd>import sys</kbd>
-<samp class=p>>>> </samp><kbd>'1MB = 1000{0.modules[humansize].SUFFIXES[1000][0]}'.format(sys)</kbd>
-<samp>'1MB = 1000KB'</samp></pre>
+<samp class=p>>>> </samp><kbd class=pp>import humansize</kbd>
+<samp class=p>>>> </samp><kbd class=pp>import sys</kbd>
+<samp class=p>>>> </samp><kbd class=pp>'1MB = 1000{0.modules[humansize].SUFFIXES[1000][0]}'.format(sys)</kbd>
+<samp class=pp>'1MB = 1000KB'</samp></pre>
 
 <p>Funziona in questo modo:
 
@@ -214,8 +214,8 @@ def approximate_size(size, a_kilobyte_is_1024_bytes=True):
 <p>Nell'ambito di un campo di sostituzione, i due punti (<code>:</code>) segnano l'inizio della specifica di formato. La specifica di formato &#8220;<code>.1</code>&#8221; significa &#8220;arrotonda al decimale più vicino&#8221; (<i>i.e.</i> mostra solo una cifra dopo il punto decimale). La specifica di formato &#8220;<code>f</code>&#8221; significa &#8220;numero in virgola fissa&#8221; (al contrario della notazione esponenziale o di qualche altra rappresentazione decimale). Quindi, data una dimensione <var>size</var> di <code>698.25</code> e un suffisso <var>suffix</var> di <code>'GB'</code>, la stringa formattata diventerà <code>'698.3 GB'</code>, perché <code>698.25</code> viene arrotondato alla prima cifra decimale, e il suffisso è aggiunto dopo il numero.
 
 <pre class=screen>
-<samp class=p>>>> </samp><kbd>'{0:.1f} {1}'.format(698.25, 'GB')</kbd>
-<samp>'698.3 GB'</samp></pre>
+<samp class=p>>>> </samp><kbd class=pp>'{0:.1f} {1}'.format(698.25, 'GB')</kbd>
+<samp class=pp>'698.3 GB'</samp></pre>
 
 <p>Per tutti i dettagli più intricati sulle specifiche di formato, consultate la sezione <a href=http://docs.python.org/3.0/library/string.html#format-specification-mini-language>Format Specification Mini-Language</a> nella documentazione ufficiale di Python.
 
@@ -230,18 +230,18 @@ def approximate_size(size, a_kilobyte_is_1024_bytes=True):
 <samp class=p>... </samp><kbd>sult of years of scientif-</kbd>
 <samp class=p>... </samp><kbd>ic study combined with the</kbd>
 <samp class=p>... </samp><kbd>experience of years.'''</kbd>
-<a><samp class=p>>>> </samp><kbd>s.splitlines()</kbd>                     <span class=u>&#x2461;</span></a>
-<samp>['Finished files are the re-',
+<a><samp class=p>>>> </samp><kbd class=pp>s.splitlines()</kbd>                     <span class=u>&#x2461;</span></a>
+<samp class=pp>['Finished files are the re-',
  'sult of years of scientif-',
  'ic study combined with the',
  'experience of years.']</samp>
-<a><samp class=p>>>> </samp><kbd>print(s.lower())</kbd>                   <span class=u>&#x2462;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>print(s.lower())</kbd>                   <span class=u>&#x2462;</span></a>
 <samp>finished files are the re-
 sult of years of scientif-
 ic study combined with the
 experience of years.</samp>
-<a><samp class=p>>>> </samp><kbd>s.lower().count('f')</kbd>               <span class=u>&#x2463;</span></a>
-<samp>6</samp></pre>
+<a><samp class=p>>>> </samp><kbd class=pp>s.lower().count('f')</kbd>               <span class=u>&#x2463;</span></a>
+<samp class=pp>6</samp></pre>
 <ol>
 <li>Potete introdurre stringhe <dfn>multiriga</dfn> nella shell interattiva di Python. Una volta che avete cominciato una stringa su più righe con le triple virgolette, vi basta premere <kbd>ENTER</kbd> e la shell interattiva vi permetterà di continuare la stringa. Digitare le triple virgolette di chiusura termina la stringa, e il successivo <kbd>ENTER</kbd> eseguirà il comando (in questo caso, l'assegnamento della stringa a <var>s</var>).
 <li>Il metodo <code><dfn>splitlines</dfn>()</code> prende una stringa multiriga e restituisce una lista di stringhe, una per ogni riga di quella originale. Notate che i caratteri di a capo alla fine di ogni linea non sono inclusi.
@@ -252,16 +252,16 @@ experience of years.</samp>
 <p>Ecco un altro caso comune. Diciamo che avete una lista di coppie chiavi-valori nella forma <code><var>key1</var>=<var>value1</var>&amp;<var>key2</var>=<var>value2</var></code>, e volete separarle e creare un dizionario della forma <code>{key1: value1, key2: value2}</code>.
 
 <pre class=screen>
-<samp class=p>>>> </samp><kbd>query = 'user=pilgrim&amp;database=master&amp;password=PapayaWhip'</kbd>
-<a><samp class=p>>>> </samp><kbd>a_list = query.split('&amp;')</kbd>                            <span class=u>&#x2460;</span></a>
-<samp class=p>>>> </samp><kbd>a_list</kbd>
-<samp>['user=pilgrim', 'database=master', 'password=PapayaWhip']</samp>
-<a><samp class=p>>>> </samp><kbd>a_list_of_lists = [v.split('=', 1) for v in a_list]</kbd>  <span class=u>&#x2461;</span></a>
-<samp class=p>>>> </samp><kbd>a_list_of_lists</kbd>
-<samp>[['user', 'pilgrim'], ['database', 'master'], ['password', 'PapayaWhip']]</samp>
-<a><samp class=p>>>> </samp><kbd>a_dict = dict(a_list_of_lists)</kbd>                       <span class=u>&#x2462;</span></a>
-<samp class=p>>>> </samp><kbd>a_dict</kbd>
-<samp>{'password': 'PapayaWhip', 'user': 'pilgrim', 'database': 'master'}</samp></pre>
+<samp class=p>>>> </samp><kbd class=pp>query = 'user=pilgrim&amp;database=master&amp;password=PapayaWhip'</kbd>
+<a><samp class=p>>>> </samp><kbd class=pp>a_list = query.split('&amp;')</kbd>                            <span class=u>&#x2460;</span></a>
+<samp class=p>>>> </samp><kbd class=pp>a_list</kbd>
+<samp class=pp>['user=pilgrim', 'database=master', 'password=PapayaWhip']</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>a_list_of_lists = [v.split('=', 1) for v in a_list]</kbd>  <span class=u>&#x2461;</span></a>
+<samp class=p>>>> </samp><kbd class=pp>a_list_of_lists</kbd>
+<samp class=pp>[['user', 'pilgrim'], ['database', 'master'], ['password', 'PapayaWhip']]</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>a_dict = dict(a_list_of_lists)</kbd>                       <span class=u>&#x2462;</span></a>
+<samp class=p>>>> </samp><kbd class=pp>a_dict</kbd>
+<samp class=pp>{'password': 'PapayaWhip', 'user': 'pilgrim', 'database': 'master'}</samp></pre>
 
 <ol>
 <li>Il metodo <code><dfn>split</dfn>()</code> delle stringhe prende un argomento, un delimitatore, e divide la stringa in una lista di stringhe in corrispondenza del delimitatore. In questo caso, il delimitatore è un carattere di E commerciale, ma potrebbe essere qualsiasi cosa.
@@ -276,21 +276,21 @@ experience of years.</samp>
 <p>I <dfn>byte</dfn> sono byte; i caratteri sono un'astrazione. Una sequenza immutabile di caratteri Unicode si chiama <i>stringa</i>. Una sequenza immutabile di numeri-tra-0-e-255 si chiama oggetto <i>byte</i>.
 
 <pre class=screen>
-<a><samp class=p>>>> </samp><kbd>by = b'abcd\x65'</kbd>  <span class=u>&#x2460;</span></a>
-<samp class=p>>>> </samp><kbd>by</kbd>
-<samp>b'abcde'</samp>
-<a><samp class=p>>>> </samp><kbd>type(by)</kbd>          <span class=u>&#x2461;</span></a>
-<samp>&lt;class 'bytes'></samp>
-<a><samp class=p>>>> </samp><kbd>len(by)</kbd>           <span class=u>&#x2462;</span></a>
-<samp>5</samp>
-<a><samp class=p>>>> </samp><kbd>by += b'\xff'</kbd>     <span class=u>&#x2463;</span></a>
-<samp class=p>>>> </samp><kbd>by</kbd>
-<samp>b'abcde\xff'</samp>
-<a><samp class=p>>>> </samp><kbd>len(by)</kbd>           <span class=u>&#x2464;</span></a>
-<samp>6</samp>
-<a><samp class=p>>>> </samp><kbd>by[0]</kbd>             <span class=u>&#x2465;</span></a>
-<samp>97</samp>
-<a><samp class=p>>>> </samp><kbd>by[0] = 102</kbd>       <span class=u>&#x2466;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>by = b'abcd\x65'</kbd>  <span class=u>&#x2460;</span></a>
+<samp class=p>>>> </samp><kbd class=pp>by</kbd>
+<samp class=pp>b'abcde'</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>type(by)</kbd>          <span class=u>&#x2461;</span></a>
+<samp class=pp>&lt;class 'bytes'></samp>
+<a><samp class=p>>>> </samp><kbd class=pp>len(by)</kbd>           <span class=u>&#x2462;</span></a>
+<samp class=pp>5</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>by += b'\xff'</kbd>     <span class=u>&#x2463;</span></a>
+<samp class=p>>>> </samp><kbd class=pp>by</kbd>
+<samp class=pp>b'abcde\xff'</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>len(by)</kbd>           <span class=u>&#x2464;</span></a>
+<samp class=pp>6</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>by[0]</kbd>             <span class=u>&#x2465;</span></a>
+<samp class=pp>97</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>by[0] = 102</kbd>       <span class=u>&#x2466;</span></a>
 <samp class=traceback>Traceback (most recent call last):
   File "&lt;stdin>", line 1, in &lt;module>
 TypeError: 'bytes' object does not support item assignment</samp></pre>
@@ -305,15 +305,15 @@ TypeError: 'bytes' object does not support item assignment</samp></pre>
 </ol>
 
 <pre class=screen>
-<samp class=p>>>> </samp><kbd>by = b'abcd\x65'</kbd>
-<a><samp class=p>>>> </samp><kbd>barr = bytearray(by)</kbd>  <span class=u>&#x2460;</span></a>
-<samp class=p>>>> </samp><kbd>barr</kbd>
-<samp>bytearray(b'abcde')</samp>
-<a><samp class=p>>>> </samp><kbd>len(barr)</kbd>             <span class=u>&#x2461;</span></a>
-<samp>5</samp>
-<a><samp class=p>>>> </samp><kbd>barr[0] = 102</kbd>         <span class=u>&#x2462;</span></a>
-<samp class=p>>>> </samp><kbd>barr</kbd>
-<samp>bytearray(b'fbcde')</samp></pre>
+<samp class=p>>>> </samp><kbd class=pp>by = b'abcd\x65'</kbd>
+<a><samp class=p>>>> </samp><kbd class=pp>barr = bytearray(by)</kbd>  <span class=u>&#x2460;</span></a>
+<samp class=p>>>> </samp><kbd class=pp>barr</kbd>
+<samp class=pp>bytearray(b'abcde')</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>len(barr)</kbd>             <span class=u>&#x2461;</span></a>
+<samp class=pp>5</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>barr[0] = 102</kbd>         <span class=u>&#x2462;</span></a>
+<samp class=p>>>> </samp><kbd class=pp>barr</kbd>
+<samp class=pp>bytearray(b'fbcde')</samp></pre>
 <ol>
 <li>Per convertire un oggetto <code>bytes</code> in un oggetto <code>bytearray</code> modificabile, usate la funzione built-in <code>bytearray()</code>.
 <li>Tutti i metodi e le operazioni che si possono eseguire su un oggetto <code>bytes</code> si possono eseguire anche su un oggetto <code>bytearray</code>.
@@ -323,18 +323,18 @@ TypeError: 'bytes' object does not support item assignment</samp></pre>
 <p>L'unica cosa che <em>non potete mai fare</em> è mescolare stringhe e byte.
 
 <pre class=screen>
-<samp class=p>>>> </samp><kbd>by = b'd'</kbd>
-<samp class=p>>>> </samp><kbd>s = 'abcde'</kbd>
-<a><samp class=p>>>> </samp><kbd>by + s</kbd>                       <span class=u>&#x2460;</span></a>
+<samp class=p>>>> </samp><kbd class=pp>by = b'd'</kbd>
+<samp class=p>>>> </samp><kbd class=pp>s = 'abcde'</kbd>
+<a><samp class=p>>>> </samp><kbd class=pp>by + s</kbd>                       <span class=u>&#x2460;</span></a>
 <samp class=traceback>Traceback (most recent call last):
   File "&lt;stdin>", line 1, in &lt;module>
 TypeError: can't concat bytes to str</samp>
-<a><samp class=p>>>> </samp><kbd>s.count(by)</kbd>                  <span class=u>&#x2461;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>s.count(by)</kbd>                  <span class=u>&#x2461;</span></a>
 <samp class=traceback>Traceback (most recent call last):
   File "&lt;stdin>", line 1, in &lt;module>
 TypeError: Can't convert 'bytes' object to str implicitly</samp>
-<a><samp class=p>>>> </samp><kbd>s.count(by.decode('ascii'))</kbd>  <span class=u>&#x2462;</span></a>
-<samp>1</samp></pre>
+<a><samp class=p>>>> </samp><kbd class=pp>s.count(by.decode('ascii'))</kbd>  <span class=u>&#x2462;</span></a>
+<samp class=pp>1</samp></pre>
 <ol>
 <li>Non potete concatenare stringhe e byte. Sono due tipi di dati differenti.
 <li>Non potete contare le occorrenze di byte in una stringa, perché non c'è alcun byte in una stringa. Una stringa è una sequenza di caratteri. Forse intendevate &#8220;conta le occorrenze della stringa che si otterrebbe dopo aver decodificato questa sequenza di byte in una particolare codifica di caratteri&#8221;? Ebbene, allora, dovete dirlo esplicitamente. Python 3 non convertirà <dfn>implicitamente</dfn> byte in stringhe o stringhe in byte.
@@ -344,29 +344,29 @@ TypeError: Can't convert 'bytes' object to str implicitly</samp>
 <p>Ed ecco il collegamento tra stringhe e byte: gli oggetti <code>bytes</code> hanno un metodo <code><dfn>decode</dfn>()</code> che prende una codifica di caratteri e restituisce una stringa, e le stringhe hanno un metodo <code><dfn>encode</dfn>()</code> che prende una codifica di caratteri e restituisce un oggetto <code>bytes</code>. Nell'esempio precedente, la decodifica era relativamente semplice &mdash; convertire una sequenza di byte in una stringa di caratteri attraverso la codifica <abbr>ASCII</abbr>. Ma lo stesso procedimento funziona con qualsiasi codifica che supporti i caratteri della stringa &mdash; persino codifiche legacy (non Unicode).
 
 <pre class=screen>
-<a><samp class=p>>>> </samp><kbd>a_string = '深入 Python'</kbd>         <span class=u>&#x2460;</span></a>
-<samp class=p>>>> </samp><kbd>len(a_string)</kbd>
-<samp>9</samp>
-<a><samp class=p>>>> </samp><kbd>by = a_string.encode('utf-8')</kbd>    <span class=u>&#x2461;</span></a>
-<samp class=p>>>> </samp><kbd>by</kbd>
-<samp>b'\xe6\xb7\xb1\xe5\x85\xa5 Python'</samp>
-<samp class=p>>>> </samp><kbd>len(by)</kbd>
-<samp>13</samp>
-<a><samp class=p>>>> </samp><kbd>by = a_string.encode('gb18030')</kbd>  <span class=u>&#x2462;</span></a>
-<samp class=p>>>> </samp><kbd>by</kbd>
-<samp>b'\xc9\xee\xc8\xeb Python'</samp>
-<samp class=p>>>> </samp><kbd>len(by)</kbd>
-<samp>11</samp>
-<a><samp class=p>>>> </samp><kbd>by = a_string.encode('big5')</kbd>     <span class=u>&#x2463;</span></a>
-<samp class=p>>>> </samp><kbd>by</kbd>
-<samp>b'\xb2`\xa4J Python'</samp>
-<samp class=p>>>> </samp><kbd>len(by)</kbd>
-<samp>11</samp>
-<a><samp class=p>>>> </samp><kbd>roundtrip = by.decode('big5')</kbd>    <span class=u>&#x2464;</span></a>
-<samp class=p>>>> </samp><kbd>roundtrip</kbd>
-<samp>'深入 Python'</samp>
-<samp class=p>>>> </samp><kbd>a_string == roundtrip</kbd>
-<samp>True</samp></pre>
+<a><samp class=p>>>> </samp><kbd class=pp>a_string = '深入 Python'</kbd>         <span class=u>&#x2460;</span></a>
+<samp class=p>>>> </samp><kbd class=pp>len(a_string)</kbd>
+<samp class=pp>9</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>by = a_string.encode('utf-8')</kbd>    <span class=u>&#x2461;</span></a>
+<samp class=p>>>> </samp><kbd class=pp>by</kbd>
+<samp class=pp>b'\xe6\xb7\xb1\xe5\x85\xa5 Python'</samp>
+<samp class=p>>>> </samp><kbd class=pp>len(by)</kbd>
+<samp class=pp>13</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>by = a_string.encode('gb18030')</kbd>  <span class=u>&#x2462;</span></a>
+<samp class=p>>>> </samp><kbd class=pp>by</kbd>
+<samp class=pp>b'\xc9\xee\xc8\xeb Python'</samp>
+<samp class=p>>>> </samp><kbd class=pp>len(by)</kbd>
+<samp class=pp>11</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>by = a_string.encode('big5')</kbd>     <span class=u>&#x2463;</span></a>
+<samp class=p>>>> </samp><kbd class=pp>by</kbd>
+<samp class=pp>b'\xb2`\xa4J Python'</samp>
+<samp class=p>>>> </samp><kbd class=pp>len(by)</kbd>
+<samp class=pp>11</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>roundtrip = by.decode('big5')</kbd>    <span class=u>&#x2464;</span></a>
+<samp class=p>>>> </samp><kbd class=pp>roundtrip</kbd>
+<samp class=pp>'深入 Python'</samp>
+<samp class=p>>>> </samp><kbd class=pp>a_string == roundtrip</kbd>
+<samp class=pp>True</samp></pre>
 <ol>
 <li>Questa è una stringa. Ha nove caratteri.
 <li>Questo è un oggetto <code>bytes</code>. Ha 13 byte. &Egrave; la sequenza di byte che si ottiene codificando <var>a_string</var> in UTF-8.
