@@ -13,11 +13,11 @@ body{counter-reset:h1 8}
 <meta name=viewport content='initial-scale=1.0'>
 </head>
 <form action=http://www.google.com/cse><div><input type=hidden name=cx value=014021643941856155761:l5eihuescdw><input type=hidden name=ie value=UTF-8>&nbsp;<input name=q size=25>&nbsp;<input type=submit name=root value=Search></div></form>
-<p>Voi siete qui: <a href=index.html>Home</a> <span>&#8227;</span> <a href=table-of-contents.html#unit-testing>Dive Into Python 3</a> <span>&#8227;</span>
+<p>Voi siete qui: <a href=index.html>Home</a> <span class=u>&#8227;</span> <a href=table-of-contents.html#unit-testing>Dive Into Python 3</a> <span class=u>&#8227;</span>
 <p id=level>Livello di difficoltà: <span class=u title=principiante>&#x2666;&#x2666;&#x2666;&#x2662;&#x2662;</span>
 <h1>Test di unità</h1>
 <blockquote class=q>
-<p><span>&#x275D;</span> Certitude is not the test of certainty. We have been cocksure of many things that were not so. <span>&#x275E;</span><br>&mdash; <a href=http://en.wikiquote.org/wiki/Oliver_Wendell_Holmes,_Jr.>Oliver Wendell Holmes, Jr.</a>
+<p><span class=u>&#x275D;</span> Certitude is not the test of certainty. We have been cocksure of many things that were not so. <span class=u>&#x275E;</span><br>&mdash; <a href=http://en.wikiquote.org/wiki/Oliver_Wendell_Holmes,_Jr.>Oliver Wendell Holmes, Jr.</a>
 </blockquote>
 <p id=toc>&nbsp;
 <h2 id=divingin>Immersione! (Oppure no?)</h2>
@@ -59,10 +59,10 @@ body{counter-reset:h1 8}
 </ol>
 <p>Non è immediatamente ovvio come questo codice faccia&hellip; be', <em>alcunché</em>. Definisce una classe che non ha alcun metodo <code>__init__()</code>. La classe <em>ha</em> un altro metodo, ma non viene mai chiamato. L'intero script ha un blocco <code>__main__</code>, ma non fa riferimento alla classe o al suo metodo. Ma fa qualcosa, prometto.
 <p class=d>[<a href=esempi/romantest1.py>scarica <code>romantest1.py</code></a>]
-<pre><code>import roman1
+<pre><code class=pp>import roman1
 import unittest
 
-<a>class KnownValues(unittest.TestCase):               <span>&#x2460;</span></a>
+<a>class KnownValues(unittest.TestCase):               <span class=u>&#x2460;</span></a>
     known_values = ( (1, 'I'),
                      (2, 'II'),
                      (3, 'III'),
@@ -118,13 +118,13 @@ import unittest
                      (3844, 'MMMDCCCXLIV'),
                      (3888, 'MMMDCCCLXXXVIII'),
                      (3940, 'MMMCMXL'),
-<a>                     (3999, 'MMMCMXCIX'))           <span>&#x2461;</span></a>
+<a>                     (3999, 'MMMCMXCIX'))           <span class=u>&#x2461;</span></a>
 
-<a>    def test_to_roman_known_values(self):           <span>&#x2462;</span></a>
+<a>    def test_to_roman_known_values(self):           <span class=u>&#x2462;</span></a>
         '''to_roman should give known result with known input'''
         for integer, numeral in self.known_values:
-<a>            result = roman1.to_roman(integer)       <span>&#x2463;</span></a>
-<a>            self.assertEqual(numeral, result)       <span>&#x2464;</span></a>
+<a>            result = roman1.to_roman(integer)       <span class=u>&#x2463;</span></a>
+<a>            self.assertEqual(numeral, result)       <span class=u>&#x2464;</span></a>
 
 if __name__ == '__main__':
     unittest.main()</code></pre>
@@ -137,18 +137,18 @@ if __name__ == '__main__':
 </ol>
 <aside>Scrivete un test che fallisce, poi programmate fino a quando ha successo.</aside>
 <p>Ora che avete scritto un test, potete cominciare a implementare la funzione <code>to_roman()</code>. Prima di tutto, dovreste creare lo scheletro vuoto della funzione e verificare che il test fallisca. Se il test ha successo prima che abbiate scritto del codice, state sbagliando qualcosa &mdash; i vostri test non stanno per niente collaudando il vostro codice! Scrivete un test che fallisce, poi programmate fino a quando ha successo.
-<pre><code># roman1.py
+<pre><code class=pp># roman1.py
 
 function to_roman(n):
     '''convert integer to Roman numeral'''
-<a>    pass                                   <span>&#x2460;</span></a></code></pre>
+<a>    pass                                   <span class=u>&#x2460;</span></a></code></pre>
 <ol>
 <li>A questo punto, volete definire la <abbr>API</abbr> della funzione <code>to_roman()</code>, ma non volete ancora scriverne il codice. (Il vostro test deve prima fallire.) Per creare lo scheletro della funzione, usate la parola riservata <code>pass</code> di Python <span class=fixme>[FIXME ref]</span>, che non fa precisamente niente.
 </ol>
 <p>Per lanciare i test, eseguite <code>romantest1.py</code> dalla linea di comando. Se chiamate lo script con l'opzione <code>-v</code>, le informazioni visualizzate saranno più verbose in modo che possiate vedere esattamente cosa succede quando ogni test viene eseguito. Con ogni probabilità, il risultato della vostra esecuzione dovrebbe somigliare a questo:
 <pre class=screen>
 <samp class=p>you@localhost:~$ </samp><kbd>python3 romantest1.py -v</kbd>
-<samp><a>to_roman should give known result with known input ... FAIL            <span>&#x2460;</span></a>
+<samp><a>to_roman should give known result with known input ... FAIL            <span class=u>&#x2460;</span></a>
 
 ======================================================================
 FAIL: to_roman should give known result with known input
@@ -156,12 +156,12 @@ FAIL: to_roman should give known result with known input
 Traceback (most recent call last):
   File "romantest1.py", line 73, in test_to_roman_known_values
     self.assertEqual(numeral, result)
-<a>AssertionError: 'I' != None                                            <span>&#x2461;</span></a>
+<a>AssertionError: 'I' != None                                            <span class=u>&#x2461;</span></a>
 
 ----------------------------------------------------------------------
-<a>Ran 1 test in 0.016s                                                   <span>&#x2462;</span></a>
+<a>Ran 1 test in 0.016s                                                   <span class=u>&#x2462;</span></a>
 
-<a>FAILED (failures=1)                                                    <span>&#x2463;</span></a></samp></pre>
+<a>FAILED (failures=1)                                                    <span class=u>&#x2463;</span></a></samp></pre>
 <ol>
 <li>Lanciare lo script esegue <code>unittest.main()</code> che a sua volta esegue tutti i test. Ogni test è un metodo all'interno di ogni classe in <code>romantest.py</code> che erediti da <code>unittest.TestCase</code>. Per ogni test, il modulo <code>unittest</code> mostrerà la <code>docstring</code> del metodo e un risultato di successo o fallimento per quel test. Come ci aspettavamo, questo test fallisce.
 <li>Per ogni test fallito, <code>unittest</code> visualizzerà le informazioni della traccia dello stack di esecuzione che mostrano esattamente cos'è successo. In questo caso, la chiamata ad <code>assertEqual()</code> ha sollevato una eccezione di tipo <code>AssertionError</code> perché si aspettava che <code>to_roman(1)</code> restituisse <code>'I'</code>, ma non lo ha fatto. (Dato che non c'era nessuna istruzione esplicita di <code>return</code>, la funzione ha restituito <code>None</code>, il valore nullo di Python.)
@@ -170,7 +170,7 @@ Traceback (most recent call last):
 </ol>
 <p><em>Ora</em>, finalmente, potete scrivere la funzione <code>to_roman()</code>.
 <p class=d>[<a href=esempi/roman1.py>scarica <code>roman1.py</code></a>]
-<pre><code>roman_numeral_map = (('M',  1000),
+<pre><code class=pp>roman_numeral_map = (('M',  1000),
                      ('CM', 900),
                      ('D',  500),
                      ('CD', 400),
@@ -182,13 +182,13 @@ Traceback (most recent call last):
                      ('IX', 9),
                      ('V',  5),
                      ('IV', 4),
-<a>                     ('I',  1))                 <span>&#x2460;</span></a>
+<a>                     ('I',  1))                 <span class=u>&#x2460;</span></a>
 
 def to_roman(n):
     '''convert integer to Roman numeral'''
     result = ''
     for numeral, integer in roman_numeral_map:
-<a>        while n >= integer:                     <span>&#x2461;</span></a>
+<a>        while n >= integer:                     <span class=u>&#x2461;</span></a>
             result += numeral
             n -= integer
     return result</code></pre>
@@ -197,7 +197,7 @@ def to_roman(n):
 <li>Ed ecco dove la ricca struttura dati di <var>roman_numeral_map</var> vi ricompensa, perché non avete bisogno di alcuna logica speciale per gestire la regola di sottrazione. Per convertire verso i numeri romani, dovete semplicemente iterare attraverso <var>roman_numeral_map</var> cercando il più grande valore intero minore o uguale al numero in ingresso. Una volta trovato, aggiungete la rappresentazione del numero romano alla fine del risultato, sottraete il corrispondente valore intero dal numero in ingresso, insaponate, sciacquate, ripetete.
 </ol>
 <p>Se non vi è ancora chiaro come la funzione <code>to_roman()</code> lavora, aggiungete una chiamata a <code>print()</code> alla fine del ciclo <code>while</code>:
-<pre><code>
+<pre><code class=pp>
 while n >= integer:
     result += numeral
     n -= integer
@@ -237,7 +237,7 @@ OK</samp></pre>
 <samp>'MMMM'</samp>
 <samp class=p>>>> </samp><kbd>roman1.to_roman(5000)</kbd>
 <samp>'MMMMM'</samp>
-<a><samp class=p>>>> </samp><kbd>roman1.to_roman(9000)</kbd>  <span>&#x2460;</span></a>
+<a><samp class=p>>>> </samp><kbd>roman1.to_roman(9000)</kbd>  <span class=u>&#x2460;</span></a>
 <samp>'MMMMMMMMM'</samp></pre>
 <ol>
 <li>Questo non è assolutamente quello che volete &mdash; quello non è nemmeno un numero romano valido! In effetti, ognuno di questi numeri è fuori dall'intervallo degli ingressi accettabili, ma la funzione restituisce comunque un finto valore. Restituire silenziosamente valori sbagliati è <em>maaaaaaale</em>; se un programma deve fallire, è molto meglio che fallisca velocemente e rumorosamente. &#8220;Fermati e prendi fuoco,&#8221; come si dice in gergo. Il modo che ha Python di fermarsi e prendere fuoco è sollevare una eccezione.
@@ -248,11 +248,10 @@ OK</samp></pre>
 </blockquote>
 <p>Che aspetto potrebbe avere il test?
 <p class=d>[<a href=esempi/romantest2.py>scarica <code>romantest2.py</code></a>]
-<pre><code>
-<a>class ToRomanBadInput(unittest.TestCase):                                 <span>&#x2460;</span></a>
-<a>    def test_too_large(self):                                             <span>&#x2461;</span></a>
+<pre><code class=pp><a>class ToRomanBadInput(unittest.TestCase):                                 <span class=u>&#x2460;</span></a>
+<a>    def test_too_large(self):                                             <span class=u>&#x2461;</span></a>
         '''to_roman should fail with large input'''
-<a>        self.assertRaises(roman2.OutOfRangeError, roman2.to_roman, 4000)  <span>&#x2462;</span></a></code></pre>
+<a>        self.assertRaises(roman2.OutOfRangeError, roman2.to_roman, 4000)  <span class=u>&#x2462;</span></a></code></pre>
 <ol>
 <li>Come nel test precedente, create una classe che eredita da <code>unittest.TestCase</code>. Potete avere più di un test per classe (come vedrete più avanti in questo capitolo), ma in questo caso ho scelto di creare una nuova classe perché questo collaudo è qualcosa di diverso rispetto al precedente. Raggrupperemo tutti i collaudi sugli ingressi validi in una classe, e tutti i collaudi sugli ingressi non validi in un'altra.
 <li>Come nel test precedente, il test vero e proprio è un metodo della classe, con un nome che comincia con <code>test</code>.
@@ -264,7 +263,7 @@ OK</samp></pre>
 <pre class=screen>
 <samp class=p>you@localhost:~$ </samp><kbd>python3 romantest2.py -v</kbd>
 <samp>to_roman should give known result with known input ... ok
-<a>to_roman should fail with large input ... ERROR                         <span>&#x2460;</span></a>
+<a>to_roman should fail with large input ... ERROR                         <span class=u>&#x2460;</span></a>
 
 ======================================================================
 ERROR: to_roman should fail with large input                          
@@ -272,7 +271,7 @@ ERROR: to_roman should fail with large input
 Traceback (most recent call last):
   File "romantest2.py", line 78, in test_too_large
     self.assertRaises(roman2.OutOfRangeError, roman2.to_roman, 4000)
-<a>AttributeError: 'module' object has no attribute 'OutOfRangeError'      <span>&#x2461;</span></a>
+<a>AttributeError: 'module' object has no attribute 'OutOfRangeError'      <span class=u>&#x2461;</span></a>
 
 ----------------------------------------------------------------------
 Ran 2 tests in 0.000s
@@ -283,8 +282,8 @@ FAILED (errors=1)</samp></pre>
 <li>Perché il codice non è stato eseguito correttamente? La traccia dello stack di esecuzione ci fornisce la risposta: il modulo che state collaudando non include alcuna eccezione chiamata <code>OutOfRangeError</code>. Ricordate, avete passato questa eccezione al metodo <code>assertRaises()</code>, perché è l'eccezione che volete che la funzione sollevi quando riceve un ingresso fuori dall'intervallo consentito. Ma l'eccezione non esiste, quindi la chiamata al metodo <code>assertRaises()</code> fallisce. Il metodo non ha avuto la possibilità di collaudare la funzione <code>to_roman()</code>; non è arrivato così lontano.
 </ol>
 <p>Per risolvere questo problema, dovete definire l'eccezione <code>OutOfRangeError</code> in <code>roman2.py</code>.
-<pre><code><a>class OutOfRangeError(ValueError):  <span>&#x2460;</span></a>
-<a>    pass                            <span>&#x2461;</span></a></code></pre>
+<pre><code class=pp><a>class OutOfRangeError(ValueError):  <span class=u>&#x2460;</span></a>
+<a>    pass                            <span class=u>&#x2461;</span></a></code></pre>
 <ol>
 <li>Le eccezioni sono classi. Un errore di tipo &#8220;out of range&#8221; è un tipo di errore sui valori &mdash; il valore passato come argomento è fuori dal suo intervallo accettabile. Così questa eccezione eredita dalla eccezione built-in <code>ValueError</code>. Questo non è strettamente necessario (avrebbe potuto semplicemente ereditare dalla classe base <code>Exception</code>), ma suona corretto.
 <li>Le eccezioni non fanno effettivamente niente, ma avete bisogno di almeno una riga di codice per costruire una classe. L'istruzione <code>pass</code> non fa precisamente nulla, ma è una riga di codice Python, e quindi costituisce una classe.
@@ -293,7 +292,7 @@ FAILED (errors=1)</samp></pre>
 <pre class=screen>
 <samp class=p>you@localhost:~$ </samp><kbd>python3 romantest2.py -v</kbd>
 <samp>to_roman should give known result with known input ... ok
-<a>to_roman should fail with large input ... FAIL                          <span>&#x2460;</span></a>
+<a>to_roman should fail with large input ... FAIL                          <span class=u>&#x2460;</span></a>
 
 ======================================================================
 FAIL: to_roman should fail with large input
@@ -301,7 +300,7 @@ FAIL: to_roman should fail with large input
 Traceback (most recent call last):
   File "romantest2.py", line 78, in test_too_large
     self.assertRaises(roman2.OutOfRangeError, roman2.to_roman, 4000)
-<a>AssertionError: OutOfRangeError not raised by to_roman                 <span>&#x2461;</span></a>
+<a>AssertionError: OutOfRangeError not raised by to_roman                 <span class=u>&#x2461;</span></a>
 
 ----------------------------------------------------------------------
 Ran 2 tests in 0.016s
@@ -313,10 +312,10 @@ FAILED (failures=1)</samp></pre>
 </ol>
 <p>Ora potete scrivere il codice per far passare questo test.
 <p class=d>[<a href=esempi/roman2.py>scarica <code>roman2.py</code></a>]
-<pre><code>def to_roman(n):
+<pre><code class=pp>def to_roman(n):
     '''convert integer to Roman numeral'''
     if n > 3999:
-<a>        raise OutOfRangeError('number out of range (must be less than 3999)')  <span>&#x2460;</span></a>
+<a>        raise OutOfRangeError('number out of range (must be less than 3999)')  <span class=u>&#x2460;</span></a>
 
     result = ''
     for numeral, integer in roman_numeral_map:
@@ -331,7 +330,7 @@ FAILED (failures=1)</samp></pre>
 <pre class=screen>
 <samp class=p>you@localhost:~$ </samp><kbd>python3 romantest2.py -v</kbd>
 <samp>to_roman should give known result with known input ... ok
-<a>to_roman should fail with large input ... ok                            <span>&#x2460;</span></a>
+<a>to_roman should fail with large input ... ok                            <span class=u>&#x2460;</span></a>
 
 ----------------------------------------------------------------------
 Ran 2 tests in 0.000s
@@ -357,19 +356,18 @@ OK</samp></pre>
 <p><em>Questo</em> non va bene. Aggiungiamo dei test per ognuna di queste condizioni.
 
 <p class=d>[<a href=esempi/romantest3.py>scarica <code>romantest3.py</code></a>]
-<pre><code>
-class ToRomanBadInput(unittest.TestCase):
+<pre><code class=pp>class ToRomanBadInput(unittest.TestCase):
     def test_too_large(self):
         '''to_roman should fail with large input'''
-<a>        self.assertRaises(roman3.OutOfRangeError, roman3.to_roman, 4000)  <span>&#x2460;</span></a>
+<a>        self.assertRaises(roman3.OutOfRangeError, roman3.to_roman, 4000)  <span class=u>&#x2460;</span></a>
 
     def test_zero(self):
         '''to_roman should fail with 0 input'''
-<a>        self.assertRaises(roman3.OutOfRangeError, roman3.to_roman, 0)     <span>&#x2461;</span></a>
+<a>        self.assertRaises(roman3.OutOfRangeError, roman3.to_roman, 0)     <span class=u>&#x2461;</span></a>
 
     def test_negative(self):
         '''to_roman should fail with negative input'''
-<a>        self.assertRaises(roman3.OutOfRangeError, roman3.to_roman, -1)    <span>&#x2462;</span></a></code></pre>
+<a>        self.assertRaises(roman3.OutOfRangeError, roman3.to_roman, -1)    <span class=u>&#x2462;</span></a></code></pre>
 <ol>
 <li>Il metodo <code>test_too_large()</code> non è cambiato rispetto al passo precedente. Lo includo qui per mostrare dove trova posto il nuovo codice.
 <li>Ecco un nuovo test: il metodo <code>test_zero()</code>. Come il metodo <code>test_too_large()</code>, dice al metodo <code>assertRaises()</code> definito in <code>unittest.TestCase</code> di chiamare la nostra funzione <code>to_roman()</code> con un parametro di <code>0</code>, e verificare che sollevi l'eccezione appropriata, <code>OutOfRangeError</code>.
@@ -409,10 +407,10 @@ FAILED (failures=2)</samp></pre>
 <p>Eccellente. Entrambi i test falliscono, come era da aspettarsi. Ora passiamo al codice e vediamo cosa possiamo fare per farli passare.
 
 <p class=d>[<a href=esempi/roman3.py>scarica <code>roman3.py</code></a>]
-<pre><code>def to_roman(n):
+<pre><code class=pp>def to_roman(n):
     '''convert integer to Roman numeral'''
-<a>    if not (0 < n < 4000):                                              <span>&#x2460;</span></a>
-<a>        raise OutOfRangeError('number out of range (must be 0..3999)')  <span>&#x2461;</span></a>
+<a>    if not (0 < n < 4000):                                              <span class=u>&#x2460;</span></a>
+<a>        raise OutOfRangeError('number out of range (must be 0..3999)')  <span class=u>&#x2461;</span></a>
 
     result = ''
     for numeral, integer in roman_numeral_map:
@@ -447,9 +445,9 @@ OK</samp></pre>
 
 <pre class=screen>
 <samp class=p>>>> </samp><kbd>import roman3</kbd>
-<a><samp class=p>>>> </samp><kbd>roman3.to_roman(0.5)</kbd>  <span>&#x2460;</span></a>
+<a><samp class=p>>>> </samp><kbd>roman3.to_roman(0.5)</kbd>  <span class=u>&#x2460;</span></a>
 <samp>''</samp>
-<a><samp class=p>>>> </samp><kbd>roman3.to_roman(1.5)</kbd>  <span>&#x2461;</span></a>
+<a><samp class=p>>>> </samp><kbd>roman3.to_roman(1.5)</kbd>  <span class=u>&#x2461;</span></a>
 <samp>'I'</samp></pre>
 <ol>
 <li>Oh, questo non va bene.
@@ -458,13 +456,13 @@ OK</samp></pre>
 
 <p>Fare il collaudo per i numeri non interi non è difficile. Prima di tutto, definite una eccezione chiamata <code>NonIntegerError</code>.
 
-<pre><code># roman4.py
+<pre><code class=pp># roman4.py
 class OutOfRangeError(ValueError): pass
 <mark>class NotIntegerError(ValueError): pass</mark></code></pre>
 
 <p>Poi, scrivete un test che verifichi la generazione dell'eccezione <code>NonIntegerError</code>.
 
-<pre><code>class ToRomanBadInput(unittest.TestCase):
+<pre><code class=pp>class ToRomanBadInput(unittest.TestCase):
     .
     .
     .
@@ -497,12 +495,12 @@ FAILED (failures=1)</samp></pre>
 
 <p>Scrivete il codice che fa passare il test.
 
-<pre><code>def to_roman(n):
+<pre><code class=pp>def to_roman(n):
     '''convert integer to Roman numeral'''
     if not (0 < n < 4000):
         raise OutOfRangeError('number out of range (must be 0..3999)')
-<a>    if not isinstance(n, int):                                          <span>&#x2460;</span></a>
-<a>        raise NotIntegerError('non-integers can not be converted')      <span>&#x2461;</span></a>
+<a>    if not isinstance(n, int):                                          <span class=u>&#x2460;</span></a>
+<a>        raise NotIntegerError('non-integers can not be converted')      <span class=u>&#x2461;</span></a>
 
     result = ''
     for numeral, integer in roman_numeral_map:
@@ -532,8 +530,9 @@ OK</samp></pre>
 
 <p>Ora potete smettere di programmare.
 
-<p class=v><a rel=prev class=todo><span>&#x261C;</span></a> <a rel=next class=todo><span>&#x261E;</span></a>
+<p class=v><a rel=prev class=todo><span class=u>&#x261C;</span></a> <a rel=next class=todo><span class=u>&#x261E;</span></a>
 <p class=c>&copy; 2001&ndash;9 <a href=informazioni-sul-libro.html>Mark Pilgrim</a><br>
 &copy; 2009 <a href=informazioni-sulla-traduzione.html>Giulio Piancastelli</a> per la traduzione italiana
 <script src=j/jquery.js></script>
+<script src=j/prettify.js></script>
 <script src=j/dip3.js></script>
