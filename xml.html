@@ -14,11 +14,11 @@ mark{display:inline}
 <meta name=viewport content='initial-scale=1.0'>
 </head>
 <form action=http://www.google.com/cse><div><input type=hidden name=cx value=014021643941856155761:l5eihuescdw><input type=hidden name=ie value=UTF-8>&nbsp;<input name=q size=25>&nbsp;<input type=submit name=root value=Search></div></form>
-<p>Voi siete qui: <a href=index.html>Home</a> <span>&#8227;</span> <a href=table-of-contents.html#xml>Dive Into Python 3</a> <span>&#8227;</span>
+<p>Voi siete qui: <a href=index.html>Home</a> <span class=u>&#8227;</span> <a href=table-of-contents.html#xml>Dive Into Python 3</a> <span class=u>&#8227;</span>
 <p id=level>Livello di difficoltà: <span class=u title=advanced>&#x2666;&#x2666;&#x2666;&#x2666;&#x2662;</span>
 <h1>XML</h1>
 <blockquote class=q>
-<p><span>&#x275D;</span> Sotto l'arcontato di Aristecmo, Dracone stabilì le sue leggi. <span>&#x275E;</span><br>&mdash; <a href='http://www.perseus.tufts.edu/cgi-bin/ptext?doc=Perseus:text:1999.01.0046;query=chapter%3D%235;layout=;loc=3.1'>Aristotele</a>
+<p><span class=u>&#x275D;</span> Sotto l'arcontato di Aristecmo, Dracone stabilì le sue leggi. <span class=u>&#x275E;</span><br>&mdash; <a href='http://www.perseus.tufts.edu/cgi-bin/ptext?doc=Perseus:text:1999.01.0046;query=chapter%3D%235;layout=;loc=3.1'>Aristotele</a>
 </blockquote>
 <p id=toc>&nbsp;
 <h2 id=divingin>Immersione!</h2>
@@ -27,7 +27,7 @@ mark{display:inline}
 <p>Qui di seguito, dunque, trovate il documento <abbr>XML</abbr> contenente i dati con cui lavoreremo in questo capitolo. &Egrave; un feed &mdash; nello specifico, un <a href=http://atompub.org/rfc4287.html>syndication feed in formato Atom</a>.
 
 <p class=d>[<a href=esempi/feed.xml>scarica <code>feed.xml</code></a>]
-<pre><code>&lt;?xml version='1.0' encoding='utf-8'?>
+<pre><code class=pp>&lt;?xml version='1.0' encoding='utf-8'?>
 &lt;feed xmlns='http://www.w3.org/2005/Atom' xml:lang='it'>
   &lt;title>dive into mark&lt;/title>
   &lt;subtitle>attualmente tra una dipendenza e l'altra&lt;/subtitle>
@@ -102,8 +102,8 @@ mark{display:inline}
 
 <p><abbr>XML</abbr> è un modo generalizzato di descrivere strutture dati gerarchiche. Un <i>documento</i> <abbr>XML</abbr> contiene uno o più <i>elementi</i>, che sono delimitati da <i>tag di apertura e di chiusura</i>. Questo è un documento <abbr>XML</abbr> completo (anche se noioso):
 
-<pre class=nd><code><a>&lt;foo>   <span>&#x2460;</span></a>
-<a>&lt;/foo>  <span>&#x2461;</span></a></code></pre>
+<pre class=nd><code class=pp><a>&lt;foo>   <span class=u>&#x2460;</span></a>
+<a>&lt;/foo>  <span class=u>&#x2461;</span></a></code></pre>
 <ol>
 <li>Questo è il <i>tag di apertura</i> dell'elemento <code>foo</code>.
 <li>Questo è il corrispondente <i>tag di chiusura</i> dell'elemento <code>foo</code>. Allo stesso modo in cui si bilanciano le parentesi nella scrittura, in matematica, o in programmazione, ogni tag di apertura deve essere <i>terminato</i> da un corrispondente tag di chiusura.
@@ -111,20 +111,20 @@ mark{display:inline}
 
 <p>Gli elementi possono essere <i>annidati</i> senza alcun limite di profondità. Un elemento <code>bar</code> all'interno di un elemento <code>foo</code> si definisce come un <i>sottoelemento</i> o un elemento <i>figlio</i> di <code>foo</code>.
 
-<pre class=nd><code>&lt;foo>
+<pre class=nd><code class=pp>&lt;foo>
   <mark>&lt;bar>&lt;/bar></mark>
 &lt;/foo>
 </code></pre>
 
 <p>Il primo elemento di ogni documento <abbr>XML</abbr> si chiama <i>elemento radice</i>. Un documento <abbr>XML</abbr> può avere un solo elemento radice. Il documento che segue <strong>non è un documento <abbr>XML</abbr></strong> perché possiede due elementi radice:
 
-<pre class=nd><code>&lt;foo>&lt;/foo>
+<pre class=nd><code class=pp>&lt;foo>&lt;/foo>
 &lt;bar>&lt;/bar></code></pre>
 
 <p>Gli elementi possono essere dotati di <i>attributi</i>, che sono coppie nome-valore. Gli attributi sono elencati all'interno del tag di apertura di un elemento e separati da spazi bianchi. I <i>nomi degli attributi</i> non possono essere ripetuti nell'ambito di uno stesso elemento. I <i>valori degli attributi</i> devono essere racchiusi tra virgolette.
 
-<pre class=nd><code><a>&lt;foo <mark>lang='en'</mark>>          <span>&#x2460;</span></a>
-<a>  &lt;bar <mark>lang='fr'</mark>>&lt;/bar>  <span>&#x2461;</span></a>
+<pre class=nd><code class=pp><a>&lt;foo <mark>lang='en'</mark>>          <span class=u>&#x2460;</span></a>
+<a>  &lt;bar <mark>lang='fr'</mark>>&lt;/bar>  <span class=u>&#x2461;</span></a>
 &lt;/foo>
 </code></pre>
 <ol>
@@ -136,23 +136,23 @@ mark{display:inline}
 
 <p>Gli elementi possono includere <i>contenuto testuale</i>.
 
-<pre class=nd><code>&lt;foo lang='en'>
+<pre class=nd><code class=pp>&lt;foo lang='en'>
   &lt;bar lang='fr'><mark>PapayaWhip</mark>&lt;/bar>
 &lt;/foo>
 </code></pre>
 
 <p>Gli elementi che non contengono testo e non hanno figli si dicono <i>vuoti</i>.
 
-<pre class=nd><code>&lt;foo>&lt;/foo></code></pre>
+<pre class=nd><code class=pp>&lt;foo>&lt;/foo></code></pre>
 
 <p>Gli elementi vuoti si possono scrivere in maniera abbreviata. Inserendo un carattere <code>/</code> nel tag di apertura, potete omettere completamente il tag di chiusura. Il documento <abbr>XML</abbr> nell'esempio precedente potrebbe anche essere scritto in questo modo:
 
-<pre class=nd><code>&lt;foo<mark>/</mark>></code></pre>
+<pre class=nd><code class=pp>&lt;foo<mark>/</mark>></code></pre>
 
 <p>Così come le funzioni Python possono essere dichiarate in <i>moduli</i> differenti, gli elementi <abbr>XML</abbr> possono essere dichiarati in <i>spazi di nomi</i> differenti. Di solito, gli spazi di nomi sono identificati da un URL. Potete usare una dichiarazione <code>xmlns</code> per definire uno <i>spazio di nomi di default</i>. Una dichiarazione di spazio di nomi ha un aspetto simile a un attributo, ma viene impiegata con uno scopo differente.
 
-<pre class=nd><code><a>&lt;feed <mark>xmlns='http://www.w3.org/2005/Atom'</mark>>  <span>&#x2460;</span></a>
-<a>  &lt;title>dive into mark&lt;/title>             <span>&#x2461;</span></a>
+<pre class=nd><code class=pp><a>&lt;feed <mark>xmlns='http://www.w3.org/2005/Atom'</mark>>  <span class=u>&#x2460;</span></a>
+<a>  &lt;title>dive into mark&lt;/title>             <span class=u>&#x2461;</span></a>
 &lt;/feed>
 </code></pre>
 <ol>
@@ -162,8 +162,8 @@ mark{display:inline}
 
 <p>Potete anche usare una dichiarazione <code>xmlns:<var>prefisso</var></code> per definire uno spazio di nomi e associarlo a un <i>prefisso</i>. Dopodiché ogni elemento in quello spazio di nomi dovrà essere esplicitamente dichiarato con il prefisso.
 
-<pre class=nd><code><a>&lt;atom:feed <mark>xmlns:atom='http://www.w3.org/2005/Atom'</mark>>  <span>&#x2460;</span></a>
-<a>  &lt;atom:title>dive into mark&lt;/atom:title>             <span>&#x2461;</span></a>
+<pre class=nd><code class=pp><a>&lt;atom:feed <mark>xmlns:atom='http://www.w3.org/2005/Atom'</mark>>  <span class=u>&#x2460;</span></a>
+<a>  &lt;atom:title>dive into mark&lt;/atom:title>             <span class=u>&#x2461;</span></a>
 &lt;/atom:feed></code></pre>
 <ol>
 <li>L'elemento <code>feed</code> è nello spazio di nomi <code>http://www.w3.org/2005/Atom</code>.
@@ -174,7 +174,7 @@ mark{display:inline}
 
 <p>Infine, i documenti <abbr>XML</abbr> possono contentere <a href=stringhe.html#one-ring-to-rule-them-all>informazioni sulla codifica di carattere</a> nella prima riga, prima dell'elemento radice. (Se siete curiosi di sapere come fa un documento a contenere informazioni che è necessario conoscere prima di poterlo leggere, la <a href=http://www.w3.org/TR/REC-xml/#sec-guessing-no-ext-info>Sezione F della specifica <abbr>XML</abbr></a> descrive in dettaglio come risolvere questo Comma 22.)
 
-<pre class=nd><code>&lt;?xml version='1.0' <mark>encoding='utf-8'</mark>?></code></pre>
+<pre class=nd><code class=pp>&lt;?xml version='1.0' <mark>encoding='utf-8'</mark>?></code></pre>
 
 <p>E ora conoscete quel tanto di <abbr>XML</abbr> che vi basta per essere pericolosi!
 
@@ -188,8 +188,8 @@ mark{display:inline}
 
 <p>Al livello più alto si trova l'<i>elemento radice</i>, che è lo stesso per ogni feed Atom: l'elemento <code>feed</code> nello spazio di nomi <code>http://www.w3.org/2005/Atom</code>.
 
-<pre><code><a>&lt;feed xmlns='http://www.w3.org/2005/Atom'  <span>&#x2460;</span></a>
-<a>      xml:lang='it'>                       <span>&#x2461;</span></a></code></pre>
+<pre><code class=pp><a>&lt;feed xmlns='http://www.w3.org/2005/Atom'  <span class=u>&#x2460;</span></a>
+<a>      xml:lang='it'>                       <span class=u>&#x2461;</span></a></code></pre>
 <ol>
 <li><code>http://www.w3.org/2005/Atom</code> è lo spazio di nomi Atom.
 <li>Qualsiasi elemento può contenere un attributo <code>xml:lang</code>, che dichiara la lingua di quell'elemento e dei suoi figli. In questo caso, l'attributo <code>xml:lang</code> è dichiarato una sola volta nell'elemento radice, per indicare che l'intero feed è in italiano.
@@ -197,12 +197,12 @@ mark{display:inline}
 
 <p>Un feed Atom contiene diversi elementi di informazione sul feed stesso. Questi sono dichiarati come figli dell'elemento radice <code>feed</code>.
 
-<pre><code>&lt;feed xmlns='http://www.w3.org/2005/Atom' xml:lang='it'>
-<a>  &lt;title>dive into mark&lt;/title>                                             <span>&#x2460;</span></a>
-<a>  &lt;subtitle>attualmente tra una dipendenza e l'altra&lt;/subtitle>             <span>&#x2461;</span></a>
-<a>  &lt;id>tag:diveintomark.org,2001-07-29:/&lt;/id>                                <span>&#x2462;</span></a>
-<a>  &lt;updated>2009-03-27T21:56:07Z&lt;/updated>                                   <span>&#x2463;</span></a>
-<a>  &lt;link rel='alternate' type='text/html' href='http://diveintomark.org/'/>  <span>&#x2464;</span></a></code></pre>
+<pre><code class=pp>&lt;feed xmlns='http://www.w3.org/2005/Atom' xml:lang='it'>
+<a>  &lt;title>dive into mark&lt;/title>                                             <span class=u>&#x2460;</span></a>
+<a>  &lt;subtitle>attualmente tra una dipendenza e l'altra&lt;/subtitle>             <span class=u>&#x2461;</span></a>
+<a>  &lt;id>tag:diveintomark.org,2001-07-29:/&lt;/id>                                <span class=u>&#x2462;</span></a>
+<a>  &lt;updated>2009-03-27T21:56:07Z&lt;/updated>                                   <span class=u>&#x2463;</span></a>
+<a>  &lt;link rel='alternate' type='text/html' href='http://diveintomark.org/'/>  <span class=u>&#x2464;</span></a></code></pre>
 <ol>
 <li>Il titolo di questo feed è <code>dive into mark</code>. 
 <li>Il sottotitolo di questo feed è <code>attualmente tra una dipendenza e l'altra</code>.
@@ -214,31 +214,31 @@ mark{display:inline}
 <p>Ora sappiamo che questo è un feed per un sito chiamato &#8220;dive into mark&#8221; che è disponibile all'indirizzo <a href=http://diveintomark.org/><code>http://diveintomark.org/</code></a> e il cui aggiornamento più recente risale al 27 marzo 2009.
 
 <blockquote class=note>
-<p><span>&#x261E;</span>L'ordine degli elementi in un feed Atom non è rilevante, sebbene possa esserlo in alcuni documenti <abbr>XML</abbr>.
+<p><span class=u>&#x261E;</span>L'ordine degli elementi in un feed Atom non è rilevante, sebbene possa esserlo in alcuni documenti <abbr>XML</abbr>.
 </blockquote>
 
 <p>Dopo i metadati a livello di feed si trova la lista degli articoli più recenti. Un articolo ha un aspetto simile a questo:
 
-<pre><code>&lt;entry>
-<a>  &lt;author>                                                                 <span>&#x2460;</span></a>
+<pre><code class=pp>&lt;entry>
+<a>  &lt;author>                                                                 <span class=u>&#x2460;</span></a>
     &lt;name>Mark&lt;/name>
     &lt;uri>http://diveintomark.org/&lt;/uri>
   &lt;/author>
-<a>  &lt;title>Dive into history, edizione 2009&lt;/title>                          <span>&#x2461;</span></a>
-<a>  &lt;link rel='alternate' type='text/html'                                   <span>&#x2462;</span></a>
+<a>  &lt;title>Dive into history, edizione 2009&lt;/title>                          <span class=u>&#x2461;</span></a>
+<a>  &lt;link rel='alternate' type='text/html'                                   <span class=u>&#x2462;</span></a>
     href='http://diveintomark.org/archives/2009/03/27/dive-into-history-2009-edition'/>
-<a>  &lt;id>tag:diveintomark.org,2009-03-27:/archives/20090327172042&lt;/id>        <span>&#x2463;</span></a>
-<a>  &lt;updated>2009-03-27T21:56:07Z&lt;/updated>                                  <span>&#x2464;</span></a>
+<a>  &lt;id>tag:diveintomark.org,2009-03-27:/archives/20090327172042&lt;/id>        <span class=u>&#x2463;</span></a>
+<a>  &lt;updated>2009-03-27T21:56:07Z&lt;/updated>                                  <span class=u>&#x2464;</span></a>
   &lt;published>2009-03-27T17:20:42Z&lt;/published>        
-<a>  &lt;category scheme='http://diveintomark.org' term='diveintopython'/>       <span>&#x2465;</span></a>
+<a>  &lt;category scheme='http://diveintomark.org' term='diveintopython'/>       <span class=u>&#x2465;</span></a>
   &lt;category scheme='http://diveintomark.org' term='docbook'/>
   &lt;category scheme='http://diveintomark.org' term='html'/>
-<a>  &lt;summary type='html'>Mettere un intero capitolo in una sola pagina       <span>&#x2466;</span></a>
+<a>  &lt;summary type='html'>Mettere un intero capitolo in una sola pagina       <span class=u>&#x2466;</span></a>
     sembra eccessivo, ma considerate questo &amp;amp;mdash; finora il mio
       capitolo più lungo equivarrebbe a 75 pagine stampate, e si carica
       in meno di 5 secondi&amp;amp;hellip; Su una connessione in
       dial-up.&lt;/summary>
-<a>&lt;/entry>                                                                   <span>&#x2467;</span></a></code></pre>
+<a>&lt;/entry>                                                                   <span class=u>&#x2467;</span></a></code></pre>
 <ol>
 <li>L'elemento <code>author</code> vi dice chi ha scritto questo articolo: un certo tizio di nome Mark, che potete trovare a bighellonare all'indirizzo <code>http://diveintomark.org/</code>. (Questo è lo stesso indirizzo del collegamento alternativo contenuto nei metadati del feed, ma non è necessario che lo sia. Molti weblog hanno più di un autore, ognuno col proprio sito personale.)
 <li>L'elemento <code>title</code> vi dà il titolo dell'articolo, &#8220;Dive into history, edizione 2009&#8221;.
@@ -258,10 +258,10 @@ mark{display:inline}
 
 <p class=d>[<a href=esempi/feed.xml>scarica <code>feed.xml</code></a>]
 <pre class=screen>
-<a><samp class=p>>>> </samp><kbd>import xml.etree.ElementTree as etree</kbd>    <span>&#x2460;</span></a>
-<a><samp class=p>>>> </samp><kbd>tree = etree.parse('esempi/feed.xml')</kbd>   <span>&#x2461;</span></a>
-<a><samp class=p>>>> </samp><kbd>root = tree.getroot()</kbd>                    <span>&#x2462;</span></a>
-<a><samp class=p>>>> </samp><kbd>root</kbd>                                     <span>&#x2463;</span></a>
+<a><samp class=p>>>> </samp><kbd>import xml.etree.ElementTree as etree</kbd>    <span class=u>&#x2460;</span></a>
+<a><samp class=p>>>> </samp><kbd>tree = etree.parse('esempi/feed.xml')</kbd>   <span class=u>&#x2461;</span></a>
+<a><samp class=p>>>> </samp><kbd>root = tree.getroot()</kbd>                    <span class=u>&#x2462;</span></a>
+<a><samp class=p>>>> </samp><kbd>root</kbd>                                     <span class=u>&#x2463;</span></a>
 <samp>&lt;Element {http://www.w3.org/2005/Atom}feed at cd1eb0></samp></pre>
 <ol>
 <li>La libreria ElementTree fa parte della libreria standard di Python e si trova nel modulo <code>xml.etree.ElementTree</code>.
@@ -271,7 +271,7 @@ mark{display:inline}
 </ol>
 
 <blockquote class=note>
-<p><span>&#x261E;</span>ElementTree rappresenta gli elementi <abbr>XML</abbr> come <code>{<var>spaziodinomi</var>}<var>nomelocale</var></code>. Vedrete e userete questo formato in più punti nella <abbr>API</abbr> di ElementTree.
+<p><span class=u>&#x261E;</span>ElementTree rappresenta gli elementi <abbr>XML</abbr> come <code>{<var>spaziodinomi</var>}<var>nomelocale</var></code>. Vedrete e userete questo formato in più punti nella <abbr>API</abbr> di ElementTree.
 </blockquote>
 
 <h3 id=xml-elements>Gli elementi sono liste</h3>
@@ -280,12 +280,12 @@ mark{display:inline}
 
 <pre class=screen>
 # continua dall'esempio precedente
-<a><samp class=p>>>> </samp><kbd>root.tag</kbd>                        <span>&#x2460;</span></a>
+<a><samp class=p>>>> </samp><kbd>root.tag</kbd>                        <span class=u>&#x2460;</span></a>
 <samp>'{http://www.w3.org/2005/Atom}feed'</samp>
-<a><samp class=p>>>> </samp><kbd>len(root)</kbd>                       <span>&#x2461;</span></a>
+<a><samp class=p>>>> </samp><kbd>len(root)</kbd>                       <span class=u>&#x2461;</span></a>
 <samp>8</samp>
-<a><samp class=p>>>> </samp><kbd>for child in root:</kbd>              <span>&#x2462;</span></a>
-<a><samp class=p>... </samp><kbd>  print(child)</kbd>                  <span>&#x2463;</span></a>
+<a><samp class=p>>>> </samp><kbd>for child in root:</kbd>              <span class=u>&#x2462;</span></a>
+<a><samp class=p>... </samp><kbd>  print(child)</kbd>                  <span class=u>&#x2463;</span></a>
 <samp class=p>... </samp>
 <samp>&lt;Element {http://www.w3.org/2005/Atom}title at e2b5d0>
 &lt;Element {http://www.w3.org/2005/Atom}subtitle at e2b4e0>
@@ -310,17 +310,17 @@ mark{display:inline}
 
 <pre class=screen>
 # continua dall'esempio precedente
-<a><samp class=p>>>> </samp><kbd>root.attrib</kbd>                           <span>&#x2460;</span></a>
+<a><samp class=p>>>> </samp><kbd>root.attrib</kbd>                           <span class=u>&#x2460;</span></a>
 <samp>{'{http://www.w3.org/XML/1998/namespace}lang': 'it'}</samp>
-<a><samp class=p>>>> </samp><kbd>root[4]</kbd>                               <span>&#x2461;</span></a>
+<a><samp class=p>>>> </samp><kbd>root[4]</kbd>                               <span class=u>&#x2461;</span></a>
 <samp>&lt;Element {http://www.w3.org/2005/Atom}link at e181b0></samp>
-<a><samp class=p>>>> </samp><kbd>root[4].attrib</kbd>                        <span>&#x2462;</span></a>
+<a><samp class=p>>>> </samp><kbd>root[4].attrib</kbd>                        <span class=u>&#x2462;</span></a>
 <samp>{'href': 'http://diveintomark.org/',
  'type': 'text/html',
  'rel': 'alternate'}</samp>
-<a><samp class=p>>>> </samp><kbd>root[3]</kbd>                               <span>&#x2463;</span></a>
+<a><samp class=p>>>> </samp><kbd>root[3]</kbd>                               <span class=u>&#x2463;</span></a>
 <samp>&lt;Element {http://www.w3.org/2005/Atom}updated at e2b4e0></samp>
-<a><samp class=p>>>> </samp><kbd>root[3].attrib</kbd>                        <span>&#x2464;</span></a>
+<a><samp class=p>>>> </samp><kbd>root[3].attrib</kbd>                        <span class=u>&#x2464;</span></a>
 <samp>{}</samp></pre>
 <ol>
 <li>La proprietà <code>attrib</code> è un dizionario degli attributi dell'elemento. Il markup originale qui era <code>&lt;feed xmlns='http://www.w3.org/2005/Atom' xml:lang='it'></code>. Il prefisso <code>xml:</code> si riferisce a uno spazio di nomi predefinito che ogni documento <abbr>XML</abbr> può usare senza doverlo dichiarare.
@@ -340,15 +340,15 @@ mark{display:inline}
 <samp class=p>>>> </samp><kbd>import xml.etree.ElementTree as etree</kbd>
 <samp class=p>>>> </samp><kbd>tree = etree.parse('esempi/feed.xml')</kbd>
 <samp class=p>>>> </samp><kbd>root = tree.getroot()</kbd>
-<a><samp class=p>>>> </samp><kbd>root.findall('{http://www.w3.org/2005/Atom}entry')</kbd>    <span>&#x2460;</span></a>
+<a><samp class=p>>>> </samp><kbd>root.findall('{http://www.w3.org/2005/Atom}entry')</kbd>    <span class=u>&#x2460;</span></a>
 <samp>[&lt;Element {http://www.w3.org/2005/Atom}entry at e2b4e0>,
  &lt;Element {http://www.w3.org/2005/Atom}entry at e2b510>,
  &lt;Element {http://www.w3.org/2005/Atom}entry at e2b540>]</samp>
 <samp class=p>>>> </samp><kbd>root.tag</kbd>
 <samp>'{http://www.w3.org/2005/Atom}feed'</samp>
-<a><samp class=p>>>> </samp><kbd>root.findall('{http://www.w3.org/2005/Atom}feed')</kbd>     <span>&#x2461;</span></a>
+<a><samp class=p>>>> </samp><kbd>root.findall('{http://www.w3.org/2005/Atom}feed')</kbd>     <span class=u>&#x2461;</span></a>
 <samp>[]</samp>
-<a><samp class=p>>>> </samp><kbd>root.findall('{http://www.w3.org/2005/Atom}author')</kbd>   <span>&#x2462;</span></a>
+<a><samp class=p>>>> </samp><kbd>root.findall('{http://www.w3.org/2005/Atom}author')</kbd>   <span class=u>&#x2462;</span></a>
 <samp>[]</samp></pre>
 <ol>
 <li>Il metodo <code>findall()</code> trova elementi figli che corrispondono a una richiesta specifica (I dettagli sul formato della richiesta arriveranno in un minuto.)
@@ -357,11 +357,11 @@ mark{display:inline}
 </ol>
 
 <pre class=screen>
-<a><samp class=p>>>> </samp><kbd>tree.findall('{http://www.w3.org/2005/Atom}entry')</kbd>    <span>&#x2460;</span></a>
+<a><samp class=p>>>> </samp><kbd>tree.findall('{http://www.w3.org/2005/Atom}entry')</kbd>    <span class=u>&#x2460;</span></a>
 <samp>[&lt;Element {http://www.w3.org/2005/Atom}entry at e2b4e0>,
  &lt;Element {http://www.w3.org/2005/Atom}entry at e2b510>,
  &lt;Element {http://www.w3.org/2005/Atom}entry at e2b540>]</samp>
-<a><samp class=p>>>> </samp><kbd>tree.findall('{http://www.w3.org/2005/Atom}author')</kbd>   <span>&#x2461;</span></a>
+<a><samp class=p>>>> </samp><kbd>tree.findall('{http://www.w3.org/2005/Atom}author')</kbd>   <span class=u>&#x2461;</span></a>
 <samp>[]</samp>
 </pre>
 <ol>
@@ -372,17 +372,17 @@ mark{display:inline}
 <p><em>Esiste</em> un modo per cercare gli elementi <em>discendenti</em>, <i>i.e.</i> figli, nipoti e qualsiasi elemento a qualsiasi livello di profondità.
 
 <pre class=screen>
-<a><samp class=p>>>> </samp><kbd>all_links = tree.findall('//{http://www.w3.org/2005/Atom}link')</kbd>  <span>&#x2460;</span></a>
+<a><samp class=p>>>> </samp><kbd>all_links = tree.findall('//{http://www.w3.org/2005/Atom}link')</kbd>  <span class=u>&#x2460;</span></a>
 <samp class=p>>>> </samp><kbd>all_links</kbd>
 <samp>[&lt;Element {http://www.w3.org/2005/Atom}link at e181b0>,
  &lt;Element {http://www.w3.org/2005/Atom}link at e2b570>,
  &lt;Element {http://www.w3.org/2005/Atom}link at e2b480>,
  &lt;Element {http://www.w3.org/2005/Atom}link at e2b5a0>]</samp>
-<a><samp class=p>>>> </samp><kbd>all_links[0].attrib</kbd>                                              <span>&#x2461;</span></a>
+<a><samp class=p>>>> </samp><kbd>all_links[0].attrib</kbd>                                              <span class=u>&#x2461;</span></a>
 <samp>{'href': 'http://diveintomark.org/',
  'type': 'text/html',
  'rel': 'alternate'}</samp>
-<a><samp class=p>>>> </samp><kbd>all_links[1].attrib</kbd>                                              <span>&#x2462;</span></a>
+<a><samp class=p>>>> </samp><kbd>all_links[1].attrib</kbd>                                              <span class=u>&#x2462;</span></a>
 <samp>{'href': 'http://diveintomark.org/archives/2009/03/27/dive-into-history-2009-edition',
  'type': 'text/html',
  'rel': 'alternate'}</samp>
@@ -404,8 +404,8 @@ mark{display:inline}
 
 <pre class=screen>
 # continua dall'esempio precedente
-<a><samp class=p>>>> </samp><kbd>it = tree.getiterator('{http://www.w3.org/2005/Atom}link')</kbd>  <span>&#x2460;</span></a>
-<a><samp class=p>>>> </samp><kbd>next(it)</kbd>                                                    <span>&#x2461;</span></a>
+<a><samp class=p>>>> </samp><kbd>it = tree.getiterator('{http://www.w3.org/2005/Atom}link')</kbd>  <span class=u>&#x2460;</span></a>
+<a><samp class=p>>>> </samp><kbd>next(it)</kbd>                                                    <span class=u>&#x2461;</span></a>
 &lt;Element {http://www.w3.org/2005/Atom}link at 122f1b0>
 <samp class=p>>>> </samp><kbd>next(it)</kbd>
 &lt;Element {http://www.w3.org/2005/Atom}link at 122f1e0>
@@ -431,10 +431,10 @@ StopIteration</samp></pre>
 <p><a href=http://codespeak.net/lxml/><code>lxml</code></a> è una libreria open source di terze parti che si basa sul popolare <a href=http://www.xmlsoft.org/>riconoscitore libxml2</a>. Fornisce una <abbr>API</abbr> compatibile al 100% con ElementTree, poi la estende con un supporto completo per XPath e alcune altre finezze. Ne esistono <a href=http://pypi.python.org/pypi/lxml/>pacchetti di installazione disponibili per Windows</a>, mentre gli utenti Linux dovrebbero sempre provare a usare strumenti specifici per la loro distribuzione, come <code>yum</code> o <code>apt-get</code>, che permettono di installare librerie precompilate scaricandole dagli archivi della distribuzione. Altrimenti, dovrete <a href=http://codespeak.net/lxml/installation.html>installare <code>lxml</code> manualmente</a>.
 
 <pre class=screen>
-<a><samp class=p>>>> </samp><kbd>from lxml import etree</kbd>                   <span>&#x2460;</span></a>
-<a><samp class=p>>>> </samp><kbd>tree = etree.parse('esempi/feed.xml')</kbd>   <span>&#x2461;</span></a>
-<a><samp class=p>>>> </samp><kbd>root = tree.getroot()</kbd>                    <span>&#x2462;</span></a>
-<a><samp class=p>>>> </samp><kbd>root.findall('{http://www.w3.org/2005/Atom}entry')</kbd>  <span>&#x2463;</span></a>
+<a><samp class=p>>>> </samp><kbd>from lxml import etree</kbd>                   <span class=u>&#x2460;</span></a>
+<a><samp class=p>>>> </samp><kbd>tree = etree.parse('esempi/feed.xml')</kbd>   <span class=u>&#x2461;</span></a>
+<a><samp class=p>>>> </samp><kbd>root = tree.getroot()</kbd>                    <span class=u>&#x2462;</span></a>
+<a><samp class=p>>>> </samp><kbd>root.findall('{http://www.w3.org/2005/Atom}entry')</kbd>  <span class=u>&#x2463;</span></a>
 <samp>[&lt;Element {http://www.w3.org/2005/Atom}entry at e2b4e0>,
  &lt;Element {http://www.w3.org/2005/Atom}entry at e2b510>,
  &lt;Element {http://www.w3.org/2005/Atom}entry at e2b540>]</samp></pre>
@@ -447,7 +447,7 @@ StopIteration</samp></pre>
 
 <p>Per documenti <abbr>XML</abbr> di grandi dimensioni, <code>lxml</code> è significativamente più veloce rispetto alla libreria built-in ElementTree. Se state usando solo la <abbr>API</abbr> di ElementTree e volete sfruttare l'implementazione più veloce disponibile, potete provare a importare <code>lxml</code> e ricorrere all'alternativa built-in ElementTree solo nel caso in cui <code>lxml</code> non sia presente.
 
-<pre><code>try:
+<pre><code class=pp>try:
     from lxml import etree
 except ImportError:
     import xml.etree.ElementTree as etree</code></pre>
@@ -455,17 +455,17 @@ except ImportError:
 <p>Ma <code>lxml</code> è molto di più che una ElementTree più veloce. Il suo metodo <code>findall()</code> include il supporto per espressioni più complicate.
 
 <pre class=screen>
-<a><samp class=p>>>> </samp><kbd>import lxml.etree</kbd>                                                                   <span>&#x2460;</span></a>
+<a><samp class=p>>>> </samp><kbd>import lxml.etree</kbd>                                                                   <span class=u>&#x2460;</span></a>
 <samp class=p>>>> </samp><kbd>tree = lxml.etree.parse('esempi/feed.xml')</kbd>
-<a><samp class=p>>>> </samp><kbd>tree.findall('//{http://www.w3.org/2005/Atom}*[@href]')</kbd>                             <span>&#x2461;</span></a>
+<a><samp class=p>>>> </samp><kbd>tree.findall('//{http://www.w3.org/2005/Atom}*[@href]')</kbd>                             <span class=u>&#x2461;</span></a>
 [&lt;Element {http://www.w3.org/2005/Atom}link at eeb8a0>,
  &lt;Element {http://www.w3.org/2005/Atom}link at eeb990>,
  &lt;Element {http://www.w3.org/2005/Atom}link at eeb960>,
  &lt;Element {http://www.w3.org/2005/Atom}link at eeb9c0>]
-<a><samp class=p>>>> </samp><kbd>tree.findall("//{http://www.w3.org/2005/Atom}*[@href='http://diveintomark.org/']")</kbd>  <span>&#x2462;</span></a>
+<a><samp class=p>>>> </samp><kbd>tree.findall("//{http://www.w3.org/2005/Atom}*[@href='http://diveintomark.org/']")</kbd>  <span class=u>&#x2462;</span></a>
 <samp>[&lt;Element {http://www.w3.org/2005/Atom}link at eeb930>]</samp>
 <samp class=p>>>> </samp><kbd>NS = '{http://www.w3.org/2005/Atom}'</kbd>
-<a><samp class=p>>>> </samp><kbd>tree.findall('//{NS}author[{NS}uri]'.format(NS=NS))</kbd>                                 <span>&#x2463;</span></a>
+<a><samp class=p>>>> </samp><kbd>tree.findall('//{NS}author[{NS}uri]'.format(NS=NS))</kbd>                                 <span class=u>&#x2463;</span></a>
 <samp>[&lt;Element {http://www.w3.org/2005/Atom}author at eeba80>,
  &lt;Element {http://www.w3.org/2005/Atom}author at eebba0>]</samp></pre>
 <ol>
@@ -480,13 +480,13 @@ except ImportError:
 <pre class=screen>
 <samp class=p>>>> </samp><kbd>import lxml.etree</kbd>
 <samp class=p>>>> </samp><kbd>tree = lxml.etree.parse('esempi/feed.xml')</kbd>
-<a><samp class=p>>>> </samp><kbd>NSMAP = {'atom': 'http://www.w3.org/2005/Atom'}</kbd>                    <span>&#x2460;</span></a>
-<a><samp class=p>>>> </samp><kbd>entries = tree.xpath("//atom:category[@term='accessibility']/..",</kbd>  <span>&#x2461;</span></a>
+<a><samp class=p>>>> </samp><kbd>NSMAP = {'atom': 'http://www.w3.org/2005/Atom'}</kbd>                    <span class=u>&#x2460;</span></a>
+<a><samp class=p>>>> </samp><kbd>entries = tree.xpath("//atom:category[@term='accessibility']/..",</kbd>  <span class=u>&#x2461;</span></a>
 <samp class=p>... </samp><kbd>    namespaces=NSMAP)</kbd>
-<a><samp class=p>>>> </samp><kbd>entries</kbd>                                                            <span>&#x2462;</span></a>
+<a><samp class=p>>>> </samp><kbd>entries</kbd>                                                            <span class=u>&#x2462;</span></a>
 <samp>[&lt;Element {http://www.w3.org/2005/Atom}entry at e2b630>]</samp>
 <samp class=p>>>> </samp><kbd>entry = entries[0]</kbd>
-<a><samp class=p>>>> </samp><kbd>entry.xpath('./atom:title/text()', namespaces=nsmap)</kbd>               <span>&#x2463;</span></a>
+<a><samp class=p>>>> </samp><kbd>entry.xpath('./atom:title/text()', namespaces=nsmap)</kbd>               <span class=u>&#x2463;</span></a>
 <samp>["L'accessibilità è una padrona inflessibile"]</samp></pre>
 <ol>
 <li>Per effettuare richieste XPath su elementi in uno spazio di nomi, avete bisogno di definire una corrispondenza tra prefissi e spazi di nomi sotto la semplice forma di un dizionario Python.
@@ -503,9 +503,9 @@ except ImportError:
 
 <pre class=screen>
 <samp class=p>>>> </samp><kbd>import xml.etree.ElementTree as etree</kbd>
-<a><samp class=p>>>> </samp><kbd>new_feed = etree.Element('{http://www.w3.org/2005/Atom}feed',</kbd>     <span>&#x2460;</span></a>
-<a><samp class=p>... </samp><kbd>    attrib={'{http://www.w3.org/XML/1998/namespace}lang': 'it'})</kbd>  <span>&#x2461;</span></a>
-<a><samp class=p>>>> </samp><kbd>print(etree.tostring(new_feed))</kbd>                                   <span>&#x2462;</span></a>
+<a><samp class=p>>>> </samp><kbd>new_feed = etree.Element('{http://www.w3.org/2005/Atom}feed',</kbd>     <span class=u>&#x2460;</span></a>
+<a><samp class=p>... </samp><kbd>    attrib={'{http://www.w3.org/XML/1998/namespace}lang': 'it'})</kbd>  <span class=u>&#x2461;</span></a>
+<a><samp class=p>>>> </samp><kbd>print(etree.tostring(new_feed))</kbd>                                   <span class=u>&#x2462;</span></a>
 <samp>&lt;ns0:feed xmlns:ns0='http://www.w3.org/2005/Atom' xml:lang='it'/></samp></pre>
 <ol>
 <li>Per creare un nuovo elemento, istanziate la classe <code>Element</code>. Passate il nome dell'elemento (spazio di nomi + nome locale) come primo argomento. Questa istruzione crea un elemento <code>feed</code> nello spazio di nomi Atom. Questo sarà l'elemento radice del nostro nuovo documento.
@@ -517,11 +517,11 @@ except ImportError:
 
 <p>Un riconoscitore <abbr>XML</abbr> non sarà in grado di &#8220;vedere&#8221; alcuna differenza tra un documento <abbr>XML</abbr> con uno spazio di nomi di default e un documento <abbr>XML</abbr> con uno spazio di nomi che utilizza un prefisso. La rappresentazione <abbr>DOM</abbr> che risulta da questa serializzazione:
 
-<pre class=nd><code>&lt;ns0:feed xmlns:ns0='http://www.w3.org/2005/Atom' xml:lang='it'/></code></pre>
+<pre class=nd><code class=pp>&lt;ns0:feed xmlns:ns0='http://www.w3.org/2005/Atom' xml:lang='it'/></code></pre>
 
 <p>è identica alla rappresentazione <abbr>DOM</abbr> di questa serializzazione:
 
-<pre class=nd><code>&lt;feed xmlns='http://www.w3.org/2005/Atom' xml:lang='it'/></code></pre>
+<pre class=nd><code class=pp>&lt;feed xmlns='http://www.w3.org/2005/Atom' xml:lang='it'/></code></pre>
 
 <p>L'unica differenza concreta è che la seconda serializzazione è più corta di alcuni caratteri. Se dovessimo riscrivere interamente il nostro feed di esempio con un prefisso <code>ns0:</code> in ogni tag di apertura e chiusura, aggiungeremmo 4 caratteri per tag di apertura &times; 79 tag + 4 caratteri per la dichiarazione di spazio di nomi, per un totale di 316 caratteri. Assumendo una <a href=stringhe.html#byte-arrays>codifica UTF-8</a>, questo corrisponde a 316 byte aggiuntivi. (Dopo aver compresso il documento tramite gzip, la differenza scende a 21 byte, ciò nondimeno 21 byte sono 21 byte.) Forse per voi non ha importanza, ma per qualcosa come un feed Atom, che potrebbe essere scaricato diverse migliaia di volte a ogni cambiamento, il risparmio di alcuni byte per ogni richiesta può accumularsi velocemente.
 
@@ -529,11 +529,11 @@ except ImportError:
 
 <pre class=screen>
 <samp class=p>>>> </samp><kbd>import lxml.etree</kbd>
-<a><samp class=p>>>> </samp><kbd>NSMAP = {None: 'http://www.w3.org/2005/Atom'}</kbd>                     <span>&#x2460;</span></a>
-<a><samp class=p>>>> </samp><kbd>new_feed = lxml.etree.Element('feed', nsmap=NSMAP)</kbd>                <span>&#x2461;</span></a>
-<a><samp class=p>>>> </samp><kbd>print(lxml.etree.tounicode(new_feed))</kbd>                             <span>&#x2462;</span></a>
+<a><samp class=p>>>> </samp><kbd>NSMAP = {None: 'http://www.w3.org/2005/Atom'}</kbd>                     <span class=u>&#x2460;</span></a>
+<a><samp class=p>>>> </samp><kbd>new_feed = lxml.etree.Element('feed', nsmap=NSMAP)</kbd>                <span class=u>&#x2461;</span></a>
+<a><samp class=p>>>> </samp><kbd>print(lxml.etree.tounicode(new_feed))</kbd>                             <span class=u>&#x2462;</span></a>
 <samp>&lt;feed xmlns='http://www.w3.org/2005/Atom'/></samp>
-<a><samp class=p>>>> </samp><kbd>new_feed.set('{http://www.w3.org/XML/1998/namespace}lang', 'it')</kbd>  <span>&#x2463;</span></a>
+<a><samp class=p>>>> </samp><kbd>new_feed.set('{http://www.w3.org/XML/1998/namespace}lang', 'it')</kbd>  <span class=u>&#x2463;</span></a>
 <samp class=p>>>> </samp><kbd>print(lxml.etree.tounicode(new_feed))</kbd>
 <samp>&lt;feed xmlns='http://www.w3.org/2005/Atom' xml:lang='it'/></samp></pre>
 <ol>
@@ -546,14 +546,14 @@ except ImportError:
 <p>I documenti <abbr>XML</abbr> si limitano ad avere un elemento per documento? No, naturalmente no. Potete facilmente creare anche elementi figli.
 
 <pre class=screen>
-<a><samp class=p>>>> </samp><kbd>title = lxml.etree.SubElement(new_feed, 'title',</kbd>          <span>&#x2460;</span></a>
-<a><samp class=p>... </samp><kbd>    attrib={'type':'html'})</kbd>                               <span>&#x2461;</span></a>
+<a><samp class=p>>>> </samp><kbd>title = lxml.etree.SubElement(new_feed, 'title',</kbd>          <span class=u>&#x2460;</span></a>
+<a><samp class=p>... </samp><kbd>    attrib={'type':'html'})</kbd>                               <span class=u>&#x2461;</span></a>
 <samp class=p>>>> </samp><kbd>print(lxml.etree.tounicode(new_feed))</kbd>
 <samp>&lt;feed xmlns='http://www.w3.org/2005/Atom' xml:lang='it'>&lt;title type='html'/>&lt;/feed></samp>
-<a><samp class=p>>>> </samp><kbd>title.text = 'dive into &amp;hellip;'</kbd>                         <span>&#x2462;</span></a>
-<a><samp class=p>>>> </samp><kbd>print(lxml.etree.tounicode(new_feed))</kbd>                     <span>&#x2463;</span></a>
+<a><samp class=p>>>> </samp><kbd>title.text = 'dive into &amp;hellip;'</kbd>                         <span class=u>&#x2462;</span></a>
+<a><samp class=p>>>> </samp><kbd>print(lxml.etree.tounicode(new_feed))</kbd>                     <span class=u>&#x2463;</span></a>
 <samp>&lt;feed xmlns='http://www.w3.org/2005/Atom' xml:lang='it'>&lt;title type='html'>dive into &amp;amp;hellip;&lt;/title>&lt;/feed></samp>
-<a><samp class=p>>>> </samp><kbd>print(lxml.etree.tounicode(new_feed, pretty_print=True))</kbd>  <span>&#x2464;</span></a>
+<a><samp class=p>>>> </samp><kbd>print(lxml.etree.tounicode(new_feed, pretty_print=True))</kbd>  <span class=u>&#x2464;</span></a>
 <samp>&lt;feed xmlns='http://www.w3.org/2005/Atom' xml:lang='it'>
   &lt;title type='html'>dive into &amp;amp;hellip;&lt;/title>
 &lt;/feed></samp></pre>
@@ -578,9 +578,9 @@ except ImportError:
 
 <p>Ecco un frammento di un documento <abbr>XML</abbr> difettoso. Ho evidenziato l'errore di malformazione.
 
-<pre class=nd><code>&lt;?xml version='1.0' encoding='utf-8'?>
+<pre class=nd><code class=pp>&lt;?xml version='1.0' encoding='utf-8'?>
 &lt;feed xmlns='http://www.w3.org/2005/Atom' xml:lang='it'>
-  &lt;title>dive into <mark>&hellip;</mark>&lt;/title>
+  &lt;title>dive into <mark>&amp;hellip;</mark>&lt;/title>
 ...
 &lt;/feed></code></pre>
 
@@ -604,16 +604,16 @@ lxml.etree.XMLSyntaxError: Entity 'hellip' not defined, line 3, column 28</samp>
 <p>Per riconoscere questo documento <abbr>XML</abbr> difettoso, nonostante il suo errore di malformazione, avete bisogno di creare un riconoscitore <abbr>XML</abbr> personalizzato.
 
 <pre class=screen>
-<a><samp class=p>>>> </samp><kbd>parser = lxml.etree.XMLParser(recover=True)</kbd>                  <span>&#x2460;</span></a>
-<a><samp class=p>>>> </samp><kbd>tree = lxml.etree.parse('esempi/feed-broken.xml', parser)</kbd>   <span>&#x2461;</span></a>
-<a><samp class=p>>>> </samp><kbd>parser.error_log</kbd>                                             <span>&#x2462;</span></a>
+<a><samp class=p>>>> </samp><kbd>parser = lxml.etree.XMLParser(recover=True)</kbd>                  <span class=u>&#x2460;</span></a>
+<a><samp class=p>>>> </samp><kbd>tree = lxml.etree.parse('esempi/feed-broken.xml', parser)</kbd>   <span class=u>&#x2461;</span></a>
+<a><samp class=p>>>> </samp><kbd>parser.error_log</kbd>                                             <span class=u>&#x2462;</span></a>
 <samp>esempi/feed-broken.xml:3:28:FATAL:PARSER:ERR_UNDECLARED_ENTITY: Entity 'hellip' not defined</samp>
 <samp class=p>>>> </samp><kbd>tree.findall('{http://www.w3.org/2005/Atom}title')</kbd>
 <samp>[&lt;Element {http://www.w3.org/2005/Atom}title at ead510>]</samp>
 <samp class=p>>>> </samp><kbd>title = tree.findall('{http://www.w3.org/2005/Atom}title')[0]</kbd>
-<a><samp class=p>>>> </samp><kbd>title.text</kbd>                                                   <span>&#x2463;</span></a>
+<a><samp class=p>>>> </samp><kbd>title.text</kbd>                                                   <span class=u>&#x2463;</span></a>
 <samp>'dive into '</samp>
-<a><samp class=p>>>> </samp><kbd>print(lxml.etree.tounicode(tree.getroot()))</kbd>                  <span>&#x2464;</span></a>
+<a><samp class=p>>>> </samp><kbd>print(lxml.etree.tounicode(tree.getroot()))</kbd>                  <span class=u>&#x2464;</span></a>
 <samp>&lt;feed xmlns='http://www.w3.org/2005/Atom' xml:lang='it'>
   &lt;title>dive into &lt;/title>
 .
@@ -644,8 +644,9 @@ lxml.etree.XMLSyntaxError: Entity 'hellip' not defined, line 3, column 28</samp>
 <li><a href=http://codespeak.net/lxml/1.3/xpathxslt.html>Usare XPath e <abbr>XSLT</abbr> con <code>lxml</code></a>
 </ul>
 
-<p class=v><a rel=prev class=todo><span>&#x261C;</span></a> <a rel=next class=todo><span>&#x261E;</span></a>
+<p class=v><a rel=prev class=todo><span class=u>&#x261C;</span></a> <a rel=next class=todo><span class=u>&#x261E;</span></a>
 <p class=c>&copy; 2001&ndash;9 <a href=informazioni-sul-libro.html>Mark Pilgrim</a><br>
 &copy; 2009 <a href=informazioni-sulla-traduzione.html>Giulio Piancastelli</a> per la traduzione italiana
 <script src=j/jquery.js></script>
+<script src=j/prettify.js></script>
 <script src=j/dip3.js></script>

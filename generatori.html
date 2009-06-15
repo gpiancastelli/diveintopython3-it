@@ -13,11 +13,11 @@ body{counter-reset:h1 5}
 <meta name=viewport content='initial-scale=1.0'>
 </head>
 <form action=http://www.google.com/cse><div><input type=hidden name=cx value=014021643941856155761:l5eihuescdw><input type=hidden name=ie value=UTF-8>&nbsp;<input name=q size=25>&nbsp;<input type=submit name=sa value=Search></div></form>
-<p>Voi siete qui: <a href=index.html>Home</a> <span>&#8227;</span> <a href=table-of-contents.html#iterators-and-generators>Dive Into Python 3</a> <span>&#8227;</span>
+<p>Voi siete qui: <a href=index.html>Home</a> <span class=u>&#8227;</span> <a href=table-of-contents.html#iterators-and-generators>Dive Into Python 3</a> <span class=u>&#8227;</span>
 <p id=level>Livello di difficoltà: <span class=u title=intermedio>&#x2666;&#x2666;&#x2666;&#x2662;&#x2662;</span>
 <h1>Generatori</h1>
 <blockquote class=q>
-<p><span>&#x275D;</span> La mia ortografia è Incerta. Non è una cattiva ortografia, ma non è Certa, e le lettere vanno nei posti sbagliati. <span>&#x275E;</span><br>&mdash; Winnie-the-Pooh
+<p><span class=u>&#x275D;</span> La mia ortografia è Incerta. Non è una cattiva ortografia, ma non è Certa, e le lettere vanno nei posti sbagliati. <span class=u>&#x275E;</span><br>&mdash; Winnie-the-Pooh
 </blockquote>
 <p id=toc>&nbsp;
 <h2 id=divingin>Immersione!</h2>
@@ -40,11 +40,11 @@ body{counter-reset:h1 5}
 <h2 id=i-know>Ci sono, usiamo le espressioni regolari!</h2>
 <p>E così state esaminando le parole, il che significa, almeno in inglese, che state esaminando stringhe di caratteri. Avete regole che dicono che dovete trovare combinazioni differenti di caratteri, e poi operare su quelle combinazioni in modi differenti. Questo sembra un lavoro per le espressioni regolari!
 <p class=d>[<a href=esempi/plural1.py>scarica <code>plural1.py</code></a>]
-<pre><code>import re
+<pre><code class=pp>import re
 
 def plural(noun):          
-<a>    if re.search('[sxz]$', noun):             <span>&#x2460;</span></a>
-<a>        return re.sub('$', 'es', noun)        <span>&#x2461;</span></a>
+<a>    if re.search('[sxz]$', noun):             <span class=u>&#x2460;</span></a>
+<a>        return re.sub('$', 'es', noun)        <span class=u>&#x2461;</span></a>
     elif re.search('[^aeioudgkprt]h$', noun):
         return re.sub('$', 'es', noun)       
     elif re.search('[^aeiou]y$', noun):      
@@ -59,13 +59,13 @@ def plural(noun):
 <p>Diamo un'occhiata più dettagliata alle sostituzioni di espressioni regolari.
 <pre class=screen>
 <samp class=p>>>> </samp><kbd>import re</kbd>
-<a><samp class=p>>>> </samp><kbd>re.search('[abc]', 'Mark')</kbd>    <span>&#x2460;</span></a>
+<a><samp class=p>>>> </samp><kbd>re.search('[abc]', 'Mark')</kbd>    <span class=u>&#x2460;</span></a>
 &lt;_sre.SRE_Match object at 0x001C1FA8>
-<a><samp class=p>>>> </samp><kbd>re.sub('[abc]', 'o', 'Mark')</kbd>  <span>&#x2461;</span></a>
+<a><samp class=p>>>> </samp><kbd>re.sub('[abc]', 'o', 'Mark')</kbd>  <span class=u>&#x2461;</span></a>
 <samp>'Mork'</samp>
-<a><samp class=p>>>> </samp><kbd>re.sub('[abc]', 'o', 'rock')</kbd>  <span>&#x2462;</span></a>
+<a><samp class=p>>>> </samp><kbd>re.sub('[abc]', 'o', 'rock')</kbd>  <span class=u>&#x2462;</span></a>
 <samp>'rook'</samp>
-<a><samp class=p>>>> </samp><kbd>re.sub('[abc]', 'o', 'caps')</kbd>  <span>&#x2463;</span></a>
+<a><samp class=p>>>> </samp><kbd>re.sub('[abc]', 'o', 'caps')</kbd>  <span class=u>&#x2463;</span></a>
 <samp>'oops'</samp></pre>
 <ol>
 <li>La stringa <code>Mark</code> contiene <code>a</code>, <code>b</code>, oppure <code>c</code>? Sì, contiene <code>a</code>.
@@ -76,12 +76,12 @@ def plural(noun):
 
 <p>E ora, torniamo alla funzione <code>plural()</code>&hellip;
 
-<pre><code>def plural(noun):          
+<pre><code class=pp>def plural(noun):          
     if re.search('[sxz]$', noun):            
-<a>        return re.sub('$', 'es', noun)         <span>&#x2460;</span></a>
-<a>    elif re.search('[^aeioudgkprt]h$', noun):  <span>&#x2461;</span></a>
+<a>        return re.sub('$', 'es', noun)         <span class=u>&#x2460;</span></a>
+<a>    elif re.search('[^aeioudgkprt]h$', noun):  <span class=u>&#x2461;</span></a>
         return re.sub('$', 'es', noun)
-<a>    elif re.search('[^aeiou]y$', noun):        <span>&#x2462;</span></a>      
+<a>    elif re.search('[^aeiou]y$', noun):        <span class=u>&#x2462;</span></a>      
         return re.sub('y$', 'ies', noun)     
     else:
         return noun + 's'</code></pre>
@@ -95,13 +95,13 @@ def plural(noun):
 
 <pre class=screen>
 <samp class=p>>>> </samp><kbd>import re</kbd>
-<a><samp class=p>>>> </samp><kbd>re.search('[^aeiou]y$', 'vacancy')</kbd>  <span>&#x2460;</span></a>
+<a><samp class=p>>>> </samp><kbd>re.search('[^aeiou]y$', 'vacancy')</kbd>  <span class=u>&#x2460;</span></a>
 &lt;_sre.SRE_Match object at 0x001C1FA8>
-<a><samp class=p>>>> </samp><kbd>re.search('[^aeiou]y$', 'boy')</kbd>      <span>&#x2461;</span></a>
+<a><samp class=p>>>> </samp><kbd>re.search('[^aeiou]y$', 'boy')</kbd>      <span class=u>&#x2461;</span></a>
 <samp class=p>>>> </samp>
 <samp class=p>>>> </samp><kbd>re.search('[^aeiou]y$', 'day')</kbd>
 <samp class=p>>>> </samp>
-<a><samp class=p>>>> </samp><kbd>re.search('[^aeiou]y$', 'pita')</kbd>     <span>&#x2462;</span></a>
+<a><samp class=p>>>> </samp><kbd>re.search('[^aeiou]y$', 'pita')</kbd>     <span class=u>&#x2462;</span></a>
 <samp class=p>>>> </samp></pre>
 <ol>
 <li><code>vacancy</code> corrisponde a questa espressione regolare, perché finisce con <code>cy</code> e <code>c</code> non è <code>a</code>, <code>e</code>, <code>i</code>, <code>o</code>, oppure <code>u</code>.
@@ -109,11 +109,11 @@ def plural(noun):
 <li><code>pita</code> non corrisponde, perché non termina in <code>y</code>.
 </ol>
 <pre class=screen>
-<a><samp class=p>>>> </samp><kbd>re.sub('y$', 'ies', 'vacancy')</kbd>               <span>&#x2460;</span></a>
+<a><samp class=p>>>> </samp><kbd>re.sub('y$', 'ies', 'vacancy')</kbd>               <span class=u>&#x2460;</span></a>
 <samp>'vacancies'</samp>
 <samp class=p>>>> </samp><kbd>re.sub('y$', 'ies', 'agency')</kbd>
 <samp>'agencies'</samp>
-<a><samp class=p>>>> </samp><kbd>re.sub('([^aeiou])y$', r'\1ies', 'vacancy')</kbd>  <span>&#x2461;</span></a>
+<a><samp class=p>>>> </samp><kbd>re.sub('([^aeiou])y$', r'\1ies', 'vacancy')</kbd>  <span class=u>&#x2461;</span></a>
 <samp>'vacancies'</samp></pre>
 <ol>
 <li>Questa espressione regolare trasforma <code>vacancy</code> in <code>vacancies</code> e <code>agency</code> in <code>agencies</code>, che è quello che volevate. Notate che trasformerebbe anche <code>boy</code> in <code>boies</code>, ma questo non succederà mai nella funzione <code>plural()</code> perché avete utilizzato <code>re.search()</code> per capire se è il caso di applicare <code>re.sub()</code> o meno.
@@ -128,7 +128,7 @@ def plural(noun):
 <p>Ora state per aggiungere un livello di astrazione. Avete cominciato definendo una lista di regole: se accade questo, fai quello, altrimenti vai alla prossima regola. Complichiamo temporaneamente parte del programma in modo da semplificarne un'altra parte.
 
 <p class=d>[<a href=esempi/plural2.py>scarica <code>plural2.py</code></a>]
-<pre><code>import re
+<pre><code class=pp>import re
 
 def match_sxz(noun):
     return re.search('[sxz]$', noun)
@@ -142,10 +142,10 @@ def match_h(noun):
 def apply_h(noun):
     return re.sub('$', 'es', noun)
 
-<a>def match_y(noun):                             <span>&#x2460;</span></a>
+<a>def match_y(noun):                             <span class=u>&#x2460;</span></a>
     return re.search('[^aeiou]y$', noun)
         
-<a>def apply_y(noun):                             <span>&#x2461;</span></a>
+<a>def apply_y(noun):                             <span class=u>&#x2461;</span></a>
     return re.sub('y$', 'ies', noun)
 
 def match_default(noun):
@@ -154,14 +154,14 @@ def match_default(noun):
 def apply_default(noun):
     return noun + 's'
 
-<a>rules = [[match_sxz, apply_sxz],               <span>&#x2462;</span></a>
+<a>rules = [[match_sxz, apply_sxz],               <span class=u>&#x2462;</span></a>
          [match_h, apply_h],
          [match_y, apply_y],
          [match_default, apply_default]
          ]
 
 def plural(noun):           
-<a>    for matches_rule, apply_rule in rules:       <span>&#x2463;</span></a>
+<a>    for matches_rule, apply_rule in rules:       <span class=u>&#x2463;</span></a>
         if matches_rule(noun):
             return apply_rule(noun)</code></pre>
 <ol>
@@ -176,7 +176,7 @@ def plural(noun):
 
 <p>Se questo livello di astrazione aggiuntivo vi confonde, provate a sviluppare la funzione per vedere l'equivalenza. L'intero ciclo <code>for</code> è equivalente a quanto segue:
 
-<pre><code>
+<pre><code class=pp>
 def plural(noun):
     if match_sxz(noun):
         return apply_sxz(noun)
@@ -208,14 +208,14 @@ def plural(noun):
 <p>Definire separatamente una funzione con un proprio nome per ogni regola di ricerca e sostituzione non è realmente necessario. Non le chiamate mai direttamente; le aggiungete alla lista <var>rules</var> e le chiamate attraverso di essa. In più, ogni funzione segue uno di due schemi. Tutte le funzioni di ricerca chiamano <code>re.search()</code> e tutte le funzioni di sostituzione chiamano <code>re.sub()</code>. Evidenziamo gli schemi in modo che definire nuove regole diventi più semplice.
 
 <p class=d>[<a href=esempi/plural3.py>scarica <code>plural3.py</code></a>]
-<pre><code>import re
+<pre><code class=pp>import re
 
 def build_match_and_apply_functions(pattern, search, replace):
-<a>    def matches_rule(word):                                     <span>&#x2460;</span></a>
+<a>    def matches_rule(word):                                     <span class=u>&#x2460;</span></a>
         return re.search(pattern, word)
-<a>    def apply_rule(word):                                       <span>&#x2461;</span></a>
+<a>    def apply_rule(word):                                       <span class=u>&#x2461;</span></a>
         return re.sub(search, replace, word)
-<a>    return [matches_rule, apply_rule]                           <span>&#x2462;</span></a></code></pre>
+<a>    return [matches_rule, apply_rule]                           <span class=u>&#x2462;</span></a></code></pre>
 <ol>
 <li><code>build_match_and_apply_functions()</code> è una funzione che costruisce dinamicamente altre funzioni. Accetta in ingresso <var>pattern</var>, <var>search</var> e <var>replace</var>, poi definisce una funzione <code>matches_rule()</code> che chiama <code>re.search()</code> con il <var>pattern</var> che è stato passato alla funzione <code>build_match_and_apply_functions()</code>, e con la parola <var>word</var> che è stata passata alla funzione <code>matches_rule()</code> che state costruendo. Whoa.
 <li>La funzione di sostituzione viene costruita allo stesso modo. Essa accetta un parametro, e chiama <code>re.sub()</code> utilizzando sia i parametri <var>search</var> e <var>replace</var> che sono stati passati alla funzione <code>build_match_and_apply_functions()</code>, sia la parola <var>word</var> che è stata passata alla funzione <code>apply_rule()</code> stessa. Questa tecnica di usare i valori di parametri esterni all'interno di una funzione dinamica è chiamata <em>chiusura</em>. State essenzialmente definendo delle costanti nell'ambito della funzione di sostituzione che state costruendo; quest'ultima accetta un parametro (<var>word</var>), ma poi agisce su quello più altri due valori (<var>search</var> e <var>replace</var>) che sono stati impostati nel momento in cui la funzione di sostituzione è stata definita.
@@ -224,15 +224,14 @@ def build_match_and_apply_functions(pattern, search, replace):
 
 <p>Se questo risulta incredibilmente confuso (e dovrebbe, è roba strana), potrebbe diventare più chiaro nel momento in cui vedete come si usa.
 
-<pre><code>
-<a>patterns = \                                                        <span>&#x2460;</span></a>
+<pre><code class=pp><a>patterns = \                                                        <span class=u>&#x2460;</span></a>
   [
     ['[sxz]$',           '$',  'es'],
     ['[^aeioudgkprt]h$', '$',  'es'],
     ['(qu|[^aeiou])y$',  'y$', 'ies'],
     ['$',                '$',  's']
   ]
-<a>rules = [build_match_and_apply_functions(pattern, search, replace)  <span>&#x2461;</span></a>
+<a>rules = [build_match_and_apply_functions(pattern, search, replace)  <span class=u>&#x2461;</span></a>
          for (pattern, search, replace) in patterns]</code></pre>
 <ol>
 <li>Le nostre regole di pluralizzazione sono ora definite come una lista di liste di stringhe (non di funzioni). La prima stringa in ogni gruppo è l'espressione regolare che usereste in <code>re.search()</code> per vedere se c'è una corrispondenza con questa regola. La seconda e la terza stringa di ogni gruppo sono le espressioni di ricerca e sostituzione che usereste in <code>re.sub()</code> per applicare effettivamente la regola e trasformare un sostantivo nel suo plurale.
@@ -241,8 +240,8 @@ def build_match_and_apply_functions(pattern, search, replace):
 
 <p>Per completare questa versione del programma ecco il punto di entrata principale, la funzione <code>plural()</code>.
 
-<pre><code>def plural(noun):
-<a>    for matches_rule, apply_rule in rules:  <span>&#x2460;</span></a>
+<pre><code class=pp>def plural(noun):
+<a>    for matches_rule, apply_rule in rules:  <span class=u>&#x2460;</span></a>
         if matches_rule(noun):
             return apply_rule(noun)</code></pre>
 <ol>
@@ -258,7 +257,7 @@ def build_match_and_apply_functions(pattern, search, replace):
 <p>Prima di tutto, creiamo un file di testo che contiene le regole che volete. Nessuna struttura dati elaborata, solo stringhe separate da spazi bianchi su tre colonne. Chiamiamo questo file <code>plural4-rules.txt</code>.
 
 <p class=d>[<a href=esempi/plural4-rules.txt>scarica <code>plural4-rules.txt</code></a>]
-<pre><code>[sxz]$               $    es
+<pre><code class=pp>[sxz]$               $    es
 [^aeioudgkprt]h$     $    es
 [^aeiou]y$          y$    ies
 $                    $    s</code></pre>
@@ -268,9 +267,9 @@ $                    $    s</code></pre>
 <p class=fixme>[FIXME: now that this chapter comes before the I/O chapter, need to at least mention what open() does]
 <p class=fixme>[FIXME: try/finally -> with]
 <p class=d>[<a href=esempi/plural4.py>scarica <code>plural4.py</code></a>]
-<pre><code>import re
+<pre><code class=pp>import re
 
-<a>def build_match_and_apply_functions(pattern, search, replace):  <span>&#x2460;</span></a>
+<a>def build_match_and_apply_functions(pattern, search, replace):  <span class=u>&#x2460;</span></a>
     def matches_rule(word):
         return re.search(pattern, word)
     def apply_rule(word):
@@ -278,14 +277,14 @@ $                    $    s</code></pre>
     return [matches_rule, apply_rule]
 
 rules = []
-<a>pattern_file = open('plural4-rules.txt')                        <span>&#x2461;</span></a>
+<a>pattern_file = open('plural4-rules.txt')                        <span class=u>&#x2461;</span></a>
 try:
-<a>    for line in pattern_file:                                   <span>&#x2462;</span></a>
-<a>        pattern, search, replace = line.split(None, 3)          <span>&#x2463;</span></a>
+<a>    for line in pattern_file:                                   <span class=u>&#x2462;</span></a>
+<a>        pattern, search, replace = line.split(None, 3)          <span class=u>&#x2463;</span></a>
         rules.append(build_match_and_apply_functions(
                 pattern, search, replace))
 finally:
-<a>    pattern_file.close()                                        <span>&#x2464;</span></a></code></pre>
+<a>    pattern_file.close()                                        <span class=u>&#x2464;</span></a></code></pre>
 <ol>
 <li>La funzione <code>build_match_and_apply_functions()</code> non è cambiata. State ancora usando le chiusure per costruire dinamicamente due funzioni che usano variabili definite nella funzione esterna.
 <li>Aprite il file che contiene i pattern.
@@ -303,7 +302,7 @@ finally:
 <p>Non sarebbe magnifico avere una funzione <code>plural()</code> generica che analizza il file di regole? Ottieni le regole, controlla se c'è una corrispondenza, applica la trasformazione appropriata, vai alla regola successiva. Questo è tutto quello che la funzione <code>plural()</code> ha bisogno di fare, e questo è tutto quello che la funzione <code>plural()</code> dovrebbe fare.
 
 <p class=d>[<a href=esempi/plural5.py>scarica <code>plural5.py</code></a>]
-<pre><code>def rules():
+<pre><code class=pp>def rules():
     for line in open('plural5-rules.txt'):
         pattern, search, replace = line.split(None, 3)
         yield build_match_and_apply_functions(pattern, search, replace)
@@ -319,20 +318,20 @@ def plural(noun):
 <samp class=p>>>> </samp><kbd>def make_counter(x):</kbd>
 <samp class=p>... </samp><kbd>    print('entering make_counter')</kbd>
 <samp class=p>... </samp><kbd>    while True:</kbd>
-<a><samp class=p>... </samp><kbd>        yield x</kbd>                    <span>&#x2460;</span></a>
+<a><samp class=p>... </samp><kbd>        yield x</kbd>                    <span class=u>&#x2460;</span></a>
 <samp class=p>... </samp><kbd>        print('incrementing x')</kbd>
 <samp class=p>... </samp><kbd>        x = x + 1</kbd>
 <samp class=p>... </samp>
-<a><samp class=p>>>> </samp><kbd>counter = make_counter(2)</kbd>          <span>&#x2461;</span></a>
-<a><samp class=p>>>> </samp><kbd>counter</kbd>                            <span>&#x2462;</span></a>
+<a><samp class=p>>>> </samp><kbd>counter = make_counter(2)</kbd>          <span class=u>&#x2461;</span></a>
+<a><samp class=p>>>> </samp><kbd>counter</kbd>                            <span class=u>&#x2462;</span></a>
 &lt;generator object at 0x001C9C10>
-<a><samp class=p>>>> </samp><kbd>next(counter)</kbd>                      <span>&#x2463;</span></a>
+<a><samp class=p>>>> </samp><kbd>next(counter)</kbd>                      <span class=u>&#x2463;</span></a>
 <samp>entering make_counter
 2</samp>
-<a><samp class=p>>>> </samp><kbd>next(counter)</kbd>                      <span>&#x2464;</span></a>
+<a><samp class=p>>>> </samp><kbd>next(counter)</kbd>                      <span class=u>&#x2464;</span></a>
 <samp>incrementing x
 3</samp>
-<a><samp class=p>>>> </samp><kbd>next(counter)</kbd>                      <span>&#x2465;</span></a>
+<a><samp class=p>>>> </samp><kbd>next(counter)</kbd>                      <span class=u>&#x2465;</span></a>
 <samp>incrementing x
 4</samp></pre>
 <ol>
@@ -349,11 +348,11 @@ def plural(noun):
 <h3 id=a-fibonacci-generator>Un generatore di Fibonacci</h3>
 
 <p class=d>[<a href=esempi/fibonacci.py>scarica <code>fibonacci.py</code></a>]
-<pre><code>def fib(max):
-<a>    a, b = 0, 1          <span>&#x2460;</span></a>
+<pre><code class=pp>def fib(max):
+<a>    a, b = 0, 1          <span class=u>&#x2460;</span></a>
     while a &lt; max:
-<a>        yield a          <span>&#x2461;</span></a>
-<a>        a, b = b, a + b  <span>&#x2462;</span></a></code></pre>
+<a>        yield a          <span class=u>&#x2461;</span></a>
+<a>        a, b = b, a + b  <span class=u>&#x2462;</span></a></code></pre>
 <ol>
 <li>La sequenza di Fibonacci è una sequenza numerica dove ogni numero è la somma dei due numeri che lo precedono. Comincia con <code>0</code> e <code>1</code>, si incrementa lentamente all'inizio, e poi sempre più rapidamente. Per cominciare la sequenza, avete bisogno di due variabili: <var>a</var> inizia a <code>0</code>, e <var>b</var> inizia a <code>1</code>.
 <li><var>a</var> è il numero corrente nella sequenza, quindi producetelo in uscita.
@@ -366,8 +365,8 @@ def plural(noun):
 
 <pre class=screen>
 <samp class=p>>>> </samp><kbd>from fibonacci import fib</kbd>
-<a><samp class=p>>>> </samp><kbd>for n in fib(1000):</kbd>  <span>&#x2460;</span></a>
-<a><samp class=p>... </samp><kbd>    print(n, end=' ')</kbd>    <span>&#x2461;</span></a>
+<a><samp class=p>>>> </samp><kbd>for n in fib(1000):</kbd>  <span class=u>&#x2460;</span></a>
+<a><samp class=p>... </samp><kbd>    print(n, end=' ')</kbd>    <span class=u>&#x2461;</span></a>
 <samp>0 1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987</samp></pre>
 <ol>
 <li>Potete usare un generatore come <code>fib()</code> direttamente in un ciclo <code>for</code>. Il ciclo <code>for</code> chiamerà automaticamente la funzione <code>next()</code> per ottenere valori dal generatore <code>fib()</code> e assegnarli alla variabile di indice del ciclo <code>for</code> (<var>n</var>).
@@ -378,13 +377,13 @@ def plural(noun):
 
 <p>Torniamo indietro a <code>plural5.py</code> e vediamo se questa versione della funzione <code>plural()</code> funziona.
 
-<pre><code>def rules():
+<pre><code class=pp>def rules():
     for line in open('plural5-rules.txt'):
-<a>        pattern, search, replace = line.split(None, 3)                   <span>&#x2460;</span></a>
-<a>        yield build_match_and_apply_functions(pattern, search, replace)  <span>&#x2461;</span></a>
+<a>        pattern, search, replace = line.split(None, 3)                   <span class=u>&#x2460;</span></a>
+<a>        yield build_match_and_apply_functions(pattern, search, replace)  <span class=u>&#x2461;</span></a>
 
 def plural(noun):
-<a>    for matches_rule, apply_rule in rules():                             <span>&#x2462;</span></a>
+<a>    for matches_rule, apply_rule in rules():                             <span class=u>&#x2462;</span></a>
         if matches_rule(noun):
             return apply_rule(noun)</code></pre>
 <ol>
@@ -408,9 +407,10 @@ def plural(noun):
 <li><a href=http://www.python.org/dev/peps/pep-0255/>PEP 255: Simple Generators</a>
 </ul>
 
-<p class=nav><a rel=prev href=espressioni-regolari.html title='indietro a &#8220;Espressioni regolari&#8221;'><span>&#x261C;</span></a> <a rel=next href=iteratori.html title='avanti a &#8220;Iteratori&#8221;'><span>&#x261E;</span></a>
+<p class=nav><a rel=prev href=espressioni-regolari.html title='indietro a &#8220;Espressioni regolari&#8221;'><span class=u>&#x261C;</span></a> <a rel=next href=iteratori.html title='avanti a &#8220;Iteratori&#8221;'><span class=u>&#x261E;</span></a>
 
 <p class=c>&copy; 2001&ndash;9 <a href=informazioni-sul-libro.html>Mark Pilgrim</a><br>
 &copy; 2009 <a href=informazioni-sulla-traduzione.html>Giulio Piancastelli</a> per la traduzione italiana
 <script src=j/jquery.js></script>
+<script src=j/prettify.js></script>
 <script src=j/dip3.js></script>

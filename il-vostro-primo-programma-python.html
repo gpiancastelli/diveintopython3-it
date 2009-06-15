@@ -16,17 +16,17 @@ th{text-align:left}
 <meta name=viewport content='initial-scale=1.0'>
 </head>
 <form action=http://www.google.com/cse><div><input type=hidden name=cx value=014021643941856155761:l5eihuescdw><input type=hidden name=ie value=UTF-8>&nbsp;<input name=q size=25>&nbsp;<input type=submit name=sa value=Search></div></form>
-<p>Voi siete qui: <a href=index.html>Home</a> <span>&#8227;</span> <a href=table-of-contents.html#il-vostro-primo-programma-python>Dive Into Python 3</a> <span>&#8227;</span>
+<p>Voi siete qui: <a href=index.html>Home</a> <span class=u>&#8227;</span> <a href=table-of-contents.html#il-vostro-primo-programma-python>Dive Into Python 3</a> <span class=u>&#8227;</span>
 <p id=level>Livello di difficoltà: <span class=u title=novizio>&#x2666;&#x2662;&#x2662;&#x2662;&#x2662;</span>
 <h1>Il vostro primo programma Python</h1>
 <blockquote class=q>
-<p><span>&#x275D;</span> Non nascondere le tue difficoltà dietro un silenzio da santo. Hai un problema? Ottimo. Rallegrati, immergiti e investiga. <span>&#x275E;</span><br>&mdash; <a href=http://en.wikiquote.org/wiki/Buddhism>Ven. Henepola Gunaratana</a>
+<p><span class=u>&#x275D;</span> Non nascondere le tue difficoltà dietro un silenzio da santo. Hai un problema? Ottimo. Rallegrati, immergiti e investiga. <span class=u>&#x275E;</span><br>&mdash; <a href=http://en.wikiquote.org/wiki/Buddhism>Ven. Henepola Gunaratana</a>
 </blockquote>
 <p id=toc>&nbsp;
 <h2 id=divingin>Immersione!</h2>
 <p class=f>Di solito, i libri di programmazione cominciano con una serie di capitoli noiosi sui fondamentali, e solo verso la fine arrivano a costruire qualcosa di utile. Noi ci risparmieremo questa attesa. Qui di seguito troverete subito un programma Python completo e funzionante. Probabilmente ora non ha alcun senso per voi, ma non preoccupatevi perché lo analizzerete riga per riga. Provate comunque a leggerlo, prima di tutto, per vedere se riuscite a ricavarne qualcosa.
 <p class=d>[<a href=esempi/humansize.py>scarica <code>humansize.py</code></a>]
-<pre><code>SUFFIXES = {1000: ['KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
+<pre><code class=pp>SUFFIXES = {1000: ['KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
             1024: ['KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB']}
 
 def approximate_size(size, a_kilobyte_is_1024_bytes=True):
@@ -75,16 +75,16 @@ if __name__ == '__main__':
 
 <h2 id=declaringfunctions>Dichiarare funzioni</h2>
 <p>Python vi permette di definire funzioni come la maggior parte degli altri linguaggi, ma non utilizza file di intestazione separati come il <abbr>C++</abbr> o sezioni di <code>interface</code>/<code>implementation</code> come il Pascal. Quando avete bisogno di una funzione, vi basta dichiararla, in questo modo:  
-<pre><code>def approximate_size(size, a_kilobyte_is_1024_bytes=True):</code></pre>
+<pre><code class=pp>def approximate_size(size, a_kilobyte_is_1024_bytes=True):</code></pre>
 <aside>Quando avete bisogno di una funzione, vi basta dichiararla.</aside>
 <p>La parola chiave <code>def</code> inizia la dichiarazione di funzione, seguita dal nome della funzione, seguito dagli argomenti della funzione racchiusi tra parentesi. Argomenti multipli sono separati da virgole.
 <p>Notate anche che la funzione non definisce un tipo di dato di ritorno. Le funzioni Python non specificano il tipo di dato del loro valore di ritorno; non specificano nemmeno se restituiscono o no un valore. (In effetti, ogni funzione Python restituisce un valore; se la funzione esegue una istruzione di <code>return</code>, restituirà quel valore, altrimenti restituirà <code>None</code>, il valore nullo di Python.)
 <blockquote class=note>
-<p><span>&#x261E;</span>In alcuni linguaggi, le funzioni (che restituiscono un valore) cominciano con <code>function</code>, e le procedure (che non restituiscono un valore) cominciano con <code>sub</code>. Non ci sono procedure in Python. Ci sono solo funzioni, tutte le funzioni restituiscono un valore (anche se è <code>None</code>) e tutte le funzioni cominciano con <code>def</code>.
+<p><span class=u>&#x261E;</span>In alcuni linguaggi, le funzioni (che restituiscono un valore) cominciano con <code>function</code>, e le procedure (che non restituiscono un valore) cominciano con <code>sub</code>. Non ci sono procedure in Python. Ci sono solo funzioni, tutte le funzioni restituiscono un valore (anche se è <code>None</code>) e tutte le funzioni cominciano con <code>def</code>.
 </blockquote>
 <p>La funzione <code>approximate_size()</code> accetta due argomenti &mdash; <var>size</var> e <var>a_kilobyte_is_1024_bytes</var> &mdash; ma nessun argomento dichiara il proprio tipo. In Python, le variabili non sono mai esplicitamente tipate. L'interprete Python capisce da solo qual è il tipo di una variable e ne tiene traccia internamente.
 <blockquote class='note compare java'>
-<p><span>&#x261E;</span>In Java e in altri linguaggi staticamente tipati, dovete dichiarare il tipo del valore di ritorno e di ogni argomento della funzione. In Python, i tipi non vengono mai dichiarati. Sulla base del valore che viene assegnato, Python tiene traccia del tipo di dato internamente.
+<p><span class=u>&#x261E;</span>In Java e in altri linguaggi staticamente tipati, dovete dichiarare il tipo del valore di ritorno e di ogni argomento della funzione. In Python, i tipi non vengono mai dichiarati. Sulla base del valore che viene assegnato, Python tiene traccia del tipo di dato internamente.
 </blockquote>
 
 <h3 id=optional-arguments>Argomenti opzionali e con nome</h3>
@@ -93,16 +93,15 @@ if __name__ == '__main__':
 
 <p>Diamo un'altra occhiata a quella dichiarazione della funzione <code>approximate_size()</code>:
 
-<pre><code>def approximate_size(size, a_kilobyte_is_1024_bytes=True):</code></pre>
+<pre><code class=pp>def approximate_size(size, a_kilobyte_is_1024_bytes=True):</code></pre>
 
 <p>Il secondo argomento, <var>a_kilobyte_is_1024_bytes</var>, specifica un valore di default pari a <code>True</code>. Questo significa che l'argomento è <i>opzionale</i>; potete invocare la funzione senza di esso, e Python agirà come se l'aveste invocata passando <code>True</code> come secondo parametro.
 
 <p>Ora guardate in fondo allo script:
 
-<pre><code>
-if __name__ == '__main__':
-<a>    print(approximate_size(1000000000000, False))  <span>&#x2460;</span></a>
-<a>    print(approximate_size(1000000000000))         <span>&#x2461;</span></a></code></pre>
+<pre><code class=pp>if __name__ == '__main__':
+<a>    print(approximate_size(1000000000000, False))  <span class=u>&#x2460;</span></a>
+<a>    print(approximate_size(1000000000000))         <span class=u>&#x2461;</span></a></code></pre>
 <ol>
 <li>Questa riga invoca la funzione <code>approximate_size()</code> con due argomenti. All'interno della funzione <code>approximate_size()</code>, <var>a_kilobyte_is_1024_bytes</var> varrà <code>False</code>, dato che avete esplicitamente passato <code>False</code> come secondo argomento.
 <li>Questa riga invoca la funzione <code>approximate_size()</code> con un solo argomento. Ma questo è OK, perché il secondo argomento è opzionale! Dato che il chiamante non lo specifica, il secondo argomento assumerà il proprio valore di default <code>True</code>, come definito nella dichiarazione di funzione.
@@ -112,16 +111,16 @@ if __name__ == '__main__':
 
 <pre class=screen>
 <samp class=p>>>> </samp><kbd>from humansize import approximate_size</kbd>
-<a><samp class=p>>>> </samp><kbd>approximate_size(4000, a_kilobyte_is_1024_bytes=False)</kbd>       <span>&#x2460;</span></a>
+<a><samp class=p>>>> </samp><kbd>approximate_size(4000, a_kilobyte_is_1024_bytes=False)</kbd>       <span class=u>&#x2460;</span></a>
 <samp>'4.0 KB'</samp>
-<a><samp class=p>>>> </samp><kbd>approximate_size(size=4000, a_kilobyte_is_1024_bytes=False)</kbd>  <span>&#x2461;</span></a>
+<a><samp class=p>>>> </samp><kbd>approximate_size(size=4000, a_kilobyte_is_1024_bytes=False)</kbd>  <span class=u>&#x2461;</span></a>
 <samp>'4.0 KB'</samp>
-<a><samp class=p>>>> </samp><kbd>approximate_size(a_kilobyte_is_1024_bytes=False, size=4000)</kbd>  <span>&#x2462;</span></a>
+<a><samp class=p>>>> </samp><kbd>approximate_size(a_kilobyte_is_1024_bytes=False, size=4000)</kbd>  <span class=u>&#x2462;</span></a>
 <samp>'4.0 KB'</samp>
-<a><samp class=p>>>> </samp><kbd>approximate_size(a_kilobyte_is_1024_bytes=False, 4000)</kbd>       <span>&#x2463;</span></a>
+<a><samp class=p>>>> </samp><kbd>approximate_size(a_kilobyte_is_1024_bytes=False, 4000)</kbd>       <span class=u>&#x2463;</span></a>
 <samp class=traceback>  File "&lt;stdin>", line 1
 SyntaxError: non-keyword arg after keyword arg</samp>
-<a><samp class=p>>>> </samp><kbd>approximate_size(size=4000, False)</kbd>                           <span>&#x2464;</span></a>
+<a><samp class=p>>>> </samp><kbd>approximate_size(size=4000, False)</kbd>                           <span class=u>&#x2464;</span></a>
 <samp class=traceback>  File "&lt;stdin>", line 1
 SyntaxError: non-keyword arg after keyword arg</samp></pre>
 <ol>
@@ -138,7 +137,7 @@ SyntaxError: non-keyword arg after keyword arg</samp></pre>
 <p>Non vi annoierò con una lunga predica sull'importanza di documentare il vostro codice. Vi basti sapere che il codice viene scritto una volta sola ma letto molte volte, e che i lettori più importanti del vostro codice siete voi stessi, sei mesi dopo averlo scritto (cioè dopo che vi siete dimenticati tutto ma avete bisogno di correggere qualcosa). Python facilita la scrittura di codice leggibile, perciò avantaggiatevene. Fra sei mesi mi ringrazierete.
 <h3 id=docstrings>Stringhe di documentazione</h3>
 <p>Potete documentare una funzione Python aggiungendole una stringa di documentazione (chiamata <code>docstring</code> per brevità). Nel nostro programma, la funzione <code>approximate_size()</code> è stata dotata di una <code>docstring</code>:
-<pre><code>def approximate_size(size, a_kilobyte_is_1024_bytes=True):
+<pre><code class=pp>def approximate_size(size, a_kilobyte_is_1024_bytes=True):
     '''Convert a file size to human-readable form.
 
     Keyword arguments:
@@ -152,11 +151,11 @@ SyntaxError: non-keyword arg after keyword arg</samp></pre>
 <aside>Ogni funzione merita una docstring decente.</aside>
 <p>Le triple virgolette servono per rappresentare una stringa su più righe. Ogni cosa tra le virgolette di inizio e di fine è parte di una singola stringa, inclusi i ritorni a capo, gli spazi bianchi all'inizio di una riga, e altri caratteri di virgolette. Le triple virgolette si possono usare dovunque, ma le vedrete sfruttate soprattutto nella definizione di una <code>docstring</code>.
 <blockquote class='note compare perl5'>
-<p><span>&#x261E;</span>Le triple virgolette sono anche un modo facile per definire una stringa che contiene sia apici che virgolette, come <code>qq/.../</code> in Perl 5.
+<p><span class=u>&#x261E;</span>Le triple virgolette sono anche un modo facile per definire una stringa che contiene sia apici che virgolette, come <code>qq/.../</code> in Perl 5.
 </blockquote>
 <p>Tutto quello che si trova tra le triple virgolette rappresenta la <code>docstring</code> della funzione, che documenta quello che la funzione fa. Una <code>docstring</code>, se esiste, deve essere la prima cosa definita in una funzione (cioè, nella riga subito dopo la dichiarazione di funzione). Non avete tecnicamente bisogno di dotare la vostra funzione di una <code>docstring</code>, ma dovreste sempre farlo. So che lo avete sentito in ogni corso di programmazione che avete seguito, ma Python vi dà un incentivo aggiuntivo: la <code>docstring</code> è disponibile a tempo di esecuzione sotto forma di proprietà della funzione.
 <blockquote class=note>
-<p><span>&#x261E;</span>Molti <abbr>IDE</abbr> per Python usano le <code>docstring</code> per fornire documentazione sensibile al contesto, in modo che quando scrivete il nome di una funzione la sua <code>docstring</code> appaia sotto forma di suggerimento. Questa caratteristica può essere incredibilmente utile, ma lo è solamente tanto quanto le <code>docstring</code> che scrivete.
+<p><span class=u>&#x261E;</span>Molti <abbr>IDE</abbr> per Python usano le <code>docstring</code> per fornire documentazione sensibile al contesto, in modo che quando scrivete il nome di una funzione la sua <code>docstring</code> appaia sotto forma di suggerimento. Questa caratteristica può essere incredibilmente utile, ma lo è solamente tanto quanto le <code>docstring</code> che scrivete.
 </blockquote>
 
 <p class=a>&#x2042;
@@ -165,10 +164,10 @@ SyntaxError: non-keyword arg after keyword arg</samp></pre>
 <p>Nel caso vi fosse sfuggito, ho appena detto che le funzioni Python hanno delle proprietà, e che quelle proprietà sono disponibili a tempo di esecuzione. Una funzione, come ogni altra cosa in Python, è un oggetto.
 <p>Lanciate la shell interattiva di Python e seguitemi attraverso questa serie di istruzioni:
 <pre class=screen>
-<a><samp class=p>>>> </samp><kbd>import humansize</kbd>                               <span>&#x2460;</span></a>
-<a><samp class=p>>>> </samp><kbd>print(humansize.approximate_size(4096, True))</kbd>  <span>&#x2461;</span></a>
+<a><samp class=p>>>> </samp><kbd>import humansize</kbd>                               <span class=u>&#x2460;</span></a>
+<a><samp class=p>>>> </samp><kbd>print(humansize.approximate_size(4096, True))</kbd>  <span class=u>&#x2461;</span></a>
 <samp>4.0 KiB</samp>
-<a><samp class=p>>>> </samp><kbd>print(humansize.approximate_size.__doc__)</kbd>      <span>&#x2462;</span></a>
+<a><samp class=p>>>> </samp><kbd>print(humansize.approximate_size.__doc__)</kbd>      <span class=u>&#x2462;</span></a>
 <samp>Convert a file size to human-readable form.
 
     Keyword arguments:
@@ -185,13 +184,13 @@ SyntaxError: non-keyword arg after keyword arg</samp></pre>
 <li>Invece di invocare la funzione, avete richiesto una delle sue proprietà, <code>__doc__</code>.
 </ol>
 <blockquote class='note compare perl5'>
-<p><span>&#x261E;</span><code>import</code> in Python è come <code>require</code> in Perl. Una volta che avete importato un modulo Python tramite <code>import</code>, potete accedere alle sue funzioni con la sintassi <code><var>modulo</var>.<var>funzione</var></code>; una volta che avete richiesto un modulo Perl tramite <code>require</code>, potete accedere alle sue funzioni con la sintassi <code><var>modulo</var>::<var>funzione</var></code>.
+<p><span class=u>&#x261E;</span><code>import</code> in Python è come <code>require</code> in Perl. Una volta che avete importato un modulo Python tramite <code>import</code>, potete accedere alle sue funzioni con la sintassi <code><var>modulo</var>.<var>funzione</var></code>; una volta che avete richiesto un modulo Perl tramite <code>require</code>, potete accedere alle sue funzioni con la sintassi <code><var>modulo</var>::<var>funzione</var></code>.
 </blockquote>
 <h3 id=importsearchpath>Il percorso di ricerca di <code>import</code></h3>
 <p>Prima di proseguire, voglio menzionare brevemente il percorso di ricerca delle librerie. Python guarda in diversi posti quando provate a importare un modulo. Nello specifico, guarda in tutte le directory definite in <code>sys.path</code>. Questa proprietà è semplicemente una lista, e potete facilmente vederla o modificarla con i metodi standard per le liste. (Imparerete di più sulle liste nel capitolo sui <a href=tipi-di-dato-nativi.html>Tipi di dato nativi</a>.)
 <pre class=screen>
-<a><samp class=p>>>> </samp><kbd>import sys</kbd>                           <span>&#x2460;</span></a>
-<a><samp class=p>>>> </samp><kbd>sys.path</kbd>                             <span>&#x2461;</span></a>
+<a><samp class=p>>>> </samp><kbd>import sys</kbd>                           <span class=u>&#x2460;</span></a>
+<a><samp class=p>>>> </samp><kbd>sys.path</kbd>                             <span class=u>&#x2461;</span></a>
 <samp>['', 
  '/usr/lib/python30.zip', 
  '/usr/lib/python3.0',
@@ -199,10 +198,10 @@ SyntaxError: non-keyword arg after keyword arg</samp></pre>
  '/usr/lib/python3.0/lib-dynload', 
  '/usr/lib/python3.0/dist-packages', 
  '/usr/local/lib/python3.0/dist-packages']</samp>
-<a><samp class=p>>>> </samp><kbd>sys</kbd>                                  <span>&#x2462;</span></a>
+<a><samp class=p>>>> </samp><kbd>sys</kbd>                                  <span class=u>&#x2462;</span></a>
 <samp>&lt;module 'sys' (built-in)></samp>
-<a><samp class=p>>>> </samp><kbd>sys.path.insert(0, '/home/mark/py')</kbd>  <span>&#x2463;</span></a>
-<a><samp class=p>>>> </samp><kbd>sys.path</kbd>                             <span>&#x2464;</span></a>
+<a><samp class=p>>>> </samp><kbd>sys.path.insert(0, '/home/mark/py')</kbd>  <span class=u>&#x2463;</span></a>
+<a><samp class=p>>>> </samp><kbd>sys.path</kbd>                             <span class=u>&#x2464;</span></a>
 <samp>['/home/mark/py', 
  '', 
  '/usr/lib/python30.zip', 
@@ -228,13 +227,12 @@ SyntaxError: non-keyword arg after keyword arg</samp></pre>
 
 <h2 id=indentingcode>Indentare il codice</h2>
 <p>Le funzioni Python non cominciano esplicitamente con <code>begin</code> né terminano con <code>end</code>, e non ci sono parentesi graffe a indicare dove il codice della funzione inizia e finisce. I due punti (<code>:</code>) e l'indentazione del codice stesso sono gli unici delimitatori.
-<pre><code>
-<a>def approximate_size(size, a_kilobyte_is_1024_bytes=True):  <span>&#x2460;</span></a>
-<a>    if size &lt; 0:                                            <span>&#x2461;</span></a>
-<a>        raise ValueError('number must be non-negative')     <span>&#x2462;</span></a>
-<a>                                                            <span>&#x2463;</span></a>
+<pre><code class=pp><a>def approximate_size(size, a_kilobyte_is_1024_bytes=True):  <span class=u>&#x2460;</span></a>
+<a>    if size &lt; 0:                                            <span class=u>&#x2461;</span></a>
+<a>        raise ValueError('number must be non-negative')     <span class=u>&#x2462;</span></a>
+<a>                                                            <span class=u>&#x2463;</span></a>
     multiple = 1024 if a_kilobyte_is_1024_bytes else 1000
-<a>    for suffix in SUFFIXES[multiple]:                       <span>&#x2464;</span></a>
+<a>    for suffix in SUFFIXES[multiple]:                       <span class=u>&#x2464;</span></a>
         size /= multiple
         if size &lt; multiple:
             return '{0:.1f} {1}'.format(size, suffix)
@@ -249,7 +247,7 @@ SyntaxError: non-keyword arg after keyword arg</samp></pre>
 </ol>
 <p>Dopo alcune proteste iniziali e diverse analogie maliziose al Fortran, vi riappacificherete con questa caratteristica di Python e comincerete a vederne i lati positivi. Uno dei maggiori benefici è che tutti i programmi Python appaiono simili, in quanto l'indentazione è un requisito del linguaggio e non una questione di stile. Questo rende più facile leggere e comprendere il codice Python scritto da altre persone.
 <blockquote class='note compare java'>
-<p><span>&#x261E;</span>Python usa i ritorni a capo per separare le istruzioni e i due punti e l'indentazione per separare i blocchi di codice. <abbr>C++</abbr> e Java usano i punti e virgola per separare le istruzioni e le parentesi graffe per separare i blocchi di codice.
+<p><span class=u>&#x261E;</span>Python usa i ritorni a capo per separare le istruzioni e i due punti e l'indentazione per separare i blocchi di codice. <abbr>C++</abbr> e Java usano i punti e virgola per separare le istruzioni e le parentesi graffe per separare i blocchi di codice.
 </blockquote>
 
 <p class=a>&#x2042;
@@ -257,12 +255,12 @@ SyntaxError: non-keyword arg after keyword arg</samp></pre>
 <h2 id=runningscripts>Eseguire gli script</h2>
 <aside>Ogni cosa in Python è un oggetto.</aside>
 <p>I moduli Python sono oggetti e hanno diverse proprietà utili. Potete sfruttare questa caratteristica per collaudare facilmente i vostri moduli mentre li scrivete, includendo uno speciale blocco di codice che viene eseguito quando lanciate il file Python dalla linea di comando. Considerate le ultime righe di <code>humansize.py</code>:
-<pre><code>
+<pre><code class=pp>
 if __name__ == '__main__':
     print(approximate_size(1000000000000, False))
     print(approximate_size(1000000000000))</code></pre>
 <blockquote class='note compare clang'>
-<p><span>&#x261E;</span>Come il <abbr>C</abbr>, Python usa <code>==</code> per il confronto e <code>=</code> per l'assegnamento. A differenza del <abbr>C</abbr>, Python non supporta l'assegnamento in linea, quindi non c'è alcuna possibilità di assegnare accidentalmente il valore che pensavate di stare confrontando.
+<p><span class=u>&#x261E;</span>Come il <abbr>C</abbr>, Python usa <code>==</code> per il confronto e <code>=</code> per l'assegnamento. A differenza del <abbr>C</abbr>, Python non supporta l'assegnamento in linea, quindi non c'è alcuna possibilità di assegnare accidentalmente il valore che pensavate di stare confrontando.
 </blockquote>
 <p>Che cosa rende speciale questa istruzione <code>if</code>? Ebbene, i moduli sono oggetti, e tutti i moduli hanno la proprietà built-in <code>__name__</code>. Il valore della proprietà <code>__name__</code> di un modulo dipende da come state usando il modulo. Se importate un modulo, allora <code>__name__</code> sarà il nome del file del modulo, senza il percorso e l'estensione. 
 <pre class=screen>
@@ -285,8 +283,9 @@ if __name__ == '__main__':
 <li><a href=http://www.python.org/dev/peps/pep-0008/>PEP 8: Style Guide for Python Code</a> descrive il buon stile di indentazione.
 <li><a href=http://docs.python.org/3.0/reference/><cite>Python Reference Manual</cite></a> spiega cosa significa dire che <a href=http://docs.python.org/3.0/reference/datamodel.html#objects-values-and-types>ogni cosa in Python è un oggetto</a>, perché alcune persone sono <a href=http://www.douglasadams.com/dna/pedants.html>pedanti</a> e adorano discutere questo tipo di cose in lungo e in largo.
 </ul>
-<p class=nav><a rel=prev class=todo><span>&#x261C;</span></a> <a rel=next href=tipi-di-dato-nativi.html title='avanti a &#8220;Tipi di dato nativi&#8221;'><span>&#x261E;</span></a>
+<p class=nav><a rel=prev class=todo><span class=u>&#x261C;</span></a> <a rel=next href=tipi-di-dato-nativi.html title='avanti a &#8220;Tipi di dato nativi&#8221;'><span class=u>&#x261E;</span></a>
 <p class=c>&copy; 2001&ndash;9 <a href=informazioni-sul-libro.html>Mark Pilgrim</a><br>
 &copy; 2009 <a href=informazioni-sulla-traduzione.html>Giulio Piancastelli</a> per la traduzione italiana
 <script src=j/jquery.js></script>
+<script src=j/prettify.js></script>
 <script src=j/dip3.js></script>

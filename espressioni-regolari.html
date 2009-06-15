@@ -13,11 +13,11 @@ body{counter-reset:h1 4}
 <meta name=viewport content='initial-scale=1.0'>
 </head>
 <form action=http://www.google.com/cse><div><input type=hidden name=cx value=014021643941856155761:l5eihuescdw><input type=hidden name=ie value=UTF-8>&nbsp;<input name=q size=25>&nbsp;<input type=submit name=root value=Search></div></form>
-<p>Voi siete qui: <a href=index.html>Home</a> <span>&#8227;</span> <a href=table-of-contents.html#regular-expressions>Dive Into Python 3</a> <span>&#8227;</span>
+<p>Voi siete qui: <a href=index.html>Home</a> <span class=u>&#8227;</span> <a href=table-of-contents.html#regular-expressions>Dive Into Python 3</a> <span class=u>&#8227;</span>
 <p id=level>Livello di difficoltà: <span class=u title=intermedio>&#x2666;&#x2666;&#x2666;&#x2662;&#x2662;</span>
 <h1>Espressioni regolari</h1>
 <blockquote class=q>
-<p><span>&#x275D;</span> Alcune persone, quando affrontano un problema, pensano &#8220;Ci sono, userò le espressioni regolari.&#8221; Ora hanno due problemi. <span>&#x275E;</span><br>&mdash; <a href=http://www.jwz.org/hacks/marginal.html>Jamie Zawinski</a>
+<p><span class=u>&#x275D;</span> Alcune persone, quando affrontano un problema, pensano &#8220;Ci sono, userò le espressioni regolari.&#8221; Ora hanno due problemi. <span class=u>&#x275E;</span><br>&mdash; <a href=http://www.jwz.org/hacks/marginal.html>Jamie Zawinski</a>
 </blockquote>
 <p id=toc>&nbsp;
 <h2 id=divingin>Immersione!</h2>
@@ -25,7 +25,7 @@ body{counter-reset:h1 4}
 <p>Se il vostro obiettivo può essere raggiunto con i metodi delle stringhe, dovreste usarli. Sono veloci, semplici e facili da leggere, e c'è molto da dire a favore del codice veloce, semplice e leggibile. Ma se state lavorando con le stringhe attraverso una grande quantità di funzioni differenti e una serie di istruzioni <code>if</code> per gestire casi particolari, o se state combinando tra loro chiamate a <code>split()</code> e <code>join()</code> per affettare e ricomporre le vostre stringhe, potreste aver bisogno di avvalervi delle espressioni regolari.
 <p>Le espressioni regolari sono un modo potente e (per la maggior parte) standard per cercare, sostituire, e riconoscere testo attraverso complessi pattern di caratteri. Sebbene la sintassi delle espressioni regolari sia ermetica e diversa dal normale codice, il risultato potrebbe rivelarsi <em>più</em> leggibile di una soluzione manuale che usa una lunga catena di funzioni per le stringhe. Le espressioni regolari vi permettono anche di inserire commenti al loro interno, in modo che possiate documentare le singole parti che le compongono.
 <blockquote class='note compare perl5'>
-<p><span>&#x261E;</span>Se avete usato le espressioni regolari in altri linguaggi (come Perl 5), la sintassi utilizzata da Python vi sarà molto familiare. Leggete il riepilogo della documentazione ufficiale sul <a href=http://docs.python.org/dev/library/re.html#module-contents>modulo <code>re</code></a> per avere una descrizione delle funzioni disponibili e dei loro argomenti.
+<p><span class=u>&#x261E;</span>Se avete usato le espressioni regolari in altri linguaggi (come Perl 5), la sintassi utilizzata da Python vi sarà molto familiare. Leggete il riepilogo della documentazione ufficiale sul <a href=http://docs.python.org/dev/library/re.html#module-contents>modulo <code>re</code></a> per avere una descrizione delle funzioni disponibili e dei loro argomenti.
 </blockquote>
 
 <p class=a>&#x2042;
@@ -34,15 +34,15 @@ body{counter-reset:h1 4}
 <p>Questa serie di esempi si ispira a un problema reale incontrato sul lavoro diversi anni fa, quando ho avuto bisogno di ripulire e uniformare gli indirizzi delle vie estratti da un sistema legacy prima di inserirli in un sistema più nuovo. (Vedete, non mi invento questa roba sul momento; è veramente utile.) Questo esempio mostra come ho inizialmente affrontato il problema.
 <pre class=screen>
 <samp class=p>>>> </samp><kbd>s = '100 NORTH MAIN ROAD'</kbd>
-<a><samp class=p>>>> </samp><kbd>s.replace('ROAD', 'RD.')</kbd>                <span>&#x2460;</span></a>
+<a><samp class=p>>>> </samp><kbd>s.replace('ROAD', 'RD.')</kbd>                <span class=u>&#x2460;</span></a>
 <samp>'100 NORTH MAIN RD.'</samp>
 <samp class=p>>>> </samp><kbd>s = '100 NORTH BROAD ROAD'</kbd>
-<a><samp class=p>>>> </samp><kbd>s.replace('ROAD', 'RD.')</kbd>                <span>&#x2461;</span></a>
+<a><samp class=p>>>> </samp><kbd>s.replace('ROAD', 'RD.')</kbd>                <span class=u>&#x2461;</span></a>
 <samp>'100 NORTH BRD. RD.'</samp>
-<a><samp class=p>>>> </samp><kbd>s[:-4] + s[-4:].replace('ROAD', 'RD.')</kbd>  <span>&#x2462;</span></a>
+<a><samp class=p>>>> </samp><kbd>s[:-4] + s[-4:].replace('ROAD', 'RD.')</kbd>  <span class=u>&#x2462;</span></a>
 <samp>'100 NORTH BROAD RD.'</samp>
-<a><samp class=p>>>> </samp><kbd>import re</kbd>                               <span>&#x2463;</span></a>
-<a><samp class=p>>>> </samp><kbd>re.sub('ROAD$', 'RD.', s)</kbd>               <span>&#x2464;</span></a>
+<a><samp class=p>>>> </samp><kbd>import re</kbd>                               <span class=u>&#x2463;</span></a>
+<a><samp class=p>>>> </samp><kbd>re.sub('ROAD$', 'RD.', s)</kbd>               <span class=u>&#x2464;</span></a>
 <samp>'100 NORTH BROAD RD.'</samp></pre>
 <ol>
 <li>Il mio obiettivo è di uniformare un indirizzo in modo che <code>'ROAD'</code> sia sempre abbreviato come <code>'RD.'</code>. A prima vista, pensavo fosse una cosa abbastanza semplice da non dover usare altro che il metodo <code>replace()</code> sulle stringhe. Dopo tutto, i dati erano già in maiuscolo, così eventuali corrispondenze mancate con caratteri minuscoli non sarebbero state un problema. E la stringa di ricerca, <code>'ROAD'</code>, era una costante. E in questo caso ingannevolmente semplice, <code>s.replace()</code> effettivamente funziona.
@@ -57,14 +57,14 @@ body{counter-reset:h1 4}
 <samp class=p>>>> </samp><kbd>s = '100 BROAD'</kbd>
 <samp class=p>>>> </samp><kbd>re.sub('ROAD$', 'RD.', s)</kbd>
 <samp>'100 BRD.'</samp>
-<a><samp class=p>>>> </samp><kbd>re.sub('\\bROAD$', 'RD.', s)</kbd>   <span>&#x2460;</span></a>
+<a><samp class=p>>>> </samp><kbd>re.sub('\\bROAD$', 'RD.', s)</kbd>   <span class=u>&#x2460;</span></a>
 <samp>'100 BROAD'</samp>
-<a><samp class=p>>>> </samp><kbd>re.sub(r'\bROAD$', 'RD.', s)</kbd>   <span>&#x2461;</span></a>
+<a><samp class=p>>>> </samp><kbd>re.sub(r'\bROAD$', 'RD.', s)</kbd>   <span class=u>&#x2461;</span></a>
 <samp>'100 BROAD'</samp>
 <samp class=p>>>> </samp><kbd>s = '100 BROAD ROAD APT. 3'</kbd>
-<a><samp class=p>>>> </samp><kbd>re.sub(r'\bROAD$', 'RD.', s)</kbd>   <span>&#x2462;</span></a>
+<a><samp class=p>>>> </samp><kbd>re.sub(r'\bROAD$', 'RD.', s)</kbd>   <span class=u>&#x2462;</span></a>
 <samp>'100 BROAD ROAD APT. 3'</samp>
-<a><samp class=p>>>> </samp><kbd>re.sub(r'\bROAD\b', 'RD.', s)</kbd>  <span>&#x2463;</span></a>
+<a><samp class=p>>>> </samp><kbd>re.sub(r'\bROAD\b', 'RD.', s)</kbd>  <span class=u>&#x2463;</span></a>
 <samp>'100 BROAD RD. APT 3'</samp></pre>
 <ol>
 <li>Quello che <em>realmente</em> volevo era trovare una corrispondenza con <code>'ROAD'</code> quando era al termine della stringa <em>ed</em> era una parola a sé (non parte di una parola più grande). Le espressioni regolari usano <code>\b</code> per esprimere che &#8220;il limite di una parola deve trovarsi proprio qui.&#8221; In Python, l'uso di questo pattern è complicato dalla necessità di effettuare l'escape di ogni carattere di backslash <code>'\'</code> contenuto in una stringa. Questa seccatura viene solitamente chiamata la piaga del backslash, ed è una delle ragioni per cui le espressioni regolari sono più semplici da usare in Perl che in Python. Sfortunatamente, Perl mescola le espressioni regolari con altra sintassi, quindi se avete un problema potrebbe essere difficile capire se è un bug nella sintassi o è un bug nella vostra espressione regolare.
@@ -99,15 +99,15 @@ body{counter-reset:h1 4}
 <p>Come potremmo fare per verificare che una stringa arbitraria sia un numero romano valido? Prendiamo una cifra alla volta. Dato che i numeri roman sono sempre scritti dalla cifra più alta a quella più bassa, cominciamo con la più alta: le migliaia. Per i numeri da 1000 in su, le migliaia sono rappresentate da una serie di caratteri <code>M</code>.
 <pre class=screen>
 <samp class=p>>>> </samp><kbd>import re</kbd>
-<a><samp class=p>>>> </samp><kbd>pattern = '^M?M?M?$'</kbd>        <span>&#x2460;</span></a>
-<a><samp class=p>>>> </samp><kbd>re.search(pattern, 'M')</kbd>     <span>&#x2461;</span></a>
+<a><samp class=p>>>> </samp><kbd>pattern = '^M?M?M?$'</kbd>        <span class=u>&#x2460;</span></a>
+<a><samp class=p>>>> </samp><kbd>re.search(pattern, 'M')</kbd>     <span class=u>&#x2461;</span></a>
 <samp>&lt;SRE_Match object at 0106FB58></samp>
-<a><samp class=p>>>> </samp><kbd>re.search(pattern, 'MM')</kbd>    <span>&#x2462;</span></a>
+<a><samp class=p>>>> </samp><kbd>re.search(pattern, 'MM')</kbd>    <span class=u>&#x2462;</span></a>
 <samp>&lt;SRE_Match object at 0106C290></samp>
-<a><samp class=p>>>> </samp><kbd>re.search(pattern, 'MMM')</kbd>   <span>&#x2463;</span></a>
+<a><samp class=p>>>> </samp><kbd>re.search(pattern, 'MMM')</kbd>   <span class=u>&#x2463;</span></a>
 <samp>&lt;SRE_Match object at 0106AA38></samp>
-<a><samp class=p>>>> </samp><kbd>re.search(pattern, 'MMMM')</kbd>  <span>&#x2464;</span></a>
-<a><samp class=p>>>> </samp><kbd>re.search(pattern, '')</kbd>      <span>&#x2465;</span></a>
+<a><samp class=p>>>> </samp><kbd>re.search(pattern, 'MMMM')</kbd>  <span class=u>&#x2464;</span></a>
+<a><samp class=p>>>> </samp><kbd>re.search(pattern, '')</kbd>      <span class=u>&#x2465;</span></a>
 <samp>&lt;SRE_Match object at 0106F4A8></samp></pre>
 <ol>
 <li>Questo pattern è composto da tre parti. <code>^</code> fa corrispondere quanto segue solo se è all'inizio della stringa. Se questo non fosse specificato, il pattern troverebbe una corrispondenza a prescindere dalla posizione dei caratteri  <code>M</code>, che non è ciò che volete. Voi volete essere sicuri che i caratteri <code>M</code>, se ce ne sono, siano all'inizio della stringa. <code>M?</code> rappresenta una corrispondenza opzionale con un singolo carattere <code>M</code>. Ripetuto tre volte, rappresenta una corrispondenza con una stringa che contiene da zero a tre caratteri <code>M</code> di seguito. E <code>$</code> corrisponde alla fine della stringa. Combinato con il carattere <code>^</code> all'inizio, questo significa che il pattern cerca una corrispondenza con l'intera stringa, senza nessun altro carattere prima o dopo i caratteri <code>M</code>.
@@ -145,15 +145,15 @@ body{counter-reset:h1 4}
 <p>Questo esempio mostra come validare le centinaia di un numero romano.
 <pre class=screen>
 <samp class=p>>>> </samp><kbd>import re</kbd>
-<a><samp class=p>>>> </samp><kbd>pattern = '^M?M?M?(CM|CD|D?C?C?C?)$'</kbd>  <span>&#x2460;</span></a>
-<a><samp class=p>>>> </samp><kbd>re.search(pattern, 'MCM')</kbd>             <span>&#x2461;</span></a>
+<a><samp class=p>>>> </samp><kbd>pattern = '^M?M?M?(CM|CD|D?C?C?C?)$'</kbd>  <span class=u>&#x2460;</span></a>
+<a><samp class=p>>>> </samp><kbd>re.search(pattern, 'MCM')</kbd>             <span class=u>&#x2461;</span></a>
 <samp>&lt;SRE_Match object at 01070390></samp>
-<a><samp class=p>>>> </samp><kbd>re.search(pattern, 'MD')</kbd>              <span>&#x2462;</span></a>
+<a><samp class=p>>>> </samp><kbd>re.search(pattern, 'MD')</kbd>              <span class=u>&#x2462;</span></a>
 <samp>&lt;SRE_Match object at 01073A50></samp>
-<a><samp class=p>>>> </samp><kbd>re.search(pattern, 'MMMCCC')</kbd>          <span>&#x2463;</span></a>
+<a><samp class=p>>>> </samp><kbd>re.search(pattern, 'MMMCCC')</kbd>          <span class=u>&#x2463;</span></a>
 <samp>&lt;SRE_Match object at 010748A8></samp>
-<a><samp class=p>>>> </samp><kbd>re.search(pattern, 'MCMC')</kbd>            <span>&#x2464;</span></a>
-<a><samp class=p>>>> </samp><kbd>re.search(pattern, '')</kbd>                <span>&#x2465;</span></a>
+<a><samp class=p>>>> </samp><kbd>re.search(pattern, 'MCMC')</kbd>            <span class=u>&#x2464;</span></a>
+<a><samp class=p>>>> </samp><kbd>re.search(pattern, '')</kbd>                <span class=u>&#x2465;</span></a>
 <samp>&lt;SRE_Match object at 01071D98></samp></pre>
 <ol>
 <li>Questo pattern comincia allo stesso modo del precedente, controllando l'inizio della stringa (<code>^</code>), poi le migliaia (<code>M?M?M?</code>). Dopo prosegue con la nuova parte, tra parentesi, che definisce un insieme di tre pattern mutuamente esclusivi, separati da barre verticali: <code>CM</code>, <code>CD</code>, e <code>D?C?C?C?</code> (che contiene una <code>D</code> opzionale seguita da zero fino a tre caratteri <code>C</code> opzionali). Il riconoscitore di espressioni regolari controlla ognuno di questi pattern nell'ordine dato (da sinistra a destra), prende il primo che corrisponde e ignora il resto.
@@ -173,15 +173,15 @@ body{counter-reset:h1 4}
 <pre class=screen>
 <samp class=p>>>> </samp><kbd>import re</kbd>
 <samp class=p>>>> </samp><kbd>pattern = '^M?M?M?$'</kbd>
-<a><samp class=p>>>> </samp><kbd>re.search(pattern, 'M')</kbd>     <span>&#x2460;</span></a>
+<a><samp class=p>>>> </samp><kbd>re.search(pattern, 'M')</kbd>     <span class=u>&#x2460;</span></a>
 <samp>&lt;_sre.SRE_Match object at 0x008EE090></samp>
 <samp class=p>>>> </samp><kbd>pattern = '^M?M?M?$'</kbd>
-<a><samp class=p>>>> </samp><kbd>re.search(pattern, 'MM')</kbd>    <span>&#x2461;</span></a>
+<a><samp class=p>>>> </samp><kbd>re.search(pattern, 'MM')</kbd>    <span class=u>&#x2461;</span></a>
 <samp>&lt;_sre.SRE_Match object at 0x008EEB48></samp>
 <samp class=p>>>> </samp><kbd>pattern = '^M?M?M?$'</kbd>
-<a><samp class=p>>>> </samp><kbd>re.search(pattern, 'MMM')</kbd>   <span>&#x2462;</span></a>
+<a><samp class=p>>>> </samp><kbd>re.search(pattern, 'MMM')</kbd>   <span class=u>&#x2462;</span></a>
 <samp>&lt;_sre.SRE_Match object at 0x008EE090></samp>
-<a><samp class=p>>>> </samp><kbd>re.search(pattern, 'MMMM')</kbd>  <span>&#x2463;</span></a>
+<a><samp class=p>>>> </samp><kbd>re.search(pattern, 'MMMM')</kbd>  <span class=u>&#x2463;</span></a>
 <samp class=p>>>> </samp></pre>
 <ol>
 <li>Questo trova una corrispondenza con l'inizio della stringa, e poi con la prima <code>M</code> opzionale, ma non con la seconda e la terza <code>M</code> (ma questo è OK perché sono opzionali), e poi con la fine della stringa.
@@ -190,14 +190,14 @@ body{counter-reset:h1 4}
 <li>Questo trova una corrispondenza con l'inizio della stringa, poi con tutte e tre le <code>M</code> opzionali, ma non con la fine della stringa (perché c'è ancora una <code>M</code> senza corrispondenza), quindi il pattern non corrisponde e la funzione restituisce <code>None</code>.
 </ol>
 <pre class=screen>
-<a><samp class=p>>>> </samp><kbd>pattern = '^M{0,3}$'</kbd>        <span>&#x2460;</span></a>
-<a><samp class=p>>>> </samp><kbd>re.search(pattern, 'M')</kbd>     <span>&#x2461;</span></a>
+<a><samp class=p>>>> </samp><kbd>pattern = '^M{0,3}$'</kbd>        <span class=u>&#x2460;</span></a>
+<a><samp class=p>>>> </samp><kbd>re.search(pattern, 'M')</kbd>     <span class=u>&#x2461;</span></a>
 <samp>&lt;_sre.SRE_Match object at 0x008EEB48></samp>
-<a><samp class=p>>>> </samp><kbd>re.search(pattern, 'MM')</kbd>    <span>&#x2462;</span></a>
+<a><samp class=p>>>> </samp><kbd>re.search(pattern, 'MM')</kbd>    <span class=u>&#x2462;</span></a>
 <samp>&lt;_sre.SRE_Match object at 0x008EE090></samp>
-<a><samp class=p>>>> </samp><kbd>re.search(pattern, 'MMM')</kbd>   <span>&#x2463;</span></a>
+<a><samp class=p>>>> </samp><kbd>re.search(pattern, 'MMM')</kbd>   <span class=u>&#x2463;</span></a>
 <samp>&lt;_sre.SRE_Match object at 0x008EEDA8></samp>
-<a><samp class=p>>>> </samp><kbd>re.search(pattern, 'MMMM')</kbd>  <span>&#x2464;</span></a>
+<a><samp class=p>>>> </samp><kbd>re.search(pattern, 'MMMM')</kbd>  <span class=u>&#x2464;</span></a>
 <samp class=p>>>> </samp></pre>
 <ol>
 <li>Questo pattern dice: &#8220;Trova una corrispondenza con l'inizio della stringa, poi da zero a tre caratteri <code>M</code>, poi la fine della stringa.&#8221; Lo 0 e il 3 possono essere qualsiasi numero; se volete trovare una corrispondenza con almeno uno ma non più di tre caratteri <code>M</code>, potete usare <code>M{1,3}</code>.
@@ -210,15 +210,15 @@ body{counter-reset:h1 4}
 <p>Ora espandiamo l'espressione regolare dei numeri romani per trattare le decine e le unità. Questo esempio mostra il controllo sulle decine.
 <pre class=screen>
 <samp class=p>>>> </samp><kbd>pattern = '^M?M?M?(CM|CD|D?C?C?C?)(XC|XL|L?X?X?X?)$'</kbd>
-<a><samp class=p>>>> </samp><kbd>re.search(pattern, 'MCMXL')</kbd>     <span>&#x2460;</span></a>
+<a><samp class=p>>>> </samp><kbd>re.search(pattern, 'MCMXL')</kbd>     <span class=u>&#x2460;</span></a>
 <samp>&lt;_sre.SRE_Match object at 0x008EEB48></samp>
-<a><samp class=p>>>> </samp><kbd>re.search(pattern, 'MCML')</kbd>      <span>&#x2461;</span></a>
+<a><samp class=p>>>> </samp><kbd>re.search(pattern, 'MCML')</kbd>      <span class=u>&#x2461;</span></a>
 <samp>&lt;_sre.SRE_Match object at 0x008EEB48></samp>
-<a><samp class=p>>>> </samp><kbd>re.search(pattern, 'MCMLX')</kbd>     <span>&#x2462;</span></a>
+<a><samp class=p>>>> </samp><kbd>re.search(pattern, 'MCMLX')</kbd>     <span class=u>&#x2462;</span></a>
 <samp>&lt;_sre.SRE_Match object at 0x008EEB48></samp>
-<a><samp class=p>>>> </samp><kbd>re.search(pattern, 'MCMLXXX')</kbd>   <span>&#x2463;</span></a>
+<a><samp class=p>>>> </samp><kbd>re.search(pattern, 'MCMLXXX')</kbd>   <span class=u>&#x2463;</span></a>
 <samp>&lt;_sre.SRE_Match object at 0x008EEB48></samp>
-<a><samp class=p>>>> </samp><kbd>re.search(pattern, 'MCMLXXXX')</kbd>  <span>&#x2464;</span></a>
+<a><samp class=p>>>> </samp><kbd>re.search(pattern, 'MCMLXXXX')</kbd>  <span class=u>&#x2464;</span></a>
 <samp class=p>>>> </samp></pre>
 <ol>
 <li>Questo trova una corrispondenza con l'inizio della stringa, poi la prima <code>M</code> opzionale, poi <code>CM</code>, poi <code>XL</code>, poi la fine della stringa. Ricordate, la sintassi <code>(A|B|C)</code> significa &#8220;trova una corrispondenza con esattamente uno solo tra A, B, o C&#8221;. Avete trovato una corrispondenza con <code>XL</code>, quindi ignorate le scelte <code>XC</code> e <code>L?X?X?X?</code>, e poi vi spostate alla fine della stringa. <code>MCML</code> è la rappresentazione di <code>1940</code> come numero romano.
@@ -234,13 +234,13 @@ body{counter-reset:h1 4}
 </pre><p>Come apparirebbe se usassimo la sintassi sostitutiva <code>{n,m}</code>? Questo esempio mostra la nuova sintassi.
 <pre class=screen>
 <samp class=p>>>> </samp><kbd>pattern = '^M{0,3}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$'</kbd>
-<a><samp class=p>>>> </samp><kbd>re.search(pattern, 'MDLV')</kbd>              <span>&#x2460;</span></a>
+<a><samp class=p>>>> </samp><kbd>re.search(pattern, 'MDLV')</kbd>              <span class=u>&#x2460;</span></a>
 <samp>&lt;_sre.SRE_Match object at 0x008EEB48></samp>
-<a><samp class=p>>>> </samp><kbd>re.search(pattern, 'MMDCLXVI')</kbd>          <span>&#x2461;</span></a>
+<a><samp class=p>>>> </samp><kbd>re.search(pattern, 'MMDCLXVI')</kbd>          <span class=u>&#x2461;</span></a>
 <samp>&lt;_sre.SRE_Match object at 0x008EEB48></samp>
-<a><samp class=p>>>> </samp><kbd>re.search(pattern, 'MMMDCCCLXXXVIII')</kbd>   <span>&#x2462;</span></a>
+<a><samp class=p>>>> </samp><kbd>re.search(pattern, 'MMMDCCCLXXXVIII')</kbd>   <span class=u>&#x2462;</span></a>
 <samp>&lt;_sre.SRE_Match object at 0x008EEB48></samp>
-<a><samp class=p>>>> </samp><kbd>re.search(pattern, 'I')</kbd>                 <span>&#x2463;</span></a>
+<a><samp class=p>>>> </samp><kbd>re.search(pattern, 'I')</kbd>                 <span class=u>&#x2463;</span></a>
 <samp>&lt;_sre.SRE_Match object at 0x008EEB48></samp></pre>
 <ol>
 <li>Questo trova una corrispondenza con l'inizio della stringa, poi uno di tre possibili caratteri <code>M</code>, poi <code>D?C{0,3}</code>. Di questo, trova una corrispondenza con la <code>D</code> opzionale e zero di tre possibili caratteri <code>C</code>. Proseguendo, trova una corrispondenza con <code>L?X{0,3}</code> tramite la <code>L</code> opzionale e zero di tre possibili caratteri <code>X</code>. Poi trova una corrispondenza con <code>V?I{0,3}</code> tramite la <code>V</code> opzionale e zero di tre possibili caratteri <code>I</code>, e da ultimo con la fine della stringa. <code>MDLV</code> è la rappresentazione di <code>1555</code> come numero romano.
@@ -273,13 +273,13 @@ body{counter-reset:h1 4}
                         #         o 5-8 (V, seguita da 0 fino a 3 I)
     $                   # fine della stringa
     '''</kbd>
-<a><samp class=p>>>> </samp><kbd>re.search(pattern, 'M', re.VERBOSE)</kbd>                 <span>&#x2460;</span></a>
+<a><samp class=p>>>> </samp><kbd>re.search(pattern, 'M', re.VERBOSE)</kbd>                 <span class=u>&#x2460;</span></a>
 <samp>&lt;_sre.SRE_Match object at 0x008EEB48></samp>
-<a><samp class=p>>>> </samp><kbd>re.search(pattern, 'MCMLXXXIX', re.VERBOSE)</kbd>         <span>&#x2461;</span></a>
+<a><samp class=p>>>> </samp><kbd>re.search(pattern, 'MCMLXXXIX', re.VERBOSE)</kbd>         <span class=u>&#x2461;</span></a>
 <samp>&lt;_sre.SRE_Match object at 0x008EEB48></samp>
-<a><samp class=p>>>> </samp><kbd>re.search(pattern, 'MMMDCCCLXXXVIII', re.VERBOSE)</kbd>   <span>&#x2462;</span></a>
+<a><samp class=p>>>> </samp><kbd>re.search(pattern, 'MMMDCCCLXXXVIII', re.VERBOSE)</kbd>   <span class=u>&#x2462;</span></a>
 <samp>&lt;_sre.SRE_Match object at 0x008EEB48></samp>
-<a><samp class=p>>>> </samp><kbd>re.search(pattern, 'M')</kbd>                             <span>&#x2463;</span></a></pre>
+<a><samp class=p>>>> </samp><kbd>re.search(pattern, 'M')</kbd>                             <span class=u>&#x2463;</span></a></pre>
 <ol>
 <li>La cosa più importante da ricordare quando usate le espressioni regolari verbose è che avete bisogno di passare un argomento aggiuntivo quando lavorate con esse: <code>re.VERBOSE</code> è una costante definita nel modulo <code>re</code> usata per segnalare che il pattern dovrebbe essere trattato come una espressione regolare verbosa. Come potete vedere, questo pattern ha un bel po' di spazi bianchi (che vengono tutti ignorati) e diversi commenti (che vengono tutti ignorati). Una volta che ignorate gli spazi bianchi e i commenti, questa è esattamente la stessa espressione regolare che avete visto nella sezione precedente, ma è molto più leggibile.
 <li>Questo trova una corrispondenza con l'inizio della stringa, poi una di tre possibili <code>M</code>, poi <code>CM</code>, poi <code>L</code> e tre di tre possibili <code>X</code>, poi <code>IX</code>, poi la fine della stringa.
@@ -308,10 +308,10 @@ body{counter-reset:h1 4}
 <p>Una gran varietà! In ognuno di questi casi, avevo bisogno di sapere che il codice d'area era <code>800</code>, il prefisso <code>555</code>, e il resto del numero telefonico <code>1212</code>. Per quelli con una estensione, avevo bisogno di sapere che quella estensione era <code>1234</code>.
 <p>Lavoriamo per sviluppare una soluzione al riconoscimento dei numeri di telefono. Questo esempio mostra il primo passo.
 <pre class=screen>
-<a><samp class=p>>>> </samp><kbd>phonePattern = re.compile(r'^(\d{3})-(\d{3})-(\d{4})$')</kbd>  <span>&#x2460;</span></a>
-<a><samp class=p>>>> </samp><kbd>phonePattern.search('800-555-1212').groups()</kbd>             <span>&#x2461;</span></a>
+<a><samp class=p>>>> </samp><kbd>phonePattern = re.compile(r'^(\d{3})-(\d{3})-(\d{4})$')</kbd>  <span class=u>&#x2460;</span></a>
+<a><samp class=p>>>> </samp><kbd>phonePattern.search('800-555-1212').groups()</kbd>             <span class=u>&#x2461;</span></a>
 <samp>('800', '555', '1212')</samp>
-<a><samp class=p>>>> </samp><kbd>phonePattern.search('800-555-1212-1234')</kbd>                 <span>&#x2462;</span></a>
+<a><samp class=p>>>> </samp><kbd>phonePattern.search('800-555-1212-1234')</kbd>                 <span class=u>&#x2462;</span></a>
 <samp class=p>>>> </samp></pre>
 <ol>
 <li>Leggete sempre una espressione regolare da sinistra a destra. Questa trova una corrispondenza con l'inizio della stringa, e poi con <code>(\d{3})</code>. Cos'è <code>\d{3}</code>? Be', <code>\d</code> significa &#8220;qualsiasi cifra numerica&#8221; (da <code>0</code> fino a <code>9</code>). E <code>{3}</code> significa &#8220;trova una corrispondenza con esattamente tre cifre numeriche&#8221;; è una variazione della <a href=#nmsyntax>sintassi <code>{n,m}</code></a> che avete visto prima. Mettere il tutto tra parentesi significa &#8220;trova una corrispondenza con esattamente tre cifre numeriche, <em>e memorizzala come un gruppo che posso richiederti più tardi</em>&#8221;. Poi l'espressione regolare trova quindi una corrispondenza con un trattino letterale. Poi trova una corrispondenza con un altro gruppo di esattamente tre cifre. Poi un altro trattino letterale. Poi un altro gruppo di esattamente quattro cifre. Poi trova una corrispondenza con la fine della stringa.
@@ -319,12 +319,12 @@ body{counter-reset:h1 4}
 <li>Questa espressione regolare non è la risposta finale, perché non gestisce un numero telefonico con una estensione alla fine. Per fare questo, avrete bisogno di espandere l'espressione regolare.
 </ol>
 <pre class=screen>
-<a><samp class=p>>>> </samp><kbd>phonePattern = re.compile(r'^(\d{3})-(\d{3})-(\d{4})-(\d+)$')</kbd>  <span>&#x2460;</span></a>
-<a><samp class=p>>>> </samp><kbd>phonePattern.search('800-555-1212-1234').groups()</kbd>              <span>&#x2461;</span></a>
+<a><samp class=p>>>> </samp><kbd>phonePattern = re.compile(r'^(\d{3})-(\d{3})-(\d{4})-(\d+)$')</kbd>  <span class=u>&#x2460;</span></a>
+<a><samp class=p>>>> </samp><kbd>phonePattern.search('800-555-1212-1234').groups()</kbd>              <span class=u>&#x2461;</span></a>
 <samp>('800', '555', '1212', '1234')</samp>
-<a><samp class=p>>>> </samp><kbd>phonePattern.search('800 555 1212 1234')</kbd>                       <span>&#x2462;</span></a>
+<a><samp class=p>>>> </samp><kbd>phonePattern.search('800 555 1212 1234')</kbd>                       <span class=u>&#x2462;</span></a>
 <samp class=p>>>> </samp>
-<a><samp class=p>>>> </samp><kbd>phonePattern.search('800-555-1212')</kbd>                            <span>&#x2463;</span></a>
+<a><samp class=p>>>> </samp><kbd>phonePattern.search('800-555-1212')</kbd>                            <span class=u>&#x2463;</span></a>
 <samp class=p>>>> </samp></pre>
 <ol>
 <li>Questa espressione regolare è quasi identica alla precedente. Esattamente come prima, trova una corrispondenza con l'inizio della stringa, poi con un gruppo di tre cifre da memorizzare, poi un trattino, poi un gruppo di tre cifre da memorizzare, poi un trattino, poi un gruppo di quattro cifre da memorizzare. La novità è che poi trova una corrispondenza con un altro trattino, poi un gruppo di una o più cifre da memorizzare, e poi la fine della stringa.
@@ -334,14 +334,14 @@ body{counter-reset:h1 4}
 </ol>
 <p>L'esempio seguente mostra l'espressione regolare che gestisce i separatori tra le diverse parti del numero di telefono.
 <pre class=screen>
-<a><samp class=p>>>> </samp><kbd>phonePattern = re.compile(r'^(\d{3})\D+(\d{3})\D+(\d{4})\D+(\d+)$')</kbd>  <span>&#x2460;</span></a>
-<a><samp class=p>>>> </samp><kbd>phonePattern.search('800 555 1212 1234').groups()</kbd>  <span>&#x2461;</span></a>
+<a><samp class=p>>>> </samp><kbd>phonePattern = re.compile(r'^(\d{3})\D+(\d{3})\D+(\d{4})\D+(\d+)$')</kbd>  <span class=u>&#x2460;</span></a>
+<a><samp class=p>>>> </samp><kbd>phonePattern.search('800 555 1212 1234').groups()</kbd>  <span class=u>&#x2461;</span></a>
 <samp>('800', '555', '1212', '1234')</samp>
-<a><samp class=p>>>> </samp><kbd>phonePattern.search('800-555-1212-1234').groups()</kbd>  <span>&#x2462;</span></a>
+<a><samp class=p>>>> </samp><kbd>phonePattern.search('800-555-1212-1234').groups()</kbd>  <span class=u>&#x2462;</span></a>
 <samp>('800', '555', '1212', '1234')</samp>
-<a><samp class=p>>>> </samp><kbd>phonePattern.search('80055512121234')</kbd>              <span>&#x2463;</span></a>
+<a><samp class=p>>>> </samp><kbd>phonePattern.search('80055512121234')</kbd>              <span class=u>&#x2463;</span></a>
 <samp class=p>>>> </samp>
-<a><samp class=p>>>> </samp><kbd>phonePattern.search('800-555-1212')</kbd>                <span>&#x2464;</span></a>
+<a><samp class=p>>>> </samp><kbd>phonePattern.search('800-555-1212')</kbd>                <span class=u>&#x2464;</span></a>
 <samp class=p>>>> </samp></pre>
 <ol>
 <li>Tenetevi stretto il vostro cappello. State trovando una corrispondenza con l'inizio della stringa, poi un gruppo di tre cifre, poi <code>\D+</code>. Cosa diavolo è quello? Ebbene, <code>\D</code> corrisponde a qualsiasi carattere <em>tranne</em> una cifra numerica, e <code>+</code> significa &#8220;1 o più&#8221;. Così <code>\D+</code> corrisponde a uno o più caratteri che non sono cifre. Questo è ciò che usate al posto di un trattino letterale per provare a trovare una corrispondenza con separatori differenti.
@@ -352,14 +352,14 @@ body{counter-reset:h1 4}
 </ol>
 <p>Il prossimo esempio mostra l'espressione regolare per gestire numeri di telefono <em>senza</em> separatori.
 <pre class=screen>
-<a><samp class=p>>>> </samp><kbd>phonePattern = re.compile(r'^(\d{3})\D*(\d{3})\D*(\d{4})\D*(\d*)$')</kbd>  <span>&#x2460;</span></a>
-<a><samp class=p>>>> </samp><kbd>phonePattern.search('80055512121234').groups()</kbd>      <span>&#x2461;</span></a>
+<a><samp class=p>>>> </samp><kbd>phonePattern = re.compile(r'^(\d{3})\D*(\d{3})\D*(\d{4})\D*(\d*)$')</kbd>  <span class=u>&#x2460;</span></a>
+<a><samp class=p>>>> </samp><kbd>phonePattern.search('80055512121234').groups()</kbd>      <span class=u>&#x2461;</span></a>
 <samp>('800', '555', '1212', '1234')</samp>
-<a><samp class=p>>>> </samp><kbd>phonePattern.search('800.555.1212 x1234').groups()</kbd>  <span>&#x2462;</span></a>
+<a><samp class=p>>>> </samp><kbd>phonePattern.search('800.555.1212 x1234').groups()</kbd>  <span class=u>&#x2462;</span></a>
 <samp>('800', '555', '1212', '1234')</samp>
-<a><samp class=p>>>> </samp><kbd>phonePattern.search('800-555-1212').groups()</kbd>        <span>&#x2463;</span></a>
+<a><samp class=p>>>> </samp><kbd>phonePattern.search('800-555-1212').groups()</kbd>        <span class=u>&#x2463;</span></a>
 <samp>('800', '555', '1212', '')</samp>
-<a><samp class=p>>>> </samp><kbd>phonePattern.search('(800)5551212 x1234')</kbd>           <span>&#x2464;</span></a>
+<a><samp class=p>>>> </samp><kbd>phonePattern.search('(800)5551212 x1234')</kbd>           <span class=u>&#x2464;</span></a>
 <samp class=p>>>> </samp></pre>
 <ol>
 <li>L'unico cambiamento che avete fatto rispetto all'ultimo passo è sostituire tutti i <code>+</code> con <code>*</code>. Invece di usare <code>\D+</code> tra le parti del numero telefonico, ora trovate una corrispondenza con <code>\D*</code>. Ricordate che <code>+</code> significa &#8220;1 o più&#8221;?  Ebbene, <code>*</code> significa &#8220;zero o più&#8221;. Così ora dovreste essere in grado di riconoscere i numeri telefonici anche quando non c'è alcun carattere di separazione.
@@ -370,12 +370,12 @@ body{counter-reset:h1 4}
 </ol>
 <p>L'esempio seguente mostra come gestire i caratteri iniziali nei numeri di telefono.
 <pre class=screen>
-<a><samp class=p>>>> </samp><kbd>phonePattern = re.compile(r'^\D*(\d{3})\D*(\d{3})\D*(\d{4})\D*(\d*)$')</kbd>  <span>&#x2460;</span></a>
-<a><samp class=p>>>> </samp><kbd>phonePattern.search('(800)5551212 ext. 1234').groups()</kbd>                  <span>&#x2461;</span></a>
+<a><samp class=p>>>> </samp><kbd>phonePattern = re.compile(r'^\D*(\d{3})\D*(\d{3})\D*(\d{4})\D*(\d*)$')</kbd>  <span class=u>&#x2460;</span></a>
+<a><samp class=p>>>> </samp><kbd>phonePattern.search('(800)5551212 ext. 1234').groups()</kbd>                  <span class=u>&#x2461;</span></a>
 <samp>('800', '555', '1212', '1234')</samp>
-<a><samp class=p>>>> </samp><kbd>phonePattern.search('800-555-1212').groups()</kbd>                            <span>&#x2462;</span></a>
+<a><samp class=p>>>> </samp><kbd>phonePattern.search('800-555-1212').groups()</kbd>                            <span class=u>&#x2462;</span></a>
 <samp>('800', '555', '1212', '')</samp>
-<a><samp class=p>>>> </samp><kbd>phonePattern.search('work 1-(800) 555.1212 #1234')</kbd>                      <span>&#x2463;</span></a>
+<a><samp class=p>>>> </samp><kbd>phonePattern.search('work 1-(800) 555.1212 #1234')</kbd>                      <span class=u>&#x2463;</span></a>
 <samp class=p>>>> </samp></pre>
 <ol>
 <li>Questo è lo stesso pattern dell'esempio precedente, a parte il fatto che ora state trovando una corrispondenza con <code>\D*</code> (zero o più caratteri non numerici) prima del primo gruppo da memorizzare (il codice d'area). Notate che non state memorizzando questi caratteri non numerici (non sono tra parentesi). Se li trovate, semplicemente li saltate e poi cominciate a memorizzare il codice d'area in qualsiasi punto si trovi.
@@ -385,12 +385,12 @@ body{counter-reset:h1 4}
 </ol>
 <p>Rivediamo il nostro lavoro per un secondo. Finora le espressioni regolari hanno tutte trovato una corrispondenza dall'inizio della stringa. Ma ora scoprite che all'inizio della stringa potrebbe esserci una quantità indeterminata di caratteri che volete ignorare. Piuttosto che provare a trovare una corrispondenza con tutta quella roba solo per scartarla, adottiamo un approccio differente: evitiamo di cercare esplicitamente una corrispondenza con l'inizio della stringa. Questo approccio è mostrato nel prossimo esempio.
 <pre class=screen>
-<a><samp class=p>>>> </samp><kbd>phonePattern = re.compile(r'(\d{3})\D*(\d{3})\D*(\d{4})\D*(\d*)$')</kbd>  <span>&#x2460;</span></a>
-<a><samp class=p>>>> </samp><kbd>phonePattern.search('work 1-(800) 555.1212 #1234').groups()</kbd>         <span>&#x2461;</span></a>
+<a><samp class=p>>>> </samp><kbd>phonePattern = re.compile(r'(\d{3})\D*(\d{3})\D*(\d{4})\D*(\d*)$')</kbd>  <span class=u>&#x2460;</span></a>
+<a><samp class=p>>>> </samp><kbd>phonePattern.search('work 1-(800) 555.1212 #1234').groups()</kbd>         <span class=u>&#x2461;</span></a>
 <samp>('800', '555', '1212', '1234')</samp>
-<a><samp class=p>>>> </samp><kbd>phonePattern.search('800-555-1212')</kbd>                                 <span>&#x2462;</span></a>
+<a><samp class=p>>>> </samp><kbd>phonePattern.search('800-555-1212')</kbd>                                 <span class=u>&#x2462;</span></a>
 <samp>('800', '555', '1212', '')</samp>
-<a><samp class=p>>>> </samp><kbd>phonePattern.search('80055512121234')</kbd>                               <span>&#x2463;</span></a>
+<a><samp class=p>>>> </samp><kbd>phonePattern.search('80055512121234')</kbd>                               <span class=u>&#x2463;</span></a>
 <samp>('800', '555', '1212', '1234')</samp></pre>
 <ol>
 <li>Notate la mancanza di <code>^</code> in questa espressione regolare. Non state più trovando una corrispondenza con l'inizio della stringa. Non c'è niente che dica che avete bisogno di trovare una corrispondenza tra l'intera stringa in ingresso e la vostra espressione regolare. Il riconoscitore di espressioni regolari si sobbarcherà il duro lavoro necessario a capire quando la stringa in ingresso comincia a corrispondere, e proseguirà da lì.
@@ -412,9 +412,9 @@ body{counter-reset:h1 4}
     (\d*)       # l'estensione opzionale è di un qualsiasi numero di cifre
     $           # fine della stringa
     ''', re.VERBOSE)</kbd>
-<a><samp class=p>>>> </samp><kbd>phonePattern.search('work 1-(800) 555.1212 #1234').groups()</kbd>  <span>&#x2460;</span></a>
+<a><samp class=p>>>> </samp><kbd>phonePattern.search('work 1-(800) 555.1212 #1234').groups()</kbd>  <span class=u>&#x2460;</span></a>
 <samp>('800', '555', '1212', '1234')</samp>
-<a><samp class=p>>>> </samp><kbd>phonePattern.search('800-555-1212')</kbd>                          <span>&#x2461;</span></a>
+<a><samp class=p>>>> </samp><kbd>phonePattern.search('800-555-1212')</kbd>                          <span class=u>&#x2461;</span></a>
 <samp>('800', '555', '1212', '')</samp></pre>
 <ol>
 <li>A parte il fatto di essere distribuita su più righe, questa è esattamente l'espressione regolare dell'ultimo passo, quindi non ci sorprende che riconosca gli stessi ingressi.
@@ -440,8 +440,9 @@ body{counter-reset:h1 4}
 <li><code>(x)</code> in generale è un <em>gruppo di memorizzazione</em>. Potete ottenere il valore di ciò che vi corrisponde usando il metodo <code>groups()</code> dell'oggetto restituito da <code>re.search()</code>.
 </ul>
 <p>Le espressioni regolari sono estremamente potenti, ma non sono la soluzione corretta per tutti i problemi. Dovreste imparare a conoscerle abbastanza da sapere quando sono appropriate, quando risolveranno i vostri problemi, e quando causeranno più problemi di quelli che risolvono.
-<p class=nav><a rel=prev href=stringhe.html title='indietro a &#8220;Stringhe&#8221;'><span>&#x261C;</span></a> <a rel=next href=generatori.html title='avanti a &#8220;Generatori&#8221;'><span>&#x261E;</span></a>
+<p class=nav><a rel=prev href=stringhe.html title='indietro a &#8220;Stringhe&#8221;'><span class=u>&#x261C;</span></a> <a rel=next href=generatori.html title='avanti a &#8220;Generatori&#8221;'><span class=u>&#x261E;</span></a>
 <p class=c>&copy; 2001&ndash;9 <a href=informazioni-sul-libro.html>Mark Pilgrim</a><br>
 &copy; 2009 <a href=informazioni-sulla-traduzione.html>Giulio Piancastelli</a> per la traduzione italiana
 <script src=j/jquery.js></script>
+<script src=j/prettify.js></script>
 <script src=j/dip3.js></script>
