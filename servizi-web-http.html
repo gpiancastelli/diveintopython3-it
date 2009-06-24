@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<head>
+<meta charset=utf-8>
+<title>Servizi web HTTP - Dive into Python 3</title>
+<!--[if IE]><script src=j/html5.js></script><![endif]-->
+<link rel=stylesheet href=dip3.css>
+<link rel=stylesheet href=dip3-it.css>
+<style>
+body{counter-reset:h1 15}
+mark{display:inline}
+</style>
+<link rel=stylesheet media='only screen and (max-device-width: 480px)' href=mobile.css>
+<link rel=stylesheet media=print href=print.css>
+<meta name=viewport content='initial-scale=1.0'>
+</head>
+<form action=http://www.google.com/cse><div><input type=hidden name=cx value=014021643941856155761:l5eihuescdw><input type=hidden name=ie value=UTF-8>&nbsp;<input name=q size=25>&nbsp;<input type=submit name=root value=Search></div></form>
+<p>Voi siete qui: <a href=index.html>Home</a> <span class=u>&#8227;</span> <a href=table-of-contents.html#http-web-services>Dive Into Python 3</a> <span class=u>&#8227;</span>
+<p id=level>Livello di difficoltà: <span class=u title=advanced>&#x2666;&#x2666;&#x2666;&#x2666;&#x2662;</span>
+<h1>Servizi web HTTP</h1>
+<blockquote class=q>
+<p><span class=u>&#x275D;</span> A ruffled mind makes a restless pillow. <span class=u>&#x275E;</span><br>&mdash; Charlotte Bront&euml;
+</blockquote>
+<p id=toc>&nbsp;
+<h2 id=divingin>Immersione!</h2>
+<p class=f>I servizi web HTTP sono un modo programmatico di spedire e ricevere dati da server remoti utilizzando nient'altro che le operazioni di <abbr>HTTP</abbr>. Se volete ottenere dati dal server, usate <abbr>HTTP</abbr> <code>GET</code>; se volete spedire nuovi dati al server, usate <abbr>HTTP</abbr> <code>POST</code>. Alcune delle <abbr>API</abbr> più avanzate per servizi web <abbr>HTTP</abbr> definiscono anche modi di creare, modificare e cancellare dati, utilizzando <abbr>HTTP</abbr> <code>PUT</code> e <abbr>HTTP</abbr> <code>DELETE</code>. In altre parole, i &#8220;verbi&#8221; definiti dal protocollo <abbr>HTTP</abbr> (<code>GET</code>, <code>POST</code>, <code>PUT</code> e <code>DELETE</code>) possono corrispondere direttamente a operazioni a livello di applicazione per recuperare, creare, modificare e cancellare dati.
+
+<p>Il vantaggio principale di questo approccio è la semplicità, e la sua semplicità si è dimostrata popolare. I dati &mdash; tipicamente in formato <abbr>XML</abbr> &mdash; possono essere costruiti e memorizzati staticamente, oppure generati dinamicamente da un programma lato server, e tutti i linguaggi di programmazione più importanti (compreso Python, naturalmente!) includono una libreria <abbr>HTTP</abbr> per scaricarli. Anche il debug viene facilitato; dato che ogni risorsa in un servizio web <abbr>HTTP</abbr> ha un indirizzo unico (sotto forma di un <abbr>URL</abbr>), potete caricarla nel vostro browser web e vederne immediatamente i dati rozzi.
+
+<p>Esempi di servizi web <abbr>HTTP</abbr>:
+<ul>
+<li>le <abbr>API</abbr> di <a href=http://code.google.com/apis/gdata/>Google Data vi permettono di interagire con un'ampia varietà di servizi forniti da Google, compresi <a href=http://www.blogger.com/>Blogger</a> e <a href=http://www.youtube.com/>YouTube</a>.
+<li>i <a href=http://www.flickr.com/services/api/>Flickr Services</a> vi permettono di caricare e scaricare foto da <a href=http://www.flickr.com/>Flickr</a>.
+<li>la <abbr>API</abbr> di <a href=http://apiwiki.twitter.com/>Twitter <abbr>API</abbr></a> vi permette di pubblicare aggiornamenti di stato su <a href=http://twitter.com/>Twitter</a>.
+<li><a href='http://www.programmableweb.com/apis/directory/1?sort=mashups'>&hellip;e molti altri</a>
+</ul>
+
+<p>Python 3 viene distribiuto con due diverse librerie per interagire con i servizi web <abbr>HTTP</abbr>:
+
+<ul>
+<li><a href=http://docs.python.org/3.0/library/http.client.html><code>http.client</code></a> è una libreria di basso livello che implementa la <a href=http://www.w3.org/Protocols/rfc2616/rfc2616.html><abbr>RFC</abbr> 2616</a>, cioè il protocollo <abbr>HTTP</abbr>.
+<li><a href=http://docs.python.org/3.0/library/urllib.request.html><code>urllib.request</code></a> è un livello di astrazione costruito sulla base di <code>http.client</code>. Fornisce una <abbr>API</abbr> standard per accedere sia ai server <abbr>HTTP</abbr> sia ai server <abbr>FTP</abbr>, segue automaticamente le redirezioni <abbr>HTTP</abbr> e gestisce alcune forme comuni di autenticazione <abbr>HTTP</abbr>.
+</ul>
+
+<p>Quindi quale delle due dovreste usare? Nessuna. Invece, dovreste usare <a href=http://code.google.com/p/httplib2/><code>httplib2</code></a>, una libreria open source di terze parti che implementa <abbr>HTTP</abbr> in maniera più completa rispetto ad <code>http.client</code> ma fornisce astrazioni migliori rispetto ad <code>urllib.request</code>.
+
+<p>Per comprendere perché <code>httplib2</code> è la scelta giusta, dovete prima conoscere <abbr>HTTP</abbr>.
+
+<p class=a>&#x2042;
+
+<h2 id=http-features>Le caratteristiche di HTTP</h2>
+
+<p>Ci sono cinque importanti caratteristiche che tutti i client <abbr>HTTP</abbr> dovrebbero supportare.
+
+<h3 id=caching class=wtf>Caching</h3>
+
+<p>La cosa più importante da capire per un qualsiasi tipo di servizio web è che l'accesso alla rete è incredibilmente costoso. Non nel senso di &#8220;dollari e centesimi&#8221; (sebbene la banda non sia gratis). Voglio dire che ci vuole un tempo estremamente lungo per aprire una connessione, spedire una richiesta e ricevere una risposta da un server remoto. Anche sulla più veloce connessione a banda larga, la <i>latenza</i> (il tempo che ci vuole per spedire una richiesta e cominciare a ricevere i dati in una risposta) può ancora essere più grande di quanto prevedete. Un router si comporta in modo strano, un pacchetto viene scartato, un proxy intermedio è sotto attacco &mdash; non c'è <a href=http://isc.sans.org/>mai un momento di calma</a> sulla Internet pubblica, e potrebbe non esserci nulla che voi possiate fare.
+
+<p><abbr>HTTP</abbr> è progettato con il <span class=wtf>caching</span> in mente. Esiste una intera categoria di dispositivi (chiamati &#8220;<span class=wtf>proxy caching</span>&#8221;) il cui solo lavoro è di sedere in mezzo tra voi e il resto del mondo e minimizzare l'accesso alla rete. La vostra azienda o il vostro <abbr>ISP</abbr> quasi certamente gestisce dei <span class=wtf>proxy caching</span>, anche se voi non ve ne rendete conto. Questi dispositivi funzionano perché il <span class=wtf>caching</span> è <span class=wtf>built into</span> il protocollo <abbr>HTTP</abbr>.
+
+<p>Ecco un esempio concreto di come funziona il <span class=wtf>caching</span>. Visitate <a href=http://diveintomark.org/><code>diveintomark.org</code></a> nel vostro browser. Quella pagina include un'immagine di sfondo, <a href=http://wearehugh.com/m.jpg><code>wearehugh.com/m.jpg</code></a>. Quando il vostro browser scarica quell'immagine, il server include le seguenti intestazioni <abbr>HTTP</abbr>:
+
+<pre><code>HTTP/1.1 200 OK
+Date: Sun, 31 May 2009 17:14:04 GMT
+Server: Apache
+Last-Modified: Fri, 22 Aug 2008 04:28:16 GMT
+ETag: "3075-ddc8d800"
+Accept-Ranges: bytes
+Content-Length: 12405
+<mark>Cache-Control: max-age=31536000, public</mark>
+<mark>Expires: Mon, 31 May 2010 17:14:04 GMT</mark>
+Connection: close
+Content-Type: image/jpeg</code></pre>
+
+<p>Le intestazioni <code>Cache-Control</code> e <code>Expires</code> dicono al vostro browser (e a qualsiasi <span class=wtf>proxy caching</span> tra voi e il server) che questa immagine può essere tenuta in cache per un anno. <em>Un anno!</em> E se, nel prossimo anno, visitate un'altra pagine che include un collegamento a questa immagine, il vostro browser caricherà l'immagine dalla sua cache <em>senza generare alcun tipo di attività di rete</em>.
+
+<p>Ma aspettate, la cosa diventa ancora migliore. Diciamo che per qualche motivo il vostro browser cancella l'immagine dalla vostra cache locale. Magari ha finito lo spazio su disco, magari voi avete pulito la cache manualmente. <span class=wtf>Whatever</span>. Ma le intestazioni <abbr>HTTP</abbr> dicevano che questi dati potevano essere memorizzati in cache da <span class=wtf>proxy caching</span> pubblici (grazie a quella parola chiave <code>public</code> nella intestazione <code>Cache-Control</code>). I <span class=wtf>proxy caching</span> sono progettati per avere tonnellate di spazio di memorizzazione, probabilmente molto di più di quanto abbiate allocato per il vostro browser locale.
+
+<p>Se la vostra azienda o il vostro <abbr>ISP</abbr> gestisce un <span class=wtf>proxy caching</span>, il proxy potrebbe ancora avere l'immagine nella propria cache. Quando visitate <code>diveintomark.org</code> un'altra volta, il vostro browser cercherà l'immagine nella sua cache locale, ma non la troverà, così effettuerà una richiesta di rete per cercare di scaricarla dal server remoto. Ma se il <span class=wtf>proxy caching</span> ha ancora una copia dell'immagine, intercetterà quella richiesta e servirà l'immagine dalla <em>propria</em> cache. Questo significa che la vostra richiesta non raggiungerà mai il server remoto; in effetti, non lascerà mai la rete della vostra azienda. Questo rende lo scaricamento più veloce (meno salti sulla rete) e fa risparmiare denaro alla vostra compagnia (meno dati che vengono scaricati dal mondo di fuori).
+
+<p>Il <span class=wtf>caching</span> <abbr>HTTP</abbr> funziona solo quando tutti fanno la loro parte. Da un lato, i server devono spedire le intestazioni corrette nelle loro risposte. Dall'altro lato, i client devono comprendere e rispettare quelle intestazioni prima di richiedere due volte gli stessi dati. I proxy nel mezzo non sono una panacea; possono essere tanto intelligenti solo quanto i server e i client permettono loro di essere.
+
+<p>Le librerie <abbr>HTTP</abbr> incluse in Python non supportano il <span class=wtf>caching</span>, ma <code>httplib2</code> lo fa.
+
+<h3 id=last-modified>Il controllo della modifica più recente</h3>
+
+<p>Alcuni dati non cambiano mai, mentre altri dati cambiano in ogni momento. Nel mezzo, c'è un vasto campo di dati che <em>potrebbe</em> essere cambiato, ma non lo ha fatto. Il feed di CNN.com viene aggiornato ogni pochi minuti, ma il feed del mio weblog potrebbe non cambiare per giorni o settimane alla volta. In quest'ultimo caso, non voglio dire ai client di mantenere in cache il mio feed per settimane alla volta, perché quando scrivo effettivamente qualcosa, la gente potrebbe non leggerla per settimane (perché stanno rispettando le mie intestazioni di cache che dicono &#8220;non preoccuparti di controllare questo feed per settimane&#8221;). D'altra parte, non voglio che i client scarichino il mio intero feed una volta ogni ora se non è cambiato!
+
+<p><abbr>HTTP</abbr> fornisce una soluzione anche a questo. Quando richiedete un dato per la prima volta, il server può spedire indietro una intestazione <code>Last-Modified</code>. Questa è esattamente quello che sembra: la data in cui i dati sono stati modificati. Quell'immagine di sfondo riferita da <code>diveintomark.org</code> includeva una intestazione <code>Last-Modified</code>.
+
+<pre><code>HTTP/1.1 200 OK
+Date: Sun, 31 May 2009 17:14:04 GMT
+Server: Apache
+<mark>Last-Modified: Fri, 22 Aug 2008 04:28:16 GMT</mark>
+ETag: "3075-ddc8d800"
+Accept-Ranges: bytes
+Content-Length: 12405
+Cache-Control: max-age=31536000, public
+Expires: Mon, 31 May 2010 17:14:04 GMT
+Connection: close
+Content-Type: image/jpeg
+</code></pre>
+
+<p>Quando richiedete gli stessi dati una seconda (o terza o quarta) volta, potete spedire una intestazione <code>If-Modified-Since</code> con la vostra richiesta, contenente la data che avete ottenuto dal server l'ultima volta. Se i dati non sono cambiati da allora, il server rimanda indietro lo speciale codice di stato <abbr>HTTP</abbr> <code>304</code>, per indicare che &#8220;questi dati non sono cambiati dall'ultima volta che li avete richiesti.&#8221 Potete verificare questo dalla linea di comando, utilizzando <a href=http://curl.haxx.se/>curl</a>:
+
+<pre class=screen>
+<samp class=p>you@localhost:~$ </samp><kbd>curl -I <mark>-H "If-Modified-Since: Fri, 22 Aug 2008 04:28:16 GMT"</mark> http://wearehugh.com/m.jpg</kbd>
+<samp>HTTP/1.1 304 Not Modified
+Date: Sun, 31 May 2009 18:04:39 GMT
+Server: Apache
+Connection: close
+ETag: "3075-ddc8d800"
+Expires: Mon, 31 May 2010 18:04:39 GMT
+Cache-Control: max-age=31536000, public</samp></pre>
+
+<p>Perché questo è un miglioramento? Perché quando il server restituisce un <code>304</code>, <em>non rispedisce i dati</em>. Tutto quello che ottenete è il codice di stato. Anche dopo che la copia nella vostra cache è scaduta, il controllo della modifica più recente vi assicura che non scaricherete gli stessi dati due volte se non sono cambiati. (Come bonus aggiuntivo, questa risposta <code>304</code> include anche le intestazioni di <span class=wtf>caching</span>. I proxy manterranno una copia dei dati anche dopo che sono ufficialmente &#8220;scaduti,&#8221; nella speranza che i dati non siano <em>realmente</em> cambiati e che la prossima richiesta risponda con un codice di stato <code>304</code> e informazioni di cache aggiornate.)
+
+<p>Le librerie <abbr>HTTP</abbr> incluse in Python non supportano il controllo della modifica più recente, ma <code>httplib2</code> lo fa.
+
+<h3 id=etags>Gli ETag</h3>
+
+<p>Gli ETag sono un modo alternativo con cui compiere la stessa cosa del <a href=#last-modified>controllo della modifica più recente</a>. Con gli ETag, il server spedisce un codice hash in una intestazione <code>ETag</code> insieme ai dati che avete richiesto. (Come questo hash venga determinato esattamente è interamente compito del server. L'unico requisito è che cambi quando i dati cambiano.) Quell'immagine di sfondo riferita da <code>diveintomark.org</code> aveva una intestazione <code>ETag</code>.
+
+<pre><code>HTTP/1.1 200 OK
+Date: Sun, 31 May 2009 17:14:04 GMT
+Server: Apache
+Last-Modified: Fri, 22 Aug 2008 04:28:16 GMT
+<mark>ETag: "3075-ddc8d800"</mark>
+Accept-Ranges: bytes
+Content-Length: 12405
+Cache-Control: max-age=31536000, public
+Expires: Mon, 31 May 2010 17:14:04 GMT
+Connection: close
+Content-Type: image/jpeg
+</code></pre>
+
+La seconda volta che richiedete gli stessi dati, includete il valore di ETag in una intestazione <code>If-None-Match</code> della vostra richiesta. Se i dati non sono cambaiti, il server vi spedirà indietro un codice di stato <code>304</code>. Come con il controllo sulla data della modifica più recente, il server manda indietro <em>solo</em> il codice di stato <code>304</code>, evitando di spedirvi gli stessi dati una seconda volta. Includendo il valore di ETag nella vostra seconda richiesta, state dicendo al server che non c'è alcun bisogno di rispedire gli stessi dati se quei dati corrispondono ancora a questo hash, dato che <a href=#caching>avete ancora i dati dall'ultima volta</a>.
+
+<p>Utilizzando ancora <kbd>curl</kbd>:
+
+<pre class=screen>
+<a><samp class=p>you@localhost:~$ </samp><kbd>curl -I <mark>-H "If-None-Match: \"3075-ddc8d800\""</mark> http://wearehugh.com/m.jpg</kbd>  <span class=u>&#x2460;</span></a>
+<samp>HTTP/1.1 304 Not Modified
+Date: Sun, 31 May 2009 18:04:39 GMT
+Server: Apache
+Connection: close
+ETag: "3075-ddc8d800"
+Expires: Mon, 31 May 2010 18:04:39 GMT
+Cache-Control: max-age=31536000, public</samp></pre>
+<ol>
+<li>Gli ETag vengono comunemente racchiusi tra virgolette, ma <em>le virgolette sono parte del valore</em>. Non sono delimitatori; l'unico delimitatore nella intestazione <code>ETag</code> è il carattere di due punti tra <code>ETag</code> e <code>"3075-ddc8d800"</code>. Questo significa che dovete spedire le virolette indietro al server nella intestazione <code>If-None-Match</code>.
+</ol>
+
+<p>Le librerie <abbr>HTTP</abbr> incluse in Python non supportano gli ETag, ma <code>httplib2</code> lo fa.
+
+<h3 id=compression>Compressione</h3>
+
+<p>Quando parlate di servizi web <abbr>HTTP</abbr>, state quasi certamente parlando di spostare dati basati su testo avanti e indietro <span class=wtf>over the wire</span>. Forse i dati sono in formato <abbr>XML</abbr>, forse sono in formato <abbr>JSON</abbr>, forse sono solo <a href=strings.html#boring-stuff title='il testo semplice non esiste'>testo semplice</a>. A prescindere dal formato, il testo si comprime bene. Il feed di esempio nel <a href=xml.html>capitolo su  XML</a> è di 3070 byte, ma sarebbe di 941 byte dopo una compressione effettuata tramite gzip. Quella è esattamente il 30% della dimensione originale!
+
+<p><abbr>HTTP</abbr> supporta diversi algoritmi di compressione. I due tipi più comuni sono <a href=http://www.ietf.org/rfc/rfc1952.txt>gzip</a> e <a href=http://www.ietf.org/rfc/rfc1951.txt>deflate</a>. Quando richiedete una richiesta via <abbr>HTTP</abbr>, potete chiedere al server di mandarvela in formato compresso. Includete una intestazione <code>Accept-encoding</code> nella vostra richiesta che elenchi quali algoritmi di compressione supportate. Se il server supporta uno qualsiasi degli stessi algoritmi, vi spedirà indietro i dati compressi (con una intestazione <code>Content-encoding</code> che vi dice quale algoritmo ha usato). Poi sta a voi decomprimere i dati.
+
+<p>Le librerie <abbr>HTTP</abbr> incluse in Python non supportano la compressione, ma <code>httplib2</code> lo fa.
+
+<h3 id=redirects>Redirezioni</h3>
+
+<p><a href=http://www.w3.org/Provider/Style/URI>Gli <abbr>URI</abbr> fighi non cambiano</a>, ma molti <abbr>URI</abbr> sono seriamente sfigati. I siti web vengono riorganizzati, le pagine vengono spostate a nuovi indirizzi. Persino i servizi web possono venire riorganizzati. Un feed <span class=wtf>syndicated</span> all'indirizzo <code>http://example.com/index.xml</code> potrebbe venire spostata all'indirizzo <code>http://example.com/xml/atom.xml</code>. Oppure un intero dominio potrebbe spostarsi, man mano che una organizzazione si espande e si riorganizza; <code>http://www.example.com/index.xml</code> diventa <code>http://server-farm-1.example.com/index.xml</code>.
+
+<p>Ogni volta che richiedete un qualsiasi tipo di risorsa da un server <abbr>HTTP</abbr>, il server include un codice di stato nella propria risposta. Il codice di stato <code>200</code> significa &#8220;è tutto normale, ecco la pagina che avete chiesto&#8221;. Il codice di stato <code>404</code> significa &#8220;pagina non trovata&#8221;. (Avete probabilmente visto errori 404 navigando il web.) I codici di stato <span class=wtf>in the 300&#8217;s</span> indicano una qualche forma di redirezione.
+
+<p><abbr>HTTP</abbr> ha molti modi diversi per dire che una risorsa si è spostata. Le due tecniche più comuni sono i codici di stato <code>302</code> e <code>301</code>. Il codice di stato <code>302</code> è una <i>redirezione temporanea</i>; significa &#8220;oops, quella risorsa è stata temporaneamente spostata qui&#8221; (e poi vi dà l'indirizzo temporaneo in una intestazione <code>Location</code>). Il codice di stato <code>301</code> è una <i>redirezione permanente</i>; significa &#8220;oops, quella risorsa è stata permanentemente spostata&#8221; (e poi vi dà il nuovo indirizzo in una intestazione <code>Location</code>). Se ottenete un codice di stato <code>302</code> e un nuovo indirizzo, la specifica <abbr>HTTP</abbr> dice che dovreste usare il nuovo indirizzo per ottenere quello che avete chiesto, ma la prossima volta che volete accedere alla stessa risorsa dovreste riprovare il vecchio indirizzo. Ma se ottenete un codice di stato <code>301</code> e un nuovo indirizzo, siete tenuti a utilizzare il nuovo indirizzo da quel momento in poi.
+
+<p>Il modulo <code>urllib.request</code> &#8220;segue&#8221; automaticamente le redirezioni quando riceve i codici di stato appropriati da un server <abbr>HTTP</abbr>, ma non vi dice che lo ha fatto. Finirete per ottenere i dati che avete chiesto, ma non saprete mai che la libreria sottostante vi ha &#8220;aiutato&#8221; a seguire una redirezione. Così continuerete a <span class=wtf>pound away</span> al vecchio indirizzo, e ogni volta il modulo <code>urllib.request</code> vi &#8220;aiuterà&#8221; a seguire la redirezione. In altre parole, il modulo tratta le redirezioni permanenti allo stesso modo delle redirezioni temporanee. Questo significa due viaggi invece di uno, che è male per il server è male per voi.
+
+<p><code>httplib2</code> gestisce le redirezioni permanenti per voi. Non solo vi dirà che c'è stata una redirezione permanente, ma terrà traccia di tali redirezioni localmente e riscriverà automaticamente gli <abbr>URL</abbr> rediretti prima di spedire loro una richiesta.
+
+<p class=a>&#x2042;
+
+<h2 id=dont-try-this-at-home>Come non andare a prendere dati via HTTP</h2>
+
+<p>Diciamo che volete scaricare una risorsa via <abbr>HTTP</abbr>, come <a href=xml.html>un feed Atom</a>. Essendo un feed, non vi limiterete a scaricarla una sola volta, ma la vorrete scaricare più e più volte. (La maggior parte dei lettori di feed controllano ogni ora se ci sono stati dei cambiamenti.) Facciamolo prima nel modo veloce-e-sporco, e poi vediamo come potete farlo meglio.
+<pre class=screen>
+<samp class=p>>>> </samp><kbd class=pp>import urllib.request</kbd>
+<a><samp class=p>>>> </samp><kbd class=pp>data = urllib.request.urlopen('http://diveintopython3.org/examples/feed.xml').read()</kbd>  <span class=u>&#x2460;</span></a>
+<samp class=p>>>> </samp><kbd class=pp>print(data)</kbd>
+<samp class=pp>&lt;?xml version='1.0' encoding='utf-8'?>
+&lt;feed xmlns='http://www.w3.org/2005/Atom' xml:lang='en'>
+  &lt;title>dive into mark&lt;/title>
+  &lt;subtitle>currently between addictions&lt;/subtitle>
+  &lt;id>tag:diveintomark.org,2001-07-29:/&lt;/id>
+  &lt;updated>2009-03-27T21:56:07Z&lt;/updated>
+  &lt;link rel='alternate' type='text/html' href='http://diveintomark.org/'/>
+  &hellip;
+</samp></pre>
+<ol>
+<li>Scaricare qualsiasi cosa via <abbr>HTTP</abbr> è incredibilmente facile in Python; in effetti, vi ci vuole solo una riga di codice. Il modulo <code>urllib.request</code> ha una comoda funzione <code>urlopen()</code> che prende l'indirizzo della pagina che volete e restituisce un oggetto simile a un file che potete semplicemente leggere con il metodo <code>read()</code> per ottenere il contenuto completo della pagina. Non potrebbe proprio essere più facile.
+</ol>
+
+<p>Quindi cosa c'è di sbagliato in questo? Per un rapido <span class=wtf>one-off</span> durante il collaudo o lo sviluppo, non c'è niente di sbagliato. Lo faccio tutte le volte. Volevo i contenuti del feed e ho ottenuto i contenuti del feed. La stessa tecnica funziona per tutte le pagine web. Ma una volta che cominciate a pensare in termii di un servizio web che volete accedere regolarmente (<i>e.g.</i> richiedendo questo feed una volta ogni ora), allora lo state facendo in maniera inefficiente e grossolana.
+
+<p class=a>&#x2042;
+
+<h2 id=whats-on-the-wire>Che cosa c'è <span class=wtf>On The Wire?</span></h2>
+
+<p>Per vedere perché questo è inefficiente e grossolano, attiviamo le caratteristiche di debug della libreria <abbr>HTTP</abbr> inclusa in Python e vediamo cosa viene mandato &#8220;<span class=wtf>on the wire</span>&#8221; (<i>i.e.</i> attraverso la rete).
+
+<pre class=screen>
+<samp class=p>>>> </samp><kbd class=pp>from http.client import HTTPConnection</kbd>
+<a><samp class=p>>>> </samp><kbd class=pp>HTTPConnection.debuglevel = 1</kbd>                                       <span class=u>&#x2460;</span></a>
+<samp class=p>>>> </samp><kbd class=pp>from urllib.request import urlopen</kbd>
+<a><samp class=p>>>> </samp><kbd class=pp>response = urlopen('http://diveintopython3.org/examples/feed.xml')</kbd>  <span class=u>&#x2461;</span></a>
+<samp><a>send: b'GET /examples/feed.xml HTTP/1.1                                 <span class=u>&#x2462;</span></a>
+<a>Host: diveintopython3.org                                               <span class=u>&#x2463;</span></a>
+<a>Accept-Encoding: identity                                               <span class=u>&#x2464;</span></a>
+<a>User-Agent: Python-urllib/3.0'                                          <span class=u>&#x2465;</span></a>
+Connection: close
+reply: 'HTTP/1.1 200 OK'
+&hellip;ulteriori informazioni di debug omesse&hellip;</samp></pre>
+<ol>
+<li>Come avevo menzionato all'inizio del capitolo, <code>urllib.request</code> si basa su un'altra libreria standard inclusa in Python, <code>http.client</code>. Normalmente non avete bisogno di toccare <code>http.client</code> direttamente. (Il modulo <code>urllib.request</code> la importa automaticamente.) Ma qui noi la importiamo in modo da poter attivare il <span class=wtf>flag</span> di debug sulla classe <code>HTTPConnection</code> che <code>urllib.request</code> usa per connettersi a un server <abbr>HTTP</abbr>.
+<li>Ora che il <span class=wtf>flag</span> di debug è impostato, le informazioni sulla richiesta e risposta <abbr>HTTP</abbr> sono stampate in tempo reale. Come potete vedere, quando richiedete il feed Atom il modulo <code>urllib.request</code> invia cinque righe al server.
+<li>La prima riga specifica il verbo <abbr>HTTP</abbr> che state usando e il percorso della risorsa (senza il nome del dominio).
+<li>La seconda riga specifica il nome del dominio da dove stiamo richiedendo questo feed.
+<li>La terza riga specifica gli algoritmi di compressione che il client supporta. Come avevo menzionato in precedenza, <a href=#compression><code>urllib.request</code> non supporta la compressione</a> di default.
+<li>La quarta linea specifica il nome della libreria che sta effettuando la richiesta. Di default, questo nome è <code>Python-urllib</code> più un numero di versione. Sia <code>urllib.request</code> che <code>httplib2</code> supportano il cambiamento dello <span class=wtf>user agent</span>, semplicemente aggiungendo una intestazione <code>User-Agent</code> alla richiesta (che sostituirà il valore di default).
+</ol>
+
+<p>Ora diamo un'occhiata a quello che il server ha spedito indietro nella sua risposta.
+
+<pre class=screen>
+# continua dall'esempio precedente
+<a><samp class=p>>>> </samp><kbd class=pp>print(response.headers.as_string())</kbd>        <span class=u>&#x2460;</span></a>
+<samp><a>Date: Sun, 31 May 2009 19:23:06 GMT            <span class=u>&#x2461;</span></a>
+Server: Apache
+<a>Last-Modified: Sun, 31 May 2009 06:39:55 GMT   <span class=u>&#x2462;</span></a>
+<a>ETag: "bfe-93d9c4c0"                           <span class=u>&#x2463;</span></a>
+Accept-Ranges: bytes
+<a>Content-Length: 3070                           <span class=u>&#x2464;</span></a>
+<a>Cache-Control: max-age=86400                   <span class=u>&#x2465;</span></a>
+Expires: Mon, 01 Jun 2009 19:23:06 GMT
+Vary: Accept-Encoding
+Connection: close
+Content-Type: application/xml</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>data = response.read()</kbd>                     <span class=u>&#x2466;</span></a>
+<samp class=p>>>> </samp><kbd class=pp>len(data)</kbd>
+<samp class=pp>3070</samp></pre>
+<ol>
+<li>L'oggetto <var>response</var> restituito dalla funzione <code>urllib.request.urlopen()</code> contiene tutte le intestazioni <abbr>HTTP</abbr> che il server ha spedito indietro. Contiene anche i metodi per scaricare i dati effettivi; arriveremo a questo tra un minuto.
+<li>Il server vi dice quando ha gestito la vostra richiesta.
+<li>Questa risposta include una intestazione <a href=#last-modified><code>Last-Modified</code></a>.
+<li>Questa risposta include una intestazione <a href=#etags><code>ETag</code></a>.
+<li>I dati sono lunghi 3070 byte. Notate quello che <em>manca</em> qui: una intestazione <code>Content-encoding</code>. La vostra richiesta ha dichiarato di accettare solo dati non compressi (<code>Accept-encoding: identity</code>), e <span class=wtf>sure enough</span>, questa risposta contiene dati non compressi.
+<li>Questa risposta include intestazioni di <span class=wtf>caching</span> che affermano che questo feed può essere tenuto in memoria per 24 ore (86400 secondi).
+<li>E infine, scarichiamo i dati effettivi invocando <code>response.read()</code>. Come potete vedere dal risultato della funzione <code>len()</code>, questo scarica tutti i 3070 byte in una volta sola.
+</ol>
+
+<p>Come potete vedere, questo codice è già inefficiente: ha richiesto (e ricevuto) dati non compressi. <span class=wtf>I know for a fact</span> che questo server supporta la <a href=#compression>compressione tramite gzip</a>, ma la compressione <abbr>HTTP</abbr> è <span class=wtf>opt-in</span>. Non l'abbiamo richiesta, quindi non l'abbiamo ottenuta. Questo significa che stiamo scaricando 3070 byte mentre ne avremmo potuti scaricare solamente 941. Cattivo cane, niente biscotto.
+
+<p>Ma aspettate, le cose peggiorano! Per vedere quando questo codice sia davvero inefficiente, richiediamo lo stesso feed una seconda volta.
+
+<pre class=screen>
+# continua dall'<a href=#whats-on-the-wire>esempio precedente</a>
+<samp class=p>>>> </samp><kbd class=pp>response2 = urlopen('http://diveintopython3.org/examples/feed.xml')</kbd>
+<samp>send: b'GET /examples/feed.xml HTTP/1.1
+Host: diveintopython3.org
+Accept-Encoding: identity
+User-Agent: Python-urllib/3.0'
+Connection: close
+reply: 'HTTP/1.1 200 OK'
+&hellip;ulteriori informazioni di debug omesse&hellip;</samp></pre>
+
+<p>Notate qualcosa di peculiare in questa richiesta? Non è cambiata! &Egrave; esattamente la stessa della prima richiesta. Nessun segno di <a href=#last-modified>intestazioni <code>If-Modified-Since</code></a>. Nessun segno di <a href=#etags>intestazioni <code>If-None-Match</code></a>. Nessun rispetto per le intestazioni di <span class=wtf>caching</span>. Ancora nessuna compressione.
+
+<p>E cosa succede quando effettuate due volte la stessa richiesta? Ottenete due volte la stessa risposta.
+
+<pre class=screen>
+# continua dall'esempio precedente
+<a><samp class=p>>>> </samp><kbd class=pp>print(response2.headers.as_string())</kbd>     <span class=u>&#x2460;</span></a>
+<samp>Date: Mon, 01 Jun 2009 03:58:00 GMT
+Server: Apache
+Last-Modified: Sun, 31 May 2009 22:51:11 GMT
+ETag: "bfe-255ef5c0"
+Accept-Ranges: bytes
+Content-Length: 3070
+Cache-Control: max-age=86400
+Expires: Tue, 02 Jun 2009 03:58:00 GMT
+Vary: Accept-Encoding
+Connection: close
+Content-Type: application/xml</samp>
+<samp class=p>>>> </samp><kbd class=pp>data2 = response2.read()</kbd>
+<a><samp class=p>>>> </samp><kbd class=pp>len(data2)</kbd>                               <span class=u>&#x2461;</span></a>
+<samp class=pp>3070</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>data2 == data</kbd>                            <span class=u>&#x2462;</span></a>
+<samp class=pp>True</samp></pre>
+<ol>
+<li>Il server sta ancora mandando la stessa schiera di intestazioni &#8220;intelligenti&#8221;: <code>Cache-Control</code> e <code>Expires</code> per consentire il <span class=wtf>caching</span>, <code>Last-Modified</code> e <code>ETag</code> abilitare il tracciamento della modifica più recente. Persino l'intestazione <code>Vary: Accept-Encoding</code> suggerisce che il server supporterebbe la compressione, se solo la chiedessimo. Ma non l'abbiamo fatto.
+<li>Ancora una volta, andare a prendere questi dati scarica i 3070 byte interi&hellip;
+<li>&hellip;esattamente gli stessi 3070 byte che avete scaricato l'ultima volta.
+</ol>
+
+<p><abbr>HTTP</abbr> è progettato per funzionare meglio di così. <code>urllib</code> parla <abbr>HTTP</abbr> come io parlo spagnolo &mdash; abbastanza da cavarmela improvvisando, ma non abbastanza da tenere una conversazione. <abbr>HTTP</abbr> è una conversazione. &Egrave; ora di <span class=wtf>upgrade</span> verso una libreria in grado di parlare <abbr>HTTP</abbr> correntemente.
+
+<p class=a>&#x2042;
+
+<h2 id=introducing-httplib2>Una introduzione a <code>httplib2</code></h2>
+
+<p>Per utilizzare <code>httplib2</code>, create una istanza della classe <code>httplib2.Http</code>.
+
+<pre class=screen>
+<samp class=p>>>> </samp><kbd class=pp>import httplib2</kbd>
+<a><samp class=p>>>> </samp><kbd class=pp>h = httplib2.Http('.cache')</kbd>                                                    <span class=u>&#x2460;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>response, content = h.request('http://diveintopython3.org/examples/feed.xml')</kbd>  <span class=u>&#x2461;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>response.status</kbd>                                                                <span class=u>&#x2462;</span></a>
+<samp class=pp>200</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>content[:52]</kbd>                                                                   <span class=u>&#x2463;</span></a>
+<samp class=pp>b"&lt;?xml version='1.0' encoding='utf-8'?>\r\n&lt;feed xmlns="</samp>
+<samp class=p>>>> </samp><kbd class=pp>len(content)</kbd>
+<samp class=pp>3070</samp></pre>
+<ol>
+<li>L'interfaccia principale al modulo <code>httplib2</code> è l'oggetto <code>Http</code>. Per ragioni che vedrete nella prossima sezione, dovreste sempre passare un nome di directory quando create un oggetto <code>Http</code>. La directory non deve per forza esistere; <code>httplib2</code> la creerà se è necessario.
+<li>Una volta che avete un oggetto <code>Http</code>, recuperare dati è tanto semplice quanto invocare il metodo <code>request()</code> con l'indirizzo dei dati che volete. Questo emetterà una richiesta <abbr>HTTP</abbr> <code>GET</code> per quell'<abbr>URL</abbr>. (Più avanti in questo capitolo vedrete come emettere altre richieste <abbr>HTTP</abbr>, come <code>POST</code>.)
+<li>Il metodo <code>request()</code> restituisce due valori. Il primo è un oggetto <code>httplib2.Response</code>, che contiene tutte le intestazioni <abbr>HTTP</abbr> che il server ha restituito. Per esempio, il codice di stato <code>200</code> che indica che la richiesta ha avuto successo è memorizzato nella proprietà <code>status</code>.
+<li>La variabile <var>content</var> contiene i dati effettivi che sono stati restituiti dal server <abbr>HTTP</abbr>. I dati vengono restituiti come <a href=strings.html#byte-arrays>oggetto <code>bytes</code>, non <code>str</code></a>. Se li volete sotto forma di stringa, avete bisogno di <a href=http://feedparser.org/docs/character-encoding.html>determinarne la codifica di carattere</a> e di convertirli esplicitamente.
+</ol>
+
+<blockquote class=note>
+<p><span class=u>&#x261E;</span>Avrete probabilmente bisogno di un solo oggetto <code>httplib2.Http</code>. Esistono valide ragioni per crearne più di uno, ma dovreste farlo solo se sapete perché ne avete bisogno. &#8220;Devo richiedere dati da due <abbr>URL</abbr> differenti&#8221; non è una ragione valida. Riutilizzate l'oggetto <code>Http</code> e invocate semplicemente il metodo <code>request()</code> due volte.
+</blockquote>
+
+<h3 id=httplib2-caching>Come <code>httplib2</code> gestisce il <span class=wtf>caching</span></h3>
+
+<p>Ricordate quando nella sezione precedente ho detto che dovreste sempre creare un oggetto <code>httplib2.Http</code> con un nome di directory? La ragione è il <span class=wtf>caching</span>.
+
+<pre class=screen>
+# continua dall'<a href=#introducing-httplib2>esempio precedente</a>
+<a><samp class=p>>>> </samp><kbd class=pp>response2, content2 = h.request('http://diveintopython3.org/examples/feed.xml')</kbd>  <span class=u>&#x2460;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>response2.status</kbd>                                                                 <span class=u>&#x2461;</span></a>
+<samp class=pp>200</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>content2[:52]</kbd>                                                                    <span class=u>&#x2462;</span></a>
+<samp class=pp>b"&lt;?xml version='1.0' encoding='utf-8'?>\r\n&lt;feed xmlns="</samp>
+<samp class=p>>>> </samp><kbd class=pp>len(content2)</kbd>
+<samp class=pp>3070</samp></pre>
+<ol>
+<li>Questo non dovrebbe essere terribilmente sorprendente. &Egrave; la stessa cosa che avete fatto l'ultima volta, tranne che state mettendo il risultato in due nuove variabili.
+<li>Il valore del codice di stato <abbr>HTTP</abbr> memorizzato in <code>status</code> è ancora una volta <code>200</code>, proprio come l'ultima volta.
+<li>Anche il contenuto scaricato è lo stesso dell'ultima volta.
+</ol>
+
+<p>E quindi&hellip; chi se ne importa? Uscite dalla shell interattiva di Python e rilanciatela con una nuova sessione, e vi farò vedere.
+
+<pre class=screen>
+# NON continua dall'esempio precedente!
+# Per favore uscite dalla shell interattiva
+# e lanciatene una nuova.
+<samp class=p>>>> </samp><kbd class=pp>import httplib2</kbd>
+<a><samp class=p>>>> </samp><kbd class=pp>httplib2.debuglevel = 1</kbd>                                                        <span class=u>&#x2460;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>h = httplib2.Http('.cache')</kbd>                                                    <span class=u>&#x2461;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>response, content = h.request('http://diveintopython3.org/examples/feed.xml')</kbd>  <span class=u>&#x2462;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>len(content)</kbd>                                                                   <span class=u>&#x2463;</span></a>
+<samp class=pp>3070</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>response.status</kbd>                                                                <span class=u>&#x2464;</span></a>
+<samp class=pp>200</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>response.fromcache</kbd>                                                             <span class=u>&#x2465;</span></a>
+<samp class=pp>True</samp></pre>
+<ol>
+<li>Attiviamo il debug e vediamo <a href=#whats-on-the-wire>che cosa c'è <span class=wtf>on the wire</span></a>. Questo è l'equivalente per <code>httplib2</code> dell'attivazione del debug in <code>http.client</code>. <code>httplib2</code> stamperà tutti i dati inviati al server e alcune informazioni chiave spedite indietro..
+<li>Create un oggetto <code>httplib2.Http</code> con lo stesso nome di directory di prima.
+<li>Richiedete lo stesso <abbr>URL</abbr> di prima. <em>Sembra che non accada nulla.</em> Più precisamente, nulla viene inviato al server e nulla viene restituito dal server. Non c'è assolutamente alcuna attività di rete.
+<li>Tuttavia abbiamo &#8220;ricevuto&#8221; alcuni dati &mdash; in effetti, li abbiamo ricevuti tutti.
+<li>Abbiamo anche &#8220;ricevuto&#8221; un codice di stato <abbr>HTTP</abbr> che indica che la &#8220;richiesta&#8221; ha avuto successo.
+<li>Qui sta il punto: questa &#8220;risposta&#8221; è stata generata dalla cache locale di <code>httplib2</code>. Quel nome di directory che avete passato nel creare l'oggetto <code>httplib2.Http</code> &mdash; quella directory conserva la cache di <code>httplib2</code> per tutte le operazioni che ha mai effettuato.
+</ol>
+
+<p>Avete già richiesto in precedenza i dati a questo <abbr>URL</abbr>. Quella richiesta ha avuto successo (<code>status: 200</code>). Quella risposta includeva non solo i dati del feed, ma anche un insieme di <a href=#caching>intestazioni di <span class=wtf>caching</span></a> che dicevano a chiunque fosse in ascolto che poteva tenere in cache questa risorsa per 24 ore. (<code>Cache-Control: max-age=86400</code>, che sono 24 ore misurate in secondi). <code>httplib2</code> comprende e rispetta queste intestazioni di <span class=wtf>caching</span>, e ha memorizzato la risposta precedente nella directory <code>.cache</code> (il cui nome avete passato quando avete creato l'oggetto <code>Http</code>). Quella cache non è ancora scaduta, quindi la seconda volta che richiedete i dati a questo <abbr>URL</abbr>, <code>httplib2</code> semplicemente restituisce il risultato in cache senza nemmeno utilizzare la rete.
+
+<p>Ho detto &#8220;semplicemente,&#8221; ma ovviamente c'è molta complessità nascosta dietro quella semplicità. <code>httplib2</code> gestisce il <span class=wtf>caching</span> <abbr>HTTP</abbr> in maniera <em>automatica</em> e <em>predefinita</em>. Se per qualche ragione avete bisogno di sapere se una risposta proveniva dalla cache, potete controllare la proprietà <code>response.fromcache</code>. Altrimenti, tutto funziona.
+
+<p id=bypass-the-cache>Ora, supponete di avere dati nella cache, ma di voler aggirare la cache e ri-richiederli dal server remoto. I browser talvolta lo fanno se l'utente lo richiede esplicitamente. Per esempio, premere <kbd>F5</kbd> aggiorna la pagina corrente, ma premere <kbd>Ctrl+F5</kbd> aggira la cache e ri-richiede la pagina corrente dal server remoto. Potreste pensare &#8220;oh, cancellerò semplicemente i dati dalla mia cache locale, poi li richiederò di nuovo.&#8221; Potreste farlo, ma ricordare che potrebbero esserci più parti coinvolte che solo voi e il server remoto. Cosa mi dite di quei server proxy intermedi? Quelli sono completamente al di là del vostro controllo, e potrebbero ancora avere quei dati nella propria cache, e ve li restituiranno tranquillamente perché (per quanto li riguarda) la loro cache è ancora valida.
+
+<p>Invece di manipolare la vostra cache locale e sperare per il meglio, dovreste usare le caratteristiche di <abbr>HTTP</abbr> per assicurarvi che la vostra richiesta raggiunga effettivamente il server remoto.
+
+<pre class=screen>
+# continua dall'esempio precedente
+<samp class=p>>>> </samp><kbd class=pp>response2, content2 = h.request('http://diveintopython3.org/examples/feed.xml',</kbd>
+<a><samp class=p>... </samp><kbd class=pp>    headers={'cache-control':'no-cache'})</kbd>  <span class=u>&#x2460;</span></a>
+<samp><a>connect: (diveintopython3.org, 80)             <span class=u>&#x2461;</span></a>
+send: b'GET /examples/feed.xml HTTP/1.1
+Host: diveintopython3.org
+user-agent: Python-httplib2/$Rev: 259 $
+accept-encoding: deflate, gzip
+cache-control: no-cache'
+reply: 'HTTP/1.1 200 OK'
+&hellip;ulteriori informazioni di debug omesse&hellip;</samp>
+<samp class=p>>>> </samp><kbd class=pp>response2.status</kbd>
+<samp class=pp>200</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>response2.fromcache</kbd>                        <span class=u>&#x2462;</span></a>
+<samp class=pp>False</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>print(dict(response2.items()))</kbd>             <span class=u>&#x2463;</span></a>
+<samp class=pp>{'status': '200',
+ 'content-length': '3070',
+ 'content-location': 'http://diveintopython3.org/examples/feed.xml',
+ 'accept-ranges': 'bytes',
+ 'expires': 'Wed, 03 Jun 2009 00:40:26 GMT',
+ 'vary': 'Accept-Encoding',
+ 'server': 'Apache',
+ 'last-modified': 'Sun, 31 May 2009 22:51:11 GMT',
+ 'connection': 'close',
+ '-content-encoding': 'gzip',
+ 'etag': '"bfe-255ef5c0"',
+ 'cache-control': 'max-age=86400',
+ 'date': 'Tue, 02 Jun 2009 00:40:26 GMT',
+ 'content-type': 'application/xml'}</samp></pre>
+<ol>
+<li><code>httplib2</code> vi consente di aggiungere intestazioni <abbr>HTTP</abbr> arbitrarie a qualsiasi richiesta in uscita. In modo da aggirare <em>tutte</em> le cache (non solo quella sul vostro disco locale, ma anche tutti i <span class=wtf>proxy caching</span> tra voi e il server remoto), aggiungete una intestazione <code>no-cache</code> nel dizionario <var>headers</var>.
+<li>Ora vedere che <code>httplib2</code> inizia una richiesta di rete. <code>httplib2</code> comprende e rispetta le intestazioni di <span class=wtf>caching</span> <em>in entrambe le direzioni</em> &mdash; come parte della risposta in arrivo <em>e come parte della richiesta in uscita</em>. Il modulo ha notato che avete aggiunto l'intestazione <code>no-cache</code>, quindi ha aggirato la propria cache locale e non ha avuto altra scelta se non quella di utilizzare la rete per richiedere i dati.
+<li>Questa risposta <em>non</em> è stata generata dalla vostra cache locale. Lo sapevate, naturalmente, perché avete visto le informazioni di debug sulla richiesta in uscita. Ma è piacevole averlo programmaticamente verificato.
+<li>La richiesta ha avuto successo; avete nuovamente scaricato l'intero feed dal server remoto. Naturalmente, il server ha anche spedito indietro una serie completa di intestazioni <abbr>HTTP</abbr> insieme ai dati del feed. Quelle includono le intestazioni di <span class=wtf>caching</span>, che <code>httplib2</code> utilizza per aggiornare la propria cache locale, nella speranza di evitare l'accesso alla rete la <em>prossima</em> volta che richiedete questo feed. Ogni caratteristica del <span class=wtf>caching</span> HTTP è progettata per massimizzare l'uso della cache e minimizzare l'accesso alla rete. Anche se avete aggirato la cache questa volta, il server remoto apprezzerebbe davvero che voi manteniate in cache il risultato per la prossima volta.
+</ol>
+
+<h3 id=httplib2-etags>Come <code>httplib2</code> gestisce le intestazioni <code>Last-Modified</code> ed <code>ETag</code></h3>
+
+<p>Le <a href=#caching>intestazioni di <span class=wtf>caching</span></a> <code>Cache-Control</code> e <code>Expires</code> sono chiamate <i>indicatori di freschezza</i>. Essi dicono alle cache in termini certi che potete evitare completamente ogni accesso alla rete fino a quando la cache scade. E questo è esattamente il comportamento che avete visto <a href=#httplib2-caching>nella sezione precedente</a>: dato un <span class=wtf>strong validator</span>, <code>httplib2</code> <em>non genera un singolo byte di attività di rete</em> per servire i dati mantenuti in cache (a meno che voi non <a href=#bypass-the-cache>aggiriate la cache</a> in maniera esplicita, naturalmente).
+
+<p>Ma cosa succede nel caso in cui i dati <em>potrebbero</em> essere cambiati, ma non lo sono? <abbr>HTTP</abbr> definisce le intestazioni <a href=#last-modified><code>Last-Modified</code></a> e <a href=#etags><code>Etag</code></a> proprio a questo scopo. Queste intestazioni sono chiamate <i class=wtf>validators</i>. Se la cache locale non è più fresca, un client può spedire i <span class=wtf>validators</span> con la prossima richiesta per vedere se i dati sono effettivamente cambiati. Se i dati non sono cambiati, il server spedisce indietro un codice di stato <code>304</code> e <em>nessun dato</em>. Quindi c'è ancora un viaggio attraverso la rete, ma finite per scaricare meno byte.
+
+<pre class=screen>
+<samp class=p>>>> </samp><kbd class=pp>import httplib2</kbd>
+<samp class=p>>>> </samp><kbd class=pp>httplib2.debuglevel = 1</kbd>
+<samp class=p>>>> </samp><kbd class=pp>h = httplib2.Http('.cache')</kbd>
+<a><samp class=p>>>> </samp><kbd class=pp>response, content = h.request('http://diveintopython3.org/')</kbd>  <span class=u>&#x2460;</span></a>
+<samp>connect: (diveintopython3.org, 80)
+send: b'GET / HTTP/1.1
+Host: diveintopython3.org
+accept-encoding: deflate, gzip
+user-agent: Python-httplib2/$Rev: 259 $'
+reply: 'HTTP/1.1 200 OK'</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>print(dict(response.items()))</kbd>                                 <span class=u>&#x2461;</span></a>
+<samp class=pp>{'-content-encoding': 'gzip',
+ 'accept-ranges': 'bytes',
+ 'connection': 'close',
+ 'content-length': '6657',
+ 'content-location': 'http://diveintopython3.org/',
+ 'content-type': 'text/html',
+ 'date': 'Tue, 02 Jun 2009 03:26:54 GMT',
+<mark> 'etag': '"7f806d-1a01-9fb97900"',</mark>
+<mark> 'last-modified': 'Tue, 02 Jun 2009 02:51:48 GMT',</mark>
+ 'server': 'Apache',
+ 'status': '304',
+ 'vary': 'Accept-Encoding,User-Agent'}</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>len(content)</kbd>                                                  <span class=u>&#x2462;</span></a>
+<samp class=pp>6657</samp></pre>
+<ol>
+<li>Invece di un feed, questa volta scaricheremo la pagina iniziale del sito, che è in <abbr>HTML</abbr>. Dato che questa è la prima volta che richiedete questa pagina, <code>httplib2</code> ha poco con cui lavorare e invia un insieme minimo di intestazioni con la richiesta.
+<li>La risposta contiene una moltitudine di intestazioni <abbr>HTTP</abbr>&hellip; ma nessuna informazione di <span class=wtf>caching</span>. Tuttavia, include entrambe le intestazioni <code>ETag</code> e <code>Last-Modified</code>.
+<li>Al momento in cui ho costruito questo esempio, la pagina era di 6657 byte. Probabilmente ora è cambiata, ma non dovete preoccuparvi di questo.
+</ol>
+
+<pre class=screen>
+# continua dall'esempio precedente
+<a><samp class=p>>>> </samp><kbd class=pp>response, content = h.request('http://diveintopython3.org/')</kbd>  <span class=u>&#x2460;</span></a>
+<samp>connect: (diveintopython3.org, 80)
+send: b'GET / HTTP/1.1
+Host: diveintopython3.org
+<a>if-none-match: "7f806d-1a01-9fb97900"                             <span class=u>&#x2461;</span></a>
+<a>if-modified-since: Tue, 02 Jun 2009 02:51:48 GMT                  <span class=u>&#x2462;</span></a>
+accept-encoding: deflate, gzip
+user-agent: Python-httplib2/$Rev: 259 $'
+<a>reply: 'HTTP/1.1 304 Not Modified'                                <span class=u>&#x2463;</span></a></samp>
+<a><samp class=p>>>> </samp><kbd class=pp>response.fromcache</kbd>                                            <span class=u>&#x2464;</span></a>
+<samp class=pp>True</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>response.status</kbd>                                               <span class=u>&#x2465;</span></a>
+<samp class=pp>200</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>response.dict['status']</kbd>                                       <span class=u>&#x2466;</span></a>
+<samp class=pp>'304'</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>len(content)</kbd>                                                  <span class=u>&#x2467;</span></a>
+<samp class=pp>6657</samp></pre>
+<ol>
+<li>Avete richiesto ancora la stessa pagina, con lo stesso oggetto <code>Http</code> (e la stessa cache locale).
+<li><code>httplib2</code> spedisce il <span class=wtf>validator</span> <code>ETag</code> indietro al server nella intestazione <code>If-None-Match</code>.
+<li><code>httplib2</code> spedisce anche il <span class=wtf>validator</span> <code>Last-Modified</code> indietro al server nella intestazione <code>If-Modified-Since</code>.
+<li>Il server ha guardato a questi <span class=wtf>validators</span>, ha guardato alla pagina che avete richiesto, e ha determinato che la pagina non è cambiata dall'ultima volta che l'avete richiesta, quindi spedice indietro un codice di stato <code>304</code> e <em>nessun dato</em>.
+<li>Tornando al client, <code>httplib2</code> nota il codice di stato <code>304</code> e carica il contenuto della pagina dalla propria cache.
+<li>Questo potrebbe confondervi un poco. In realtà ci sono <em>due</em> codici di stato &mdash; <code>304</code> (restituito dal server questa volta, che induce <code>httplib2</code> a guardare nella propria cache), e <code>200</code> (restituito dal server <em>l'ultima volta</em>, e memorizzato nella cache di <code>httplib2</code> insieme ai dati della pagina). <code>response.status</code> restituisce lo stato dalla cache.
+<li>Se volete lo stato grezzo restituito dal server, potete ottenerlo guardando in <code>response.dict</code>, che è un dizionario delle intestazioni effettiva restituite dal server.
+<li>Tuttavia, ottenete ancora i dati nella variabile <var>content</var>. Generalmente, non avete bisogno di sapere perché una risposta è stata servita dalla cache. (Potete persino ignorare il fatto che sia stata servita dalla cache, e anche questo va bene. <code>httplib2</code> è abbastanza intelligente da lasciarvi agire in modo stupido.) Nel momento in cui il metodo <code>request()</code> restituisce il controllo al chiamante, <code>httplib2</code> ha già aggiornato la propria cache e restituito i dati a voi.
+</ol>
+
+<h3 id=httplib2-compression>Come <code>http2lib</code> gestisce la compressione</h3>
+
+<p><abbr>HTTP</abbr> supporta <a href=#compression>due tipi di compressione</a>. <code>httplib2</code> li supporta entrambi.
+
+<pre class=screen>
+<samp class=p>>>> </samp><kbd class=pp>response, content = h.request('http://diveintopython3.org/')</kbd>
+<samp>connect: (diveintopython3.org, 80)
+send: b'GET / HTTP/1.1
+Host: diveintopython3.org
+<a>accept-encoding: deflate, gzip                          <span class=u>&#x2460;</span></a>
+user-agent: Python-httplib2/$Rev: 259 $'
+reply: 'HTTP/1.1 200 OK'</samp>
+<samp class=p>>>> </samp><kbd class=pp>print(dict(response.items()))</kbd>
+<samp class=pp><a>{'-content-encoding': 'gzip',                           <span class=u>&#x2461;</span></a>
+ 'accept-ranges': 'bytes',
+ 'connection': 'close',
+ 'content-length': '6657',
+ 'content-location': 'http://diveintopython3.org/',
+ 'content-type': 'text/html',
+ 'date': 'Tue, 02 Jun 2009 03:26:54 GMT',
+ 'etag': '"7f806d-1a01-9fb97900"',
+ 'last-modified': 'Tue, 02 Jun 2009 02:51:48 GMT',
+ 'server': 'Apache',
+ 'status': '304',
+ 'vary': 'Accept-Encoding,User-Agent'}</samp></pre>
+<ol>
+<li>Ogni volta che <code>httplib2</code> invia una richiesta, include una intestazione <code>Accept-Encoding</code> per dire al server che è in grado di gestire la compressione sia di tipo <code>deflate</code> sia di tipo <code>gzip</code>.
+<li>In questo caso, il server ha risposto con un <span class=wtf>payload</span> compresso tramite gzip. Nel momento in cui il metodo <code>request()</code> termina, <code>httplib2</code> ha già decompresso il corpo della risposta e lo ha piazzato nella variabile <var>content</var>. Se siete curiosi di sapere se la risposta era compressa oppure no, potete controllare il dizionario <var>response</var> dictionary; altrimenti, non preoccupatevi di questo.
+</ol>
+
+<h3 id=httplib2-redirects>Come <code>httplib2</code> gestisce le redirezioni</h3>
+
+<p><abbr>HTTP</abbr> definisce <a href=#redirects>due tipi di redirezioni</a>: temporanee e permanenti. Non c'è niente di speciale da fare con le redirezioni temporanee, tranne seguirle, cosa che <code>httplib2</code> effettua automaticamente.
+
+<pre class=screen>
+<samp class=p>>>> </samp><kbd class=pp>import httplib2</kbd>
+<samp class=p>>>> </samp><kbd class=pp>h = httplib2.Http('.cache')</kbd>
+<a><samp class=p>>>> </samp><kbd class=pp>response, content = h.request('http://diveintopython3.org/examples/feed-302.xml')</kbd>  <span class=u>&#x2460;</span></a>
+<samp>connect: (diveintopython3.org, 80)
+<a>send: b'GET /examples/feed-302.xml HTTP/1.1                                            <span class=u>&#x2461;</span></a>
+Host: diveintopython3.org
+accept-encoding: deflate, gzip
+user-agent: Python-httplib2/$Rev: 259 $'
+<a>reply: 'HTTP/1.1 302 Found'                                                            <span class=u>&#x2462;</span></a>
+<a>send: b'GET /examples/feed.xml HTTP/1.1                                                <span class=u>&#x2463;</span></a>
+Host: diveintopython3.org
+accept-encoding: deflate, gzip
+user-agent: Python-httplib2/$Rev: 259 $'
+reply: 'HTTP/1.1 200 OK'</samp></pre>
+<ol>
+<li>Non c'è alcun feed a questo <abbr>URL</abbr>. Ho impostato il mio server in modo da emettere una redirezione temporanea verso l'indirizzo corretto.
+<li>Questa è la richiesta.
+<li>E questa è la risposta: <code>302 Found</code>. Qui non viene mostrata, ma questa risposta include anche una intestazione <code>Location</code> che punta al vero <abbr>URL</abbr>.
+<li><code>httplib2</code> fa dietro front immediatamente e &#8220;segue&#8221; la redirezione emettendo un'altra richiesta per l'<abbr>URL</abbr> contenuto nella intestazione <code>Location</code>: <code>http://diveintopython3.org/examples/feed.xml</code>
+</ol>
+
+<p>&#8220;Seguire&#8221; una redirezione non è niente di più di quello che questo esempio mostra. <code>httplib2</code> invia una richiesta per l'<abbr>URL</abbr> che avete chiesto. Il server ribatte con una risposta che dice &#8220;No, no, guarda qui invece.&#8221; <code>httplib2</code> invia un'altra richiesta per il nuovo <abbr>URL</abbr>.
+
+<pre class=screen>
+# continua dall'esempio precedente
+<a><samp class=p>>>> </samp><kbd class=pp>print(dict(response.items()))</kbd>                                     <span class=u>&#x2460;</span></a>
+<samp class=pp>{'status': '200',
+ 'content-length': '3070',
+<a> 'content-location': 'http://diveintopython3.org/examples/feed.xml',  <span class=u>&#x2461;</span></a>
+ 'accept-ranges': 'bytes',
+ 'expires': 'Thu, 04 Jun 2009 02:21:41 GMT',
+ 'vary': 'Accept-Encoding',
+ 'server': 'Apache',
+ 'last-modified': 'Wed, 03 Jun 2009 02:20:15 GMT',
+ 'connection': 'close',
+<a> '-content-encoding': 'gzip',                                         <span class=u>&#x2462;</span></a>
+ 'etag': '"bfe-4cbbf5c0"',
+<a> 'cache-control': 'max-age=86400',                                    <span class=u>&#x2463;</span></a>
+ 'date': 'Wed, 03 Jun 2009 02:21:41 GMT',
+ 'content-type': 'application/xml'}</samp></pre>
+<ol>
+<li>I dati memorizzati nella variabile <var>response</var> che ottenete indietro da questa singola chiamata al metodo <code>request()</code> sono la risposta dall'<abbr>URL</abbr> finale.
+<li><code>httplib2</code> aggiunge l'<abbr>URL</abbr> finale al dizionario <var>response</var>, come valore per la chiave <code>content-location</code>. Questa non è una intestazione proveniente dal server, ma è specifica per <code>httplib2</code>.
+<li><span class=wtf>Apropos of nothing</span>, questo feed è <a href=#httplib2-compression>compresso</a>.
+<li>E memorizzabile in cache. (Questo è importante, come vedrete nel prossimo esempio.)
+</ol>
+
+<p>Cosa succede se effettuate ancora una richiesta allo stesso <abbr>URL</abbr>?
+
+<pre class=screen>
+# continua dall'esempio precedente
+<a><samp class=p>>>> </samp><kbd class=pp>response2, content2 = h.request('http://diveintopython3.org/examples/feed-302.xml')</kbd>  <span class=u>&#x2460;</span></a>
+<samp>connect: (diveintopython3.org, 80)
+<a>send: b'GET /examples/feed-302.xml HTTP/1.1                                              <span class=u>&#x2461;</span></a>
+Host: diveintopython3.org
+accept-encoding: deflate, gzip
+user-agent: Python-httplib2/$Rev: 259 $'
+<a>reply: 'HTTP/1.1 302 Found'                                                              <span class=u>&#x2462;</span></a></samp>
+<a><samp class=p>>>> </samp><kbd class=pp>content2 == content</kbd>                                                                  <span class=u>&#x2463;</span></a>
+<samp class=pp>True</samp></pre>
+<ol>
+<li>Stesso <abbr>URL</abbr>, stesso oggetto <code>httplib2.Http</code> (e quindi stessa cache).
+<li>La risposta <code>302</code> non è stata memorizzata in cache, quindi <code>httplib2</code> invia un'altra richiesta per lo stesso <abbr>URL</abbr>.
+<li>Ancora una volta, il server risponde con un <code>302</code>. Ma notate che <em>non</em> è successo: non c'è mai stata una seconda richiesta per l'<abbr>URL</abbr> finale, <code>http://diveintopython3.org/examples/feed.xml</code>. Quella risposta è stata memorizzata in cache (ricordatevi l'intestazione <code>Cache-Control</code> che avevate visto nell'esempio precedente). Una volta che <code>httplib2</code> ha ricevuto il codice <code>302 Found</code>, <em>ha controllato la propria cache prima di emettere un'altra richiesta</em>. La cache conteneva una copia fresca di <code>http://diveintopython3.org/examples/feed.xml</code>, quindi non c'era nessun bisogno di ri-richiederla.
+<li>Nel momento in cui la sua esecuzione termina, il metodo <code>request()</code> ha già letto i dati del feed dalla cache e li ha restituiti. Naturalmente, sono gli stessi dati che avete ricevuto l'ultima volta.
+</ol>
+
+<p>In altre parole, non dovete fare niente di speciale per le redirezioni temporanee. <code>httplib2</code> le seguirà automaticamente, e il fatto che un <abbr>URL</abbr> rediriga a un altro non ha alcun rapporto con il supporto da parte di <code>httplib2</code> per la compressione, il <span class=wtf>caching</span>, gli <code>ETag</code>, o qualsiasi altra caratteristica di <abbr>HTTP</abbr>.
+
+<p>Le redirezioni permanenti sono altrettanto semplici.
+
+<pre class=screen>
+# continua dall'esempio precedente
+<a><samp class=p>>>> </samp><kbd class=pp>response, content = h.request('http://diveintopython3.org/examples/feed-301.xml')</kbd>  <span class=u>&#x2460;</span></a>
+<samp>connect: (diveintopython3.org, 80)
+send: b'GET /examples/feed-301.xml HTTP/1.1
+Host: diveintopython3.org
+accept-encoding: deflate, gzip
+user-agent: Python-httplib2/$Rev: 259 $'
+<a>reply: 'HTTP/1.1 301 Moved Permanently'                                                <span class=u>&#x2461;</span></a></samp>
+<a><samp class=p>>>> </samp><kbd class=pp>response.fromcache</kbd>                                                                 <span class=u>&#x2462;</span></a>
+<samp class=pp>True</samp></pre>
+<ol>
+<li>Ancora una volta, in realtà questo <abbr>URL</abbr> non esiste. Ho impostato il mio server in modo da emettere una redirezione permanente verso <code>http://diveintopython3.org/examples/feed.xml</code>.
+<li>Ed eccola qui: codice di stato <code>301</code>. Ma ancora, notate cosa <em>non</em> è successo: non c'è stata alcuna richiesta verso l'<abbr>URL</abbr> rediretto. Perché no? Perché è già memorizzato in cache localmente.
+<li><code>httplib2</code> &#8220;ha seguito&#8221; la redirezione dritto nella propria cache.
+</ol>
+
+<p>Ma aspettate! C'è di più!
+
+<pre class=screen>
+# continua dall'esempio precedente
+<a><samp class=p>>>> </samp><kbd class=pp>response2, content2 = h.request('http://diveintopython3.org/examples/feed-301.xml')</kbd>  <span class=u>&#x2460;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>response2.fromcache</kbd>                                                                  <span class=u>&#x2461;</span></a>
+<samp class=pp>True</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>content2 == content</kbd>                                                                  <span class=u>&#x2462;</span></a>
+<samp class=pp>True</samp>
+</pre>
+<ol>
+<li>Ecco una differenza tra le redirezioni temporanee e permanenti: una volta che <code>httplib2</code> segue una redirezione permanente, tutte le ulteriori richieste per quell'<abbr>URL</abbr> verranno trasparentemente riscritte per dirigersi verso l'<abbr>URL</abbr> obiettivo <em>senza utilizzare la rete per l'<abbr>URL</abbr> originale</em>. Ricordate, il debug è ancora attivo, tuttavia non risulta alcuna attività di rete.
+<li>Sì, questa risposta è stata recuperata dalla cache locale.
+<li>Sì, avete ottenuto l'intero feed (dalla cache).
+</ol>
+
+<p><abbr>HTTP</abbr>. Funziona.
+
+<p class=a>&#x2042;
+
+<h2 id=beyond-get>Oltre HTTP GET</h2>
+
+<p>I servizi web <abbr>HTTP</abbr> non sono limitati alle richieste <code>GET</code>. E se voleste creare qualcosa di nuovo? Ogni volta che inviate un commento a una discussione su un forum, aggiornate il vostro weblog, pubblicate il vostro stato su un servizio di microblogging come <a href=http://twitter.com/>Twitter</a> o <a href=http://identi.ca/>Identi.ca</a>, state probabilmente già usando <abbr>HTTP</abbr> <code>POST</code>.
+
+<p>Sia Twitter che Identi.ca offrono una semplice <abbr>API</abbr> basata su <abbr>HTTP</abbr> per pubblicare e aggiornare il vostro stato tramite messaggi di 140 caratteri o meno. Diamo un'occhiata alla <a href=http://laconi.ca/trac/wiki/TwitterCompatibleAPI>documentazione della <abbr>API</abbr> di Identi.ca</a> per l'aggiornamento del vostro stato:
+
+<blockquote class=pf>
+<p><b>Metodo della <abbr>API</abbr> <abbr>REST</abbr> di Identi.ca: statuses/update</b><br>
+Aggiorna lo stato dell'utente autenticato. Richiede il parametro <code>status</code> specificato sotto. La richiesta deve essere un <code>POST</code>.
+ 
+<dl>
+<dt><abbr>URL</abbr>
+<dd><code>https://identi.ca/api/statuses/update.<i><var>formato</var></i></code>
+<dt>Formati
+<dd><code>xml</code>, <code>json</code>, <code>rss</code>, <code>atom</code>
+<dt>Metodi <abbr>HTTP</abbr>
+<dd><code>POST</code>
+<dt>Richiede autenticazione
+<dd>vero
+<dt>Parametri
+<dd><code>status</code>. Obbligatorio. Il testo del vostro aggiornamento di stato. Effettuate <span class=wtf><abbr>URL</abbr>-encode</span> se necessario.
+</dl>
+</blockquote>
+
+<p>Come funziona questo? Per pubblicare un nuovo messaggio su Identi.ca, avete bisogno di emettere una richiesta <abbr>HTTP</abbr> <code>POST</code> verso <code>http://identi.ca/api/statuses/update.<i>formato</i></code>. (Il <var>formato</var> non è parte dell'<abbr>URL</abbr>, ma dovete sostituirlo con il formato dei dati che volete che il server restituisca in risposta alla vostra richiesta. Quindi se volete una risposta in <abbr>XML</abbr>, dovreste spedire la richiesta a <code>https://identi.ca/api/statuses/update.xml</code>.) La richiesta deve includere un parametro chiamato <code>status</code>, che contiene il testo del vostro aggiornamento di stato. E la richiesta deve essere autenticata.
+
+<p>Autenticata? Sicuro. Per aggiornare il vostro stato su Identi.ca, dovete provare chi siete. Identi.ca non è un wiki; solo voi potete aggiornare il vostro stato. Identi.ca utilizza la <a href=http://en.wikipedia.org/wiki/Basic_access_authentication>Basic Authentication di <abbr>HTTP</abbr></a> (<i>alias</i> <a href=http://www.ietf.org/rfc/rfc2617.txt>RFC 2617</a>) via <abbr>SSL</abbr> per fornire un'autenticazione sicura ma facile da usare. <code>httplib2</code> supporta la Basic Authentication sia via <abbr>SSL</abbr> che via <abbr>HTTP</abbr>, quindi questa parte è facile.
+
+<p>Una richiesta <code>POST</code> è diversa da una richiesta <code>GET</code> perché include un <i class=wtf>payload</i>. Il <span class=wtf>payload</span> sono i dati che volete inviare al server. L'unica informazione che questo metodo della <abbr>API</abbr> richiede è <code>status</code>, e dovrebbe essere <i class=wtf><abbr>URL</abbr>-encoded</i>. Questo è un formato di serializzazione molto semplice che prende un insieme di coppie chiave-valore (<i>i.e.</i> un <a href=native-datatypes.html#dictionaries>dizionario</a>) e lo trasforma in una stringa..
+
+<pre class=screen>
+<a><samp class=p>>>> </samp><kbd class=pp>from urllib.parse import urlencode</kbd>              <span class=u>&#x2460;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>data = {'status': 'Test update from Python 3'}</kbd>  <span class=u>&#x2461;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>urlencode(data)</kbd>                                 <span class=u>&#x2462;</span></a>
+<samp>'status=test+update+from+python+3'</samp></pre>
+<ol>
+<li>Python include una funzione di utilità per <span class=wtf><abbr>URL</abbr>-encode</span> un dizionario: <code>urllib.parse.urlencode()</code>.
+<li>Questo è il tipo di dizionario che la <abbr>API</abbr> di Identi.ca sta cercando. Contiene una chiave, <code>status</code>, il cui valore è il testo di un singolo aggiornamento di stato.
+<li>Questo è come la stringa <span class=wtf><abbr>URL</abbr>-encoded</span> appare. Questo è il <i class=wtf>payload</i> che verrà inviato &#8220;<span class=wtf>on the wire</span>&#8221; al server della <abbr>API</abbr> di Identi.ca nella vostra richiesta <abbr>HTTP</abbr> <code>POST</code>.
+</ol>
+
+<p>
+
+<pre class=screen>
+<samp class=p>>>> </samp><kbd class=pp>from urllib.parse import urlencode</kbd>
+<samp class=p>>>> </samp><kbd class=pp>import httplib2</kbd>
+<samp class=p>>>> </samp><kbd class=pp>httplib2.debuglevel = 1</kbd>
+<samp class=p>>>> </samp><kbd class=pp>h = httplib2.Http('.cache')</kbd>
+<samp class=p>>>> </samp><kbd class=pp>data = {'status': 'Test update from Python 3'}</kbd>
+<a><samp class=p>>>> </samp><kbd class=pp>h.add_credentials('diveintomark', '<var>MY_SECRET_PASSWORD</var>')</kbd>                 <span class=u>&#x2460;</span></a>
+<samp class=p>>>> </samp><kbd class=pp>resp, content = h.request('https://identi.ca/api/statuses/update.xml',</kbd>
+<a><samp class=p>... </samp><kbd class=pp>    'POST',</kbd>                                                             <span class=u>&#x2462;</span></a>
+<a><samp class=p>... </samp><kbd class=pp>    urlencode(data),</kbd>                                                    <span class=u>&#x2463;</span></a>
+<a><samp class=p>... </samp><kbd class=pp>    headers={'Content-Type': 'application/x-www-form-urlencoded'})</kbd>      <span class=u>&#x2464;</span></a></pre>
+<ol>
+<li>Questo è il modo in cui <code>httplib2</code> gestisce l'autenticazione. Memorizzate il vostro nome utente e la vostra password con il metodo <code>add_credentials()</code>. Quando <code>httplib2</code> prova a emettere la richiesta, il server risponderà con un codice di stato <code>401 Unauthorized</code>, ed elencherà quali metodi di autenticazione supporta (nella intestazione <code>WWW-Authenticate</code>). <code>httplib2</code> costruirà automaticamente una intestazione <code>Authorization</code> e ri-richiederà l'<abbr>URL</abbr>.
+<li>Il secondo parametro è il tipo di richiesta <abbr>HTTP</abbr>, <code>POST</code> in questo caso.
+<li>Il terzo parametro è il <i class=wtf>payload</i> da inviare al server. Stiamo mandando il dizionario <span class=wtf><abbr>URL</abbr>-encoded</span> con il messaggio di stato.
+<li>Infine, abbiamo bisogno di dire al server che il <span class=wtf>payload</span> contiene dati <span class=wtf><abbr>URL</abbr>-encoded</span>.
+</ol>
+
+<p>Questo è quello che va <span class=wtf>over the wire</span>:
+
+<pre class=screen>
+# continua dall'esempio precedente
+<samp>send: b'POST /api/statuses/update.xml HTTP/1.1
+Host: identi.ca
+Accept-Encoding: identity
+Content-Length: 32
+content-type: application/x-www-form-urlencoded
+user-agent: Python-httplib2/$Rev: 259 $
+
+status=Test+update+from+Python+3'
+<a>reply: 'HTTP/1.1 401 Unauthorized'                        <span class=u>&#x2460;</span></a>
+<a>send: b'POST /api/statuses/update.xml HTTP/1.1            <span class=u>&#x2461;</span></a>
+Host: identi.ca
+Accept-Encoding: identity
+Content-Length: 32
+content-type: application/x-www-form-urlencoded
+<a>authorization: Basic HASH_SEGRETO_COSTRUITO_DA_HTTPLIB2  <span class=u>&#x2462;</span></a>
+user-agent: Python-httplib2/$Rev: 259 $
+
+status=Test+update+from+Python+3'
+<a>reply: 'HTTP/1.1 200 OK'                                  <span class=u>&#x2463;</span></a></samp></pre>
+<ol>
+<li>Dopo la prima richiesta, il server risponde con un codice di stato <code>401 Unauthorized</code>. <code>httplib2</code> non manderà le intestazioni di autenticazione a meno che il server non le chieda esplicitamente. Questo è il modo in cui il server le chiede.
+<li><code>httplib2</code> fa dietro front immediatamente e richiede lo stesso <abbr>URL</abbr> una seconda volta.
+<li>Questa volta, include il nome utente e la password che avete aggiunto tramite il metodo <code>add_credentials()</code>.
+<li>Ha funzionato!
+</ol>
+
+<p>Che cos'è che il server spedisce indietro dopo una richiesta che ha successo? Questo dipende interamente dalla <abbr>API</abbr> del servzio web. In alcuni protocolli (come il <a href=http://www.ietf.org/rfc/rfc5023.txt>Protocollo di Pubblicazione Atom</a>), il server spedisce indietro un codice di stato <code>201 Created</code> e la locazione della risorsa appena creata nella intestazione <code>Location</code>. Identi.ca spedisce indietro un codice di stato <code>200 OK</code> e un documento <abbr>XML</abbr> contenente informazioni sulla risorsa appena creata.
+
+<pre class=screen>
+# continua dall'esempio precedente
+<a><samp class=p>>>> </samp><kbd class=pp>print(content.decode('utf-8'))</kbd>                             <span class=u>&#x2460;</span></a>
+<samp class=pp>&lt;?xml version="1.0" encoding="UTF-8"?>
+&lt;status>
+<a> &lt;text>Test update from Python 3&lt;/text>                        <span class=u>&#x2461;</span></a>
+ &lt;truncated>false&lt;/truncated>
+ &lt;created_at>Wed Jun 10 03:53:46 +0000 2009&lt;/created_at>
+ &lt;in_reply_to_status_id>&lt;/in_reply_to_status_id>
+ &lt;source>api&lt;/source>
+<a> &lt;id>5131472&lt;/id>                                              <span class=u>&#x2462;</span></a>
+ &lt;in_reply_to_user_id>&lt;/in_reply_to_user_id>
+ &lt;in_reply_to_screen_name>&lt;/in_reply_to_screen_name>
+ &lt;favorited>false&lt;/favorited>
+ &lt;user>
+  &lt;id>3212&lt;/id>
+  &lt;name>Mark Pilgrim&lt;/name>
+  &lt;screen_name>diveintomark&lt;/screen_name>
+  &lt;location>27502, US&lt;/location>
+  &lt;description>tech writer, husband, father&lt;/description>
+  &lt;profile_image_url>http://avatar.identi.ca/3212-48-20081216000626.png&lt;/profile_image_url>
+  &lt;url>http://diveintomark.org/&lt;/url>
+  &lt;protected>false&lt;/protected>
+  &lt;followers_count>329&lt;/followers_count>
+  &lt;profile_background_color>&lt;/profile_background_color>
+  &lt;profile_text_color>&lt;/profile_text_color>
+  &lt;profile_link_color>&lt;/profile_link_color>
+  &lt;profile_sidebar_fill_color>&lt;/profile_sidebar_fill_color>
+  &lt;profile_sidebar_border_color>&lt;/profile_sidebar_border_color>
+  &lt;friends_count>2&lt;/friends_count>
+  &lt;created_at>Wed Jul 02 22:03:58 +0000 2008&lt;/created_at>
+  &lt;favourites_count>30768&lt;/favourites_count>
+  &lt;utc_offset>0&lt;/utc_offset>
+  &lt;time_zone>UTC&lt;/time_zone>
+  &lt;profile_background_image_url>&lt;/profile_background_image_url>
+  &lt;profile_background_tile>false&lt;/profile_background_tile>
+  &lt;statuses_count>122&lt;/statuses_count>
+  &lt;following>false&lt;/following>
+  &lt;notifications>false&lt;/notifications>
+&lt;/user>
+&lt;/status></samp></pre>
+<ol>
+<li>Ricordate, i dati restituiti da <code>httplib2</code> sono sempre <a href=strings.html#byte-arrays>byte</a>, non stringhe. Per convertirli in una stringa, dovete decodificarli utilizzando la codifica di carattere corretta. I metodi della <abbr>API</abbr> di Identi.ca restituiscono sempre i risultati in UTF-8, quindi quella parte è facile.
+<li>Ecco il testo del messaggio di stato che abbiamo appena pubblicato.
+<li>Ecco l'identificatore unico per il nuovo messaggio di stato. Identi.ca lo usa per costruire un <abbr>URL</abbr> per visualizzare il messaggio sul web.
+</ol>
+
+<p>Ed eccolo qui:
+
+<p class=c><img class=fr src=i/identica-screenshot.png alt="screenshot che mostra il messaggio di stato pubblicato su Identi.ca" width=740 height=449>
+
+<p class=a>&#x2042;
+
+<h2 id=beyond-post>Oltre HTTP POST</h2>
+
+<p><abbr>HTTP</abbr> non è limitato a <code>GET</code> e <code>POST</code>. Quelli sono certamente i tipi più comuni di richieste, specialmente nei browser web. Ma le <abbr>API</abbr> di un servizio web possono andare oltre <code>GET</code> e <code>POST</code>, e <code>httplib2</code> è pronta.
+
+<pre class=screen>
+# continua dall'esempio precedente
+<samp class=p>>>> </samp><kbd class=pp>from xml.etree import ElementTree as etree</kbd>
+<a><samp class=p>>>> </samp><kbd class=pp>tree = etree.fromstring(content)</kbd>                                          <span class=u>&#x2460;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>status_id = tree.findtext('id')</kbd>                                           <span class=u>&#x2461;</span></a>
+<samp class=p>>>> </samp><kbd class=pp>status_id</kbd>
+<samp class=pp>'5131472'</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>url = 'https://identi.ca/api/statuses/destroy/{0}.xml'.format(status_id)</kbd>  <span class=u>&#x2462;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>resp, deleted_content = h.request(url, 'DELETE')</kbd>                          <span class=u>&#x2463;</span></a></pre>
+<ol>
+<li>Il server ha restituito un documento <abbr>XML</abbr>, giusto? Voi sapete <a href=xml.html#xml-parse>come riconoscere un documento <abbr>XML</abbr></a>.
+<li>Il metodo <code>findtext()</code> trova la prima istanza dell'espressione data e ne estrae il contenuto testuale. In questo caso, stavamo giusto cercando un elemento <code>&lt;id></code>.
+<li>Sulla base del contenuto testuale dell'elemento <code>&lt;id></code>, possiamo costruire un <abbr>URL</abbr> per cancellare il messaggio di stato che abbiamo appena pubblicato.
+<li>Per cancellare un messaggio, vi basta emettere una richiesta <abbr>HTTP</abbr> <code>DELETE</code> verso quell <abbr>URL</abbr>.
+</ol>
+
+<p>Questo è quello che va <span class=wtf>over the wire</span>:
+
+<pre class=screen>
+<samp><a>send: b'DELETE /api/statuses/destroy/5131472.xml HTTP/1.1      <span class=u>&#x2460;</span></a>
+Host: identi.ca
+Accept-Encoding: identity
+user-agent: Python-httplib2/$Rev: 259 $
+
+'
+<a>reply: 'HTTP/1.1 401 Unauthorized'                             <span class=u>&#x2461;</span></a>
+<a>send: b'DELETE /api/statuses/destroy/5131472.xml HTTP/1.1      <span class=u>&#x2462;</span></a>
+Host: identi.ca
+Accept-Encoding: identity
+<a>authorization: Basic HASH_SEGRETO_COSTRUITO_DA_HTTPLIB2       <span class=u>&#x2463;</span></a>
+user-agent: Python-httplib2/$Rev: 259 $
+
+'
+<a>reply: 'HTTP/1.1 200 OK'                                       <span class=u>&#x2464;</span></a></samp>
+<samp class=p>>>> </samp><kbd class=pp>resp.status</kbd>
+<samp class=pp>200</samp></pre>
+<ol>
+<li>&#8220;Cancella questo messaggio di stato.&#8221;
+<li>&#8220;<span class=wtf>I&#8217;m sorry, Dave, I&#8217;m afraid I can&#8217;t do that.</span>&#8221;
+<li>&#8220;Non autorizzato<span class=u title='interrobang!'>&#8253;</span> Hmmph. Cancella questo messaggio di stato, <em>per favore</em>&hellip;
+<li>&hellip;e qui ci sono il mio nome utente e la mia password.&#8221;
+<li>&#8220;Consideralo fatto!&#8221;
+</ol>
+
+<p>E proprio così, poof, è sparito.
+
+<p class=c><img class=fr src=i/identica-deleted.png alt="screenshot che mostra il messaggio cancellato su Identi.ca" width=740 height=449>
+
+<p class=a>&#x2042;
+
+<h2 id=furtherreading>Letture di approfondimento</h2>
+
+<p><code>httplib2</code>:
+
+<ul>
+<li>La pagina del progetto <a href=http://code.google.com/p/httplib2/><code>httplib2</code></a>
+<li><a href=http://code.google.com/p/httplib2/wiki/ExamplesPython3>Ulteriori esempi di codice per <code>httplib2</code></a>
+<li class=wtf><a href=http://www.xml.com/pub/a/2006/02/01/doing-http-caching-right-introducing-httplib2.html>Doing <abbr>HTTP</abbr> Caching Right: Introducing <code>httplib2</code></a>
+<li><a href=http://www.xml.com/pub/a/2006/03/29/httplib2-http-persistence-and-authentication.html><code>httplib2</code>: persistenza e autenticazione in <abbr>HTTP</abbr></a>
+</ul>
+
+<p class=wtf><abbr>HTTP</abbr> caching:
+
+<ul class=wtf>
+<li><a href=http://www.mnot.net/cache_docs/><abbr>HTTP</abbr> Caching Tutorial</a> by Mark Nottingham
+<li><a href=http://code.google.com/p/doctype/wiki/ArticleHttpCaching>How to control caching with <abbr>HTTP</abbr> headers</a> on Google Doctype
+</ul>
+
+<p><abbr>RFC</abbr>:
+
+<ul class=wtf>
+<li><a href=http://www.ietf.org/rfc/rfc2616.txt>RFC 2616: <abbr>HTTP</abbr></a>
+<li><a href=http://www.ietf.org/rfc/rfc2617.txt>RFC 2617: <abbr>HTTP</abbr> Basic Authentication</a>
+<li><a href=http://www.ietf.org/rfc/rfc1951.txt>RFC 1951: deflate compression</a>
+<li><a href=http://www.ietf.org/rfc/rfc1952.txt>RFC 1952: gzip compression</a>
+</ul>
+
+<p class=v><a rel=prev class=todo><span class=u>&#x261C;</span></a> <a rel=next class=todo><span class=u>&#x261E;</span></a>
+<p class=c>&copy; 2001&ndash;9 <a href=about.html>Mark Pilgrim</a><br>
+&copy; 2009 <a href=informazioni-sulla-traduzione.html>Giulio Piancastelli</a> per la traduzione italiana
+<script src=j/jquery.js></script>
+<script src=j/prettify.js></script>
+<script src=j/dip3.js></script>
