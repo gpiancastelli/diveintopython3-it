@@ -483,7 +483,7 @@ for an_iterator in a_sequence_of_iterators:
 reduce(a, b, c)</code></pre>
 </table>
 <blockquote class=note>
-<p><span class=u>&#x261E;</span>La versione di <code>2to3</code> rilasciata con Python 3.0 non correggerà la funzione <code>reduce()</code> automaticamente. La correzione è apparsa per la prima volta nello script <code>2to3</code> che verrà rilasciato con Python 3.1.
+<p><span class=u>&#x261E;</span>La versione di <code>2to3</code> rilasciata con Python 3.0 non correggerà la funzione <code>reduce()</code> automaticamente. La correzione è apparsa per la prima volta nello script <code>2to3</code> rilasciato con Python 3.1.
 </blockquote>
 <h2 id=apply>La funzione globale <code>apply()</code></h2>
 <p>Python 2 ha una funzione globale chiamata <code><dfn>apply</dfn>()</code>, che prende una funzione <var>f</var> e una lista <code>[a, b, c]</code> e restituisce <code>f(a, b, c)</code>. In Python 3, la funzione <code>apply()</code> non esiste più. Al suo posto, c'è una nuova sintassi per la chiamata a funzione che vi permette di passare una lista e lasciare a  Python il compito di utilizzare gli elementi della lista come argomenti della funzione.
@@ -552,7 +552,7 @@ reduce(a, b, c)</code></pre>
 <td><code class=pp>exec(compile(open('a_filename').read(), 'a_filename', 'exec'))</code>
 </table>
 <blockquote class=note>
-<p><span class=u>&#x261E;</span>La versione di 2to3 rilasciata con Python 3.0 non corregge l'istruzione <code>execfile</code> automaticamente. La correzione è apparsa per la prima volta nello script <code>2to3</code> che verrà rilasciato con Python 3.1.
+<p><span class=u>&#x261E;</span>La versione di 2to3 rilasciata con Python 3.0 non corregge l'istruzione <code>execfile</code> automaticamente. La correzione è apparsa per la prima volta nello script <code>2to3</code> rilasciato con Python 3.1.
 </blockquote>
 <h2 id=repr>I letterali <code>repr</code> (i backtick)</h2>
 <p>Python 2 utilizzava una speciale sintassi per ottenere una rappresentazione di qualsiasi oggetto racchiudendo quell'oggetto tra <dfn>backtick</dfn> (come <code>`x`</code>). In Python 3, questa possibilità esiste ancora, ma dovete usare la funzione globale <code>repr()</code> al posto dei backtick.
@@ -938,7 +938,7 @@ except:
 <td><code class=pp>isinstance(x, (int, float))</code>
 </table>
 <blockquote class=note>
-<p><span class=u>&#x261E;</span>La versione di 2to3 rilasciata con Python 3.0 non corregge automaticamente questi casi di <code>isinstance()</code>. La correzione è apparsa per la prima volta nello script 2to3 che verrà rilasciato con Python 3.1.
+<p><span class=u>&#x261E;</span>La versione di 2to3 rilasciata con Python 3.0 non corregge automaticamente questi casi di <code>isinstance()</code>. La correzione è apparsa per la prima volta nello script 2to3 rilasciato con Python 3.1.
 </blockquote>
 <h2 id=basestring>Il tipo di dato <code>basestring</code></h2>
 <p>Python 2 aveva due tipi di stringhe: Unicode e non Unicode. Ma c'era anche un altro tipo, <code><dfn>basestring</dfn></code>. Era un tipo astratto, una superclasse per entrambi i tipi <code>str</code> e <code>unicode</code>. Non poteva essere chiamata o istanziata direttamente, ma potevate passarla alla funzione globale <code>isinstance()</code> per controllare che un oggetto fosse una stringa Unicode o una stringa non Unicode. In Python 3, c'è un solo tipo di stringhe, quindi <code>basestring</code> non ha ragione di esistere.
