@@ -46,7 +46,7 @@ del{background:#f87}
 
 <h2 id=divingin2>Introduzione al modulo <code>chardet</code></h2>
 <p><span class=fixme>[FIXME download link, possibly on chardet.feedparser.org, possibly local]</span>
-<p>Prima di cominciare la conversione, potrebbe essere d'aiuto capire come funziona il codice! Questa sezione vuole essere una breve guida alla struttura e al funzionamento del modulo <code>chardet</code>.
+<p>Prima di cominciare la conversione, potrebbe essere d'aiuto capire come funziona il codice! Questa sezione vuole essere una breve guida alla struttura e al funzionamento del modulo <code>chardet</code>. I sorgenti della libreria sono troppo grandi per riportarne l'intero contenuto qui di seguito, ma potete <a href=http://chardet.feedparser.org/download/>scaricarli dal sito <code>chardet.feedparser.org</code></a>. 
 <aside>Il riconoscimento di codifica è in realtà il riconoscimento di una lingua travestito.</aside>
 <p>Il punto d'ingresso principale per l'algoritmo di riconoscimento è <code>universaldetector.py</code>, dove viene definita la classe <code>UniversalDetector</code>. (Potreste pensare che il punto d'entrata principale sia la funzione <code>detect()</code> in <code>chardet/__init__.py</code>, ma in realtà quella è solo una funzione di convenienza che crea un oggetto di tipo <code>UniversalDetector</code>, lo invoca, e ne restituisce risultato.)
 <p>Ci sono 5 categorie di codifiche che <code>UniversalDetector</code> gestisce:

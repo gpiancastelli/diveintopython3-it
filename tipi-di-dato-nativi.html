@@ -21,7 +21,7 @@ body{counter-reset:h1 2}
 </blockquote>
 <p id=toc>&nbsp;
 <h2 id=divingin>Immersione!</h2>
-<p class=f>Mettete da parte <a href=il-vostro-primo-programma-python.html>il vostro primo programma Python</a> per un minuto, e parliamo di tipi di dato. In Python, <a href=il-vostro-primo-programma-python.html#declaringfunctions>ogni variabile ha un tipo di dato</a>, ma non avete bisogno di dichiararlo esplicitamente. In base all'assegnamento originale di ogni variabile, Python capisce di quale tipo è e ne tiene traccia internamente.
+<p class=f>Mettete da parte <a href=il-vostro-primo-programma-python.html>il vostro primo programma Python</a> per un minuto, e parliamo di tipi di dato. In Python, <a href=il-vostro-primo-programma-python.html#declaringfunctions>ogni valore ha un tipo di dato</a>, ma non avete bisogno di dichiarare il tipo di dato delle variabili. Come mai? In base all'assegnamento originale di ogni variabile, Python capisce di quale tipo è e ne tiene traccia internamente.
 <p>Python ha molti tipi di dato nativi. Questi sono quelli più importanti:
 <ol>
 <li><b>Booleani</b>: sono solamente <code>True</code> oppure <code>False</code>.
@@ -39,7 +39,7 @@ body{counter-reset:h1 2}
 
 <h2 id=booleans>Booleani</h2>
 <aside>Potete usare virtualmente qualsiasi espressione in un contesto logico.</aside>
-<p>I dati di tipo booleano sono veri o falsi. Python ha due costanti, <code>True</code> e <code>False</code>, che possono essere usate per assegnare direttamente valori di tipo booleano. Anche le espressioni possono essere valutate come valori booleani. In certi posti (come le istruzioni <code>if</code>), Python si aspetta una espressione da valutare come un valore booleano. Questi posti sono chiamati <i>contesti logici</i>. Potete virtualmente usare qualsiasi espressione in un contesto logico, e Python proverà a determinarne il valore di verità. Tipi di dato differenti hanno regole differenti per decidere se un loro valore è vero o falso in un contesto logico. (Questa frase avrà più senso una volta che avrete visto alcuni esempi concreti più in là in questo capitolo.)
+<p>I dati di tipo booleano sono veri o falsi. Python ha due costanti, chiamate ingegnosamente <code>True</code> e <code>False</code>, che possono essere usate per assegnare direttamente valori di tipo booleano. Anche le espressioni possono essere valutate come valori booleani. In certi posti (come le istruzioni <code>if</code>), Python si aspetta una espressione da valutare come un valore booleano. Questi posti sono chiamati <i>contesti logici</i>. Potete virtualmente usare qualsiasi espressione in un contesto logico, e Python proverà a determinarne il valore di verità. Tipi di dato differenti hanno regole differenti per decidere se un loro valore è vero o falso in un contesto logico. (Questa frase avrà più senso una volta che avrete visto alcuni esempi concreti più in là in questo capitolo.)
 <p>Per esempio, considerate questo estratto da <a href=il-vostro-primo-programma-python.html#divingin><code>humansize.py</code></a>:
 <pre><code class=pp>if size &lt; 0:
     raise ValueError('number must be non-negative')</code></pre>
@@ -54,6 +54,19 @@ body{counter-reset:h1 2}
 <samp class=p>>>> </samp><kbd class=pp>size = -1</kbd>
 <samp class=p>>>> </samp><kbd class=pp>size &lt; 0</kbd>
 <samp class=pp>True</samp></pre>
+<p>A causa di alcune questioni lasciate in eredità da Python 2, i booleani possono essere trattati come numeri. <code>True</code> vale <code>1</code> e <code>False</code> vale <code>0</code>.
+<pre class=screen>
+<samp class=p>>>> </samp><kbd class=pp>True + True</kbd>
+<samp class=pp>2</samp>
+<samp class=p>>>> </samp><kbd class=pp>True + False</kbd>
+<samp class=pp>1</samp>
+<samp class=p>>>> </samp><kbd class=pp>True * False</kbd>
+<samp class=pp>0</samp>
+<samp class=p>>>> </samp><kbd class=pp>True / False</kbd>
+<samp class=traceback>Traceback (most recent call last):
+  File "&lt;stdin>", line 1, in &lt;module>
+ZeroDivisionError: int division or modulo by zero</samp></pre>
+<p>Ow, ow, ow! Non fatelo. Dimenticatevi persino che io lo abbia menzionato.
 
 <p class=a>&#x2042;
 
@@ -62,14 +75,17 @@ body{counter-reset:h1 2}
 <pre class=screen>
 <a><samp class=p>>>> </samp><kbd class=pp>type(1)</kbd>                 <span class=u>&#x2460;</span></a>
 <samp class=pp>&lt;class 'int'></samp>
-<a><samp class=p>>>> </samp><kbd class=pp>1 + 1</kbd>                   <span class=u>&#x2461;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>isinstance(1, int)</kbd>      <span class=u>&#x2461;</span></a>
+<samp class=pp>True</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>1 + 1</kbd>                   <span class=u>&#x2462;</span></a>
 <samp class=pp>2</samp>
-<a><samp class=p>>>> </samp><kbd class=pp>1 + 1.0</kbd>                 <span class=u>&#x2462;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>1 + 1.0</kbd>                 <span class=u>&#x2463;</span></a>
 <samp class=pp>2.0</samp>
 <samp class=p>>>> </samp><kbd class=pp>type(2.0)</kbd>
 <samp class=pp>&lt;class 'float'></samp></pre>
 <ol>
 <li>Potete usare la funzione <code>type()</code> per controllare il tipo di qualsiasi valore o variabile. Come vi sareste aspettati, <code>1</code> è un <code>int</code>.
+<li>Similmente, potete usare la funzione <code>isinstance()</code> per controllare se un valore o una variabile è di un certo tipo.
 <li>Aggiungere un <code>int</code> a un <code>int</code> dà come risultato un <code>int</code>.
 <li>Aggiungere un <code>int</code> a un <code>float</code> dà come risultato un <code>float</code>. Python converte implicitamente l'<code>int</code> in un <code>float</code> per eseguire l'addizione, poi restituisce un <code>float</code> come risultato.
 </ol>
@@ -136,12 +152,19 @@ body{counter-reset:h1 2}
 <a><samp class=p>>>> </samp><kbd class=pp>x * 2</kbd>                         <span class=u>&#x2462;</span></a>
 <samp class=pp>Fraction(2, 3)</samp>
 <a><samp class=p>>>> </samp><kbd class=pp>fractions.Fraction(6, 4)</kbd>      <span class=u>&#x2463;</span></a>
-<samp class=pp>Fraction(3, 2)</samp></pre>
+<samp class=pp>Fraction(3, 2)</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>fractions.Fraction(0, 0)</kbd>      <span class=u>&#x2464;</span></a>
+<samp class=traceback>Traceback (most recent call last):
+  File "&lt;stdin>", line 1, in &lt;module>
+  File "fractions.py", line 96, in __new__
+    raise ZeroDivisionError('Fraction(%s, 0)' % numerator)
+ZeroDivisionError: Fraction(0, 0)</samp></pre>
 <ol>
 <li>Per cominciare a usare le frazioni, importate il modulo <code>fractions</code>.
 <li>Per definire una frazione, create un oggetto <code>Fraction</code> e passategli il numeratore e il denominatore.
 <li>Potete eseguire tutte le solite operazioni matematiche con le frazioni. Le operazioni restituiscono un nuovo oggetto <code>Fraction</code>. <code>2 * (1/3) = (2/3)</code>
 <li>L'oggetto <code>Fraction</code> semplificherà le frazioni automaticamente. <code>(6/4) = (3/2)</code>
+<li>Python ha il buon senso di non creare frazioni con denominatore uguale a zero.
 </ol>
 <h3 id=trig>Trigonometria</h3>
 <p>Potete anche operare con la trigonometria di base in Python.
