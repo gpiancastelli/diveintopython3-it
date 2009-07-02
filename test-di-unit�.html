@@ -33,7 +33,7 @@ body{counter-reset:h1 8}
 </ol>
 <p>Cominciamo col tracciare quello che un modulo <code>roman.py</code> dovrebbe fare. Il modulo avrà due funzioni principali, <code>to_roman()</code> e <code>from_roman()</code>. La funzione <code>to_roman()</code> dovrà prendere un intero da <code>1</code> a <code>3999</code> e restituirne la rappresentazione come numero romano sotto forma di stringa&hellip;
 <p>Fermiamoci subito qui. Ora facciamo qualcosa di un poco inaspettato: scriviamo un test per controllare che la funzione <code>to_roman()</code> faccia quello che volete. Avete letto bene: state per scrivere codice che collauda codice che non avete ancora scritto.
-<p>Questa pratica si chiama <i>collaudo di unità</i>. L'insieme di due funzioni di conversione &mdash; <code>to_roman()</code> e, più tardi, <code>from_roman()</code> &mdash; può essere implementato e collaudato come una singola unità, separata da qualsiasi programma più grande che le importi. Python possiede un framework per il collaudo di unità, un modulo propriamente chiamato <code>unittest</code>.
+<p>Questa pratica si chiama <i>collaudo di unità</i>. L'insieme di due funzioni di conversione&nbsp;&mdash;&nbsp;<code>to_roman()</code> e, più tardi, <code>from_roman()</code>&nbsp;&mdash;&nbsp;può essere implementato e collaudato come una singola unità, separata da qualsiasi programma più grande che le importi. Python possiede un framework per il collaudo di unità, un modulo propriamente chiamato <code>unittest</code>.
 <p>Il collaudo di unità è una parte importante di una strategia di sviluppo complessivamente centrata sui test. Se scrivete dei test di unità, è importante che li scriviate presto (preferibilmente prima di scrivere il codice che collaudano) e che li manteniate aggiornati man mano che il codice e i requisiti cambiano. Il collaudo di unità non è un rimpiazzo per collaudi funzionali o di sistema di più alto livello, ma è importante in tutte le fasi dello sviluppo:
 <ul>
 <li>Prima di scrivere codice, vi obbliga a dettagliare i vostri requisiti in modo utile.
@@ -136,7 +136,7 @@ if __name__ == '__main__':
 <li>Supponendo che la funzione <code>to_roman()</code> sia stata definita correttamente, invocata correttamente, abbia completato con successo la propria esecuzione e abbia restituito un valore, l'ultimo passo è controllare se ha restituito il valore <em>corretto</em>. Questa è una necessità talmente comune che la classe <code>TestCase</code> vi fornisce il metodo <code>assertEqual</code> per controllare se due valori sono uguali. Se il risultato restituito da <code>to_roman()</code> (<var>result</var>) non corrisponde al valore noto che vi stavate aspettando (<var>numeral</var>), <code>assertEqual()</code> solleverà una eccezione e il test fallirà. Se i due valori sono uguali, <code>assertEqual()</code> non farà nulla. Se tutti i valori restituiti da <code>to_roman()</code> corrispondono ai valori che vi aspettate, <code>assertEqual()</code> non solleverà mai alcuna eccezione, così <code>testToRomaKnownValues</code> concluderà normalmente la propria esecuzione, il che significa che <code>to_roman()</code> avrà passato questo test.
 </ol>
 <aside>Scrivete un test che fallisce, poi programmate fino a quando ha successo.</aside>
-<p>Ora che avete scritto un test, potete cominciare a implementare la funzione <code>to_roman()</code>. Prima di tutto, dovreste creare lo scheletro vuoto della funzione e verificare che il test fallisca. Se il test ha successo prima che abbiate scritto del codice, state sbagliando qualcosa &mdash; i vostri test non stanno per niente collaudando il vostro codice! Scrivete un test che fallisce, poi programmate fino a quando ha successo.
+<p>Ora che avete scritto un test, potete cominciare a implementare la funzione <code>to_roman()</code>. Prima di tutto, dovreste creare lo scheletro vuoto della funzione e verificare che il test fallisca. Se il test ha successo prima che abbiate scritto del codice, state sbagliando qualcosa&nbsp;&mdash;&nbsp;i vostri test non stanno per niente collaudando il vostro codice! Scrivete un test che fallisce, poi programmate fino a quando ha successo.
 <pre><code class=pp># roman1.py
 
 function to_roman(n):
@@ -240,7 +240,7 @@ OK</samp></pre>
 <a><samp class=p>>>> </samp><kbd class=pp>roman1.to_roman(9000)</kbd>  <span class=u>&#x2460;</span></a>
 <samp class=pp>'MMMMMMMMM'</samp></pre>
 <ol>
-<li>Questo non è assolutamente quello che volete &mdash; quello non è nemmeno un numero romano valido! In effetti, ognuno di questi numeri è fuori dall'intervallo degli ingressi accettabili, ma la funzione restituisce comunque un finto valore. Restituire silenziosamente valori sbagliati è <em>maaaaaaale</em>; se un programma deve fallire, è molto meglio che fallisca velocemente e rumorosamente. &#8220;Fermati e prendi fuoco,&#8221; come si dice in gergo. Il modo che ha Python di fermarsi e prendere fuoco è sollevare una eccezione.
+<li>Questo non è assolutamente quello che volete&nbsp;&mdash;&nbsp;quello non è nemmeno un numero romano valido! In effetti, ognuno di questi numeri è fuori dall'intervallo degli ingressi accettabili, ma la funzione restituisce comunque un finto valore. Restituire silenziosamente valori sbagliati è <em>maaaaaaale</em>; se un programma deve fallire, è molto meglio che fallisca velocemente e rumorosamente. &#8220;Fermati e prendi fuoco,&#8221; come si dice in gergo. Il modo che ha Python di fermarsi e prendere fuoco è sollevare una eccezione.
 </ol>
 <p>La domanda da porsi è: &#8220;Come posso esprimere questa idea sotto forma di un requisito collaudabile?&#8221; Che ne dite di questo, per cominciare:
 <blockquote>
@@ -278,14 +278,14 @@ Ran 2 tests in 0.000s
 
 FAILED (errors=1)</samp></pre>
 <ol>
-<li>Avreste dovuto aspettarvi che questo test fallisse (dato che non avete scritto ancora il codice per farlo passare) ma&hellip; non è esattamente &#8220;fallito,&#8221; bensì c'è stato un &#8220;errore.&#8221; Questa è una distinzione sottile ma importante. Un test di unità ha effettivamente <em>tre</em> valori di ritorno: successo, fallimento, ed errore. Successo, ovviamente, significa che il test è passato &mdash; il codice ha fatto quello che vi aspettavate. &#8220;Fallimento&#8221; è il risultato del test precedente (fino a quando non avete scritto il codice per farlo passare) &mdash; il codice veniva eseguito ma il risultato non era quello che vi aspettavate. &#8220;Errore&#8221; significa che il codice non è nemmeno stato eseguito correttamente.
+<li>Avreste dovuto aspettarvi che questo test fallisse (dato che non avete scritto ancora il codice per farlo passare) ma&hellip; non è esattamente &#8220;fallito,&#8221; bensì c'è stato un &#8220;errore.&#8221; Questa è una distinzione sottile ma importante. Un test di unità ha effettivamente <em>tre</em> valori di ritorno: successo, fallimento, ed errore. Successo, ovviamente, significa che il test è passato&nbsp;&mdash;&nbsp;il codice ha fatto quello che vi aspettavate. &#8220;Fallimento&#8221; è il risultato del test precedente (fino a quando non avete scritto il codice per farlo passare)&nbsp;&mdash;&nbsp;il codice veniva eseguito ma il risultato non era quello che vi aspettavate. &#8220;Errore&#8221; significa che il codice non è nemmeno stato eseguito correttamente.
 <li>Perché il codice non è stato eseguito correttamente? La traccia dello stack di esecuzione ci fornisce la risposta: il modulo che state collaudando non include alcuna eccezione chiamata <code>OutOfRangeError</code>. Ricordate, avete passato questa eccezione al metodo <code>assertRaises()</code>, perché è l'eccezione che volete che la funzione sollevi quando riceve un ingresso fuori dall'intervallo consentito. Ma l'eccezione non esiste, quindi la chiamata al metodo <code>assertRaises()</code> fallisce. Il metodo non ha avuto la possibilità di collaudare la funzione <code>to_roman()</code>; non è arrivato così lontano.
 </ol>
 <p>Per risolvere questo problema, dovete definire l'eccezione <code>OutOfRangeError</code> in <code>roman2.py</code>.
 <pre><code class=pp><a>class OutOfRangeError(ValueError):  <span class=u>&#x2460;</span></a>
 <a>    pass                            <span class=u>&#x2461;</span></a></code></pre>
 <ol>
-<li>Le eccezioni sono classi. Un errore di tipo &#8220;out of range&#8221; è un tipo di errore sui valori &mdash; il valore passato come argomento è fuori dal suo intervallo accettabile. Così questa eccezione eredita dalla eccezione built-in <code>ValueError</code>. Questo non è strettamente necessario (avrebbe potuto semplicemente ereditare dalla classe base <code>Exception</code>), ma suona corretto.
+<li>Le eccezioni sono classi. Un errore di tipo &#8220;out of range&#8221; è un tipo di errore sui valori&nbsp;&mdash;&nbsp;il valore passato come argomento è fuori dal suo intervallo accettabile. Così questa eccezione eredita dalla eccezione built-in <code>ValueError</code>. Questo non è strettamente necessario (avrebbe potuto semplicemente ereditare dalla classe base <code>Exception</code>), ma suona corretto.
 <li>Le eccezioni non fanno effettivamente niente, ma avete bisogno di almeno una riga di codice per costruire una classe. L'istruzione <code>pass</code> non fa precisamente nulla, ma è una riga di codice Python, e quindi costituisce una classe.
 </ol>
 <p>Ora lanciate nuovamente la <span class=wtf>test suite</span>.
@@ -308,7 +308,7 @@ Ran 2 tests in 0.016s
 FAILED (failures=1)</samp></pre>
 <ol>
 <li>Il nuovo test non è ancora passato, ma non restituisce nemmeno un errore. Invece, il test fallisce. Questo è progresso! Significa che la chiamata al metodo <code>assertRaises()</code> questa volta ha avuto successo, e che il framework per il collaudo di unità ha effettivamente collaudato la funzione <code>to_roman()</code>.
-<li>Naturalmente, la funzione <code>to_roman()</code> non ha sollevato l'eccezione <code>OutOfRangeError</code> che avete appena definito, perché non gli avete ancora detto di farlo. Questa è una notizia eccellente! Significa che questo è un test valido &mdash; fallisce prima che scriviate il codice per farlo passare.
+<li>Naturalmente, la funzione <code>to_roman()</code> non ha sollevato l'eccezione <code>OutOfRangeError</code> che avete appena definito, perché non gli avete ancora detto di farlo. Questa è una notizia eccellente! Significa che questo è un test valido&nbsp;&mdash;&nbsp;fallisce prima che scriviate il codice per farlo passare.
 </ol>
 <p>Ora potete scrivere il codice per far passare questo test.
 <p class=d>[<a href=esempi/roman2.py>scarica <code>roman2.py</code></a>]

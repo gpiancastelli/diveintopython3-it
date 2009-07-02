@@ -33,7 +33,7 @@ body{counter-reset:h1 2}
 <li><b>Dizionari</b>: sono insiemi di coppie chiave-valore senza un ordine preciso.
 </ol>
 <p>Naturalmente, ci sono molti più tipi di questi sette. <a href=il-vostro-primo-programma-python.html#everythingisanobject>Ogni cosa è un oggetto</a> in Python, quindi ci sono anche tipi come <i>modulo</i>, <i>funzione</i>, <i>classe</i>, <i>metodo</i>, <i>file</i>, e persino <i>codice compilato</i>. Ne avete già visti alcuni: <a href=il-vostro-primo-programma-python.html#runningscripts>i moduli hanno un nome</a>, <a href=il-vostro-primo-programma-python.html#docstrings>le funzioni posseggono una <code>docstring</code></a>, <i class=baa>&amp;</i>c. Imparerete cosa sono le classi in <span class=fixme>[FIXME xref]</span> e cosa sono i file in <span class=fixme>[FIXME xref]</span>.
-<p>Stringhe e byte sono abbastanza importanti &mdash; e abbastanza complicati &mdash; da essere trattati in un capitolo a parte. Diamo un'occhiata agli altri per primi.
+<p>Stringhe e byte sono abbastanza importanti&nbsp;&mdash;&nbsp;e abbastanza complicati&nbsp;&mdash;&nbsp;da essere trattati in un capitolo a parte. Diamo un'occhiata agli altri per primi.
 
 <p class=a>&#x2042;
 
@@ -275,23 +275,29 @@ ZeroDivisionError: Fraction(0, 0)</samp></pre>
 <pre class=screen>
 <samp class=p>>>> </samp><kbd class=pp>a_list = ['a']</kbd>
 <a><samp class=p>>>> </samp><kbd class=pp>a_list = a_list + [2.0, 3]</kbd>    <span class=u>&#x2460;</span></a>
-<samp class=p>>>> </samp><kbd class=pp>a_list</kbd>
+<a><samp class=p>>>> </samp><kbd class=pp>a_list</kbd>                        <span class=u>&#x2461;</span></a>
 <samp class=pp>['a', 2.0, 3]</samp>
-<a><samp class=p>>>> </samp><kbd class=pp>a_list.append(True)</kbd>           <span class=u>&#x2461;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>a_list.append(True)</kbd>           <span class=u>&#x2462;</span></a>
 <samp class=p>>>> </samp><kbd class=pp>a_list</kbd>
 <samp class=pp>['a', 2.0, 3, True]</samp>
-<a><samp class=p>>>> </samp><kbd class=pp>a_list.extend(['four', 'e'])</kbd>  <span class=u>&#x2462;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>a_list.extend(['four', '&Omega;'])</kbd>  <span class=u>&#x2463;</span></a>
 <samp class=p>>>> </samp><kbd class=pp>a_list</kbd>
-<samp class=pp>['a', 2.0, 3, True, 'four', 'e']</samp>
-<a><samp class=p>>>> </samp><kbd class=pp>a_list.insert(1, 'a')</kbd>         <span class=u>&#x2463;</span></a>
+<samp class=pp>['a', 2.0, 3, True, 'four', '&Omega;']</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>a_list.insert(0, '&Omega;')</kbd>         <span class=u>&#x2464;</span></a>
 <samp class=p>>>> </samp><kbd class=pp>a_list</kbd>
-<samp class=pp>['a', 'a', 2.0, 3, True, 'four', 'e']</samp></pre>
+<samp class=pp>['&Omega;', 'a', 2.0, 3, True, 'four', '&Omega;']</samp></pre>
 <ol>
-<li>L'operatore <code>+</code> concatena liste. Una lista può contenere qualsiasi numero di elementi; non c'è alcun limite sulle dimensioni (a parte la memoria disponibile). Una lista può contenere elementi di ogni tipo di dato; non c'è bisogno che siano tutti dello stesso tipo. Qui abbiamo una lista contenente una stringa, un numero in virgola mobile, e un intero.
+<li>L'operatore <code>+</code> concatena liste per creare una nuova lista. Una lista può contenere qualsiasi numero di elementi; non c'è alcun limite sulle dimensioni (a parte la memoria disponibile). Tuttavia, se la memoria è un problema, sappiate che la concatenazione tra liste crea una seconda lista in memoria. In questo caso, quella nuova lista viene immediatamente assegnata alla variabile <var>a_list</var> esistente. Quindi, questa riga di codice in realtà è un'operazione composta da due passi&nbsp;&mdash;&nbsp;concatenazione e poi assegnamento&nbsp;&mdash;&nbsp;che potrebbe (temporaneamente) consumare molta memoria quando avete a che fare con liste di grandi dimensioni.
+<li>Una lista può contenere elementi di ogni tipo di dato e gli elementi contenuti in una singola lista non devono per forza essere tutti dello stesso tipo. Qui abbiamo una lista contenente una stringa, un numero in virgola mobile e un intero.
 <li>Il metodo <code>append()</code> aggiunge un singolo elemento alla fine di una lista. (Ora abbiamo <em>quattro</em> tipi di dato differenti nella lista!)
-<li>Le liste sono implementate come classi. &#8220;Creare&#8221; una lista vuol dire in realtà istanziare una classe. Come tale, una lista ha metodi che operano su di essa. Il metodo <code>extend()</code> prende un argomento, una lista, e aggiunge ognuno degli elementi dell'argomento in coda alla lista originale.
+<li>Le liste sono implementate come classi. &#8220;Creare&#8221; una lista vuol dire in realtà istanziare una classe. Come tale, una lista ha metodi che operano su di essa. Il metodo <code>extend()</code> prende una lista come unico argomento e aggiunge ognuno degli elementi dell'argomento in coda alla lista originale.
 <li>Il metodo <code>insert()</code> inserisce un singolo elemento in una lista. Il primo argomento è l'indice del primo elemento nella lista che verrà spostato dalla sua posizione. Gli elementi di una lista non devono essere unici; per esempio, ci sono ora due elementi diversi con il valore <code>'a'</code>, <code>a_list[0]</code> e <code>a_list[1]</code>.
 </ol>
+
+<blockquote class='note compare perl'>
+<p><span class=u>&#x261E;</span><code><var>a_list</var>.insert(0, <var>value</var>)</code> ha lo stesso effetto della funzione <code>shift()</code> in Perl. Aggiunge un elemento all'inizio della lista e aumenta l'indice posizionale di tutti gli altri elementi per fare spazio.
+</blockquote>
+
 <p>Diamo un'occhiata più da vicino alle differenze tra <code>append()</code> ed <code>extend()</code>.
 <pre class=screen>
 <samp class=p>>>> </samp><kbd class=pp>a_list = ['a', 'b', 'c']</kbd>
@@ -318,25 +324,101 @@ ZeroDivisionError: Fraction(0, 0)</samp></pre>
 <h3 id=searchinglists>Cercare valori in una lista</h3>
 <pre class=screen>
 <samp class=p>>>> </samp><kbd class=pp>a_list = ['a', 'b', 'new', 'mpilgrim', 'new']</kbd>
-<a><samp class=p>>>> </samp><kbd class=pp>'mpilgrim' in a_list</kbd>      <span class=u>&#x2460;</span></a>
-<samp class=pp>True</samp>
-<a><samp class=p>>>> </samp><kbd class=pp>a_list.index('mpilgrim')</kbd>  <span class=u>&#x2461;</span></a>
-<samp class=pp>3</samp>
-<a><samp class=p>>>> </samp><kbd class=pp>a_list.index('new')</kbd>       <span class=u>&#x2462;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>a_list.count('new')</kbd>       <span class=u>&#x2460;</span></a>
 <samp class=pp>2</samp>
-<a><samp class=p>>>> </samp><kbd class=pp>'c' in a_list</kbd>             <span class=u>&#x2463;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>'new' in a_list</kbd>           <span class=u>&#x2461;</span></a>
+<samp class=pp>True</samp>
+<samp class=p>>>> </samp><kbd class=pp>'c' in a_list</kbd>
 <samp class=pp>False</samp>
-<a><samp class=p>>>> </samp><kbd class=pp>a_list.index('c')</kbd>         <span class=u>&#x2464;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>a_list.index('mpilgrim')</kbd>  <span class=u>&#x2463;</span></a>
+<samp class=pp>3</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>a_list.index('new')</kbd>       <span class=u>&#x2464;</span></a>
+<samp class=pp>2</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>a_list.index('c')</kbd>         <span class=u>&#x2465;</span></a>
 <samp class=traceback>Traceback (innermost last):
   File "&lt;interactive input>", line 1, in ?
 ValueError: list.index(x): x not in list</samp></pre>
 <ol>
-<li>Per verificare se un valore è presente in una lista, usate l'operatore <code>in</code>. Esso restituisce <code>True</code> se il valore è nella lista, oppure <code>False</code> se non lo è. Non vi dirà dove si trova il valore.
+
+<li>Come potreste aspettarvi, il metodo <code>count()</code> restituisce il numero di occorrenze di uno specifico valore in una lista.
+<li>Nel caso tutto quello che vogliate sapere sia se un valore è presente nella lista oppure no, l'operatore <code>in</code> è leggermente più veloce rispetto al metodo <code>count()</code>. L'operatore <code>in</code> restituisce sempre <code>True</code> o <code>False</code>, senza dirvi dove si trova il valore.
 <li>Se avete bisogno di sapere esattamente dove si trova un valore nella lista, chiamate il metodo <code>index()</code>. Di default cercherà nell'intera lista, anche se potete specificare, come secondo argomento, l'indice (a partire da <code>0</code>) da cui cominciare e persino, come terzo argomento, l'indice (a partire da <code>0</code>) in cui terminare la ricerca.
-<li>Come vi sareste aspettati, questo restituisce <code>False</code>, perché <code>'c'</code> non è un valore contenuto in <var>a_list</var>.
-<li>Il metodo <code>index()</code> trova la <em>prima</em> occorrenza di un valore nella lista. In questo caso, <code>'new'</code> appare due volte nella lista, in <code>a_list[2]</code> and <code>a_list[4]</code>, ma il metodo <code>index()</code> restituirà solamente l'indice della prima occorrenza. 
-<li>Come <em>non</em> vi sareste aspettati, se il valore non è trovato nella lista, Python solleva una eccezione. Questa è una differenza considerevole rispetto alla maggior parte dei linguaggi, che resituiscono un qualche indice non valido (come <code>-1</code>). Mentre questo può sembrare fastidioso all'inizio, penso che finirete per apprezzarlo. Significa che il vostro programma fallirà alla sorgente del problema invece di fallire stranamente e silenziosamente più tardi. 
+<li>Il metodo <code>index()</code> trova la <em>prima</em> occorrenza di un valore nella lista. In questo caso, <code>'new'</code> appare due volte nella lista, in <code>a_list[2]</code> and <code>a_list[4]</code>, ma il metodo <code>index()</code> restituirà solamente l'indice della prima occorrenza.
+<li>Come <em>non</em> vi sareste aspettati, se il valore non è trovato nella lista, il metodo <code>index()</code> solleverà un'eccezione.
 </ol>
+
+<p>Siete sorpresi? Ma è così: il metodo <code>index()</code> solleva un'eccezione se non trova il valore nella lista. Questa è una differenza considerevole rispetto alla maggior parte dei linguaggi, che resituiscono un qualche indice non valido (come <code>-1</code>). Mentre questo può sembrare fastidioso all'inizio, penso che finirete per apprezzarlo. Significa che il vostro programma fallirà alla sorgente del problema invece di fallire stranamente e silenziosamente più tardi. Ricordate, <a href=#creatinglists><code>-1</code> è un indice di lista valido</a>. Se il metodo <code>index()</code> restituisse <code>-1</code>, questo potrebbe condurre ad alcune sessioni di debug non esattamente divertenti!
+
+<h3 id=removingfromlists>Rimuovere elementi da una lista</h3>
+
+<aside>Le liste non hanno mai buchi.</aside>
+
+<p>Le liste possono espandersi e contrarsi automaticamente. Finora avete visto la parte relativa all'espansione. Esistono anche diversi modi per rimuovere elementi da una lista.
+
+<pre class=screen>
+<samp class=p>>>> </samp><kbd class=pp>a_list = ['a', 'b', 'new', 'mpilgrim', 'new']</kbd>
+<samp class=p>>>> </samp><kbd class=pp>a_list[1]</kbd>
+<samp class=pp>'b'</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>del a_list[1]</kbd>         <span class=u>&#x2460;</span></a>
+<samp class=p>>>> </samp><kbd class=pp>a_list</kbd>
+<samp class=pp>['a', 'new', 'mpilgrim', 'new']</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>a_list[1]</kbd>             <span class=u>&#x2461;</span></a>
+<samp class=pp>'new'</samp></pre>
+<ol>
+<li>Potete usare l'istruzione <dfn>del</dfn> per cancellare uno specifico elemento da una lista.
+<li>Accedere all'elemento di indice <code>1</code> dopo aver cancellato l'elemento di indice <code>1</code> <em>non</em> risulta in un errore. Tutti gli elementi che seguono l'elemento rimosso spostano il proprio indice posizionale per &#8220;riempire il buco&#8221; lasciato dalla cancellazione dell'elemento.
+</ol>
+
+<p>Non conoscete l'indice posizionale? Non è un problema, perché potete anche rimuovere gli elementi tramite il loro valore.
+
+<pre class=screen>
+<a><samp class=p>>>> </samp><kbd class=pp>a_list.remove('new')</kbd>  <span class=u>&#x2460;</span></a>
+<samp class=p>>>> </samp><kbd class=pp>a_list</kbd>
+<samp class=pp>['a', 'mpilgrim', 'new']</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>a_list.remove('new')</kbd>  <span class=u>&#x2461;</span></a>
+<samp class=p>>>> </samp><kbd class=pp>a_list</kbd>
+<samp class=pp>['a', 'mpilgrim']</samp>
+<samp class=p>>>> </samp><kbd class=pp>a_list.remove('new')</kbd>
+<samp class=traceback>Traceback (most recent call last):
+  File "&lt;stdin>", line 1, in &lt;module>
+ValueError: list.remove(x): x not in list</samp></pre>
+<ol>
+<li>Potete anche rimuovere un elemento da una lista con il metodo <code>remove()</code>. Il metodo <code>remove()</code> prende un <em>valore</em> e rimuove la prima occorrenza di quel valore dalla lista. Ancora una volta, gli indici posizionali di tutti gli elementi che seguono l'elemento cancellato diminuiranno per &#8220;riempire il buco.&#8221 Le liste non hanno mai buchi.
+<li>Potete chiamare il metodo <code>remove()</code> tutte le volte che volete, ma verrà sollevata un'eccezione se provate a rimuovere un valore che non è presente nella lista.
+</ol>
+
+<h3 id=popgoestheweasel>Rimuovere elementi da una lista: giro premio</h3>
+
+<p>Un altro metodo interessante delle liste è <code>pop()</code>. Il metodo <code>pop()</code> è ancora un altro modo di <a href=#removingfromlists>rimuovere elementi da una lista</a>, ma con una peculiarità.
+
+<pre class=screen>
+<samp class=p>>>> </samp><kbd class=pp>a_list = ['a', 'b', 'new', 'mpilgrim']</kbd>
+<a><samp class=p>>>> </samp><kbd class=pp>a_list.pop()</kbd>   <span class=u>&#x2460;</span></a>
+<samp class=pp>'mpilgrim'</samp>
+<samp class=p>>>> </samp><kbd class=pp>a_list</kbd>
+<samp class=pp>['a', 'b', 'new']</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>a_list.pop(1)</kbd>  <span class=u>&#x2461;</span></a>
+<samp class=pp>'b'</samp>
+<samp class=p>>>> </samp><kbd class=pp>a_list</kbd>
+<samp class=pp>['a', 'new']</samp>
+<samp class=p>>>> </samp><kbd class=pp>a_list.pop()</kbd>
+<samp class=pp>'new'</samp>
+<samp class=p>>>> </samp><kbd class=pp>a_list.pop()</kbd>
+<samp class=pp>'a'</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>a_list.pop()</kbd>   <span class=u>&#x2462;</span></a>
+<samp class=traceback>Traceback (most recent call last):
+  File "&lt;stdin>", line 1, in &lt;module>
+IndexError: pop from empty list</samp></pre>
+<ol>
+<li>Quando viene invocato senza argomenti, il metodo <code>pop()</code> per le liste rimuove l'ultimo elemento nella lista <em>e restituisce il valore che ha rimosso</em>.
+<li>Potete rimuovere elementi arbitrari da una lista passando un indice posizionale al metodo <code>pop()</code>. Il metodo rimuoverà quell'elemento, sposterà tutti gli elementi seguenti per &#8220;riempire il buco&#8221; e restituirà il valore che ha rimosso.
+<li>Invocare <code>pop()</code> su una lista vuota solleva un'eccezione.
+</ol>
+
+<blockquote class='note compare perl'>
+<p><span class=u>&#x261E;</span>Chiamare il metodo <code>pop()</code> per le liste senza un argomento ha lo stesso effetto della funzione <code>pop()</code> in Perl: rimuovere l'ultimo elemento da una lista e restituire il valore dell'elemento rimosso. Perl possiede un'altra funzione, <code>shift()</code>, che rimuove il primo elemento e restituisce il suo valore; in Python, questo è equivalente a <code><var>a_list</var>.pop(0)</code>.
+</blockquote>
+
 <h3 id=lists-in-a-boolean-context>Liste in un contesto logico</h3>
 <aside>Le liste vuote sono false; tutte le altre liste sono vere.</aside>
 <p>Potete usare una lista anche in <a href=#booleans>un contesto logico</a>, come quello di una istruzione <code>if</code>.
@@ -367,21 +449,21 @@ ValueError: list.index(x): x not in list</samp></pre>
 <p class=a>&#x2042;
 
 <h2 id=dictionaries>Dizionari</h2>
-<p>Uno dei più importanti tipi di dato Python è il dizionario, che definisce relazioni di tipo uno-a-uno tra chiavi e valori.
+<p>Uno dei più importanti tipi di dato Python è il dizionario. Un dizionario è un insieme non ordinato di coppie chiave-valore. Quando aggiungete una chiave a un dizionario, dovete anche aggiungere un valore per quella chiave. (Potete sempre cambiare il valore più tardi.) I dizionari Python sono ottimizzati per recuperare il valore quando conoscete la chiave, ma non viceversa.
 <blockquote class='note compare perl5'>
 <p><span class=u>&#x261E;</span>Un dizionario in Python è come un hash in Perl 5. In Perl 5, variabili che memorizzano hash cominciano sempre con il carattere <code>%</code>. In Python, le variabili possono essere chiamate in qualsiasi modo, e Python tiene traccia del tipo di dato internamente.
 </blockquote>
 <h3 id=creating-dictionaries>Creare un dizionario</h3>
-<p>Creare un dizionario è facile. La sintassi è simile agli <a href=#sets>insiemi</a>, ma invece di valori avete coppie chiave-valore. Una volta che avete un dizionario, potete recuperarne i valori attraverso le loro chiavi.
+<p>Creare un dizionario è facile. La sintassi è simile agli <a href=#sets>insiemi</a> <span class=fixme>[FIXME link fails because section is not written yet]</span>, ma invece di valori avete coppie chiave-valore. Una volta che avete un dizionario, potete recuperarne i valori attraverso le loro chiavi.
 <pre class=screen>
-<a><samp class=p>>>> </samp><kbd class=pp>a_dict = {'server':'db.diveintopython3.org', 'database':'mysql'}</kbd>  <span class=u>&#x2460;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>a_dict = {'server': 'db.diveintopython3.org', 'database': 'mysql'}</kbd>  <span class=u>&#x2460;</span></a>
 <samp class=p>>>> </samp><kbd class=pp>a_dict</kbd>
 <samp class=pp>{'server': 'db.diveintopython3.org', 'database': 'mysql'}</samp>
-<a><samp class=p>>>> </samp><kbd class=pp>a_dict['server']</kbd>                                                  <span class=u>&#x2461;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>a_dict['server']</kbd>                                                    <span class=u>&#x2461;</span></a>
 'db.diveintopython3.org'
-<a><samp class=p>>>> </samp><kbd class=pp>a_dict['database']</kbd>                                                <span class=u>&#x2462;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>a_dict['database']</kbd>                                                  <span class=u>&#x2462;</span></a>
 'mysql'
-<a><samp class=p>>>> </samp><kbd class=pp>a_dict['db.diveintopython3.org']</kbd>                                  <span class=u>&#x2463;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>a_dict['db.diveintopython3.org']</kbd>                                    <span class=u>&#x2463;</span></a>
 <samp class=traceback>Traceback (most recent call last):
   File "&lt;stdin>", line 1, in &lt;module>
 KeyError: 'db.diveintopython3.org'</samp></pre>
@@ -413,7 +495,7 @@ KeyError: 'db.diveintopython3.org'</samp></pre>
 <li>Potete aggiungere nuove coppie chiave-valore in ogni momento. Questa sintassi è identica a quella per modificare valori già esistenti.
 <li>Il nuovo elemento nel dizionario (chiave <code>'user'</code>, valore <code>'mark'</code>) appare nel mezzo. In effetti, è stata solamente una coincidenza che gli elementi apparissero in ordine nel primo esempio; è allo stesso modo una coincidenza che appaiano fuori ordine ora.
 <li>Assegnare un valore a una chiave esistente nel dizionario semplicemente sostituisce il vecchio valore con il nuovo.
-<li>Questo assegnamento reinserirà "mark" come valore della chiave <code>user</code>? No! Guardate bene la chiave &mdash; c'è una <kbd>U</kbd> maiuscola in <kbd>"User"</kbd>. Le chiavi di un dizionario sono sensibili alle maiuscole, quindi questa istruzione crea una nuova coppia chiave-valore, senza sovrascriverne una esistente. A voi potrebbe sembrare simile, ma per quanto riguarda Python, è completamente diverso.
+<li>Questo assegnamento reinserirà "mark" come valore della chiave <code>user</code>? No! Guardate bene la chiave&nbsp;&mdash;&nbsp;c'è una <kbd>U</kbd> maiuscola in <kbd>"User"</kbd>. Le chiavi di un dizionario sono sensibili alle maiuscole, quindi questa istruzione crea una nuova coppia chiave-valore, senza sovrascriverne una esistente. A voi potrebbe sembrare simile, ma per quanto riguarda Python, è completamente diverso.
 </ol>
 <h3 id=mixed-value-dictionaries>Dizionari a valori misti</h3>
 <p>I dizionari non funzionano solo con le stringhe. I valori in un dizionario possono appartenere a qualsiasi tipo di dato, compresi interi, booleani, oggetti arbitrari, e persino altri dizionari. E all'interno di un singolo dizionario, i valori non devono essere tutti dello stesso tipo; potete mescolarli a piacimento. Le chiavi di un dizionario hanno maggiori restrizioni, ma possono essere stringhe, interi, e di pochi altri tipi. Potete mescolare anche i tipi di dato delle chiavi all'interno di un singolo dizionario.
@@ -426,15 +508,18 @@ KeyError: 'db.diveintopython3.org'</samp></pre>
 <samp class=p>... </samp><kbd class=pp>            1024: ['KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB']}</kbd>
 <a><samp class=p>>>> </samp><kbd class=pp>len(SUFFIXES)</kbd>      <span class=u>&#x2460;</span></a>
 <samp class=pp>2</samp>
-<a><samp class=p>>>> </samp><kbd class=pp>SUFFIXES[1000]</kbd>     <span class=u>&#x2461;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>1000 in SUFFIXES</kbd>   <span class=u>&#x2461;</span></a>
+<samp class=pp>True</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>SUFFIXES[1000]</kbd>     <span class=u>&#x2462;</span></a>
 <samp class=pp>['KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']</samp>
-<a><samp class=p>>>> </samp><kbd class=pp>SUFFIXES[1024]</kbd>     <span class=u>&#x2462;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>SUFFIXES[1024]</kbd>     <span class=u>&#x2463;</span></a>
 <samp class=pp>['KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB']</samp>
-<a><samp class=p>>>> </samp><kbd class=pp>SUFFIXES[1000][3]</kbd>  <span class=u>&#x2463;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>SUFFIXES[1000][3]</kbd>  <span class=u>&#x2464;</span></a>
 <samp class=pp>'TB'</samp></pre>
 <ol>
-<li>Come per le <a href=#lists>liste</a><!-- and <a href=#sets>sets</a>-->, la funzione <code>len()</code> vi restituisce il numero di oggetti in un dizionario.
-<li><code>1000</code> è una chiave nel dizionario <code>SUFFIXES</code>; il suo valore è una lista di otto elementi (otto stringhe, per essere precisi).
+<li>Similmente a quello che accade per le <a href=#lists>liste</a> e gli <a href=#sets>insiemi</a> <span class=fixme>[FIXME-xref]</span>, la funzione <code>len()</code> vi restituisce il numero di chiavi in un dizionario.
+<li>E come per le liste e gli insiemi, potete usare l'operatore <code>in</code> per verificare se una chiave specifica è definita in un dizionario.
+<li><code>1000</code> <em>è</em> una chiave nel dizionario <code>SUFFIXES</code>; il suo valore è una lista di otto elementi (otto stringhe, per essere precisi).
 <li>Similmente, <code>1024</code> è una chiave nel dizionario <code>SUFFIXES</code>; il suo valore è anch'esso una lista di otto elementi.
 <li>Dato che <code>SUFFIXES[1000]</code> è una lista, potete accedere ai singoli elementi in quella lista attraverso il loro indice a partire da 0.
 </ol>
