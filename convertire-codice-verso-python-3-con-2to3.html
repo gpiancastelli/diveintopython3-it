@@ -33,7 +33,7 @@ td pre{padding:0;border:0}
 <h2 id=divingin>Immersione!</h2>
 <p class=f>Di fatto, tutti i programmi scritti in Python 2 avranno almeno bisogno di qualche ritocco per poter essere eseguiti correttamente sotto Python 3. Per facilitare questa transizione, Python 3 include uno script di utilità chiamato <code>2to3</code>, che prende in ingresso il vostro codice sorgente in Python 2 e lo converte automaticamente verso Python 3 tanto quanto gli è possibile. Il <a href=caso-di-studio-convertire-chardet-verso-python-3.html#running2to3>Caso di studio: convertire <code>chardet</code> verso Python 3</a> descrive come eseguire <code>2to3</code>, poi mostra alcune cose che lo script non riesce a correggere automaticamente. Questa appendice documenta ciò che lo script <em>può</em> correggere automaticamente
 <h2 id=print>L'istruzione <code>print</code></h2>
-<p>In Python 2, <code><dfn>print</dfn></code> era una istruzione. Per stampare una cosa qualsiasi bastava farla seguire alla parola chiave <code>print</code>. In Python 3, <code>print()</code> è una funzione &mdash; ogni cosa che volete stampare viene passata a <code>print()</code> come a qualsiasi altra funzione.
+<p>In Python 2, <code><dfn>print</dfn></code> era una istruzione. Per stampare una cosa qualsiasi bastava farla seguire alla parola chiave <code>print</code>. In Python 3, <code>print()</code> è una funzione&nbsp;&mdash;&nbsp;ogni cosa che volete stampare viene passata a <code>print()</code> come a qualsiasi altra funzione.
 <table>
 <tr><th>Note
 <th>Python 2
@@ -59,7 +59,7 @@ td pre{padding:0;border:0}
 <li>Per stampare un singolo valore, invocate <code>print()</code> con un argomento.
 <li>Per stampare due valori separati da uno spazio, invocate <code>print()</code> con due argomenti.
 <li>Questo è un po' complicato. In Python 2, una istruzione <code>print</code> conclusa da una virgola avrebbe stampato i valori separati da spazi, seguiti da uno spazio finale, evitando di stampare un ritorno a capo. Per ottenere questo comportamento in Python 3, è necessario passare <code>end=' '</code> come argomento con nome alla funzione <code>print()</code>. L'argomento <code>end</code> assume <code>'\n'</code> (un ritorno a capo) come valore di default, quindi modificarlo sopprimerà il ritorno a capo dopo la stampa degli altri argomenti.
-<li>In Python 2, potevate redirigere l'uscita verso una pipe &mdash; come <code>sys.stderr</code> &mdash; utilizzando la sintassi <code>>>nome_della_pipe</code>. Per ottenere la redirezione in Python 3, è necessario passare la pipe come valore all'argomento con nome <code>file</code>. L'argomento <code>file</code> assume <code>sys.stdout</code> (uscita standard) come valore di default, quindi modificarlo produrrà l'uscita su una pipe differente.
+<li>In Python 2, potevate redirigere l'uscita verso una pipe&nbsp;&mdash;&nbsp;come <code>sys.stderr</code>&nbsp;&mdash;&nbsp;utilizzando la sintassi <code>>>nome_della_pipe</code>. Per ottenere la redirezione in Python 3, è necessario passare la pipe come valore all'argomento con nome <code>file</code>. L'argomento <code>file</code> assume <code>sys.stdout</code> (uscita standard) come valore di default, quindi modificarlo produrrà l'uscita su una pipe differente.
 </ol>
 <h2 id=unicodeliteral>Letterali stringa Unicode</h2>
 <p>Python 2 aveva due tipi di stringa: stringhe <dfn>Unicode</dfn> e stringhe non Unicode. Python 3 ha un solo tipo di stringa: stringhe Unicode.
@@ -160,7 +160,7 @@ td pre{padding:0;border:0}
 <ol>
 <li>La forma più semplice.
 <li>L'operatore <code>or</code> ha la precedenza sull'operatore <code>in</code>, quindi in questo caso non c'è alcun bisogno di usare le parentesi.
-<li>D'altra parte, in questo caso <em>avete</em> bisogno di usare le parentesi, per lo stesso motivo &mdash; <code>or</code> ha la precedenza su <code>in</code>.
+<li>D'altra parte, in questo caso <em>avete</em> bisogno di usare le parentesi, per lo stesso motivo&nbsp;&mdash;&nbsp;<code>or</code> ha la precedenza su <code>in</code>.
 <li>L'operatore <code>in</code> ha la precedenza sull'operatore <code>+</code>, quindi questa forma non avrebbe tecnicamente bisogno delle parentesi, ma <code>2to3</code> le aggiunge comunque.
 <li>Questa forma ha certamente bisogno delle parentesi, dato che l'operatore <code>in</code> ha la precedenza sull'operatore <code>+</code>.
 </ol>
@@ -253,7 +253,7 @@ from urllib.error import HTTPError</code></pre>
 </table>
 <ol>
 <li>Il vecchio modulo <code>urllib</code> di Python 2 raccoglieva una varietà di funzioni, comprese <code>urlopen()</code> per recuperare dati e <code>splittype()</code>, <code>splithost()</code> e <code>splituser()</code> per suddividere un <abbr>URL</abbr> nelle sue parti costituenti. Queste funzioni sono state riorganizzate più logicamente nell'ambito del nuovo package <code>urllib</code>. <code>2to3</code> modificherà anche tutte le chiamate a queste funzioni in modo da usare il nuovo schema di nomi.
-<li>Il vecchio modulo <code>urllib2</code> di Python 2 è stato incorporato nel package <code>urllib</code> in Python 3. Tutte le vostre funzionalità preferite di <code>urllib2</code> &mdash; il metodo <code>build_opener()</code>, gli oggetti <code>Request</code>, <code>HTTPBasicAuthHandler</code> e compagnia &mdash; sono ancora disponibili.
+<li>Il vecchio modulo <code>urllib2</code> di Python 2 è stato incorporato nel package <code>urllib</code> in Python 3. Tutte le vostre funzionalità preferite di <code>urllib2</code>&nbsp;&mdash;&nbsp;il metodo <code>build_opener()</code>, gli oggetti <code>Request</code>, <code>HTTPBasicAuthHandler</code> e compagnia&nbsp;&mdash;&nbsp;sono ancora disponibili.
 <li>Il modulo <code>urllib.parse</code> di Python 3 contiene tutte le funzioni di riconoscimento del vecchio modulo <code>urlparse</code> di Python 2.
 <li>Il modulo <code>urllib.robotparser</code> riconosce i <a href=http://www.robotstxt.org/>file <code>robots.txt</code></a>.
 <li>La classe <code>FancyURLopener</code>, che gestisce le redirezioni <abbr>HTTP</abbr> e altri codici di stato, è ancora disponibile nel nuovo modulo <code>urllib.request</code>. La funzione <code>urlencode()</code> è stata spostata in <code>urllib.parse</code>.
@@ -568,7 +568,7 @@ reduce(a, b, c)</code></pre>
 <td><code class=pp>repr('PapayaWhip' + repr(2))</code>
 </table>
 <ol>
-<li>Ricordate, <var>x</var> può essere qualsiasi cosa &mdash; una classe, una funzione, un modulo, un tipo di dati primitivo, ecc. La funzione <code>repr()</code> lavora su tutto.
+<li>Ricordate, <var>x</var> può essere qualsiasi cosa&nbsp;&mdash;&nbsp;una classe, una funzione, un modulo, un tipo di dati primitivo, ecc. La funzione <code>repr()</code> lavora su tutto.
 <li>In Python 2, i backtick potevano essere annidati, producendo questo tipo di espressioni confuse (ma valide). Lo strumento <code>2to3</code> è abbastanza scaltro da convertire questi casi in chiamate annidate a <code>repr()</code>.
 </ol>
 <h2 id=except>L'istruzione <code>try...except</code></h2>
@@ -1038,7 +1038,7 @@ except:
 <li>Lo script <code>2to3</code> è abbastanza potente da costruire una dichiarazione di classe valida anche se la classe eredita da una o più classi base.
 </ol>
 <h2 id=nitpick>Questioni di stile</h2>
-<p>Il resto delle &#8220;correzioni&#8221; elencate qui di seguito non sono realmente correzioni vere e proprie. Vale a dire che le cose che modificano sono considerate questioni di stile, non di sostanza. Funzionano tanto bene in Python 3 quanto funzionavano in Python 2, ma gli sviluppatori di Python hanno un legittimo interesse nel rendere il codice Python più uniforme possibile. A questo scopo, esiste una <a href=http://www.python.org/dev/peps/pep-0008/>guida ufficiale allo stile in Python</a> che delinea &mdash; dolorosamente in dettaglio &mdash; tutti quei tipi di particolari minuziosi e pedanti di cui quasi certamente non vi interessa sapere nulla. E dato che <code>2to3</code> fornisce una infrastruttura così buona per la conversione di codice Python da una forma a un'altra, gli autori si sono presi la briga di aggiungere alcune caratteristiche opzionali per migliorare la leggibilità dei vostri programmi Python.
+<p>Il resto delle &#8220;correzioni&#8221; elencate qui di seguito non sono realmente correzioni vere e proprie. Vale a dire che le cose che modificano sono considerate questioni di stile, non di sostanza. Funzionano tanto bene in Python 3 quanto funzionavano in Python 2, ma gli sviluppatori di Python hanno un legittimo interesse nel rendere il codice Python più uniforme possibile. A questo scopo, esiste una <a href=http://www.python.org/dev/peps/pep-0008/>guida ufficiale allo stile in Python</a> che delinea&nbsp;&mdash;&nbsp;dolorosamente in dettaglio&nbsp;&mdash;&nbsp;tutti quei tipi di particolari minuziosi e pedanti di cui quasi certamente non vi interessa sapere nulla. E dato che <code>2to3</code> fornisce una infrastruttura così buona per la conversione di codice Python da una forma a un'altra, gli autori si sono presi la briga di aggiungere alcune caratteristiche opzionali per migliorare la leggibilità dei vostri programmi Python.
 <h3 id=set_literal>Letterali <code>set()</code> (esplicita)</h3>
 <p>In Python 2, l'unico modo di definire un letterale insieme nel vostro codice era chiamare <code>set(a_sequence)</code>. In Python 3, questo funziona ancora, ma un modo più chiaro di farlo è usare la nuova notazione per i letterali insieme: le parentesi graffe. (Anche i dizionari sono definiti con parentesi graffe, che ha senso una volta che ci pensate, perché i dizionari sono esattamente insiemi di coppie chiave-valore.)
 <blockquote class=note>

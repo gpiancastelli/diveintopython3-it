@@ -21,7 +21,7 @@ body{counter-reset:h1 5}
 </blockquote>
 <p id=toc>&nbsp;
 <h2 id=divingin>Immersione!</h2>
-<p class=f>Per ragioni che vanno oltre ogni comprensione, sono sempre stato affascinato dai linguaggi. Non i linguaggi di programmazione. Be&rsquo; sì, i linguaggi di programmazione, ma anche i linguaggi naturali. Prendete l'inglese. L'inglese è una lingua schizofrenica che prende in prestito parole dal tedesco, francese, spagnolo e latino (per nominarne alcune). In realtà, &#8220;prende a prestito&#8221; è l'espressione sbagliata; &#8220;saccheggia&#8221; è più corretto. O forse &#8220;assimila&#8221; &mdash; come i Borg. Sì, mi piace.
+<p class=f>Per ragioni che vanno oltre ogni comprensione, sono sempre stato affascinato dai linguaggi. Non i linguaggi di programmazione. Be&rsquo; sì, i linguaggi di programmazione, ma anche i linguaggi naturali. Prendete l'inglese. L'inglese è una lingua schizofrenica che prende in prestito parole dal tedesco, francese, spagnolo e latino (per nominarne alcune). In realtà, &#8220;prende a prestito&#8221; è l'espressione sbagliata; &#8220;saccheggia&#8221; è più corretto. O forse &#8220;assimila&#8221;&nbsp;&mdash;&nbsp;come i Borg. Sì, mi piace.
 <p class=c><code>Noi siamo i Borg. Assimileremo le vostre peculiarità linguistiche ed etimologiche alle nostre. La resistenza è inutile.</code>
 <p>In questo capitolo, imparerete qualcosa sui sostantivi plurali in inglese. E anche sulle funzioni che restituiscono altre funzioni, sull'uso avanzato delle espressioni regolari, e sui generatori. Ma prima, parliamo di come si costruiscono i sostantivi plurali in inglese. (Se non avete ancora letto <a href=espressioni-regolari.html>il capitolo sulle espressioni regolari</a>, questo potrebbe essere un buon momento per farlo. Questo capitolo presume che abbiate capito le basi delle espressioni regolari, e si addentrerà molto presto nelle loro tecniche più avanzate.)
 <p>Se siete cresciuti in un paese di lingua madre inglese o avete imparato l'inglese in un ambiente scolastico formale, avrete familiarità con le regole di base:
@@ -172,7 +172,7 @@ def plural(noun):
 </ol>
 
 <aside>La variabile &#8220;rules&#8221; è una lista di funzioni.</aside>
-<p>La ragione per cui questa tecnica funziona è che <a href=il-vostro-primo-programma-python.html#everythingisanobject>ogni cosa in Python è un oggetto</a>, comprese le funzioni. La struttura dati <var>rules</var> contiene funzioni &mdash; non nomi di funzioni, ma veri e propri oggetti funzione. Quando questi oggetti vengono assegnati nel ciclo <code>for</code>, allora <var>matches_rule</var> e <var>apply_rule</var> diventano vere e proprie funzioni che potete eseguire. La prima iterazione del ciclo <code>for</code> è equivalente a invocare <code>matches_sxz(noun)</code> e, se viene restituita una corrispondenza, a invocare anche <code>apply_sxz(noun)</code>.
+<p>La ragione per cui questa tecnica funziona è che <a href=il-vostro-primo-programma-python.html#everythingisanobject>ogni cosa in Python è un oggetto</a>, comprese le funzioni. La struttura dati <var>rules</var> contiene funzioni&nbsp;&mdash;&nbsp;non nomi di funzioni, ma veri e propri oggetti funzione. Quando questi oggetti vengono assegnati nel ciclo <code>for</code>, allora <var>matches_rule</var> e <var>apply_rule</var> diventano vere e proprie funzioni che potete eseguire. La prima iterazione del ciclo <code>for</code> è equivalente a invocare <code>matches_sxz(noun)</code> e, se viene restituita una corrispondenza, a invocare anche <code>apply_sxz(noun)</code>.
 
 <p>Se questo livello di astrazione aggiuntivo vi confonde, provate a sviluppare la funzione per vedere l'equivalenza. L'intero ciclo <code>for</code> è equivalente a quanto segue:
 
@@ -394,7 +394,7 @@ def plural(noun):
 
 <p>Che cosa avete guadagnato rispetto alla fase 4? Tempo di inizializzazione. Nella fase 4, quando importavate il modulo <code>plural4</code>, il file dei pattern veniva interamente letto e una lista di tutte le possibili regole veniva costruita prima ancora che poteste anche solo pensare di chiamare la funzione <code>plural()</code>. Con i generatori, potete fare ogni cosa in maniera ritardata: leggete la prima regola, create le corrispettive funzioni e le provate, e se funziona non dovete nemmeno leggere il resto del file o creare nessun'altra funzione.
 
-<p>Che cosa avete perso? Prestazioni! Ogni volta che chiamate la funzione <code>plural()</code>, il generatore <code>rules()</code> ricomincia dall'inizio &mdash; il che vuol dire riaprire il file dei pattern e leggerlo dall'inizio, una riga alla volta.
+<p>Che cosa avete perso? Prestazioni! Ogni volta che chiamate la funzione <code>plural()</code>, il generatore <code>rules()</code> ricomincia dall'inizio&nbsp;&mdash;&nbsp;il che vuol dire riaprire il file dei pattern e leggerlo dall'inizio, una riga alla volta.
 
 <p>E se poteste avere il meglio dei due mondi? Minimo costo di inizializzazione (evitando di eseguire codice alla chiamata di <code>import</code>) <em>e</em> massime prestazioni (evitando di costruire sempre le stesse funzioni ogni volta). Oh, e volete ancora mantenere le regole in un file separato (perché il codice è codice, e i dati sono dati), fino a quando non dobbiate leggere la stessa riga due volte.
 

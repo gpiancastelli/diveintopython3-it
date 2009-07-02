@@ -120,7 +120,7 @@ if __name__ == '__main__':
 <a><samp class=p>>>> </samp><kbd class=pp>{c for c in ''.join(words)}</kbd>              <span class=u>&#x2463;</span></a>
 <samp class=pp>{'E', 'D', 'M', 'O', 'N', 'S', 'R', 'Y'}</samp></pre>
 <ol>
-<li>Data una lista contenente diverse stringhe, una descrizione di insieme con la funzione identità restituirà un insieme di stringhe uniche dalla lista. Questa operazione ha senso se lo pensate come un ciclo <code>for</code>. Prendete il primo elemento della lista, mettetelo nell'insieme. Il secondo. Il terzo. Il quarto &mdash; aspettate, quello è già nell'insieme, quindi va elencato solo una volta. Il quinto. Il sesto &mdash; ancora, un duplicato, quindi va elencato solo una volta. Il risultato finale? Tutti gli elementi unici della lista originale, senza alcun duplicato. La lista originale non deve nemmeno essere ordinata prima.
+<li>Data una lista contenente diverse stringhe, una descrizione di insieme con la funzione identità restituirà un insieme di stringhe uniche dalla lista. Questa operazione ha senso se lo pensate come un ciclo <code>for</code>. Prendete il primo elemento della lista, mettetelo nell'insieme. Il secondo. Il terzo. Il quarto&nbsp;&mdash;&nbsp;aspettate, quello è già nell'insieme, quindi va elencato solo una volta. Il quinto. Il sesto&nbsp;&mdash;&nbsp;ancora, un duplicato, quindi va elencato solo una volta. Il risultato finale? Tutti gli elementi unici della lista originale, senza alcun duplicato. La lista originale non deve nemmeno essere ordinata prima.
 <li>La stessa tecnica funziona con le stringhe, dato che una stringa è solamente una sequenza di caratteri.
 <li>Data una lista di stringhe, <code>''.join(<var>a_list</var>)</code> le concatena tutte in un'unica stringa.
 <li>Quindi, data una lista di stringhe, questa descrizione di insieme restituisce tutti i caratteri unici su tutte le stringhe, senza alcun duplicato.
@@ -229,7 +229,7 @@ StopIteration</samp></pre>
 <li>Ecco qua! Quelle che abbiamo visto sono tutte le permutazioni degli elementi di <code>[1, 2, 3]</code> presi 2 alla volta. Coppie come <code>(1, 1)</code> e <code>(2, 2)</code> non compaiono mai, perché contengono ripetizioni e quindi non sono permutazioni valide. Quando non ci sono più permutazioni, l'iteratore solleva una eccezione di tipo <code>StopIteration</code>.
 </ol>
 
-<p>La funzione <code>permutations()</code> non deve prendere una lista. Può prendere ogni sequenza &mdash; persino una stringa.
+<p>La funzione <code>permutations()</code> non deve prendere una lista. Può prendere ogni sequenza&nbsp;&mdash;&nbsp;persino una stringa.
 
 <pre class=screen>
 <samp class=p>>>> </samp><kbd class=pp>import itertools</kbd>
@@ -256,7 +256,7 @@ StopIteration</samp>
  ('C', 'A', 'B'), ('C', 'B', 'A')]</samp></pre>
 <ol>
 <li>Una stringa è semplicemente una sequenza di caratteri. Allo scopo di trovare permutazioni, la stringa <code>'ABC'</code> è equivalente alla lista <code>['A', 'B', 'C']</code>.
-<li>La prima permutazione dei 3 elementi in <code>['A', 'B', 'C']</code>, presi 3 alla volta, è <code>('A', 'B', 'C')</code>. Esistono altre cinque permutazioni &mdash; gli stessi tre caratteri in ogni ordine possibile.
+<li>La prima permutazione dei 3 elementi in <code>['A', 'B', 'C']</code>, presi 3 alla volta, è <code>('A', 'B', 'C')</code>. Esistono altre cinque permutazioni&nbsp;&mdash;&nbsp;gli stessi tre caratteri in ogni ordine possibile.
 <li>Dato che la funzione <code>permutations()</code> restituisce sempre un iteratore, si può facilmente effettuare il debug sulle permutazioni passando l'iteratore alla funzione built-in <code>list()</code> per vedere immediatamente tutte le permutazioni.
 </ol>
 
@@ -398,7 +398,7 @@ for guess in itertools.permutations(digits, len(characters)):
 <a><samp class=p>>>> </samp><kbd class=pp>'MARK'.translate(translation_table)</kbd>       <span class=u>&#x2462;</span></a>
 <samp class=pp>'MORK'</samp></pre>
 <ol>
-<li>Le traduzioni di stringa cominciano con una tabella di traduzione, che è solo un dizionario che mette in corrispondenza un carattere con un altro. In realtà &#8220;carattere&#8221; non è il termine giusto &mdash; in realtà la tabella di traduzione mette in corrispondenza un <em>byte</em> con un altro.
+<li>Le traduzioni di stringa cominciano con una tabella di traduzione, che è solo un dizionario che mette in corrispondenza un carattere con un altro. In realtà &#8220;carattere&#8221; non è il termine giusto&nbsp;&mdash;&nbsp;in realtà la tabella di traduzione mette in corrispondenza un <em>byte</em> con un altro.
 <li>Ricordate, i byte in Python 3 sono interi. La funzione <code>ord()</code> restituisce il valore <abbr>ASCII</abbr> di un carattere, che nel caso delle lettere A&ndash;Z è sempre un byte da 65 a 90.
 <li>Il metodo <code>translate()</code> fa scorrere una stringa attraverso la tabella di traduzione passata come argomento, sostituendo tutte le occorrenze delle chiavi della tabella con i valori corrispondenti. In questo caso, &#8220;traducendo&#8221; <code>MARK</code> in <code>MORK</code>.
 </ol>
@@ -513,7 +513,7 @@ NameError: name 'x' is not defined</samp>
 NameError: name 'math' is not defined</samp></pre>
 <ol>
 <li>Il secondo e terzo parametro passati alla funzione <code>eval()</code> agiscono come spazi di nomi globali e locali in cui valutare l'espressione. In questo caso, sono entrambi vuoti, così quando la stringa <code>"x * 5"</code> viene valutata non esiste alcun riferimento a <var>x</var> né nello spazio di nomi globale né in quello locale, quindi <code>eval()</code> solleva una eccezione.
-<li>Potete selettivamente includere specifici valori nello spazio di nomi globale elencandoli individualmente. Poi quelle variabili &mdash; e solo quelle &mdash; saranno disponibili durante la valutazione.
+<li>Potete selettivamente includere specifici valori nello spazio di nomi globale elencandoli individualmente. Poi quelle variabili&nbsp;&mdash;&nbsp;e solo quelle&nbsp;&mdash;&nbsp;saranno disponibili durante la valutazione.
 <li>Anche se avete appena importato il modulo <code>math</code>, non lo avete incluso nello spazio di nomi passato alla funzione <code>eval()</code>, così la valutazione è fallita.
 </ol>
 
