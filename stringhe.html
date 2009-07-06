@@ -192,7 +192,7 @@ def approximate_size(size, a_kilobyte_is_1024_bytes=True):
 <ul>
 <li>Il modulo <code>sys</code> mantiene informazioni sull'istanza dell'interprete Python attualmente in esecuzione. Visto che lo avete appena importato, potete passare il modulo <code>sys</code> stesso come argomento al metodo <code>format()</code>. Quindi il campo di sostituzione <code>{0}</code> si riferisce al modulo <code>sys</code>.
 <li><code>sys.modules</code> è un dizionario di tutti i moduli che sono stati importati in questa istanza dell'interprete Python. Le chiavi sono i nomi dei moduli sotto forma di stringhe; i valori sono gli oggetti modulo stessi. Quindi il campo di sostituzione <code>{0.modules}</code> si riferisce al dizionario dei moduli importati.
-<li><code>sys.modules['humansize']</code> è il modulo <code>humansize</code> che avete appena importato. Il campo di sostituzione <code>{0.modules[humansize]}</code> si riferisce al modulo <code>humansize</code>. Notate la leggera differenza nella sintassi. In vero codice Python, le chiavi del dizionario <code>sys.modules</code> sono stringhe; per riferirsi ad esse, avete bisogno di mettere le virgolette attorno al nome del modulo (<i>e.g.</i> <code>'humansize'</code>). Ma nell'ambito di un campo di sostituzione le virgolette attorno al nome della chiave del dizionario vanno omesse (<i>e.g.</i> <code>humansize</code>).
+<li><code>sys.modules['humansize']</code> è il modulo <code>humansize</code> che avete appena importato. Il campo di sostituzione <code>{0.modules[humansize]}</code> si riferisce al modulo <code>humansize</code>. Notate la leggera differenza nella sintassi. In vero codice Python, le chiavi del dizionario <code>sys.modules</code> sono stringhe; per riferirsi ad esse, avete bisogno di mettere le virgolette attorno al nome del modulo (<i>e.g.</i> <code>'humansize'</code>). Ma nell'ambito di un campo di sostituzione le virgolette attorno al nome della chiave del dizionario vanno omesse (<i>e.g.</i> <code>humansize</code>). Per citare la <a href=http://www.python.org/dev/peps/pep-3101/>PEP 3101: Formattazione avanzata delle stringhe</a>, &#8220;Le regole per riconoscere la chiave di un elemento sono molto semplici. Se comincia con una cifra, allora viene trattato come un numero, altrimenti viene usato come una stringa.&#8221;
 <li><code>sys.modules['humansize'].SUFFIXES</code> è il dizionario definito all'inizio del modulo <code>humansize</code>. Il campo di sostituzione <code>{0.modules[humansize].SUFFIXES}</code> si riferisce a quel dizionario.
 <li><code>sys.modules['humansize'].SUFFIXES[1000]</code> è una lista di suffissi <abbr>SI</abbr>: <code>['KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']</code>. Quindi il campo di sostituzione <code>{0.modules[humansize].SUFFIXES[1000]}</code> si riferisce a quella lista.
 <lI><code>sys.modules['humansize'].SUFFIXES[1000][0]</code> è il primo elemento nella lista dei suffissi <abbr>SI</abbr>: <code>'KB'</code>. Quindi, il campo di sostituzione completo <code>{0.modules[humansize].SUFFIXES[1000][0]}</code> è rimpiazzato dalla stringa di due caratteri <code>KB</code>.
@@ -269,6 +269,34 @@ experience of years.</samp>
 <li>Infine, Python può trasformare quella lista-di-liste in un dizionario semplicemente passandola alla funzione <code>dict()</code>.
 </ol>
 
+<p class=fixme>[FIXME - this is the first time we've seen a list comprehension. Add a forward or backward reference once we have a full section explaining them.]
+
+<blockquote class=note>
+<p><span class=u>&#x261E;</span>L'esempio precedente somiglia molto al riconoscimento dei parametri di richiesta in un <abbr>URL</abbr>, ma in effetti il riconoscimento degli <abbr>URL</abbr> nella vita reale è molto più complicato di così. Se avete a che fare con i parametri di richiesta in un <abbr>URL</abbr>, vi conviene utilizzare la funzione <a href=http://docs.python.org/3.1/library/urllib.parse.html#urllib.parse.parse_qs><code>urllib.parse.parse_qs()</code></a>, che è in grado di gestire alcuni casi limite non banali.
+</blockquote>
+
+<h3 id=slicingstrings>Affettare una stringa</h3>
+<p>Una volta che avete definito una stringa, potete ottenerne una parte qualsiasi sotto forma di una nuova stringa. Questa operazione si chiama <i>affettare</i> la stringa. Affettare le stringhe funziona esattamente allo stesso modo di <a href=tipi-di-dato-nativi.html#slicinglists>affettare le liste</a>, cosa che ha senso perché le stringhe sono solo sequenze di caratteri.
+<pre class=screen>
+<samp class=p>>>> </samp><kbd class=pp>a_string = 'My alphabet starts where your alphabet ends.'</kbd>
+<a><samp class=p>>>> </samp><kbd class=pp>a_string[3:11]</kbd>           <span class=u>&#x2460;</span></a>
+<samp class=pp>'alphabet'</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>a_string[3:-3]</kbd>           <span class=u>&#x2461;</span></a>
+<samp class=pp>'alphabet starts where your alphabet en'</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>a_string[0:2]</kbd>            <span class=u>&#x2462;</span></a>
+<samp class=pp>'My'</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>a_string[:18]</kbd>            <span class=u>&#x2463;</span></a>
+<samp class=pp>'My alphabet starts'</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>a_string[18:]</kbd>            <span class=u>&#x2464;</span></a>
+<samp class=pp>' where your alphabet ends.'</samp></pre>
+<ol>
+<li>Potete ottenere una parte di una stringa, chiamata &#8220;fetta&#8221;, specificando due indici. Il valore di ritorno è una nuova stringa che contiene tutti i caratteri della stringa, in ordine, a cominciare dal primo indice della fetta (in questo caso <code>a_string[0]</code>) fino al secondo indice della fetta escluso (in questo caso <code>a_string[2]</code>).
+<li>Come nell'affettare liste, potete usare indici negativi per affettare le stringhe.
+<li>L'indice delle stringhe comincia da zero, quindi <code>a_string[0:3]</code> restituisce i primi tre caratteri della stringa, cominciando da <code>a_string[0]</code> fino a <code>a_string[3]</code> escluso.
+<li>Se l'indice sinistro della fetta è <code>0</code>, potete ometterlo, e <code>0</code> diventa implicito. Quindi <code>a_string[:18]</code> è la stessa cosa di <code>a_string[0:18]</code>, perché lo <code>0</code> iniziale è implicito.
+<li>Similmente, se l'indice destro della fetta è la lunghezza della stringa, potete ometterlo. Quindi <code>a_string[18:]</code> è la stessa cosa di <code>a_string[18:44]</code>, perché questa stringa ha 44 caratteri. C'è una piacevole simmetria qui. In questa stringa di 44 caratteri, <code>a_string[:18]</code> restituisce sempre i primi 18 caratteri e <code>a_string[18:]</code> restituisce tutto tranne i primi 18 caratteri. In effetti, <code>a_string[:<var>n</var>]</code> restituirà sempre i primi <var>n</var> caratteri e <code>a_string[<var>n</var>:]</code> restituirà il resto, a prescindere dalla lunghezza della stringa.
+</ol>
+
 <p class=a>&#x2042;
 
 <h2 id=byte-arrays>Stringhe vs. byte</h2>
@@ -301,7 +329,7 @@ TypeError: 'bytes' object does not support item assignment</samp></pre>
 <li>Esattamente come con le liste e le stringhe, potete usare l'operatore <code>+</code> per concatenare oggetti <code>bytes</code>. Il risultato è un nuovo oggetto <code>bytes</code>.
 <li>Concatenare un oggetto <code>bytes</code> di 5 byte e un oggetto <code>bytes</code> di 1 byte dà come risultato un oggetto <code>bytes</code> di 6 byte.
 <li>Esattamente come con le liste e le stringhe, potete usare la notazione a indici per ottenere i singoli byte in un oggetto <code>bytes</code>. Gli elementi di una stringa sono stringhe; gli elementi di un oggetto <code>bytes</code> sono interi. Nello specifico, interi tra 0 e 255.
-<li>Un oggetto <code>bytes</code> è immutabile; non potete assegnare singoli byte. Se avete bisogno di cambiare i singoli byte, potete usare i metodi per affettare (che funzionano allo stesso modo delle stringhe) e gli operatori di concatenazione (che funzionano anche loro allo stesso modo delle stringhe), oppure potete convertire l'oggetto <code>bytes</code> in un oggetto <code>bytearray</code>.
+<li>Un oggetto <code>bytes</code> è immutabile; non potete assegnare singoli byte. Se avete bisogno di cambiare i singoli byte, potete usare i metodi per <a href=#slicingstrings>affettare le stringhe</a> e gli operatori di concatenazione (che funzionano allo stesso modo delle stringhe), oppure potete convertire l'oggetto <code>bytes</code> in un oggetto <code>bytearray</code>.
 </ol>
 
 <pre class=screen>

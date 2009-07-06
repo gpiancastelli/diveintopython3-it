@@ -29,10 +29,10 @@ body{counter-reset:h1 2}
 <li><b>Stringhe</b>: sono sequenze di caratteri Unicode, <i>e.g.</i> un documento <abbr>HTML</abbr>.
 <li><b>Byte</b> e <b>byte array</b>: <i>e.g.</i> un file <abbr>JPEG</abbr> contenente una immagine.
 <li><b>Liste</b>: sono sequenze ordinate di valori.
-<li><b>Set</b>: sono insiemi di valori senza un ordine preciso.
-<li><b>Dizionari</b>: sono insiemi di coppie chiave-valore senza un ordine preciso.
+<li><b>Insiemi</b>: sono gruppi non ordinati di valori.
+<li><b>Dizionari</b>: sono gruppi non ordinati di coppie chiave-valore.
 </ol>
-<p>Naturalmente, ci sono molti più tipi di questi sette. <a href=il-vostro-primo-programma-python.html#everythingisanobject>Ogni cosa è un oggetto</a> in Python, quindi ci sono anche tipi come <i>modulo</i>, <i>funzione</i>, <i>classe</i>, <i>metodo</i>, <i>file</i>, e persino <i>codice compilato</i>. Ne avete già visti alcuni: <a href=il-vostro-primo-programma-python.html#runningscripts>i moduli hanno un nome</a>, <a href=il-vostro-primo-programma-python.html#docstrings>le funzioni posseggono una <code>docstring</code></a>, <i class=baa>&amp;</i>c. Imparerete cosa sono le classi in <span class=fixme>[FIXME xref]</span> e cosa sono i file in <span class=fixme>[FIXME xref]</span>.
+<p>Naturalmente, ci sono molti più tipi di questi sette. <a href=il-vostro-primo-programma-python.html#everythingisanobject>Ogni cosa è un oggetto</a> in Python, quindi ci sono anche tipi come <i>modulo</i>, <i>funzione</i>, <i>classe</i>, <i>metodo</i>, <i>file</i>, e persino <i>codice compilato</i>. Ne avete già visti alcuni: <a href=il-vostro-primo-programma-python.html#runningscripts>i moduli hanno un nome</a>, <a href=il-vostro-primo-programma-python.html#docstrings>le funzioni posseggono una <code>docstring</code></a>, <i class=baa>&amp;</i>c. Imparerete cosa sono le classi in <a href=iterators.html>Classi <i class=baa>&amp;</i> iteratori</a> e cosa sono i file in <span class=fixme>[FIXME xref]</span>.
 <p>Stringhe e byte sono abbastanza importanti&nbsp;&mdash;&nbsp;e abbastanza complicati&nbsp;&mdash;&nbsp;da essere trattati in un capitolo a parte. Diamo un'occhiata agli altri per primi.
 
 <p class=a>&#x2042;
@@ -263,11 +263,11 @@ ZeroDivisionError: Fraction(0, 0)</samp></pre>
 <a><samp class=p>>>> </samp><kbd class=pp>a_list[:]</kbd>              <span class=u>&#x2465;</span></a>
 <samp class=pp>['a', 'b', 'mpilgrim', 'z', 'example']</samp></pre>
 <ol>
-<li>Potete ottenere una parte di una lista, chiamata &#8220;fetta&#8221;, specificando due indici. Il valore di ritorno è una nuova lista che contiene tutti gli elementi della lista, in ordine, a cominciare dal primo indice della fetta (in questo caso <code>a_list[1]</code>), fino al secondo indice della fetta escluso (in questo caso <code>a_list[3]</code>).
+<li>Potete ottenere una parte di una lista, chiamata &#8220;fetta&#8221;, specificando due indici. Il valore di ritorno è una nuova lista che contiene tutti gli elementi della lista, in ordine, a cominciare dal primo indice della fetta (in questo caso <code>a_list[1]</code>) fino al secondo indice della fetta escluso (in questo caso <code>a_list[3]</code>).
 <li>Affettare una lista funziona anche se uno o entrambi gli indici della fetta sono negativi. Se vi è d'aiuto, potete pensarla in questo modo: leggendo la lista da sinistra a destra, il primo indice della fetta indica il primo elemento che volete, e il secondo indice della fetta indica il primo elemento che non volete. Il valore di ritorno è tutto quello che sta in mezzo.
-<li>L'indice delle liste comincia da zero, quindi <code>a_list[0:3]</code> restituisce i primi tre elementi della lista, cominciando da <code>a_list[0]</code>, fino a <code>a_list[3]</code> escluso.
-<li>Se l'indice sinistro della lista è <code>0</code>, potete ometterlo, e <code>0</code> diventa implicito. Quindi <code>a_list[:3]</code> è la stessa cosa di <code>a_list[0:3]</code>, perché lo <code>0</code> iniziale è implicito.
-<li>Similmente, se l'indice destro della lista è la lunghezza della lista, potete ometterlo. Quindi <code>a_list[3:]</code> è la stessa cosa di <code>a_list[3:5]</code>, perché questa lista ha cinque elementi. C'è una piacevole simmetria qui. In questa lista di cinque elementi, <code>a_list[:3]</code> restituisce i primi 3 elementi, e <code>a_list[3:]</code> restituisce gli ultimi due elementi. In effetti, <code>a_list[:<var>n</var>]</code> restituirà sempre i primi <var>n</var> elementi e <code>a_list[<var>n</var>:]</code> restituirà sempre il resto, a prescindere dalla lunghezza della lista.
+<li>L'indice delle liste comincia da zero, quindi <code>a_list[0:3]</code> restituisce i primi tre elementi della lista, cominciando da <code>a_list[0]</code> fino a <code>a_list[3]</code> escluso.
+<li>Se l'indice sinistro della fetta è <code>0</code>, potete ometterlo, e <code>0</code> diventa implicito. Quindi <code>a_list[:3]</code> è la stessa cosa di <code>a_list[0:3]</code>, perché lo <code>0</code> iniziale è implicito.
+<li>Similmente, se l'indice destro della fetta è la lunghezza della lista, potete ometterlo. Quindi <code>a_list[3:]</code> è la stessa cosa di <code>a_list[3:5]</code>, perché questa lista ha cinque elementi. C'è una piacevole simmetria qui. In questa lista di cinque elementi, <code>a_list[:3]</code> restituisce i primi 3 elementi e <code>a_list[3:]</code> restituisce gli ultimi due elementi. In effetti, <code>a_list[:<var>n</var>]</code> restituirà sempre i primi <var>n</var> elementi e <code>a_list[<var>n</var>:]</code> restituirà il resto, a prescindere dalla lunghezza della lista.
 <li>Se entrambi gli indici della fetta vengono omessi, tutti gli elementi della lista vengono inclusi. Ma questa non è la stessa lista della variabile <var>a_list</var> originale. &Egrave; una nuova lista a cui capita di avere tutti gli stessi elementi. <code>a_list[:]</code> è una notazione abbreviata per creare la copia completa di una lista.
 </ol>
 <h3 id=extendinglists>Aggiungere elementi a una lista</h3>
@@ -429,23 +429,267 @@ IndexError: pop from empty list</samp></pre>
 <samp class=p>... </samp><kbd class=pp>  else:</kbd>
 <samp class=p>... </samp><kbd class=pp>    print('no, è falso')</kbd>
 <samp class=p>...</samp>
-<a><samp class=p>>>> </samp><kbd class=pp>is_it_true([])</kbd>             <span class=u>&#x2461;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>is_it_true([])</kbd>             <span class=u>&#x2460;</span></a>
 <samp>no, è falso</samp>
-<a><samp class=p>>>> </samp><kbd class=pp>is_it_true(['a'])</kbd>          <span class=u>&#x2462;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>is_it_true(['a'])</kbd>          <span class=u>&#x2461;</span></a>
 <samp>sì, è vero</samp>
-<a><samp class=p>>>> </samp><kbd class=pp>is_it_true([False])</kbd>        <span class=u>&#x2463;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>is_it_true([False])</kbd>        <span class=u>&#x2462;</span></a>
 <samp>sì, è vero</samp></pre>
 <ol>
 <li>In un contesto logico, una lista vuota è falsa.
 <li>Qualsiasi lista con almeno un elemento è vera.
 <li>Qualsiasi lista con almeno un elemento è vera. Il valore degli elementi è irrilevante.
 </ol>
-<!--
+
 <p class=a>&#x2042;
 
-<h2 id=sets>Sets</h2>
-<p>FIXME
--->
+<h2 id=sets>Insiemi</h2>
+
+<p>Un <dfn>insieme</dfn> è un &#8220;gruppo&#8221; non ordinato di valori unici. Un singolo insieme può contenete valori di qualsiasi tipo di dato. Una volta che avete due insiemi, potete effettuare classiche operazioni sugli insiemi come l'unione, l'intersezione e la differenza tra insiemi.
+
+<h3 id=creating-a-set>Creare un insieme</h3>
+
+<p>Cominciamo dall'inizio. Creare un insieme è facile.
+
+<pre class=screen>
+<a><samp class=p>>>> </samp><kbd class=pp>a_set = {1}</kbd>     <span class=u>&#x2460;</span></a>
+<samp class=p>>>> </samp><kbd class=pp>a_set</kbd>
+<samp class=pp>{1}</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>type(a_set)</kbd>     <span class=u>&#x2461;</span></a>
+<samp class=pp>&lt;class 'set'></samp>
+<a><samp class=p>>>> </samp><kbd class=pp>a_set = {1, 2}</kbd>  <span class=u>&#x2462;</span></a>
+<samp class=p>>>> </samp><kbd class=pp>a_set</kbd>
+<samp class=pp>{1, 2}</samp></pre>
+<ol>
+<li>Per creare un insieme con un valore, mettete il valore tra parentesi graffe (<code>{}</code>).
+<li>Gli insiemi sono effettivamente implementati come <a href=iterators.html#defining-classes>classi</a>, ma non preoccupatevi di questo per ora.
+<li>Per creare un insieme con più valori, separate i valori con virgole e circondate il tutto con parentesi graffe.
+</ol>
+
+<p>Potete anche creare un insieme a partire da una <a href=#lists>lista</a>.
+
+<pre class=screen>
+<samp class=p>>>> </samp><kbd class=pp>a_list = ['a', 'b', 'mpilgrim', True, False, 42]</kbd>
+<a><samp class=p>>>> </samp><kbd class=pp>a_set = set(a_list)</kbd>                           <span class=u>&#x2460;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>a_set</kbd>                                         <span class=u>&#x2461;</span></a>
+<samp class=pp>{'a', False, 'b', True, 'mpilgrim', 42}</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>a_list</kbd>                                        <span class=u>&#x2462;</span></a>
+<samp class=pp>['a', 'b', 'mpilgrim', True, False, 42]</samp></pre>
+<ol>
+<li>Per creare un insieme da una lista, usate la funzione <code>set()</code>. (I pedanti che sanno come i set sono implementati vi faranno notare che questa non è esattamente l'invocazione di una funzione, ma la creazione di un'istanza di una classe. Vi <em>prometto</em> che imparerete la differenza più avanti in questo libro, ma per ora vi basti sapere che <code>set()</code> agisce come una funzione e restituisce un insieme.)
+<li>Come ho menzionato in precedenza, un singolo insieme può contenere valori di qualsiasi tipo di dato. E, come ho menzionato in precedenza, gli insiemi <em>non sono ordinati</em>. Questo insieme non ricorda l'ordine originale della lista che è stata usata per crearlo. Se doveste aggiungere elementi a questo insieme, non ricorderebbe l'ordine in cui li avete aggiunti.
+<li>La lista originale rimane invariata.
+</ol>
+
+<p>Non avete ancora alcun valore? Non è un problema. Potete creare un insieme vuoto.
+
+<pre class=screen>
+<a><samp class=p>>>> </samp><kbd class=pp>a_set = set()</kbd>    <span class=u>&#x2460;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>a_set</kbd>            <span class=u>&#x2461;</span></a>
+<samp class=pp>set()</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>type(a_set)</kbd>      <span class=u>&#x2462;</span></a>
+<samp class=pp>&lt;class 'set'></samp>
+<a><samp class=p>>>> </samp><kbd class=pp>len(a_set)</kbd>       <span class=u>&#x2463;</span></a>
+<samp class=pp>0</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>not_sure = {}</kbd>    <span class=u>&#x2464;</span></a>
+<samp class=p>>>> </samp><kbd class=pp>type(not_sure)</kbd>
+<samp class=pp>&lt;class 'dict'></samp></pre>
+<ol>
+<li>Per creare un insieme vuoto, chiamate <code>set()</code> senza argomenti.
+<li>La rappresentazione stampata di un insieme vuoto ha un'aria un po' strana. Vi sareste aspettati <code>{}</code>, forse? Ma quella denoterebbe un dizionario vuoto. (Imparerete cosa sono i dizionari più avanti in questo capitolo.)
+<li>Nonostante la strana rappresentazione stampata, questo <em>è</em> un insieme&hellip;
+<li>&hellip;e questo insieme non ha elementi.
+<li>A causa di alcuni cavilli storicamente legati a Python 2, non potete creare un insieme vuoto con due parentesi graffe. Questa notazione in realtà crea un dizionario vuoto, non un insieme vuoto.
+</ol>
+
+<h3 id=modifying-sets>Modificare un insieme</h3>
+
+<p>Esistono due modi differenti per aggiungere valori a un insieme esistente: il metodo <code>add()</code> e il metodo <code>update()</code>.
+
+<pre class=screen>
+<samp class=p>>>> </samp><kbd class=pp>a_set = {1, 2}</kbd>
+<a><samp class=p>>>> </samp><kbd class=pp>a_set.add(4)</kbd>  <span class=u>&#x2460;</span></a>
+<samp class=p>>>> </samp><kbd class=pp>a_set</kbd>
+<samp class=pp>{1, 2, 4}</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>len(a_set)</kbd>    <span class=u>&#x2461;</span></a>
+<samp class=pp>3</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>a_set.add(1)</kbd>  <span class=u>&#x2462;</span></a>
+<samp class=pp>>>> </samp><kbd class=pp>a_set</kbd>
+<samp class=pp>{1, 2, 4}</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>len(a_set)</kbd>    <span class=u>&#x2463;</span></a>
+<samp class=pp>3</samp></pre>
+<ol>
+<li>Il metodo <code>add()</code> prende un singolo argomento, che può essere di qualsiasi tipo di dato, e aggiunge il valore passato all'insieme.
+<li>Ora questo insieme possiede 3 membri.
+<li>Gli insiemi sono gruppi di <em>valori unici</em>. Se provate ad aggiungere un valore che è già contenuto nell'insieme, non succederà nulla. Non verrà sollevato un errore, è semplicemente un'operazione senza alcun effetto.
+<li>Questo insieme possiede <em>ancora</em> 3 membri.
+</ol>
+
+<pre class=screen>
+<samp class=p>>>> </samp><kbd class=pp>a_set = {1, 2, 3}</kbd>
+<samp class=p>>>> </samp><kbd class=pp>a_set</kbd>
+<samp class=pp>{1, 2, 3}</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>a_set.update({2, 4, 6})</kbd>                       <span class=u>&#x2460;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>a_set</kbd>                                         <span class=u>&#x2461;</span></a>
+<samp class=pp>{1, 2, 3, 4, 6}</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>a_set.update({3, 6, 9}, {1, 2, 3, 5, 8, 13})</kbd>  <span class=u>&#x2462;</span></a>
+<samp class=p>>>> </samp><kbd class=pp>a_set</kbd>
+<samp class=pp>{1, 2, 3, 4, 5, 6, 8, 9, 13}</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>a_set.update([10, 20, 30])</kbd>                    <span class=u>&#x2463;</span></a>
+<samp class=p>>>> </samp><kbd class=pp>a_set</kbd>
+<samp class=pp>{1, 2, 3, 4, 5, 6, 8, 9, 10, 13, 20, 30}</samp></pre>
+<ol>
+<li>Il metodo <code>update()</code> prende un argomento, un insieme, e aggiunge tutti i suoi membri all'insieme originale. &Egrave; come se aveste chiamato il metodo <code>add()</code> con ognuno dei membri dell'insieme.
+<li>I valori duplicati vengono ignorati, dato che gli insiemi non possono contenere duplicati.
+<li>In realtà, potete chiamare il metodo <code>update()</code> con un qualsiasi numero di argomenti. Quando viene invocato con due insiemi, il metodo <code>update()</code> aggiunge tutti i membri di ogni insieme all'insieme originale (scartando i duplicati).
+<li>Il metodo <code>update()</code> può prendere argomenti di un certo numero di tipi di dato differenti, comprese le liste. Quando viene invocato con una lista, il metodo <code>update()</code> aggiunge tutti gli elementi della lista all'insieme originale.
+</ol>
+
+<h3 id=removing-from-sets>Rimuovere elementi da un insieme</h3>
+
+<p>Esistono tre modi di rimuovere singoli elementi da un insieme. I primi due, <code>discard()</code> e <code>remove()</code>, hanno una sottile differenza.
+
+<pre class=screen>
+<samp class=p>>>> </samp><kbd class=pp>a_set = {1, 3, 6, 10, 15, 21, 28, 36, 45}</kbd>
+<samp class=p>>>> </samp><kbd class=pp>a_set</kbd>
+<samp class=pp>{1, 3, 36, 6, 10, 45, 15, 21, 28}</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>a_set.discard(10)</kbd>                        <span class=u>&#x2460;</span></a>
+<samp class=p>>>> </samp><kbd class=pp>a_set</kbd>
+<samp class=pp>{1, 3, 36, 6, 45, 15, 21, 28}</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>a_set.discard(10)</kbd>                        <span class=u>&#x2461;</span></a>
+<samp class=p>>>> </samp><kbd class=pp>a_set</kbd>
+<samp class=pp>{1, 3, 36, 6, 45, 15, 21, 28}</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>a_set.remove(21)</kbd>                         <span class=u>&#x2462;</span></a>
+<samp class=p>>>> </samp><kbd class=pp>a_set</kbd>
+<samp class=pp>{1, 3, 36, 6, 45, 15, 28}</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>a_set.remove(21)</kbd>                         <span class=u>&#x2463;</span></a>
+<samp class=pp>Traceback (most recent call last):
+  File "&lt;stdin>", line 1, in &lt;module>
+KeyError: 21</samp></pre>
+<ol>
+<li>Il metodo <code>discard()</code> prende un singolo valore come argomento e rimuove quel valore dall'insieme.
+<li>Se invocate il metodo <code>discard()</code> con un valore che non è presente nell'insieme, non succederà nulla. Nessun errore, è semplicemente un'operazione senza alcun effetto.
+<li>Anche il metodo <code>remove()</code> prende un singolo valore come argomento e rimuove quel valore dall'insieme.
+<li>Ecco la differenza: se il valore non è presente nell'insieme, il metodo <code>remove()</code> solleva un'eccezione di tipo <code>KeyError</code>.
+</ol>
+
+<p>Come le liste, gli insiemi sono dotati di un metodo <code>pop()</code>.
+
+<pre class=screen>
+<samp class=p>>>> </samp><kbd class=pp>a_set = {1, 3, 6, 10, 15, 21, 28, 36, 45}</kbd>
+<a><samp class=p>>>> </samp><kbd class=pp>a_set.pop()</kbd>                                <span class=u>&#x2460;</span></a>
+<samp class=pp>1</samp>
+<samp class=p>>>> </samp><kbd class=pp>a_set.pop()</kbd>
+<samp class=pp>3</samp>
+<samp class=p>>>> </samp><kbd class=pp>a_set.pop()</kbd>
+<samp class=pp>36</samp>
+<samp class=p>>>> </samp><kbd class=pp>a_set</kbd>
+<samp class=pp>{6, 10, 45, 15, 21, 28}</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>a_set.clear()</kbd>                              <span class=u>&#x2461;</span></a>
+<samp class=p>>>> </samp><kbd class=pp>a_set</kbd>
+<samp class=pp>set()</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>a_set.pop()</kbd>                                <span class=u>&#x2462;</span></a>
+<samp class=pp>Traceback (most recent call last):
+  File "&lt;stdin>", line 1, in &lt;module>
+KeyError: 'pop from an empty set'</samp></pre>
+<ol>
+<li>Il metodo <code>pop()</code> rimuove un singolo valore da un insieme e restituisce quel valore. Tuttavia, dato che gli insiemi non sono ordinati, non c'è nessun &#8220;ultimo&#8221; valore in un insieme, quindi non c'è alcun modo di controllare quale sia il valore che viene rimosso. Il processo è essenzialmente casuale.
+<li>Il metodo <code>clear()</code> rimuove <em>tutti</em> i valori dall'insieme, lasciandovi con un insieme vuoto. Questo è equivalente a <code>a_set = set()</code>, che avrebbe creato un nuovo insieme vuoto e sovrascritto il precedente valore della variabile <var>a_set</var>.
+<li>Il tentativo di invocare <code>pop()</code> per rimuovere un valore da un insieme vuoto solleverà una eccezione di tipo <code>KeyError</code>.
+</ol>
+
+<h3 id=common-set-operations>Operazioni comuni sugli insiemi</h3>
+
+<p>Il tipo <code>set</code> di Python supporta diverse operazioni comuni sugli insiemi.
+
+<pre class=screen>
+<samp class=p>>>> </samp><kbd class=pp>a_set = {2, 4, 5, 9, 12, 21, 30, 51, 76, 127, 195}</kbd>
+<a><samp class=p>>>> </samp><kbd class=pp>30 in a_set</kbd>                                                     <span class=u>&#x2460;</span></a>
+<samp class=pp>True</samp>
+<samp class=p>>>> </samp><kbd class=pp>31 in a_set</kbd>
+<samp class=pp>False</samp>
+<samp class=p>>>> </samp><kbd class=pp>b_set = {1, 2, 3, 5, 6, 8, 9, 12, 15, 17, 18, 21}</kbd>
+<a><samp class=p>>>> </samp><kbd class=pp>a_set.union(b_set)</kbd>                                              <span class=u>&#x2461;</span></a>
+<samp class=pp>{1, 2, 195, 4, 5, 6, 8, 12, 76, 15, 17, 18, 3, 21, 30, 51, 9, 127}</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>a_set.intersection(b_set)</kbd>                                       <span class=u>&#x2462;</span></a>
+<samp class=pp>{9, 2, 12, 5, 21}</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>a_set.difference(b_set)</kbd>                                         <span class=u>&#x2463;</span></a>
+<samp class=pp>{195, 4, 76, 51, 30, 127}</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>a_set.symmetric_difference(b_set)</kbd>                               <span class=u>&#x2464;</span></a>
+<samp class=pp>{1, 3, 4, 6, 8, 76, 15, 17, 18, 195, 127, 30, 51}</samp></pre>
+<ol>
+<li>Per verificare se un valore è membro di un insieme, usate l'operatore <code>in</code>. Questo funziona come per le liste.
+<li>Il metodo <code>union()</code> restituisce un nuovo insieme contenente tutti gli elementi che sono <em>in uno o nell'altro</em> insieme.
+<li>Il metodo <code>intersection()</code> restituisce un nuovo insieme contenente tutti gli elementi che sono in <em>entrambi</em> gli insiemi.
+<li>Il metodo <code>difference()</code> restituisce un nuovo insieme contenente tutti gli elementi che sono in <var>a_set</var> ma non in <var>b_set</var>.
+<li>Il metodo <code>symmetric_difference()</code> restituisce un nuovo insieme contenente tutti gli elementi che sono in <em>esattamente uno</em> solo degli insiemi.
+</ol>
+
+<p>Tre di questi metodi sono simmetrici.
+
+<pre class=screen>
+# continua dall'esempio precedente
+<a><samp class=p>>>> </samp><kbd class=pp>b_set.symmetric_difference(a_set)</kbd>                                       <span class=u>&#x2460;</span></a>
+<samp class=pp>{3, 1, 195, 4, 6, 8, 76, 15, 17, 18, 51, 30, 127}</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>b_set.symmetric_difference(a_set) == a_set.symmetric_difference(b_set)</kbd>  <span class=u>&#x2461;</span></a>
+<samp class=pp>True</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>b_set.union(a_set) == a_set.union(b_set)</kbd>                                <span class=u>&#x2462;</span></a>
+<samp class=pp>True</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>b_set.intersection(a_set) == a_set.intersection(b_set)</kbd>                  <span class=u>&#x2463;</span></a>
+<samp class=pp>True</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>b_set.difference(a_set) == a_set.difference(b_set)</kbd>                      <span class=u>&#x2464;</span></a>
+<samp class=pp>False</samp></pre>
+<ol>
+<li>La differenza simmetrica di <var>a_set</var> da <var>b_set</var> <em>sembra</em> diversa dalla differenza simmetrica di <var>b_set</var> da <var>a_set</var>, ma ricordatevi che gli insiemi non sono ordinati. Due insiemi qualsiasi che contengono gli stessi valori (nessuno escluso) sono considerati uguali.
+<li>E questo è esattamente quello che accade qui. Non fatevi ingannare dalla rappresentazione stampata di questi insiemi che vi mostra la Shell Python. Contengono gli stessi valori, quindi sono uguali.
+<li>Anche l'unione tra due insiemi è simmetrica.
+<li>Anche l'intersezione tra due insiemi è simmetrica.
+<li>La differenza tra due insiemi non è simmetrica. Questo ha senso, perché l'operazione è analoga alla sottrazione di un numero da un altro. L'ordine degli operandi ha importanza.
+</ol>
+
+<p>Infine, ci sono alcune domande che potete chiedere agli insiemi.
+
+<pre class=screen>
+<samp class=p>>>> </samp><kbd class=pp>a_set = {1, 2, 3}</kbd>
+<samp class=p>>>> </samp><kbd class=pp>b_set = {1, 2, 3, 4}</kbd>
+<a><samp class=p>>>> </samp><kbd class=pp>a_set.issubset(b_set)</kbd>    <span class=u>&#x2460;</span></a>
+<samp class=pp>True</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>b_set.issuperset(a_set)</kbd>  <span class=u>&#x2461;</span></a>
+<samp class=pp>True</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>a_set.add(5)</kbd>             <span class=u>&#x2462;</span></a>
+<samp class=p>>>> </samp><kbd class=pp>a_set.issubset(b_set)</kbd>
+<samp class=pp>False</samp>
+<samp class=p>>>> </samp><kbd class=pp>b_set.issuperset(a_set)</kbd>
+<samp class=pp>False</samp></pre>
+<ol>
+<li><var>a_set</var> è un <dfn>sottoinsieme</dfn> di <var>b_set</var>&nbsp;&mdash;&nbsp;tutti i membri di <var>a_set</var> sono anche membri di <var>b_set</var>.
+<li>Facendo la stessa domanda al contrario, <var>b_set</var> è un <dfn>sovrainsieme</dfn> di <var>a_set</var>, perché tutti i membri di <var>a_set</var> sono anche membri di <var>b_set</var>.
+<li>Appena aggiungete ad <var>a_set</var> un valore che non è presente in <var>b_set</var>, entrambi i metodi restituiscono <code>False</code>.
+</ol>
+
+<h3 id=sets-in-a-boolean-context>Insiemi in un contesto logico</h3>
+
+<p>Potete usare gli insiemi in <a href=#booleans>un contesto logico</a>, come quello di una istruzione <code>if</code>.
+
+<pre class=screen>
+<samp class=p>>>> </samp><kbd class=pp>def is_it_true(anything):</kbd>
+<samp class=p>... </samp><kbd class=pp>  if anything:</kbd>
+<samp class=p>... </samp><kbd class=pp>    print('sì, è vero')</kbd>
+<samp class=p>... </samp><kbd class=pp>  else:</kbd>
+<samp class=p>... </samp><kbd class=pp>    print('no, è falso')</kbd>
+<samp class=p>...</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>is_it_true(set())</kbd>          <span class=u>&#x2460;</span></a>
+<samp>no, è falso</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>is_it_true({'a'})</kbd>          <span class=u>&#x2461;</span></a>
+<samp>sì, è vero</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>is_it_true({False})</kbd>        <span class=u>&#x2462;</span></a>
+<samp>sì, è vero</samp></pre>
+<ol>
+<li>In un contesto logico, un insieme vuoto è falso.
+<li>Qualsiasi insieme con almeno un elemento è vero.
+<li>Qualsiasi insieme con almeno un elemento è vero. Il valore degli elementi è irrilevante.
+</ol>
+
 <p class=a>&#x2042;
 
 <h2 id=dictionaries>Dizionari</h2>

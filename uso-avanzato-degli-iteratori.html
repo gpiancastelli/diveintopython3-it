@@ -296,7 +296,7 @@ StopIteration</samp>
 'Chris', 'Ethan', 'Sarah', 'Lizzie', 'Wesley']</samp></pre>
 <ol>
 <li>Questo idioma restituisce una lista delle righe in un file di testo.
-<li>Sfortunatamente (per questo esempio), l'idioma <code>list(open(<var>filename</var>))</code> include anche i ritorni a capo alla fine di ogni riga. Questa descrizione di lista usa il metodo <code>rstrip()</code> delle stringhe per togliere lo spazio bianco in coda ad ogni riga.
+<li>Sfortunatamente (per questo esempio), l'idioma <code>list(open(<var>filename</var>))</code> include anche i ritorni a capo alla fine di ogni riga. Questa descrizione di lista usa il metodo <code>rstrip()</code> delle stringhe per togliere lo spazio bianco alla fine di ogni riga. (Le stringhe sono anche dotate di un metodo <code>lstrip()</code> per togliere lo spazio bianco all'inizio e di un metodo <code>strip()</code> che toglie lo spazio bianco sia all'inizio che alla fine.)
 <li>La funzione <code>sorted()</code> prende una lista e la restituisce ordinata. Di default, l'ordine è alfabetico.
 <li>Ma la funzione <code>sorted()</code> può anche prendere una funzione come parametro <var>key</var>, e ordinare in base ad essa. In questo caso, la funzione di ordinamento è <code>len()</code>, quindi questa invocazione ordina sulla base della lunghezza di ogni elemento, calcolando <code>len(<var>each_item</var>)</code>. I nomi più corti vengono prima, poi quelli più lunghi, poi quelli ancora più lunghi.
 </ol>
