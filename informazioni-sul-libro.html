@@ -6,6 +6,10 @@
 <link rel=stylesheet href=dip3-it.css>
 <style>
 h1:before{content:''}
+#belong{margin:0 auto;width:558px;height:738px;background:#fff url(i/openclipart.org_media_files_Selanit_8331.png) no-repeat;border:1px solid white}
+#belong div{margin:375px 30px 0 40px}
+div p{font-size:small}
+abbr{font-variant:none;text-transform:none;letter-spacing:0}
 </style>
 <link rel=stylesheet media='only screen and (max-device-width: 480px)' href=mobile.css>
 <link rel=stylesheet media=print href=print.css>
@@ -14,23 +18,18 @@ h1:before{content:''}
 <form action=http://www.google.com/cse><div><input type=hidden name=cx value=014021643941856155761:l5eihuescdw><input type=hidden name=ie value=UTF-8><input name=q size=25>&nbsp;<input type=submit name=sa value=Search></div></form>
 <p>Voi siete qui: <a href=index.html>Home</a> <span class=u>&#8227;</span> <a href=table-of-contents.html>Dive Into Python 3</a> <span class=u>&#8227;</span>
 <h1>Informazioni sul libro</h1>
-<p>Il testo di <cite>Dive Into Python 3</cite> è distribuito secondo i termini della licenza <a href=http://creativecommons.org/licenses/by-sa/3.0/deed.it rel=license>Creative Commons Attribuzione-Condividi allo stesso modo 3.0 Unported</a>.
-<p>La libreria <code>chardet</code> citata nel capitolo <a href=caso-di-studio-convertire-chardet-verso-python-3.html>Caso di studio: convertire <code>chardet</code> verso Python 3</a> è rilasciata sotto licenza LGPL 2.1 o successiva. Il risolutore di alfametica citato nel capitolo <a href=uso-avanzato-degli-iteratori.html>Uso avanzato degli iteratori</a> si basa sul <a href=http://code.activestate.com/recipes/576615/>risolutore scritto da Raymond Hettinger per Python 2</a>, che l&#8217;autore ha gentilmente ridistribuito sotto licenza MIT in modo che io potessi convertirlo verso Python 3. I capitoli <a href=uso-avanzato-delle-classi>Uso avanzato delle classi</a> e <a href=nomi-dei-metodi-speciali>Nomi dei metodi speciali</a> contengono parti di codice provenienti dalla libreria standard di Python, rilasciata sotto licenza Python Software Foundation License versione 2. Tutti gli altri esempi di codice sono mio lavoro originale e sono  distribuiti sotto licenza MIT. I termini completi della licenza sono inclusi in ogni file sorgente.
-<p>Gli effetti di evidenziazione dinamica nell&#8217;edizione online del libro sono costruiti a partire da <a href=http://jquery.com>jQuery</a>, che è distribuita con una doppia licenza secondo i termini delle licenze MIT e GPL.
+<div id=belong>
+<div>
+<p><cite>Dive Into Python 3</cite> contiene prosa e immagini originali distribuite secondo i termini della licenza <a href=http://creativecommons.org/licenses/by-sa/3.0/deed.it rel=license title='Creative Commons Attribuzione-Condividi allo stesso modo 3.0 Unported'>CC-BY-SA-3.0</a>. Le illustrazioni provenienti dalla <a href=http://openclipart.org/>Open Clip Art Library</a> sono di pubblico dominio.
+
+<p>La <a href=case-study-porting-chardet-to-python-3.html>libreria <code>chardet</code></a> è rilasciata sotto licenza <abbr title="GNU Lesser General Public License">LGPL</abbr> 2.1 o successiva. Il <a href=advanced-iterators.html>risolutore di alfametica</a> si basa sulla <a href=http://code.activestate.com/recipes/576615/>versione scritta da Raymond Hettinger</a>, rilasciata sotto licenza <abbr>MIT</abbr>. Diversi capitoli contengono codice proveniente dalla libreria standard di Python, rilasciata sotto licenza <abbr title="Python Software Foundation">PSF</abbr> 2.0. Tutto il resto del codice originale è distribuito sotto licenza MIT.
+
+<p>L'edizione online del libro usa <a href=http://jquery.com>jQuery</a>, distribuita con una doppia licenza <abbr>MIT</abbr> e <abbr title="GNU General Public License">GPL</abbr>.
 <!--
-<span style="color:red">C</span><span style="color:aqua">o</span><span style="color:plum">l</span><span style="color:gold">o</span><span style="color:blue">r</span> syntax highlighting is provided by <a href=http://code.google.com/p/google-code-prettify/>prettify.js</a>, which is licensed under the Apache License 2.0.
+<span style="color:red">C</span><span style="color:aqua">o</span><span style="color:plum">l</span><span style="color:gold">o</span><span style="color:blue">r</span> syntax highlighting is provided by <a href=http://code.google.com/p/google-code-prettify/>prettify.js</a>, other parsing code is adapted from <a href=http://code.google.com/p/javascript-search-term-highlighter/>highlighter.js</a>; both are released under the Apache License 2.0.
 -->
-<p>L&#8217;edizione online si carica così velocemente perché
-<ol>
-<li>il codice HTML è <a href=http://httpd.apache.org/docs/trunk/mod/mod_deflate.html>compresso</a>.
-<li>Gli script e i fogli di stile sono rimpiccioliti dallo <a href=http://developer.yahoo.com/yui/compressor/>YUI Compressor</a>.
-<li>Gli script sono combinati per ridurre il numero delle richieste HTTP.
-<li>I fogli di stile sono combinati e inseriti in linea per ridurre il numero delle richieste HTTP.
-<li>Le proprietà e i selettori CSS non utilizzati sono <a href=http://hg.diveintopython3.org/file/default/util/lesscss.py>rimossi sulla base della singola pagina</a> tramite <a href=http://pyquery.org/>pyquery</a>.
-<li>Il caching HTTP e altre opzioni lato server sono ottimizzate sulla base di consigli ottenuti da <a href=http://developer.yahoo.com/yslow/>YSlow</a> e <a href=http://code.google.com/speed/page-speed/>Page Speed</a>.
-<li>Il testo usa <a href=http://www.alanwood.net/unicode/unicode_samples.html>caratteri Unicode</a> al posto di elementi grafici ovunque possibile.
-<li>L&#8217;intero libro è stato <a href=http://diveintomark.org/archives/2009/03/27/dive-into-history-2009-edition>amorevolmente realizzato a mano in HTML 5</a> per evitare markup ridondante.
-</ol>
+
 <p>Spedite correzioni e feedback a <a href=mailto:mark@diveintomark.org>mark@diveintomark.org</a>.
 <p class=c>&copy; 2001&ndash;9 Mark Pilgrim<br>
 &copy; 2009 <a href=informazioni-sulla-traduzione.html>Giulio Piancastelli</a> per la traduzione italiana
+<!--[if IE]><script src=j/html5.js></script><![endif]-->

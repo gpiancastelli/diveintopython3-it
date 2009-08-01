@@ -37,7 +37,7 @@ h2,.i>li{clear:both}
 
 <p>Una volta che vi trovate al prompt della riga di comando, digitate semplicemente <kbd>python3</kbd> (tutto in minuscolo, senza spazi) e guardate cosa succede. Sul mio sistema Linux di casa, Python 3 è già installato, così questo comando mi porta nella <i><dfn>shell interattiva</dfn> di Python</i>.
 
-<pre class=screen>
+<pre class='nd screen'>
 <samp class=p>mark@atlantis:~$ </samp><kbd>python3</kbd>
 <samp>Python 3.0.1+ (r301:69556, Apr 15 2009, 17:25:52)
 [GCC 4.3.3] on linux2
@@ -48,11 +48,11 @@ Type "help", "copyright", "credits" or "license" for more information.
 
 <p>Anche il mio <a href=http://cornerhost.com/ class=wtf>web hosting provider</a> usa Linux e fornisce accesso alla riga di comando, ma il mio server non ha Python 3 installato. (Buu!)
 
-<pre class=screen>
+<pre class='nd screen'>
 <samp class=p>mark@manganese:~$ </samp><kbd>python3</kbd>
 <samp>bash: python3: command not found</samp></pre>
 
-<p>Quindi, tornando alla domanda con cui questa sezione è cominciata, &#8220;Quale Python è giusto per voi?&#8221; La risposta è qualunque versione di Python funzioni sul computer che avete già.
+<p>Quindi, tornando alla domanda con cui questa sezione è cominciata, &#8220;Quale Python è giusto per voi?&#8221; Qualunque versione di Python funzioni sul computer che avete già.
 
 <p>[Continuate a leggere per le istruzioni di installazione sotto Windows, o saltate a <a href=#macosx>Installare sotto Mac OS X</a>, <a href=#ubuntu>Installare sotto Ubuntu Linux</a>, o <a href=#other>Installare su altre piattaforme</a>.]
 
@@ -172,14 +172,15 @@ Type "help", "copyright", "credits" or "license" for more information.
 <li><b class=wtf>GUI Applications</b> comprende IDLE, la Shell Python grafica che userete attraverso tutto questo libro. Raccomando vivamente di tenere questa opzione selezionata.
 <li><b class=wtf>UNIX command-line tools</b> include l'applicazione <code>python3</code> a riga di comando. Raccomando vivamente di tenere anche questa opzione.
 <li><b class=wtf>Python Documentation</b> contiene molte delle informazioni che si trovano su <a href=http://docs.python.org/><code>docs.python.org</code></a>. Raccomandata se avete una connessione in dial-up o un accesso a Internet limitato.
-<li><b class=wtf>Shell profile updater</b> <span class=fixme>FIXME WTF is this?</span>
-<li><b class=wtf>Fix system Python</b> <span class=fixme>FIXME WTF is this too?</span>
+<li><b class=wtf>Shell profile updater</b> controlla se aggiornare il vostro profilo di shell (usato in <code>Terminal.app</code>) per assicurarsi che questa versione di Python sia quella contenuta nel percorso di ricerca della vostra shell. Probabilmente non avete bisogno di modificare questa impostazione.
+<li><b class=wtf>Fix system Python</b> non dovrebbe essere modificato. (Dice al vostro Mac di usare Python 3 come interprete Python predefinito per tutti gli script, compresi gli script di sistema installati da Apple. Questo sarebbe un vero disastro, dato che molti di quegli script sono stati scritti per Python 2 e non verrebbero eseguiti correttamente sotto Python 3.)
 </ul>
+
 <p>Cliccate il bottone <code>Install</code> per continuare.
 
 <li>
 <p class='ss nm'><img src=i/mac-install-7-admin-password.png width=622 height=457 alt='[Python installer: dialog to enter administrative password]'>
-<p>Dato che i framework <span class=wtf>system-wide</span> e gli eseguibili vengono installati in <code>/usr/local/bin/</code>, il programma di installazione vi chiederà una password di amministrazione. Non c'è alcun modo di installare Python per Mac senza privilegi di amministrazione. (<span class=fixme>FIXME really?</span>)
+<p>Dato che i framework <span class=wtf>system-wide</span> e gli eseguibili vengono installati in <code>/usr/local/bin/</code>, il programma di installazione vi chiederà una password di amministrazione. Non c'è alcun modo di installare Python per Mac senza privilegi di amministrazione.
 <p>Cliccate il bottone <code>OK</code> per cominciare l'installazione.
 
 <li>
@@ -275,7 +276,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 
 <p>Cominciamo dall'inizio. La Shell Python in sé è un meraviglioso campo di gioco interattivo. Attraverso questo libro, vedrete esempi come questo:
 
-<pre class=screen>
+<pre class='nd screen'>
 <samp class=p>>>> </samp><kbd class=pp>1 + 1</kbd>
 <samp class=pp>2</samp></pre>
 
@@ -287,14 +288,14 @@ Type "help", "copyright", "credits" or "license" for more information.
 
 <p>Proviamone un'altra.
 
-<pre class=screen>
+<pre class='nd screen'>
 <samp class=p>>>> </samp><kbd class=pp>print('Hello world!')</kbd>
 <samp>Hello world!</samp>
 </pre>
 
 <p>Piuttosto semplice, no? Ma c'è molto di più che potete fare nella shell di Python. Se doveste mai rimanere bloccati&nbsp;&mdash;&nbsp;non riuscite a ricordare un comando, o non riuscite a ricordare gli argomenti appropriati da passare a una certa funzione&nbsp;&mdash;&nbsp;potete ottenere aiuto interattivo nella Shell Python. Vi basta digitare <kbd>help</kbd> e premere <kbd>INVIO</kbd>.
 
-<pre class=screen>
+<pre class='nd screen'>
 <samp class=p>>>> </samp><kbd>help</kbd>
 <samp>Type help() for interactive help, or help(object) for help about object.</samp></pre>
 
@@ -302,7 +303,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 
 <p>Per entrare nella modalità di aiuto interattivo, digitate <kbd>help()</kbd> e premete <kbd>INVIO</kbd>.
 
-<pre class=screen>
+<pre class='nd screen'>
 <samp class=p>>>> </samp><kbd class=pp>help()</kbd>
 <samp>Welcome to Python 3.0!  This is the online help utility.
 

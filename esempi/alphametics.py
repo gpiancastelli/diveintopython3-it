@@ -9,8 +9,8 @@ import itertools
 
 def solve(puzzle):
     words = re.findall('[A-Z]+', puzzle.upper())
-    unique_characters = {c for c in ''.join(words)}
-    assert len(unique_characters) <= 10
+    unique_characters = set(''.join(words))
+    assert len(unique_characters) <= 10, 'Too many letters'
     first_letters = {word[0] for word in words}
     n = len(first_letters)
     sorted_characters = ''.join(first_letters) + \

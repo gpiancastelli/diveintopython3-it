@@ -45,8 +45,8 @@ body{counter-reset:h1 10}
 
 <p>Dato che il vostro codice ha un bug e ora avete un test che verifica quel bug, il test fallirà:
 
-<pre class=screen>
-<samp class=p>you@localhost:~$ </samp><kbd>python3 romantest8.py -v</kbd>
+<pre class='nd screen'>
+<samp class=p>you@localhost:~/diveintopython3/examples$ </samp><kbd>python3 romantest8.py -v</kbd>
 <samp>from_roman should fail with blank string ... FAIL
 from_roman should fail with malformed antecedents ... ok
 from_roman should fail with repeated pairs of numerals ... ok
@@ -93,7 +93,7 @@ FAILED (failures=1)</samp></pre>
 </ol>
 
 <pre class=screen>
-<samp class=p>you@localhost:~$ </samp><kbd>python3 romantest8.py -v</kbd>
+<samp class=p>you@localhost:~/diveintopython3/examples$ </samp><kbd>python3 romantest8.py -v</kbd>
 <a><samp>from_roman should fail with blank string ... ok</samp>  <span class=u>&#x2460;</span></a>
 <samp>from_roman should fail with malformed antecedents ... ok
 from_roman should fail with repeated pairs of numerals ... ok
@@ -172,7 +172,7 @@ class RoundtripCheck(unittest.TestCase):
 <p>Ora i vostri test sono aggiornati rispetto ai nuovi requisiti, ma il vostro codice non lo è, quindi quando li eseguite aspettatevi diversi fallimenti.
 
 <pre class=screen>
-<samp class=p>you@localhost:~$ </samp><kbd>python3 romantest9.py -v</kbd>
+<samp class=p>you@localhost:~/diveintopython3/examples$ </samp><kbd>python3 romantest9.py -v</kbd>
 <samp>from_roman should fail with blank string ... ok
 from_roman should fail with malformed antecedents ... ok
 from_roman should fail with non-string input ... ok
@@ -266,8 +266,8 @@ def from_roman(s):
 
 <p>Potreste non essere convinti che questi due piccoli cambiamenti siano tutto ciò di cui avete bisogno. Ehi, non siete obbligati a fidarvi della mia parola; controllate voi stessi.
 
-<pre class=screen>
-<samp class=p>you@localhost:~$ </samp><kbd>python3 romantest9.py -v</kbd>
+<pre class='nd screen'>
+<samp class=p>you@localhost:~/diveintopython3/examples$ </samp><kbd>python3 romantest9.py -v</kbd>
 <samp>from_roman should fail with blank string ... ok
 from_roman should fail with malformed antecedents ... ok
 from_roman should fail with non-string input ... ok
@@ -366,7 +366,7 @@ build_lookup_tables()</code></pre>
 
 <p>Dividiamo il programma in frammenti più comprensibili. Teoricamente, la riga più importante è l'ultima:
 
-<pre><code class=pp>build_lookup_tables()</code></pre>
+<pre class=nd><code class=pp>build_lookup_tables()</code></pre>
 
 <p>Noterete che è una chiamata di funzione, ma non è preceduta da alcuna istruzione <code>if</code>. Questo non è un blocco <code>if __name__ == '__main__'</code>; la funzione viene invocata <em>quando il modulo è importato</em>. (&Egrave; importante capire che i moduli sono importati solamente una volta, e poi salvati in memoria. Se importate un modulo già importato, non succede nulla. Quindi questo codice verrà invocato solo la prima volta che importate questo modulo.)
 
@@ -426,7 +426,7 @@ def from_roman(s):
 <p>Ma funziona? Certo che sì, sì che funziona. E posso dimostrarlo.
 
 <pre class=screen>
-<samp class=p>you@localhost:~$ </samp><kbd>python3 romantest10.py -v</kbd>
+<samp class=p>you@localhost:~/diveintopython3/examples$ </samp><kbd>python3 romantest10.py -v</kbd>
 <samp>from_roman should fail with blank string ... ok
 from_roman should fail with malformed antecedents ... ok
 from_roman should fail with non-string input ... ok

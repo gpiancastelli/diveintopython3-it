@@ -68,7 +68,7 @@ body{counter-reset:h1 4}
 <samp class=pp>'100 BROAD RD. APT 3'</samp></pre>
 <ol>
 <li>Quello che <em>realmente</em> volevo era trovare una corrispondenza con <code>'ROAD'</code> quando era al termine della stringa <em>ed</em> era una parola a sé (non parte di una parola più grande). Le espressioni regolari usano <code>\b</code> per esprimere che &#8220;il limite di una parola deve trovarsi proprio qui.&#8221; In Python, l'uso di questo pattern è complicato dalla necessità di effettuare l'escape di ogni carattere di backslash <code>'\'</code> contenuto in una stringa. Questa seccatura viene solitamente chiamata la piaga del backslash, ed è una delle ragioni per cui le espressioni regolari sono più semplici da usare in Perl che in Python. Sfortunatamente, Perl mescola le espressioni regolari con altra sintassi, quindi se avete un problema potrebbe essere difficile capire se è un bug nella sintassi o è un bug nella vostra espressione regolare.
-<li>Per evitare la piaga del backslash, potete usare quella che viene chiamata stringa <i>raw</i> <span class=fixme>[FIXME reference to strings chapter]</span>, aggiungendo alla stringa un prefisso con la lettera <code>r</code>. Questo prefisso indica che non deve essere eseguito alcun escape sul contenuto di quella stringa; <code>'\t'</code> è un carattere di tabulazione, ma <code>r'\t'</code> è effettivamente il carattere di backslash <code>\</code> seguito dalla lettera <code>t</code>. Vi raccomando di usare sempre stringhe raw quando avete a che fare con espressioni regolari, altrimenti le cose diventano troppo confuse troppo velocemente (e le espressioni regolari sono già abbastanza confuse per conto proprio).
+<li>Per evitare la piaga del backslash, potete usare quella che viene chiamata stringa <i>raw</i>, aggiungendo alla stringa un prefisso con la lettera <code>r</code>. Questo prefisso indica che non deve essere eseguito alcun escape sul contenuto di quella stringa; <code>'\t'</code> è un carattere di tabulazione, ma <code>r'\t'</code> è effettivamente il carattere di backslash <code>\</code> seguito dalla lettera <code>t</code>. Vi raccomando di usare sempre stringhe raw quando avete a che fare con espressioni regolari, altrimenti le cose diventano troppo confuse troppo velocemente (e le espressioni regolari sono già abbastanza confuse per conto proprio).
 <li><em>*sigh*</em> Sfortunatamente, ho subito trovato altri esempi che contraddicevano la mia logica. In questo caso, l'indirizzo conteneva la parola <code>'ROAD'</code> come parola intera, ma non era alla fine, perché l'indirizzo aveva un numero di appartamento dopo il nome della via. Dato che <code>'ROAD'</code> non è alla fine della stringa, non c'è alcuna corrispondenza, quindi l'intera chiamata a <code>re.sub()</code> non riesce a sostituire nulla e restituisce come risultato la stringa originale, che non è ciò che volete.
 <li>Per risolvere questo problema, ho rimosso il carattere <code>$</code> e ho aggiunto un altro <code>\b</code>. Ora l'espressione regolare dice &#8220;trova una corrispondenza con <code>'ROAD'</code> quando è una parola intera in qualsiasi punto della stringa,&#8221; che sia alla fine, all'inizio, o da qualche parte nel mezzo.
 </ol>
@@ -229,7 +229,7 @@ body{counter-reset:h1 4}
 </ol>
 <aside>(A|B) corrisponde al pattern A oppure al pattern B.</aside>
 <p>L'espressione per le unità segue lo stesso schema. Vi risparmierò i dettagli e vi mostrerò il risultato finale.
-<pre class=screen>
+<pre class='nd screen'>
 <samp class=p>>>> </samp><kbd class=pp>pattern = '^M?M?M?(CM|CD|D?C?C?C?)(XC|XL|L?X?X?X?)(IX|IV|V?I?I?I?)$'</kbd>
 </pre><p>Come apparirebbe se usassimo la sintassi sostitutiva <code>{n,m}</code>? Questo esempio mostra la nuova sintassi.
 <pre class=screen>
@@ -312,11 +312,15 @@ body{counter-reset:h1 4}
 <a><samp class=p>>>> </samp><kbd class=pp>phonePattern.search('800-555-1212').groups()</kbd>             <span class=u>&#x2461;</span></a>
 <samp class=pp>('800', '555', '1212')</samp>
 <a><samp class=p>>>> </samp><kbd class=pp>phonePattern.search('800-555-1212-1234')</kbd>                 <span class=u>&#x2462;</span></a>
-<samp class=p>>>> </samp></pre>
+<a><samp class=p>>>> </samp><kbd class=pp>phonePattern.search('800-555-1212-1234').groups()</kbd>        <span class=u>&#x2463;</span></a>
+<samp class=traceback>Traceback (most recent call last):
+  File "&lt;stdin>", line 1, in &lt;module>
+AttributeError: 'NoneType' object has no attribute 'groups'</samp></pre>
 <ol>
 <li>Leggete sempre una espressione regolare da sinistra a destra. Questa trova una corrispondenza con l'inizio della stringa, e poi con <code>(\d{3})</code>. Cos'è <code>\d{3}</code>? Be', <code>\d</code> significa &#8220;qualsiasi cifra numerica&#8221; (da <code>0</code> fino a <code>9</code>). E <code>{3}</code> significa &#8220;trova una corrispondenza con esattamente tre cifre numeriche&#8221;; è una variazione della <a href=#nmsyntax>sintassi <code>{n,m}</code></a> che avete visto prima. Mettere il tutto tra parentesi significa &#8220;trova una corrispondenza con esattamente tre cifre numeriche, <em>e memorizzala come un gruppo che posso richiederti più tardi</em>&#8221;. Poi l'espressione regolare trova quindi una corrispondenza con un trattino letterale. Poi trova una corrispondenza con un altro gruppo di esattamente tre cifre. Poi un altro trattino letterale. Poi un altro gruppo di esattamente quattro cifre. Poi trova una corrispondenza con la fine della stringa.
 <li>Per avere accesso ai gruppi che il motore di espressioni regolari ha memorizzato durante il riconoscimento, usate il metodo <code>groups()</code> sull'oggetto che il metodo <code>search()</code> vi restituisce. Invocare <code>groups()</code> vi restituirà una tupla di tanti gruppi quanti ne avete definiti nella espressione regolare. In questo caso, avete definito tre gruppi, uno di tre cifre, uno di tre cifre, e uno di quattro cifre.
 <li>Questa espressione regolare non è la risposta finale, perché non gestisce un numero telefonico con una estensione alla fine. Per fare questo, avrete bisogno di espandere l'espressione regolare.
+<li>E questo è il motivo per cui non dovreste mai &#8220;concatenare&#8221; i metodi <code>search()</code> e <code>group()</code> nel codice di produzione. Se il metodo <code>search()</code> non restituisce alcuna corrispondenza, restituisce <a href=native-datatypes.html#none><code>None</code></a> invece di un oggetto corrispondenza delle espressioni regolari. Ovviamente, invocare <code>None.groups()</code> solleva un'eccezione: <code>None</code> non possiede un metodo <code>groups()</code>. (Naturalmente, la cosa è leggermente meno ovvia quando vedete sorgere questa eccezione dalle profondità del vostro codice. Sì, parlo per esperienza qui.)
 </ol>
 <pre class=screen>
 <a><samp class=p>>>> </samp><kbd class=pp>phonePattern = re.compile(r'^(\d{3})-(\d{3})-(\d{4})-(\d+)$')</kbd>  <span class=u>&#x2460;</span></a>

@@ -7,6 +7,7 @@
 <link rel=stylesheet href=dip3-it.css>
 <style>
 body{counter-reset:h1 7}
+mark{display:inline}
 </style>
 <link rel=stylesheet media='only screen and (max-device-width: 480px)' href=mobile.css>
 <link rel=stylesheet media=print href=print.css>
@@ -25,7 +26,7 @@ body{counter-reset:h1 7}
 
 <p>Lasciate che vi mostri come scomporlo.
 
-<pre><code>HAWAII + IDAHO + IOWA + OHIO == STATES
+<pre class=nd><code>HAWAII + IDAHO + IOWA + OHIO == STATES
 510199 + 98153 + 9301 + 3593 == 621246
 
 H = 5
@@ -50,8 +51,8 @@ import itertools
 
 def solve(puzzle):
     words = re.findall('[A-Z]+', puzzle.upper())
-    unique_characters = {c for c in ''.join(words)}
-    assert len(unique_characters) <= 10
+    unique_characters = set(''.join(words))
+    assert len(unique_characters) <= 10, 'Too many letters'
     first_letters = {word[0] for word in words}
     n = len(first_letters)
     sorted_characters = ''.join(first_letters) + \
@@ -73,14 +74,16 @@ if __name__ == '__main__':
         if solution:
             print(solution)</code></pre>
 
-<pre class=screen>
-<samp class=p>you@localhost:~$ </samp><kbd>python3 alphametics.py "HAWAII + IDAHO + IOWA + OHIO = STATES"</kbd>
+<p>Potete eseguire il programma dalla riga di comando. Sotto Linux, avrete qualcosa di simile a questo. (Le seguenti esecuzioni potrebbero impiegare un po' di tempo, a seconda della velocità del vostro computer, e non c'è nessun indicatore di progresso. Siate pazienti!)
+
+<pre class='nd screen'>
+<samp class=p>you@localhost:~/diveintopython3/examples$ </samp><kbd>python3 alphametics.py "HAWAII + IDAHO + IOWA + OHIO = STATES"</kbd>
 <samp>HAWAII + IDAHO + IOWA + OHIO = STATES
 510199 + 98153 + 9301 + 3593 == 621246</samp>
-<samp class=p>you@localhost:~$ </samp><kbd>python3 alphametics.py "I + LOVE + YOU == DORA"</kbd>
+<samp class=p>you@localhost:~/diveintopython3/examples$ </samp><kbd>python3 alphametics.py "I + LOVE + YOU == DORA"</kbd>
 <samp>I + LOVE + YOU == DORA
 1 + 2784 + 975 == 3760</samp>
-<samp class=p>you@localhost:~$ </samp><kbd>python3 alphametics.py "SEND + MORE == MONEY"</kbd>
+<samp class=p>you@localhost:~/diveintopython3/examples$ </samp><kbd>python3 alphametics.py "SEND + MORE == MONEY"</kbd>
 <samp>SEND + MORE == MONEY
 9567 + 1085 == 10652</samp></pre>
 
@@ -101,34 +104,60 @@ if __name__ == '__main__':
 <li>Qui il pattern di espressione regolare corrisponde a sequenze di lettere. Ancora, il valore di ritorno è una lista, e ogni elemento nella lista è una stringa che corrisponde a quel pattern di espressione regolare.
 </ol>
 
+<p>Ecco un altro esempio che <span class=wtf>will stretch your brain</span> un po'.
+
+<pre class='nd screen'>
+<samp class=p>>>> </samp><kbd class=pp>re.findall(' s.*? s', "The sixth sick sheikh's sixth sheep's sick.")</kbd>
+<samp class=pp>[' sixth s', " sheikh's s", " sheep's s"]</samp></pre>
+
+<p>Sorpresi? L'espressione regolare cerca uno spazio, una <code>s</code> e poi la serie di caratteri più corta possibile contenente qualsiasi carattere (<code>.*?</code>), poi uno spazio, poi un'altra <code>s</code>. Bene, guardando la stringa di ingresso, vedo cinque corrispondenze:
+
+<ol>
+<li><code>The<mark> sixth s</mark>ick sheikh's sixth sheep's sick.</code>
+<li><code>The sixth<mark> sick s</mark>heikh's sixth sheep's sick.</code>
+<li><code>The sixth sick<mark> sheikh's s</mark>ixth sheep's sick.</code>
+<li><code>The sixth sick sheikh's<mark> sixth s</mark>heep's sick.</code>
+<li><code>The sixth sick sheikh's sixth<mark> sheep's s</mark>ick.</code>
+</ol>
+
+<p>Ma la funzione <code>re.findall()</code> resituisce solo tre corrispondenze. Nello specifico, restituisce la prima, la terza e la quinta. Come mai? Perché <em>non restituisce corrispondenze sovrapposte</em>. La prima corrispondenza si sovrappone alla seconda, quindi la prima viene restituita e la seconda viene saltata. Poi la terza si sovrappone alla quarta, quindi la terza viene restituita e la quarta viene saltata. Infine, la quinta viene restituita. Tre corrispondenze, non cinque.
+
+<p>Questo non ha nulla a che fare con il risolutore di alfametica; ho solo pensato che fosse interessante.
+
 <p class=a>&#x2042;
 
 <h2 id=unique-items>Trovare elementi unici in una sequenza</h2>
 
-<p>Le descrizioni di insieme rendono banale trovare gli elementi unici di una sequenza. <span class=fixme>[FIXME-not sure if I&#8217;m going to cover set comprehensions in an earlier chapter; if not, this is certainly an abrupt and inadequate introduction to the topic.]</span>
+<p>Gli <a href=native-datatypes.html#sets>insiemi</a> rendono banale trovare gli elementi unici di una sequenza.
 
 <pre class=screen>
 <samp class=p>>>> </samp><kbd class=pp>a_list = ['a', 'c', 'b', 'a', 'd', 'b']</kbd>
-<a><samp class=p>>>> </samp><kbd class=pp>{c for c in a_list}</kbd>                      <span class=u>&#x2460;</span></a>
+<!--
+<samp class=p>>>> </samp><kbd class=pp>a_list = ['The', 'sixth', 'sick', "sheik's", 'sixth', "sheep's", 'sick']</kbd>
+-->
+<a><samp class=p>>>> </samp><kbd class=pp>set(a_list)</kbd>                      <span class=u>&#x2460;</span></a>
 <samp class=pp>{'a', 'c', 'b', 'd'}</samp>
+<!--
+<samp class=pp>{'sixth', 'The', "sheep's", 'sick', "sheik's"}</samp>
+-->
 <samp class=p>>>> </samp><kbd class=pp>a_string = 'EAST IS EAST'</kbd>
-<a><samp class=p>>>> </samp><kbd class=pp>{c for c in a_string}</kbd>                    <span class=u>&#x2461;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>set(a_string)</kbd>                    <span class=u>&#x2461;</span></a>
 <samp class=pp>{'A', ' ', 'E', 'I', 'S', 'T'}</samp>
 <samp class=p>>>> </samp><kbd class=pp>words = ['SEND', 'MORE', 'MONEY']</kbd>
-<a><samp class=p>>>> </samp><kbd class=pp>''.join(words)</kbd>                           <span class=u>&#x2462;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>''.join(words)</kbd>                   <span class=u>&#x2462;</span></a>
 <samp class=pp>'SENDMOREMONEY'</samp>
-<a><samp class=p>>>> </samp><kbd class=pp>{c for c in ''.join(words)}</kbd>              <span class=u>&#x2463;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>set(''.join(words))</kbd>              <span class=u>&#x2463;</span></a>
 <samp class=pp>{'E', 'D', 'M', 'O', 'N', 'S', 'R', 'Y'}</samp></pre>
 <ol>
-<li>Data una lista contenente diverse stringhe, una descrizione di insieme con la funzione identità restituirà un insieme di stringhe uniche dalla lista. Questa operazione ha senso se lo pensate come un ciclo <code>for</code>. Prendete il primo elemento della lista, mettetelo nell'insieme. Il secondo. Il terzo. Il quarto&nbsp;&mdash;&nbsp;aspettate, quello è già nell'insieme, quindi va elencato solo una volta. Il quinto. Il sesto&nbsp;&mdash;&nbsp;ancora, un duplicato, quindi va elencato solo una volta. Il risultato finale? Tutti gli elementi unici della lista originale, senza alcun duplicato. La lista originale non deve nemmeno essere ordinata prima.
+<li>Data una lista contenente diverse stringhe, la funzione <code>set()</code> restituirà un insieme di stringhe uniche dalla lista. Questa operazione ha senso se lo pensate come un ciclo <code>for</code>. Prendete il primo elemento della lista, mettetelo nell'insieme. Il secondo. Il terzo. Il quarto&nbsp;&mdash;&nbsp;aspettate, quello è già nell'insieme, quindi va elencato solo una volta, perché gli insiemi Python non accettano duplicati. Il quinto. Il sesto&nbsp;&mdash;&nbsp;ancora, un duplicato, quindi va elencato solo una volta. Il risultato finale? Tutti gli elementi unici della lista originale, senza alcun duplicato. La lista originale non deve nemmeno essere ordinata prima.
 <li>La stessa tecnica funziona con le stringhe, dato che una stringa è solamente una sequenza di caratteri.
 <li>Data una lista di stringhe, <code>''.join(<var>a_list</var>)</code> le concatena tutte in un'unica stringa.
-<li>Quindi, data una lista di stringhe, questa descrizione di insieme restituisce tutti i caratteri unici su tutte le stringhe, senza alcun duplicato.
+<li>Quindi, data una lista di stringhe, questa riga di codice restituisce tutti i caratteri unici su tutte le stringhe, senza alcun duplicato.
 </ol>
 
 <p>Il risolutore di alfametica usa questa tecnica per ottenere una lista di tutti i caratteri unici nel rompicapo.
 
-<pre><code class=pp>unique_characters = {c for c in ''.join(words)}</code></pre>
+<pre class=nd><code class=pp>unique_characters = set(''.join(words))</code></pre>
 
 <p>Questa lista viene successivamente usata per assegnare le cifre ai caratteri man mano che il risolutore itera attraverso le possibili soluzioni.
 
@@ -139,28 +168,31 @@ if __name__ == '__main__':
 <p>Come molti linguaggi di programmazione, Python possiede una istruzione <code>assert</code>. Ecco come funziona.
 
 <pre class=screen>
-<a><samp class=p>>>> </samp><kbd class=pp>assert 1 + 1 == 2</kbd>  <span class=u>&#x2460;</span></a>
-<a><samp class=p>>>> </samp><kbd class=pp>assert 1 + 1 == 3</kbd>  <span class=u>&#x2461;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>assert 1 + 1 == 2</kbd>                                     <span class=u>&#x2460;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>assert 1 + 1 == 3</kbd>                                     <span class=u>&#x2461;</span></a>
 <samp class=traceback>Traceback (most recent call last):
   File "&lt;stdin>", line 1, in <module>
-AssertionError</samp></pre>
+AssertionError</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>assert 2 + 2 == 5, "Only for very large values of 2"</kbd>  <span class=u>&#x2462;</span></a>
+<samp class=traceback>Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AssertionError: Only for very large values of 2</samp></pre>
 <ol>
 <li>L'istruzione <code>assert</code> è seguita da una qualsiasi espressione Python valida. In questo caso, l'espressione <code>1 + 1 == 2</code> viene valutata a <code>True</code>, quindi l'istruzione <code>assert</code> non fa nulla.
 <li>Comunque, se l'espressione Python viene valutata a <code>False</code>, l'istruzione <code>assert</code> solleverà una eccezione di tipo <code>AssertionError</code>.
+<li>Potete anche includere un messaggio di spiegazione che viene stampato nel caso l'eccezione <code>AssertionError</code> venga sollevata.
 </ol>
 
 <p>Perciò, questa riga di codice:
 
-<pre><code class=pp>assert len(unique_characters) <= 10</code></pre>
+<pre class=nd><code class=pp>assert len(unique_characters) <= 10, 'Too many letters'</code></pre>
 
-<p>&hellip;è equivalente a&hellip;
+<p>&hellip;è equivalente a questa:
 
-<pre><code class=pp>if len(unique_characters) > 10:
-    raise AssertionError</code></pre>
+<pre class=nd><code class=pp>if len(unique_characters) > 10:
+    raise AssertionError('Too many letters')</code></pre>
 
-<p>Ma è leggermente più facile da leggere e scrivere.
-
-<p>Il risolutore di alfametica usa proprio questa istruzione di <code>assert</code> per interrompere la propria esecuzione nel caso il rompicapo contenga più di dieci singole lettere. Dato che a ogni lettera va assegnata una singola cifra, e ci sono solo dieci cifre, un rompicapo con più di dieci singole lettere non è risolvibile.
+<p>Il risolutore di alfametica usa proprio questa istruzione di <code>assert</code> per interrompere la propria esecuzione nel caso il rompicapo contenga più di dieci singole lettere. Dato che a ogni lettera va assegnata una singola cifra, e ci sono solo dieci cifre, un rompicapo con più di dieci singole lettere non può avere una soluzione.
 
 <p class=a>&#x2042;
 
@@ -180,19 +212,25 @@ AssertionError</samp></pre>
 <a><samp>>>> </samp><kbd class=pp>tuple(ord(c) for c in unique_characters)</kbd>   <span class=u>&#x2463;</span></a>
 <samp class=pp>(69, 68, 77, 79, 78, 83, 82, 89)</samp></pre>
 <ol>
-<li>Una espressione generatore è come una funzione anonima che produce valori. L'espressione stessa somiglia a una descrizione di lista <span class=fixme>[FIXME have we introduced this yet?]</span>, ma è circondata da parentesi tonde invece che parentesi quadre.
-<li>Una espressione generatore restitiusce&hellip; un iteratore.
+<li>Una espressione generatore è come una funzione anonima che produce valori. L'espressione stessa somiglia a una descrizione di lista <span class=fixme>[FIXME xref]</span>, ma è circondata da parentesi tonde invece che parentesi quadre.
+<li>Un'espressione generatore restitiusce&hellip; un iteratore.
 <li>Invocare <code>next(<var>gen</var>)</code> restituisce il valore successivo dall'iteratore.
-<li>Se volete, potete iterare attraverso tutti i possibili valori e restituire una tupla, una lista, o un insieme, passando l'espressione generatore a <code>tuple()</code>, <code>list()</code>, o <code>set()</code>.
+<li>Se volete, potete iterare attraverso tutti i possibili valori e restituire una tupla, una lista, o un insieme, passando l'espressione generatore a <code>tuple()</code>, <code>list()</code>, o <code>set()</code>. In questi casi non avete bisogno di un insieme aggiuntivo di parentesi&nbsp;&mdash;&nbsp;vi basta passare l'espressione <code>ord(c) for c in unique_characters</code> &#8220;nuda e cruda&#8221; alla funzione <code>tuple()</code> e Python scoprirà che è un'espressione generatore.
 </ol>
+
+<blockquote class=note>
+<p><span class=u>&#x261E;</span>Usare un'espressione generatore invece di una descrizione di lista può risparmiare sia <abbr>CPU</abbr> che <abbr>RAM</abbr>. Se state costruendo una lista solo per buttarla via (<i>e.g.</i> passandola a <code>tuple()</code> o <code>set()</code>), usate un'espressione generatore!
+</blockquote>
 
 <p>Ecco un altro modo di realizzare la stessa cosa, utilizzando una <a href=generatori.html>funzione generatore</a>:
 
-<pre><code class=pp>def ord_map(a_string):
+<pre class=nd><code class=pp>def ord_map(a_string):
     for c in a_string:
         yield ord(c)
 
 gen = ord_map(unique_characters)</code></pre>
+
+<p>L'espressione generatore è più compatta ma funzionalmente equivalente.
 
 <p class=a>&#x2042;
 
@@ -278,19 +316,19 @@ StopIteration</samp>
 
 <p class=d>[<a href=esempi/favorite-people.txt>scarica <code>favorite-people.txt</code></a>]
 <pre class=screen>
-<a><samp class=p>>>> </samp><kbd class=pp>names = list(open('esempi/favorite-people.txt'))</kbd>  <span class=u>&#x2460;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>names = list(open('esempi/favorite-people.txt', encoding='utf-8'))</kbd>  <span class=u>&#x2460;</span></a>
 <samp class=p>>>> </samp><kbd class=pp>names</kbd>
 <samp class=pp>['Dora\n', 'Ethan\n', 'Wesley\n', 'John\n', 'Anne\n',
 'Mike\n', 'Chris\n', 'Sarah\n', 'Alex\n', 'Lizzie\n']</samp>
-<a><samp class=p>>>> </samp><kbd class=pp>names = [name.rstrip() for name in names]</kbd>           <span class=u>&#x2461;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>names = [name.rstrip() for name in names]</kbd>                           <span class=u>&#x2461;</span></a>
 <samp class=p>>>> </samp><kbd class=pp>names</kbd>
 <samp class=pp>['Dora', 'Ethan', 'Wesley', 'John', 'Anne',
 'Mike', 'Chris', 'Sarah', 'Alex', 'Lizzie']</samp>
-<a><samp class=p>>>> </samp><kbd class=pp>names = sorted(names)</kbd>                               <span class=u>&#x2462;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>names = sorted(names)</kbd>                                               <span class=u>&#x2462;</span></a>
 <samp class=p>>>> </samp><kbd class=pp>names</kbd>
 <samp class=pp>['Alex', 'Anne', 'Chris', 'Dora', 'Ethan',
 'John', 'Lizzie', 'Mike', 'Sarah', 'Wesley']</samp>
-<a><samp class=p>>>> </samp><kbd class=pp>names = sorted(names, key=len)</kbd>                      <span class=u>&#x2463;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>names = sorted(names, key=len)</kbd>                                      <span class=u>&#x2463;</span></a>
 <samp class=p>>>> </samp><kbd class=pp>names</kbd>
 <samp class=pp>['Alex', 'Anne', 'Dora', 'John', 'Mike',
 'Chris', 'Ethan', 'Sarah', 'Lizzie', 'Wesley']</samp></pre>
@@ -313,8 +351,8 @@ StopIteration</samp>
 <samp class=pp>[(4, &lt;itertools._grouper object at 0x00BA8BF0>),
  (5, &lt;itertools._grouper object at 0x00BB4050>),
  (6, &lt;itertools._grouper object at 0x00BB4030>)]</samp>
-<samp class=p>>>> </samp><kbd class=pp>groups = itertools.groupby(names, len)</kbd>
-<a><samp class=p>>>> </samp><kbd class=pp>for name_length, name_iter in groups:</kbd>    <span class=u>&#x2461;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>groups = itertools.groupby(names, len)</kbd>   <span class=u>&#x2461;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>for name_length, name_iter in groups:</kbd>    <span class=u>&#x2462;</span></a>
 <samp class=p>... </samp><kbd class=pp>    print('Nomi con {0:d} lettere:'.format(name_length))</kbd>
 <samp class=p>... </samp><kbd class=pp>    for name in name_iter:</kbd>
 <samp class=p>... </samp><kbd class=pp>        print(name)</kbd>
@@ -334,9 +372,15 @@ Lizzie
 Wesley</samp></pre>
 <ol>
 <li>La funzione <code>itertools.groupby()</code> prende una sequenza e una funzione chiave, e restituisce un iteratore che genera coppie. Ogni coppia è composta dal risultato dell'applicazione della funzione chiave a ogni elemento (<code>key_function(<var>each_item</var>)</code>) e da un altro iteratore che contiene tutti gli elementi che condividono quel risultato.
-<li>In questo esempio, data una lista di nomi ordinata per lunghezza, <code>itertools.groupby(names, len)</code> metterà tutti i nomi di 4 lettere in un iteratore, tutti i nomi di 5 lettere in un altro iteratore, e così via. La funzione <code>groupby()</code> è completamente generica; potrebbe raggruppare stringhe sulla base della prima lettera, numeri sulla base del loro numero di fattori, oppure utilizzando qualsiasi altra funzione chiave che vi possa venire in mente.
+<li>L'invocazione della funzione <code>list()</code> ha &#8220;esaurito&#8221; l'iteratore, <i>i.e.</i> avete già generato tutti gli elementi nell'iteratore per costruire la lista. Non c'è nessun pulsante di &#8220;<span class=wtf>reset</span>&#8221; su un iteratore, perciò non potete semplicemente ricominciare da capo una volta che lo avete esaurito. Se volete attraversarlo di nuovo (diciamo, nel ciclo <code>for</code> successivo) dovete chiamare ancora <code>itertools.groupby()</code> per creare un nuovo iteratore.
+<li>In questo esempio, data una lista di nomi <em>già ordinata per lunghezza</em>, <code>itertools.groupby(names, len)</code> metterà tutti i nomi di 4 lettere in un iteratore, tutti i nomi di 5 lettere in un altro iteratore, e così via. La funzione <code>groupby()</code> è completamente generica; potrebbe raggruppare stringhe sulla base della prima lettera, numeri sulla base del loro numero di fattori, oppure utilizzando qualsiasi altra funzione chiave che vi possa venire in mente.
 </ol>
 <!-- YO DAWG, WE HEARD YOU LIKE LOOPING, SO WE PUT AN ITERATOR IN YOUR ITERATOR SO YOU CAN LOOP WHILE YOU LOOP. -->
+
+<blockquote class=note>
+<p><span class=u>&#x261E;</span>La funzione <code>itertools.groupby()</code> funziona solo se la sequenza in ingresso è già ordinata secondo il criterio seguito dalla funzione di raggruppamento. Nell'esempio precedente, avete raggruppato una lista di nomi secondo la funzione <code>len()</code>. Questa operazione ha funzionato solo perché la lista in ingresso era già ordinata per lunghezza.
+</blockquote>
+
 <p>State guardando da vicino?
 <pre class=screen>
 <samp class=p>>>> </samp><kbd class=pp>list(range(0, 3))</kbd>
@@ -353,7 +397,7 @@ Wesley</samp></pre>
 <samp class=pp>[(0, 10), (1, 11), (2, 12), (None, 13)]</samp></pre>
 <ol>
 <li>La funzione <code>itertools.chain()</code> prende due iteratori e restituisce un iteratore che contiene tutti gli elementi del primo iteratore seguiti da tutti gli elementi del secondo iteratore. (In realtà, può prendere un numero qualsiasi di iteratori, e concatenarli tutti nell'ordine in cui sono stati passati alla funzione.)
-<li>La funzione <code>zip()</code> fa qualcosa di prosaico che si rivela estremamente utile: prende un numero qualsiasi di sequenze e restituisce un iteratore col primo elemento di ogni sequenza, poi il secondo elemento di ognuna, poi il terzo, e così via.
+<li>La funzione <code>zip()</code> fa qualcosa di prosaico che si rivela estremamente utile: prende un numero qualsiasi di sequenze e restituisce un iteratore che restituisce tuple contenenti il primo elemento di ogni sequenza, poi il secondo elemento di ognuna, poi il terzo, e così via.
 <li>La funzione <code>zip()</code> si ferma alla fine della sequenza più corta. <code>range(10, 14)</code> contiene 4 elementi (10, 11, 12, e 13), ma <code>range(0, 3)</code> ne contiene solo 3, quindi la funzione <code>zip()</code> restituisce un iteratore di 3 elementi.
 <li>D'altra parte, la funzione <code>itertools.zip_longest()</code> si ferma alla fine della sequenza <em>più lunga</em>, inserendo il valore <code>None</code> per elementi oltre la fine delle sequenze più corte.
 </ol>
@@ -371,12 +415,12 @@ Wesley</samp></pre>
  'N': '5', 'S': '1', 'R': '6', 'Y': '7'}</samp></pre>
 <ol>
 <li>Data una lista di lettere e una lista di cifre (ognuna rappresentata qui come una stringa di 1 carattere), la funzione <code>zip()</code> creerà coppie di lettere e cifre, in ordine.
-<li>Perché è così figo? Perché si dà il caso che la struttura dati sia esattamente la struttura giusta da passare alla funzione <code>dict()</code> per creare un dizionario che usi le lettere come chiavi e le cifre ad esse associate come valori. Sebbene la rappresentazione stampata del dizionario elenchi le coppie in ordine differente (i dizionari non hanno alcun &#8220;ordine&#8221; di per sé), potete vedere che ogni lettera è associata con una cifra sulla base dell'ordinamento delle sequenze <var>characters</var> e <var>guess</var> originali.
+<li>Perché è così figo? Perché si dà il caso che la struttura dati sia esattamente la struttura giusta da passare alla funzione <code>dict()</code> per creare un dizionario che usi le lettere come chiavi e le cifre ad esse associate come valori. (Questo non è l'unico modo per farlo, naturalmente. Potreste usare una descrizione di dizionario <span class=fixme>[FIXME xref]</span> per creare direttamente il dizionario.) Sebbene la rappresentazione stampata del dizionario elenchi le coppie in ordine differente (i dizionari non hanno alcun &#8220;ordine&#8221; di per sé), potete vedere che ogni lettera è associata con una cifra sulla base dell'ordinamento delle sequenze <var>characters</var> e <var>guess</var> originali.
 </ol>
 
 <p id=guess>Il risolutore di alfametica usa questa tecnica per creare un dizionario che mette in corrispondenza le lettere nel rompicampo con le cifre nella soluzione, per ogni possibile soluzione.
 
-<pre><code class=pp>characters = tuple(ord(c) for c in sorted_characters)
+<pre class=nd><code class=pp>characters = tuple(ord(c) for c in sorted_characters)
 digits = tuple(ord(c) for c in '0123456789')
 ...
 for guess in itertools.permutations(digits, len(characters)):
@@ -432,7 +476,7 @@ for guess in itertools.permutations(digits, len(characters)):
 
 <p>Questo è l'ultimo pezzo del puzzle (o piuttosto, l'ultimo pezzo del risolutore di puzzle). Dopo tutta quella sofisticata manipolazione di stringhe, non ci rimane altro che una stringa come <code>'9567 + 1085 == 10652'</code>. Ma quella è appunto solo una stringa, e a cosa può servirci una stringa? Entra <code>eval()</code>, lo strumento universale di valutazione in Python.
 
-<pre class=screen>
+<pre class='nd screen'>
 <samp class=p>>>> </samp><kbd class=pp>eval('1 + 1 == 2')</kbd>
 <samp class=pp>True</samp>
 <samp class=p>>>> </samp><kbd class=pp>eval('1 + 1 == 3')</kbd>
@@ -442,7 +486,7 @@ for guess in itertools.permutations(digits, len(characters)):
 
 <p>Ma aspettate, c'è di più! La funzione <code>eval()</code> non si limita alle espressioni logiche. Può gestire <em>qualsiasi</em> espressione Python e restituire <em>qualsiasi</em> tipo di dato.
 
-<pre class=screen>
+<pre class='nd screen'>
 <samp class=p>>>> </samp><kbd class=pp>eval('"A" + "B"')</kbd>
 <samp class=pp>'AB'</samp>
 <samp class=p>>>> </samp><kbd class=pp>eval('"MARK".translate({65: 79})')</kbd>
@@ -473,29 +517,29 @@ for guess in itertools.permutations(digits, len(characters)):
 
 <pre class=screen>
 <samp class=p>>>> </samp><kbd class=pp>import subprocess</kbd>
-<a><samp class=p>>>> </samp><kbd class=pp>eval("subprocess.getoutput('ls ~')")</kbd>      <span class=u>&#x2460;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>eval("subprocess.getoutput('ls ~')")</kbd>                  <span class=u>&#x2460;</span></a>
 <samp class=pp>'Desktop         Library         Pictures \
  Documents       Movies          Public   \
  Music           Sites'</samp>
-<a><samp class=p>>>> </samp><kbd class=pp>eval("subprocess.getoutput('rm -rf /')")</kbd>  <span class=u>&#x2461;</span></a></pre>
+<a><samp class=p>>>> </samp><kbd class=pp>eval("subprocess.getoutput('rm /some/random/file')")</kbd>  <span class=u>&#x2461;</span></a></pre>
 <ol>
 <li>Il modulo <code>subprocess</code> vi permette di lanciare comandi di shell arbitrari e ottenerne il risultato sotto forma di stringa Python.
-<li>Non fatelo.
+<li>Comandi di shell arbitrari possono avere conseguenze permanenti.
 </ol>
 
 <p>&Egrave; anche peggio di così, perché esiste una funzione globale chiamata <code>__import__()</code> che prende il nome di un modulo sotto forma di stringa, importa il modulo, e restituisce un riferimento ad esso. Combinandola con la potenza di <code>eval()</code>, potete costruire una singola espressione che cancellerà tutti i vostri file:
 
 <pre class=screen>
-<a><samp class=p>>>> </samp><kbd class=pp>eval("__import__('subprocess').getoutput('rm -rf /')")</kbd>  <span class=u>&#x2460;</span></a></pre>
+<a><samp class=p>>>> </samp><kbd class=pp>eval("__import__('subprocess').getoutput('rm /some/random/file')")</kbd>  <span class=u>&#x2460;</span></a></pre>
 <ol>
-<li>Non fate nemmeno questo.
+<li>Ora immaginate l'uscita di <code>'rm -rf ~'</code>. In realtà non ci sarebbe nessuna uscita, ma d'altra parte non vi sarebbe rimasto più alcun file.
 </ol>
 
-<p class=c style='font-size:1000%;font-weight:bold;line-height:1;margin:0.7em 0'>eval() è MALVAGIA
+<p class=xxxl>eval() è MALVAGIA
 
 <p>Be', la parte malvagia è la valutazione di espressioni arbitrarie provenienti da sorgenti non affidabili. Dovreste usare <code>eval()</code> solo su ingressi affidabili. Naturalmente, il trucco è scoprire cos'è &#8220;affidabile.&#8221 Ma ecco qualcosa che so di sicuro: <b>NON</b> dovreste prendere questo risolutore di alfametica e metterlo su Internet come un piccolo servizio web divertente. Non fate l'errore di pensare &#8220;Gosh, la funzione effettua un sacco di manipolazioni di stringhe prima di ottenere una stringa da valutare; <em>non riesco a immaginare</em> come qualcuno potrebbe servirsene.&#8221; Qualcuno <b>SCOPRIR&Agrave;</b> come infilare codice eseguibile pericoloso attraverso tutte quelle manipolazioni di stringhe (<a href=http://www.matasano.com/log/1032/this-new-vulnerability-dowds-inhuman-flash-exploit/>sono accadute cose anche più strane</a>), e poi potrete dare al vostro server il bacio d'addio.
 
-<p>Ma sicuramente ci sarà <em>qualche</em> modo per valutare espressioni in sicurezza? Mettere <code>eval()</code> in un ambiente controllato dove non possa accedere o danneggiare il mondo esterno? Be', sì, ma è complicato.
+<p>Ma sicuramente ci sarà <em>qualche</em> modo per valutare espressioni in sicurezza? Mettere <code>eval()</code> in un ambiente controllato dove non possa accedere o danneggiare il mondo esterno? Be', sì e no.
 
 <pre class=screen>
 <samp class=p>>>> </samp><kbd class=pp>x = 5</kbd>
@@ -531,13 +575,9 @@ NameError: name 'math' is not defined</samp></pre>
 
 <p>Sì, questo significa che potete ancora fare cose pericolose, anche se avete esplicitamente impostato gli spazi di nomi globali e locali a dizionari vuoti quando avete chiamato <code>eval()</code>:
 
-<pre class=screen>
-<a><samp class=p>>>> </samp><kbd class=pp>eval("__import__('subprocess').getoutput('rm -rf /')", {}, {})</kbd>  <span class=u>&#x2460;</span></a></pre>
-<ol>
-<li>Per favore non fatelo.
-</ol>
+<pre class='nd screen'><samp class=p>>>> </samp><kbd class=pp>eval("__import__('subprocess').getoutput('rm /some/random/file')", {}, {})</kbd></pre>
 
-<p>Oops. Sono contento di non aver fatto quel servizio web di alfametica. C'è un modo <em>qualsiasi</em> di utilizzare <code>eval()</code> in sicurezza?
+<p>Oops. Sono contento di non aver fatto quel servizio web di alfametica. C'è un modo <em>qualsiasi</em> di utilizzare <code>eval()</code> in sicurezza? Be', sì e no.
 
 <pre class=screen>
 <samp class=p>>>> </samp><kbd class=pp>eval("__import__('math').sqrt(5)",</kbd>
@@ -554,10 +594,20 @@ NameError: name '__import__' is not defined</samp>
 NameError: name '__import__' is not defined</samp></pre>
 <ol>
 <li>Per valutare espressioni non affidabili in maniera sicura, avete bisogno di definire nello spazio di nomi globale un dizionario che faccia corrispondere <code>"__builtins__"</code> a <code>None</code>, il valore nullo di Python. Internamente, le funzioni &#8220;built-in&#8221; sono contenute in uno pseudo-modulo chiamato <code>"__builtins__"</code>. Questo pseudo-modulo (<i>i.e.</i> l'insieme delle funzioni built-in) viene reso disponibile alle espressioni valutate a meno che non lo rimpiazziate esplicitamente.
-<li>Potete fare questo, ma state molto, molto attenti a non fare errori di ortografia. In particolare, assicuratevi di aver rimpiazzato <code>__builtins__</code> e non <code>__builtin__</code> o <code>__built-ins__</code> o qualche altra variazione.
+<li>Assicuratevi di aver rimpiazzato <code>__builtins__</code> e non <code>__builtin__</code> o <code>__built-ins__</code> o qualche altra variazione che funzionerà benissimo ma vi esporrà a rischi catastrofici.
 </ol>
 
-<p>Quindi, alla fine, <em>è</em> possibile valutare in sicurezza espressioni Python non affidabili. Passare <code>{"__builtins__": None}</code> come secondo parametro alla funzione <code>eval()</code> non è intuitivo (e non è il comportamento di default) ma funziona. Se capite <em>perché</em> funziona, sarà meno probabile che usiate <code>eval()</code> in maniera scorretta, in un modo che funziona con ingressi affidabili ma che ha conseguenze potenzialmente devastanti con ingressi non affidabili.
+<p>Quindi <code>eval()</code> è sicura ora? Be', sì e no.
+
+<pre class=screen>
+<samp class=p>>>> </samp><kbd class=pp>eval("2 ** 2147483647",</kbd>
+<a><samp class=p>... </samp><kbd class=pp>    {"__builtins__":None}, {})</kbd>          <span class=u>&#x2460;</span></a>
+</pre>
+<ol>
+<li>Anche senza accedere a <code>__builtins__</code>, potete ancora lanciare un attacco <span class=wtf>denial-of-service attack</span>. Per esempio, elevare <code>2</code> alla potenza di <code>2147483647</code> utilizzerà il 100% della <abbr>CPU</abbr> del vostro server per un bel po' di tempo. (Se state provando a farlo nella shell interattiva, premete alcune volte <kbd>Ctrl-C</kbd> per interrompere la computazione.) Tecnicamente questa espressione <em>restituirà</em> un valore alla fine, ma nel frattempo il vostro server non riuscirà proprio a fare nient'altro.
+</ol>
+
+<p>Alla fine, <em>è</em> possibile valutare in sicurezza espressioni Python non affidabili, per una qualche definizione di &#8220;sicurezza&#8221; che si scopre non essere terribilmente utile nella vita reale. Va benissimo se state semplicemente divertendovi un po' e va benissimo se usate solo ingressi affidabili. Ma qualsiasi altra cosa significa andare in cerca di guai.
 
 <p class=a>&#x2042;
 

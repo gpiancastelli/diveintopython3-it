@@ -70,7 +70,7 @@ Il tuo alfabeto termina dove il mio inizia! <span class=u>&#x275E;</span><br>&md
 
 <p>Altre persone hanno ponderato a lungo su questi problemi, e hanno trovato una soluzione:
 
-<p class=c style='font-size:1000%;font-weight:bold;line-height:1;margin:0.7em 0'>UTF-8
+<p class=xxxl>UTF-8
 
 <p>UTF-8 è un sistema di codifica Unicode a <em>lunghezza variabile</em>. Cioè, caratteri differenti occupano un numero differente di byte. Per i caratteri <abbr>ASCII</abbr> (A-Z, <i class=baa>&amp;</i>c.) UTF-8 usa solo un byte per carattere. In effetti, usa gli stessi identici byte; i primi 128 caratteri (0&ndash;127) in UTF-8 sono indistinguibili da quelli <abbr>ASCII</abbr>. I caratteri &#8220;Extended Latin&#8221; come &ntilde; e &ouml; finiscono per occupare due byte. (I byte non sono semplicemente dei &#8220;code point&#8221; Unicode come sarebbero in UTF-16; i bit vengono pesantemente manipolati in qualche modo.) Caratteri cinesi come &#x4E2D; finiscono per occupare tre byte. I caratteri raramente usati del &#8220;piano astrale&#8221; occupano quattro byte.
 
@@ -181,7 +181,7 @@ def approximate_size(size, a_kilobyte_is_1024_bytes=True):
 
 <p>Giusto per impressionarvi, eccovi un esempio che combina tutti i nomi appena visti:
 
-<pre class=screen>
+<pre class='nd screen'>
 <samp class=p>>>> </samp><kbd class=pp>import humansize</kbd>
 <samp class=p>>>> </samp><kbd class=pp>import sys</kbd>
 <samp class=p>>>> </samp><kbd class=pp>'1MB = 1000{0.modules[humansize].SUFFIXES[1000][0]}'.format(sys)</kbd>
@@ -202,7 +202,7 @@ def approximate_size(size, a_kilobyte_is_1024_bytes=True):
 
 <p>Ma aspettate! C'è di più! Diamo un'altra occhiata a quella strana linea di codice in <code>humansize.py</code>:
 
-<pre><code class=pp>if size &lt; multiple:
+<pre class=nd><code class=pp>if size &lt; multiple:
     return '{0:.1f} {1}'.format(size, suffix)</code></pre>
 
 <p><code>{1}</code> viene rimpiazzato dal secondo argomento passato al metodo <code>format()</code>, che è <var>suffix</var>. Ma che cos'è <code>{0:.1f}</code>? &Egrave; due cose: <code>{0}</code>, che riconoscerete, e <code>:.1f</code>, che non riconoscerete. La seconda metà (dai due punti in poi compresi) definisce una <i>specifica di formato</i>, che raffina ulteriormente il modo in cui la variabile rimpiazzata dovrà essere formattata.
@@ -213,7 +213,7 @@ def approximate_size(size, a_kilobyte_is_1024_bytes=True):
 
 <p>Nell'ambito di un campo di sostituzione, i due punti (<code>:</code>) segnano l'inizio della specifica di formato. La specifica di formato &#8220;<code>.1</code>&#8221; significa &#8220;arrotonda al decimale più vicino&#8221; (<i>i.e.</i> mostra solo una cifra dopo il punto decimale). La specifica di formato &#8220;<code>f</code>&#8221; significa &#8220;numero in virgola fissa&#8221; (al contrario della notazione esponenziale o di qualche altra rappresentazione decimale). Quindi, data una dimensione <var>size</var> di <code>698.25</code> e un suffisso <var>suffix</var> di <code>'GB'</code>, la stringa formattata diventerà <code>'698.3 GB'</code>, perché <code>698.25</code> viene arrotondato alla prima cifra decimale, e il suffisso è aggiunto dopo il numero.
 
-<pre class=screen>
+<pre class='nd screen'>
 <samp class=p>>>> </samp><kbd class=pp>'{0:.1f} {1}'.format(698.25, 'GB')</kbd>
 <samp class=pp>'698.3 GB'</samp></pre>
 
@@ -415,11 +415,11 @@ TypeError: Can't convert 'bytes' object to str implicitly</samp>
 
 <p>Se volete usare una codifica differente nel vostro codice Python, potete inserire una dichiarazione di codifica nella prima riga di ogni file. Questa dichiarazione definisce windows-1252 come codifica di un file <code>.py</code>
 
-<pre><code class=pp># -*- coding: windows-1252 -*-</code></pre>
+<pre class=nd><code class=pp># -*- coding: windows-1252 -*-</code></pre>
 
 <p>Tecnicamente, la dichiarazione per la nuova codifica di carattere si può trovare anche sulla seconda riga, se la prima riga contiene un comando hash-bang di tipo <abbr>UNIX</abbr>.
 
-<pre><code class=pp>#!/usr/bin/python3
+<pre class=nd><code class=pp>#!/usr/bin/python3
 # -*- coding: windows-1252 -*-</code></pre>
 
 <p>Per maggiori informazioni, consultate la <a href=http://www.python.org/dev/peps/pep-0263/><abbr>PEP</abbr> 263: Defining Python Source Code Encodings</a>.

@@ -265,7 +265,7 @@ mark{display:inline}
 <samp class=pp>&lt;Element {http://www.w3.org/2005/Atom}feed at cd1eb0></samp></pre>
 <ol>
 <li>La libreria ElementTree fa parte della libreria standard di Python e si trova nel modulo <code>xml.etree.ElementTree</code>.
-<li>Il punto d'ingresso principale della libreria ElementTree è la funzione <code>parse()</code>, che può prendere come argomento un nome di file o un oggetto simile a un file <span class=fixme>[FIXME xref]</span>. Questa funzione riconosce l'intero documento tutto in una volta. Se la memoria disponibile è scarsa, esistono modi per <a href=http://effbot.org/zone/element-iterparse.htm>riconoscere un documento <abbr>XML</abbr> in maniera incrementale</a>.
+<li>Il punto d'ingresso principale della libreria ElementTree è la funzione <code>parse()</code>, che può prendere come argomento un nome di file o un <a href=files.html#file-like-objects>oggetto simile a un file</a>. Questa funzione riconosce l'intero documento tutto in una volta. Se la memoria disponibile è scarsa, esistono modi per <a href=http://effbot.org/zone/element-iterparse.htm>riconoscere un documento <abbr>XML</abbr> in maniera incrementale</a>.
 <li>La funzione <code>parse()</code> restituisce un oggetto che rappresenta l'intero documento. Questo oggetto <em>non</em> è l'elemento radice. Per ottenere un riferimento all'elemento radice dovete chiamare il metodo <code>getroot()</code>.
 <li>Come vi sareste aspettati, l'elemento radice è l'elemento <code>feed</code> nello spazio di nomi <code>http://www.w3.org/2005/Atom</code>. La rappresentazione sotto forma di stringa di questo oggetto rafforza un concetto importante: un elemento <abbr>XML</abbr> è la combinazione del proprio spazio di nomi e del nome del proprio tag (anche chiamato <i>nome locale</i>). Ogni elemento in questo documento si trova nello spazio di nomi Atom, quindi l'elemento radice viene rappresentato come <code>{http://www.w3.org/2005/Atom}feed</code>.
 </ol>
@@ -447,7 +447,7 @@ StopIteration</samp></pre>
 
 <p>Per documenti <abbr>XML</abbr> di grandi dimensioni, <code>lxml</code> è significativamente più veloce rispetto alla libreria built-in ElementTree. Se state usando solo la <abbr>API</abbr> di ElementTree e volete sfruttare l'implementazione più veloce disponibile, potete provare a importare <code>lxml</code> e ricorrere all'alternativa built-in ElementTree solo nel caso in cui <code>lxml</code> non sia presente.
 
-<pre><code class=pp>try:
+<pre class=nd><code class=pp>try:
     from lxml import etree
 except ImportError:
     import xml.etree.ElementTree as etree</code></pre>
@@ -586,7 +586,7 @@ except ImportError:
 
 <p>Quello è un errore perché l'entità <code>&amp;hellip;</code> non è definita in <abbr>XML</abbr>. (&Egrave; definita in <abbr>HTML</abbr>.) Se provate a riconoscere questo feed difettoso con le impostazioni di default, <code>lxml</code> si bloccherà sull'entità non definita.
 
-<pre class=screen>
+<pre class='nd screen'>
 <samp class=p>>>> </samp><kbd class=pp>import lxml.etree</kbd>
 <samp class=p>>>> </samp><kbd class=pp>tree = lxml.etree.parse('esempi/feed-broken.xml')</kbd>
 <samp class=traceback>Traceback (most recent call last):
