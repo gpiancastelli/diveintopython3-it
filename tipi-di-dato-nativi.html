@@ -32,7 +32,7 @@ body{counter-reset:h1 2}
 <li><b>Insiemi</b>: sono gruppi non ordinati di valori.
 <li><b>Dizionari</b>: sono gruppi non ordinati di coppie chiave-valore.
 </ol>
-<p>Naturalmente, ci sono molti più tipi di questi sette. <a href=il-vostro-primo-programma-python.html#everythingisanobject>Ogni cosa è un oggetto</a> in Python, quindi ci sono anche tipi come <i>modulo</i>, <i>funzione</i>, <i>classe</i>, <i>metodo</i>, <i>file</i>, e persino <i>codice compilato</i>. Ne avete già visti alcuni: <a href=il-vostro-primo-programma-python.html#runningscripts>i moduli hanno un nome</a>, <a href=il-vostro-primo-programma-python.html#docstrings>le funzioni posseggono una <code>docstring</code></a>, <i class=baa>&amp;</i>c. Imparerete cosa sono le classi in <a href=iterators.html>Classi <i class=baa>&amp;</i> iteratori</a> e cosa sono i file in <span class=fixme>[FIXME xref]</span>.
+<p>Naturalmente, ci sono molti più tipi di questi sette. <a href=il-vostro-primo-programma-python.html#everythingisanobject>Ogni cosa è un oggetto</a> in Python, quindi ci sono anche tipi come <i>modulo</i>, <i>funzione</i>, <i>classe</i>, <i>metodo</i>, <i>file</i>, e persino <i>codice compilato</i>. Ne avete già visti alcuni: <a href=il-vostro-primo-programma-python.html#runningscripts>i moduli hanno un nome</a>, <a href=il-vostro-primo-programma-python.html#docstrings>le funzioni posseggono una <code>docstring</code></a>, <i class=baa>&amp;</i>c. Imparerete cosa sono le classi nel capitolo <a href=iterators.html>Classi <i class=baa>&amp;</i> iteratori</a> e cosa sono i file nel capitolo <a href=file.html>File</a>.
 <p>Stringhe e byte sono abbastanza importanti&nbsp;&mdash;&nbsp;e abbastanza complicati&nbsp;&mdash;&nbsp;da essere trattati in un capitolo a parte. Diamo un'occhiata agli altri per primi.
 
 <p class=a>&#x2042;
@@ -41,10 +41,10 @@ body{counter-reset:h1 2}
 <aside>Potete usare virtualmente qualsiasi espressione in un contesto logico.</aside>
 <p>I dati di tipo booleano sono veri o falsi. Python ha due costanti, chiamate ingegnosamente <code>True</code> e <code>False</code>, che possono essere usate per assegnare direttamente valori di tipo booleano. Anche le espressioni possono essere valutate come valori booleani. In certi posti (come le istruzioni <code>if</code>), Python si aspetta una espressione da valutare come un valore booleano. Questi posti sono chiamati <i>contesti logici</i>. Potete virtualmente usare qualsiasi espressione in un contesto logico, e Python proverà a determinarne il valore di verità. Tipi di dato differenti hanno regole differenti per decidere se un loro valore è vero o falso in un contesto logico. (Questa frase avrà più senso una volta che avrete visto alcuni esempi concreti più in là in questo capitolo.)
 <p>Per esempio, considerate questo estratto da <a href=il-vostro-primo-programma-python.html#divingin><code>humansize.py</code></a>:
-<pre><code class=pp>if size &lt; 0:
+<pre class=nd><code class=pp>if size &lt; 0:
     raise ValueError('number must be non-negative')</code></pre>
 <p><var>size</var> è un intero, <code>0</code> è un intero, e <code>&lt;</code> è un operatore numerico. Il risultato dell'espressione <code>size &lt; 0</code> è sempre un booleano. Potete verificarlo voi stessi nella shell interattiva di Python:
-<pre class=screen>
+<pre class='nd screen'>
 <samp class=p>>>> </samp><kbd class=pp>size = 1</kbd>
 <samp class=p>>>> </samp><kbd class=pp>size &lt; 0</kbd>
 <samp class=pp>False</samp>
@@ -55,7 +55,7 @@ body{counter-reset:h1 2}
 <samp class=p>>>> </samp><kbd class=pp>size &lt; 0</kbd>
 <samp class=pp>True</samp></pre>
 <p>A causa di alcune questioni lasciate in eredità da Python 2, i booleani possono essere trattati come numeri. <code>True</code> vale <code>1</code> e <code>False</code> vale <code>0</code>.
-<pre class=screen>
+<pre class='nd screen'>
 <samp class=p>>>> </samp><kbd class=pp>True + True</kbd>
 <samp class=pp>2</samp>
 <samp class=p>>>> </samp><kbd class=pp>True + False</kbd>
@@ -481,7 +481,7 @@ IndexError: pop from empty list</samp></pre>
 <li>La lista originale rimane invariata.
 </ol>
 
-<p>Non avete ancora alcun valore? Non è un problema. Potete creare un insieme vuoto.
+<p id=emptyset>Non avete ancora alcun valore? Non è un problema. Potete creare un insieme vuoto.
 
 <pre class=screen>
 <a><samp class=p>>>> </samp><kbd class=pp>a_set = set()</kbd>    <span class=u>&#x2460;</span></a>
@@ -698,7 +698,7 @@ KeyError: 'pop from an empty set'</samp></pre>
 <p><span class=u>&#x261E;</span>Un dizionario in Python è come un hash in Perl 5. In Perl 5, variabili che memorizzano hash cominciano sempre con il carattere <code>%</code>. In Python, le variabili possono essere chiamate in qualsiasi modo, e Python tiene traccia del tipo di dato internamente.
 </blockquote>
 <h3 id=creating-dictionaries>Creare un dizionario</h3>
-<p>Creare un dizionario è facile. La sintassi è simile agli <a href=#sets>insiemi</a> <span class=fixme>[FIXME link fails because section is not written yet]</span>, ma invece di valori avete coppie chiave-valore. Una volta che avete un dizionario, potete recuperarne i valori attraverso le loro chiavi.
+<p>Creare un dizionario è facile. La sintassi è simile agli <a href=#sets>insiemi</a>, ma invece di valori avete coppie chiave-valore. Una volta che avete un dizionario, potete recuperarne i valori attraverso le loro chiavi.
 <pre class=screen>
 <a><samp class=p>>>> </samp><kbd class=pp>a_dict = {'server': 'db.diveintopython3.org', 'database': 'mysql'}</kbd>  <span class=u>&#x2460;</span></a>
 <samp class=p>>>> </samp><kbd class=pp>a_dict</kbd>
@@ -744,7 +744,7 @@ KeyError: 'db.diveintopython3.org'</samp></pre>
 <h3 id=mixed-value-dictionaries>Dizionari a valori misti</h3>
 <p>I dizionari non funzionano solo con le stringhe. I valori in un dizionario possono appartenere a qualsiasi tipo di dato, compresi interi, booleani, oggetti arbitrari, e persino altri dizionari. E all'interno di un singolo dizionario, i valori non devono essere tutti dello stesso tipo; potete mescolarli a piacimento. Le chiavi di un dizionario hanno maggiori restrizioni, ma possono essere stringhe, interi, e di pochi altri tipi. Potete mescolare anche i tipi di dato delle chiavi all'interno di un singolo dizionario.
 <p>In effetti, avete già visto un dizionario con chiavi e valori che non sono stringhe nel <a href=il-vostro-primo-programma-python.html#divingin>vostro primo programma Python</a>.
-<pre><code class=pp>SUFFIXES = {1000: ['KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
+<pre class=nd><code class=pp>SUFFIXES = {1000: ['KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
             1024: ['KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB']}</code></pre>
 <p>Analizziamo questo oggetto nella shell interattiva.
 <pre class=screen>
@@ -761,7 +761,7 @@ KeyError: 'db.diveintopython3.org'</samp></pre>
 <a><samp class=p>>>> </samp><kbd class=pp>SUFFIXES[1000][3]</kbd>  <span class=u>&#x2464;</span></a>
 <samp class=pp>'TB'</samp></pre>
 <ol>
-<li>Similmente a quello che accade per le <a href=#lists>liste</a> e gli <a href=#sets>insiemi</a> <span class=fixme>[FIXME-xref]</span>, la funzione <code>len()</code> vi restituisce il numero di chiavi in un dizionario.
+<li>Similmente a quello che accade per le <a href=#lists>liste</a> e gli <a href=#sets>insiemi</a>, la funzione <code>len()</code> vi restituisce il numero di chiavi in un dizionario.
 <li>E come per le liste e gli insiemi, potete usare l'operatore <code>in</code> per verificare se una chiave specifica è definita in un dizionario.
 <li><code>1000</code> <em>è</em> una chiave nel dizionario <code>SUFFIXES</code>; il suo valore è una lista di otto elementi (otto stringhe, per essere precisi).
 <li>Similmente, <code>1024</code> è una chiave nel dizionario <code>SUFFIXES</code>; il suo valore è anch'esso una lista di otto elementi.
@@ -791,7 +791,7 @@ KeyError: 'db.diveintopython3.org'</samp></pre>
 <h2 id=none><code>None</code></h2>
 <p><code>None</code> è una costante speciale in Python. &Egrave; un valore nullo. <code>None</code> non è la stessa cosa di <code>False</code>. <code>None</code> non è <code>0</code>. <code>None</code> non è una stringa vuota. Confrontare <code>None</code> con qualcos'altro che non sia <code>None</code> restituirà sempre <code>False</code>.
 <p><code>None</code> è l'unico valore nullo. Ha un proprio tipo di dato (<code>NoneType</code>). Potete assegnare <code>None</code> a qualsiasi variabile, ma non potete creare altri oggetti di tipo <code>NoneType</code>. Tutte le varibili il cui valore è <code>None</code> sono uguali tra loro.
-<pre class=screen>
+<pre class='nd screen'>
 <samp class=p>>>> </samp><kbd class=pp>type(None)</kbd>
 <samp class=pp>&lt;class 'NoneType'></samp>
 <samp class=p>>>> </samp><kbd class=pp>None == False</kbd>
@@ -811,7 +811,7 @@ KeyError: 'db.diveintopython3.org'</samp></pre>
 </pre>
 <h3 id=none-in-a-boolean-context><code>None</code> in un contesto logico</h3>
 <p>In <a href=#booleans>un contesto logico</a>, <code>None</code> è falso e <code>not None</code> è vero.
-<pre class=screen>
+<pre class='nd screen'>
 <samp class=p>>>> </samp><kbd class=pp>def is_it_true(anything):</kbd>
 <samp class=p>... </samp><kbd class=pp>  if anything:</kbd>
 <samp class=p>... </samp><kbd class=pp>    print('sì, è vero')</kbd>

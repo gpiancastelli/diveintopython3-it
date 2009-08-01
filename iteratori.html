@@ -45,7 +45,7 @@ body{counter-reset:h1 6}
 
 <p>Analizziamolo una riga alla volta.
 
-<pre><code class=pp>class Fib:</code></pre>
+<pre class=nd><code class=pp>class Fib:</code></pre>
 
 <p><code>class</code>? Classe? Che cos'è una classe?
 
@@ -70,7 +70,7 @@ body{counter-reset:h1 6}
 <p><span class=u>&#x261E;</span>L'istruzione <code>pass</code> in Python è come un insieme vuoto di parentesi graffe (<code>{}</code>) in Java o C.
 </blockquote>
 
-<p>Molte classi ereditano da altre classi, ma questa non lo fa. Molte classi definiscono metodi, ma questa non lo fa. Non c'è nulla che una classe Python debba assolutamente avere, a parte un nome. In particolare, i programmatori C++ potrebbero trovare strano che le classi Python non abbiano costruttori e distruttori espliciti. Sebbene non sia obbligatorio, le classi Python <em>possono</em> avere qualcosa di simile a un costruttore: il metodo <code>__init__()</code>.
+<p>Molte classi ereditano da altre classi, ma questa non lo fa. Molte classi definiscono metodi, ma questa non lo fa. Non c'è nulla che una classe Python debba assolutamente avere, a parte un nome. In particolare, i programmatori <abbr>C++</abbr> potrebbero trovare strano che le classi Python non abbiano costruttori e distruttori espliciti. Sebbene non sia obbligatorio, le classi Python <em>possono</em> avere qualcosa di simile a un costruttore: il metodo <code>__init__()</code>.
 
 <h3 id=init-method>Il metodo <code>__init__()</code></h3>
 
@@ -82,7 +82,7 @@ body{counter-reset:h1 6}
 <a>    def __init__(self, max):                                          <span class=u>&#x2461;</span></a></code></pre>
 <ol>
 <li>Anche le classi possono (e dovrebbero) avere una <code>docstring</code>, esattamente come i moduli e le funzioni.
-<li>Il metodo <code>__init__()</code> viene chiamato immediatamente dopo la creazione di un'istanza della classe. Sarebbe allettante ma scorretto dire che questo metodo è il costruttore della classe. &Egrave; allettante, perché somiglia a un costruttore (per convenzione, il metodo <code>__init__()</code> è il primo metodo definito nella classe), agisce come un costruttore (è il primo frammento di codice eseguito in un'istanza appena creata della classe) e ha persino un nome che suona come quello di un costruttore. Ma è scorretto, perché l'oggetto è già stato costruito nel momento in cui il metodo <code>__init__()</code> viene chiamato, e un riferimento valido alla nuova istanza della classe è già disponibile.
+<li>Il metodo <code>__init__()</code> viene chiamato immediatamente dopo la creazione di un'istanza della classe. Sarebbe allettante&nbsp;&mdash;&nbsp;ma tecnicamente scorretto&nbsp;&mdash;&nbsp;dire che questo metodo è il &#8220;costruttore&#8221; della classe. &Egrave; allettante, perché somiglia a un costruttore <abbr>C++</abbr> (per convenzione, il metodo <code>__init__()</code> è il primo metodo definito nella classe), agisce come un costruttore (è il primo frammento di codice eseguito in un'istanza appena creata della classe) e ha persino un nome che suona come quello di un costruttore. Ma è scorretto, perché l'oggetto è già stato costruito nel momento in cui il metodo <code>__init__()</code> viene chiamato, e un riferimento valido alla nuova istanza della classe è già disponibile.
 </ol>
 
 <p>Il primo argomento di ogni metodo in una classe, compreso il metodo <code>__init__()</code>, è sempre un riferimento all'istanza corrente della classe. Per convenzione, questo argomento viene chiamato <var>self</var>. Questo argomento occupa il ruolo della parola riservata <code>this</code> in <abbr>C++</abbr> o Java, ma <var>self</var> non è una parola riservata in Python, semplicemente una convenzione nominale. Nondimeno, per favore non chiamatelo in modi diversi da <var>self</var>; questa è una convenzione molto forte.
@@ -143,7 +143,7 @@ body{counter-reset:h1 6}
 
 <p>Le variabili di istanza sono specifiche per un'istanza di una classe. Per esempio, se create due istanze di <code>Fib</code> con differenti valori massimi, ognuna manterrà in memoria il proprio valore.
 
-<pre class=screen>
+<pre class='nd screen'>
 <samp class=p>>>> </samp><kbd class=pp>import fibonacci2</kbd>
 <samp class=p>>>> </samp><kbd class=pp>fib1 = fibonacci2.Fib(100)</kbd>
 <samp class=p>>>> </samp><kbd class=pp>fib2 = fibonacci2.Fib(200)</kbd>
@@ -158,13 +158,18 @@ body{counter-reset:h1 6}
 
 <p><em>Ora</em> siete pronti per imparare come si costruisce un iteratore. Un iteratore è semplicemente una classe che definisce un metodo <code>__iter__()</code>.
 
+<aside class=ots>
+Tutti e tre i metodi di classe <code>__init__</code>, <code>__iter__</code> e <code>__next__</code> cominciano e finiscono con un paio di caratteri di sottolineatura (<code>_</code>). Come mai? Non c'è nulla di magico in questo, ma di solito indica che questi metodi sono &#8220;<dfn>metodi speciali</dfn>.&#8221; L'unica cosa &#8220;speciale&#8221; dei metodi speciali è che non vengono invocati direttamente, ma Python li chiama quando usate qualche altra sintassi sulla classe o su un'istanza della classe. <a href=nomi-dei-metodi-speciali.html>Più informazioni sui metodi speciali</a>.
+</aside>
+
 <p class=d>[<a href=esempi/fibonacci2.py>scarica <code>fibonacci2.py</code></a>]
 <pre><code class=pp><a>class Fib:                                        <span class=u>&#x2460;</span></a>
 <a>    def __init__(self, max):                      <span class=u>&#x2461;</span></a>
         self.max = max
 
 <a>    def __iter__(self):                           <span class=u>&#x2462;</span></a>
-        self.a, self.b = 0, 1
+        self.a = 0
+        self.b = 1
         return self
 
 <a>    def __next__(self):                           <span class=u>&#x2463;</span></a>
@@ -178,13 +183,13 @@ body{counter-reset:h1 6}
 <li>&#8220;Chiamare&#8221; <code>Fib(max)</code> vuol dire in realtà creare un'istanza di questa classe e chiamare il suo metodo <code>__init__()</code> con <var>max</var>. Il metodo <code>__init__()</code> salva il valore massimo come una variabile di istanza in modo che altri metodi possano usarlo più tardi.
 <li>Il metodo <code>__iter__()</code> viene invocato ogni volta che qualcuno chiama <code>iter(fib)</code>. (Come vedrete in un minuto, un ciclo <code>for</code> chiama questo metodo automaticamente, ma potete chiamarlo anche voi manualmente.) Dopo aver eseguito l'inizializzazione che prepara l'iterazione (in questo caso, impostando i valori di <code>self.a</code> e <code>self.b</code>, i nostri due contatori), il metodo <code>__iter__()</code> può restituire qualsiasi oggetto che implementi un metodo <code>__next__()</code>. In questo caso (e nella maggior parte dei casi) <code>__iter__()</code> restituisce semplicemente <var>self</var>, dato che questa classe implementa il proprio metodo <code>__next__()</code>.
 <li>Il metodo <code>__next__()</code> viene chiamato ogni volta che qualcuno chiama <code>next()</code> su un iteratore di un'istanza di una classe. Questo avrà più senso fra un minuto.
-<li>Quando il metodo <code>__next__()</code> solleva una eccezione di tipo <code>StopIteration</code>, questo segnala al chiamante che l'iterazione è terminata; non ci sono più valori disponibili. Se il chiamante è un ciclo <code>for</code>, noterà questa eccezione di tipo <code>StopIteration</code> e uscirà normalmente dal ciclo. (In altre parole, sopprimerà l'eccezione.) Questo piccolo tocco di magia è in realtà la chiave per usare gli iteratori nei cicli <code>for</code>.
+<li>Quando il metodo <code>__next__()</code> solleva una eccezione di tipo <code>StopIteration</code>, questo segnala al chiamante che l'iterazione è esaurita. A differenza della maggior parte delle eccezioni, questa non rappresenta un errore, ma una condizione normale che significa solamente che l'iteratore non ha più valori da generare. Se il chiamante è un ciclo <code>for</code>, noterà questa eccezione di tipo <code>StopIteration</code> e uscirà normalmente dal ciclo. (In altre parole, sopprimerà l'eccezione.) Questo piccolo tocco di magia è in realtà la chiave per usare gli iteratori nei cicli <code>for</code>.
 <li>Per produrre in uscita il valore successivo, il metodo <code>__next__()</code> di un iteratore restituisce semplicemente il valore tramite l'istruzione <code>return</code>. Qui <code>yield</code> non viene usato; quello è zucchero sintattico che si applica solo quando state usando i generatori. Qui invece state creando il vostro iteratore da zero; quindi, usate <code>return</code>.
 </ol>
 
 <p>Non siete ancora completamente confusi? Eccellente. Vediamo come invocare questo iteratore:
 
-<pre class=screen>
+<pre class='nd screen'>
 <samp class=p>>>> </samp><kbd class=pp>from fibonacci2 import Fib</kbd>
 <samp class=p>>>> </samp><kbd class=pp>for n in Fib(1000):</kbd>
 <samp class=p>... </samp><kbd class=pp>    print(n, end=' ')</kbd>
@@ -212,11 +217,9 @@ body{counter-reset:h1 6}
 <pre><code class=pp>class LazyRules:
     rules_filename = 'plural6-rules.txt'
     
-    def __init__(self):
-        self.pattern_file = open(self.rules_filename)
-        self.cache = []
-
     def __iter__(self):
+        self.pattern_file = open(self.rules_filename, encoding='utf-8')
+        self.cache = []
         self.cache_index = 0
         return self
 
@@ -247,37 +250,44 @@ rules = LazyRules()</code></pre>
 
 <pre><code class=pp>class LazyRules:
     rules_filename = 'plural6-rules.txt'
-<a>    def __init__(self):                                <span class=u>&#x2460;</span></a>
-<a>        self.pattern_file = open(self.rules_filename)  <span class=u>&#x2461;</span></a>
-<a>        self.cache = []                                <span class=u>&#x2462;</span></a></code></pre>
+<a>    def __iter__(self):                                                  <span class=u>&#x2460;</span></a>
+<a>        self.pattern_file = open(self.rules_filename, encoding='utf-8')  <span class=u>&#x2461;</span></a>
+<a>        self.cache = []                                                  <span class=u>&#x2462;</span></a>
+        self.cache_index = 0</code></pre></code></pre>
 <ol>
-<li>Il metodo <code>__init__()</code> viene chiamato una volta sola, quando create un'istanza della classe e l'assegnate a <var>rules</var>.
-<li>Dato che viene chiamato una volta sola, questo metodo è il posto perfetto dove aprire il file dei pattern. Lo leggerete più tardi; non ha senso fare più di quello che dovete assolutamente fare fino a quando non diviene assolutamente necessario farlo!
+<li>Il metodo <code>__iter__()</code> viene chiamato una volta sola, quando create un'istanza della classe, l'assegnate a <var>rules</var> e invocate <code>iter(rules)</code> per creare l'iteratore.
+<li>Dato che viene chiamato una volta sola, questo metodo è il posto perfetto dove aprire il file dei pattern. Non ha senso fare più di quello che dovete assolutamente fare fino a quando non diviene assolutamente necessario farlo!
 <li>In più, questo metodo è un buon posto anche per inizializzare la cache, che userete più tardi durante la lettura dei pattern dal file.
 </ol>
 
-<p>Prima di continuare, diamo un'occhiata più da vicino a <var>rules_filename</var>. Non è definita all'interno del metodo <code>__init__()</code>. In effetti, non è definita all'interno di <em>nessun</em> metodo. &Egrave; definita a livello della classe. &Egrave; una <i>variabile di classe</i>, e sebbene possiate accedervi esattamente come una variabile di istanza (<var>self.rules_filename</var>), è condivisa da tutte le istanze della classe <code>LazyRules</code>.
+<p>Prima di continuare, diamo un'occhiata più da vicino a <var>rules_filename</var>. Non è definita all'interno del metodo <code>__iter__()</code>. In effetti, non è definita all'interno di <em>nessun</em> metodo. &Egrave; definita a livello della classe. &Egrave; una <i>variabile di classe</i>, e sebbene possiate accedervi esattamente come una variabile di istanza (<var>self.rules_filename</var>), è condivisa da tutte le istanze della classe <code>LazyRules</code>.
 
 <pre class=screen>
 <samp class=p>>>> </samp><kbd class=pp>import plural6</kbd>
 <samp class=p>>>> </samp><kbd class=pp>r1 = plural6.LazyRules()</kbd>
 <samp class=p>>>> </samp><kbd class=pp>r2 = plural6.LazyRules()</kbd>
-<samp class=p>>>> </samp><kbd class=pp>r1.rules_filename</kbd>                               <span class=u>&#x2460;</span>
+<a><samp class=p>>>> </samp><kbd class=pp>r1.rules_filename</kbd>                               <span class=u>&#x2460;</span></a>
 <samp class=pp>'plural6-rules.txt'</samp>
 <samp class=p>>>> </samp><kbd class=pp>r2.rules_filename</kbd>
 <samp class=pp>'plural6-rules.txt'</samp>
-<samp class=p>>>> </samp><kbd class=pp>r1.__class__.rules_filename</kbd>                     <span class=u>&#x2461;</span>
+<a><samp class=p>>>> </samp><kbd class=pp>r2.rules_filename = 'r2-override.txt'</kbd>           <span class=u>&#x2461;</span></a>
+<samp class=p>>>> </samp><kbd class=pp>r2.rules_filename</kbd>
+<samp class=pp>'r2-override.txt'</samp>
+<samp class=p>>>> </samp><kbd class=pp>r1.rules_filename</kbd>
 <samp class=pp>'plural6-rules.txt'</samp>
-<samp class=p>>>> </samp><kbd class=pp>r1.__class__.rules_filename = 'papayawhip.txt'</kbd>  <span class=u>&#x2462;</span>
+<a><samp class=p>>>> </samp><kbd class=pp>r2.__class__.rules_filename</kbd>                     <span class=u>&#x2462;</span></a>
+<samp class=pp>'plural6-rules.txt'</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>r2.__class__.rules_filename = 'papayawhip.txt'</kbd>  <span class=u>&#x2463;</span></a>
 <samp class=p>>>> </samp><kbd class=pp>r1.rules_filename</kbd>
 <samp class=pp>'papayawhip.txt'</samp>
-<samp class=p>>>> </samp><kbd class=pp>r2.rules_filename</kbd>                               <span class=u>&#x2463;</span>
-<samp class=pp>'papayawhip.txt'</samp></pre>
+<a><samp class=p>>>> </samp><kbd class=pp>r2.rules_filename</kbd>                               <span class=u>&#x2464;</span></a>
+<samp class=pp>'r2-overridetxt'</samp></pre>
 <ol>
-<li class=fixme>FIXME
-<li>
-<li>
-<li>
+<li>Ogni istanza della classe eredita la proprietà <var>rules_filename</var> con il valore definito dalla classe.
+<li>Cambiare il valore della proprietà in un'istanza non ha effetto sulle altre istanze&hellip;
+<li>&hellip;né modifica la proprietà di classe. Potete accedere alla proprietà di classe (al contrario di una proprietà di una singola istanza) usando la proprietà speciale <code>__class__</code> per accedere alla classe stessa.
+<li>Se modificate la proprietà di classe, tutte le istanze che stanno ancora ereditando quel valore (come <var>r1</var> qui) verranno affette dal cambiamento.
+<li>Le istanze che hanno sostituito quella proprietà (come <var>r2</var> qui) non verranno affette.
 </ol>
 
 <p>E ora torniamo al nostro spettacolo.
@@ -303,8 +313,8 @@ rules = LazyRules()</code></pre>
         return funcs</code></pre>
 <ol>
 <li>Il metodo <code>__next__()</code> viene chiamato ogni volta che qualcuno&nbsp;&mdash;&nbsp;diciamo, un ciclo <code>for</code>&nbsp;&mdash;&nbsp;chiama <code>next(rules)</code>. Questo metodo si capisce meglio se cominciamo dalla fine e lo leggiamo all'indietro. Quindi, facciamolo.
-<li>L'ultima parte di questa funzione dovrebbe sembrare quantomeno familiare. La funzione <code>build_match_and_apply_functions()</code> non è cambiata; è la stessa che è sempre stata. <em>Ogni riga del file di pattern verrà letta esattamente una volta, il più tardi possibile.</em>
-<li>L'unica differenza è che, prima di restituire le funzioni di ricerca e sostituzione (che sono memorizzate nella tupla <var>funcs</var>), dobbiamo salvarle in <code>self.cache</code>. <em>Ogni funzione di ricerca e sostituzione verrà costruita esattamente una volta, il più tardi possibile, e poi salvata in cache.</em>
+<li>L'ultima parte di questa funzione dovrebbe sembrare quantomeno familiare. La funzione <code>build_match_and_apply_functions()</code> non è cambiata; è la stessa che è sempre stata.
+<li>L'unica differenza è che, prima di restituire le funzioni di ricerca e sostituzione (che sono memorizzate nella tupla <var>funcs</var>), dobbiamo salvarle in <code>self.cache</code>.
 </ol>
 
 <p>Muovendosi all'indietro&hellip;
@@ -355,7 +365,7 @@ rules = LazyRules()</code></pre>
 <li>Questo processo di lettura-costruzione-memorizzazione continuerà fino a quando le regole lette dal file dei pattern non corrisponderanno alla parola che stiamo cercando di pluralizzare. Se troviamo una regola che corrisponde prima della fine del file, semplicemente la usiamo e ci fermiamo, con il file ancora aperto. Il puntatore del file rimarrà dovunque avremo smesso di leggere, aspettando il prossimo comando di <code>readline()</code>. Nel frattempo, la cache contiene ora più elementi, e se ricominciamo ancora a cercare di pluralizzare una nuova parola, ognuno degli elementi in cache verrà provato prima di leggere la riga successiva dal file dei pattern.
 </ul>
 
-<p>E quindi, abbiamo raggiunto i nostri obiettivi combinati <span class=fixme> [FIXME xref]</span>:
+<p>Abbiamo raggiunto il nirvana della pluralizzazione.
 
 <ol>
 <li><strong>Costo di inizializzazione minimo.</strong> L'unica cosa che succede durante l'importazione del modulo è la creazione di una singola istanza di una classe e l'apertura di un file (ma senza alcuna lettura).
@@ -369,6 +379,7 @@ rules = LazyRules()</code></pre>
 <ul>
 <li><a href=http://www.python.org/dev/peps/pep-0234/>PEP 234: Iterators</a>
 <li><a href=http://www.python.org/dev/peps/pep-0255/>PEP 255: Simple Generators</a>
+<li><a href=http://www.dabeaz.com/generators/>Generator Tricks for Systems Programmers</a>
 </ul>
 
 <p class=nav><a rel=prev href=generatori.html title='indietro a &#8220;Generatori&#8221;'><span class=u>&#x261C;</span></a> <a rel=next href=uso-avanzato-degli-iteratori.html title='avanti a &#8220;Uso avanzato degli iteratori&#8221;'><span class=u>&#x261E;</span></a>

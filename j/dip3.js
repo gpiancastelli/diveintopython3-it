@@ -186,7 +186,7 @@ function plainTextOnClick(id) {
 }
 
 function hideTOC() {
-    var toc = '<span class=nm>&#8227;</span> <a href="javascript:showTOC()">mostra l\'indice</a>';
+    var toc = '<span class="nm u">&#8227;</span> <a href="javascript:showTOC()">mostra l\'indice</a>';
     $("#toc").html(toc);
 }
 
@@ -207,6 +207,6 @@ function showTOC() {
 	toc += '</ol>';
 	level -= 1;
     }
-    toc = '<span class=nm>&#9662;</span> <a href="javascript:hideTOC()">nascondi l\'indice</a><ol start=0><li><a href=table-of-contents.html><span>&uarr;</span> Indice completo</a></li>' + toc.substring(4);
+    toc = '<span class="nm u">&#9662;</span> <a href="javascript:hideTOC()">nascondi l\'indice</a><ol start=0><li><a href=table-of-contents.html><span class=u>&uarr;</span> Indice completo</a></li>' + toc.substring(4);
     $("#toc").html(toc);
 }

@@ -143,11 +143,11 @@ function to_roman(n):
     '''convert integer to Roman numeral'''
 <a>    pass                                   <span class=u>&#x2460;</span></a></code></pre>
 <ol>
-<li>A questo punto, volete definire la <abbr>API</abbr> della funzione <code>to_roman()</code>, ma non volete ancora scriverne il codice. (Il vostro test deve prima fallire.) Per creare lo scheletro della funzione, usate la parola riservata <code>pass</code> di Python <span class=fixme>[FIXME ref]</span>, che non fa precisamente niente.
+<li>A questo punto, volete definire la <abbr>API</abbr> della funzione <code>to_roman()</code>, ma non volete ancora scriverne il codice. (Il vostro test deve prima fallire.) Per creare lo scheletro della funzione, usate la parola riservata <code>pass</code> di Python, che non fa precisamente niente.
 </ol>
 <p>Per lanciare i test, eseguite <code>romantest1.py</code> dalla linea di comando. Se chiamate lo script con l'opzione <code>-v</code>, le informazioni visualizzate saranno più verbose in modo che possiate vedere esattamente cosa succede quando ogni test viene eseguito. Con ogni probabilità, il risultato della vostra esecuzione dovrebbe somigliare a questo:
 <pre class=screen>
-<samp class=p>you@localhost:~$ </samp><kbd>python3 romantest1.py -v</kbd>
+<samp class=p>you@localhost:~/diveintopython3/examples$ </samp><kbd>python3 romantest1.py -v</kbd>
 <samp><a>to_roman should give known result with known input ... FAIL            <span class=u>&#x2460;</span></a>
 
 ======================================================================
@@ -197,13 +197,13 @@ def to_roman(n):
 <li>Ed ecco dove la ricca struttura dati di <var>roman_numeral_map</var> vi ricompensa, perché non avete bisogno di alcuna logica speciale per gestire la regola di sottrazione. Per convertire verso i numeri romani, dovete semplicemente iterare attraverso <var>roman_numeral_map</var> cercando il più grande valore intero minore o uguale al numero in ingresso. Una volta trovato, aggiungete la rappresentazione del numero romano alla fine del risultato, sottraete il corrispondente valore intero dal numero in ingresso, insaponate, sciacquate, ripetete.
 </ol>
 <p>Se non vi è ancora chiaro come la funzione <code>to_roman()</code> lavora, aggiungete una chiamata a <code>print()</code> alla fine del ciclo <code>while</code>:
-<pre><code class=pp>
+<pre class=nd><code class=pp>
 while n >= integer:
     result += numeral
     n -= integer
     print('subtracting {0} from input, adding {1} to output'.format(integer, numeral))</code></pre>
 <p>Con l'istruzione <code>print()</code> di debug, il risultato somiglia al seguente:
-<pre class=screen>
+<pre class='nd screen'>
 <samp class=p>>>> </samp><kbd class=pp>import roman1</kbd>
 <samp class=p>>>> </samp><kbd class=pp>roman1.to_roman(1424)</kbd>
 <samp>subtracting 1000 from input, adding M to output
@@ -213,8 +213,8 @@ subtracting 10 from input, adding X to output
 subtracting 4 from input, adding IV to output
 'MCDXXIV'</samp></pre>
 <p>Quindi la funzione <code>to_roman()</code> sembra funzionare, almeno in questo controllo manuale. Ma passerà il test che avete scritto?
-<pre class=screen>
-<samp class=p>you@localhost:~$ </samp><kbd>python3 romantest1.py -v</kbd>
+<pre class='nd screen'>
+<samp class=p>you@localhost:~/diveintopython3/examples$ </samp><kbd>python3 romantest1.py -v</kbd>
 <samp>to_roman should give known result with known input ... ok
 
 ----------------------------------------------------------------------
@@ -257,11 +257,11 @@ OK</samp></pre>
 <li>Come nel test precedente, il test vero e proprio è un metodo della classe, con un nome che comincia con <code>test</code>.
 <li>La classe <code>unittest.TestCase</code> fornisce il metodo <code>assertRaises()</code>, che prende i seguenti argomenti: l'eccezione che vi aspettate, la funzione che state collaudando, e gli argomenti che volete passare a quella funzione. (Se la funzione che state collaudando prende più di un argomento, passateli tutti ad <code>assertRaises()</code>, in ordine, ed essi verranno passati direttamente alla funzione che state collaudando.)
 </ol>
-<p>Fate molta attenzione a quest'ultima riga di codice. Invece di invocare direttamente <code>to_roman()</code> e controllare manualmente che sollevi una particolare eccezione (incorporando la chiamata di funzione in un blocco <code>try...except</code> <span class=fixme>[FIXME xref]</span>), state utilizzando il metodo <code>assertRaises()</code>, che ha incapsulato per noi tutte queste operazioni. Tutto quello che dovete fare è dirgli quali sono l'eccezione che vi aspettate (<code>roman2.OutOfRangeError</code>), la funzione da invocare (<code>to_roman()</code>) e gli argomenti con cui invocarla (<code>4000</code>). Il metodo <code>assertRaises()</code> si prende cura di chiamare <code>to_roman()</code> e controllare che sollevi <code>roman2.OutOfRangeError</code>.
+<p>Fate molta attenzione a quest'ultima riga di codice. Invece di invocare direttamente <code>to_roman()</code> e controllare manualmente che sollevi una particolare eccezione (incorporando la chiamata di funzione in <a href=your-first-python-program.html#exceptions>un blocco <code>try...except</code></a>), state utilizzando il metodo <code>assertRaises()</code>, che ha incapsulato per noi tutte queste operazioni. Tutto quello che dovete fare è dirgli quali sono l'eccezione che vi aspettate (<code>roman2.OutOfRangeError</code>), la funzione da invocare (<code>to_roman()</code>) e gli argomenti con cui invocarla (<code>4000</code>). Il metodo <code>assertRaises()</code> si prende cura di chiamare <code>to_roman()</code> e controllare che sollevi <code>roman2.OutOfRangeError</code>.
 <p>Notate anche che state passando la funzione <code>to_roman()</code> stessa come un argomento; non la state invocando e non ne state passando il nome sotto forma di stringa. Ho recentemente menzionato quant'è comodo che <a href=il-vostro-primo-programma-python.html#everythingisanobject>ogni cosa in Python sia un oggetto</a>?
 <p>Quindi cosa succede quando lanciate la <span class=wtf>test suite</span> con questo nuovo test?
 <pre class=screen>
-<samp class=p>you@localhost:~$ </samp><kbd>python3 romantest2.py -v</kbd>
+<samp class=p>you@localhost:~/diveintopython3/examples$ </samp><kbd>python3 romantest2.py -v</kbd>
 <samp>to_roman should give known result with known input ... ok
 <a>to_roman should fail with large input ... ERROR                         <span class=u>&#x2460;</span></a>
 
@@ -279,7 +279,7 @@ Ran 2 tests in 0.000s
 FAILED (errors=1)</samp></pre>
 <ol>
 <li>Avreste dovuto aspettarvi che questo test fallisse (dato che non avete scritto ancora il codice per farlo passare) ma&hellip; non è esattamente &#8220;fallito,&#8221; bensì c'è stato un &#8220;errore.&#8221; Questa è una distinzione sottile ma importante. Un test di unità ha effettivamente <em>tre</em> valori di ritorno: successo, fallimento, ed errore. Successo, ovviamente, significa che il test è passato&nbsp;&mdash;&nbsp;il codice ha fatto quello che vi aspettavate. &#8220;Fallimento&#8221; è il risultato del test precedente (fino a quando non avete scritto il codice per farlo passare)&nbsp;&mdash;&nbsp;il codice veniva eseguito ma il risultato non era quello che vi aspettavate. &#8220;Errore&#8221; significa che il codice non è nemmeno stato eseguito correttamente.
-<li>Perché il codice non è stato eseguito correttamente? La traccia dello stack di esecuzione ci fornisce la risposta: il modulo che state collaudando non include alcuna eccezione chiamata <code>OutOfRangeError</code>. Ricordate, avete passato questa eccezione al metodo <code>assertRaises()</code>, perché è l'eccezione che volete che la funzione sollevi quando riceve un ingresso fuori dall'intervallo consentito. Ma l'eccezione non esiste, quindi la chiamata al metodo <code>assertRaises()</code> fallisce. Il metodo non ha avuto la possibilità di collaudare la funzione <code>to_roman()</code>; non è arrivato così lontano.
+<li>Perché il codice non è stato eseguito correttamente? Ce lo dice la traccia dello stack di esecuzione: il modulo che state collaudando non include alcuna eccezione chiamata <code>OutOfRangeError</code>. Ricordate, avete passato questa eccezione al metodo <code>assertRaises()</code>, perché è l'eccezione che volete che la funzione sollevi quando riceve un ingresso fuori dall'intervallo consentito. Ma l'eccezione non esiste, quindi la chiamata al metodo <code>assertRaises()</code> fallisce. Il metodo non ha avuto la possibilità di collaudare la funzione <code>to_roman()</code>; non è arrivato così lontano.
 </ol>
 <p>Per risolvere questo problema, dovete definire l'eccezione <code>OutOfRangeError</code> in <code>roman2.py</code>.
 <pre><code class=pp><a>class OutOfRangeError(ValueError):  <span class=u>&#x2460;</span></a>
@@ -290,7 +290,7 @@ FAILED (errors=1)</samp></pre>
 </ol>
 <p>Ora lanciate nuovamente la <span class=wtf>test suite</span>.
 <pre class=screen>
-<samp class=p>you@localhost:~$ </samp><kbd>python3 romantest2.py -v</kbd>
+<samp class=p>you@localhost:~/diveintopython3/examples$ </samp><kbd>python3 romantest2.py -v</kbd>
 <samp>to_roman should give known result with known input ... ok
 <a>to_roman should fail with large input ... FAIL                          <span class=u>&#x2460;</span></a>
 
@@ -328,7 +328,7 @@ FAILED (failures=1)</samp></pre>
 </ol>
 <p>Questo fa passare il test? Scopriamolo.
 <pre class=screen>
-<samp class=p>you@localhost:~$ </samp><kbd>python3 romantest2.py -v</kbd>
+<samp class=p>you@localhost:~/diveintopython3/examples$ </samp><kbd>python3 romantest2.py -v</kbd>
 <samp>to_roman should give known result with known input ... ok
 <a>to_roman should fail with large input ... ok                            <span class=u>&#x2460;</span></a>
 
@@ -346,7 +346,7 @@ OK</samp></pre>
 
 <p>Insieme al collaudo per numeri troppo grandi, avete anche bisogno di collaudare numeri che siano troppo piccoli. Come <a href=#divingin>abbiamo notato nei nostri requisiti funzionali</a>, i numeri romani non posso esprimere lo <code>0</code> o i numeri negativi.
 
-<pre class=screen>
+<pre class='nd screen'>
 <samp class=p>>>> </samp><kbd class=pp>import roman2</kbd>
 <samp class=p>>>> </samp><kbd class=pp>roman2.to_roman(0)</kbd>
 <samp class=pp>''</samp>
@@ -376,8 +376,8 @@ OK</samp></pre>
 
 <p>Ora verifichiamo che i test falliscano:
 
-<pre class=screen>
-<samp class=p>you@localhost:~$ </samp><kbd>python3 romantest3.py -v</kbd>
+<pre class='nd screen'>
+<samp class=p>you@localhost:~/diveintopython3/examples$ </samp><kbd>python3 romantest3.py -v</kbd>
 <samp>to_roman should give known result with known input ... ok
 to_roman should fail with negative input ... FAIL
 to_roman should fail with large input ... ok
@@ -425,8 +425,8 @@ FAILED (failures=2)</samp></pre>
 
 <p>Potrei fornirvi un'intera serie di esempi non correlati che mostrano che la scorciatoia dei confronti multipli allo stesso tempo funziona, ma invece eseguirò semplicemente i test di unità e lo dimostrerò.
 
-<pre class=screen>
-<samp class=p>you@localhost:~$ </samp><kbd>python3 romantest3.py -v</kbd>
+<pre class='nd screen'>
+<samp class=p>you@localhost:~/diveintopython3/examples$ </samp><kbd>python3 romantest3.py -v</kbd>
 <samp>to_roman should give known result with known input ... ok
 to_roman should fail with negative input ... ok
 to_roman should fail with large input ... ok
@@ -456,13 +456,13 @@ OK</samp></pre>
 
 <p>Fare il collaudo per i numeri non interi non è difficile. Prima di tutto, definite una eccezione chiamata <code>NonIntegerError</code>.
 
-<pre><code class=pp># roman4.py
+<pre class=nd><code class=pp># roman4.py
 class OutOfRangeError(ValueError): pass
 <mark>class NotIntegerError(ValueError): pass</mark></code></pre>
 
 <p>Poi, scrivete un test che verifichi la generazione dell'eccezione <code>NonIntegerError</code>.
 
-<pre><code class=pp>class ToRomanBadInput(unittest.TestCase):
+<pre class=nd><code class=pp>class ToRomanBadInput(unittest.TestCase):
     .
     .
     .
@@ -472,8 +472,8 @@ class OutOfRangeError(ValueError): pass
 
 <p>Ora contollate che il test fallisca in maniera appropriata.
 
-<pre class=screen>
-<samp class=p>you@localhost:~$ </samp><kbd>python3 romantest4.py -v</kbd>
+<pre class='nd screen'>
+<samp class=p>you@localhost:~/diveintopython3/examples$ </samp><kbd>python3 romantest4.py -v</kbd>
 <samp>to_roman should give known result with known input ... ok
 to_roman should fail with negative input ... ok
 to_roman should fail with non-integer input ... FAIL
@@ -515,8 +515,8 @@ FAILED (failures=1)</samp></pre>
 
 <p>Infine, controllate che il codice faccia effettivamente passare il test.
 
-<pre class=screen>
-<samp class=p>you@localhost:~$ </samp><kbd>python3 romantest4.py -v</kbd>
+<pre class='nd screen'>
+<samp class=p>you@localhost:~/diveintopython3/examples$ </samp><kbd>python3 romantest4.py -v</kbd>
 <samp>to_roman should give known result with known input ... ok
 to_roman should fail with negative input ... ok
 to_roman should fail with non-integer input ... ok

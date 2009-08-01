@@ -59,7 +59,7 @@ mark{display:inline}
 
 <p>Ecco un esempio concreto di come funziona il <span class=wtf>caching</span>. Visitate <a href=http://diveintomark.org/><code>diveintomark.org</code></a> nel vostro browser. Quella pagina include un'immagine di sfondo, <a href=http://wearehugh.com/m.jpg><code>wearehugh.com/m.jpg</code></a>. Quando il vostro browser scarica quell'immagine, il server include le seguenti intestazioni <abbr>HTTP</abbr>:
 
-<pre><code>HTTP/1.1 200 OK
+<pre class=nd><code>HTTP/1.1 200 OK
 Date: Sun, 31 May 2009 17:14:04 GMT
 Server: Apache
 Last-Modified: Fri, 22 Aug 2008 04:28:16 GMT
@@ -87,7 +87,7 @@ Content-Type: image/jpeg</code></pre>
 
 <p><abbr>HTTP</abbr> fornisce una soluzione anche a questo. Quando richiedete un dato per la prima volta, il server può spedire indietro una intestazione <code>Last-Modified</code>. Questa è esattamente quello che sembra: la data in cui i dati sono stati modificati. Quell'immagine di sfondo riferita da <code>diveintomark.org</code> includeva una intestazione <code>Last-Modified</code>.
 
-<pre><code>HTTP/1.1 200 OK
+<pre class=nd><code>HTTP/1.1 200 OK
 Date: Sun, 31 May 2009 17:14:04 GMT
 Server: Apache
 <mark>Last-Modified: Fri, 22 Aug 2008 04:28:16 GMT</mark>
@@ -102,7 +102,7 @@ Content-Type: image/jpeg
 
 <p>Quando richiedete gli stessi dati una seconda (o terza o quarta) volta, potete spedire una intestazione <code>If-Modified-Since</code> con la vostra richiesta, contenente la data che avete ottenuto dal server l'ultima volta. Se i dati non sono cambiati da allora, il server rimanda indietro lo speciale codice di stato <abbr>HTTP</abbr> <code>304</code>, per indicare che &#8220;questi dati non sono cambiati dall'ultima volta che li avete richiesti.&#8221 Potete verificare questo dalla linea di comando, utilizzando <a href=http://curl.haxx.se/>curl</a>:
 
-<pre class=screen>
+<pre class='nd screen'>
 <samp class=p>you@localhost:~$ </samp><kbd>curl -I <mark>-H "If-Modified-Since: Fri, 22 Aug 2008 04:28:16 GMT"</mark> http://wearehugh.com/m.jpg</kbd>
 <samp>HTTP/1.1 304 Not Modified
 Date: Sun, 31 May 2009 18:04:39 GMT
@@ -120,7 +120,7 @@ Cache-Control: max-age=31536000, public</samp></pre>
 
 <p>Gli ETag sono un modo alternativo con cui compiere la stessa cosa del <a href=#last-modified>controllo della modifica più recente</a>. Con gli ETag, il server spedisce un codice hash in una intestazione <code>ETag</code> insieme ai dati che avete richiesto. (Come questo hash venga determinato esattamente è interamente compito del server. L'unico requisito è che cambi quando i dati cambiano.) Quell'immagine di sfondo riferita da <code>diveintomark.org</code> aveva una intestazione <code>ETag</code>.
 
-<pre><code>HTTP/1.1 200 OK
+<pre class=nd><code>HTTP/1.1 200 OK
 Date: Sun, 31 May 2009 17:14:04 GMT
 Server: Apache
 Last-Modified: Fri, 22 Aug 2008 04:28:16 GMT
@@ -137,7 +137,7 @@ La seconda volta che richiedete gli stessi dati, includete il valore di ETag in 
 
 <p>Utilizzando ancora <kbd>curl</kbd>:
 
-<pre class=screen>
+<pre class='nd screen'>
 <a><samp class=p>you@localhost:~$ </samp><kbd>curl -I <mark>-H "If-None-Match: \"3075-ddc8d800\""</mark> http://wearehugh.com/m.jpg</kbd>  <span class=u>&#x2460;</span></a>
 <samp>HTTP/1.1 304 Not Modified
 Date: Sun, 31 May 2009 18:04:39 GMT
@@ -177,9 +177,12 @@ Cache-Control: max-age=31536000, public</samp></pre>
 <h2 id=dont-try-this-at-home>Come non andare a prendere dati via HTTP</h2>
 
 <p>Diciamo che volete scaricare una risorsa via <abbr>HTTP</abbr>, come <a href=xml.html>un feed Atom</a>. Essendo un feed, non vi limiterete a scaricarla una sola volta, ma la vorrete scaricare più e più volte. (La maggior parte dei lettori di feed controllano ogni ora se ci sono stati dei cambiamenti.) Facciamolo prima nel modo veloce-e-sporco, e poi vediamo come potete farlo meglio.
-<pre class=screen>
+<pre class='nd screen'>
 <samp class=p>>>> </samp><kbd class=pp>import urllib.request</kbd>
-<a><samp class=p>>>> </samp><kbd class=pp>data = urllib.request.urlopen('http://diveintopython3.org/examples/feed.xml').read()</kbd>  <span class=u>&#x2460;</span></a>
+<samp class=p>>>> </samp><kbd class=pp>a_url = 'http://diveintopython3.org/examples/feed.xml'</kbd>
+<a><samp class=p>>>> </samp><kbd class=pp>data = urllib.request.urlopen(a_url).read()</kbd>  <span class=u>&#x2460;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>type(data)</kbd>                                   <span class=u>&#x2461;</span></a>
+<samp class=pp>&lt;class 'bytes'></samp>
 <samp class=p>>>> </samp><kbd class=pp>print(data)</kbd>
 <samp class=pp>&lt;?xml version='1.0' encoding='utf-8'?>
 &lt;feed xmlns='http://www.w3.org/2005/Atom' xml:lang='en'>
@@ -192,6 +195,7 @@ Cache-Control: max-age=31536000, public</samp></pre>
 </samp></pre>
 <ol>
 <li>Scaricare qualsiasi cosa via <abbr>HTTP</abbr> è incredibilmente facile in Python; in effetti, vi ci vuole solo una riga di codice. Il modulo <code>urllib.request</code> ha una comoda funzione <code>urlopen()</code> che prende l'indirizzo della pagina che volete e restituisce un oggetto simile a un file che potete semplicemente leggere con il metodo <code>read()</code> per ottenere il contenuto completo della pagina. Non potrebbe proprio essere più facile.
+<li>Il metodo <code>urlopen().read()</code> restituisce sempre un <a href=strings.html#byte-arrays>oggetto <code>bytes</code>, non una stringa</a>. Ricordatevi, i byte sono byte; i caratteri sono un'astrazione. I server <abbr>HTTP</abbr> non si occupano di astrazioni. Se richiedete una risorsa, ottenete byte. Se volete una stringa, dovrete <a href=http://feedparser.org/docs/character-encoding.html>determinare la codifica di carattere</a> dei byte e fare esplicitamente la conversione.
 </ol>
 
 <p>Quindi cosa c'è di sbagliato in questo? Per un rapido <span class=wtf>one-off</span> durante il collaudo o lo sviluppo, non c'è niente di sbagliato. Lo faccio tutte le volte. Volevo i contenuti del feed e ho ottenuto i contenuti del feed. La stessa tecnica funziona per tutte le pagine web. Ma una volta che cominciate a pensare in termii di un servizio web che volete accedere regolarmente (<i>e.g.</i> richiedendo questo feed una volta ogni ora), allora lo state facendo in maniera inefficiente e grossolana.
@@ -256,7 +260,7 @@ Content-Type: application/xml</samp>
 
 <p>Ma aspettate, le cose peggiorano! Per vedere quando questo codice sia davvero inefficiente, richiediamo lo stesso feed una seconda volta.
 
-<pre class=screen>
+<pre class='nd screen'>
 # continua dall'<a href=#whats-on-the-wire>esempio precedente</a>
 <samp class=p>>>> </samp><kbd class=pp>response2 = urlopen('http://diveintopython3.org/examples/feed.xml')</kbd>
 <samp>send: b'GET /examples/feed.xml HTTP/1.1
@@ -302,6 +306,8 @@ Content-Type: application/xml</samp>
 
 <h2 id=introducing-httplib2>Una introduzione a <code>httplib2</code></h2>
 
+<p class=fixme>FIXME paragraph/example on downloading and installing it.
+
 <p>Per utilizzare <code>httplib2</code>, create una istanza della classe <code>httplib2.Http</code>.
 
 <pre class=screen>
@@ -318,12 +324,37 @@ Content-Type: application/xml</samp>
 <li>L'interfaccia principale al modulo <code>httplib2</code> è l'oggetto <code>Http</code>. Per ragioni che vedrete nella prossima sezione, dovreste sempre passare un nome di directory quando create un oggetto <code>Http</code>. La directory non deve per forza esistere; <code>httplib2</code> la creerà se è necessario.
 <li>Una volta che avete un oggetto <code>Http</code>, recuperare dati è tanto semplice quanto invocare il metodo <code>request()</code> con l'indirizzo dei dati che volete. Questo emetterà una richiesta <abbr>HTTP</abbr> <code>GET</code> per quell'<abbr>URL</abbr>. (Più avanti in questo capitolo vedrete come emettere altre richieste <abbr>HTTP</abbr>, come <code>POST</code>.)
 <li>Il metodo <code>request()</code> restituisce due valori. Il primo è un oggetto <code>httplib2.Response</code>, che contiene tutte le intestazioni <abbr>HTTP</abbr> che il server ha restituito. Per esempio, il codice di stato <code>200</code> che indica che la richiesta ha avuto successo è memorizzato nella proprietà <code>status</code>.
-<li>La variabile <var>content</var> contiene i dati effettivi che sono stati restituiti dal server <abbr>HTTP</abbr>. I dati vengono restituiti come <a href=strings.html#byte-arrays>oggetto <code>bytes</code>, non <code>str</code></a>. Se li volete sotto forma di stringa, avete bisogno di <a href=http://feedparser.org/docs/character-encoding.html>determinarne la codifica di carattere</a> e di convertirli esplicitamente.
+<li>La variabile <var>content</var> contiene i dati effettivi che sono stati restituiti dal server <abbr>HTTP</abbr>. I dati vengono restituiti come un <a href=strings.html#byte-arrays>oggetto <code>bytes</code>, non una stringa</a>. Se li volete sotto forma di stringa, avete bisogno di <a href=http://feedparser.org/docs/character-encoding.html>determinarne la codifica di carattere</a> ed effettuare da voi la conversione.
 </ol>
 
 <blockquote class=note>
 <p><span class=u>&#x261E;</span>Avrete probabilmente bisogno di un solo oggetto <code>httplib2.Http</code>. Esistono valide ragioni per crearne più di uno, ma dovreste farlo solo se sapete perché ne avete bisogno. &#8220;Devo richiedere dati da due <abbr>URL</abbr> differenti&#8221; non è una ragione valida. Riutilizzate l'oggetto <code>Http</code> e invocate semplicemente il metodo <code>request()</code> due volte.
 </blockquote>
+
+<h3 id=why-bytes>Una breve digressione per spiegare perché <code>httplib2</code> restituisce byte invece di stringhe</h3>
+
+<p>Byte. Stringhe. Che sofferenza. Perché <code>httplib2</code> non può &#8220;semplicemente&#8221; fare la conversione per voi? Be', è complicato, perché le regole per determinare la codifica di carattere sono specifiche per il tipo di risorsa che state richiedendo. Come potrebbe fare <code>httplib2</code> a sapere che tipo di risorsa state richiedendo? Di solito, il tipo è elencato nell'intestazione <abbr>HTTP</abbr> <code>Content-Type</code>, ma questa è una caratteristica opzionale di <abbr>HTTP</abbr> e non tutti i server <abbr>HTTP</abbr> la includono. Se quell'intestazione non è presente nella risposta <abbr>HTTP</abbr>, tocca al client indovinare. (Questa operazione viene comunemente chiamata &#8220;<span class=wtf>content sniffing</span>&#8221; e non è mai perfetta.)
+
+<p>Se sapete che tipo di risorsa vi aspettate (in questo caso, un documento <abbr>XML</abbr>), forse potreste &#8220;semplicemente&#8221; passare l'oggetto <code>bytes</code> restituito alla funzione <a href=xml.html#xml-parse><code>xml.etree.ElementTree.parse()</code></a>. Questo funzionerà purché il documento <abbr>XML</abbr> includa informazioni sulla propria codifica di carattere (come accade in questo caso), ma questa è una caratteristica opzionale e non tutti i documenti <abbr>XML</abbr> lo fanno. Se un documento <abbr>XML</abbr> non include informazioni di codifica, il client è tenuto a controllare il <span class=wtf>enclosing transport</span>&nbsp;&mdash;&nbsp;<i>i.e.</i> l'intestazione <abbr>HTTP</abbr> <code>Content-Type</code>, che può includere un parametro <code>charset</code>.
+
+<p>Ma le cose vanno anche peggio di così. Ora le informazioni sulla codifica di carattere possono trovarsi in due posti: all'interno del documento <abbr>XML</abbr> e nell'intestazione <abbr>HTTP</abbr> <code>Content-Type</code>. Se l'informazione è in <em>entrambi</em> i posti, quale deve essere ritenuta valida? Secondo la <a href=http://www.ietf.org/rfc/rfc3023.txt>RFC 3023</a> (vi giuro che non me lo sto inventando), se il tipo di <span class=wtf>media</span> fornito nell'intestazione <abbr>HTTP</abbr> <code>Content-Type</code> è <code>application/xml</code>, <code>application/xml-dtd</code>, <code>application/xml-external-parsed-entity</code>, o un qualsiasi sottotipo di <code>application/xml</code> come per esempio <code>application/atom+xml</code> o <code>application/rss+xml</code> o persino <code>application/rdf+xml</code>, allora la codifica è
+
+<ol>
+<li>la codifica data nel parametro <code>charset</code> dell'intestazione <abbr>HTTP</abbr> <code>Content-Type</code>, oppure
+<li>la codifica data nell'attributo <code>encoding</code> della dichiarazine <abbr>XML</abbr> all'interno del documento, oppure
+<li><code>utf-8</code>
+</ol>
+
+<p>D'altra parte, se il tipo di <span class=wtf>media</span> dato nell'intestazione <abbr>HTTP</abbr> <code>Content-Type</code> è <code>text/xml</code>, <code>text/xml-external-parsed-entity</code>, o un sottotipo come per esempio <code>text/AnythingAtAll+xml</code>, allora l'attributo di codifica della dichiarazione <abbr>XML</abbr> nel documento viene completamente ignorata e la codifica è
+
+<ol>
+<li>la codifica data nel parametro <code>charset</code> dell'intestazione <abbr>HTTP</abbr> <code>Content-Type</code>, oppure
+<li><code>us-ascii</code>
+</ol>
+
+<p>E questo è solo per i documenti <abbr>XML</abbr>. Per i documenti <abbr>HTML</abbr>, i browser web hanno costruito <a type=application/pdf href=http://www.adambarth.com/papers/2009/barth-caballero-song.pdf>regole per il <span class=wtf>content-sniffing</span></a> [<abbr>PDF</abbr>] talmente bizantine che <a href=http://www.google.com/search?q=barth+content-type+processing+model>stiamo ancora cercando di capire come funzionano</a>.
+
+<p>&#8220;<a href=http://code.google.com/p/httplib2/source/checkout>Le patch sono benvenute</a>.&#8221;
 
 <h3 id=httplib2-caching>Come <code>httplib2</code> gestisce il <span class=wtf>caching</span></h3>
 
@@ -368,6 +399,10 @@ Content-Type: application/xml</samp>
 <li>Abbiamo anche &#8220;ricevuto&#8221; un codice di stato <abbr>HTTP</abbr> che indica che la &#8220;richiesta&#8221; ha avuto successo.
 <li>Qui sta il punto: questa &#8220;risposta&#8221; è stata generata dalla cache locale di <code>httplib2</code>. Quel nome di directory che avete passato nel creare l'oggetto <code>httplib2.Http</code>&nbsp;&mdash;&nbsp;quella directory conserva la cache di <code>httplib2</code> per tutte le operazioni che ha mai effettuato.
 </ol>
+
+<blockquote class=note>
+<p><span class=u>&#x261E;</span>Se volete attivare le informazioni di debug di <code>httplib2</code>, dovete impostare una costante a livello di modulo (<code>httplib2.debuglevel</code>) e poi creare un nuovo oggetto <code>httplib2.Http</code>. Se volete disattivare le informazioni di debug, dovete modificare la stessa costante a livello di modulo e poi creare un nuovo oggetto <code>httplib2.Http</code>.
+</blockquote>
 
 <p>Avete già richiesto in precedenza i dati a questo <abbr>URL</abbr>. Quella richiesta ha avuto successo (<code>status: 200</code>). Quella risposta includeva non solo i dati del feed, ma anche un insieme di <a href=#caching>intestazioni di <span class=wtf>caching</span></a> che dicevano a chiunque fosse in ascolto che poteva tenere in cache questa risorsa per 24 ore. (<code>Cache-Control: max-age=86400</code>, che sono 24 ore misurate in secondi). <code>httplib2</code> comprende e rispetta queste intestazioni di <span class=wtf>caching</span>, e ha memorizzato la risposta precedente nella directory <code>.cache</code> (il cui nome avete passato quando avete creato l'oggetto <code>Http</code>). Quella cache non è ancora scaduta, quindi la seconda volta che richiedete i dati a questo <abbr>URL</abbr>, <code>httplib2</code> semplicemente restituisce il risultato in cache senza nemmeno utilizzare la rete.
 
@@ -443,7 +478,7 @@ reply: 'HTTP/1.1 200 OK'</samp>
 <mark> 'etag': '"7f806d-1a01-9fb97900"',</mark>
 <mark> 'last-modified': 'Tue, 02 Jun 2009 02:51:48 GMT',</mark>
  'server': 'Apache',
- 'status': '304',
+ 'status': '200',
  'vary': 'Accept-Encoding,User-Agent'}</samp>
 <a><samp class=p>>>> </samp><kbd class=pp>len(content)</kbd>                                                  <span class=u>&#x2462;</span></a>
 <samp class=pp>6657</samp></pre>
@@ -510,7 +545,7 @@ reply: 'HTTP/1.1 200 OK'</samp>
  'vary': 'Accept-Encoding,User-Agent'}</samp></pre>
 <ol>
 <li>Ogni volta che <code>httplib2</code> invia una richiesta, include una intestazione <code>Accept-Encoding</code> per dire al server che è in grado di gestire la compressione sia di tipo <code>deflate</code> sia di tipo <code>gzip</code>.
-<li>In questo caso, il server ha risposto con un <span class=wtf>payload</span> compresso tramite gzip. Nel momento in cui il metodo <code>request()</code> termina, <code>httplib2</code> ha già decompresso il corpo della risposta e lo ha piazzato nella variabile <var>content</var>. Se siete curiosi di sapere se la risposta era compressa oppure no, potete controllare il dizionario <var>response</var> dictionary; altrimenti, non preoccupatevi di questo.
+<li>In questo caso, il server ha risposto con un <span class=wtf>payload</span> compresso tramite gzip. Nel momento in cui il metodo <code>request()</code> termina, <code>httplib2</code> ha già decompresso il corpo della risposta e lo ha piazzato nella variabile <var>content</var>. Se siete curiosi di sapere se la risposta era compressa oppure no, potete controllare <var>response['-content-encoding']</var>; altrimenti, non preoccupatevi di questo.
 </ol>
 
 <h3 id=httplib2-redirects>Come <code>httplib2</code> gestisce le redirezioni</h3>
@@ -519,6 +554,7 @@ reply: 'HTTP/1.1 200 OK'</samp>
 
 <pre class=screen>
 <samp class=p>>>> </samp><kbd class=pp>import httplib2</kbd>
+<samp class=p>>>> </samp><kbd class=pp>httplib2.debuglevel = 1</kbd>
 <samp class=p>>>> </samp><kbd class=pp>h = httplib2.Http('.cache')</kbd>
 <a><samp class=p>>>> </samp><kbd class=pp>response, content = h.request('http://diveintopython3.org/examples/feed-302.xml')</kbd>  <span class=u>&#x2460;</span></a>
 <samp>connect: (diveintopython3.org, 80)
@@ -543,7 +579,7 @@ reply: 'HTTP/1.1 200 OK'</samp></pre>
 
 <pre class=screen>
 # continua dall'esempio precedente
-<a><samp class=p>>>> </samp><kbd class=pp>print(dict(response.items()))</kbd>                                     <span class=u>&#x2460;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>response</kbd>                                                          <span class=u>&#x2460;</span></a>
 <samp class=pp>{'status': '200',
  'content-length': '3070',
 <a> 'content-location': 'http://diveintopython3.org/examples/feed.xml',  <span class=u>&#x2461;</span></a>
@@ -562,7 +598,34 @@ reply: 'HTTP/1.1 200 OK'</samp></pre>
 <li>I dati memorizzati nella variabile <var>response</var> che ottenete indietro da questa singola chiamata al metodo <code>request()</code> sono la risposta dall'<abbr>URL</abbr> finale.
 <li><code>httplib2</code> aggiunge l'<abbr>URL</abbr> finale al dizionario <var>response</var>, come valore per la chiave <code>content-location</code>. Questa non è una intestazione proveniente dal server, ma è specifica per <code>httplib2</code>.
 <li><span class=wtf>Apropos of nothing</span>, questo feed è <a href=#httplib2-compression>compresso</a>.
-<li>E memorizzabile in cache. (Questo è importante, come vedrete nel prossimo esempio.)
+<li>E memorizzabile in cache. (Questo è importante, come vedrete fra un minuto.)
+</ol>
+
+<p>La risposta contenuta nella variabile <var>response</var> che avete ottenuto indietro vi dà informazioni sull'<abbr>URL</abbr> <em>finale</em>. E se voleste informazioni sugli <abbr>URL</abbr> intermedi, quelli che alla fine vi hanno rediretto all'<abbr>URL</abbr> finale? <code>httplib2</code> vi permette di ottenere queste informazioni.
+
+<pre class=screen>
+# continua dall'esempio precedente
+<a><samp class=p>>>> </samp><kbd class=pp>response.previous</kbd>                                                     <span class=u>&#x2460;</span></a>
+<samp class=pp>{'status': '302',
+ 'content-length': '228',
+ 'content-location': 'http://diveintopython3.org/examples/feed-302.xml',
+ 'expires': 'Thu, 04 Jun 2009 02:21:41 GMT',
+ 'server': 'Apache',
+ 'connection': 'close',
+ 'location': 'http://diveintopython3.org/examples/feed.xml',
+ 'cache-control': 'max-age=86400',
+ 'date': 'Wed, 03 Jun 2009 02:21:41 GMT',
+ 'content-type': 'text/html; charset=iso-8859-1'}</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>type(response)</kbd>                                                        <span class=u>&#x2461;</span></a>
+<samp class=pp>&lt;class 'httplib2.Response'></samp>
+<samp class=p>>>> </samp><kbd class=pp>type(response.previous)</kbd>
+<samp class=pp>&lt;class 'httplib2.Response'></samp>
+<a><samp class=p>>>> </samp><kbd class=pp>response.previous.previous</kbd>                                            <span class=u>&#x2461;</span></a>
+<samp class=p>>>></samp></pre>
+<ol>
+<li>La proprietà <var>response.previous</var> mantiene un riferimento al precedente oggetto risposta che <code>httplib2</code> ha seguito per ottenere l'oggetto risposta corrente.
+<li>Sia <var>response</var> che <var>response.previous</var> sono oggetti <code>httplib2.Response</code>.
+<li>Questo significa che potete controllare <var>response.previous.previous</var> per seguire la catena di redirezioni facendo ulteriori passi indietro. (Scenario: un <abbr>URL</abbr> redirige verso un secondo <abbr>URL</abbr> che redirige verso un terzo <abbr>URL</abbr>. Potrebbe accadere!) In questo caso, abbiamo già raggiunto l'inizio della catena di redirezioni, quindi la proprietà vale <code>None</code>.
 </ol>
 
 <p>Cosa succede se effettuate ancora una richiesta allo stesso <abbr>URL</abbr>?
@@ -675,17 +738,21 @@ Aggiorna lo stato dell'utente autenticato. Richiede il parametro <code>status</c
 <samp class=p>>>> </samp><kbd class=pp>httplib2.debuglevel = 1</kbd>
 <samp class=p>>>> </samp><kbd class=pp>h = httplib2.Http('.cache')</kbd>
 <samp class=p>>>> </samp><kbd class=pp>data = {'status': 'Test update from Python 3'}</kbd>
-<a><samp class=p>>>> </samp><kbd class=pp>h.add_credentials('diveintomark', '<var>MY_SECRET_PASSWORD</var>')</kbd>                 <span class=u>&#x2460;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>h.add_credentials('diveintomark', '<var>MY_SECRET_PASSWORD</var>', 'identi.ca')</kbd>    <span class=u>&#x2460;</span></a>
 <samp class=p>>>> </samp><kbd class=pp>resp, content = h.request('https://identi.ca/api/statuses/update.xml',</kbd>
-<a><samp class=p>... </samp><kbd class=pp>    'POST',</kbd>                                                             <span class=u>&#x2462;</span></a>
-<a><samp class=p>... </samp><kbd class=pp>    urlencode(data),</kbd>                                                    <span class=u>&#x2463;</span></a>
-<a><samp class=p>... </samp><kbd class=pp>    headers={'Content-Type': 'application/x-www-form-urlencoded'})</kbd>      <span class=u>&#x2464;</span></a></pre>
+<a><samp class=p>... </samp><kbd class=pp>    'POST',</kbd>                                                             <span class=u>&#x2461;</span></a>
+<a><samp class=p>... </samp><kbd class=pp>    urlencode(data),</kbd>                                                    <span class=u>&#x2462;</span></a>
+<a><samp class=p>... </samp><kbd class=pp>    headers={'Content-Type': 'application/x-www-form-urlencoded'})</kbd>      <span class=u>&#x2463;</span></a></pre>
 <ol>
 <li>Questo è il modo in cui <code>httplib2</code> gestisce l'autenticazione. Memorizzate il vostro nome utente e la vostra password con il metodo <code>add_credentials()</code>. Quando <code>httplib2</code> prova a emettere la richiesta, il server risponderà con un codice di stato <code>401 Unauthorized</code>, ed elencherà quali metodi di autenticazione supporta (nella intestazione <code>WWW-Authenticate</code>). <code>httplib2</code> costruirà automaticamente una intestazione <code>Authorization</code> e ri-richiederà l'<abbr>URL</abbr>.
 <li>Il secondo parametro è il tipo di richiesta <abbr>HTTP</abbr>, <code>POST</code> in questo caso.
 <li>Il terzo parametro è il <i class=wtf>payload</i> da inviare al server. Stiamo mandando il dizionario <span class=wtf><abbr>URL</abbr>-encoded</span> con il messaggio di stato.
 <li>Infine, abbiamo bisogno di dire al server che il <span class=wtf>payload</span> contiene dati <span class=wtf><abbr>URL</abbr>-encoded</span>.
 </ol>
+
+<blockquote class=note>
+<p><span class=u>&#x261E;</span>Il terzo parametro del metodo <code>add_credentials()</code> è il dominio in cui le credenziali sono valide. Dovreste sempre specificarlo! Se lasciate fuori il dominio e più tardi riutilizzate l'oggetto <code>httplib2.Http</code> su un sito autenticato differente, <code>httplib2</code> potrebbe far trapelare il nome utente e la password di un sito all'altro sito.
+</blockquote>
 
 <p>Questo è quello che va <span class=wtf>over the wire</span>:
 
