@@ -6,7 +6,7 @@
 <link rel=stylesheet href=dip3.css>
 <link rel=stylesheet href=dip3-it.css>
 <style>
-body{counter-reset:h1 13}
+body{counter-reset:h1 12}
 mark{display:inline}
 </style>
 <link rel=stylesheet media='only screen and (max-device-width: 480px)' href=mobile.css>
@@ -121,10 +121,10 @@ mark{display:inline}
 <pre class=nd><code class=pp>&lt;foo>&lt;/foo>
 &lt;bar>&lt;/bar></code></pre>
 
-<p>Gli elementi possono essere dotati di <i>attributi</i>, che sono coppie nome-valore. Gli attributi sono elencati all'interno del tag di apertura di un elemento e separati da spazi bianchi. I <i>nomi degli attributi</i> non possono essere ripetuti nell'ambito di uno stesso elemento. I <i>valori degli attributi</i> devono essere racchiusi tra virgolette.
+<p>Gli elementi possono essere dotati di <i>attributi</i>, che sono coppie nome-valore. Gli attributi sono elencati all'interno del tag di apertura di un elemento e separati da spazi bianchi. I <i>nomi degli attributi</i> non possono essere ripetuti nell'ambito di uno stesso elemento. I <i>valori degli attributi</i> devono essere racchiusi tra apici o virgolette.
 
 <pre class=nd><code class=pp><a>&lt;foo <mark>lang='en'</mark>>          <span class=u>&#x2460;</span></a>
-<a>  &lt;bar <mark>lang='fr'</mark>>&lt;/bar>  <span class=u>&#x2461;</span></a>
+<a>  &lt;bar <mark>lang="fr"</mark>>&lt;/bar>  <span class=u>&#x2461;</span></a>
 &lt;/foo>
 </code></pre>
 <ol>
@@ -369,6 +369,30 @@ mark{display:inline}
 <li>In maniera forse sorprendente, questa richiesta non trova gli elementi <code>author</code> in questo documento. Perché no? Perché questa è solo una scorciatoia per <code>tree.getroot().findall('{http://www.w3.org/2005/Atom}author')</code>, che significa &#8220;trova tutti gli elementi <code>author</code> che sono figli dell'elemento radice.&#8221; Gli elementi <code>author</code> non sono figli dell'elemento radice, ma sono figli degli elementi <code>entry</code>. Quindi la richiesta non restituisce alcuna corrispondenza.
 </ol>
 
+<p>Esiste anche un metodo <code>find()</code> che restituisce il primo elemento corrispondente. Questo è utile per situazioni in cui vi aspettate una sola corrispondenza, o vi interessa solo la prima corrispondenza nel caso ce ne siano più di una.
+
+<pre class=screen>
+<a><samp class=p>>>> </samp><kbd class=pp>entries = tree.findall('{http://www.w3.org/2005/Atom}entry')</kbd>           <span class=u>&#x2460;</span></a>
+<samp class=p>>>> </samp><kbd class=pp>len(entries)</kbd>
+<samp class=p>3</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>title_element = entries[0].find('{http://www.w3.org/2005/Atom}title')</kbd>  <span class=u>&#x2461;</span></a>
+<samp class=p>>>> </samp><kbd class=pp>title_element.text</kbd>
+<samp class=pp>'Dive into history, edizione 2009'</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>foo_element = entries[0].find('{http://www.w3.org/2005/Atom}foo')</kbd>      <span class=u>&#x2462;</span></a>
+<samp class=p>>>> </samp><kbd class=pp>foo_element</kbd>
+<samp class=p>>>> </samp><kbd class=pp>type(foo_element)</kbd>
+<samp class=pp>&lt;class 'NoneType'></samp>
+</pre>
+<ol>
+<li>Avete visto questo in azione nell'esempio precedente. Trova tutti gli elementi <code>atom:entry</code>.
+<li>Il metodo <code>find()</code> accetta una richiesta ElementTree e restituisce il primo elemento corrispondente.
+<li>In questa voce non ci sono elementi chiamati <code>foo</code>, quindi questa richiesta restituisce <code>None</code>.
+</ol>
+
+<blockquote class=note>
+<p><span class=u>&#x261E;</span>C'è un &#8220;<span class=wtf>gotcha</span>&#8221; con il metodo <code>find()</code> che finirà per <span class=wtf>bite you</span>. In un contesto logico, gli oggetti elemento di ElementTree verranno valutati come <code>False</code> se non contengono figli (<i>i.e.</i> se <code>len(element)</code> è <code>0</code>). Questo significa che <code>if element.find('...')</code> non sta verificando che il metodo <code>find()</code> abbia trovato un elemento corrispondente, ma sta verificando che quell'elemento corrispondente abbia elementi figli! Per verificare che il metodo <code>find()</code> abbia restituito un elemento, usate <code>if element.find('...') is not None</code>.
+</blockquote>
+
 <p><em>Esiste</em> un modo per cercare gli elementi <em>discendenti</em>, <i>i.e.</i> figli, nipoti e qualsiasi elemento a qualsiasi livello di profondità.
 
 <pre class=screen>
@@ -566,6 +590,10 @@ except ImportError:
 <li>Potete anche utilizzare l'argomento con nome <var>pretty_print</var> per ottenere una stampa formattata del testo serializzato, nella quale viene inserito un ritorno a capo dopo i tag di chiusura e prima dei tag di apertura di elementi che contengono elementi figli ma non includono contenuto testuale. In termini tecnici, <code>lxml</code> aggiunge &#8220;spazio bianco non significativo&#8221; per rendere il risultato più leggibile.
 </ol>
 
+<blockquote class=note>
+<p><span class=u>&#x261E;</span>Potreste voler anche provare <a href=http://github.com/galvez/xmlwitch/tree/master>xmlwitch</a>, un'altra libreria di terze parti per generare <abbr>XML</abbr>. Fa largo uso della <a href=special-method-names.html#context-managers>istruzione <code>with</code></a> per rendere più leggibile il codice di generazione di <abbr>XML</abbr>.
+</blockquote>
+
 <p class=a>&#x2042;
 
 <h2 id=xml-custom-parser>Riconoscere documenti XML contenenti errori di malformazione</h2>
@@ -642,9 +670,10 @@ lxml.etree.XMLSyntaxError: Entity 'hellip' not defined, line 3, column 28</samp>
 <li><a href=http://codespeak.net/lxml/><code>lxml</code></a>
 <li><a href=http://codespeak.net/lxml/1.3/parsing.html>Riconoscere <abbr>XML</abbr> e <abbr>HTML</abbr> con <code>lxml</code></a>
 <li><a href=http://codespeak.net/lxml/1.3/xpathxslt.html>Usare XPath e <abbr>XSLT</abbr> con <code>lxml</code></a>
+<li><a href=http://github.com/galvez/xmlwitch/tree/master>xmlwitch</a>
 </ul>
 
-<p class=v><a rel=prev class=todo><span class=u>&#x261C;</span></a> <a rel=next class=todo><span class=u>&#x261E;</span></a>
+<p class=v><a href=file.html rel=prev title='indietro a &#8220;File&#8221;'><span class=u>&#x261C;</span></a> <a href=serializzare-oggetti-python.html rel=next title='avanti a &#8220;Serializzare oggetti Python&#8221;'><span class=u>&#x261E;</span></a>
 <p class=c>&copy; 2001&ndash;9 <a href=informazioni-sul-libro.html>Mark Pilgrim</a><br>
 &copy; 2009 <a href=informazioni-sulla-traduzione.html>Giulio Piancastelli</a> per la traduzione italiana
 <script src=j/jquery.js></script>
