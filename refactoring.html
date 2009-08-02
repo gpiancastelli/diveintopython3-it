@@ -27,7 +27,7 @@ body{counter-reset:h1 10}
 <a><samp class=p>>>> </samp><kbd class=pp>roman7.from_roman('')</kbd> <span class=u>&#x2460;</span></a>
 <samp class=pp>0</samp></pre>
 <ol>
-<li>Ricordate quando, nel <span class=fixme>[FIXME-xref]</span> capitolo precedente, continuavate a notare che una stringa vuota sarebbe stata riconosciuta dall'espressione regolare che stavate usando per controllare i numeri romani validi? Ebbene, questo è ancora vero per la versione finale dell'espressione regolare. Ma è un bug; in realtà, vorreste che una stringa vuota sollevasse un'eccezione di tipo <code>InvalidRomanNumeralError</code> esattamente come ogni altra sequenza di caratteri che non rappresenta un numero romano valido.
+<li>Questo è un bug. Una stringa vuota dovrebbe sollevare una eccezione di tipo <code>InvalidRomanNumeralError</code>, esattamente come ogni altra sequenza di caratteri che non rappresenta un numero romano valido.
 </ol>
 
 <p>Dopo aver riprodotto il bug, e prima di correggerlo, dovreste scrivere un test che fallisce, mettendo così il bug in evidenza.
@@ -76,10 +76,10 @@ FAILED (failures=1)</samp></pre>
 
 <pre><code class=pp>def from_roman(s):
     '''convert Roman numeral to integer'''
-<a>    if not s:  <span class=u>&#x2460;</span></a>
+<a>    if not s:                                                                  <span class=u>&#x2460;</span></a>
         raise InvalidRomanNumeralError, 'Input can not be blank'
     if not re.search(romanNumeralPattern, s):
-        raise InvalidRomanNumeralError, 'Invalid Roman numeral: {0}'.format(s)
+<a>        raise InvalidRomanNumeralError, 'Invalid Roman numeral: {}'.format(s)  <span class=u>&#x2461;</span></a>
 
     result = 0
     index = 0
@@ -90,6 +90,7 @@ FAILED (failures=1)</samp></pre>
     return result</code></pre>
 <ol>
 <li>Sono necessarie solo due linee di codice: un controllo esplicito per una stringa vuota, e una istruzione di <code>raise</code>.
+<li>Non penso di aver ancora menzionato questa particolarità da nessuna parte in questo libro, quindi vi serva come ultima lezione sulla <a href=strings.html#formatting-strings>formattazione di stringhe</a>. A partire da Python 3.1, potete omettere i numeri quando usate gli indici posizionali in una specifica di formato. Questo vuol dire che, invece di usare la specifica di formato <code>{0}</code> per fare riferimento al primo parametro del metodo <code>format()</code>, potete semplicemente usare <code>{}</code>, che Python completerà con l'indice posizionale corretto. Questo funziona con qualsiasi numero di argomenti: la prima <code>{}</code> è <code>{0}</code>, la seconda <code>{}</code> è <code>{1}</code>, e così via.
 </ol>
 
 <pre class=screen>
@@ -122,7 +123,7 @@ Ran 11 tests in 0.156s
 <h2 id=changing-requirements>Gestire il cambiamento dei requisiti</h2>
 <p>Nonostante facciate del vostro meglio per tenere i vostri committenti con i piedi ben piantati per terra in modo da ottenere requisiti precisi sotto la minaccia di orribili torture a base di forbici e cera calda, i requisiti cambieranno. La maggior parte dei committenti non sa cosa vuole fino a quando non la vede, e anche se lo sapesse, non sarebbe così brava a descrivere ciò che vuole in maniera sufficientemente precisa da risultare utile. E anche se lo fosse, vorrebbe comunque di più nella versione successiva. Quindi siate preparati ad aggiornare i vostri test man mano che i requisiti cambiano.
 
-<p>Supponete, per esempio, di volere espandere l'intervallo dei numeri romani gestito dalle funzioni di conversione. Ricordate <span class=fixme>[FIXME-xref]</span> la regola per la quale nessun carattere può essere ripetuto più di tre volte? Ebbene, i Romani erano disposti a fare uno strappo a quella regola per poter rappresentare <code>4000</code> con 4 <code>M</code> di seguito. Se fate questa modifica, sarete in grado di allargare l'intervallo di numeri convertibili da <code>1..3999</code> a <code>1..4999</code>. Ma prima è necessario fare alcuni cambiamenti ai vostri test.
+<p>Supponete, per esempio, di volere espandere l'intervallo dei numeri romani gestito dalle funzioni di conversione. Normalmente, nessun carattere in un numero romano può essere ripetuto più di tre volte di seguito. Ma i Romani erano disposti a fare uno strappo a quella regola per poter rappresentare <code>4000</code> con 4 <code>M</code> di seguito. Se fate questa modifica, sarete in grado di allargare l'intervallo di numeri convertibili da <code>1..3999</code> a <code>1..4999</code>. Ma prima è necessario fare alcuni cambiamenti ai vostri test.
 
 <p class=d>[<a href=examples/roman8.py>scarica <code>roman8.py</code></a>]
 <pre><code class=pp>class KnownValues(unittest.TestCase):
@@ -473,7 +474,7 @@ OK</samp></pre>
 <li>Applicate sistematicamente il refactoring per migliorare prestazioni, scalabilità, leggibilità, manutenibilità, o qualsiasi altra -ilità che vi manca.
 </ul>
 
-<p class=v><a rel=prev class=todo><span class=u>&#x261C;</span></a> <a rel=next class=todo><span class=u>&#x261E;</span></a>
+<p class=v><a href=test-di-unità.html rel=prev title='indietro a &#8220;Test di unità&#8221;'><span class=u>&#x261C;</span></a> <a href=file.html rel=next title='avanti a &#8220;File&#8221;'><span class=u>&#x261E;</span></a>
 <p class=c>&copy; 2001&ndash;9 <a href=informazioni-sul-libro.html>Mark Pilgrim</a><br>
 &copy; 2009 <a href=informazioni-sulla-traduzione.html>Giulio Piancastelli</a> per la traduzione italiana
 <script src=j/jquery.js></script>

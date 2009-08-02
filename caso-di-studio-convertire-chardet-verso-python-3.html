@@ -6,7 +6,7 @@
 <link rel=stylesheet href=dip3.css>
 <link rel=stylesheet href=dip3-it.css>
 <style>
-body{counter-reset:h1 18}
+body{counter-reset:h1 16}
 ins,del{line-height:2.154;text-decoration:none;font-style:normal;display:inline-block;width:100%}
 ins{background:#9f9}
 del{background:#f87}
@@ -135,388 +135,11 @@ RefactoringTool: Skipping implicit fixer: ws_comma
 
  ENOUGH_DATA_THRESHOLD = 1024
  SURE_YES = 0.99
---- chardet\charsetgroupprober.py (original)
-+++ chardet\charsetgroupprober.py (refactored)
-@@ -26,7 +26,7 @@
- ######################### END LICENSE BLOCK #########################
-
- import constants, sys
-<del>-from charsetprober import CharSetProber</del>
-<ins>+from .charsetprober import CharSetProber</ins>
-
- class CharSetGroupProber(CharSetProber):
-     def __init__(self):
---- chardet\codingstatemachine.py (original)
-+++ chardet\codingstatemachine.py (refactored)
-@@ -25,7 +25,7 @@
- # 02110-1301  USA
- ######################### END LICENSE BLOCK #########################
-
-<del>-from constants import eStart, eError, eItsMe</del>
-<ins>+from .constants import eStart, eError, eItsMe</ins>
-
- class CodingStateMachine:
-     def __init__(self, sm):
---- chardet\constants.py (original)
-+++ chardet\constants.py (refactored)
-@@ -38,10 +38,10 @@
-
- SHORTCUT_THRESHOLD = 0.95
-
-<del>-import __builtin__</del>
-<ins>+import builtins</ins>
- if not hasattr(__builtin__, 'False'):
-     False = 0
-     True = 1
- else:
-<del>-    False = __builtin__.False</del>
-<del>-    True = __builtin__.True</del>
-<ins>+    False = builtins.False</ins>
-<ins>+    True = builtins.True</ins>
---- chardet\escprober.py (original)
-+++ chardet\escprober.py (refactored)
-@@ -26,9 +26,9 @@
- ######################### END LICENSE BLOCK #########################
-
- import constants, sys
-<del>-from escsm import HZSMModel, ISO2022CNSMModel, ISO2022JPSMModel, ISO2022KRSMModel</del>
-<del>-from charsetprober import CharSetProber</del>
-<del>-from codingstatemachine import CodingStateMachine</del>
-<ins>+from .escsm import HZSMModel, ISO2022CNSMModel, ISO2022JPSMModel, ISO2022KRSMModel</ins>
-<ins>+from .charsetprober import CharSetProber</ins>
-<ins>+from .codingstatemachine import CodingStateMachine</ins>
-
- class EscCharSetProber(CharSetProber):
-     def __init__(self):
---- chardet\escsm.py (original)
-+++ chardet\escsm.py (refactored)
-@@ -25,7 +25,7 @@
- # 02110-1301  USA
- ######################### END LICENSE BLOCK #########################
-
-<del>-from constants import eStart, eError, eItsMe</del>
-<ins>+from .constants import eStart, eError, eItsMe</ins>
-
- HZ_cls = ( \
- 1,0,0,0,0,0,0,0,  # 00 - 07
---- chardet\eucjpprober.py (original)
-+++ chardet\eucjpprober.py (refactored)
-@@ -26,12 +26,12 @@
- ######################### END LICENSE BLOCK #########################
-
- import constants, sys
-<del>-from constants import eStart, eError, eItsMe</del>
-<del>-from mbcharsetprober import MultiByteCharSetProber</del>
-<del>-from codingstatemachine import CodingStateMachine</del>
-<del>-from chardistribution import EUCJPDistributionAnalysis</del>
-<del>-from jpcntx import EUCJPContextAnalysis</del>
-<del>-from mbcssm import EUCJPSMModel</del>
-<ins>+from .constants import eStart, eError, eItsMe</ins>
-<ins>+from .mbcharsetprober import MultiByteCharSetProber</ins>
-<ins>+from .codingstatemachine import CodingStateMachine</ins>
-<ins>+from .chardistribution import EUCJPDistributionAnalysis</ins>
-<ins>+from .jpcntx import EUCJPContextAnalysis</ins>
-<ins>+from .mbcssm import EUCJPSMModel</ins>
-
- class EUCJPProber(MultiByteCharSetProber):
-     def __init__(self):
---- chardet\euckrprober.py (original)
-+++ chardet\euckrprober.py (refactored)
-@@ -25,10 +25,10 @@
- # 02110-1301  USA
- ######################### END LICENSE BLOCK #########################
-
-<del>-from mbcharsetprober import MultiByteCharSetProber</del>
-<del>-from codingstatemachine import CodingStateMachine</del>
-<del>-from chardistribution import EUCKRDistributionAnalysis</del>
-<del>-from mbcssm import EUCKRSMModel</del>
-<ins>+from .mbcharsetprober import MultiByteCharSetProber</ins>
-<ins>+from .codingstatemachine import CodingStateMachine</ins>
-<ins>+from .chardistribution import EUCKRDistributionAnalysis</ins>
-<ins>+from .mbcssm import EUCKRSMModel</ins>
-
- class EUCKRProber(MultiByteCharSetProber):
-     def __init__(self):
---- chardet\euctwprober.py (original)
-+++ chardet\euctwprober.py (refactored)
-@@ -25,10 +25,10 @@
- # 02110-1301  USA
- ######################### END LICENSE BLOCK #########################
-
-<del>-from mbcharsetprober import MultiByteCharSetProber</del>
-<del>-from codingstatemachine import CodingStateMachine</del>
-<del>-from chardistribution import EUCTWDistributionAnalysis</del>
-<del>-from mbcssm import EUCTWSMModel</del>
-<ins>+from .mbcharsetprober import MultiByteCharSetProber</ins>
-<ins>+from .codingstatemachine import CodingStateMachine</ins>
-<ins>+from .chardistribution import EUCTWDistributionAnalysis</ins>
-<ins>+from .mbcssm import EUCTWSMModel</ins>
-
- class EUCTWProber(MultiByteCharSetProber):
-     def __init__(self):
---- chardet\gb2312prober.py (original)
-+++ chardet\gb2312prober.py (refactored)
-@@ -25,10 +25,10 @@
- # 02110-1301  USA
- ######################### END LICENSE BLOCK #########################
-
-<del>-from mbcharsetprober import MultiByteCharSetProber</del>
-<del>-from codingstatemachine import CodingStateMachine</del>
-<del>-from chardistribution import GB2312DistributionAnalysis</del>
-<del>-from mbcssm import GB2312SMModel</del>
-<ins>+from .mbcharsetprober import MultiByteCharSetProber</ins>
-<ins>+from .codingstatemachine import CodingStateMachine</ins>
-<ins>+from .chardistribution import GB2312DistributionAnalysis</ins>
-<ins>+from .mbcssm import GB2312SMModel</ins>
-
- class GB2312Prober(MultiByteCharSetProber):
-     def __init__(self):
---- chardet\hebrewprober.py (original)
-+++ chardet\hebrewprober.py (refactored)
-@@ -25,8 +25,8 @@
- # 02110-1301  USA
- ######################### END LICENSE BLOCK #########################
-
-<del>-from charsetprober import CharSetProber</del>
-<del>-import constants</del>
-<ins>+from .charsetprober import CharSetProber</ins>
-<ins>+from . import constants</ins>
-
- # This prober doesn't actually recognize a language or a charset.
- # It is a helper prober for the use of the Hebrew model probers
---- chardet\jpcntx.py (original)
-+++ chardet\jpcntx.py (refactored)
-@@ -25,7 +25,7 @@
- # 02110-1301  USA
- ######################### END LICENSE BLOCK #########################
-
-<del>-import constants</del>
-<ins>+from . import constants</ins>
-
- NUM_OF_CATEGORY = 6
- DONT_KNOW = -1
---- chardet\langbulgarianmodel.py (original)
-+++ chardet\langbulgarianmodel.py (refactored)
-@@ -25,7 +25,7 @@
- # 02110-1301  USA
- ######################### END LICENSE BLOCK #########################
-
-<del>-import constants</del>
-<ins>+from . import constants</ins>
-
- # 255: Control characters that usually does not exist in any text
- # 254: Carriage/Return
---- chardet\langcyrillicmodel.py (original)
-+++ chardet\langcyrillicmodel.py (refactored)
-@@ -25,7 +25,7 @@
- # 02110-1301  USA
- ######################### END LICENSE BLOCK #########################
-
-<del>-import constants</del>
-<ins>+from . import constants</ins>
-
- # KOI8-R language model
- # Character Mapping Table:
---- chardet\langgreekmodel.py (original)
-+++ chardet\langgreekmodel.py (refactored)
-@@ -25,7 +25,7 @@
- # 02110-1301  USA
- ######################### END LICENSE BLOCK #########################
-
-<del>-import constants</del>
-<ins>+from . import constants</ins>
-
- # 255: Control characters that usually does not exist in any text
- # 254: Carriage/Return
---- chardet\langhebrewmodel.py (original)
-+++ chardet\langhebrewmodel.py (refactored)
-@@ -27,7 +27,7 @@
- # 02110-1301  USA
- ######################### END LICENSE BLOCK #########################
-
-<del>-import constants</del>
-<ins>+from . import constants</ins>
-
- # 255: Control characters that usually does not exist in any text
- # 254: Carriage/Return
---- chardet\langhungarianmodel.py (original)
-+++ chardet\langhungarianmodel.py (refactored)
-@@ -25,7 +25,7 @@
- # 02110-1301  USA
- ######################### END LICENSE BLOCK #########################
-
-<del>-import constants</del>
-<ins>+from . import constants</ins>
-
- # 255: Control characters that usually does not exist in any text
- # 254: Carriage/Return
---- chardet\langthaimodel.py (original)
-+++ chardet\langthaimodel.py (refactored)
-@@ -25,7 +25,7 @@
- # 02110-1301  USA
- ######################### END LICENSE BLOCK #########################
-
-<del>-import constants</del>
-<ins>+from . import constants</ins>
-
- # 255: Control characters that usually does not exist in any text
- # 254: Carriage/Return
---- chardet\latin1prober.py (original)
-+++ chardet\latin1prober.py (refactored)
-@@ -26,8 +26,8 @@
- # 02110-1301  USA
- ######################### END LICENSE BLOCK #########################
-
-<del>-from charsetprober import CharSetProber</del>
-<del>-import constants</del>
-<ins>+from .charsetprober import CharSetProber</ins>
-<ins>+from . import constants</ins>
- import operator
-
- FREQ_CAT_NUM = 4
---- chardet\mbcharsetprober.py (original)
-+++ chardet\mbcharsetprober.py (refactored)
-@@ -28,8 +28,8 @@
- ######################### END LICENSE BLOCK #########################
-
- import constants, sys
-<del>-from constants import eStart, eError, eItsMe</del>
-<del>-from charsetprober import CharSetProber</del>
-<ins>+from .constants import eStart, eError, eItsMe</ins>
-<ins>+from .charsetprober import CharSetProber</ins>
-
- class MultiByteCharSetProber(CharSetProber):
-     def __init__(self):
---- chardet\mbcsgroupprober.py (original)
-+++ chardet\mbcsgroupprober.py (refactored)
-@@ -27,14 +27,14 @@
- # 02110-1301  USA
- ######################### END LICENSE BLOCK #########################
-
-<del>-from charsetgroupprober import CharSetGroupProber</del>
-<del>-from utf8prober import UTF8Prober</del>
-<del>-from sjisprober import SJISProber</del>
-<del>-from eucjpprober import EUCJPProber</del>
-<del>-from gb2312prober import GB2312Prober</del>
-<del>-from euckrprober import EUCKRProber</del>
-<del>-from big5prober import Big5Prober</del>
-<del>-from euctwprober import EUCTWProber</del>
-<ins>+from .charsetgroupprober import CharSetGroupProber</ins>
-<ins>+from .utf8prober import UTF8Prober</ins>
-<ins>+from .sjisprober import SJISProber</ins>
-<ins>+from .eucjpprober import EUCJPProber</ins>
-<ins>+from .gb2312prober import GB2312Prober</ins>
-<ins>+from .euckrprober import EUCKRProber</ins>
-<ins>+from .big5prober import Big5Prober</ins>
-<ins>+from .euctwprober import EUCTWProber</ins>
-
- class MBCSGroupProber(CharSetGroupProber):
-     def __init__(self):
---- chardet\mbcssm.py (original)
-+++ chardet\mbcssm.py (refactored)
-@@ -25,7 +25,7 @@
- # 02110-1301  USA
- ######################### END LICENSE BLOCK #########################
-
-<del>-from constants import eStart, eError, eItsMe</del>
-<ins>+from .constants import eStart, eError, eItsMe</ins>
-
- # BIG5
-
---- chardet\sbcharsetprober.py (original)
-+++ chardet\sbcharsetprober.py (refactored)
-@@ -27,7 +27,7 @@
- ######################### END LICENSE BLOCK #########################
-
- import constants, sys
-<del>-from charsetprober import CharSetProber</del>
-<ins>+from .charsetprober import CharSetProber</ins>
-
- SAMPLE_SIZE = 64
- SB_ENOUGH_REL_THRESHOLD = 1024
---- chardet\sbcsgroupprober.py (original)
-+++ chardet\sbcsgroupprober.py (refactored)
-@@ -27,15 +27,15 @@
- ######################### END LICENSE BLOCK #########################
-
- import constants, sys
-<del>-from charsetgroupprober import CharSetGroupProber</del>
-<del>-from sbcharsetprober import SingleByteCharSetProber</del>
-<del>-from langcyrillicmodel import Win1251CyrillicModel, Koi8rModel, Latin5CyrillicModel, MacCyrillicModel, Ibm866Model, Ibm855Model</del>
-<del>-from langgreekmodel import Latin7GreekModel, Win1253GreekModel</del>
-<del>-from langbulgarianmodel import Latin5BulgarianModel, Win1251BulgarianModel</del>
-<del>-from langhungarianmodel import Latin2HungarianModel, Win1250HungarianModel</del>
-<del>-from langthaimodel import TIS620ThaiModel</del>
-<del>-from langhebrewmodel import Win1255HebrewModel</del>
-<del>-from hebrewprober import HebrewProber</del>
-<ins>+from .charsetgroupprober import CharSetGroupProber</ins>
-<ins>+from .sbcharsetprober import SingleByteCharSetProber</ins>
-<ins>+from .langcyrillicmodel import Win1251CyrillicModel, Koi8rModel, Latin5CyrillicModel, MacCyrillicModel, Ibm866Model, Ibm855Model</ins>
-<ins>+from .langgreekmodel import Latin7GreekModel, Win1253GreekModel</ins>
-<ins>+from .langbulgarianmodel import Latin5BulgarianModel, Win1251BulgarianModel</ins>
-<ins>+from .langhungarianmodel import Latin2HungarianModel, Win1250HungarianModel</ins>
-<ins>+from .langthaimodel import TIS620ThaiModel</ins>
-<ins>+from .langhebrewmodel import Win1255HebrewModel</ins>
-<ins>+from .hebrewprober import HebrewProber</ins>
-
- class SBCSGroupProber(CharSetGroupProber):
-     def __init__(self):
---- chardet\sjisprober.py (original)
-+++ chardet\sjisprober.py (refactored)
-@@ -25,13 +25,13 @@
- # 02110-1301  USA
- ######################### END LICENSE BLOCK #########################
-
-<del>-from mbcharsetprober import MultiByteCharSetProber</del>
-<del>-from codingstatemachine import CodingStateMachine</del>
-<del>-from chardistribution import SJISDistributionAnalysis</del>
-<del>-from jpcntx import SJISContextAnalysis</del>
-<del>-from mbcssm import SJISSMModel</del>
-<ins>+from .mbcharsetprober import MultiByteCharSetProber</ins>
-<ins>+from .codingstatemachine import CodingStateMachine</ins>
-<ins>+from .chardistribution import SJISDistributionAnalysis</ins>
-<ins>+from .jpcntx import SJISContextAnalysis</ins>
-<ins>+from .mbcssm import SJISSMModel</ins>
- import constants, sys
-<del>-from constants import eStart, eError, eItsMe</del>
-<ins>+from .constants import eStart, eError, eItsMe</ins>
-
- class SJISProber(MultiByteCharSetProber):
-     def __init__(self):
---- chardet\universaldetector.py (original)
-+++ chardet\universaldetector.py (refactored)
-@@ -27,10 +27,10 @@
- ######################### END LICENSE BLOCK #########################
-
- import constants, sys
-<del>-from latin1prober import Latin1Prober # windows-1252</del>
-<del>-from mbcsgroupprober import MBCSGroupProber # multi-byte character sets</del>
-<del>-from sbcsgroupprober import SBCSGroupProber # single-byte character sets</del>
-<del>-from escprober import EscCharSetProber # ISO-2122, etc.</del>
-<ins>+from .latin1prober import Latin1Prober # windows-1252</ins>
-<ins>+from .mbcsgroupprober import MBCSGroupProber # multi-byte character sets</ins>
-<ins>+from .sbcsgroupprober import SBCSGroupProber # single-byte character sets</ins>
-<ins>+from .escprober import EscCharSetProber # ISO-2122, etc.</ins>
- import re
-
- MINIMUM_THRESHOLD = 0.20
---- chardet\utf8prober.py (original)
-+++ chardet\utf8prober.py (refactored)
-@@ -26,10 +26,10 @@
- ######################### END LICENSE BLOCK #########################
-
- import constants, sys
-<del>-from constants import eStart, eError, eItsMe</del>
-<del>-from charsetprober import CharSetProber</del>
-<del>-from codingstatemachine import CodingStateMachine</del>
-<del>-from mbcssm import UTF8SMModel</del>
-<ins>+from .constants import eStart, eError, eItsMe</ins>
-<ins>+from .charsetprober import CharSetProber</ins>
-<ins>+from .codingstatemachine import CodingStateMachine</ins>
-<ins>+from .mbcssm import UTF8SMModel</ins>
-
- ONE_CHAR_PROB = 0.5
-
+.
+.
+<mark>. (va avanti così per un po')</mark>
+.
+.
 RefactoringTool: Files that were modified:
 RefactoringTool: chardet\__init__.py
 RefactoringTool: chardet\big5prober.py
@@ -755,7 +378,7 @@ TypeError: Can't convert 'bytes' object to str implicitly</samp></pre>
       .
 <del>-     self._mLastChar = ''</del>
 <ins>+     self._mLastChar = b''</ins></code></pre>
-<p>Una ricerca su tutta la base di codice per &#8220;<code>mLastChar</code>&#8221; rivela un problema simile in <code>mbcharsetprober.py</code> dove, invece di memorizzare l'ultimo carattere, vengono memorizzati gli ultimi <em>due</em> caratteri. La classe <code>MultiByteCharSetProber</code> usa una lista di stringhe di 1 carattere per tenere traccia degli ultimi due caratteri; in Python 3, deve usare una lista di interi.
+<p>Una ricerca su tutta la base di codice per &#8220;<code>mLastChar</code>&#8221; rivela un problema simile in <code>mbcharsetprober.py</code> dove, invece di memorizzare l'ultimo carattere, vengono memorizzati gli ultimi <em>due</em> caratteri. La classe <code>MultiByteCharSetProber</code> usa una lista di stringhe di 1 carattere per tenere traccia degli ultimi due caratteri; in Python 3, deve usare una lista di interi, perché non sta realmente tenendo traccia di caratteri, ma di byte. (I byte sono semplicemente interi nell'intervallo <code>0-255</code>.)
 <pre class=nd><code class=pp>  class MultiByteCharSetProber(CharSetProber):
       def __init__(self):
           CharSetProber.__init__(self)
@@ -916,7 +539,6 @@ tests\Big5\0804.blogspot.com.xml</samp>
   File "C:\home\chardet\chardet\jpcntx.py", line 176, in get_order
     if ((aStr[0] >= '\x81') and (aStr[0] &lt;= '\x9F')) or \
 TypeError: unorderable types: int() >= str()</samp></pre>
-<p>Avete notato? Questa volta, il codice ha passato il primo test (<code>tests\ascii\howto.diveintomark.org.xml</code>) con successo. State facendo progressi tangibili qui.
 <p>Quindi qual è l'errore in questo caso? &#8220;Unorderable types&#8221;? Tipi non ordinabili? Ancora una volta, la differenza tra array di byte e stringhe sta rialzando la sua testa ripugnante. Date un'occhiata al codice:
 <pre class=nd><code class=pp>class SJISContextAnalysis(JapaneseContextAnalysis):
     def get_order(self, aStr):
@@ -937,15 +559,16 @@ TypeError: unorderable types: int() >= str()</samp></pre>
 <mark>        order, charLen = self.get_order(aBuf[i:i+2])</mark></code></pre>
 <p>Oh guardate, è il nostro vecchio amico <var>aBuf</var>. Come avrete potuto intuire da tutti gli altri problemi che abbiamo incontrato in questo capitolo, <var>aBuf</var> è un array di byte. Qui, il metodo <code>feed()</code> non sta semplicemente passandolo tutto intero; lo sta affettando. Ma come avete visto <a href=#unsupportedoperandtypeforplus>precedentemente in questo capitolo</a>, affettare un array di byte restituisce un array di byte, quindi il parametro <var>aStr</var> che viene passato al metodo <code>get_order()</code> è ancora un array di byte.
 <p>E cos'è che questo codice sta cercando di fare con <var>aStr</var>? Prende il primo elemento dell'array di byte e lo confronta con una stringa di lunghezza 1. In Python 2, questo funzionava, perché <var>aStr</var> e <var>aBuf</var> erano stringhe, e <var>aStr[0]</var> sarebbe stata una stringa, e potevate confrontare le stringhe per la disuguaglianza. Ma in Python 3 <var>aStr</var> e <var>aBuf</var> sono array di byte, <var>aStr[0]</var> è un intero e non potete effettuare un confronto di disuguaglianza tra interi e stringhe senza convertire esplicitamente gli uni al tipo delle altre o viceversa.
-<p>In questo caso, non c'è bisogno di rendere il codice più complicato aggiungendo una conversione esplicita. <var>aStr[0]</var> produce un intero; le cose con le quali state facendo il confronto sono tutte costanti. Cambiamole da stringhe di 1 carattere a interi.
+<p>In questo caso, non c'è bisogno di rendere il codice più complicato aggiungendo una conversione esplicita. <var>aStr[0]</var> produce un intero; le cose con le quali state facendo il confronto sono tutte costanti. Cambiamole da stringhe di 1 carattere a interi. E visto che ci siamo, rinominiamo <var>aStr</var> in <var>aBuf</var>, dato che in realtà non è una stringa.
 <pre class=nd><code class=pp>  class SJISContextAnalysis(JapaneseContextAnalysis):
-      def get_order(self, aStr):
+<del>-     def get_order(self, aStr):</del>
+<ins>+     def get_order(self, aBuf):</ins>
           if not aStr: return -1, 1
           # find out current char's byte length
 <del>-         if ((aStr[0] >= '\x81') and (aStr[0] &lt;= '\x9F')) or \</del>
-<del>-            ((aStr[0] >= '\xE0') and (aStr[0] &lt;= '\xFC')):</del>
+<del>-            ((aBuf[0] >= '\xE0') and (aBuf[0] &lt;= '\xFC')):</del>
 <ins>+         if ((aStr[0] >= 0x81) and (aStr[0] &lt;= 0x9F)) or \</ins>
-<ins>+            ((aStr[0] >= 0xE0) and (aStr[0] &lt;= 0xFC)):</ins>
+<ins>+            ((aBuf[0] >= 0xE0) and (aBuf[0] &lt;= 0xFC)):</ins>
               charLen = 2
           else:
               charLen = 1
@@ -956,24 +579,25 @@ TypeError: unorderable types: int() >= str()</samp></pre>
 <del>-                (aStr[1] >= '\x9F') and \</del>
 <del>-                (aStr[1] &lt;= '\xF1'):</del>
 <del>-                return ord(aStr[1]) - 0x9F, charLen</del>
-<ins>+             if (aStr[0] == 0x202) and \</ins>
-<ins>+                (aStr[1] >= 0x9F) and \</ins>
-<ins>+                (aStr[1] &lt;= 0xF1):</ins>
-<ins>+                return aStr[1] - 0x9F, charLen</ins>
+<ins>+             if (aBuf[0] == 0x202) and \</ins>
+<ins>+                (aBuf[1] >= 0x9F) and \</ins>
+<ins>+                (aBuf[1] &lt;= 0xF1):</ins>
+<ins>+                return aBuf[1] - 0x9F, charLen</ins>
 
           return -1, charLen
 
   class EUCJPContextAnalysis(JapaneseContextAnalysis):
-      def get_order(self, aStr):
+<del>-     def get_order(self, aStr):</del>
+<ins>+     def get_order(self, aBuf):</ins>
           if not aStr: return -1, 1
           # find out current char's byte length
 <del>-         if (aStr[0] == '\x8E') or \</del>
 <del>-           ((aStr[0] >= '\xA1') and (aStr[0] &lt;= '\xFE')):</del>
-<ins>+         if (aStr[0] == 0x8E) or \</ins>
-<ins>+           ((aStr[0] >= 0xA1) and (aStr[0] &lt;= 0xFE)):</ins>
+<ins>+         if (aBuf[0] == 0x8E) or \</ins>
+<ins>+           ((aBuf[0] >= 0xA1) and (aStr[0] &lt;= 0xFE)):</ins>
               charLen = 2
 <del>-         elif aStr[0] == '\x8F':</del>
-<ins>+         elif aStr[0] == 0x8F:</ins>
+<ins>+         elif aBuf[0] == 0x8F:</ins>
               charLen = 3
           else:
               charLen = 1
@@ -984,10 +608,10 @@ TypeError: unorderable types: int() >= str()</samp></pre>
 <del>-              (aStr[1] >= '\xA1') and \</del>
 <del>-              (aStr[1] &lt;= '\xF3'):</del>
 <del>-                 return ord(aStr[1]) - 0xA1, charLen</del>
-<ins>+           if (aStr[0] == 0xA4) and \</ins>
-<ins>+              (aStr[1] >= 0xA1) and \</ins>
-<ins>+              (aStr[1] &lt;= 0xF3):</ins>
-<ins>+               return aStr[1] - 0xA1, charLen</ins>
+<ins>+           if (aBuf[0] == 0xA4) and \</ins>
+<ins>+              (aBuf[1] >= 0xA1) and \</ins>
+<ins>+              (aBuf[1] &lt;= 0xF3):</ins>
+<ins>+               return aBuf[1] - 0xA1, charLen</ins>
 
         return -1, charLen</code></pre>
 <p>Una ricerca sull'intera base di codice per occorrenze della funzione <code>ord()</code> rivela lo stesso problema in <code>chardistribution.py</code>:
@@ -1016,11 +640,12 @@ TypeError: unorderable types: int() >= str()</samp></pre>
           self._mTableSize = EUCTW_TABLE_SIZE
           self._mTypicalDistributionRatio = EUCTW_TYPICAL_DISTRIBUTION_RATIO
 
-      def get_order(self, aStr):
+<del>-     def get_order(self, aStr):</del>
 <del>-         if aStr[0] >= '\xC4':</del>
 <del>-             return 94 * (ord(aStr[0]) - 0xC4) + ord(aStr[1]) - 0xA1</del>
-<ins>+         if aStr[0] >= 0xC4:</ins>
-<ins>+             return 94 * (aStr[0] - 0xC4) + aStr[1] - 0xA1</ins>
+<ins>+     def get_order(self, aBuf):</ins>
+<ins>+         if aBuf[0] >= 0xC4:</ins>
+<ins>+             return 94 * (aBuf[0] - 0xC4) + aBuf[1] - 0xA1</ins>
           else:
               return -1
 
@@ -1031,11 +656,12 @@ TypeError: unorderable types: int() >= str()</samp></pre>
           self._mTableSize = EUCKR_TABLE_SIZE
           self._mTypicalDistributionRatio = EUCKR_TYPICAL_DISTRIBUTION_RATIO
 
-      def get_order(self, aStr):
+<del>-     def get_order(self, aStr):</del>
 <del>-         if aStr[0] >= '\xB0':</del>
 <del>-             return 94 * (ord(aStr[0]) - 0xB0) + ord(aStr[1]) - 0xA1</del>
-<ins>+         if aStr[0] >= '\xB0':</ins>
-<ins>+             return 94 * (aStr[0] - 0xB0) + aStr[1] - 0xA1</ins>
+<ins>+     def get_order(self, aBuf):</ins>
+<ins>+         if aBuf[0] >= '\xB0':</ins>
+<ins>+             return 94 * (aBuf[0] - 0xB0) + aBuf[1] - 0xA1</ins>
           else:
               return -1;
 
@@ -1046,11 +672,12 @@ TypeError: unorderable types: int() >= str()</samp></pre>
           self._mTableSize = GB2312_TABLE_SIZE
           self._mTypicalDistributionRatio = GB2312_TYPICAL_DISTRIBUTION_RATIO
 
-      def get_order(self, aStr):
+<del>-     def get_order(self, aStr):</del>
 <del>-         if (aStr[0] >= '\xB0') and (aStr[1] >= '\xA1'):</del>
 <del>-             return 94 * (ord(aStr[0]) - 0xB0) + ord(aStr[1]) - 0xA1</del>
-<ins>+         if (aStr[0] >= 0xB0) and (aStr[1] >= 0xA1):</ins>
-<ins>+             return 94 * (aStr[0] - 0xB0) + aStr[1] - 0xA1</ins>
+<ins>+     def get_order(self, aBuf):</ins>
+<ins>+         if (aBuf[0] >= 0xB0) and (aBuf[1] >= 0xA1):</ins>
+<ins>+             return 94 * (aBuf[0] - 0xB0) + aBuf[1] - 0xA1</ins>
           else:
               return -1;
 
@@ -1061,16 +688,17 @@ TypeError: unorderable types: int() >= str()</samp></pre>
           self._mTableSize = BIG5_TABLE_SIZE
           self._mTypicalDistributionRatio = BIG5_TYPICAL_DISTRIBUTION_RATIO
 
-      def get_order(self, aStr):
+<del>-     def get_order(self, aStr):</del>
 <del>-         if aStr[0] >= '\xA4':</del>
 <del>-             if aStr[1] >= '\xA1':</del>
 <del>-                 return 157 * (ord(aStr[0]) - 0xA4) + ord(aStr[1]) - 0xA1 + 63</del>
-<ins>+         if aStr[0] >= 0xA4:</ins>
-<ins>+             if aStr[1] >= 0xA1:</ins>
-<ins>+                 return 157 * (aStr[0] - 0xA4) + aStr[1] - 0xA1 + 63</ins>
+<ins>+     def get_order(self, aBuf):</ins>
+<ins>+         if aBuf[0] >= 0xA4:</ins>
+<ins>+             if aBuf[1] >= 0xA1:</ins>
+<ins>+                 return 157 * (aBuf[0] - 0xA4) + aBuf[1] - 0xA1 + 63</ins>
               else:
 <del>-                 return 157 * (ord(aStr[0]) - 0xA4) + ord(aStr[1]) - 0x40</del>
-<ins>+                 return 157 * (aStr[0] - 0xA4) + aStr[1] - 0x40</ins>
+<ins>+                 return 157 * (aBuf[0] - 0xA4) + aBuf[1] - 0x40</ins>
           else:
               return -1
 
@@ -1081,21 +709,22 @@ TypeError: unorderable types: int() >= str()</samp></pre>
           self._mTableSize = JIS_TABLE_SIZE
           self._mTypicalDistributionRatio = JIS_TYPICAL_DISTRIBUTION_RATIO
 
-      def get_order(self, aStr):
+<del>-     def get_order(self, aStr):</del>
 <del>-         if (aStr[0] >= '\x81') and (aStr[0] &lt;= '\x9F'):</del>
 <del>-             order = 188 * (ord(aStr[0]) - 0x81)</del>
 <del>-         elif (aStr[0] >= '\xE0') and (aStr[0] &lt;= '\xEF'):</del>
 <del>-             order = 188 * (ord(aStr[0]) - 0xE0 + 31)</del>
-<ins>+         if (aStr[0] >= 0x81) and (aStr[0] &lt;= 0x9F):</ins>
-<ins>+             order = 188 * (aStr[0] - 0x81)</ins>
-<ins>+         elif (aStr[0] >= 0xE0) and (aStr[0] &lt;= 0xEF):</ins>
-<ins>+             order = 188 * (aStr[0] - 0xE0 + 31)</ins>
+<ins>+     def get_order(self, aBuf):</ins>
+<ins>+         if (aBuf[0] >= 0x81) and (aBuf[0] &lt;= 0x9F):</ins>
+<ins>+             order = 188 * (aBuf[0] - 0x81)</ins>
+<ins>+         elif (aBuf[0] >= 0xE0) and (aBuf[0] &lt;= 0xEF):</ins>
+<ins>+             order = 188 * (aBuf[0] - 0xE0 + 31)</ins>
           else:
               return -1;
 <del>-         order = order + ord(aStr[1]) - 0x40</del>
 <del>-         if aStr[1] > '\x7F':</del>
-<ins>+         order = order + aStr[1] - 0x40</ins>
-<ins>+         if aStr[1] > 0x7F:</ins>
+<ins>+         order = order + aBuf[1] - 0x40</ins>
+<ins>+         if aBuf[1] > 0x7F:</ins>
               order =- 1
           return order
 
@@ -1106,11 +735,12 @@ TypeError: unorderable types: int() >= str()</samp></pre>
           self._mTableSize = JIS_TABLE_SIZE
           self._mTypicalDistributionRatio = JIS_TYPICAL_DISTRIBUTION_RATIO
 
-      def get_order(self, aStr):
+<del>-     def get_order(self, aStr):</del>
 <del>-         if aStr[0] >= '\xA0':</del>
 <del>-             return 94 * (ord(aStr[0]) - 0xA1) + ord(aStr[1]) - 0xA1</del>
-<ins>+         if aStr[0] >= 0xA0:</ins>
-<ins>+             return 94 * (aStr[0] - 0xA1) + aStr[1] - 0xA1</ins>
+<ins>+     def get_order(self, aBuf):</ins>
+<ins>+         if aBuf[0] >= 0xA0:</ins>
+<ins>+             return 94 * (aBuf[0] - 0xA1) + aBuf[1] - 0xA1</ins>
           else:
               return -1</code></pre>
 <h3 id=reduceisnotdefined>Il nome globale <code>'reduce'</code> non è definito</h3>
@@ -1190,9 +820,9 @@ tests\EUC-JP\arclamp.jp.xml                                  EUC-JP with confide
 <li>Lo <a href=porting-code-to-python-3-with-2to3.html>stumento automatico <code>2to3</code></a> è utile per quello che può fare, ma farà solo la parte facile&nbsp;&mdash;&nbsp;rinominerà le funzioni e i moduli, modificherà la sintassi. &Egrave; un impressionante esempio di ingegneria, ma in fondo non è altro che un automa intelligente per la ricerca e la sostituzione.
 <li>Il problema n°1 nella conversione di questa libreria era la differenza tra stringhe e byte. In questo caso sembrava ovvio, dato che lo scopo stesso della libreria <code>chardet</code> è convertire un flusso di byte in una stringa. Ma &#8220;un flusso di byte&#8221; scorre molto più spesso di quanto possiate immaginare. Leggete un file in modalità &#8220;binaria&#8221;? Avrete un flusso di byte. Recuperate una pagina web? Chiamate una <abbr>API</abbr> web? Anche quelle restituiscono un flusso di byte.
 <li><em>Voi</em> avete bisogno di capire il vostro programma. A fondo. Preferibilmente perché lo avete scritto, ma è necessario almeno che vi troviate a vostro agio con tutte le sue stranezze e i suoi angoli ammuffiti. I bug si annidano ovunque.
-<li>I test sono essenziali. Non convertite nulla senza di loro. Non provateci nemmeno. L'<em>unica</em> ragione per cui ho una qualche confidenza che <code>chardet</code> funzioni in Python 3 è perché avevo una serie di test che esercitava ogni riga di codice nell'intera libreria. Non sarei <em>mai</em> riuscito a trovare la metà di questi problemi facendo una ricerca manuale.
+<li>I test sono essenziali. Non convertite nulla senza di loro. L'<em>unica</em> ragione per cui ho una qualche confidenza che <code>chardet</code> funzioni in Python 3 è perché ho cominciato con una serie di test che esercitava tutti i percorsi principali nel codice. Se non avete alcun test, scrivetene alcuni prima di cominciare a convertire verso Python 3. Se avete alcuni test, scrivetene altri. Se avete molti test, allora il vero divertimento può cominciare.
 </ol>
-<p class=nav><a rel=prev class=todo><span class=u>&#x261C;</span></a> <a rel=next class=todo><span class=u>&#x261E;</span></a>
+<p class=v><a href=distribuire-librerie-python.html rel=prev title='indietro a &#8220;Distribuire librerie Python&#8221;' class=todo><span class=u>&#x261C;</span></a> <a href=distribuire-librerie-python.html rel=next title='indietro a &#8220;Distribuire librerie Python&#8221;'><span class=u>&#x261E;</span></a>
 <p class=c>&copy; 2001&ndash;9 <a href=informazioni-sul-libro.html>Mark Pilgrim</a><br>
 &copy; 2009 <a href=informazioni-sulla-traduzione.html>Giulio Piancastelli</a> per la traduzione italiana
 <script src=j/jquery.js></script>

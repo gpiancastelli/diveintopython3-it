@@ -57,7 +57,7 @@ if __name__ == '__main__':
     print(approximate_size(1000000000000))</code></pre>
 <p>Ora eseguiamo il programma dalla linea di comando. Sotto Windows, avremo qualcosa di simile a questo:
 <pre class='nd screen'>
-<samp class=p>c:\home\diveintopython3\examples> </samp><kbd>c:\python30\python.exe humansize.py</kbd>
+<samp class=p>c:\home\diveintopython3\examples> </samp><kbd>c:\python31\python.exe humansize.py</kbd>
 <samp>1.0 TB
 931.3 GiB</samp></pre>
 <p>Sotto Mac OS X o Linux, avremo qualcosa di simile a questo:
@@ -161,6 +161,40 @@ SyntaxError: non-keyword arg after keyword arg</samp></pre>
 
 <p class=a>&#x2042;
 
+<h2 id=importsearchpath>Il percorso di ricerca di <code>import</code></h2>
+<p>Prima di proseguire, voglio menzionare brevemente il percorso di ricerca delle librerie. Python guarda in diversi posti quando provate a importare un modulo. Nello specifico, guarda in tutte le directory definite in <code>sys.path</code>. Questa proprietà è semplicemente una lista, e potete facilmente vederla o modificarla con i metodi standard per le liste. (Imparerete di più sulle liste nel capitolo sui <a href=tipi-di-dato-nativi.html>Tipi di dato nativi</a>.)
+<pre class=screen>
+<a><samp class=p>>>> </samp><kbd class=pp>import sys</kbd>                                                 <span class=u>&#x2460;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>sys.path</kbd>                                                   <span class=u>&#x2461;</span></a>
+<samp class=pp>['', 
+ '/usr/lib/python31.zip', 
+ '/usr/lib/python3.1',
+ '/usr/lib/python3.1/plat-linux2@EXTRAMACHDEPPATH@', 
+ '/usr/lib/python3.1/lib-dynload', 
+ '/usr/lib/python3.1/dist-packages', 
+ '/usr/local/lib/python3.1/dist-packages']</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>sys</kbd>                                                        <span class=u>&#x2462;</span></a>
+<samp class=pp>&lt;module 'sys' (built-in)></samp>
+<a><samp class=p>>>> </samp><kbd class=pp>sys.path.insert(0, '/home/mark/diveintopython3/examples')</kbd>  <span class=u>&#x2463;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>sys.path</kbd>                                                   <span class=u>&#x2464;</span></a>
+<samp class=pp>['/home/mark/py', 
+ '', 
+ '/usr/lib/python31.zip', 
+ '/usr/lib/python3.1', 
+ '/usr/lib/python3.1/plat-linux2@EXTRAMACHDEPPATH@', 
+ '/usr/lib/python3.1/lib-dynload', 
+ '/usr/lib/python3.1/dist-packages', 
+ '/usr/local/lib/python3.1/dist-packages']</samp></pre>
+<ol>
+<li>Importare il modulo <code>sys</code> rende disponibili tutte le sue funzioni e proprietà.
+<li><code>sys.path</code> è una lista di nomi di directory che costituiscono il percorso di ricerca corrente. (Il vostro apparirà diverso, a seconda del vostro sistema operativo, della versione di Python che state eseguendo e di dove è stata originariamente installata.) Python cercherà attraverso queste directory (in questo ordine) un file con estensione <code>.py</code> il cui nome corrisponda a quello che state tentando di importare.
+<li>In realtà, ho mentito; la verità è più complicata di così, perché non tutti i moduli sono memorizzati come file <code>.py</code>. Alcuni, come il modulo <code>sys</code>, sono moduli <i>built-in</i>, integrati direttamente all'interno dell'interprete Python. I moduli built-in si comportano esattamente come gli altri moduli, ma il loro codice sorgente Python non è disponibile, perché non sono scritti in Python! (Il modulo <code>sys</code> è scritto in <abbr>C</abbr>.)
+<li>Potete aggiungere a tempo di esecuzione una nuova directory al percorso di ricerca di Python aggiungendo il nome della directory a <code>sys.path</code>; successivamente, Python guarderà anche in quella directory ogni volta che provate a importare un modulo. L'effetto dura fino a quando l'interprete Python è in esecuzione.
+<li>Usando <code>sys.path.insert(0, <var>new_path</var>)</code>, avete inserito una nuova directory come primo elemento della lista <code>sys.path</code>, quindi all'inizio del percorso di ricerca di Python. Questo è quasi sempre quello che volete. In caso di un conflitto di nomi (per esempio, nel caso l'interprete Python includa la versione 2 di una particolare libreria ma voi vogliate usarne la versione 3), questo vi assicura che saranno i vostri moduli a essere trovati e utilizzati invece dei moduli distribuiti insieme all'interprete Python.
+</ol>
+
+<p class=a>&#x2042;
+
 <h2 id=everythingisanobject>Ogni cosa è un oggetto</h2>
 <p>Nel caso vi fosse sfuggito, ho appena detto che le funzioni Python hanno delle proprietà, e che quelle proprietà sono disponibili a tempo di esecuzione. Una funzione, come ogni altra cosa in Python, è un oggetto.
 <p>Lanciate la shell interattiva di Python e seguitemi attraverso questa serie di istruzioni:
@@ -187,37 +221,7 @@ SyntaxError: non-keyword arg after keyword arg</samp></pre>
 <blockquote class='note compare perl5'>
 <p><span class=u>&#x261E;</span><code>import</code> in Python è come <code>require</code> in Perl. Una volta che avete importato un modulo Python tramite <code>import</code>, potete accedere alle sue funzioni con la sintassi <code><var>modulo</var>.<var>funzione</var></code>; una volta che avete richiesto un modulo Perl tramite <code>require</code>, potete accedere alle sue funzioni con la sintassi <code><var>modulo</var>::<var>funzione</var></code>.
 </blockquote>
-<h3 id=importsearchpath>Il percorso di ricerca di <code>import</code></h3>
-<p>Prima di proseguire, voglio menzionare brevemente il percorso di ricerca delle librerie. Python guarda in diversi posti quando provate a importare un modulo. Nello specifico, guarda in tutte le directory definite in <code>sys.path</code>. Questa proprietà è semplicemente una lista, e potete facilmente vederla o modificarla con i metodi standard per le liste. (Imparerete di più sulle liste nel capitolo sui <a href=tipi-di-dato-nativi.html>Tipi di dato nativi</a>.)
-<pre class=screen>
-<a><samp class=p>>>> </samp><kbd class=pp>import sys</kbd>                           <span class=u>&#x2460;</span></a>
-<a><samp class=p>>>> </samp><kbd class=pp>sys.path</kbd>                             <span class=u>&#x2461;</span></a>
-<samp class=pp>['', 
- '/usr/lib/python30.zip', 
- '/usr/lib/python3.0',
- '/usr/lib/python3.0/plat-linux2@EXTRAMACHDEPPATH@', 
- '/usr/lib/python3.0/lib-dynload', 
- '/usr/lib/python3.0/dist-packages', 
- '/usr/local/lib/python3.0/dist-packages']</samp>
-<a><samp class=p>>>> </samp><kbd class=pp>sys</kbd>                                  <span class=u>&#x2462;</span></a>
-<samp class=pp>&lt;module 'sys' (built-in)></samp>
-<a><samp class=p>>>> </samp><kbd class=pp>sys.path.insert(0, '/home/mark/py')</kbd>  <span class=u>&#x2463;</span></a>
-<a><samp class=p>>>> </samp><kbd class=pp>sys.path</kbd>                             <span class=u>&#x2464;</span></a>
-<samp class=pp>['/home/mark/py', 
- '', 
- '/usr/lib/python30.zip', 
- '/usr/lib/python3.0', 
- '/usr/lib/python3.0/plat-linux2@EXTRAMACHDEPPATH@', 
- '/usr/lib/python3.0/lib-dynload', 
- '/usr/lib/python3.0/dist-packages', 
- '/usr/local/lib/python3.0/dist-packages']</samp></pre>
-<ol>
-<li>Importare il modulo <code>sys</code> rende disponibili tutte le sue funzioni e proprietà.
-<li><code>sys.path</code> è una lista di nomi di directory che costituiscono il percorso di ricerca corrente. (Il vostro apparirà diverso, a seconda del vostro sistema operativo, della versione di Python che state eseguendo e di dove è stata originariamente installata.) Python cercherà attraverso queste directory (in questo ordine) un file con estensione <code>.py</code> il cui nome corrisponda a quello che state tentando di importare.
-<li>In realtà, ho mentito; la verità è più complicata di così, perché non tutti i moduli sono memorizzati come file <code>.py</code>. Alcuni, come il modulo <code>sys</code>, sono moduli <i>built-in</i>, integrati direttamente all'interno dell'interprete Python. I moduli built-in si comportano esattamente come gli altri moduli, ma il loro codice sorgente Python non è disponibile, perché non sono scritti in Python! (Il modulo <code>sys</code> è scritto in <abbr>C</abbr>.)
-<li>Potete aggiungere a tempo di esecuzione una nuova directory al percorso di ricerca di Python aggiungendo il nome della directory a <code>sys.path</code>; successivamente, Python guarderà anche in quella directory ogni volta che provate a importare un modulo. L'effetto dura fino a quando l'interprete Python è in esecuzione.
-<li>Usando <code>sys.path.insert(0, <var>new_path</var>)</code>, avete inserito una nuova directory come primo elemento della lista <code>sys.path</code>, quindi all'inizio del percorso di ricerca di Python. Questo è quasi sempre quello che volete. In caso di un conflitto di nomi (per esempio, nel caso l'interprete Python includa la versione 2 di una particolare libreria ma voi vogliate usarne la versione 3), questo vi assicura che saranno i vostri moduli a essere trovati e utilizzati invece dei moduli distribuiti insieme all'interprete Python.
-</ol>
+
 <h3 id=whatsanobject>Che cos'è un oggetto?</h3>
 <p>Ogni cosa in Python è un oggetto, e ogni cosa può possedere proprietà e metodi. Tutte le funzioni hanno una proprietà built-in <code>__doc__</code>, che restituisce la <var>docstring</var> definita nel codice sorgente della funzione. Il modulo <code>sys</code> è un oggetto che ha (tra le altre cose) una proprietà chiamata <var>path</var>. E così via.
 <p>Tuttavia, questo non risponde alla domanda fondamentale: che cos'è un oggetto? Linguaggi di programmazione differenti definiscono &#8220;oggetto&#8221; in modi differenti. In alcuni, significa che <em>tutti</em> gli oggetti <em>devono</em> avere proprietà e metodi; in altri, significa che tutti gli oggetti sono estendibili. In Python, la definizione è più lasca. Alcuni oggetti non hanno proprietà né metodi, <em>ma potrebbero averli</em>. Non tutti gli oggetti sono estendibili. Ma ogni cosa è un oggetto nel senso che può essere assegnata a una variabile o passata come argomento a una funzione.
@@ -344,7 +348,7 @@ if __name__ == '__main__':
 <samp class=pp>'humansize'</samp></pre>
 <p>Ma potete anche eseguire direttamente il modulo come un programma a sé, nel qual caso <code>__name__</code> sarà lo speciale valore di default <code>__main__</code>. Nel nostro esempio, Python valuterà l'istruzione <code>if</code>, troverà una espressione vera, ed eseguirà il blocco di codice corrispondente. In questo caso, per stampare due valori.
 <pre class='nd screen'>
-<samp class=p>c:\home\diveintopython3> </samp><kbd>c:\python30\python.exe humansize.py</kbd>
+<samp class=p>c:\home\diveintopython3> </samp><kbd>c:\python31\python.exe humansize.py</kbd>
 <samp>1.0 TB
 931.3 GiB</samp></pre>
 <p>E questo è il vostro primo programma Python!
@@ -354,11 +358,11 @@ if __name__ == '__main__':
 <h2 id=furtherreading>Letture di approfondimento</h2>
 <ul>
 <li><a href=http://www.python.org/dev/peps/pep-0257/>PEP 257: Docstring Conventions</a> spiega cosa distingue una buona <code>docstring</code> da una <code>docstring</code> eccellente.
-<li><a href=http://docs.python.org/3.0/tutorial/controlflow.html#documentation-strings>Python Tutorial: Documentation Strings</a> si occupa a sua volta dell'argomento.
+<li><a href=http://docs.python.org/3.1/tutorial/controlflow.html#documentation-strings>Python Tutorial: Documentation Strings</a> si occupa a sua volta dell'argomento.
 <li><a href=http://www.python.org/dev/peps/pep-0008/>PEP 8: Style Guide for Python Code</a> descrive il buon stile di indentazione.
-<li><a href=http://docs.python.org/3.0/reference/><cite>Python Reference Manual</cite></a> spiega cosa significa dire che <a href=http://docs.python.org/3.0/reference/datamodel.html#objects-values-and-types>ogni cosa in Python è un oggetto</a>, perché alcune persone sono <a href=http://www.douglasadams.com/dna/pedants.html>pedanti</a> e adorano discutere questo tipo di cose in lungo e in largo.
+<li><a href=http://docs.python.org/3.1/reference/><cite>Python Reference Manual</cite></a> spiega cosa significa dire che <a href=http://docs.python.org/3.1/reference/datamodel.html#objects-values-and-types>ogni cosa in Python è un oggetto</a>, perché alcune persone sono <a href=http://www.douglasadams.com/dna/pedants.html>pedanti</a> e adorano discutere questo tipo di cose in lungo e in largo.
 </ul>
-<p class=nav><a rel=prev class=todo><span class=u>&#x261C;</span></a> <a rel=next href=tipi-di-dato-nativi.html title='avanti a &#8220;Tipi di dato nativi&#8221;'><span class=u>&#x261E;</span></a>
+<p class=v><a href=installare-python.html rel=prev title='indietro a &#8220;Installare Python&#8221;'><span class=u>&#x261C;</span></a> <a rel=next href=tipi-di-dato-nativi.html title='avanti a &#8220;Tipi di dato nativi&#8221;'><span class=u>&#x261E;</span></a>
 <p class=c>&copy; 2001&ndash;9 <a href=informazioni-sul-libro.html>Mark Pilgrim</a><br>
 &copy; 2009 <a href=informazioni-sulla-traduzione.html>Giulio Piancastelli</a> per la traduzione italiana
 <script src=j/jquery.js></script>

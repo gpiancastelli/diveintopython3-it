@@ -6,7 +6,7 @@
 <link rel=stylesheet href=dip3.css>
 <link rel=stylesheet href=dip3-it.css>
 <style>
-body{counter-reset:h1 6}
+body{counter-reset:h1 7}
 </style>
 <link rel=stylesheet media='only screen and (max-device-width: 480px)' href=mobile.css>
 <link rel=stylesheet media=print href=print.css>
@@ -216,9 +216,11 @@ Tutti e tre i metodi di classe <code>__init__</code>, <code>__iter__</code> e <c
 <p class=d>[<a href=esempi/plural6.py>scarica <code>plural6.py</code></a>]
 <pre><code class=pp>class LazyRules:
     rules_filename = 'plural6-rules.txt'
-    
-    def __iter__(self):
+
+    def __init__(self):
         self.pattern_file = open(self.rules_filename, encoding='utf-8')
+
+    def __iter__(self):
         self.cache = []
         self.cache_index = 0
         return self
@@ -250,14 +252,17 @@ rules = LazyRules()</code></pre>
 
 <pre><code class=pp>class LazyRules:
     rules_filename = 'plural6-rules.txt'
-<a>    def __iter__(self):                                                  <span class=u>&#x2460;</span></a>
-<a>        self.pattern_file = open(self.rules_filename, encoding='utf-8')  <span class=u>&#x2461;</span></a>
+
+    def __init__(self):
+<a>        self.pattern_file = open(self.rules_filename, encoding='utf-8')  <span class=u>&#x2460;</span></a>
+
+<a>    def __iter__(self):                                                  <span class=u>&#x2461;</span></a>
 <a>        self.cache = []                                                  <span class=u>&#x2462;</span></a>
-        self.cache_index = 0</code></pre></code></pre>
+        self.cache_index = 0</code></pre>
 <ol>
-<li>Il metodo <code>__iter__()</code> viene chiamato una volta sola, quando create un'istanza della classe, l'assegnate a <var>rules</var> e invocate <code>iter(rules)</code> per creare l'iteratore.
-<li>Dato che viene chiamato una volta sola, questo metodo è il posto perfetto dove aprire il file dei pattern. Non ha senso fare più di quello che dovete assolutamente fare fino a quando non diviene assolutamente necessario farlo!
-<li>In più, questo metodo è un buon posto anche per inizializzare la cache, che userete più tardi durante la lettura dei pattern dal file.
+<li>Quando istanziamo la classe <code>LazyRules</code>, apriamo il file dei pattern ma non lo leggiamo. (Lo faremo più tardi.)
+<li>Il metodo <code>__iter__()</code> verrà chiamato dopo che avete creato un'istanza della classe, l'avete assegnata a <var>rules</var> e avete invocato <code>iter(rules)</code> per creare l'iteratore. Verrebbe chiamato ancora se creaste un nuovo iteratore dallo stesso oggetto <var>rules</var>.
+<li>Ciò significa che questo metodo è un buon posto per inizializzare la cache e l'indice di posizione nella cache, che userete più tardi (nel metodo <code>__next__()</code>) durante la lettura dei pattern dal file.
 </ol>
 
 <p>Prima di continuare, diamo un'occhiata più da vicino a <var>rules_filename</var>. Non è definita all'interno del metodo <code>__iter__()</code>. In effetti, non è definita all'interno di <em>nessun</em> metodo. &Egrave; definita a livello della classe. &Egrave; una <i>variabile di classe</i>, e sebbene possiate accedervi esattamente come una variabile di istanza (<var>self.rules_filename</var>), è condivisa da tutte le istanze della classe <code>LazyRules</code>.
@@ -377,12 +382,13 @@ rules = LazyRules()</code></pre>
 
 <h2 id=furtherreading>Letture di approfondimento</h2>
 <ul>
+<li><a href=http://docs.python.org/3.1/library/stdtypes.html#iterator-types>Iterator types</a>
 <li><a href=http://www.python.org/dev/peps/pep-0234/>PEP 234: Iterators</a>
 <li><a href=http://www.python.org/dev/peps/pep-0255/>PEP 255: Simple Generators</a>
 <li><a href=http://www.dabeaz.com/generators/>Generator Tricks for Systems Programmers</a>
 </ul>
 
-<p class=nav><a rel=prev href=generatori.html title='indietro a &#8220;Generatori&#8221;'><span class=u>&#x261C;</span></a> <a rel=next href=uso-avanzato-degli-iteratori.html title='avanti a &#8220;Uso avanzato degli iteratori&#8221;'><span class=u>&#x261E;</span></a>
+<p class=v><a rel=prev href=generatori.html title='indietro a &#8220;Chiusure &amp; generatori&#8221;'><span class=u>&#x261C;</span></a> <a rel=next href=uso-avanzato-degli-iteratori.html title='avanti a &#8220;Uso avanzato degli iteratori&#8221;'><span class=u>&#x261E;</span></a>
 
 <p class=c>&copy; 2001&ndash;9 <a href=informazioni-sul-libro.html>Mark Pilgrim</a><br>
 &copy; 2009 <a href=informazioni-sulla-traduzione.html>Giulio Piancastelli</a> per la traduzione italiana

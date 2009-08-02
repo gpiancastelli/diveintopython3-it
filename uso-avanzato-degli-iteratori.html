@@ -212,7 +212,7 @@ AssertionError: Only for very large values of 2</samp></pre>
 <a><samp>>>> </samp><kbd class=pp>tuple(ord(c) for c in unique_characters)</kbd>   <span class=u>&#x2463;</span></a>
 <samp class=pp>(69, 68, 77, 79, 78, 83, 82, 89)</samp></pre>
 <ol>
-<li>Una espressione generatore è come una funzione anonima che produce valori. L'espressione stessa somiglia a una descrizione di lista <span class=fixme>[FIXME xref]</span>, ma è circondata da parentesi tonde invece che parentesi quadre.
+<li>Una espressione generatore è come una funzione anonima che produce valori. L'espressione stessa somiglia a una <a href=comprehensions.html#listcomprehension>descrizione di lista</a>, ma è circondata da parentesi tonde invece che parentesi quadre.
 <li>Un'espressione generatore restitiusce&hellip; un iteratore.
 <li>Invocare <code>next(<var>gen</var>)</code> restituisce il valore successivo dall'iteratore.
 <li>Se volete, potete iterare attraverso tutti i possibili valori e restituire una tupla, una lista, o un insieme, passando l'espressione generatore a <code>tuple()</code>, <code>list()</code>, o <code>set()</code>. In questi casi non avete bisogno di un insieme aggiuntivo di parentesi&nbsp;&mdash;&nbsp;vi basta passare l'espressione <code>ord(c) for c in unique_characters</code> &#8220;nuda e cruda&#8221; alla funzione <code>tuple()</code> e Python scoprirà che è un'espressione generatore.
@@ -415,7 +415,7 @@ Wesley</samp></pre>
  'N': '5', 'S': '1', 'R': '6', 'Y': '7'}</samp></pre>
 <ol>
 <li>Data una lista di lettere e una lista di cifre (ognuna rappresentata qui come una stringa di 1 carattere), la funzione <code>zip()</code> creerà coppie di lettere e cifre, in ordine.
-<li>Perché è così figo? Perché si dà il caso che la struttura dati sia esattamente la struttura giusta da passare alla funzione <code>dict()</code> per creare un dizionario che usi le lettere come chiavi e le cifre ad esse associate come valori. (Questo non è l'unico modo per farlo, naturalmente. Potreste usare una descrizione di dizionario <span class=fixme>[FIXME xref]</span> per creare direttamente il dizionario.) Sebbene la rappresentazione stampata del dizionario elenchi le coppie in ordine differente (i dizionari non hanno alcun &#8220;ordine&#8221; di per sé), potete vedere che ogni lettera è associata con una cifra sulla base dell'ordinamento delle sequenze <var>characters</var> e <var>guess</var> originali.
+<li>Perché è così figo? Perché si dà il caso che la struttura dati sia esattamente la struttura giusta da passare alla funzione <code>dict()</code> per creare un dizionario che usi le lettere come chiavi e le cifre ad esse associate come valori. (Questo non è l'unico modo per farlo, naturalmente. Potreste usare una <a href=comprehensions.html#dictionarycomprehension>descrizione di dizionario</a> per creare direttamente il dizionario.) Sebbene la rappresentazione stampata del dizionario elenchi le coppie in ordine differente (i dizionari non hanno alcun &#8220;ordine&#8221; di per sé), potete vedere che ogni lettera è associata con una cifra sulla base dell'ordinamento delle sequenze <var>characters</var> e <var>guess</var> originali.
 </ol>
 
 <p id=guess>Il risolutore di alfametica usa questa tecnica per creare un dizionario che mette in corrispondenza le lettere nel rompicampo con le cifre nella soluzione, per ogni possibile soluzione.
@@ -617,7 +617,7 @@ NameError: name '__import__' is not defined</samp></pre>
 
 <ol>
 <li><a href=#re-findall>Trova tutte le lettere nel rompicapo</a> con la funzione <code>re.findall()</code>
-<li><a href=#unique-items>Trova tutte le lettere <em>uniche</em> nel rompicapo</a> con le descrizioni di insieme
+<li><a href=#unique-items>Trova tutte le lettere <em>uniche</em> nel rompicapo</a> con gli insiemi e la funzione <code>set()</code>
 <li><a href=#assert>Controlla se ci sono più di 10 lettere uniche</a> (cioè se il rompicapo è assolutamente irrisolvibile) con una istruzione <code>assert</code>
 <li><a href=#generator-objects>Converte le lettere ai loro equivalenti <abbr>ASCII</abbr></a> con un oggetto generatore
 <li><a href=#permutations>Calcola tutte le possibili soluzioni</a> con la funzione <code>itertools.permutations()</code>
@@ -640,11 +640,9 @@ NameError: name '__import__' is not defined</samp></pre>
 <li><a href=http://www.tkcs-collins.com/truman/alphamet/index.shtml>Indice dell'alfametica</a>, compresi <a href=http://www.tkcs-collins.com/truman/alphamet/alphamet.shtml>un sacco di rompicapi</a> e <a href=http://www.tkcs-collins.com/truman/alphamet/alpha_gen.shtml>un generatore per farne dei vostri</a>
 </ul>
 
-<p>Molti, moltissimi ringraziamenti a Raymond Hettinger per aver accettato di ridistribuire il suo codice con una licenza diversa in modo che io potessi convertirlo verso Python 3 e usarlo come base per questo capitolo.
+<p>Molte grazie a Raymond Hettinger per aver accettato di ridistribuire il suo codice con una licenza diversa in modo che io potessi convertirlo verso Python 3 e usarlo come base per questo capitolo.
 
-<p class=v><a href=iteratori.html rel=prev title='indietro a &#8220;Iteratori&#8221;'><span class=u>&#x261C;</span></a> <a href=test-di-unità.html rel=next title='avanti a &#8220;Test di unità&#8221;'><span class=u>&#x261E;</span></a>
-
-<p class=v><a rel=prev class=todo><span class=u>&#x261C;</span></a> <a rel=next class=todo><span class=u>&#x261E;</span></a>
+<p class=v><a href=iteratori.html rel=prev title='indietro a &#8220;Classi &amp; iteratori&#8221;'><span class=u>&#x261C;</span></a> <a href=test-di-unità.html rel=next title='avanti a &#8220;Test di unità&#8221;'><span class=u>&#x261E;</span></a>
 <p class=c>&copy; 2001&ndash;9 <a href=informazioni-sul-libro.html>Mark Pilgrim</a><br>
 &copy; 2009 <a href=informazioni-sulla-traduzione.html>Giulio Piancastelli</a> per la traduzione italiana
 <script src=j/jquery.js></script>
