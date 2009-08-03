@@ -201,7 +201,59 @@ RefactoringTool: Skipping implicit fixer: ws_comma
 <ins>+print(count, 'tests')</ins>
 RefactoringTool: Files that were modified:
 RefactoringTool: test.py</samp></pre>
-<p>Be', non è stato così difficile. Ci sono state solo alcune istruzioni di <code>import</code> e <code>print</code> da convertire. &Egrave; il momento di eseguire la nuova versione. Pensate che funzionerà?
+<p>Be', non è stato così difficile. Ci sono state solo alcune istruzioni di <code>print</code> e <code>import</code> da convertire. Parlando di queste ultime, qual <em>era</em> il problema con tutte quelle istruzioni di importazione? Per rispondere a questa domanda, avete bisogno di capire come il modulo <code>chardet</code> è diviso in molteplici file.
+
+<p class=a>&#x2042;
+
+<h2 id=multifile-modules>Una breve digressione nei moduli multi-file</h2>
+
+<p><code>chardet</code> è un <i>modulo multi-file</i>. Avrei potuto scegliere di mettere tutto il codice in un unico file (chiamato <code>chardet.py</code>), ma non l'ho fatto. Invece, ho creato una directory (chiamata <code>chardet</code>) e poi ho creato un file <code>__init__.py</code> in quella directory. <em>Se Python vede un file <code>__init__.py</code> in una directory, assume che tutti i file in quella directory siano parte dello stesso modulo.</em> Il nome del modulo è il nome della directory. I file nella directory possono fare riferimento ad altri file nella stessa directory, o persino all'interno di sottodirectory. (Ne parlerò più in dettaglio fra un minuto.) Ma l'intera collezione di file viene presentata ad altro codice Python come un singolo modulo&nbsp;&mdash;&nbsp;come se tutte le funzioni e le classi fossero in un singolo file <code>.py</code>.
+
+<p>Che cosa va messo in un file <code>__init__.py</code>? Niente. Tutto. Qualcosa. Il file <code>__init__.py</code> non ha bisogno di definire nulla, può letteralmente essere un file vuoto. Oppure potete usarlo per definire le funzioni dei vostri punti d'ingresso principali. O potete metterci tutte le vostre funzioni. O tutte tranne una.
+
+<blockquote class=note>
+<p><span class=u>&#x261E;</span>Una directory contenente un file <code>__init__.py</code> viene sempre trattata come un modulo multi-file. Senza un file <code>__init__.py</code>, una directory è semplicemente una directory contenente file <code>.py</code> non correlati tra loro.
+</blockquote>
+
+<p>Vediamo come questi moduli funzionano in pratica.
+
+<pre class=screen>
+<samp class=p>>>> </samp><kbd class=pp>import chardet</kbd>
+<a><samp class=p>>>> </samp><kbd class=pp>dir(chardet)</kbd>             <span class=u>&#x2460;</span></a>
+<samp class=pp>['__builtins__', '__doc__', '__file__', '__name__',
+ '__package__', '__path__', '__version__', 'detect']</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>chardet</kbd>                  <span class=u>&#x2461;</span></a>
+<samp class=pp>&lt;module 'chardet' from 'C:\Python31\lib\site-packages\chardet\__init__.py'></samp></pre>
+<ol>
+<li>A parte le solite proprietà di classe, l'unica cosa contenuta nel modulo <code>chardet</code> è la funzione <code>detect()</code>.
+<li>Ecco il vostro primo indizio che il modulo <code>chardet</code> sia più di un semplice file: il &#8220;modulo&#8221; viene mostrato come il file <code>__init__.py</code> nella directory <code>chardet</code>.
+</ol>
+
+<p>Diamo uno sguardo a quel file <code>__init__.py</code>.
+
+<pre><code class=pp><a>def detect(aBuf):                              <span class=u>&#x2460;</span></a>
+<a>    from . import universaldetector            <span class=u>&#x2461;</span></a>
+    u = universaldetector.UniversalDetector()
+    u.reset()
+    u.feed(aBuf)
+    u.close()
+    return u.result</code></pre>
+<ol>
+<li>Il file <code>__init__.py</code> definisce la funzione <code>detect()</code>, che è il punto d'ingresso principale per la libreria <code>chardet</code>.
+<li>Ma la funzione <code>detect()</code> contiene pochissimo codice! In effetti, tutto quello che fa è importare il modulo <code>universaldetector</code> e cominciare a usarlo. Ma dov'è definito <code>universaldetector</code>?
+</ol>
+
+<p>La risposta si trova in quella strana istruzione <code>import</code>:
+
+<pre class=nd><code class=pp>from . import universaldetector</code></pre>
+
+<p>Tradotta in italiano, quella istruzione significa &#8220;importa il modulo <code>universaldetector</code> che si trova nella stessa directory in cui sono io,&#8221; dove &#8220;io&#8221; è il file <code>chardet/__init__.py</code>. Questa viene chiamata una <i>importazione relativa</i> ed è il modo in cui i file all'interno di un modulo multi-file possono fare riferimento gli uni agli altri, senza preoccuparsi di eventuali conflitti di nomi con gli altri moduli che potreste avere installato nel <a href=your-first-python-program.html#importsearchpath>vostro percorso di ricerca per le importazioni</a>. Questa istruzione <code>import</code> cercherà il modulo <code>universaldetector</code> <em>solo</em> all'interno della directory <code>chardet</code>.
+
+<p>Questi due concetti&nbsp;&mdash;&nbsp;<code>__init__.py</code> e le importazioni relative&nbsp;&mdash;&nbsp;significano che potete suddividere il vostro modulo in tutte le parti che preferite. Il modulo <code>chardet</code> comprende 36 file <code>.py</code>&nbsp;&mdash;&nbsp;36! Eppure tutto quello che avete bisogno di fare per cominciare a usarlo è scrivere <code>import chardet</code>, poi potete chiamare la funzione principale <code>chardet.detect()</code>. All'insaputa del vostro codice, la funzione <code>detect()</code> è in realtà definita nel file <code>chardet/__init__.py</code>. E a vostra insaputa, la funzione <code>detect()</code> usa un'importazione relativa per fare riferimento a una classe definita in <code>chardet/universaldetector.py</code>, che a sua volta usa importazioni relative per altri cinque file, tutti contenuti nella directory <code>chardet/</code>.
+
+<blockquote class=note>
+<p><span class=u>&#x261E;</span>Se vi siete mai trovati a scrivere una libreria Python di grandi dimensioni (o, più probabilmente, quando realizzate che le dimensioni della vostra piccola libreria sono cresciute fino a diventare grandi), prendetevi il tempo di riorganizzarla in un modulo multi-file. Questa è una delle molte cose che Python è capace di fare bene, quindi avantaggiatevene.
+</blockquote>
 
 <p class=a>&#x2042;
 
@@ -241,7 +293,9 @@ else:
   File "C:\home\chardet\chardet\universaldetector.py", line 29, in &lt;module>
     import constants, sys
 ImportError: No module named constants</samp></pre>
-<p>Cosa dice? Nessun modulo chiamato <code>constants</code>? Ma certo che c'è un modulo chiamato <code>constants</code>. &hellip;Oh aspettate, no non c'è. Ricordate quando lo script <code>2to3</code> ha modificato tutte quelle istruzioni di <code>import</code>? Questa libreria contiene un sacco di <code>import</code> relativi&nbsp;&mdash;&nbsp;cioè, moduli che importano altri moduli nell'ambito della libreria. In Python 3, <a href=http://www.python.org/dev/peps/pep-0328/>tutte le istruzioni di <code>import</code> sono assolute di default</p>. Per importare un modulo in maniera relativa, avete bisogno di scrivere qualcosa di simile a questo:
+<p>Cosa dice? Nessun modulo chiamato <code>constants</code>? Ma certo che c'è un modulo chiamato <code>constants</code>. &Egrave; proprio lì, in <code>chardet/constants.py</code>.
+
+<p>Ricordate quando lo script <code>2to3</code> ha corretto tutte quelle istruzioni di <code>import</code>? Questa libreria contiene un sacco di <code>import</code> relativi&nbsp;&mdash;&nbsp;cioè, <a href=#multifile-modules>moduli che importano altri moduli nell'ambito della libreria</a>&nbsp;&mdash;&nbsp;ma <em>la logica dietro il funzionamento delle importazioni relative è cambiata in Python 3</em>. In Python 2, potevate semplicemente scrivere <code>import constants</code> e l'interprete avrebbe guardato nella direcotry <code>chardet</code> come prima cosa. In Python 3, <a href=http://www.python.org/dev/peps/pep-0328/>tutte le istruzioni di <code>import</code> sono assolute di default</a>. Se volete importare un modulo in maniera relativa in Python 3, dovete farlo esplicitamente:
 <pre class=nd><code class=pp>from . import constants</code></pre>
 <p>Ma aspettate. Non doveva essere lo script <code>2to3</code> a curarsi di queste cose per voi? Be', lo ha fatto, ma la particolare istruzione di <code>import</code> che ha generato l'errore combina due differenti tipi di importazione in una sola riga: un'importazione relativa del modulo <code>constants</code> all'interno della libreria e un'importazione assoluta del modulo <code>sys</code> che è preinstallato nella libreria standard di Python. In Python 2, potevate combinare questi due tipi in un'unica istruzione <code>import</code>. In Python 3 non potete, ma lo script <code>2to3</code> non è abbastanza scaltro da spezzare l'istruzione di <code>import</code> in due.
 <p>La soluzione consiste nel dividere l'istruzione di <code>import</code> manualmente. Così questa doppia istruzione di <code>import</code>:
