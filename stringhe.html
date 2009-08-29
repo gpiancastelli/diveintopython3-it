@@ -94,7 +94,7 @@ Il tuo alfabeto termina dove il mio inizia! <span class=u>&#x275E;</span><br>&md
 <samp class=pp>'深入 Python 3'</samp></pre>
 <ol>
 <li>Per creare una stringa, racchiudetela tra virgolette. Le stringhe Python possono essere definite utilizzando apici (<code>'</code>) oppure virgolette (<code>"</code>).<!--"-->
-<li>La funzione built-in <code><dfn>len</dfn>()</code> restituisce la lunghezza della stringa, <i>i.e.</i> il numero di caratteri. Questa è la stessa funzione che utilizzate per <a href=tipi-di-dato-nativi.html#extendinglists>trovare la lunghezza di una lista</a>. Una stringa è come una lista di caratteri.
+<li>La funzione built-in <code><dfn>len</dfn>()</code> restituisce la lunghezza della stringa, <i>i.e.</i> il numero di caratteri. Questa è la stessa funzione che utilizzate per <a href=tipi-di-dato-nativi.html#extendinglists>trovare la lunghezza di una lista, una tupla, un insieme, o un dizionario</a>. Una stringa è come una lista di caratteri.
 <li>Esattamente come ottenete singoli elementi da una lista, potete ottenere singoli caratteri da una stringa usando la notazione a indice.
 <li>Esattamente come con le liste, potete <dfn>concatenare</dfn> le stringhe utilizzando l'operatore <code>+</code>.
 </ol>
@@ -107,7 +107,7 @@ Il tuo alfabeto termina dove il mio inizia! <span class=u>&#x275E;</span><br>&md
 <p>Diamo un'altra occhiata a <a href=il-vostro-primo-programma-python.html#divingin><code>humansize.py</code></a>:
 
 <p class=d>[<a href=esempi/humansize.py>scarica <code>humansize.py</code></a>]
-<pre><code class=pp><a>SUFFIXES = {1000: ['KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],         <span class=u>&#x2460;</span></a>
+<pre class=pp><code><a>SUFFIXES = {1000: ['KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],         <span class=u>&#x2460;</span></a>
             1024: ['KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB']}
 
 def approximate_size(size, a_kilobyte_is_1024_bytes=True):
@@ -202,7 +202,7 @@ def approximate_size(size, a_kilobyte_is_1024_bytes=True):
 
 <p>Ma aspettate! C'è di più! Diamo un'altra occhiata a quella strana linea di codice in <code>humansize.py</code>:
 
-<pre class=nd><code class=pp>if size &lt; multiple:
+<pre class='nd pp'><code>if size &lt; multiple:
     return '{0:.1f} {1}'.format(size, suffix)</code></pre>
 
 <p><code>{1}</code> viene rimpiazzato dal secondo argomento passato al metodo <code>format()</code>, che è <var>suffix</var>. Ma che cos'è <code>{0:.1f}</code>? &Egrave; due cose: <code>{0}</code>, che riconoscerete, e <code>:.1f</code>, che non riconoscerete. La seconda metà (dai due punti in poi compresi) definisce una <i>specifica di formato</i>, che raffina ulteriormente il modo in cui la variabile rimpiazzata dovrà essere formattata.
@@ -217,7 +217,7 @@ def approximate_size(size, a_kilobyte_is_1024_bytes=True):
 <samp class=p>>>> </samp><kbd class=pp>'{0:.1f} {1}'.format(698.24, 'GB')</kbd>
 <samp class=pp>'698.3 GB'</samp></pre>
 
-<p>Per tutti i dettagli più intricati sulle specifiche di formato, consultate la sezione <a href=http://docs.python.org/3.0/library/string.html#format-specification-mini-language>Format Specification Mini-Language</a> nella documentazione ufficiale di Python.
+<p>Per tutti i dettagli più intricati sulle specifiche di formato, consultate la sezione <a href=http://docs.python.org/3.1/library/string.html#format-specification-mini-language>Format Specification Mini-Language</a> nella documentazione ufficiale di Python.
 
 <p class=a>&#x2042;
 
@@ -288,10 +288,10 @@ experience of years.</samp>
 <a><samp class=p>>>> </samp><kbd class=pp>a_string[18:]</kbd>            <span class=u>&#x2464;</span></a>
 <samp class=pp>' where your alphabet ends.'</samp></pre>
 <ol>
-<li>Potete ottenere una parte di una stringa, chiamata &#8220;fetta&#8221;, specificando due indici. Il valore di ritorno è una nuova stringa che contiene tutti i caratteri della stringa, in ordine, a cominciare dal primo indice della fetta (in questo caso <code>a_string[0]</code>) fino al secondo indice della fetta escluso (in questo caso <code>a_string[2]</code>).
+<li>Potete ottenere una parte di una stringa, chiamata &#8220;fetta&#8221;, specificando due indici. Il valore di ritorno è una nuova stringa che contiene tutti i caratteri della stringa, in ordine, a partire dal primo indice della fetta.
 <li>Come nell'affettare liste, potete usare indici negativi per affettare le stringhe.
-<li>L'indice delle stringhe comincia da zero, quindi <code>a_string[0:3]</code> restituisce i primi tre caratteri della stringa, cominciando da <code>a_string[0]</code> fino a <code>a_string[3]</code> escluso.
-<li>Se l'indice sinistro della fetta è <code>0</code>, potete ometterlo, e <code>0</code> diventa implicito. Quindi <code>a_string[:18]</code> è la stessa cosa di <code>a_string[0:18]</code>, perché lo <code>0</code> iniziale è implicito.
+<li>L'indice delle stringhe comincia da zero, quindi <code>a_string[0:2]</code> restituisce i primi due caratteri della stringa, cominciando da <code>a_string[0]</code> fino a <code>a_string[2]</code> escluso.
+<li>Se l'indice sinistro della fetta è 0, potete ometterlo, e 0 diventa implicito. Quindi <code>a_string[:18]</code> è la stessa cosa di <code>a_string[0:18]</code>, perché lo 0 iniziale è implicito.
 <li>Similmente, se l'indice destro della fetta è la lunghezza della stringa, potete ometterlo. Quindi <code>a_string[18:]</code> è la stessa cosa di <code>a_string[18:44]</code>, perché questa stringa ha 44 caratteri. C'è una piacevole simmetria qui. In questa stringa di 44 caratteri, <code>a_string[:18]</code> restituisce sempre i primi 18 caratteri e <code>a_string[18:]</code> restituisce tutto tranne i primi 18 caratteri. In effetti, <code>a_string[:<var>n</var>]</code> restituirà sempre i primi <var>n</var> caratteri e <code>a_string[<var>n</var>:]</code> restituirà il resto, a prescindere dalla lunghezza della stringa.
 </ol>
 
@@ -413,11 +413,11 @@ TypeError: Can't convert 'bytes' object to str implicitly</samp>
 
 <p>Se volete usare una codifica differente nel vostro codice Python, potete inserire una dichiarazione di codifica nella prima riga di ogni file. Questa dichiarazione definisce windows-1252 come codifica di un file <code>.py</code>
 
-<pre class=nd><code class=pp># -*- coding: windows-1252 -*-</code></pre>
+<pre class='nd pp'><code># -*- coding: windows-1252 -*-</code></pre>
 
 <p>Tecnicamente, la dichiarazione per la nuova codifica di carattere si può trovare anche sulla seconda riga, se la prima riga contiene un comando hash-bang di tipo <abbr>UNIX</abbr>.
 
-<pre class=nd><code class=pp>#!/usr/bin/python3
+<pre class='nd pp'><code>#!/usr/bin/python3
 # -*- coding: windows-1252 -*-</code></pre>
 
 <p>Per maggiori informazioni, consultate la <a href=http://www.python.org/dev/peps/pep-0263/><abbr>PEP</abbr> 263: Defining Python Source Code Encodings</a>.
@@ -452,9 +452,9 @@ TypeError: Can't convert 'bytes' object to str implicitly</samp>
 <p>Sulle stringhe e sulla formattazione di stringhe:
 
 <ul>
-<li><a href=http://docs.python.org/3.0/library/string.html><code>string</code>&nbsp;&mdash;&nbsp;Common string operations</a>
-<li><a href=http://docs.python.org/3.0/library/string.html#formatstrings>Format String Syntax</a>
-<li><a href=http://docs.python.org/3.0/library/string.html#format-specification-mini-language>Format Specification Mini-Language</a>
+<li><a href=http://docs.python.org/3.1/library/string.html><code>string</code>&nbsp;&mdash;&nbsp;Common string operations</a>
+<li><a href=http://docs.python.org/3.1/library/string.html#formatstrings>Format String Syntax</a>
+<li><a href=http://docs.python.org/3.1/library/string.html#format-specification-mini-language>Format Specification Mini-Language</a>
 <li><a href=http://www.python.org/dev/peps/pep-3101/><abbr>PEP</abbr> 3101: Advanced String Formatting</a>
 </ul>
 

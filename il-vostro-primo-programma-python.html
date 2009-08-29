@@ -27,7 +27,7 @@ mark{display:inline}
 <h2 id=divingin>Immersione!</h2>
 <p class=f>Di solito, i libri di programmazione cominciano con una serie di capitoli noiosi sui fondamentali, e solo verso la fine arrivano a costruire qualcosa di utile. Noi ci risparmieremo questa attesa. Qui di seguito troverete subito un programma Python completo e funzionante. Probabilmente ora non ha alcun senso per voi, ma non preoccupatevi perché lo analizzerete riga per riga. Provate comunque a leggerlo, prima di tutto, per vedere se riuscite a ricavarne qualcosa.
 <p class=d>[<a href=esempi/humansize.py>scarica <code>humansize.py</code></a>]
-<pre><code class=pp>SUFFIXES = {1000: ['KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
+<pre class=pp><code>SUFFIXES = {1000: ['KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
             1024: ['KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB']}
 
 def approximate_size(size, a_kilobyte_is_1024_bytes=True):
@@ -76,7 +76,7 @@ if __name__ == '__main__':
 
 <h2 id=declaringfunctions>Dichiarare funzioni</h2>
 <p>Python vi permette di definire funzioni come la maggior parte degli altri linguaggi, ma non utilizza file di intestazione separati come il <abbr>C++</abbr> o sezioni di <code>interface</code>/<code>implementation</code> come il Pascal. Quando avete bisogno di una funzione, vi basta dichiararla, in questo modo:  
-<pre class=nd><code class=pp>def approximate_size(size, a_kilobyte_is_1024_bytes=True):</code></pre>
+<pre class='nd pp'><code>def approximate_size(size, a_kilobyte_is_1024_bytes=True):</code></pre>
 <aside>Quando avete bisogno di una funzione, vi basta dichiararla.</aside>
 <p>La parola chiave <code>def</code> inizia la dichiarazione di funzione, seguita dal nome della funzione, seguito dagli argomenti della funzione racchiusi tra parentesi. Argomenti multipli sono separati da virgole.
 <p>Notate anche che la funzione non definisce un tipo di dato di ritorno. Le funzioni Python non specificano il tipo di dato del loro valore di ritorno; non specificano nemmeno se restituiscono o no un valore. (In effetti, ogni funzione Python restituisce un valore; se la funzione esegue una istruzione di <code>return</code>, restituirà quel valore, altrimenti restituirà <code>None</code>, il valore nullo di Python.)
@@ -94,13 +94,13 @@ if __name__ == '__main__':
 
 <p>Diamo un'altra occhiata a quella dichiarazione della funzione <code>approximate_size()</code>:
 
-<pre class=nd><code class=pp>def approximate_size(size, a_kilobyte_is_1024_bytes=True):</code></pre>
+<pre class='nd pp'><code>def approximate_size(size, a_kilobyte_is_1024_bytes=True):</code></pre>
 
 <p>Il secondo argomento, <var>a_kilobyte_is_1024_bytes</var>, specifica un valore di default pari a <code>True</code>. Questo significa che l'argomento è <i>opzionale</i>; potete invocare la funzione senza di esso, e Python agirà come se l'aveste invocata passando <code>True</code> come secondo parametro.
 
 <p>Ora guardate in fondo allo script:
 
-<pre><code class=pp>if __name__ == '__main__':
+<pre class=pp><code>if __name__ == '__main__':
 <a>    print(approximate_size(1000000000000, False))  <span class=u>&#x2460;</span></a>
 <a>    print(approximate_size(1000000000000))         <span class=u>&#x2461;</span></a></code></pre>
 <ol>
@@ -138,7 +138,7 @@ SyntaxError: non-keyword arg after keyword arg</samp></pre>
 <p>Non vi annoierò con una lunga predica sull'importanza di documentare il vostro codice. Vi basti sapere che il codice viene scritto una volta sola ma letto molte volte, e che i lettori più importanti del vostro codice siete voi stessi, sei mesi dopo averlo scritto (cioè dopo che vi siete dimenticati tutto ma avete bisogno di correggere qualcosa). Python facilita la scrittura di codice leggibile, perciò avantaggiatevene. Fra sei mesi mi ringrazierete.
 <h3 id=docstrings>Stringhe di documentazione</h3>
 <p>Potete documentare una funzione Python aggiungendole una stringa di documentazione (chiamata <code>docstring</code> per brevità). Nel nostro programma, la funzione <code>approximate_size()</code> è stata dotata di una <code>docstring</code>:
-<pre class=nd><code class=pp>def approximate_size(size, a_kilobyte_is_1024_bytes=True):
+<pre class='nd pp'><code>def approximate_size(size, a_kilobyte_is_1024_bytes=True):
     '''Convert a file size to human-readable form.
 
     Keyword arguments:
@@ -232,7 +232,7 @@ SyntaxError: non-keyword arg after keyword arg</samp></pre>
 
 <h2 id=indentingcode>Indentare il codice</h2>
 <p>Le funzioni Python non cominciano esplicitamente con <code>begin</code> né terminano con <code>end</code>, e non ci sono parentesi graffe a indicare dove il codice della funzione inizia e finisce. I due punti (<code>:</code>) e l'indentazione del codice stesso sono gli unici delimitatori.
-<pre><code class=pp><a>def approximate_size(size, a_kilobyte_is_1024_bytes=True):  <span class=u>&#x2460;</span></a>
+<pre class=pp><code><a>def approximate_size(size, a_kilobyte_is_1024_bytes=True):  <span class=u>&#x2460;</span></a>
 <a>    if size &lt; 0:                                            <span class=u>&#x2461;</span></a>
 <a>        raise ValueError('number must be non-negative')     <span class=u>&#x2462;</span></a>
 <a>                                                            <span class=u>&#x2463;</span></a>
@@ -269,7 +269,7 @@ SyntaxError: non-keyword arg after keyword arg</samp></pre>
 <p><span class=u>&#x261E;</span>A differenza di Java, le funzioni Python non dichiarano quali eccezioni potrebbero sollevare. Sta a voi determinare quali possibili eccezioni avete bisogno di catturare.
 </blockquote>
 
-<p>Un'eccezione non risulta necessariamente in un completo blocco del programma, comunque. Le eccezioni possono essere <em>gestite</em>. A volte un'eccezione compare perché in realtà il vostro codice ha un bug (come il tentativo di accedere a una variabile che non esiste), ma altre volte un'eccezione è qualcosa che potete anticipare. Se state aprendo un file, quel file potrebbe non esistere. Se state importando un modulo, quel modulo potrebbe non essere installato. Se state aprendo una connessione a un database, quel database potrebbe non essere disponibile, oppure potreste non avere le credenziali di sicurezza corrette per accedere. Se sapete che una riga di codice potrebbe sollevare un'eccezione, dovreste gestire l'eccezione usando un blocco <code>try...except</code>.
+<p>Un'eccezione non deve necessariamente risultare in un completo blocco del programma, comunque. Le eccezioni possono essere <em>gestite</em>. A volte un'eccezione compare perché in realtà il vostro codice ha un bug (come il tentativo di accedere a una variabile che non esiste), ma altre volte un'eccezione è qualcosa che potete anticipare. Se state aprendo un file, quel file potrebbe non esistere. Se state importando un modulo, quel modulo potrebbe non essere installato. Se state aprendo una connessione a un database, quel database potrebbe non essere disponibile, oppure potreste non avere le credenziali di sicurezza corrette per accedere. Se sapete che una riga di codice potrebbe sollevare un'eccezione, dovreste gestire l'eccezione usando un blocco <code>try...except</code>.
 
 <blockquote class='note compare java'>
 <p><span class=u>&#x261E;</span>Python usa blocchi <code>try...except</code> per gestire le eccezioni e l'istruzione <code>raise</code> per generarle. Java e <abbr>C++</abbr> usano blocchi <code>try...catch</code> per gestire le eccezioni e l'istruzione <code>throw</code> per generarle.
@@ -277,10 +277,10 @@ SyntaxError: non-keyword arg after keyword arg</samp></pre>
 
 <p>La funzione <code>approximate_size()</code> solleva eccezioni in due casi differenti: se la variabile <var>size</var> passata contiene una dimensione più grande di quella che la funzione è progettata per gestire, o se contiene una dimensione inferiore a zero.
 
-<pre class=nd><code class=pp>if size &lt; 0:
+<pre class='nd pp'><code>if size &lt; 0:
     raise ValueError('number must be non-negative')</code></pre>
 
-<p>La sintassi per sollevare un'eccezione è abbastanza semplice. Usate l'istruzione <code>raise</code>, seguita dal nome dell'eccezione e da una stringa contenente un messaggio per scopi di debug. La sintassi ricorda quella dell'invocazione di una funzione. (In realtà, le eccezioni sono implementate come classi e questa istruzione <code>raise</code> crea effettivamente un'istanza della classe <code>ValueError</code> passando la stringa <code>'number must not be negative'</code> al suo metodo di inizializzazione. Ma <a href=iteratori.html#defining-classes>stiamo mettendo il carro avanti ai buoi</a><span class=u>&#8202;</span><em>!</em><span class=u>&#8202;</span>)
+<p>La sintassi per sollevare un'eccezione è abbastanza semplice. Usate l'istruzione <code>raise</code>, seguita dal nome dell'eccezione e da una stringa contenente un messaggio per scopi di debug. La sintassi ricorda quella dell'invocazione di una funzione. (In realtà, le eccezioni sono implementate come classi e questa istruzione <code>raise</code> crea effettivamente un'istanza della classe <code>ValueError</code> passando la stringa <code>'number must not be negative'</code> al suo metodo di inizializzazione. Ma <a href=iteratori.html#defining-classes>stiamo mettendo il carro avanti ai buoi</a>!)
 
 <blockquote class=note>
 <p><span class=u>&#x261E;</span>Non avete bisogno di gestire un'eccezione nella funzione che la solleva. Se una funzione non gestisce un'eccezione, l'eccezione viene passata alla funzione chiamante, poi alla funzione chiamante di quella funzione, e così via &#8220;fino alla cima dello stack di esecuzione.&#8221; Se l'eccezione non viene mai gestita, il vostro programma si bloccherà, Python stamperà una &#8220;traccia dello stack&#8221; sul canale di errore e le cose finiranno lì. Ancora una volta, forse questo è quello che volete; dipende da ciò che fa il vostro programma.
@@ -290,21 +290,21 @@ SyntaxError: non-keyword arg after keyword arg</samp></pre>
 
 <p>Una delle eccezioni predefinite di Python è <code>ImportError</code>, che viene sollevata quando cercate di importare un modulo e fallite. Questo può succedere per una varietà di ragioni, ma il caso più semplice è quello in cui il modulo non esiste nel vostro <a href=#importsearchpath>percorso di ricerca per le importazioni</a>. Potete usare questo per includere funzionalità opzionali nel vostro programma. Per esempio, <a href=case-study-porting-chardet-to-python-3.html>la libreria <code>chardet</code></a> fornisce il riconoscimento automatico delle codifiche di carattere. Forse il vostro programma vuole usare questa libreria <em>se esiste</em>, ma continuare <span class=wtf>gracefully</span> se l'utente non l'ha installata. Potete fare questo con un blocco <code>try..except</code>.
 
-<pre class=nd><code class=pp><mark>try</mark>:
+<pre class='nd pp'><code><mark>try</mark>:
   import chardet
 <mark>except</mark> ImportError:
   chardet = None</code></pre>
 
 <p>Più tardi, potete controllare la presenza del modulo <code>chardet</code> con una semplice istruzione <code>if</code>:
 
-<pre class=nd><code class=pp>if chardet:
+<pre class='nd pp'><code>if chardet:
   # fai qualcosa
 else:
   # continua comunque</code></pre>
 
 <p>L'eccezione <code>ImportError</code> viene comunemente usata anche quando due moduli implementano una <abbr>API</abbr> comune, ma uno è più desiderabile dell'altro. (Magari è più veloce, o usa meno memoria.) Potete provare a importare un modulo ma ripiegare su un modulo differente se la prima importazione fallisce. Per esempio, <a href=xml.html>il capitolo su XML</a> parla di due moduli che implementano una <abbr>API</abbr> comune chiamata <code>ElementTree</code>. Il primo, <code>lxml</code>, è un modulo di terze parti che dovete scaricare e installare da voi. Il secondo, <code>xml.etree.ElementTree</code>, è più lento ma è parte della libreria standard di Python 3.
 
-<pre class=nd><code class=pp>try:
+<pre class='nd pp'><code>try:
     from lxml import etree
 except ImportError:
     import xml.etree.ElementTree as etree</code></pre>
@@ -315,7 +315,7 @@ except ImportError:
 
 <p>Date un'altra occhiata a questa riga di codice nella funzione <code>approximate_size()</code>:
 
-<pre class=nd><code class=pp>multiple = 1024 if a_kilobyte_is_1024_bytes else 1000</code></pre>
+<pre class='nd pp'><code>multiple = 1024 if a_kilobyte_is_1024_bytes else 1000</code></pre>
 
 <p>Non dichiarate mai la variabile <var>multiple</var>, ma le assegnate semplicemente un valore. Questo va bene, perché Python vi permette di farlo. Quello che Python <em>non</em> vi permette di fare è fare riferimento a una variabile a cui non è mai stato assegnato un valore. Il tentativo di fare questo solleverà un'eccezione di tipo <code>NameError</code>.
 <pre class='nd screen'>
@@ -329,12 +329,36 @@ NameError: name 'x' is not defined</samp>
 
 <p>Un giorno ringrazierete Python per questo.
 
+<h3 id=case>Tutto è sensibile alle maiuscole</h3>
+
+<p>Tutti i nomi in Python sono sensibili alle maiuscole: nomi di variabile, nomi di funzione, nomi di classe, nomi di modulo, nomi di eccezione. Se potete ottenerlo, impostarlo, invocarlo, costruirlo, importarlo, o sollevarlo, allora è sensibile alle maiuscole.
+
+<pre class='nd screen'>
+<samp class=p>>>> </samp><kbd class=pp>un_intero = 1</kbd>
+<samp class=p>>>> </samp><kbd class=pp>un_intero</kbd>
+<samp class=pp>1</samp>
+<samp class=p>>>> </samp><kbd>UN_INTERO</kbd>
+<samp class=traceback>Traceback (most recent call last):
+  File "&lt;stdin>", line 1, in &lt;module>
+NameError: name 'UN_INTERO' is not defined</samp>
+<samp class=p>>>> </samp><kbd>Un_Intero</kbd>
+<samp class=traceback>Traceback (most recent call last):
+  File "&lt;stdin>", line 1, in &lt;module>
+NameError: name 'Un_Intero' is not defined</samp>
+<samp class=p>>>> </samp><kbd>un_inTero</kbd>
+<samp class=traceback>Traceback (most recent call last):
+  File "&lt;stdin>", line 1, in &lt;module>
+NameError: name 'un_inTero' is not defined</samp>
+</pre>
+
+<p>E così via.
+
 <p class=a>&#x2042;
 
 <h2 id=runningscripts>Eseguire gli script</h2>
 <aside>Ogni cosa in Python è un oggetto.</aside>
 <p>I moduli Python sono oggetti e hanno diverse proprietà utili. Potete sfruttare questa caratteristica per collaudare facilmente i vostri moduli mentre li scrivete, includendo uno speciale blocco di codice che viene eseguito quando lanciate il file Python dalla linea di comando. Considerate le ultime righe di <code>humansize.py</code>:
-<pre class=nd><code class=pp>
+<pre class='nd pp'><code>
 if __name__ == '__main__':
     print(approximate_size(1000000000000, False))
     print(approximate_size(1000000000000))</code></pre>
