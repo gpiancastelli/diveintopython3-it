@@ -39,20 +39,20 @@ S = 6
 T = 2
 E = 4</code></pre>
 
-<p>Rompicapo come questi sono chiamati <i>criptarismi</i> o più precisamente criptarismi <i>alfametici</i>. Le lettere formano parole vere, ma se sostituite ogni lettera con una cifra da <code>0</code> a <code>9</code>, il rompicapo &#8220;forma&#8221; anche una equazione aritmetica. Il trucco è scoprire quali lettere corrispondono a quali cifre. Tutte le occorrenze di ogni lettera devono corrispondere alla stessa cifra, nesuna cifra può essere ripetuta, e nessuna &#8220;parola&#8221; può cominciare con la cifra <code>0</code>.
+<p>Rompicapo come questi sono chiamati <i>criptarismi</i> o più precisamente criptarismi <i>alfametici</i>. Le lettere formano parole vere, ma se sostituite ogni lettera con una cifra da <code>0</code> a <code>9</code>, il rompicapo &#8220;forma&#8221; anche una equazione aritmetica. Il trucco è scoprire quali lettere corrispondono a quali cifre. Tutte le occorrenze di ogni lettera devono corrispondere alla stessa cifra, nesuna cifra può essere ripetuta, e nessuna &#8220;parola&#8221; può cominciare con la cifra 0.
 
 <p>Il rompicapo alfametico più conosciuto è <code>SEND + MORE = MONEY</code>.
 
 <p>In questo capitolo, analizzeremo un incredibile programma Python originariamente scritto da Raymond Hettinger. Questo programma risolve rompicapi di alfametica <em>in sole 14 righe di codice</em>.
 
 <p class=d>[<a href=esempi/alphametics.py>scarica <code>alphametics.py</code></a>]
-<pre><code class=pp>import re
+<pre class=pp><code>import re
 import itertools
 
 def solve(puzzle):
     words = re.findall('[A-Z]+', puzzle.upper())
     unique_characters = set(''.join(words))
-    assert len(unique_characters) <= 10, 'Too many letters'
+    assert len(unique_characters) &lt;= 10, 'Too many letters'
     first_letters = {word[0] for word in words}
     n = len(first_letters)
     sorted_characters = ''.join(first_letters) + \
@@ -149,7 +149,7 @@ if __name__ == '__main__':
 <a><samp class=p>>>> </samp><kbd class=pp>set(''.join(words))</kbd>              <span class=u>&#x2463;</span></a>
 <samp class=pp>{'E', 'D', 'M', 'O', 'N', 'S', 'R', 'Y'}</samp></pre>
 <ol>
-<li>Data una lista contenente diverse stringhe, la funzione <code>set()</code> restituirà un insieme di stringhe uniche dalla lista. Questa operazione ha senso se lo pensate come un ciclo <code>for</code>. Prendete il primo elemento della lista, mettetelo nell'insieme. Il secondo. Il terzo. Il quarto&nbsp;&mdash;&nbsp;aspettate, quello è già nell'insieme, quindi va elencato solo una volta, perché gli insiemi Python non accettano duplicati. Il quinto. Il sesto&nbsp;&mdash;&nbsp;ancora, un duplicato, quindi va elencato solo una volta. Il risultato finale? Tutti gli elementi unici della lista originale, senza alcun duplicato. La lista originale non deve nemmeno essere ordinata prima.
+<li>Data una lista contenente diverse stringhe, la funzione <code>set()</code> restituirà un insieme di stringhe uniche dalla lista. Questa operazione ha senso se lo pensate come un ciclo <code>for</code>. Prendete il primo elemento della lista, mettetelo nell'insieme. Il secondo. Il terzo. Il quarto. Il quinto&nbsp;&mdash;&nbsp;aspettate, quello è già nell'insieme, quindi va elencato solo una volta, perché gli insiemi Python non accettano duplicati. Il sesto. Il settimo&nbsp;&mdash;&nbsp;ancora, un duplicato, quindi va elencato solo una volta. Il risultato finale? Tutti gli elementi unici della lista originale, senza alcun duplicato. La lista originale non deve nemmeno essere ordinata prima.
 <li>La stessa tecnica funziona con le stringhe, dato che una stringa è solamente una sequenza di caratteri.
 <li>Data una lista di stringhe, <code>''.join(<var>a_list</var>)</code> le concatena tutte in un'unica stringa.
 <li>Quindi, data una lista di stringhe, questa riga di codice restituisce tutti i caratteri unici su tutte le stringhe, senza alcun duplicato.
@@ -157,7 +157,7 @@ if __name__ == '__main__':
 
 <p>Il risolutore di alfametica usa questa tecnica per ottenere una lista di tutti i caratteri unici nel rompicapo.
 
-<pre class=nd><code class=pp>unique_characters = set(''.join(words))</code></pre>
+<pre class='nd pp'><code>unique_characters = set(''.join(words))</code></pre>
 
 <p>Questa lista viene successivamente usata per assegnare le cifre ai caratteri man mano che il risolutore itera attraverso le possibili soluzioni.
 
@@ -171,11 +171,11 @@ if __name__ == '__main__':
 <a><samp class=p>>>> </samp><kbd class=pp>assert 1 + 1 == 2</kbd>                                     <span class=u>&#x2460;</span></a>
 <a><samp class=p>>>> </samp><kbd class=pp>assert 1 + 1 == 3</kbd>                                     <span class=u>&#x2461;</span></a>
 <samp class=traceback>Traceback (most recent call last):
-  File "&lt;stdin>", line 1, in <module>
+  File "&lt;stdin>", line 1, in &lt;module>
 AssertionError</samp>
 <a><samp class=p>>>> </samp><kbd class=pp>assert 2 + 2 == 5, "Only for very large values of 2"</kbd>  <span class=u>&#x2462;</span></a>
 <samp class=traceback>Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
+  File "&lt;stdin>", line 1, in &lt;module>
 AssertionError: Only for very large values of 2</samp></pre>
 <ol>
 <li>L'istruzione <code>assert</code> è seguita da una qualsiasi espressione Python valida. In questo caso, l'espressione <code>1 + 1 == 2</code> viene valutata a <code>True</code>, quindi l'istruzione <code>assert</code> non fa nulla.
@@ -185,11 +185,11 @@ AssertionError: Only for very large values of 2</samp></pre>
 
 <p>Perciò, questa riga di codice:
 
-<pre class=nd><code class=pp>assert len(unique_characters) <= 10, 'Too many letters'</code></pre>
+<pre class='nd pp'><code>assert len(unique_characters) &lt;= 10, 'Too many letters'</code></pre>
 
 <p>&hellip;è equivalente a questa:
 
-<pre class=nd><code class=pp>if len(unique_characters) > 10:
+<pre class='nd pp'><code>if len(unique_characters) > 10:
     raise AssertionError('Too many letters')</code></pre>
 
 <p>Il risolutore di alfametica usa proprio questa istruzione di <code>assert</code> per interrompere la propria esecuzione nel caso il rompicapo contenga più di dieci singole lettere. Dato che a ogni lettera va assegnata una singola cifra, e ci sono solo dieci cifre, un rompicapo con più di dieci singole lettere non può avere una soluzione.
@@ -224,7 +224,7 @@ AssertionError: Only for very large values of 2</samp></pre>
 
 <p>Ecco un altro modo di realizzare la stessa cosa, utilizzando una <a href=generatori.html>funzione generatore</a>:
 
-<pre class=nd><code class=pp>def ord_map(a_string):
+<pre class='nd pp'><code>def ord_map(a_string):
     for c in a_string:
         yield ord(c)
 
@@ -257,7 +257,7 @@ gen = ord_map(unique_characters)</code></pre>
 <samp class=pp>(3, 2)</samp>
 <a><samp class=p>>>> </samp><kbd class=pp>next(perms)</kbd>                                   <span class=u>&#x2464;</span></a>
 <samp class=traceback>Traceback (most recent call last):
-  File "&lt;stdin>", line 1, in <module>
+  File "&lt;stdin>", line 1, in &lt;module>
 StopIteration</samp></pre>
 <ol>
 <li>Il modulo <code>itertools</code> contiene i più svariati tipi di roba divertente, compresa una funzione <code>permutations()</code> che si sobbarca tutto il duro lavoro della ricerca di permutazioni.
@@ -286,7 +286,7 @@ StopIteration</samp></pre>
 <samp class=pp>('C', 'B', 'A')</samp>
 <samp class=p>>>> </samp><kbd class=pp>next(perms)</kbd>
 <samp class=traceback>Traceback (most recent call last):
-  File "&lt;stdin>", line 1, in <module>
+  File "&lt;stdin>", line 1, in &lt;module>
 StopIteration</samp>
 <a><samp class=p>>>> </samp><kbd class=pp>list(itertools.permutations('ABC', 3))</kbd>    <span>&#x2462;</span></a>
 <samp class=pp>[('A', 'B', 'C'), ('A', 'C', 'B'),
@@ -342,7 +342,7 @@ StopIteration</samp>
 <p>Che cos'ha a che fare tutto questo con il modulo <code>itertools</code>? Sono contento che lo abbiate chiesto.
 
 <pre class=screen>
-<p>&hellip;continuando dalla shell interattiva precedente&hellip;
+&hellip;continuando dalla shell interattiva precedente&hellip;
 <samp class=p>>>> </samp><kbd class=pp>import itertools</kbd>
 <a><samp class=p>>>> </samp><kbd class=pp>groups = itertools.groupby(names, len)</kbd>  <span class=u>&#x2460;</span></a>
 <samp class=p>>>> </samp><kbd class=pp>groups</kbd>
@@ -420,7 +420,7 @@ Wesley</samp></pre>
 
 <p id=guess>Il risolutore di alfametica usa questa tecnica per creare un dizionario che mette in corrispondenza le lettere nel rompicampo con le cifre nella soluzione, per ogni possibile soluzione.
 
-<pre class=nd><code class=pp>characters = tuple(ord(c) for c in sorted_characters)
+<pre class='nd pp'><code>characters = tuple(ord(c) for c in sorted_characters)
 digits = tuple(ord(c) for c in '0123456789')
 ...
 for guess in itertools.permutations(digits, len(characters)):
@@ -589,8 +589,8 @@ NameError: name '__import__' is not defined</samp>
 <samp class=p>>>> </samp><kbd class=pp>eval("__import__('subprocess').getoutput('rm -rf /')",</kbd>
 <a><samp class=p>... </samp><kbd class=pp>    {"__builtins__":None}, {})</kbd>          <span class=u>&#x2461;</span></a>
 <samp class=traceback>Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
-  File "<string>", line 1, in <module>
+  File "&lt;stdin>", line 1, in &lt;module>
+  File "&lt;string>", line 1, in &lt;module>
 NameError: name '__import__' is not defined</samp></pre>
 <ol>
 <li>Per valutare espressioni non affidabili in maniera sicura, avete bisogno di definire nello spazio di nomi globale un dizionario che faccia corrispondere <code>"__builtins__"</code> a <code>None</code>, il valore nullo di Python. Internamente, le funzioni &#8220;built-in&#8221; sono contenute in uno pseudo-modulo chiamato <code>"__builtins__"</code>. Questo pseudo-modulo (<i>i.e.</i> l'insieme delle funzioni built-in) viene reso disponibile alle espressioni valutate a meno che non lo rimpiazziate esplicitamente.

@@ -40,7 +40,7 @@ body{counter-reset:h1 6}
 <h2 id=i-know>Ci sono, usiamo le espressioni regolari!</h2>
 <p>E così state esaminando le parole, il che significa, almeno in inglese, che state esaminando stringhe di caratteri. Avete regole che dicono che dovete trovare combinazioni differenti di caratteri, e poi operare su quelle combinazioni in modi differenti. Questo sembra un lavoro per le espressioni regolari!
 <p class=d>[<a href=esempi/plural1.py>scarica <code>plural1.py</code></a>]
-<pre><code class=pp>import re
+<pre class=pp><code>import re
 
 def plural(noun):          
 <a>    if re.search('[sxz]$', noun):             <span class=u>&#x2460;</span></a>
@@ -76,7 +76,7 @@ def plural(noun):
 
 <p>E ora, torniamo alla funzione <code>plural()</code>&hellip;
 
-<pre><code class=pp>def plural(noun):          
+<pre class=pp><code>def plural(noun):          
     if re.search('[sxz]$', noun):            
 <a>        return re.sub('$', 'es', noun)         <span class=u>&#x2460;</span></a>
 <a>    elif re.search('[^aeioudgkprt]h$', noun):  <span class=u>&#x2461;</span></a>
@@ -128,7 +128,7 @@ def plural(noun):
 <p>Ora state per aggiungere un livello di astrazione. Avete cominciato definendo una lista di regole: se accade questo, fai quello, altrimenti vai alla prossima regola. Complichiamo temporaneamente parte del programma in modo da semplificarne un'altra parte.
 
 <p class=d>[<a href=esempi/plural2.py>scarica <code>plural2.py</code></a>]
-<pre><code class=pp>import re
+<pre class=pp><code>import re
 
 def match_sxz(noun):
     return re.search('[sxz]$', noun)
@@ -176,7 +176,7 @@ def plural(noun):
 
 <p>Se questo livello di astrazione aggiuntivo vi confonde, provate a sviluppare la funzione per vedere l'equivalenza. L'intero ciclo <code>for</code> è equivalente a quanto segue:
 
-<pre class=nd><code class=pp>
+<pre class='nd pp'><code>
 def plural(noun):
     if match_sxz(noun):
         return apply_sxz(noun)
@@ -208,7 +208,7 @@ def plural(noun):
 <p>Definire separatamente una funzione con un proprio nome per ogni regola di ricerca e sostituzione non è realmente necessario. Non le chiamate mai direttamente, ma le aggiungete alla sequenza <var>rules</var> e le chiamate attraverso di essa. In più, ogni funzione segue uno di due schemi. Tutte le funzioni di ricerca chiamano <code>re.search()</code> e tutte le funzioni di sostituzione chiamano <code>re.sub()</code>. Evidenziamo gli schemi in modo che definire nuove regole diventi più semplice.
 
 <p class=d>[<a href=esempi/plural3.py>scarica <code>plural3.py</code></a>]
-<pre><code class=pp>import re
+<pre class=pp><code>import re
 
 def build_match_and_apply_functions(pattern, search, replace):
 <a>    def matches_rule(word):                                     <span class=u>&#x2460;</span></a>
@@ -224,7 +224,7 @@ def build_match_and_apply_functions(pattern, search, replace):
 
 <p>Se questo risulta incredibilmente confuso (e dovrebbe, è roba strana), potrebbe diventare più chiaro nel momento in cui vedete come si usa.
 
-<pre><code class=pp><a>patterns = \                                                        <span class=u>&#x2460;</span></a>
+<pre class=pp><code><a>patterns = \                                                        <span class=u>&#x2460;</span></a>
   (
     ('[sxz]$',           '$',  'es'),
     ('[^aeioudgkprt]h$', '$',  'es'),
@@ -241,7 +241,7 @@ def build_match_and_apply_functions(pattern, search, replace):
 
 <p>Per completare questa versione del programma ecco il punto di entrata principale, la funzione <code>plural()</code>.
 
-<pre><code class=pp>def plural(noun):
+<pre class=pp><code>def plural(noun):
 <a>    for matches_rule, apply_rule in rules:  <span class=u>&#x2460;</span></a>
         if matches_rule(noun):
             return apply_rule(noun)</code></pre>
@@ -258,7 +258,7 @@ def build_match_and_apply_functions(pattern, search, replace):
 <p>Prima di tutto, creiamo un file di testo che contiene le regole che volete. Nessuna struttura dati elaborata, solo stringhe separate da spazi bianchi su tre colonne. Chiamiamo questo file <code>plural4-rules.txt</code>.
 
 <p class=d>[<a href=esempi/plural4-rules.txt>scarica <code>plural4-rules.txt</code></a>]
-<pre class=nd><code class=pp>[sxz]$               $    es
+<pre class='nd pp'><code>[sxz]$               $    es
 [^aeioudgkprt]h$     $    es
 [^aeiou]y$          y$    ies
 $                    $    s</code></pre>
@@ -266,14 +266,14 @@ $                    $    s</code></pre>
 <p>Ora vediamo come potete usare questo file di regole.
 
 <p class=d>[<a href=esempi/plural4.py>scarica <code>plural4.py</code></a>]
-<pre><code class=pp>import re
+<pre class=pp><code>import re
 
 <a>def build_match_and_apply_functions(pattern, search, replace):  <span class=u>&#x2460;</span></a>
     def matches_rule(word):
         return re.search(pattern, word)
     def apply_rule(word):
         return re.sub(search, replace, word)
-    return [matches_rule, apply_rule]
+    return (matches_rule, apply_rule)
 
 rules = []
 <a>with open('plural4-rules.txt', encoding='utf-8') as pattern_file:  <span class=u>&#x2461;</span></a>
@@ -286,6 +286,7 @@ rules = []
 <li>La funzione globale <code>open()</code> apre un file e restituisce un oggetto file. In questo caso, il file che stiamo aprendo contiene le stringhe dei pattern per la pluralizzazione dei nomi. L'istruzione <code>with</code> crea quello che viene chiamato un <i>contesto</i>: quando il blocco <code>with</code> finisce, Python chiuderà automaticamente il file, anche se è stata sollevata un'eccezione all'interno del blocco <code>with</code>. Imparerete di più sui blocchi <code>with</code> e sugli oggetti file nel capitolo <a href=file.html>File</a>.
 <li>L'idioma <code>for line in &lt;fileobject></code> legge dati da un file aperto, una riga alla volta, e assegna il testo alla variabile <var>line</var>. Imparerete di più su come leggere i file nel capitolo <a href=file.html>File</a>.
 <li>Ogni riga nel file in realtà contiene tre valori, separati da spazi bianchi (che siano tabulazioni o spazi non fa alcuna differenza). Per recuperarli, usate il metodo <code>split()</code> delle stringhe. Il primo argomento del metodo <code>split()</code> è <code>None</code>, che significa &#8220;spezza la stringa in corrispondenza di qualsiasi spazio bianco (che siano tabulazioni o spazi non fa alcuna differenza).&#8221; Il secondo argomento è <code>3</code>, che significa &#8220;spezza la stringa in corrispondenza di spazi bianchi per 3 volte, poi scartane il resto.&#8221; Una riga come <code>[sxz]$ $ es</code> verrà suddivisa nella lista <code>['[sxz]$', '$', 'es']</code>, il che significa che <var>pattern</var> avrà il valore <code>'[sxz]$'</code>, <var>search</var> avrà il valore <code>'$'</code>, e <var>replace</var> avrà il valore <code>'es'</code>. C'è molta potenza in una piccola riga di codice.
+<li>Infine, passate <code>pattern</code>, <code>search</code> e <code>replace</code> alla funzione <code>build_match_and_apply_functions()</code>, che restituisce una tupla di funzioni. Aggiungete questa tupla in coda alla lista <var>rules</var> e <var>rules</var> finirà per memorizzare la lista delle funzioni di ricerca e sostituzione che la funzione <code>plural()</code> si aspetta.
 </ol>
 
 <p>In questo caso il miglioramento è che avete completamente isolato le regole di pluralizzazione in un file esterno, in modo che possa essere gestito separatamente dal codice che lo utilizza. Il codice è codice, i dati sono dati, e la vita è bella.
@@ -297,7 +298,7 @@ rules = []
 <p>Non sarebbe magnifico avere una funzione <code>plural()</code> generica che analizza il file di regole? Ottieni le regole, controlla se c'è una corrispondenza, applica la trasformazione appropriata, vai alla regola successiva. Questo è tutto quello che la funzione <code>plural()</code> ha bisogno di fare, e questo è tutto quello che la funzione <code>plural()</code> dovrebbe fare.
 
 <p class=d>[<a href=esempi/plural5.py>scarica <code>plural5.py</code></a>]
-<pre class=nd><code class=pp>def rules(rules_filename):
+<pre class='nd pp'><code>def rules(rules_filename):
     with open(rules_filename, encoding='utf-8') as pattern_file:
         for line in pattern_file:
             pattern, search, replace = line.split(None, 3)
@@ -345,13 +346,13 @@ def plural(noun, rules_filename='plural5-rules.txt'):
 <h3 id=a-fibonacci-generator>Un generatore di Fibonacci</h3>
 
 <p class=d>[<a href=esempi/fibonacci.py>scarica <code>fibonacci.py</code></a>]
-<pre><code class=pp>def fib(max):
+<pre class=pp><code>def fib(max):
 <a>    a, b = 0, 1          <span class=u>&#x2460;</span></a>
     while a &lt; max:
 <a>        yield a          <span class=u>&#x2461;</span></a>
 <a>        a, b = b, a + b  <span class=u>&#x2462;</span></a></code></pre>
 <ol>
-<li>La sequenza di Fibonacci è una sequenza numerica dove ogni numero è la somma dei due numeri che lo precedono. Comincia con <code>0</code> e <code>1</code>, si incrementa lentamente all'inizio, e poi sempre più rapidamente. Per cominciare la sequenza, avete bisogno di due variabili: <var>a</var> inizia a <code>0</code>, e <var>b</var> inizia a <code>1</code>.
+<li>La sequenza di Fibonacci è una sequenza numerica dove ogni numero è la somma dei due numeri che lo precedono. Comincia con 0 e <code>1</code>, si incrementa lentamente all'inizio, e poi sempre più rapidamente. Per cominciare la sequenza, avete bisogno di due variabili: <var>a</var> inizia a 0, e <var>b</var> inizia a <code>1</code>.
 <li><var>a</var> è il numero corrente nella sequenza, quindi producetelo in uscita.
 <li><var>b</var> è il numero successivo nella sequenza, quindi assegnatelo ad <var>a</var>, ma calcolate anche il prossimo valore (<code>a + b</code>) e assegnatelo a <var>b</var> per usarlo più tardi. Notate che questo accade in parallelo; se <var>a</var> è <code>3</code> e <var>b</var> è <code>5</code>, allora <code>a, b = b, a + b</code> imposterà <var>a</var> a <code>5</code> (il valore precedente di <var>b</var>) e <var>b</var> a <code>8</code> (la somma dei valori precedenti di <var>a</var> e <var>b</var>).
 </ol>
@@ -377,7 +378,7 @@ def plural(noun, rules_filename='plural5-rules.txt'):
 
 <p>Torniamo indietro a <code>plural5.py</code> e vediamo se questa versione della funzione <code>plural()</code> funziona.
 
-<pre><code class=pp>def rules(rules_filename):
+<pre class=pp><code>def rules(rules_filename):
     with open(rules_filename, encoding='utf-8') as pattern_file:
         for line in pattern_file:
 <a>            pattern, search, replace = line.split(None, 3)                   <span class=u>&#x2460;</span></a>

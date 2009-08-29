@@ -32,7 +32,7 @@ body{counter-reset:h1 10}
 
 <p>Dopo aver riprodotto il bug, e prima di correggerlo, dovreste scrivere un test che fallisce, mettendo così il bug in evidenza.
 
-<pre><code class=pp>class FromRomanBadInput(unittest.TestCase):  
+<pre class=pp><code>class FromRomanBadInput(unittest.TestCase):  
     .
     .
     .
@@ -74,7 +74,7 @@ FAILED (failures=1)</samp></pre>
 
 <p><em>Adesso</em> potete correggere il bug.
 
-<pre><code class=pp>def from_roman(s):
+<pre class=pp><code>def from_roman(s):
     '''convert Roman numeral to integer'''
 <a>    if not s:                                                                  <span class=u>&#x2460;</span></a>
         raise InvalidRomanNumeralError, 'Input can not be blank'
@@ -126,7 +126,7 @@ Ran 11 tests in 0.156s
 <p>Supponete, per esempio, di volere espandere l'intervallo dei numeri romani gestito dalle funzioni di conversione. Normalmente, nessun carattere in un numero romano può essere ripetuto più di tre volte di seguito. Ma i Romani erano disposti a fare uno strappo a quella regola per poter rappresentare <code>4000</code> con 4 <code>M</code> di seguito. Se fate questa modifica, sarete in grado di allargare l'intervallo di numeri convertibili da <code>1..3999</code> a <code>1..4999</code>. Ma prima è necessario fare alcuni cambiamenti ai vostri test.
 
 <p class=d>[<a href=examples/roman8.py>scarica <code>roman8.py</code></a>]
-<pre><code class=pp>class KnownValues(unittest.TestCase):
+<pre class=pp><code>class KnownValues(unittest.TestCase):
     known_values = ( (1, 'I'),
                       .
                       .
@@ -227,10 +227,10 @@ FAILED (errors=3)</samp></pre>
 <li>Anche il controllo di consistenza fallirà non appena arriva a <code>4000</code>, perché <code>to_roman()</code> pensa ancora che questo numero sia fuori dall'intervallo di validità.
 </ol>
 
-<p>Ora che i vostri test falliscono a causa dei nuovi requisiti, potete pensare a correggere il codice per riallinearlo con i test. (Una cosa che richiede un po' di tempo per essere assimilata quando cominciate a utilizzare i test di unità è che il codice sotto collaudo non è mai &#8220;avanti&#8221; rispetto ai test. Mentre è indietro avete ancora del lavoro da fare, e appena lo avete rimesso in pari con i test potete smettere di programmare.)
+<p>Ora che i vostri test falliscono a causa dei nuovi requisiti, potete pensare a correggere il codice per riallinearlo con i test. (Quando cominciate a utilizzare i test di unità per la prima volta, potrebbe sembrarvi strano che il codice sotto collaudo non sia mai &#8220;avanti&#8221; rispetto ai test. Mentre il codice è indietro avete ancora del lavoro da fare, e appena lo avete rimesso in pari con i test potete smettere di programmare. Dopo averci fatto l'abitudine, vi chiederete come facevate a programmare senza i test.)
 
 <p class=d>[<a href=esempi/roman9.py>scarica <code>roman9.py</code></a>]
-<pre><code class=pp>roman_numeral_pattern = re.compile('''
+<pre class=pp><code>roman_numeral_pattern = re.compile('''
     ^                   # beginning of string
 <a>    M{0,4}              # thousands - 0 to 4 M's  <span class=u>&#x2460;</span></a>
     (CM|CD|D?C{0,3})    # hundreds - 900 (CM), 400 (CD), 0-300 (0 to 3 C's),
@@ -244,7 +244,7 @@ FAILED (errors=3)</samp></pre>
 
 def to_roman(n):
     '''convert integer to Roman numeral'''
-<a>    if not (0 < n < 5000):                        <span class=u>&#x2461;</span></a>
+<a>    if not (0 &lt; n &lt; 5000):                        <span class=u>&#x2461;</span></a>
         raise OutOfRangeError('number out of range (must be 0..4999)')
     if not isinstance(n, int):
         raise NotIntegerError('non-integers can not be converted')
@@ -307,7 +307,7 @@ Ran 12 tests in 0.203s
 <p>E la cosa migliore di tutte è che avete già un insieme completo di test di unità. Potete cambiare metà del codice nel modulo, ma i test di unità rimarranno gli stessi. Questo significa che potete dimostrare&nbsp;&mdash;&nbsp;a voi stessi e agli altri&nbsp;&mdash;&nbsp;che il nuovo codice funziona tanto bene quanto quello originale.
 
 <p class=d>[<a href=esempi/roman10.py>scarica <code>roman10.py</code></a>]
-<pre><code class=pp>class OutOfRangeError(ValueError): pass
+<pre class=pp><code>class OutOfRangeError(ValueError): pass
 class NotIntegerError(ValueError): pass
 class InvalidRomanNumeralError(ValueError): pass
 
@@ -330,7 +330,7 @@ from_roman_table = {}
 
 def to_roman(n):
     '''convert integer to Roman numeral'''
-    if not (0 < n < 5000):
+    if not (0 &lt; n &lt; 5000):
         raise OutOfRangeError('number out of range (must be 1..4999)')
     if int(n) != n:
         raise NotIntegerError('non-integers can not be converted')
@@ -367,13 +367,13 @@ build_lookup_tables()</code></pre>
 
 <p>Dividiamo il programma in frammenti più comprensibili. Teoricamente, la riga più importante è l'ultima:
 
-<pre class=nd><code class=pp>build_lookup_tables()</code></pre>
+<pre class='nd pp'><code>build_lookup_tables()</code></pre>
 
 <p>Noterete che è una chiamata di funzione, ma non è preceduta da alcuna istruzione <code>if</code>. Questo non è un blocco <code>if __name__ == '__main__'</code>; la funzione viene invocata <em>quando il modulo è importato</em>. (&Egrave; importante capire che i moduli sono importati solamente una volta, e poi salvati in memoria. Se importate un modulo già importato, non succede nulla. Quindi questo codice verrà invocato solo la prima volta che importate questo modulo.)
 
 <p>Cosa fa la funzione <code>build_lookup_tables()</code>? Sono contento che lo abbiate chiesto.
 
-<pre><code class=pp>to_roman_table = [ None ]
+<pre class=pp><code>to_roman_table = [ None ]
 from_roman_table = {}
 .
 .
@@ -402,9 +402,9 @@ def build_lookup_tables():
 
 <p>Una volta che le tabelle di ricerca sono popolate, il resto del codice è sia semplice che veloce.
 
-<pre><code class=pp>def to_roman(n):
+<pre class=pp><code>def to_roman(n):
     '''convert integer to Roman numeral'''
-    if not (0 < n < 5000):
+    if not (0 &lt; n &lt; 5000):
         raise OutOfRangeError('number out of range (must be 1..4999)')
     if int(n) != n:
         raise NotIntegerError('non-integers can not be converted')

@@ -9,15 +9,6 @@
 h1:before{counter-increment:h1;content:'Appendice B. '}
 h2:before{counter-increment:h2;content:'B.' counter(h2) '. '}
 h3:before{counter-increment:h3;content:'B.' counter(h2) '.' counter(h3) '. '}
-tr + tr th:first-child{font: medium/1.75 'Arial Unicode MS','DejaVu Sans',FreeSerif,OpenSymbol,sans-serif}
-table{width:100%;border-collapse:collapse}
-th,td{width:30%;padding:0 0.5em;border:1px solid #bbb}
-th{text-align:left;vertical-align:baseline}
-td{vertical-align:top}
-th:first-child{width:10%;text-align:center}
-th,td,td pre{margin:0}
-td pre{padding:0;border:0}
-td a:link, td a:visited{border:0}
 </style>
 <link rel=stylesheet media='only screen and (max-device-width: 480px)' href=mobile.css>
 <link rel=stylesheet media=print href=print.css>
@@ -61,7 +52,7 @@ td a:link, td a:visited{border:0}
 <td><code class=pp>x.<dfn>__bytes__</dfn>()</code>
 <tr><th>&#x2464;
 <td>la rappresentazione sotto forma di stringa formattata
-<td><code class=pp>format(x)</code>
+<td><code class=pp>format(x, <var>format_spec</var>)</code>
 <td><code class=pp>x.<dfn>__format__</dfn>(<var>format_spec</var>)</code>
 </table>
 <ol>
@@ -99,6 +90,13 @@ td a:link, td a:visited{border:0}
 <li>Il metodo <code>__next__()</code> viene invocato ogni volta che recuperate il valore successivo da un iteratore.
 <li>Il metodo <code>__reversed__()</code> è poco comune. Prende una sequenza esistente e restituisce un iteratore che produce gli elementi della sequenza in ordine inverso, dall'ultimo al primo.
 </ol>
+
+<p>Come avete visto nel <a href=iterators.html#a-fibonacci-iterator>capitolo sugli iteratori</a>, un ciclo <code>for</code> può agire su un iteratore. In questo ciclo:
+
+<pre class='nd pp'><code>for x in seq:
+    print(x)</code></pre>
+
+<p>Python 3 invocherà <code>seq.__iter__()</code> per creare un iteratore, poi invocherà il metodo <code>__next__()</code> su quell'iteratore per ottenere ogni singolo valore di <var>x</var>. Quando il metodo <code>__next__()</code> solleva un'eccezione di tipo <code>StopIteration</code>, il ciclo termina normalmente.
 
 <h2 id=computed-attributes>Proprietà calcolate</h2>
 
@@ -221,7 +219,7 @@ AttributeError</samp></pre>
 
 <p>Il <a href=http://docs.python.org/3.1/library/zipfile.html>modulo <code>zipfile</code></a> usa questa tecnica per definire una classe che possa <dfn>decodificare</dfn> un file <dfn>zip</dfn> <dfn>criptato</dfn> con una data password. L'algoritmo di <dfn>decodifica</dfn> per i file zip richiede di memorizzare uno stato durante l'esecuzione. Definire il decodificatore come una classe vi permette di mantenere questo stato all'interno di una singola istanza di tale classe. Lo stato viene inizializzato nel metodo <code>__init__()</code> e aggiornato man mano che il file viene <dfn>decodificato</dfn>. Ma dato che la classe è anche &#8220;invocabile&#8221; come una funzione, potete passare l'istanza come primo argomento alla funzione <code>map()</code>, in questo modo:
 
-<pre><code class=pp># estratto da zipfile.py
+<pre class=pp><code># estratto da zipfile.py
 class _ZipDecrypter:
 .
 .
@@ -273,7 +271,7 @@ bytes = zef_file.read(12)
 
 <p id=acts-like-list-example>Il <a href=http://docs.python.org/3.1/library/cgi.html>modulo <code>cgi</code></a> sfrutta questi metodi nella sua classe <code>FieldStorage</code>, che rappresenta tutti i campi di una form o i parametri di richiesta inviati a una pagina web dinamica.
 
-<pre><code class=pp># Uno script che risponde a http://example.com/search?q=cgi
+<pre class=pp><code># Uno script che risponde a http://example.com/search?q=cgi
 import cgi
 fs = cgi.FieldStorage()
 <a>if 'q' in fs:                                               <span class=u>&#x2460;</span></a>
@@ -290,12 +288,13 @@ class FieldStorage:
 <a>        return any(item.name == key for item in self.list)  <span class=u>&#x2462;</span></a>
 
 <a>    def __len__(self):                                      <span class=u>&#x2463;</span></a>
-        return len(self.keys())</code></pre>
+<a>        return len(self.keys())                             <span class=u>&#x2464;</span></a></code></pre>
 <ol>
 <li>Una volta creata un'istanza della classe <code>cgi.FieldStorage</code>, potete usare l'operatore &#8220;<code>in</code>&#8221; per controllare se un particolare parametro è stato incluso nella stringa di richiesta.
 <li>Il metodo <code>__contains__()</code> è la magia che fa funzionare quel controllo.
 <li>Quando dite <code>if 'q' in fs</code>, Python cerca nell'oggetto <var>fs</var> il metodo <code>__contains__()</code>, che è definito in <code>cgi.py</code>. Il valore <code>'q'</code> è passato al metodo <code>__contains__()</code> come argomento <var>key</var>.
 <li>La stessa classe <code>FieldStorage</code> è in grado di restituire il valore della propria lunghezza, quindi <code>len(<var>fs</var>)</code> invocherà il metodo <code>__len__()</code> sull'istanza della classe <code>FieldStorage</code> per restituire il numero di parametri di richiesta che sono stati identificati.
+<li>Il metodo <code>self.keys()</code> verifica se <code>self.list is None</code>, quindi il metodo <code>__len__()</code> non ha bisogno di duplicare questo controllo di errore.
 </ol>
 
 <h2 id=acts-like-dict>Classi che si comportano come dizionari</h2>
@@ -327,7 +326,7 @@ class FieldStorage:
 
 <p>La <a href=#acts-like-list-example>classe <code>FieldStorage</code></a> del <a href=http://docs.python.org/3.1/library/cgi.html>modulo <code>cgi</code></a> definisce anche questi metodi speciali, in modo che possiate fare cose come queste:
 
-<pre><code class=pp># Uno script che risponde a http://example.com/search?q=cgi
+<pre class=pp><code># Uno script che risponde a http://example.com/search?q=cgi
 import cgi
 fs = cgi.FieldStorage()
 if 'q' in fs:
@@ -357,7 +356,7 @@ class FieldStorage:
 
 <h2 id=acts-like-number>Classi che si comportano come numeri</h2>
 
-<p>Usando i metodi speciali appropriati, potete definire classi che si comportano come numeri. Questo significa che potete sommarle, sottrarle ed eseguire su di esse altre operazioni matematiche. Questo è il modo in cui <a href=advanced-classes.html#implementing-fractions>sono realizzate le <dfn>frazioni</dfn></a>&nbsp;&mdash;&nbsp;la classe <code><dfn>Fraction</dfn></code> implementa questi metodi speciali, in modo che possiate fare cose come questa:
+<p>Usando i metodi speciali appropriati, potete definire classi che si comportano come numeri. Questo significa che potete sommarle, sottrarle ed eseguire su di esse altre operazioni matematiche. Questo è il modo in cui sono realizzate le <dfn>frazioni</dfn>&nbsp;&mdash;&nbsp;la classe <code><dfn>Fraction</dfn></code> implementa questi metodi speciali, in modo che possiate fare cose come questa:
 
 <pre class=screen>
 <samp class=p>>>> </samp><kbd class=pp>from fractions import Fraction</kbd>
@@ -623,13 +622,13 @@ class FieldStorage:
 <td><code class=pp>math.floor(x)</code>
 <td><a href=http://docs.python.org/3.1/library/math.html#math.floor><code>x.<dfn>__floor__</dfn>()</code></a>
 <tr><th>
-<td>troncare <code>x</code> all'intero più vicino verso lo <code>0</code>
+<td>troncare <code>x</code> all'intero più vicino verso lo 0
 <td><code class=pp>math.trunc(x)</code>
 <td><a href=http://docs.python.org/3.1/library/math.html#math.trunc><code>x.<dfn>__trunc__</dfn>()</code></a>
-<tr><th><a href=http://www.python.org/dev/peps/pep-0357/>PEP 357</a>
+<tr><th><span class=inherit><a href=http://www.python.org/dev/peps/pep-0357/>PEP 357</a></span>
 <td>usare un numero come indice di lista
 <td><code class=pp>a_list[<var>x</var>]</code>
-<td><a href=http://www.python.org/doc/3.1/reference/datamodel.html#object.__index__><code>x.<dfn>__index__</dfn>()</code></a>
+<td><a href=http://www.python.org/doc/3.1/reference/datamodel.html#object.__index__><code>a_list[x.<dfn>__index__</dfn>()]</code></a>
 </table>
 
 <h2 id=rich-comparisons>Classi che possono essere confrontate</h2>
@@ -705,15 +704,17 @@ class FieldStorage:
 <td>serializzare un oggetto (con un nuovo protocollo di pickling)
 <td><code class=pp>pickle.dump(x, <var>file</var>, <var>protocol_version</var>)</code>
 <td><a href=http://docs.python.org/3.1/library/pickle.html#pickling-class-instances><code>x.<dfn>__reduce_ex__</dfn>(<var>protocol_version</var>)</code></a>
-<tr><th>
+<tr><th>*
 <td>controllare come un oggetto viene creato durante la deserializzazione
 <td><code class=pp>x = pickle.load(<var>file</var>)</code>
 <td><a href=http://docs.python.org/3.1/library/pickle.html#pickling-class-instances><code>x.<dfn>__getnewargs__</dfn>()</code></a>
-<tr><th>
+<tr><th>*
 <td>ripristinare lo stato di un oggetto dopo la deserializzazione
 <td><code class=pp>x = pickle.load(<var>file</var>)</code>
 <td><a href=http://docs.python.org/3.1/library/pickle.html#pickle-state><code>x.<dfn>__setstate__</dfn>()</code></a>
 </table>
+
+<p>* Per ricreare un oggetto serializzato, Python deve prima creare un nuovo oggetto simile all'oggetto serializzato e poi impostare i valori di tutti gli attributi del nuovo oggetto. Il metodo <code>__getnewargs__()</code> controlla come l'oggetto viene creato, poi il metodo <code>__setstate__()</code> controlla come i valori degli attributi vengono ripristinati.
 
 <h2 id=context-managers>Classi che possono essere usate in un blocco <code>with</code></h2>
 
@@ -738,7 +739,7 @@ class FieldStorage:
 
 <p>Ecco come funziona l'idioma <code>with <var>file</var></code>.
 
-<pre><code class=pp># estratto da io.py:
+<pre class=pp><code># estratto da io.py:
 def _checkClosed(self, msg=None):
     '''Internal: raise an ValueError if file is closed
     '''
@@ -816,6 +817,30 @@ def __exit__(self, *args):
 <td><code class=pp>issubclass(C, MyABC)</code>
 <td><a href=http://docs.python.org/3.1/library/abc.html#abc.ABCMeta.__subclasshook__><code>MyABC.<dfn>__subclasshook__</dfn>(C)</code></a>
 </table>
+
+<h2 id=furtherreading>Letture di approfondimento</h2>
+
+<p>Moduli menzionati in questa appendice:
+
+<ul>
+<li><a href=http://docs.python.org/3.1/library/zipfile.html>modulo <code>zipfile</code></a>
+<li><a href=http://docs.python.org/3.1/library/cgi.html>modulo <code>cgi</code></a>
+<li><a href=http://www.python.org/doc/3.1/library/collections.html>modulo <code>collections</code></a>
+<li><a href=http://docs.python.org/3.1/library/math.html>modulo <code>math</code></a>
+<li><a href=http://docs.python.org/3.1/library/pickle.html>modulo <code>pickle</code></a>
+<li><a href=http://docs.python.org/3.1/library/copy.html>modulo <code>copy</code></a>
+<li><a href=http://docs.python.org/3.1/library/abc.html>modulo <code>abc</code> (&#8220;Classi di Base Astratte&#8221;)</a>
+</ul>
+
+<p>Altre letture di intrattenimento:
+
+<ul>
+<li><a href=http://www.python.org/doc/3.1/library/string.html#formatspec>Format Specification Mini-Language</a>
+<li><a href=http://www.python.org/doc/3.1/reference/datamodel.html>Python data model</a>
+<li><a href=http://www.python.org/doc/3.1/library/stdtypes.html>Built-in types</a>
+<li><a href=http://www.python.org/dev/peps/pep-0357/><abbr>PEP</abbr> 357: Allowing Any Object to be Used for Slicing</a>
+<li><a href=http://www.python.org/dev/peps/pep-3119/><abbr>PEP</abbr> 3119: Introducing Abstract Base Classes</a>
+</ul>
 
 <p class=v><a rel=prev href=convertire-codice-verso-python-3-con-2to3.html title='indietro a &#8220;Convertire codice verso Python 3 con 2to3&#8221;'><span class=u>&#x261C;</span></a> <a rel=next class=todo><span class=u>&#x261E;</span></a>
 <p class=c>&copy; 2001&ndash;9 <a href=informazioni-sul-libro.html>Mark Pilgrim</a><br>

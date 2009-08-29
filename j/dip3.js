@@ -15,27 +15,11 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and 
 limitations under the License.
 */
-
-function getSearchTerms() {
-    var highlighterParameters = 'q as_q as_epq as_oq query search';
-    var a = new Array();
-    var params = getParamValues(document.referrer/*document.location.href*/, highlighterParameters);
-    var terms;
-    for (i = 0; i < params.length; i++) {
-	terms = parseTerms(params[i]);
-	for (j = 0; j < terms.length; j++) {
-	    if (terms[j] != '') {
-		a.push(terms[j].toLowerCase());
-	    }
-	}
-    }
-    return a;
-}
         
 function parseTerms(query) {
     var s = query + '';
     s = s.replace(/(^|\s)(site|related|link|info|cache):[^\s]*(\s|$)/ig, ' ');
-    s = s.replace(/[^a-z0-9_-]/ig, ' '); // word chars only.
+    s = s.replace(/[^a-z0-9_\-]/ig, ' '); // word chars only.
     s = s.replace(/(^|\s)-/g, ' '); // +required -excluded ~synonyms
     s = s.replace(/\b(and|not|or)\b/ig, ' ');
     s = s.replace(/\b[a-z0-9]\b/ig, ' '); // one char terms
@@ -43,14 +27,14 @@ function parseTerms(query) {
 }
 
 function getParamValues(url, parameters) {
-    var params = new Array();
+    var params = [];
     var p = parameters.replace(/,/, ' ').split(/\s+/);
     if (url.indexOf('?') > 0) {
 	var qs = url.substr(url.indexOf('?') + 1);
 	var qsa = qs.split('&');
 	for (i = 0; i < qsa.length; i++) {
 	    nameValue = qsa[i].split('=');
-	    if (nameValue.length != 2) continue;
+	    if (nameValue.length != 2) { continue; }
 	    for (j = 0; j < p.length; j++) {
 		if (nameValue[0] == p[j]) {
 		    params.push(unescape(nameValue[1]).toLowerCase().replace(/\+/g, ' '));
@@ -59,6 +43,22 @@ function getParamValues(url, parameters) {
 	}
     }
     return params;
+}
+
+function getSearchTerms() {
+    var highlighterParameters = 'q as_q as_epq as_oq query search';
+    var a = [];
+    var params = getParamValues(document.referrer/*document.location.href*/, highlighterParameters);
+    var terms;
+    for (i = 0; i < params.length; i++) {
+		terms = parseTerms(params[i]);
+		for (j = 0; j < terms.length; j++) {
+	    	if (terms[j] !== '') {
+				a.push(terms[j].toLowerCase());
+	    	}
+		}
+    }
+    return a;
 }
 
 /*
@@ -89,6 +89,33 @@ POSSIBILITY OF SUCH DAMAGE.
 */
 
 var HS = {'visible': 'nascondi', 'hidden': 'mostra'};
+
+function hideTOC() {
+    var toc = '<span class="nm u">&#8227;</span> <a href="javascript:showTOC()">mostra l\'indice</a>';
+    $("#toc").html(toc);
+}
+
+function showTOC() {
+    var toc = '';
+    var old_level = 1;
+    $('h2,h3').each(function(i, h) {
+	    level = parseInt(h.tagName.substring(1));
+	    if (level < old_level) {
+			toc += '</ol>';
+	    } else if (level > old_level) {
+			toc += '<ol>';
+	    }
+	    toc += '<li><a href=#' + h.id + '>' + h.innerHTML + '</a>';
+	    old_level = level;
+	  });
+    while (level > 1) {
+		toc += '</ol>';
+		level -= 1;
+    }
+    toc = '<span class="nm u">&#9662;</span> <a href="javascript:hideTOC()">nascondi l\'indice</a><ol start=0><li><a href=table-of-contents.html><span class=u>&uarr;</span> Indice completo</a></li>' + toc.substring(4);
+    $("#toc").html(toc);
+}
+
 $(document).ready(function() {
 	hideTOC();
     prettyPrint();
@@ -103,7 +130,7 @@ $(document).ready(function() {
 	/* "hide", "open in new window", and (optionally) "download" widgets on code & screen blocks */
 	$("pre > code").each(function(i) {
 		var pre = $(this.parentNode);
-		if (pre.parents("table").length == 0) {
+		if (pre.parents("table").length === 0) {
 		    pre.addClass("code");
 		}
 	    });
@@ -113,7 +140,7 @@ $(document).ready(function() {
 
         /* wrap code block in a div and insert widget block */
 		$(this).wrapInner('<div class=b></div>');
-		$(this).prepend('<div class=w>[<a class=toggle href="javascript:toggleCodeBlock(\'' + this.id + '\')">' + HS['visible'] + '</a>] [<a href="javascript:plainTextOnClick(\'' + this.id + '\')">apri in una nuova finestra</a>]</div>');
+		$(this).prepend('<div class=w>[<a class=toggle href="javascript:toggleCodeBlock(\'' + this.id + '\')">' + HS.visible + '</a>] [<a href="javascript:plainTextOnClick(\'' + this.id + '\')">apri in una nuova finestra</a>]</div>');
 		
         /* move download link into widget block */
 		$(this).prev("p.d").each(function(i) {
@@ -141,14 +168,23 @@ $(document).ready(function() {
 	var hip = {'background-color':'#eee','cursor':'default'};
 	var unhip = {'background-color':'inherit','cursor':'inherit'};
 	$("pre.code, pre.screen").each(function() {
-		$(this).find("a:not([href])").each(function(i) {
+		var s = '';
+		var ol = $(this).next("ol");
+		var refs = $(this).find("a:not([href])");
+		refs.each(function(i) {
+			var li = ol.find("li:nth-child(" + (i+1) + ")");
+			s += "<tr><td style='text-align:center;vertical-align:baseline;margin:0;padding:0;width:2em;border:0'><span class='u'>&#x" + (parseInt('2460', 16) + i).toString(16) + ";</span></td><td style='vertical-align:top;margin:0;padding:0;width:auto;border:0'>" + li.html() + "</td></tr>";
+		    });
+		ol.replaceWith("<table style='width:100%;border-collapse:collapse;margin:0'>" + s + "</table>");
+		refs.each(function(i) {
 			var a = $(this);
-			var li = a.parents("pre").next("ol").find("li:nth-child(" + (i+1) + ")");
+			var li = a.parents("pre").next("table").find("tr:nth-child(" + (i+1) + ") td:nth-child(2)");
 			li.add(a).hover(function() { a.css(hip); li.css(hip); },
 					function() { a.css(unhip); li.css(unhip); });
 		    });
+
 	    });
-	
+
 	/* synchronized highlighting on callouts and their associated table rows */
 	$("table").each(function() {
 		$(this).find("tr:gt(0)").each(function(i) {
@@ -180,7 +216,7 @@ $(document).ready(function() {
 function toggleCodeBlock(id) {
     $("#" + id).find("div.b").toggle();
     var a = $("#" + id).find("a.toggle");
-    a.text(a.text() == HS['visible'] ? HS['hidden'] : HS['visible']);
+    a.text(a.text() == HS.visible ? HS.hidden : HS.visible);
 }
 
 function plainTextOnClick(id) {
@@ -190,30 +226,4 @@ function plainTextOnClick(id) {
     win.document.open();
     win.document.write('<pre>' + clone.html());
     win.document.close();
-}
-
-function hideTOC() {
-    var toc = '<span class="nm u">&#8227;</span> <a href="javascript:showTOC()">mostra l\'indice</a>';
-    $("#toc").html(toc);
-}
-
-function showTOC() {
-    var toc = '';
-    var old_level = 1;
-    $('h2,h3').each(function(i, h) {
-	    level = parseInt(h.tagName.substring(1));
-	    if (level < old_level) {
-		toc += '</ol>';
-	    } else if (level > old_level) {
-		toc += '<ol>';
-	    }
-	    toc += '<li><a href=#' + h.id + '>' + h.innerHTML + '</a>';
-	    old_level = level;
-	});
-    while (level > 1) {
-	toc += '</ol>';
-	level -= 1;
-    }
-    toc = '<span class="nm u">&#9662;</span> <a href="javascript:hideTOC()">nascondi l\'indice</a><ol start=0><li><a href=table-of-contents.html><span class=u>&uarr;</span> Indice completo</a></li>' + toc.substring(4);
-    $("#toc").html(toc);
 }

@@ -9,14 +9,6 @@
 h1:before{counter-increment:h1;content:'Appendice A. '}
 h2:before{counter-increment:h2;content:'A.' counter(h2) '. '}
 h3:before{counter-increment:h3;content:'A.' counter(h2) '.' counter(h3) '. '}
-tr + tr th:first-child{font: medium/1.75 'Arial Unicode MS','DejaVu Sans',FreeSerif,OpenSymbol,sans-serif}
-table{width:100%;border-collapse:collapse}
-th,td{width:45%;padding:0 0.5em;border:1px solid #bbb}
-th{text-align:left;vertical-align:baseline}
-td{vertical-align:top}
-th:first-child{width:10%;text-align:center}
-th,td,td pre{margin:0}
-td pre{padding:0;border:0}
 </style>
 <link rel=stylesheet media='only screen and (max-device-width: 480px)' href=mobile.css>
 <link rel=stylesheet media=print href=print.css>
@@ -247,7 +239,7 @@ td pre{padding:0;border:0}
 <td><code class=pp>import <dfn>cookielib</dfn></code>
 <td><code class=pp>import http.cookiejar</code>
 <tr><th>&#x2463;
-<td><pre><code class=pp>import <dfn>BaseHTTPServer</dfn>
+<td><pre class=pp><code>import <dfn>BaseHTTPServer</dfn>
 import <dfn>SimpleHTTPServer</dfn>
 import <dfn>CGIHttpServer</dfn></code></pre>
 <td><code class=pp>import http.server</code>
@@ -281,14 +273,14 @@ import <dfn>CGIHttpServer</dfn></code></pre>
 <td><code class=pp>import <dfn>robotparser</dfn></code>
 <td><code class=pp>import urllib.robotparser</code>
 <tr><th>&#x2464;
-<td><pre><code class=pp>from urllib import <dfn>FancyURLopener</dfn>
+<td><pre class=pp><code>from urllib import <dfn>FancyURLopener</dfn>
 from urllib import urlencode</code></pre>
-<td><pre><code class=pp>from urllib.request import FancyURLopener
+<td><pre class=pp><code>from urllib.request import FancyURLopener
 from urllib.parse import urlencode</code></pre>
 <tr><th>&#x2465;
-<td><pre><code class=pp>from urllib2 import <dfn>Request</dfn>
+<td><pre class=pp><code>from urllib2 import <dfn>Request</dfn>
 from urllib2 import <dfn>HTTPError</dfn></code></pre>
-<td><pre><code class=pp>from urllib.request import Request
+<td><pre class=pp><code>from urllib.request import Request
 from urllib.error import HTTPError</code></pre>
 </table>
 
@@ -308,9 +300,9 @@ from urllib.error import HTTPError</code></pre>
 <th>Python 2
 <th>Python 3
 <tr><th>
-<td><pre><code class=pp>import urllib
+<td><pre class=pp><code>import urllib
 print urllib.urlopen('http://diveintopython3.org/').read()</code></pre>
-<td><pre><code class=pp>import urllib.request, urllib.parse, urllib.error
+<td><pre class=pp><code>import urllib.request, urllib.parse, urllib.error
 print(urllib.request.urlopen('http://diveintopython3.org/').read())</code></pre>
 </table>
 
@@ -335,7 +327,7 @@ print(urllib.request.urlopen('http://diveintopython3.org/').read())</code></pre>
 <td><code class=pp>import <dfn>dumbdbm</dfn></code>
 <td><code class=pp>import dbm.dumb</code>
 <tr><th>
-<td><pre><code class=pp>import <dfn>anydbm</dfn>
+<td><pre class=pp><code>import <dfn>anydbm</dfn>
 import whichdb</code></pre>
 <td><code class=pp>import dbm</code>
 </table>
@@ -352,7 +344,7 @@ import whichdb</code></pre>
 <td><code class=pp>import <dfn>xmlrpclib</dfn></code>
 <td><code class=pp>import xmlrpc.client</code>
 <tr><th>
-<td><pre><code class=pp>import <dfn>DocXMLRPCServer</dfn>
+<td><pre class=pp><code>import <dfn>DocXMLRPCServer</dfn>
 import <dfn>SimpleXMLRPCServer</dfn></code></pre>
 <td><code class=pp>import xmlrpc.server</code>
 </table>
@@ -364,13 +356,13 @@ import <dfn>SimpleXMLRPCServer</dfn></code></pre>
 <th>Python 2
 <th>Python 3
 <tr><th>&#x2460;
-<td><pre><code class=pp>try:
+<td><pre class=pp><code>try:
     import <dfn>cStringIO</dfn> as <dfn>StringIO</dfn>
 except ImportError:
     import StringIO</code></pre>
 <td><code class=pp>import io</code>
 <tr><th>&#x2461;
-<td><pre><code class=pp>try:
+<td><pre class=pp><code>try:
     import cPickle as pickle
 except ImportError:
     import pickle</code></pre>
@@ -457,22 +449,22 @@ except ImportError:
 <td><code class=pp>a_function_that_returns_an_iterator().next()</code>
 <td><code class=pp>next(a_function_that_returns_an_iterator())</code>
 <tr><th>&#x2462;
-<td><pre><code class=pp>class A:
+<td><pre class=pp><code>class A:
     def next(self):
         pass</code></pre>
-<td><pre><code class=pp>class A:
+<td><pre class=pp><code>class A:
     def __next__(self):
         pass</code></pre>
 <tr><th>&#x2463;
-<td><pre><code class=pp>class A:
+<td><pre class=pp><code>class A:
     def next(self, x, y):
         pass</code></pre>
 <td><i>no change</i>
 <tr><th>&#x2464;
-<td><pre><code class=pp>next = 42
+<td><pre class=pp><code>next = 42
 for an_iterator in a_sequence_of_iterators:
     an_iterator.next()</code></pre>
-<td><pre><code class=pp>next = 42
+<td><pre class=pp><code>next = 42
 for an_iterator in a_sequence_of_iterators:
     an_iterator.__next__()</code></pre>
 </table>
@@ -561,7 +553,7 @@ for an_iterator in a_sequence_of_iterators:
 <th>Python 3
 <tr><th>
 <td><code class=pp>reduce(a, b, c)</code>
-<td><pre><code class=pp>from functools import reduce
+<td><pre class=pp><code>from functools import reduce
 reduce(a, b, c)</code></pre>
 </table>
 
@@ -675,31 +667,31 @@ reduce(a, b, c)</code></pre>
 <th>Python 2
 <th>Python 3
 <tr><th>&#x2460;
-<td><pre><code class=pp>try:
+<td><pre class=pp><code>try:
     import mymodule
 <dfn>except</dfn> ImportError, e
     pass</code></pre>
-<td><pre><code class=pp>try:
+<td><pre class=pp><code>try:
     import mymodule
 except ImportError as e:
     pass</code></pre>
 <tr><th>&#x2461;
-<td><pre><code class=pp>try:
+<td><pre class=pp><code>try:
     import mymodule
 except (RuntimeError, ImportError), e
     pass</code></pre>
-<td><pre><code class=pp>try:
+<td><pre class=pp><code>try:
     import mymodule
 except (RuntimeError, ImportError) as e:
     pass</code></pre>
 <tr><th>&#x2462;
-<td><pre><code class=pp>try:
+<td><pre class=pp><code>try:
     import mymodule
 except ImportError:
     pass</code></pre>
 <td><i>no change</i>
 <tr><th>&#x2463;
-<td><pre><code class=pp>try:
+<td><pre class=pp><code>try:
     import mymodule
 except:
     pass</code></pre>
@@ -953,14 +945,14 @@ except:
 <th>Python 2
 <th>Python 3
 <tr><th>&#x2460;
-<td><pre><code class=pp>class A:
+<td><pre class=pp><code>class A:
     def <dfn>__nonzero__</dfn>(self):
         pass</code></pre>
-<td><pre><code class=pp>class A:
+<td><pre class=pp><code>class A:
     def <dfn>__bool__</dfn>(self):
         pass</code></pre>
 <tr><th>&#x2461;
-<td><pre><code class=pp>class A:
+<td><pre class=pp><code>class A:
     def __nonzero__(self, x, y):
         pass</code></pre>
 <td><i>no change</i>
@@ -1234,18 +1226,18 @@ except:
 <th>Python 2
 <th>Python 3
 <tr><th>&#x2460;
-<td><pre><code class=pp>class C(metaclass=PapayaMeta):
+<td><pre class=pp><code>class C(metaclass=PapayaMeta):
     pass</code></pre>
 <td><i>unchanged</i>
 <tr><th>&#x2461;
-<td><pre><code class=pp>class Whip:
+<td><pre class=pp><code>class Whip:
     __metaclass__ = PapayaMeta</code></pre>
-<td><pre><code class=pp>class Whip(metaclass=PapayaMeta):
+<td><pre class=pp><code>class Whip(metaclass=PapayaMeta):
     pass</code></pre>
 <tr><th>&#x2462;
-<td><pre><code class=pp>class C(Whipper, Beater):
+<td><pre class=pp><code>class C(Whipper, Beater):
     __metaclass__ = PapayaMeta</code></pre>
-<td><pre><code class=pp>class C(Whipper, Beater, metaclass=PapayaMeta):
+<td><pre class=pp><code>class C(Whipper, Beater, metaclass=PapayaMeta):
     pass</code></pre>
 </table>
 
@@ -1320,7 +1312,7 @@ except:
 
 <h3 id=idioms>Idiomi comuni (esplicita)</h3>
 
-<p>Esiste un certo numero di idiomi comuni accumulati dalla comunità Python. Alcuni, come il ciclo <code>while 1:</code>, risalgono a Python 1. (Python non ha avuto un vero tipo boolean fino alla versione 2.3, così gli sviluppatori usavano <code>1</code> e <code>0</code>.) I moderni programmatori Python dovrebbero allenare i loro cervelli all'uso delle moderne versioni di questi idiomi.
+<p>Esiste un certo numero di idiomi comuni accumulati dalla comunità Python. Alcuni, come il ciclo <code>while 1:</code>, risalgono a Python 1. (Python non ha avuto un vero tipo boolean fino alla versione 2.3, così gli sviluppatori usavano <code>1</code> e 0.) I moderni programmatori Python dovrebbero allenare i loro cervelli all'uso delle moderne versioni di questi idiomi.
 
 <blockquote class=note>
 <p><span class=u>&#x261E;</span>Lo script <code>2to3</code> non correggerà gli idiomi comuni di default. Per abilitare questa correzione, specificate <kbd>-f idioms</kbd> sulla linea di comando quando chiamate <code>2to3</code>.
@@ -1331,9 +1323,9 @@ except:
 <th>Prima
 <th>Dopo
 <tr><th>
-<td><pre><code class=pp>while 1:
+<td><pre class=pp><code>while 1:
     do_stuff()</code></pre>
-<td><pre><code class=pp>while True:
+<td><pre class=pp><code>while True:
     do_stuff()</code></pre>
 <tr><th>
 <td><code class=pp>type(x) == T</code>
@@ -1342,10 +1334,10 @@ except:
 <td><code class=pp>type(x) is T</code>
 <td><code class=pp>isinstance(x, T)</code>
 <tr><th>
-<td><pre><code class=pp>a_list = list(a_sequence)
+<td><pre class=pp><code>a_list = list(a_sequence)
 a_list.sort()
 do_stuff(a_list)</code></pre>
-<td><pre><code class=pp>a_list = sorted(a_sequence)
+<td><pre class=pp><code>a_list = sorted(a_sequence)
 do_stuff(a_list)</code></pre>
 </table>
 

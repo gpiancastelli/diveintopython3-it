@@ -26,7 +26,7 @@ body{counter-reset:h1 7}
 <p>Ricordate il <a href=a-fibonacci-generator>generatore di Fibonacci</a>? Qui di seguito lo trovate reimplementato da zero sotto forma di iteratore:
 
 <p class=d>[<a href=esempi/fibonacci2.py>scarica <code>fibonacci2.py</code></a>]
-<pre><code class=pp>class Fib:
+<pre class=pp><code>class Fib:
     '''iteratore che produce i numeri della sequenza di Fibonacci'''
     def __init__(self, max):
         self.max = max
@@ -45,7 +45,7 @@ body{counter-reset:h1 7}
 
 <p>Analizziamolo una riga alla volta.
 
-<pre class=nd><code class=pp>class Fib:</code></pre>
+<pre class='nd pp'><code>class Fib:</code></pre>
 
 <p><code>class</code>? Classe? Che cos'è una classe?
 
@@ -57,7 +57,7 @@ body{counter-reset:h1 7}
 
 <p>Definire una classe in Python è semplice. Come per le funzioni, non c'è una definizione di interfaccia separata. Vi basta definire la classe e cominciare a programmarla. Una classe Python comincia con la parola riservata <code>class</code>, seguita dal nome della classe. Tecnicamente, questo è tutto quello che è richiesto, in quanto una classe non ha bisogno di ereditare da nessun'altra classe.
 
-<pre><code class=pp><a>class PapayaWhip:  <span class=u>&#x2460;</span></a>
+<pre class=pp><code><a>class PapayaWhip:  <span class=u>&#x2460;</span></a>
 <a>    pass           <span class=u>&#x2461;</span></a></code></pre>
 <ol>
 <li>Il nome di questa classe è <code>PapayaWhip</code>, e non eredita da nessun'altra classe. I nomi delle classi solitamente cominciano con una lettera maiuscola, <code>OgniParolaInQuestoModo</code>, ma questa è solo una convenzione, non un obbligo.
@@ -76,7 +76,7 @@ body{counter-reset:h1 7}
 
 <p>Questo esempio mostra l'inizializzazione della classe <code>Fib</code> usando il metodo <code>__init__()</code>.
 
-<pre><code class=pp>class Fib:
+<pre class=pp><code>class Fib:
 <a>    '''iteratore che produce i numeri della sequenza di Fibonacci'''  <span class=u>&#x2460;</span></a>
 
 <a>    def __init__(self, max):                                          <span class=u>&#x2461;</span></a></code></pre>
@@ -120,14 +120,14 @@ body{counter-reset:h1 7}
 
 <p>Sulla riga successiva troviamo:
 
-<pre><code class=pp>class Fib:
+<pre class=pp><code>class Fib:
     def __init__(self, max):
 <a>        self.max = max        <span class=u>&#x2460;</span></a></code></pre>
 <ol>
 <li>Che cos'è <var>self.max</var>? &Egrave; una variabile di istanza. &Egrave; completamente separata da <var>max</var>, che è passato al metodo <code>__init__()</code> come un argomento. <var>self.max</var> è &#8220;globale&#8221; per l'istanza. Questo significa che potete accedervi da altri metodi.
 </ol>
 
-<pre><code class=pp>class Fib:
+<pre class=pp><code>class Fib:
     def __init__(self, max):
 <a>        self.max = max        <span class=u>&#x2460;</span></a>
     .
@@ -163,7 +163,7 @@ Tutti e tre i metodi di classe <code>__init__</code>, <code>__iter__</code> e <c
 </aside>
 
 <p class=d>[<a href=esempi/fibonacci2.py>scarica <code>fibonacci2.py</code></a>]
-<pre><code class=pp><a>class Fib:                                        <span class=u>&#x2460;</span></a>
+<pre class=pp><code><a>class Fib:                                        <span class=u>&#x2460;</span></a>
 <a>    def __init__(self, max):                      <span class=u>&#x2461;</span></a>
         self.max = max
 
@@ -214,14 +214,14 @@ Tutti e tre i metodi di classe <code>__init__</code>, <code>__iter__</code> e <c
 <p>Ora è il momento del gran finale. Riscriviamo il <a href=generatori.html>generatore di regole per i sostantivi plurali</a> sotto forma di iteratore.
 
 <p class=d>[<a href=esempi/plural6.py>scarica <code>plural6.py</code></a>]
-<pre><code class=pp>class LazyRules:
+<pre class=pp><code>class LazyRules:
     rules_filename = 'plural6-rules.txt'
 
     def __init__(self):
         self.pattern_file = open(self.rules_filename, encoding='utf-8')
+        self.cache = []
 
     def __iter__(self):
-        self.cache = []
         self.cache_index = 0
         return self
 
@@ -250,19 +250,15 @@ rules = LazyRules()</code></pre>
 
 <p>Analizziamo la classe un pezzo alla volta.
 
-<pre><code class=pp>class LazyRules:
+<pre class=pp><code>class LazyRules:
     rules_filename = 'plural6-rules.txt'
 
     def __init__(self):
 <a>        self.pattern_file = open(self.rules_filename, encoding='utf-8')  <span class=u>&#x2460;</span></a>
-
-<a>    def __iter__(self):                                                  <span class=u>&#x2461;</span></a>
-<a>        self.cache = []                                                  <span class=u>&#x2462;</span></a>
-        self.cache_index = 0</code></pre>
+<a>        self.cache = []                                                  <span class=u>&#x2461;</span></a></code></pre>
 <ol>
 <li>Quando istanziamo la classe <code>LazyRules</code>, apriamo il file dei pattern ma non lo leggiamo. (Lo faremo più tardi.)
-<li>Il metodo <code>__iter__()</code> verrà chiamato dopo che avete creato un'istanza della classe, l'avete assegnata a <var>rules</var> e avete invocato <code>iter(rules)</code> per creare l'iteratore. Verrebbe chiamato ancora se creaste un nuovo iteratore dallo stesso oggetto <var>rules</var>.
-<li>Ciò significa che questo metodo è un buon posto per inizializzare la cache e l'indice di posizione nella cache, che userete più tardi (nel metodo <code>__next__()</code>) durante la lettura dei pattern dal file.
+<li>Dopo aver aperto il file dei pattern, inizializzate la cache<!-- e l'indice di posizione nella cache-->, che userete più tardi (nel metodo <code>__next__()</code>) durante la lettura dei pattern dal file.
 </ol>
 
 <p>Prima di continuare, diamo un'occhiata più da vicino a <var>rules_filename</var>. Non è definita all'interno del metodo <code>__iter__()</code>. In effetti, non è definita all'interno di <em>nessun</em> metodo. &Egrave; definita a livello della classe. &Egrave; una <i>variabile di classe</i>, e sebbene possiate accedervi esattamente come una variabile di istanza (<var>self.rules_filename</var>), è condivisa da tutte le istanze della classe <code>LazyRules</code>.
@@ -297,17 +293,16 @@ rules = LazyRules()</code></pre>
 
 <p>E ora torniamo al nostro spettacolo.
 
-<pre><code class=pp><a>    def __iter__(self):       <span class=u>&#x2460;</span></a>
-<a>        self.cache_index = 0  <span class=u>&#x2461;</span></a>
-<a>        return self           <span class=u>&#x2462;</span></a>
+<pre class=pp><code><a>    def __iter__(self):       <span class=u>&#x2460;</span></a>
+        self.cache_index = 0
+<a>        return self           <span class=u>&#x2461;</span></a>
 </code></pre>
 <ol>
 <li>Il metodo <code>__iter__()</code> verrà chiamato ogni volta che qualcuno&nbsp;&mdash;&nbsp;diciamo, un ciclo <code>for</code>&nbsp;&mdash;&nbsp;chiama <code>iter(rules)</code>.
-<li>Questo metodo è il posto dove azzerate il contatore che useremo per recuperare gli oggetti dalla cache (che ancora non abbiamo popolato&nbsp;&mdash;&nbsp;ci vuole pazienza, cavalletta).
-<li>Infine, il metodo <code>__iter__()</code> restituisce <var>self</var>, segnalando che questa classe si prenderà cura di restituire i propri valori attraverso l'iterazione.
+<li>L'unica cosa che ogni metodo <code>__iter__()</code> deve fare è restituire un iteratore. In questo caso, il metoddo restituisce <var>self</var>, segnalando che questa classe definisce un metodo <code>__next__()</code> che si prenderà cura di restituire i valori durante l'iterazione.
 </ol>
 
-<pre><code class=pp><a>    def __next__(self):                                 <span class=u>&#x2460;</span></a>
+<pre class=pp><code><a>    def __next__(self):                                 <span class=u>&#x2460;</span></a>
         .
         .
         .
@@ -324,7 +319,7 @@ rules = LazyRules()</code></pre>
 
 <p>Muovendosi all'indietro&hellip;
 
-<pre><code class=pp>    def __next__(self):
+<pre class=pp><code>    def __next__(self):
         .
         .
         .
@@ -343,7 +338,7 @@ rules = LazyRules()</code></pre>
 
 <p>Spostandoci all'indietro fino all'inizio del metodo <code>__next__()</code>&hellip;
 
-<pre><code class=pp>    def __next__(self):
+<pre class=pp><code>    def __next__(self):
         self.cache_index += 1
         if len(self.cache) >= self.cache_index:
 <a>            return self.cache[self.cache_index - 1]     <span class=u>&#x2460;</span></a>

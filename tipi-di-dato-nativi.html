@@ -33,7 +33,7 @@ body{counter-reset:h1 2}
 <li><b>Insiemi</b>: sono gruppi non ordinati di valori.
 <li><b>Dizionari</b>: sono gruppi non ordinati di coppie chiave-valore.
 </ol>
-<p>Naturalmente, ci sono molti più tipi di questi sette. <a href=il-vostro-primo-programma-python.html#everythingisanobject>Ogni cosa è un oggetto</a> in Python, quindi ci sono anche tipi come <i>modulo</i>, <i>funzione</i>, <i>classe</i>, <i>metodo</i>, <i>file</i>, e persino <i>codice compilato</i>. Ne avete già visti alcuni: <a href=il-vostro-primo-programma-python.html#runningscripts>i moduli hanno un nome</a>, <a href=il-vostro-primo-programma-python.html#docstrings>le funzioni posseggono una <code>docstring</code></a>, <i class=baa>&amp;</i>c. Imparerete cosa sono le classi nel capitolo <a href=iterators.html>Classi <i class=baa>&amp;</i> iteratori</a> e cosa sono i file nel capitolo <a href=file.html>File</a>.
+<p>Naturalmente, ci sono molti più tipi di questi. <a href=il-vostro-primo-programma-python.html#everythingisanobject>Ogni cosa è un oggetto</a> in Python, quindi ci sono anche tipi come <i>modulo</i>, <i>funzione</i>, <i>classe</i>, <i>metodo</i>, <i>file</i>, e persino <i>codice compilato</i>. Ne avete già visti alcuni: <a href=il-vostro-primo-programma-python.html#runningscripts>i moduli hanno un nome</a>, <a href=il-vostro-primo-programma-python.html#docstrings>le funzioni posseggono una <code>docstring</code></a>, <i class=baa>&amp;</i>c. Imparerete cosa sono le classi nel capitolo <a href=iterators.html>Classi <i class=baa>&amp;</i> iteratori</a> e cosa sono i file nel capitolo <a href=file.html>File</a>.
 <p>Stringhe e byte sono abbastanza importanti&nbsp;&mdash;&nbsp;e abbastanza complicati&nbsp;&mdash;&nbsp;da essere trattati in un capitolo a parte. Diamo un'occhiata agli altri per primi.
 
 <p class=a>&#x2042;
@@ -42,9 +42,9 @@ body{counter-reset:h1 2}
 <aside>Potete usare virtualmente qualsiasi espressione in un contesto logico.</aside>
 <p>I dati di tipo booleano sono veri o falsi. Python ha due costanti, chiamate ingegnosamente <code><dfn>True</dfn></code> e <code><dfn>False</dfn></code>, che possono essere usate per assegnare direttamente valori di tipo <dfn>booleano</dfn>. Anche le espressioni possono essere valutate come valori booleani. In certi posti (come le istruzioni <code>if</code>), Python si aspetta una espressione da valutare come un valore booleano. Questi posti sono chiamati <i>contesti logici</i>. Potete virtualmente usare qualsiasi espressione in un contesto logico, e Python proverà a determinarne il valore di verità. Tipi di dato differenti hanno regole differenti per decidere se un loro valore è vero o falso in un contesto logico. (Questa frase avrà più senso una volta che avrete visto alcuni esempi concreti più in là in questo capitolo.)
 <p>Per esempio, considerate questo estratto da <a href=il-vostro-primo-programma-python.html#divingin><code>humansize.py</code></a>:
-<pre class=nd><code class=pp>if size &lt; 0:
+<pre class='nd pp'><code>if size &lt; 0:
     raise ValueError('number must be non-negative')</code></pre>
-<p><var>size</var> è un intero, <code>0</code> è un intero, e <code>&lt;</code> è un operatore numerico. Il risultato dell'espressione <code>size &lt; 0</code> è sempre un booleano. Potete verificarlo voi stessi nella shell interattiva di Python:
+<p><var>size</var> è un intero, 0 è un intero, e <code>&lt;</code> è un operatore numerico. Il risultato dell'espressione <code>size &lt; 0</code> è sempre un booleano. Potete verificarlo voi stessi nella shell interattiva di Python:
 <pre class='nd screen'>
 <samp class=p>>>> </samp><kbd class=pp>size = 1</kbd>
 <samp class=p>>>> </samp><kbd class=pp>size &lt; 0</kbd>
@@ -55,11 +55,11 @@ body{counter-reset:h1 2}
 <samp class=p>>>> </samp><kbd class=pp>size = -1</kbd>
 <samp class=p>>>> </samp><kbd class=pp>size &lt; 0</kbd>
 <samp class=pp>True</samp></pre>
-<p>A causa di alcune questioni lasciate in eredità da Python 2, i booleani possono essere trattati come numeri. <code>True</code> vale <code>1</code> e <code>False</code> vale <code>0</code>.
+<p>A causa di alcune questioni lasciate in eredità da Python 2, i booleani possono essere trattati come numeri. <code>True</code> vale <code>1</code> e <code>False</code> vale 0.
 <pre class='nd screen'>
 <samp class=p>>>> </samp><kbd class=pp>True + True</kbd>
 <samp class=pp>2</samp>
-<samp class=p>>>> </samp><kbd class=pp>True + False</kbd>
+<samp class=p>>>> </samp><kbd class=pp>True - False</kbd>
 <samp class=pp>1</samp>
 <samp class=p>>>> </samp><kbd class=pp>True * False</kbd>
 <samp class=pp>0</samp>
@@ -109,7 +109,7 @@ ZeroDivisionError: int division or modulo by zero</samp></pre>
 <li>Potete convertire esplicitamente un <code>int</code> in un <code>float</code> chiamando la funzione <code>float()</code>.
 <li>Naturalmente, potete anche convertire esplicitamente un <code>float</code> in un <code>int</code> chiamando <code>int()</code>.
 <li>La funzione <code>int()</code> esegue un troncamento, non un arrotondamento.
-<li>La funzione <code>int()</code> tronca i numeri negativi verso lo <code>0</code>. &Egrave; una vera funzione di troncamento, non una funzione di appiattimento.
+<li>La funzione <code>int()</code> tronca i numeri negativi verso lo 0. &Egrave; una vera funzione di troncamento, non una funzione di appiattimento.
 <li>I numeri in virgola mobile sono accurati fino a 15 decimali.
 <li>Gli interi possono essere arbitrariamente grandi.
 </ol>
@@ -134,7 +134,7 @@ ZeroDivisionError: int division or modulo by zero</samp></pre>
 </pre>
 <ol>
 <li>L'operatore <code>/</code> esegue la divisione in virgola mobile. Restituisce un <code>float</code> anche se sia il numeratore che il denominatore sono numeri di tipo <code>int</code>.
-<li>L'operatore <code>//</code> esegue un tipo strambo di divisione tra interi. Quando il risultato è positivo, potete immaginarla come un troncamento (non un arrotondamento) a <code>0</code> decimali, ma fate attenzione.
+<li>L'operatore <code>//</code> esegue un tipo strambo di divisione tra interi. Quando il risultato è positivo, potete immaginarla come un troncamento (non un arrotondamento) a 0 decimali, ma fate attenzione.
 <li>Quando eseguite la divisione intera tra numeri negativi, l'operatore <code>//</code> arrotonda &#8220;per eccesso&#8221; verso l'intero più vicino. Matematicamente parlando, l'arrotondamento è &#8220;per difetto&#8221;, dato che <code>&minus;6</code> è inferiore a <code>&minus;5</code>, ma potrebbe indurvi a un errore se vi aspettaste un troncamento a <code>&minus;5</code>.
 <li>L'operatore <code>//</code> non restituisce sempre un intero. Se il numeratore o il denominatore sono di tipo <code>float</code>, effettuerà un arrontondamento all'intero più vicino, ma l'effettivo valore di ritorno sarà un <code>float</code>.
 <li>L'operatore <code>**</code> significa &#8220;elevato alla potenza di.&#8221;  <code>11<sup>2</sup></code> vale <code>121</code>.
@@ -209,8 +209,8 @@ ZeroDivisionError: Fraction(0, 0)</samp></pre>
 <samp>no, è falso</samp></pre>
 <ol>
 <li>Sapevate di poter definire le vostre funzioni nella shell interattiva di Python? Vi basta premere <kbd>ENTER</kbd> alla fine di ogni riga, ed <kbd>ENTER</kbd> su una riga vuota per concludere la definizione.
-<li>In un contesto logico, gli interi diversi da zero sono veri; <code>0</code> è falso.
-<li>I numeri in virgola mobile diversi da zero sono veri; <code>0.0</code> è falso. Fate attenzione! Se c'è anche il più piccolo errore di arrotondamento (non impossibile, come avete visto nella precedente sezione) allora Python opererà su <code>0.0000000000001</code> invece di <code>0</code> e restituirà <code>True</code>.
+<li>In un contesto logico, gli interi diversi da zero sono veri; 0 è falso.
+<li>I numeri in virgola mobile diversi da zero sono veri; <code>0.0</code> è falso. Fate attenzione! Se c'è anche il più piccolo errore di arrotondamento (non impossibile, come avete visto nella precedente sezione) allora Python opererà su <code>0.0000000000001</code> invece di 0 e restituirà <code>True</code>.
 <li>Anche le frazioni possono essere usate in un contesto logico. <code>Fraction(0, n)</code> è falso per tutti i valori di <var>n</var>. Tutte le altre frazioni sono vere.
 </ol>
 
@@ -267,7 +267,7 @@ ZeroDivisionError: Fraction(0, 0)</samp></pre>
 <li>Potete ottenere una parte di una lista, chiamata &#8220;fetta&#8221;, specificando due indici. Il valore di ritorno è una nuova lista che contiene tutti gli elementi della lista, in ordine, a cominciare dal primo indice della fetta (in questo caso <code>a_list[1]</code>) fino al secondo indice della fetta escluso (in questo caso <code>a_list[3]</code>).
 <li>Affettare una lista funziona anche se uno o entrambi gli indici della fetta sono negativi. Se vi è d'aiuto, potete pensarla in questo modo: leggendo la lista da sinistra a destra, il primo indice della fetta indica il primo elemento che volete, e il secondo indice della fetta indica il primo elemento che non volete. Il valore di ritorno è tutto quello che sta in mezzo.
 <li>L'indice delle liste comincia da zero, quindi <code>a_list[0:3]</code> restituisce i primi tre elementi della lista, cominciando da <code>a_list[0]</code> fino a <code>a_list[3]</code> escluso.
-<li>Se l'indice sinistro della fetta è <code>0</code>, potete ometterlo, e <code>0</code> diventa implicito. Quindi <code>a_list[:3]</code> è la stessa cosa di <code>a_list[0:3]</code>, perché lo <code>0</code> iniziale è implicito.
+<li>Se l'indice sinistro della fetta è 0, potete ometterlo, e 0 diventa implicito. Quindi <code>a_list[:3]</code> è la stessa cosa di <code>a_list[0:3]</code>, perché lo 0 iniziale è implicito.
 <li>Similmente, se l'indice destro della fetta è la lunghezza della lista, potete ometterlo. Quindi <code>a_list[3:]</code> è la stessa cosa di <code>a_list[3:5]</code>, perché questa lista ha cinque elementi. C'è una piacevole simmetria qui. In questa lista di cinque elementi, <code>a_list[:3]</code> restituisce i primi 3 elementi e <code>a_list[3:]</code> restituisce gli ultimi due elementi. In effetti, <code>a_list[:<var>n</var>]</code> restituirà sempre i primi <var>n</var> elementi e <code>a_list[<var>n</var>:]</code> restituirà il resto, a prescindere dalla lunghezza della lista.
 <li>Se entrambi gli indici della fetta vengono omessi, tutti gli elementi della lista vengono inclusi. Ma questa non è la stessa lista della variabile <var>a_list</var> originale. &Egrave; una nuova lista a cui capita di avere tutti gli stessi elementi. <code>a_list[:]</code> è una notazione abbreviata per creare la copia completa di una lista.
 </ol>
@@ -331,11 +331,11 @@ ZeroDivisionError: Fraction(0, 0)</samp></pre>
 <samp class=pp>True</samp>
 <samp class=p>>>> </samp><kbd class=pp>'c' in a_list</kbd>
 <samp class=pp>False</samp>
-<a><samp class=p>>>> </samp><kbd class=pp>a_list.index('mpilgrim')</kbd>  <span class=u>&#x2463;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>a_list.index('mpilgrim')</kbd>  <span class=u>&#x2462;</span></a>
 <samp class=pp>3</samp>
-<a><samp class=p>>>> </samp><kbd class=pp>a_list.index('new')</kbd>       <span class=u>&#x2464;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>a_list.index('new')</kbd>       <span class=u>&#x2463;</span></a>
 <samp class=pp>2</samp>
-<a><samp class=p>>>> </samp><kbd class=pp>a_list.index('c')</kbd>         <span class=u>&#x2465;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>a_list.index('c')</kbd>         <span class=u>&#x2464;</span></a>
 <samp class=traceback>Traceback (innermost last):
   File "&lt;interactive input>", line 1, in ?
 ValueError: list.index(x): x not in list</samp></pre>
@@ -343,7 +343,7 @@ ValueError: list.index(x): x not in list</samp></pre>
 
 <li>Come potreste aspettarvi, il metodo <code>count()</code> restituisce il numero di occorrenze di uno specifico valore in una lista.
 <li>Nel caso tutto quello che vogliate sapere sia se un valore è presente nella lista oppure no, l'operatore <code>in</code> è leggermente più veloce rispetto al metodo <code>count()</code>. L'operatore <code>in</code> restituisce sempre <code>True</code> o <code>False</code>, senza dirvi dove si trova il valore.
-<li>Se avete bisogno di sapere esattamente dove si trova un valore nella lista, chiamate il metodo <code>index()</code>. Di default cercherà nell'intera lista, anche se potete specificare, come secondo argomento, l'indice (a partire da <code>0</code>) da cui cominciare e persino, come terzo argomento, l'indice (a partire da <code>0</code>) in cui terminare la ricerca.
+<li>Se avete bisogno di sapere esattamente dove si trova un valore nella lista, chiamate il metodo <code>index()</code>. Di default cercherà nell'intera lista, anche se potete specificare, come secondo argomento, l'indice (a partire da 0) da cui cominciare e persino, come terzo argomento, l'indice (a partire da 0) in cui terminare la ricerca.
 <li>Il metodo <code>index()</code> trova la <em>prima</em> occorrenza di un valore nella lista. In questo caso, <code>'new'</code> appare due volte nella lista, in <code>a_list[2]</code> and <code>a_list[4]</code>, ma il metodo <code>index()</code> restituirà solamente l'indice della prima occorrenza.
 <li>Come <em>non</em> vi sareste aspettati, se il valore non è trovato nella lista, il metodo <code>index()</code> solleverà un'eccezione.
 </ol>
@@ -502,6 +502,34 @@ AttributeError: 'tuple' object has no attribute 'remove'</samp>
 <p><span class=u>&#x261E;</span>Le tuple possono essere convertite in liste e viceversa. La funzione predefinita <code>tuple()</code> accetta una lista e restituisce una tupla con gli stessi elementi; la funzione <code>list()</code> accetta una tupla e restituisce una lista. In effetti, <code>tuple()</code> congela una lista e <code>list()</code> scongela una tupla.
 </blockquote>
 
+<h3 id=tuples-in-a-boolean-context>Tuple in un contesto logico</h3>
+
+<p>Potete usare le tuple in <a href=#booleans>un contesto logico</a>, come un'istruzione <code>if</code>.
+
+<pre class=screen>
+<samp class=p>>>> </samp><kbd class=pp>def is_it_true(anything):</kbd>
+<samp class=p>... </samp><kbd class=pp>  if anything:</kbd>
+<samp class=p>... </samp><kbd class=pp>    print('sì, è vero')</kbd>
+<samp class=p>... </samp><kbd class=pp>  else:</kbd>
+<samp class=p>... </samp><kbd class=pp>    print('no, è falso')</kbd>
+<samp class=p>...</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>is_it_true(())</kbd>             <span class=u>&#x2460;</span></a>
+<samp>no, è falso</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>is_it_true(('a', 'b'))</kbd>     <span class=u>&#x2461;</span></a>
+<samp>sì, è vero</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>is_it_true((False,))</kbd>       <span class=u>&#x2462;</span></a>
+<samp>sì, è vero</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>type((False))</kbd>              <span class=u>&#x2463;</span></a>
+<samp class=pp>&lt;class 'bool'></samp>
+<samp class=p>>>> </samp><kbd class=pp>type((False,))</kbd>
+<samp class=pp>&lt;class 'tuple'></samp></pre>
+<ol>
+<li>In un contesto logico, una tupla vuota è falsa.
+<li>Qualsiasi tupla con almeno un elemento è vera.
+<li>Qualsiasi tupla con almeno un elemento è vera. Il valore degli elementi è irrilevante. Ma cosa fa lì quella virgola?
+<li>Per creare una tupla di un elemento, dovete inserire una virgola dopo il valore. Senza la virgola, Python assume semplicemente che abbiate inserito una coppia aggiuntiva di parentesi, che è innocua, ma non crea una tupla.
+</ol>
+
 <h3 id=multivar>Assegnare più di un valore alla volta</h3>
 
 <p>Ecco una scorciatioia di programmazione piuttosto figa: in Python, potete usare una tupla per assegnare più di un valore alla volta.
@@ -531,7 +559,7 @@ AttributeError: 'tuple' object has no attribute 'remove'</samp>
 <samp class=pp>6</samp></pre>
 <ol>
 <li>La funzione predefinita <code>range()</code> costruisce una sequenza di interi. (Tecnicamente, la funzione <code>range()</code> restuitsce un <a href=iterators.html>iteratore</a>, non una lista di tuple, ma imparerete la distinzione più avanti.) <var>MONDAY</var>, <var>TUESDAY</var>, <var>WEDNESDAY</var>, <var>THURSDAY</var>, <var>FRIDAY</var>, <var>SATURDAY</var> e <var>SUNDAY</var> sono le variabili che state definendo. (Questo esempio proviene dal modulo <code>calendar</code>, un piccolo modulo divertente che stampa calendari, come il programma <abbr>UNIX</abbr> <code>cal</code>. Il modulo <code>calendar</code> definisce costanti intere per i giorni della settimana.)
-<li>Ora ogni variabile ha il suo valore: <var>MONDAY</var> vale <code>0</code>, <var>TUESDAY</var> vale <code>1</code>, e così via.
+<li>Ora ogni variabile ha il suo valore: <var>MONDAY</var> vale 0, <var>TUESDAY</var> vale <code>1</code>, e così via.
 </ol>
 
 <p>Potete anche usare l'assegnamento multi-variabile per costruire funzioni che restituiscono valori multipli, semplicemente restituendo una tupla di tutti i valori. Il chiamante può trattarla come una singola tupla, oppure può assegnare i valori a singole variabili. Molte librerie Python standard fanno questo, incluso il modulo <code>os</code>, che vedrete nel <a href=descrizioni.html#os>prossimo capitolo</a>.
@@ -839,7 +867,7 @@ KeyError: 'db.diveintopython3.org'</samp></pre>
 <h3 id=mixed-value-dictionaries>Dizionari a valori misti</h3>
 <p>I dizionari non funzionano solo con le stringhe. I valori in un dizionario possono appartenere a qualsiasi tipo di dato, compresi interi, booleani, oggetti arbitrari, e persino altri dizionari. E all'interno di un singolo dizionario, i valori non devono essere tutti dello stesso tipo; potete mescolarli a piacimento. Le chiavi di un dizionario hanno maggiori restrizioni, ma possono essere stringhe, interi, e di pochi altri tipi. Potete mescolare anche i tipi di dato delle chiavi all'interno di un singolo dizionario.
 <p>In effetti, avete già visto un dizionario con chiavi e valori che non sono stringhe nel <a href=il-vostro-primo-programma-python.html#divingin>vostro primo programma Python</a>.
-<pre class=nd><code class=pp>SUFFIXES = {1000: ['KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
+<pre class='nd pp'><code>SUFFIXES = {1000: ['KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
             1024: ['KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB']}</code></pre>
 <p>Analizziamo questo oggetto nella shell interattiva.
 <pre class=screen>
@@ -884,7 +912,7 @@ KeyError: 'db.diveintopython3.org'</samp></pre>
 <p class=a>&#x2042;
 
 <h2 id=none><code>None</code></h2>
-<p><code><dfn>None</dfn></code> è una costante speciale in Python. &Egrave; un valore <dfn>nullo</dfn>. <code>None</code> non è la stessa cosa di <code>False</code>. <code>None</code> non è <code>0</code>. <code>None</code> non è una stringa vuota. Confrontare <code>None</code> con qualcos'altro che non sia <code>None</code> restituirà sempre <code>False</code>.
+<p><code><dfn>None</dfn></code> è una costante speciale in Python. &Egrave; un valore <dfn>nullo</dfn>. <code>None</code> non è la stessa cosa di <code>False</code>. <code>None</code> non è 0. <code>None</code> non è una stringa vuota. Confrontare <code>None</code> con qualcos'altro che non sia <code>None</code> restituirà sempre <code>False</code>.
 <p><code>None</code> è l'unico valore nullo. Ha un proprio tipo di dato (<code>NoneType</code>). Potete assegnare <code>None</code> a qualsiasi variabile, ma non potete creare altri oggetti di tipo <code>NoneType</code>. Tutte le varibili il cui valore è <code>None</code> sono uguali tra loro.
 <pre class='nd screen'>
 <samp class=p>>>> </samp><kbd class=pp>type(None)</kbd>
