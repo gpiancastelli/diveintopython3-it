@@ -31,18 +31,18 @@ mark{display:inline}
             1024: ['KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB']}
 
 def approximate_size(size, a_kilobyte_is_1024_bytes=True):
-    '''Convert a file size to human-readable form.
+    '''Converte la dimensione di un file in una forma leggibile.
 
-    Keyword arguments:
-    size -- file size in bytes
-    a_kilobyte_is_1024_bytes -- if True (default), use multiples of 1024
-                                if False, use multiples of 1000
+    Argomenti con nome:
+    size -- dimensione del file in byte
+    a_kilobyte_is_1024_bytes -- se True (default), usa multipli di 1024
+                                se False, usa multipli di 1000
 
-    Returns: string
+    Restituisce: string
 
     '''
     if size &lt; 0:
-        raise ValueError('number must be non-negative')
+        raise ValueError('il numero non deve essere negativo')
 
     multiple = 1024 if a_kilobyte_is_1024_bytes else 1000
     for suffix in SUFFIXES[multiple]:
@@ -50,27 +50,27 @@ def approximate_size(size, a_kilobyte_is_1024_bytes=True):
         if size &lt; multiple:
             return '{0:.1f} {1}'.format(size, suffix)
 
-    raise ValueError('number too large')
+    raise ValueError('numero troppo grande')
 
 if __name__ == '__main__':
     print(approximate_size(1000000000000, False))
     print(approximate_size(1000000000000))</code></pre>
-<p>Ora eseguiamo il programma dalla linea di comando. Sotto Windows, avremo qualcosa di simile a questo:
+<p>Ora eseguiamo il programma dalla linea di comando. Sotto Windows avremo qualcosa di simile a questo:
 <pre class='nd screen'>
 <samp class=p>c:\home\diveintopython3\examples> </samp><kbd>c:\python31\python.exe humansize.py</kbd>
 <samp>1.0 TB
 931.3 GiB</samp></pre>
-<p>Sotto Mac OS X o Linux, avremo qualcosa di simile a questo:
+<p>Sotto Mac OS X o Linux avremo qualcosa di simile a questo:
 <pre class='nd screen'>
 <samp class=p>you@localhost:~/diveintopython3/examples$ </samp><kbd>python3 humansize.py</kbd>
 <samp>1.0 TB
 931.3 GiB</samp></pre>
 
-<p>Che cos'è appena successo? Avete eseguito il vostro primo programma Python. Avete chiamato l'interprete Python dalla  linea di comando, e gli avete passato il nome dello script che volevate far eseguire all'interprete. Lo script definisce una singola funzione, la funzione <code>approximate_size()</code>, che prende una dimensione esatta di un file in byte e ne calcola una versione più &#8220;carina&#8221; (ma approssimata). (Lo avete probabilmente visto fare in Esplora risorse sotto Windows, o nel Finder di Mac OS X, o in Nautilus o Dolphin o Thunar sotto Linux. Se visualizzate una cartella di documenti come una lista a più colonne, il programma mostrerà una tabella con l'icona di ogni documento, il nome, la dimensione, il tipo, la data dell'ultima modifica, e così via. Se la cartella contiene un file di 1093 byte chiamato <code>TODO</code>, il vostro programma di gestione dei file non visualizzerà <code>TODO 1093 byte</code>; invece, vi mostrerà qualcosa di simile a <code>TODO 1 KB</code>. Questo è ciò che fa la funzione <code>approximate_size()</code>.)
+<p>Che cos'è appena successo? Avete eseguito il vostro primo programma Python. Avete invocato l'interprete Python dalla riga di comando e gli avete passato il nome dello script che volevate far eseguire all'interprete. Lo script definisce una singola funzione, la funzione <code>approximate_size()</code>, che prende una dimensione esatta di un file in byte e ne calcola una versione più &#8220;carina&#8221; (ma approssimata). Lo avete probabilmente visto fare in Esplora Risorse sotto Windows, o nel Finder di Mac OS X, oppure in Nautilus o Dolphin o Thunar sotto Linux. Se visualizzate una cartella di documenti come una lista a più colonne, il programma mostrerà una tabella con l'icona di ogni documento, il nome, la dimensione, il tipo, la data dell'ultima modifica, e così via. Se la cartella contiene un file di 1093 byte chiamato <code>TODO</code>, il vostro programma di gestione dei file non visualizzerà <code>TODO 1093 byte</code>, ma vi mostrerà qualcosa di simile a <code>TODO 1 KB</code>. Questo è ciò che fa la funzione <code>approximate_size()</code>.
 
-<p>Guardate in fondo allo script e vedrete due chiamate a <code>print(approximate_size(<var>arguments</var>))</code>. Queste sono invocazioni di funzione&nbsp;&mdash;&nbsp;prima chiamano la funzione <code>approximate_size()</code> passandole un certo numero di argomenti, poi prendono il valore di ritorno e lo passano direttamente alla funzione <code>print()</code>. La funzione <code>print()</code> è predefinita; non ne vedrete mai la dichiarazione esplicita. Potete semplicemente usarla, sempre e dovunque. (Ci sono un sacco di funzioni predefinite, e un sacco di altre funzioni che sono suddivise in <i>moduli</i>. Pazienta, cavalletta.)
+<p>Guardate in fondo al programma e vedrete due chiamate a <code>print(approximate_size(<var>argomenti</var>))</code>. Queste sono invocazioni di funzione&nbsp;&mdash;&nbsp;prima chiamano la funzione <code>approximate_size()</code> passandole un certo numero di argomenti, poi prendono il valore di ritorno e lo passano direttamente alla funzione <code>print()</code>. La funzione <code>print()</code> è predefinita, perciò non ne vedrete mai la dichiarazione esplicita. Potete semplicemente usarla, sempre e dovunque. (Ci sono molte funzioni predefinite e molte altre funzioni che sono suddivise in <i>moduli</i>. Sii paziente, cavalletta.)
 
-<p>Quindi perché l'esecuzione dello script dalla linea di comando vi restituisce ogni volta gli stessi risultati? Ci arriveremo. Prima di tutto, diamo un'occhiata alla funzione <code>approximate_size()</code>.
+<p>Quindi, perché l'esecuzione dello script dalla riga di comando vi restituisce ogni volta gli stessi risultati? Ci arriveremo. Prima di tutto, diamo un'occhiata alla funzione <code>approximate_size()</code>.
 
 <p class=a>&#x2042;
 
@@ -78,10 +78,10 @@ if __name__ == '__main__':
 <p>Python vi permette di definire funzioni come la maggior parte degli altri linguaggi, ma non utilizza file di intestazione separati come il <abbr>C++</abbr> o sezioni di <code>interface</code>/<code>implementation</code> come il Pascal. Quando avete bisogno di una funzione, vi basta dichiararla, in questo modo:  
 <pre class='nd pp'><code>def approximate_size(size, a_kilobyte_is_1024_bytes=True):</code></pre>
 <aside>Quando avete bisogno di una funzione, vi basta dichiararla.</aside>
-<p>La parola chiave <code>def</code> inizia la dichiarazione di funzione, seguita dal nome della funzione, seguito dagli argomenti della funzione racchiusi tra parentesi. Argomenti multipli sono separati da virgole.
-<p>Notate anche che la funzione non definisce un tipo di dato di ritorno. Le funzioni Python non specificano il tipo di dato del loro valore di ritorno; non specificano nemmeno se restituiscono o no un valore. (In effetti, ogni funzione Python restituisce un valore; se la funzione esegue una istruzione di <code>return</code>, restituirà quel valore, altrimenti restituirà <code>None</code>, il valore nullo di Python.)
+<p>La parola chiave <code>def</code> inizia la dichiarazione di funzione, seguita dal nome della funzione, seguito dagli argomenti della funzione racchiusi tra parentesi. Argomenti plurimi sono separati da virgole.
+<p>Notate anche che la funzione non definisce un tipo di dato di ritorno. Le funzioni Python non specificano il tipo di dato del loro valore di ritorno, non specificano nemmeno se restituiscono o no un valore. (In effetti, ogni funzione Python restituisce un valore: se la funzione esegue un'istruzione di <code>return</code>, restituirà quel valore, altrimenti restituirà <code>None</code>, il valore nullo di Python.)
 <blockquote class=note>
-<p><span class=u>&#x261E;</span>In alcuni linguaggi, le funzioni (che restituiscono un valore) cominciano con <code>function</code>, e le procedure (che non restituiscono un valore) cominciano con <code>sub</code>. Non ci sono procedure in Python. Ci sono solo funzioni, tutte le funzioni restituiscono un valore (anche se è <code>None</code>) e tutte le funzioni cominciano con <code>def</code>.
+<p><span class=u>&#x261E;</span>In alcuni linguaggi, le funzioni (che restituiscono un valore) cominciano con <code>function</code> e le procedure (che non restituiscono un valore) cominciano con <code>sub</code>. Non ci sono procedure in Python. Ci sono solo funzioni, tutte le funzioni restituiscono un valore (anche se è <code>None</code>) e tutte le funzioni cominciano con <code>def</code>.
 </blockquote>
 <p>La funzione <code>approximate_size()</code> accetta due argomenti&nbsp;&mdash;&nbsp;<var>size</var> e <var>a_kilobyte_is_1024_bytes</var>&nbsp;&mdash;&nbsp;ma nessun argomento dichiara il proprio tipo. In Python, le variabili non sono mai esplicitamente tipate. L'interprete Python capisce da solo qual è il tipo di una variable e ne tiene traccia internamente.
 <blockquote class='note compare java'>
@@ -90,13 +90,13 @@ if __name__ == '__main__':
 
 <h3 id=optional-arguments>Argomenti opzionali e con nome</h3>
 
-<p>Python consente agli argomenti di funzione di avere valori di default; se una funzione viene chiamata senza un argomento, quell'argomento viene impostato al suo valore di default. In più, gli argomenti possono essere specificati in qualsiasi ordine utilizzando argomenti con nome.
+<p>Python consente agli argomenti di funzione di avere valori di default, in modo che, se una funzione viene chiamata senza un argomento, quell'argomento venga impostato al suo valore di default. In più, gli argomenti possono essere specificati in qualsiasi ordine utilizzando argomenti con nome.
 
 <p>Diamo un'altra occhiata a quella dichiarazione della funzione <code>approximate_size()</code>:
 
 <pre class='nd pp'><code>def approximate_size(size, a_kilobyte_is_1024_bytes=True):</code></pre>
 
-<p>Il secondo argomento, <var>a_kilobyte_is_1024_bytes</var>, specifica un valore di default pari a <code>True</code>. Questo significa che l'argomento è <i>opzionale</i>; potete invocare la funzione senza di esso, e Python agirà come se l'aveste invocata passando <code>True</code> come secondo parametro.
+<p>Il secondo argomento, <var>a_kilobyte_is_1024_bytes</var>, specifica un valore di default pari a <code>True</code>. Questo significa che l'argomento è <i>opzionale</i>: potete invocare la funzione senza di esso e Python opererà come se l'aveste invocata passando <code>True</code> come secondo parametro.
 
 <p>Ora guardate in fondo allo script:
 
@@ -105,7 +105,7 @@ if __name__ == '__main__':
 <a>    print(approximate_size(1000000000000))         <span class=u>&#x2461;</span></a></code></pre>
 <ol>
 <li>Questa riga invoca la funzione <code>approximate_size()</code> con due argomenti. All'interno della funzione <code>approximate_size()</code>, <var>a_kilobyte_is_1024_bytes</var> varrà <code>False</code>, dato che avete esplicitamente passato <code>False</code> come secondo argomento.
-<li>Questa riga invoca la funzione <code>approximate_size()</code> con un solo argomento. Ma questo è OK, perché il secondo argomento è opzionale! Dato che il chiamante non lo specifica, il secondo argomento assumerà il proprio valore di default <code>True</code>, come definito nella dichiarazione di funzione.
+<li>Questa riga invoca la funzione <code>approximate_size()</code> con un solo argomento. Ma questo va ancora bene, perché il secondo argomento è opzionale! Dato che il chiamante non lo specifica, il secondo argomento assumerà il proprio valore di default <code>True</code>, come definito nella dichiarazione di funzione.
 </ol>
 
 <p>I valori degli argomenti di una funzione possono anche essere passati per nome.
@@ -125,9 +125,9 @@ SyntaxError: non-keyword arg after keyword arg</samp>
 <samp class=traceback>  File "&lt;stdin>", line 1
 SyntaxError: non-keyword arg after keyword arg</samp></pre>
 <ol>
-<li>Questa è una invocazione della funzione <code>approximate_size()</code> con <code>4000</code> come valore per il primo argomento (<var>size</var>) e <code>False</code> come valore per il secondo argomento chiamato <var>a_kilobyte_is_1024_bytes</var>. (Si dà il caso che questo sia effettivamente il secondo argomento, ma la cosa non ha importanza, come vedrete fra un minuto.)
-<li>Questa è una invocazione della funzione <code>approximate_size()</code> con <code>4000</code> come valore per l'argomento chiamato <var>size</var> e <code>False</code> come valore per l'argomento chiamato <var>a_kilobyte_is_1024_bytes</var>. (Si dà il caso che questi argomenti con nome siano nello stesso ordine in cui sono elencati gli argomenti nella dichiarazione di funzione, ma anche questo non ha importanza.)
-<li>Questa è una invocazione della funzione <code>approximate_size()</code> con <code>False</code> come valore per l'argomento chiamato <var>a_kilobyte_is_1024_bytes</var> e <code>4000</code> come valore per l'argomento chiamato <var>size</var>. (Vedete? Vi avevo detto che l'ordine non ha importanza.)
+<li>Questa è un'invocazione della funzione <code>approximate_size()</code> con <code>4000</code> come valore per il primo argomento (<var>size</var>) e <code>False</code> come valore per il secondo argomento chiamato <var>a_kilobyte_is_1024_bytes</var>. (Si dà il caso che questo sia effettivamente il secondo argomento, ma la cosa non ha importanza, come vedrete fra un minuto.)
+<li>Questa è un'invocazione della funzione <code>approximate_size()</code> con <code>4000</code> come valore per l'argomento chiamato <var>size</var> e <code>False</code> come valore per l'argomento chiamato <var>a_kilobyte_is_1024_bytes</var>. (Si dà il caso che questi argomenti con nome siano nello stesso ordine in cui sono elencati gli argomenti nella dichiarazione di funzione, ma anche questo non ha importanza.)
+<li>Questa è un'invocazione della funzione <code>approximate_size()</code> con <code>False</code> come valore per l'argomento chiamato <var>a_kilobyte_is_1024_bytes</var> e <code>4000</code> come valore per l'argomento chiamato <var>size</var>. (Vedete? Vi avevo detto che l'ordine non ha importanza.)
 <li>Questa invocazione fallisce, perché passate un argomento con nome seguito da un argomento (di tipo posizionale) senza nome, e questo non funziona mai. Leggendo la lista degli argomenti da sinistra a destra, una volta che utilizzate un singolo argomento con nome anche il resto degli argomenti deve essere dello stesso tipo.
 <li>Anche questa invocazione fallisce, per lo stesso motivo della precedente. Vi sorprende? Dopo tutto, avete passato <code>4000</code> come valore per l'argomento chiamato <code>size</code>, poi &#8220;ovviamente&#8221; intendevate passare quel valore <code>False</code> all'argomento <var>a_kilobyte_is_1024_bytes</var>. Ma Python non funziona in questo modo. Appena utilizzate un argomento con nome, anche tutti gli argomenti alla destra di quell'argomento devono essere argomenti con nome.
 </ol>
@@ -139,18 +139,18 @@ SyntaxError: non-keyword arg after keyword arg</samp></pre>
 <h3 id=docstrings>Stringhe di documentazione</h3>
 <p>Potete documentare una funzione Python aggiungendole una stringa di documentazione (chiamata <code>docstring</code> per brevità). Nel nostro programma, la funzione <code>approximate_size()</code> è stata dotata di una <code>docstring</code>:
 <pre class='nd pp'><code>def approximate_size(size, a_kilobyte_is_1024_bytes=True):
-    '''Convert a file size to human-readable form.
+    '''Converte la dimensione di un file in una forma leggibile.
 
-    Keyword arguments:
-    size -- file size in bytes
-    a_kilobyte_is_1024_bytes -- if True (default), use multiples of 1024
-                                if False, use multiples of 1000
+    Argomenti con nome:
+    size -- dimensione del file in byte
+    a_kilobyte_is_1024_bytes -- se True (default), usa multipli di 1024
+                                se False, usa multipli di 1000
 
-    Returns: string
+    Restituisce: string
 
     '''</code></pre>
 <aside>Ogni funzione merita una docstring decente.</aside>
-<p>Le triple virgolette servono per rappresentare una stringa su più righe. Ogni cosa tra le virgolette di inizio e di fine è parte di una singola stringa, inclusi i ritorni a capo, gli spazi bianchi all'inizio di una riga, e altri caratteri di virgolette. Le triple virgolette si possono usare dovunque, ma le vedrete sfruttate soprattutto nella definizione di una <code>docstring</code>.
+<p>Le triple virgolette servono per rappresentare una stringa su più righe. Ogni cosa tra le virgolette di inizio e di fine è parte di una singola stringa, inclusi i ritorni a capo, gli spazi bianchi all'inizio di una riga e altri caratteri di virgolette. Le triple virgolette si possono usare dovunque, ma le vedrete sfruttate soprattutto nella definizione di una <code>docstring</code>.
 <blockquote class='note compare perl5'>
 <p><span class=u>&#x261E;</span>Le triple virgolette sono anche un modo facile per definire una stringa che contiene sia apici che virgolette, come <code>qq/.../</code> in Perl 5.
 </blockquote>
@@ -162,7 +162,7 @@ SyntaxError: non-keyword arg after keyword arg</samp></pre>
 <p class=a>&#x2042;
 
 <h2 id=importsearchpath>Il percorso di ricerca di <code>import</code></h2>
-<p>Prima di proseguire, voglio menzionare brevemente il percorso di ricerca delle librerie. Python guarda in diversi posti quando provate a importare un modulo. Nello specifico, guarda in tutte le directory definite in <code>sys.path</code>. Questa proprietà è semplicemente una lista, e potete facilmente vederla o modificarla con i metodi standard per le liste. (Imparerete di più sulle liste nel capitolo sui <a href=tipi-di-dato-nativi.html>Tipi di dato nativi</a>.)
+<p>Prima di proseguire, voglio menzionare brevemente il percorso di ricerca delle librerie. Python guarda in diversi posti quando provate a importare un modulo. Nello specifico, guarda in tutte le directory definite in <code>sys.path</code>. Questa proprietà è semplicemente una lista e potete facilmente vederla o modificarla con i metodi standard per le liste. (Imparerete di più sulle liste nel capitolo sui <a href=tipi-di-dato-nativi.html>tipi di dato nativi</a>.)
 <pre class=screen>
 <a><samp class=p>>>> </samp><kbd class=pp>import sys</kbd>                                                 <span class=u>&#x2460;</span></a>
 <a><samp class=p>>>> </samp><kbd class=pp>sys.path</kbd>                                                   <span class=u>&#x2461;</span></a>
@@ -190,32 +190,32 @@ SyntaxError: non-keyword arg after keyword arg</samp></pre>
 <li><code>sys.path</code> è una lista di nomi di directory che costituiscono il percorso di ricerca corrente. (Il vostro apparirà diverso, a seconda del vostro sistema operativo, della versione di Python che state eseguendo e di dove è stata originariamente installata.) Python cercherà attraverso queste directory (in questo ordine) un file con estensione <code>.py</code> il cui nome corrisponda a quello che state tentando di importare.
 <li>In realtà, ho mentito; la verità è più complicata di così, perché non tutti i moduli sono memorizzati come file <code>.py</code>. Alcuni, come il modulo <code>sys</code>, sono moduli <i>built-in</i>, integrati direttamente all'interno dell'interprete Python. I moduli built-in si comportano esattamente come gli altri moduli, ma il loro codice sorgente Python non è disponibile, perché non sono scritti in Python! (Il modulo <code>sys</code> è scritto in <abbr>C</abbr>.)
 <li>Potete aggiungere a tempo di esecuzione una nuova directory al percorso di ricerca di Python aggiungendo il nome della directory a <code>sys.path</code>; successivamente, Python guarderà anche in quella directory ogni volta che provate a importare un modulo. L'effetto dura fino a quando l'interprete Python è in esecuzione.
-<li>Usando <code>sys.path.insert(0, <var>new_path</var>)</code>, avete inserito una nuova directory come primo elemento della lista <code>sys.path</code>, quindi all'inizio del percorso di ricerca di Python. Questo è quasi sempre quello che volete. In caso di un conflitto di nomi (per esempio, nel caso l'interprete Python includa la versione 2 di una particolare libreria ma voi vogliate usarne la versione 3), questo vi assicura che saranno i vostri moduli a essere trovati e utilizzati invece dei moduli distribuiti insieme all'interprete Python.
+<li>Usando <code>sys.path.insert(0, <var>new_path</var>)</code>, avete inserito una nuova directory come primo elemento della lista <code>sys.path</code>, quindi all'inizio del percorso di ricerca di Python. Questo è quasi sempre quello che desiderate. In caso di un conflitto di nomi (per esempio, nel caso l'interprete Python includa la versione 2 di una particolare libreria ma voi vogliate usarne la versione 3), questo vi assicura che saranno i vostri moduli a essere trovati e utilizzati invece dei moduli distribuiti insieme all'interprete Python.
 </ol>
 
 <p class=a>&#x2042;
 
 <h2 id=everythingisanobject>Ogni cosa è un oggetto</h2>
-<p>Nel caso vi fosse sfuggito, ho appena detto che le funzioni Python hanno delle proprietà, e che quelle proprietà sono disponibili a tempo di esecuzione. Una funzione, come ogni altra cosa in Python, è un oggetto.
+<p>Nel caso vi fosse sfuggito, ho appena detto che le funzioni Python hanno delle proprietà e che quelle proprietà sono disponibili a tempo di esecuzione. Una funzione, come ogni altra cosa in Python, è un oggetto.
 <p>Lanciate la shell interattiva di Python e seguitemi attraverso questa serie di istruzioni:
 <pre class=screen>
 <a><samp class=p>>>> </samp><kbd class=pp>import humansize</kbd>                               <span class=u>&#x2460;</span></a>
 <a><samp class=p>>>> </samp><kbd class=pp>print(humansize.approximate_size(4096, True))</kbd>  <span class=u>&#x2461;</span></a>
 <samp class=pp>4.0 KiB</samp>
 <a><samp class=p>>>> </samp><kbd class=pp>print(humansize.approximate_size.__doc__)</kbd>      <span class=u>&#x2462;</span></a>
-<samp>Convert a file size to human-readable form.
+<samp>Converte la dimensione di un file in una forma leggibile.
 
-    Keyword arguments:
-    size -- file size in bytes
-    a_kilobyte_is_1024_bytes -- if True (default), use multiples of 1024
-                                if False, use multiples of 1000
+    Argomenti con nome:
+    size -- dimensione del file in byte
+    a_kilobyte_is_1024_bytes -- se True (default), usa multipli di 1024
+                                se False, usa multipli di 1000
 
-    Returns: string
+    Restituisce: string
 
 </samp></pre>
 <ol>
-<li>La prima riga importa il programma <code>humansize</code> come un modulo&nbsp;&mdash;&nbsp;un pezzo di codice che potete usare interattivamente, o da un programma Python più grande. Una volta importato un modulo, potete fare riferimento a ognuna delle sue funzioni, classi, o proprietà pubbliche. I moduli possono sfruttare questa loro caratteristica per accedere alle funzionalità di altri moduli, e voi potete farlo anche nella shell interattiva di Python. Questo è un concetto importante, e lo vedrete ribadito più volte nel seguito di questo libro.
-<li>Quando volete usare funzioni definite in moduli importati, dovete includere il nome del modulo. Quindi non potete semplicemente dire <code>approximate_size</code>; deve essere <code>humansize.approximate_size</code>. Se avete usato le classi in Java, la sintassi dovrebbe risultarvi vagamente familiare.
+<li>La prima riga importa il programma <code>humansize</code> come un modulo&nbsp;&mdash;&nbsp;un pezzo di codice che potete usare interattivamente o da un programma Python più grande. Una volta importato un modulo, potete fare riferimento a ognuna delle sue funzioni, classi, o proprietà pubbliche. I moduli possono sfruttare questa loro caratteristica per accedere alle funzionalità di altri moduli, e voi potete farlo anche nella shell interattiva di Python. Questo è un concetto importante, e lo vedrete ribadito più volte nel seguito di questo libro.
+<li>Quando volete usare funzioni definite in moduli importati, dovete includere il nome del modulo. Quindi non potete semplicemente dire <code>approximate_size</code>, ma dovete scrivere <code>humansize.approximate_size</code>. Se avete usato le classi in Java, la sintassi dovrebbe risultarvi vagamente familiare.
 <li>Invece di invocare la funzione, avete richiesto una delle sue proprietà, <code>__doc__</code>.
 </ol>
 <blockquote class='note compare perl5'>
@@ -225,28 +225,28 @@ SyntaxError: non-keyword arg after keyword arg</samp></pre>
 <h3 id=whatsanobject>Che cos'è un oggetto?</h3>
 <p>Ogni cosa in Python è un oggetto, e ogni cosa può possedere proprietà e metodi. Tutte le funzioni hanno una proprietà built-in <code>__doc__</code>, che restituisce la <var>docstring</var> definita nel codice sorgente della funzione. Il modulo <code>sys</code> è un oggetto che ha (tra le altre cose) una proprietà chiamata <var>path</var>. E così via.
 <p>Tuttavia, questo non risponde alla domanda fondamentale: che cos'è un oggetto? Linguaggi di programmazione differenti definiscono &#8220;oggetto&#8221; in modi differenti. In alcuni, significa che <em>tutti</em> gli oggetti <em>devono</em> avere proprietà e metodi; in altri, significa che tutti gli oggetti sono estendibili. In Python, la definizione è più lasca. Alcuni oggetti non hanno proprietà né metodi, <em>ma potrebbero averli</em>. Non tutti gli oggetti sono estendibili. Ma ogni cosa è un oggetto nel senso che può essere assegnata a una variabile o passata come argomento a una funzione.
-<p>Potreste aver udito il termine &#8220;oggetto di prima classe&#8221; in altri contesti legati alla programmazione. In Python, le funzioni sono <i>oggetti di prima classe</i>. Potete passare una funzione come argomento a un'altra funzione. I moduli sono <i>oggetti di prima classe</i>. Potete passare un intero modulo come argomento a una funzione. Le classi sono oggetti di prima classe, e anche le singole istanze di una classe sono oggetti di prima classe.
+<p>Potreste aver udito il termine &#8220;oggetto di prima classe&#8221; in altri contesti legati alla programmazione. In Python, le funzioni sono <i>oggetti di prima classe</i>. Potete passare una funzione come argomento a un'altra funzione. I moduli sono <i>oggetti di prima classe</i>. Potete passare un intero modulo come argomento a una funzione. Le classi sono oggetti di prima classe e anche le singole istanze di una classe sono oggetti di prima classe.
 <p>Questo concetto è importante, quindi lo ripeterò nel caso vi fosse sfuggito le prime volte: <em>ogni cosa in Python è un oggetto</em>. Le strighe sono oggetti. Le liste sono oggetti. Le funzioni sono oggetti. Le classi sono oggetti. Le istanze di una classe sono oggetti. Persino i moduli sono oggetti.
 
 <p class=a>&#x2042;
 
 <h2 id=indentingcode>Indentare il codice</h2>
-<p>Le funzioni Python non cominciano esplicitamente con <code>begin</code> né terminano con <code>end</code>, e non ci sono parentesi graffe a indicare dove il codice della funzione inizia e finisce. I due punti (<code>:</code>) e l'indentazione del codice stesso sono gli unici delimitatori.
-<pre class=pp><code><a>def approximate_size(size, a_kilobyte_is_1024_bytes=True):  <span class=u>&#x2460;</span></a>
-<a>    if size &lt; 0:                                            <span class=u>&#x2461;</span></a>
-<a>        raise ValueError('number must be non-negative')     <span class=u>&#x2462;</span></a>
-<a>                                                            <span class=u>&#x2463;</span></a>
+<p>Le funzioni Python non cominciano esplicitamente con <code>begin</code> né terminano con <code>end</code>, e non ci sono parentesi graffe a indicare dove il codice della funzione inizia e finisce. I due punti (<code>:</code>) e l'indentazione del codice sono gli unici delimitatori.
+<pre class=pp><code><a>def approximate_size(size, a_kilobyte_is_1024_bytes=True):      <span class=u>&#x2460;</span></a>
+<a>    if size &lt; 0:                                                <span class=u>&#x2461;</span></a>
+<a>        raise ValueError('il numero non deve essere negativo')  <span class=u>&#x2462;</span></a>
+<a>                                                                <span class=u>&#x2463;</span></a>
     multiple = 1024 if a_kilobyte_is_1024_bytes else 1000
-<a>    for suffix in SUFFIXES[multiple]:                       <span class=u>&#x2464;</span></a>
+<a>    for suffix in SUFFIXES[multiple]:                           <span class=u>&#x2464;</span></a>
         size /= multiple
         if size &lt; multiple:
             return '{0:.1f} {1}'.format(size, suffix)
 
-    raise ValueError('number too large')</code></pre>
+    raise ValueError('numero troppo grande')</code></pre>
 <ol>
-<li>I blocchi di codice sono definiti dalla loro indentazione. Per &#8220;blocco di codice&#8221; intendo funzioni, istruzioni <code>if</code>, cicli <code>for</code>, cicli <code>while</code>, e così via. La presenza di una indentazione comincia un blocco e la sua assenza lo termina. Non ci sono parentesi graffe, parentesi quadre, o parole chiave. Questo vuol dire che gli spazi bianchi hanno significato, e devono essere consistenti. In questo esempio, il codice della funzione è indentato di quattro spazi. Non è necessario che siano quattro spazi, c'è solo bisogno che l'indentazione sia consistente. La prima riga che non è indentata indica la fine della funzione.
-<li>In Python, una istruzione <code>if</code> è seguita da un blocco di codice. Se l'espressione di <code>if</code> viene valutata come vera, il blocco indentato viene eseguito, altrimenti si ricade nel blocco di <code>else</code> (se esiste). Notate la mancanza di parentesi attorno alla espressione.
-<li>Questa riga è dentro il blocco di codice dell'<code>if</code>. L'istruzione di <code>raise</code> solleverà una eccezione (di tipo <code>ValueError</code>), ma solo se <code>size &lt; 0</code>.
+<li>I blocchi di codice sono definiti dalla loro indentazione. Per &#8220;blocco di codice&#8221; intendo funzioni, istruzioni <code>if</code>, cicli <code>for</code>, cicli <code>while</code>, e così via. La presenza di un'indentazione comincia un blocco e la sua assenza lo termina. Non ci sono parentesi graffe, parentesi quadre, o parole chiave. Questo vuol dire che gli spazi bianchi sono significativi e devono essere consistenti. In questo esempio, il codice della funzione è indentato di quattro spazi. Non è necessario che siano quattro spazi, c'è solo bisogno che l'indentazione sia consistente. La prima riga che non è indentata indica la fine della funzione.
+<li>In Python, un'istruzione <code>if</code> è seguita da un blocco di codice. Se l'espressione di <code>if</code> viene valutata come vera, il blocco indentato viene eseguito, altrimenti si ricade nel blocco di <code>else</code> (se esiste). Notate la mancanza di parentesi attorno all'espressione.
+<li>Questa riga è dentro il blocco di codice dell'<code>if</code>. L'istruzione di <code>raise</code> solleverà un'eccezione (di tipo <code>ValueError</code>), ma solo se <code>size &lt; 0</code>.
 <li>Questa <em>non</em> è la fine della funzione. Le righe completamente vuote non vengono considerate. Possono rendere il codice più leggibile, ma non vengono usate per delimitare i blocchi. La funzione continua nella riga seguente.
 <li>Anche il ciclo <code>for</code> segnala l'inizio di un blocco di codice. I blocchi di codice possono contenere più righe, fino a quando esse sono indentate della stessa quantità. Questo ciclo <code>for</code> contiene tre righe di codice. Non c'è nessun'altra sintassi speciale per blocchi di codice su più righe. Indentate e andate avanti con la vostra vita.
 </ol>
@@ -261,9 +261,9 @@ SyntaxError: non-keyword arg after keyword arg</samp></pre>
 
 <p>Le eccezioni sono dappertutto in Python. Virtualmente ogni modulo nella libreria standard le usa e lo stesso interprete Python le solleverà in molte circostanze differenti. Le vedrete ripetutamente nel corso di questo libro.
 
-<p>Che cos'è un'eccezione? Di solito è un errore, un'indicazione che qualcosa è andata storta. (Non tutte le eccezioni sono errori, ma non preoccupatevi di questo per ora.) Alcuni linguaggi di programmazione incoraggiano l'uso di codici di erorre di ritorno, che <em>controllate</em>. Python incoraggia l'uso delle eccezioni, che <em>gestite</em>.
+<p>Che cos'è un'eccezione? Di solito è un errore, un'indicazione che qualcosa è andata storta. (Non tutte le eccezioni sono errori, ma non preoccupatevi di questo per ora.) Alcuni linguaggi di programmazione incoraggiano l'uso di codici di errore di ritorno, che vengono <em>controllati</em>. Python incoraggia l'uso delle eccezioni, che vengono <em>gestite</em>.
 
-<p>Quando avviene un errore nella Shell Python, vengono stampati alcuni dettagli sull'eccezione e su come è avvenuta, e questo è tutto. Questa viene chiamata eccezione <em>non gestita</em>. Quando l'eccezione è stata sollevata, non c'era alcun codice per notarla esplicitamente e affrontarla, quindi è gorgogliata in superficie fino al livello della Shell Python, che sputa fuori alcune informazinoi di debug e <span class=wtf>calls it a day</span>. Nella shell questo non è un grande problema, ma se questo accadesse mentre il vostro programma Python era in esecuzione, l'intero programma si bloccherebbe nel caso l'eccezione non venga gestita. Magari questo è ciò che volete, magari non lo è.
+<p>Quando avviene un errore nella Shell Python, vengono stampati alcuni dettagli sull'eccezione e su come è avvenuta, e questo è tutto. Questa viene chiamata un'eccezione <em>non gestita</em>. Quando l'eccezione è stata sollevata, non c'era alcun codice per notarla esplicitamente e affrontarla, quindi è gorgogliata in superficie fino al livello della Shell Python, che sputa fuori alcune informazioni di debug e considera finito il proprio lavoro. Nella shell questo non è un grande problema, ma se questo accadesse mentre il vostro programma Python è in esecuzione, l'intero programma si bloccherebbe nel caso l'eccezione non venga gestita. Magari questo è il comportamento che desiderate, magari non lo è.
 
 <blockquote class='note compare java'>
 <p><span class=u>&#x261E;</span>A differenza di Java, le funzioni Python non dichiarano quali eccezioni potrebbero sollevare. Sta a voi determinare quali possibili eccezioni avete bisogno di catturare.
@@ -278,17 +278,17 @@ SyntaxError: non-keyword arg after keyword arg</samp></pre>
 <p>La funzione <code>approximate_size()</code> solleva eccezioni in due casi differenti: se la variabile <var>size</var> passata contiene una dimensione più grande di quella che la funzione è progettata per gestire, o se contiene una dimensione inferiore a zero.
 
 <pre class='nd pp'><code>if size &lt; 0:
-    raise ValueError('number must be non-negative')</code></pre>
+    raise ValueError('il numero non deve essere negativo')</code></pre>
 
-<p>La sintassi per sollevare un'eccezione è abbastanza semplice. Usate l'istruzione <code>raise</code>, seguita dal nome dell'eccezione e da una stringa contenente un messaggio per scopi di debug. La sintassi ricorda quella dell'invocazione di una funzione. (In realtà, le eccezioni sono implementate come classi e questa istruzione <code>raise</code> crea effettivamente un'istanza della classe <code>ValueError</code> passando la stringa <code>'number must not be negative'</code> al suo metodo di inizializzazione. Ma <a href=iteratori.html#defining-classes>stiamo mettendo il carro avanti ai buoi</a>!)
+<p>La sintassi per sollevare un'eccezione è abbastanza semplice. Usate l'istruzione <code>raise</code>, seguita dal nome dell'eccezione e da una stringa contenente un messaggio per scopi di debug. La sintassi ricorda quella dell'invocazione di una funzione. (In realtà, le eccezioni sono implementate come classi e questa istruzione <code>raise</code> crea effettivamente un'istanza della classe <code>ValueError</code> passando la stringa <code>'il numero non deve essere negativo'</code> al suo metodo di inizializzazione. Ma <a href=iteratori.html#defining-classes>stiamo mettendo il carro avanti ai buoi</a>!)
 
 <blockquote class=note>
-<p><span class=u>&#x261E;</span>Non avete bisogno di gestire un'eccezione nella funzione che la solleva. Se una funzione non gestisce un'eccezione, l'eccezione viene passata alla funzione chiamante, poi alla funzione chiamante di quella funzione, e così via &#8220;fino alla cima dello stack di esecuzione.&#8221; Se l'eccezione non viene mai gestita, il vostro programma si bloccherà, Python stamperà una &#8220;traccia dello stack&#8221; sul canale di errore e le cose finiranno lì. Ancora una volta, forse questo è quello che volete; dipende da ciò che fa il vostro programma.
+<p><span class=u>&#x261E;</span>Non avete bisogno di gestire un'eccezione nella funzione che la solleva. Se una funzione non gestisce un'eccezione, l'eccezione viene passata alla funzione chiamante, poi alla funzione che ha chiamato quella funzione, e così via &#8220;fino alla cima dello stack di esecuzione&#8221;. Se l'eccezione non viene mai gestita, il vostro programma si bloccherà, Python stamperà una &#8220;traccia dello stack&#8221; sul canale di errore e le cose finiranno lì. Ancora una volta, forse questo è il comportamento che desiderate; dipende da ciò che fa il vostro programma.
 </blockquote>
 
 <h3 id=importerror>Catturare gli errori di importazione</h3>
 
-<p>Una delle eccezioni predefinite di Python è <code>ImportError</code>, che viene sollevata quando cercate di importare un modulo e fallite. Questo può succedere per una varietà di ragioni, ma il caso più semplice è quello in cui il modulo non esiste nel vostro <a href=#importsearchpath>percorso di ricerca per le importazioni</a>. Potete usare questo per includere funzionalità opzionali nel vostro programma. Per esempio, <a href=case-study-porting-chardet-to-python-3.html>la libreria <code>chardet</code></a> fornisce il riconoscimento automatico delle codifiche di carattere. Forse il vostro programma vuole usare questa libreria <em>se esiste</em>, ma continuare <span class=wtf>gracefully</span> se l'utente non l'ha installata. Potete fare questo con un blocco <code>try..except</code>.
+<p>Una delle eccezioni predefinite di Python è <code>ImportError</code>, che viene sollevata quando cercate di importare un modulo e l'operazione fallisce. Questo può succedere per una varietà di ragioni, ma il caso più semplice è quello in cui il modulo non esiste nel vostro <a href=#importsearchpath>percorso di ricerca per le importazioni</a>. Potete usare questa eccezione per includere funzionalità opzionali nel vostro programma. Per esempio, <a href=case-study-porting-chardet-to-python-3.html>la libreria <code>chardet</code></a> fornisce il riconoscimento automatico delle codifiche di carattere. Forse il vostro programma desidera usare questa libreria <em>se esiste</em>, ma continuare normalmente se l'utente non l'ha installata. Potete fare questo con un blocco <code>try..except</code>.
 
 <pre class='nd pp'><code><mark>try</mark>:
   import chardet
@@ -302,7 +302,7 @@ SyntaxError: non-keyword arg after keyword arg</samp></pre>
 else:
   # continua comunque</code></pre>
 
-<p>L'eccezione <code>ImportError</code> viene comunemente usata anche quando due moduli implementano una <abbr>API</abbr> comune, ma uno è più desiderabile dell'altro. (Magari è più veloce, o usa meno memoria.) Potete provare a importare un modulo ma ripiegare su un modulo differente se la prima importazione fallisce. Per esempio, <a href=xml.html>il capitolo su XML</a> parla di due moduli che implementano una <abbr>API</abbr> comune chiamata <code>ElementTree</code>. Il primo, <code>lxml</code>, è un modulo di terze parti che dovete scaricare e installare da voi. Il secondo, <code>xml.etree.ElementTree</code>, è più lento ma è parte della libreria standard di Python 3.
+<p>L'eccezione <code>ImportError</code> viene comunemente usata anche quando due moduli implementano una <abbr>API</abbr> comune, ma uno è più desiderabile dell'altro perché magari è più veloce o usa meno memoria. Potete provare a importare un modulo ma ripiegare su un modulo differente se la prima importazione fallisce. Per esempio, <a href=xml.html>il capitolo su XML</a> parla di due moduli che implementano una <abbr>API</abbr> comune chiamata <code>ElementTree</code>. Il primo, <code>lxml</code>, è un modulo di terze parti che dovete scaricare e installare da voi. Il secondo, <code>xml.etree.ElementTree</code>, è più lento ma è parte della libreria standard di Python 3.
 
 <pre class='nd pp'><code>try:
     from lxml import etree
@@ -317,7 +317,7 @@ except ImportError:
 
 <pre class='nd pp'><code>multiple = 1024 if a_kilobyte_is_1024_bytes else 1000</code></pre>
 
-<p>Non dichiarate mai la variabile <var>multiple</var>, ma le assegnate semplicemente un valore. Questo va bene, perché Python vi permette di farlo. Quello che Python <em>non</em> vi permette di fare è fare riferimento a una variabile a cui non è mai stato assegnato un valore. Il tentativo di fare questo solleverà un'eccezione di tipo <code>NameError</code>.
+<p>Non dichiarate mai la variabile <var>multiple</var>, ma le assegnate semplicemente un valore. Questo va bene, perché Python vi permette di farlo. Quello che Python <em>non</em> vi permette è fare riferimento a una variabile a cui non è mai stato assegnato un valore. Il tentativo di fare questo solleverà un'eccezione di tipo <code>NameError</code>.
 <pre class='nd screen'>
 <samp class=p>>>> </samp><kbd class=pp>x</kbd>
 <samp class=traceback>Traceback (most recent call last):
@@ -334,21 +334,21 @@ NameError: name 'x' is not defined</samp>
 <p>Tutti i nomi in Python sono sensibili alle maiuscole: nomi di variabile, nomi di funzione, nomi di classe, nomi di modulo, nomi di eccezione. Se potete ottenerlo, impostarlo, invocarlo, costruirlo, importarlo, o sollevarlo, allora è sensibile alle maiuscole.
 
 <pre class='nd screen'>
-<samp class=p>>>> </samp><kbd class=pp>un_intero = 1</kbd>
-<samp class=p>>>> </samp><kbd class=pp>un_intero</kbd>
+<samp class=p>>>> </samp><kbd class=pp>an_integer = 1</kbd>
+<samp class=p>>>> </samp><kbd class=pp>an_integer</kbd>
 <samp class=pp>1</samp>
-<samp class=p>>>> </samp><kbd>UN_INTERO</kbd>
+<samp class=p>>>> </samp><kbd>AN_INTEGER</kbd>
 <samp class=traceback>Traceback (most recent call last):
   File "&lt;stdin>", line 1, in &lt;module>
-NameError: name 'UN_INTERO' is not defined</samp>
-<samp class=p>>>> </samp><kbd>Un_Intero</kbd>
+NameError: name 'AN_INTEGER' is not defined</samp>
+<samp class=p>>>> </samp><kbd>An_Integer</kbd>
 <samp class=traceback>Traceback (most recent call last):
   File "&lt;stdin>", line 1, in &lt;module>
-NameError: name 'Un_Intero' is not defined</samp>
-<samp class=p>>>> </samp><kbd>un_inTero</kbd>
+NameError: name 'An_Integer' is not defined</samp>
+<samp class=p>>>> </samp><kbd>an_inteGer</kbd>
 <samp class=traceback>Traceback (most recent call last):
   File "&lt;stdin>", line 1, in &lt;module>
-NameError: name 'un_inTero' is not defined</samp>
+NameError: name 'an_inteGer' is not defined</samp>
 </pre>
 
 <p>E così via.
@@ -357,7 +357,7 @@ NameError: name 'un_inTero' is not defined</samp>
 
 <h2 id=runningscripts>Eseguire gli script</h2>
 <aside>Ogni cosa in Python è un oggetto.</aside>
-<p>I moduli Python sono oggetti e hanno diverse proprietà utili. Potete sfruttare questa caratteristica per collaudare facilmente i vostri moduli mentre li scrivete, includendo uno speciale blocco di codice che viene eseguito quando lanciate il file Python dalla linea di comando. Considerate le ultime righe di <code>humansize.py</code>:
+<p>I moduli Python sono oggetti e hanno diverse proprietà utili. Potete sfruttare questa caratteristica per collaudare facilmente i vostri moduli mentre li scrivete, includendo uno speciale blocco di codice che viene eseguito quando lanciate il file Python dalla riga di comando. Considerate le ultime righe di <code>humansize.py</code>:
 <pre class='nd pp'><code>
 if __name__ == '__main__':
     print(approximate_size(1000000000000, False))
@@ -370,7 +370,7 @@ if __name__ == '__main__':
 <samp class=p>>>> </samp><kbd class=pp>import humansize</kbd>
 <samp class=p>>>> </samp><kbd class=pp>humansize.__name__</kbd>
 <samp class=pp>'humansize'</samp></pre>
-<p>Ma potete anche eseguire direttamente il modulo come un programma a sé, nel qual caso <code>__name__</code> sarà lo speciale valore di default <code>__main__</code>. Nel nostro esempio, Python valuterà l'istruzione <code>if</code>, troverà una espressione vera, ed eseguirà il blocco di codice corrispondente. In questo caso, per stampare due valori.
+<p>Ma potete anche eseguire direttamente il modulo come un programma a sé, nel qual caso <code>__name__</code> sarà lo speciale valore di default <code>__main__</code>. Nel nostro esempio, Python valuterà l'istruzione <code>if</code>, troverà un'espressione vera ed eseguirà il blocco di codice corrispondente. In questo caso, per stampare due valori.
 <pre class='nd screen'>
 <samp class=p>c:\home\diveintopython3> </samp><kbd>c:\python31\python.exe humansize.py</kbd>
 <samp>1.0 TB
