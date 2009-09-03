@@ -29,19 +29,19 @@ body{counter-reset:h1 3}
 
 <h3 id=getcwd>La directory di lavoro corrente</h3>
 
-<p>Quando state appena cominciando a lavorare con Python, vi ritroverete a passare molto tempo nella <a href=installare-python.html#idle>Shell Python</a>. In tutto questo libro, vedrete esempi che si sviluppano in questo modo:
+<p>Se avete appena cominciato a lavorare con Python, vi ritroverete a passare molto tempo nella <a href=installare-python.html#idle>Shell Python</a>. In tutto il libro, vedrete esempi che si sviluppano nel modo seguente.
 
 <ol>
-<li>Importare uno dei moduli contenuti nella cartella <a href=esempi/><code>esempi</code></a>
-<li>Invocare una funzione in quel modulo
-<li>Spiegare il risultato
+<li>Uno dei moduli contenuti nella cartella <a href=esempi/><code>esempi</code></a> viene importato.
+<li>Si invoca una funzione appartenente a quel modulo.
+<li>Il risultato della funzione viene spiegato.
 </ol>
 
-<p>Se non conoscete la directory di lavoro corrente, il passo numero 1 probabilmente fallirà con un errore di tipo <code>ImportError</code>. Questo avviene perché Python cercherà il modulo di esempio nel <a href=il-vostro-primo-programma-python.html#importsearchpath>percorso di ricerca di importazione</a>, ma non lo troverà perché la cartella <code>esempi</code> non è una delle directory contenute nel percorso di ricerca. Per risolvere questo problema, potete fare una di due cose:
+<p>Se non conoscete la directory di lavoro corrente, il passo numero 1 probabilmente fallirà con un errore di tipo <code>ImportError</code>. Questo avviene perché Python cercherà il modulo di esempio nel <a href=il-vostro-primo-programma-python.html#importsearchpath>percorso di ricerca di importazione</a>, ma non lo troverà perché la cartella <code>esempi</code> non è una delle directory contenute nel percorso di ricerca. Per risolvere questo problema, potete fare una di due cose.
 
 <ol>
-<li>Aggiungere la cartella <code>esempi</code> al percorso di ricerca di importazione
-<li>Cambiare la directory di lavoro corrente alla cartella <code>esempi</code>
+<li>Aggiungere la cartella <code>esempi</code> al percorso di ricerca di importazione.
+<li>Cambiare la directory di lavoro corrente impostandola alla cartella <code>esempi</code>.
 </ol>
 
 <p>La directory di lavoro corrente è una proprietà invisibile che Python mantiene in memoria tutto il tempo. C'è sempre una directory di lavoro corrente, sia che vi troviate nella Shell Python, o che eseguiate il vostro programma Python dalla riga di comando, oppure che invochiate uno script <abbr>CGI</abbr> Python su un server web da qualche parte.
@@ -57,9 +57,9 @@ body{counter-reset:h1 3}
 <samp>C:\Users\pilgrim\diveintopython3\examples</samp></pre>
 <ol>
 <li>Il modulo <code>os</code> è incluso in Python, quindi potete importarlo ovunque e in ogni momento.
-<li>Usate la funzione <code>os.getcwd()</code> per ottenere la directory di lavoro corrente. Quando eseguite la Shell Python grafica, la directory di lavoro corrente viene impostata alla directory in cui si trova il file eseguibile della Shell Python. Sotto Windows, questa ubicazione dipende da dove avete installato Python; la directory di installazione predefinita è <code>c:\Python31</code>. Se eseguite la Shell Python dalla riga di comando, la directory di lavoro corrente viene impostata alla directory in cui vi trovavate quando avete invocato <code>python3</code>.
+<li>Usate la funzione <code>os.getcwd()</code> per ottenere la directory di lavoro corrente. Quando eseguite la Shell Python grafica, la directory di lavoro corrente viene impostata alla directory in cui si trova il file eseguibile della Shell Python. Sotto Windows, questa ubicazione dipende da dove avete installato Python; la directory di installazione predefinita è <code>C:\Python31</code>. Se eseguite la Shell Python dalla riga di comando, la directory di lavoro corrente viene impostata alla directory in cui vi trovavate quando avete invocato <code>python3</code>.
 <li>Usate la funzione <code>os.chdir()</code> per cambiare la directory di lavoro corrente.
-<li>Quando ho invocato la funzione <code>os.chdir()</code>, ho usato un percorso in stile Linux (con i caratteri di slash, senza la lettera del disco) anche se sono sotto Windows. Questo è uno dei posti in cui Python cerca di nascondere le differenze tra i sistemi operativi.
+<li>Quando ho invocato la funzione <code>os.chdir()</code>, ho usato un percorso in stile Linux (con i caratteri di slash, senza la lettera del disco) anche se sono sotto Windows. Questo è uno dei casi in cui Python cerca di nascondere le differenze tra i sistemi operativi.
 </ol>
 
 <h3 id=ospath>Lavorare con i nomi di file e directory</h3>
@@ -77,13 +77,13 @@ body{counter-reset:h1 3}
 <a><samp class=p>>>> </samp><kbd class=pp>print(os.path.join(os.path.expanduser('~'), 'diveintopython3', 'examples', 'humansize.py'))</kbd>  <span class=u>&#x2463;</span></a>
 <samp>c:\Users\pilgrim\diveintopython3\examples\humansize.py</samp></pre>
 <ol>
-<li>The <code>os.path.join()</code> function constructs a pathname out of one or more partial pathnames. In this case, it simply concatenates strings.
-<li>In this slightly less trivial case, <code>join</code> will add an extra slash to the pathname before joining it to the filename. It&#8217;s a backslash instead of a forward slash, because I constructed this example on Windows. If you replicate this example on Linux or Mac OS X, you&#8217;ll see a forward slash instead. Python can access the file regardless of what kind of slashes you use in the pathname.
-<li>The <code>os.path.expanduser()</code> function will expand a pathname that uses <code>~</code> to represent the current user&#8217;s home directory. This works on any platform where users have a home directory, including Linux, Mac OS X, and Windows. The returned path does not have a trailing slash, but the <code>os.path.join()</code> function doesn&#8217;t mind.
-<li>Combining these techniques, you can easily construct pathnames for directories and files in the user&#8217;s home directory. The <code>os.path.join()</code> function can take any number of arguments. I was overjoyed when I discovered this, since <code>addSlashIfNecessary()</code> is one of the stupid little functions I always need to write when building up my toolbox in a new language. <em>Do not</em> write this stupid little function in Python; smart people have already taken care of it for you.
+<li>La funzione <code>os.path.join()</code> construisce un nome di percorso a partire da uno o più nomi di percorso parziali. In questo caso, non fa altro che concatenare stringhe.
+<li>In questo caso leggermente meno elementare, <code>join</code> aggiungerà un carattere di slash aggiuntivo al nome di percorso prima di unirlo al nome del file. Il carattere è un backslash invece di uno slash, perché ho costruito questo esempio sotto Windows. Se replicate questo esempio sotto Linux o Mac OS X, vedrete uno slash. Python è in grado di accedere al file a prescindere da quale tipo di carattere di slash usate nel nome del percorso.
+<li>La funzione <code>os.path.expanduser()</code> espanderà un nome di percorso che usa il carattere <code>~</code> per rappresentare la directory personale dell'utente corrente. Questa operazione funziona su tutte le piattaforme dove gli utenti hanno una directory personale, comprese Linux, Mac OS X e Windows. Il percorso restituito non ha uno slash finale, ma la funzione <code>os.path.join()</code> non se ne preoccupa.
+<li>Combinando queste tecniche, potete facilmente costruire nomi di percorso per directory e file che si trovano nella directory personale dell'utente. La funzione <code>os.path.join()</code> può accettare un numero qualsiasi di argomenti. Ero felicissimo quando l'ho scoperto, perché <code>aggiungiSlashSeNecessario()</code> è una di quelle piccole funzioni stupide che mi tocca sempre di scrivere quando costruisco la mia cassetta degli attrezzi in un nuovo linguaggio. <em>Non</em> scrivete questa piccola funzione stupida in Python; persone intelligenti se ne sono già occupate per voi.
 </ol>
 
-<p><code>os.path</code> also contains functions to split full pathnames, directory names, and filenames into their constituent parts.
+<p>Il modulo <code>os.path</code> contiene anche funzioni per suddividere nomi di percorso completi, nomi di directory e nomi di file nelle loro parti costituenti.
 
 <pre class=screen>
 <samp class=p>>>> </samp><kbd class=pp>pathname = '/Users/pilgrim/diveintopython3/examples/humansize.py'</kbd>
@@ -100,16 +100,16 @@ body{counter-reset:h1 3}
 <samp class=p>>>> </samp><kbd class=pp>extension</kbd>
 <samp class=pp>'.py'</samp></pre>
 <ol>
-<li>La funzione <code>split</code> suddivide un percorso completo e restituisce una tupla contenente il percorso e il nome di file.
-<li>Ricordate quando ho detto che potevate usare un <a href=tipi-di-dato-nativi.html#multivar>assegnamento multi-variabile</a> per restituire molteplici valori da una funzione? La funzione <code>os.path.split()</code> fa esattamente questo. Se assegnate il valore restituito dalla funzione <code>split</code> a una tupla di due variabili, ogni variabile riceve il valore del corrsipondente elemento contenuto nella tupla restituita.
-<li>La prima variabile, <var>dirname</var>, riceve il primo elemento della tupla restituita dalla funzione <code>os.path.split()</code>, il percorso del file.
-<li>La seconda variabile, <var>filename</var>, riceve il valore del secondo elemento della tupla restituita dalla funzione <code>os.path.split()</code>, il nome del file.
+<li>La funzione <code>split()</code> suddivide un nome di percorso completo e restituisce una tupla contenente il percorso e il nome di file.
+<li>Ricordate quando ho detto che potevate usare un <a href=tipi-di-dato-nativi.html#multivar>assegnamento multi-variabile</a> per restituire molteplici valori da una funzione? La funzione <code>os.path.split()</code> fa esattamente questo. Se assegnate il valore restituito dalla funzione <code>split()</code> a una tupla di due variabili, ogni variabile riceve il valore del corrsipondente elemento contenuto nella tupla restituita.
+<li>La prima variabile, <var>dirname</var>, riceve il primo elemento della tupla restituita dalla funzione <code>os.path.split()</code>, cioè il percorso del file.
+<li>La seconda variabile, <var>filename</var>, riceve il valore del secondo elemento della tupla restituita dalla funzione <code>os.path.split()</code>, cioè il nome del file.
 <li>Il modulo <code>os.path</code> contiene anche la funzione <code>os.path.splitext()</code>, che suddivide un nome di file e restituisce una tupla contenente il nome del file e l'estensione del file. Potete usare la tecnica già vista per assegnare ogni valore a variabili separate.
 </ol>
 
 <h3 id=glob>Elencare il contenuto delle directory</h3>
 
-<p>Il modulo <code>glob</code> è un altro strumento incluso nella libreria standard di Python. Vi fornisce un modo facile per ottenere programmaticamente il contenuto di una directory e usa quel tipo di simboli (chiamati wildcard) che potreste aver già visto lavorando sulla riga di comando.
+<p>Il modulo <code>glob</code> è un altro strumento incluso nella libreria standard di Python. Vi fornisce un modo facile per ottenere programmaticamente il contenuto di una directory e usa quella serie di caratteri chiamati wildcard che potreste aver già visto lavorando sulla riga di comando.
 
 <pre class=screen>
 <samp class=p>>>> </samp><kbd class=pp>os.chdir('/Users/pilgrim/diveintopython3/')</kbd>
@@ -139,8 +139,8 @@ body{counter-reset:h1 3}
  'romantest9.py']</samp></pre>
 <ol>
 <li>Il modulo <code>glob</code> prende una wildcard e restituisce il percorso di tutti i file e le directory che corrispondono alla wildcard. In questo esempio, la wildcard è un percorso di directory più &#8220;<code>*.xml</code>&#8221;, che corrisponde a tutti i file <code>.xml</code> nella sottodirectory <code>examples</code>.
-<li>Ora cambiamo la directory di lavoro corrente alla sottodirectory <code>examples</code>. La funzione <code>os.chdir()</code> può accettare nomi di percorso relativi.
-<li>Potete includere molteplici wildcard nel vostro pattern di tipo glob. Questo esempio trova tutti i file nella directory di lavoro corrente che terminano con l'estensione <code>.py</code> e contengono la parola <code>test</code> in qualche parte del loro nome.
+<li>Ora impostiamo la directory di lavoro corrente alla sottodirectory <code>examples</code>. La funzione <code>os.chdir()</code> può accettare nomi di percorso relativi.
+<li>Potete includere molteplici wildcard nel vostro pattern di tipo glob. Questo esempio trova tutti i file nella directory di lavoro corrente che terminano con l'estensione <code>.py</code> e contengono la parola <code>test</code> da qualche parte nel loro nome.
 </ol>
 
 <h3 id=osstat>Ottenere metadati sui file</h3>
@@ -181,7 +181,7 @@ body{counter-reset:h1 3}
 
 <h3 id=abspath>Costruire nomi di percorso assoluti</h3>
 
-<p>Nella <a href=#osstat>sezione precedente</a>, avete visto come la funzione <code>glob.glob()</code> restituisca una lista di nomi di percorso relativi. Il primo esempio mostrava nomi di percorso come <code>'examples\feed.xml'</code> e il secondo esempio mostrava nomi di percorso relativi ancora più brevi come <code>'romantest1.py'</code>. Fino a quando rimanete nella stessa directory di lavoro corrente, questi nomi di percorso relativi funzioneranno per aprire file od ottenere metadati sui file. Ma se volete costruire un nome di percorso assoluto&nbsp;&mdash;&nbsp;cioè uno che includa i nomi di tutte le directory fino alla directory radice o alla lettera del disco&nbsp;&mdash;&nbsp;allora avrete bisogno della funzione <code>os.path.realpath()</code>.
+<p>Nella <a href=#osstat>sezione precedente</a> avete visto come la funzione <code>glob.glob()</code> restituisca una lista di nomi di percorso relativi. Il primo esempio mostrava nomi di percorso come <code>'examples\feed.xml'</code> e il secondo esempio mostrava nomi di percorso relativi ancora più brevi come <code>'romantest1.py'</code>. Fino a quando rimanete nella stessa directory di lavoro corrente, questi nomi di percorso relativi funzioneranno per aprire file e ottenere metadati sui file. Ma se volete costruire un nome di percorso assoluto&nbsp;&mdash;&nbsp;cioè uno che includa i nomi di tutte le directory fino alla directory radice o alla lettera del disco&nbsp;&mdash;&nbsp;allora avrete bisogno della funzione <code>os.path.realpath()</code>.
 
 <pre class=screen>
 <samp class=p>>>> </samp><kbd class=pp>import os</kbd>
@@ -204,7 +204,7 @@ body{counter-reset:h1 3}
 <samp class=p>>>> </samp><kbd>a_list</kbd>
 <samp class=pp>[2, 18, 16, 8]</samp></pre>
 <ol>
-<li>Per capire il senso di questo, esaminatelo da destra verso sinistra. <var>a_list</var> è la lista di partenza. L'interprete Python percorre <var>a_list</var> un elemento alla volta, assegnando temporaneamente il valore di ogni elemento alla variabile <var>elem</var>. Poi, Python applica la funzione <code><var>elem</var> * 2</code> e aggiunge quel risultato in coda alla lista restituita.
+<li>Per capire il senso di questa espressione, esaminatela da destra verso sinistra. <var>a_list</var> è la lista di partenza. L'interprete Python percorre <var>a_list</var> un elemento alla volta, assegnando temporaneamente il valore di ogni elemento alla variabile <var>elem</var>. Poi, Python applica la funzione <code><var>elem</var> * 2</code> e aggiunge quel risultato in coda alla lista restituita.
 <li>Una descrizione di lista crea una nuova lista e non modifica la lista originale.
 <li>Assegnare il risultato di una descrizione di lista alla variabile che contiene la lista di partenza non crea problemi. Python costruisce la nuova lista in memoria e quando la descrizione di lista è completa ne assegna il risultato alla variabile originale.
 </ol>
@@ -238,10 +238,10 @@ body{counter-reset:h1 3}
  'romantest9.py']</samp>
 </pre>
 <ol>
-<li>Per filtrare una lista, potete includere una clausola <code>if</code> alla fine della descrizione di lista. L'espressione dopo la parola chiave <code>if</code> verrà valutata per ogni elemento della lista. Se l'espressione viene valutata a <code>True</code>, l'elemento verrà incluso nel risultato. Questa descrizione di lista esamina la lista di tutti i file <code>.py</code> nella directory corrente e l'espressione <code>if</code> filtra quella lista controllando se la dimensione di ogni file è più grande di <code>6000</code> byte. Ci sono sei file con questa caratteristica, quindi la descrizione di lista restituisce una lista di sei nomi di file.
+<li>Per filtrare una lista, potete includere una clausola <code>if</code> in fondo alla descrizione di lista. L'espressione dopo la parola chiave <code>if</code> verrà valutata per ogni elemento della lista. Se l'espressione viene valutata a <code>True</code>, l'elemento verrà incluso nel risultato. Questa descrizione di lista esamina la lista di tutti i file <code>.py</code> nella directory corrente e l'espressione <code>if</code> filtra quella lista controllando se la dimensione di ogni file è più grande di <code>6000</code> byte. Ci sono sei file con questa caratteristica, quindi la descrizione di lista restituisce una lista di sei nomi di file.
 </ol>
 
-<p>Tutti gli esempi di descrizioni di liste visti finora hanno utilizzato espressioni semplici&nbsp;&mdash;&nbsp;moltiplica un numero per una costante, invoca una singola funzione, o semplicemente restituisci gli elementi della lista originale (dopo averli filtrati). Ma non c'è alcun limite alla complessità delle descrizioni di lista.
+<p>Tutti gli esempi di descrizioni di lista visti finora hanno utilizzato espressioni semplici&nbsp;&mdash;&nbsp;moltiplica un numero per una costante, invoca una singola funzione, o semplicemente restituisci gli elementi della lista originale (dopo averli filtrati). Ma non c'è alcun limite alla complessità delle descrizioni di lista.
 
 <pre class=screen>
 <samp class=p>>>> </samp><kbd class=pp>import os, glob</kbd>
@@ -284,12 +284,12 @@ body{counter-reset:h1 3}
 <a><samp class=p>>>> </samp><kbd class=pp>metadata_dict['alphameticstest.py'].st_size</kbd>                     <span class=u>&#x2465;</span></a>
 <samp class=pp>2509</samp></pre>
 <ol>
-<li>Questa non è una descrizione di dizionario, ma una <a href=#listcomprehension>descrizione di lista</a>. Trova tutti i file <code>.py</code> il cui nome contiene <code>test</code>, poi costruisce una tupla contenente il nome del file e i metadati del file (invocando la funzione <code>os.stat()</code>).
+<li>Questa non è una descrizione di dizionario, ma una <a href=#listcomprehension>descrizione di lista</a>. Trova tutti i file <code>.py</code> il cui nome contiene la parola <code>test</code>, poi costruisce una tupla contenente il nome del file e i metadati del file (invocando la funzione <code>os.stat()</code>).
 <li>Ogni elemento della lista risultante è una tupla.
 <li>Questa è una descrizione di dizionario. La sintassi è simile a quella per una descrizione di lista, con due differenze. Primo, è racchiusa tra parentesi graffe invece di parentesi quadre. Secondo, invece di una singola espressione per ogni elemento, contiene due espressioni separate da un carattere di due punti. L'espressione prima dei due punti (<code>f</code> in questo esempio) è la chiave del dizionario, l'espressione dopo i due punti (<code>os.stat(f)</code> in questo esempio) è il valore.
 <li>Una descrizione di dizionario restituisce un dizionario.
 <li>Le chiavi di questo particolare dizionario sono semplicemente i nomi di file restituiti dall'invocazione di <code>glob.glob('*test*.py')</code>.
-<li>Il valore associato con ogni chiave è il valore restituito dalla funzione <code>os.stat()</code>. Questo significa che possiamo &#8220;cercare&#8221; un file tramite il nome per ottenere i suoi metadati. Una delle parti dei metadati è <code>st_size</code>, la dimensione del file. Il file <code>alphameticstest.py</code> è lungo <code>2509</code> byte.
+<li>Il valore associato a ogni chiave è il valore restituito dalla funzione <code>os.stat()</code>. Questo significa che possiamo &#8220;cercare&#8221; un file tramite il nome per ottenere i suoi metadati. Una delle parti dei metadati è <code>st_size</code>, la dimensione del file. Il file <code>alphameticstest.py</code> è lungo <code>2509</code> byte.
 </ol>
 
 <p>Come con le descrizioni di lista, potete includere una clausola <code>if</code> in una descrizione di dizionario per filtrare la sequenza in ingresso sulla base di un'espressione che viene valutata per ogni elemento.
@@ -310,7 +310,7 @@ body{counter-reset:h1 3}
 
 <h3 id=stupiddicttricks>Altra roba divertente da fare con le descrizioni di dizionario</h3>
 
-<p>Ecco un trucco con le descrizioni di dizionario che un giorno potrebbe esservi utile: scambiare le chiavi e i valori di un dizionario.
+<p>Ecco un trucco da usare con le descrizioni di dizionario che un giorno potrebbe esservi utile: scambiare le chiavi e i valori di un dizionario.
 
 <pre class=screen>
 <samp class=p>>>> </samp><kbd class=pp>a_dict = {'a': 1, 'b': 2, 'c': 3}</kbd>
