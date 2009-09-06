@@ -718,9 +718,9 @@ class FieldStorage:
 
 <h2 id=context-managers>Classi che possono essere usate in un blocco <code>with</code></h2>
 
-<p>Python 3 supporta l'istruzione <code>with</code>, che vi permette di accedere alle proprietà e ai metodi di un oggetto senza riferirvi esplicitamente all'oggetto per ogni accesso. Un blocco <code>with</code> definisce un <a href=http://www.python.org/doc/3.1/library/stdtypes.html#typecontextmanager>contesto a tempo di esecuzione</a>; voi &#8220;entrate&#8221; nel contesto quando l'istruzione <code>with</code> viene eseguita, e &#8220;uscite&#8221; dal contesto dopo che l'ultima istruzione nel blocco è stata eseguita.
+<p>Python 3 supporta l'istruzione <code>with</code>, che vi permette di accedere alle proprietà e ai metodi di un oggetto senza riferirvi esplicitamente all'oggetto per ogni accesso. Un blocco <code>with</code> definisce un <a href=http://www.python.org/doc/3.1/library/stdtypes.html#typecontextmanager>contesto di esecuzione</a>; voi &#8220;entrate&#8221; nel contesto quando l'istruzione <code>with</code> viene eseguita, e &#8220;uscite&#8221; dal contesto dopo che l'ultima istruzione nel blocco è stata eseguita.
 
-<p>Qualsiasi classe può essere usata in un blocco <code>with</code>; non è richiesto alcun metodo speciale. L'interprete Python creerà il contesto a tempo di esecuzione e inoltrerà alla vostra classe tutti gli accessi alle proprietà e le chiamate ai metodi. Comunque, se volete che la vostra classe faccia qualcosa di particolare quando entra o esce da un contesto a tempo di esecuzione, potete definire i metodi speciali che seguono.
+<p>Qualsiasi classe può essere usata in un blocco <code>with</code>; non è richiesto alcun metodo speciale. L'interprete Python creerà il contesto di esecuzione e inoltrerà alla vostra classe tutti gli accessi alle proprietà e le chiamate ai metodi. Comunque, se volete che la vostra classe faccia qualcosa di particolare quando entra o esce da un contesto di esecuzione, potete definire i metodi speciali che seguono.
 
 <table>
 <tr><th>Note
