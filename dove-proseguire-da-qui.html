@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<head>
+<meta charset=utf-8>
+<title>Dove proseguire da qui - Dive into Python 3</title>
+<!--[if IE]><script src=j/html5.js></script><![endif]-->
+<link rel=stylesheet href=dip3.css>
+<link rel=stylesheet href=dip3-it.css>
+<style>
+h1:before{counter-increment:h1;content:'Appendix C. '}
+h2:before{counter-increment:h2;content:'C.' counter(h2) '. '}
+h3:before{counter-increment:h3;content:'C.' counter(h2) '.' counter(h3) '. '}
+</style>
+<link rel=stylesheet media='only screen and (max-device-width: 480px)' href=mobile.css>
+<link rel=stylesheet media=print href=print.css>
+<meta name=viewport content='initial-scale=1.0'>
+</head>
+<form action=http://www.google.com/cse><div><input type=hidden name=cx value=014021643941856155761:l5eihuescdw><input type=hidden name=ie value=UTF-8>&nbsp;<input type=search name=q size=25>&nbsp;<input type=submit name=sa value=Search></div></form>
+<p>Voi siete qui: <a href=index.html>Home</a> <span class=u>&#8227;</span> <a href=table-of-contents.html#where-to-go-from-here>Dive Into Python 3</a> <span class=u>&#8227;</span>
+<h1>Dove proseguire da qui</h1>
+<blockquote class=q>
+<p><span class=u>&#x275D;</span> Go forth on your path, as it exists only through your walking. <span class=u>&#x275E;</span><br>&mdash; St. Augustine of Hippo (attributed)
+</blockquote>
+<p id=toc>&nbsp;
+<h2 id=things-to-read>Cose da leggere</h2>
+<p class=f>Ci sono diversi argomenti che ho deciso di non trattare in questo libro, ma per i quali esistono tutorial liberamente disponibili online. (Tutte le risorse sono disponibili in lingua inglese.)
+
+<p>Decoratori:
+
+<ul>
+<li><a href=http://programmingbits.pythonblogs.com/27_programmingbits/archive/50_function_decorators.html>Decoratori di funzione</a> di Ariel Ortiz
+<li><a href=http://programmingbits.pythonblogs.com/27_programmingbits/archive/51_more_on_function_decorators.html>Ulteriori informazioni sui decoratori di funzione</a> di Ariel Ortiz
+<li><a href=http://www.ibm.com/developerworks/linux/library/l-cpdecor.html><span class=wtf>Charming Python</span>: i decoratori facilitano la magia</a> di David Mertz
+<li><a href=http://docs.python.org/reference/compound_stmts.html#function>Le definizioni di funzione</a> nella documentazione ufficiale di Python
+</ul>
+
+<p>Proprietà:
+
+<ul>
+<li><a href=http://adam.gomaa.us/blog/2008/aug/11/the-python-property-builtin/>La funzione predefinita <code>property</code> di Python</a> di Adam Gomaa
+<li><a href=http://tomayko.com/writings/getters-setters-fuxors class=wtf>Getters/Setters/Fuxors</a> di Ryan Tomayko
+<li><a href=http://docs.python.org/library/functions.html#property>La funzione <code>property()</code></a> nella documentazione ufficiale di Python
+</ul>
+
+<p>Descrittori:
+
+<ul>
+<li><a href=http://users.rcn.com/python/download/Descriptor.htm><span class=wtf>How-To</span> guida per i descrittori</a> di Raymond Hettinger
+<li><a href=http://www.ibm.com/developerworks/linux/library/l-python-elegance-2.html><span class=wtf>Charming Python</span>: l'eleganza e le imperfezioni di Python, parte 2</a> di David Mertz
+<li><a href='http://www.informit.com/articles/printerfriendly.aspx?p=1309289'>I descrittori Python</a> di Mark Summerfield
+<li><a href=http://docs.python.org/3.1/reference/datamodel.html#invoking-descriptors>Invocare i descrittori</a> nella documentazione ufficiale di Python
+</ul>
+
+<p>Uso di thread <i class=baa>&amp;</i> processi:</p>
+
+<ul>
+<li><a href=http://docs.python.org/3.1/library/threading.html>Il modulo <code>threading</code></a>
+<li><a href=http://www.doughellmann.com/PyMOTW/threading/><code>threading</code>&nbsp;&mdash;&nbsp;Gestire thread concorrenti</a>
+<li><a href=http://docs.python.org/3.1/library/multiprocessing.html>Il modulo <code>multiprocessing</code></a>
+<li><a href=http://www.doughellmann.com/PyMOTW/multiprocessing/><code>multiprocessing</code>&nbsp;&mdash;&nbsp;Gestire i processi come i thread</a>
+<li><a href=http://jessenoller.com/2009/02/01/python-threads-and-the-global-interpreter-lock/>I thread Python e il Global Interpreter Lock</a> (letteralmente, Blocco Globale dell'Interprete) di Jesse Noller
+<li><a href=http://blip.tv/file/2232410>Dentro al <abbr>GIL</abbr> di Python (video)</a> di David Beazley
+</ul>
+
+<p>Metaclassi:
+
+<ul>
+<li><a href=http://www.ibm.com/developerworks/linux/library/l-pymeta.html>La programmazione con le metaclassi in Python</a> di David Mertz e Michele Simionato
+<li><a href=http://www.ibm.com/developerworks/linux/library/l-pymeta2/>La programmazione con le metaclassi in Python, parte 2</a> di David Mertz e Michele Simionato
+<li><a href=http://www.ibm.com/developerworks/linux/library/l-pymeta3.html>La programmazione con le metaclassi in Python, parte 3</a> di David Mertz e Michele Simionato
+</ul>
+
+<p><a href=http://www.doughellmann.com/PyMOTW/contents.html>Il modulo Python della settimana</a>, infine, è un sito gestito da Doug Hellman che si rivela essere una guida fantastica a molti dei moduli contenuti nella libreria standard di Python.
+
+<h2 id=code>Dove cercare codice compatibile con Python 3</h2>
+
+<p>Dato che Python 3 è relativamente nuovo, c'è una certa scarsità di librerie compatibili. Ecco alcuni dei posti dove cercare codice che funziona con Python 3.
+
+<ul>
+<li><a href='http://pypi.python.org/pypi?:action=browse&amp;c=533&amp;show=all'>Indice dei Pacchetti Python: lista dei pacchetti per Python 3</a>
+<li><a href='http://code.activestate.com/recipes/langs/python/tags/python3/'>Ricettario di Python: lista delle ricette etichettate &#8220;python3&#8221;</a>
+<li><a href='http://code.google.com/hosting/search?q=label:python3'><span class=wtf>Google Project Hosting</span>: lista dei progetti etichettati &#8220;python3&#8221;</a>
+<li><a href='http://sourceforge.net/search/?words=%22python+3%22'>SourceForge: lista dei progetti che corrispondono a &#8220;Python 3&#8221;</a>
+<li><a href='http://github.com/search?type=Repositories&amp;language=python&amp;q=python3'>GitHub: lista dei progetti che corrispondono a &#8220;python3&#8221;</a> (e <a href='http://github.com/search?type=Repositories&amp;language=python&amp;q=python+3'>lista dei progetti che corrispondono a &#8220;python 3&#8221;</a>)
+<li><a href='http://bitbucket.org/repo/all/?name=python3'>BitBucket: lista dei progetti che corrispondono a &#8220;python3&#8221;</a> (e <a href='http://bitbucket.org/repo/all/?name=python+3'>quelli che corrispondono a  &#8220;python 3&#8221;</a>)
+</ul>
+
+<p class=v><a rel=prev href=nomi-dei-metodi-speciali.html title='indietro a &#8220;Nomi dei metodi speciali&#8221;'><span class=u>&#x261C;</span></a> <a href=informazioni-sul-libro.html rel=next><span class=u>&#x261E;</span></a>
+
+<p class=c>&copy; 2001&ndash;9 <a href=informazioni-sul-libro.html>Mark Pilgrim</a><br>
+&copy; 2009 <a href=informazioni-sulla-traduzione.html>Giulio Piancastelli</a> per la traduzione italiana
+<script src=j/jquery.js></script>
+<script src=j/dip3.js></script>
