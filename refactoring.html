@@ -46,7 +46,7 @@ body{counter-reset:h1 10}
 <p>Dato che il vostro codice ha un bug e ora avete un test che verifica quel bug, il test fallirà:
 
 <pre class='nd screen'>
-<samp class=p>you@localhost:~/diveintopython3/examples$ </samp><kbd>python3 romantest8.py -v</kbd>
+<samp class=p>you@localhost:~/diveintopython3/esempi$ </samp><kbd>python3 romantest8.py -v</kbd>
 <samp>from_roman dovrebbe fallire con una stringa vuota ... FAIL
 from_roman dovrebbe fallire con antecedenti malformati ... ok
 from_roman dovrebbe fallire con coppie di cifre ripetute ... ok
@@ -94,7 +94,7 @@ FAILED (failures=1)</samp></pre>
 </ol>
 
 <pre class=screen>
-<samp class=p>you@localhost:~/diveintopython3/examples$ </samp><kbd>python3 romantest8.py -v</kbd>
+<samp class=p>you@localhost:~/diveintopython3/esempi$ </samp><kbd>python3 romantest8.py -v</kbd>
 <a><samp>from_roman dovrebbe fallire con una stringa vuota ... ok</samp>  <span class=u>&#x2460;</span></a>
 <samp>from_roman dovrebbe fallire con antecedenti malformati ... ok
 from_roman dovrebbe fallire con coppie di cifre ripetute ... ok
@@ -125,7 +125,7 @@ Ran 11 tests in 0.156s
 
 <p>Supponete, per esempio, di volere espandere l'intervallo dei numeri romani gestito dalle funzioni di conversione. Normalmente, nessun carattere in un numero romano può essere ripetuto più di tre volte di seguito. Ma i Romani erano disposti a fare uno strappo a quella regola per poter rappresentare <code>4000</code> con 4 <code>M</code> di seguito. Se fate questa modifica, sarete in grado di allargare l'intervallo di numeri convertibili da <code>1..3999</code> a <code>1..4999</code>. Ma prima è necessario fare alcuni cambiamenti ai vostri test.
 
-<p class=d>[<a href=examples/roman8.py>scarica <code>roman8.py</code></a>]
+<p class=d>[<a href=esempi/roman8.py>scarica <code>roman8.py</code></a>]
 <pre class=pp><code>class KnownValues(unittest.TestCase):
     known_values = ( (1, 'I'),
                       .
@@ -173,7 +173,7 @@ class RoundtripCheck(unittest.TestCase):
 <p>Ora i vostri test sono aggiornati rispetto ai nuovi requisiti, ma il vostro codice non lo è, quindi quando li eseguite aspettatevi diversi fallimenti.
 
 <pre class=screen>
-<samp class=p>you@localhost:~/diveintopython3/examples$ </samp><kbd>python3 romantest9.py -v</kbd>
+<samp class=p>you@localhost:~/diveintopython3/esempi$ </samp><kbd>python3 romantest9.py -v</kbd>
 <samp>from_roman dovrebbe fallire con una stringa vuota ... ok
 from_roman dovrebbe fallire con antecedenti malformati ... ok
 from_roman dovrebbe fallire con ingressi diversi da stringhe ... ok
@@ -193,7 +193,7 @@ ERROR: from_roman dovrebbe dare un risultato noto con un ingresso noto
 Traceback (most recent call last):
   File "romantest9.py", line 82, in test_from_roman_known_values
     result = roman9.from_roman(numeral)
-  File "C:\home\diveintopython3\examples\roman9.py", line 60, in from_roman
+  File "C:\home\diveintopython3\esempi\roman9.py", line 60, in from_roman
     raise InvalidRomanNumeralError('Numero romano non valido: {0}'.format(s))
 <mark>roman9.InvalidRomanNumeralError: Numero romano non valido: MMMM</mark>
 
@@ -203,7 +203,7 @@ ERROR: to_roman dovrebbe dare un risultato noto con un ingresso noto
 Traceback (most recent call last):
   File "romantest9.py", line 76, in test_to_roman_known_values
     result = roman9.to_roman(integer)
-  File "C:\home\diveintopython3\examples\roman9.py", line 42, in to_roman
+  File "C:\home\diveintopython3\esempi\roman9.py", line 42, in to_roman
     raise OutOfRangeError("numero fuori dall'intervallo (deve essere tra 1 e 3999)")
 <mark>roman9.OutOfRangeError: numero fuori dall'intervallo (deve essere tra 1 e 3999)</mark>
 
@@ -213,7 +213,7 @@ ERROR: from_roman(to_roman(n))==n per tutti gli n
 Traceback (most recent call last):
   File "romantest9.py", line 131, in testSanity
     numeral = roman9.to_roman(integer)
-  File "C:\home\diveintopython3\examples\roman9.py", line 42, in to_roman
+  File "C:\home\diveintopython3\esempi\roman9.py", line 42, in to_roman
     raise OutOfRangeError("numero fuori dall'intervallo (deve essere tra 1 e 3999)")
 <mark>roman9.OutOfRangeError: numero fuori dall'intervallo (deve essere tra 1 e 3999)</mark>
 
@@ -268,7 +268,7 @@ def from_roman(s):
 <p>Potreste non essere convinti che questi due piccoli cambiamenti siano tutto ciò di cui avete bisogno. Ehi, non siete obbligati a fidarvi della mia parola: controllate voi stessi.
 
 <pre class='nd screen'>
-<samp class=p>you@localhost:~/diveintopython3/examples$ </samp><kbd>python3 romantest9.py -v</kbd>
+<samp class=p>you@localhost:~/diveintopython3/esempi$ </samp><kbd>python3 romantest9.py -v</kbd>
 <samp>from_roman dovrebbe fallire con una stringa vuota ... ok
 from_roman dovrebbe fallire con antecedenti malformati ... ok
 from_roman dovrebbe fallire con ingressi diversi da stringhe ... ok
@@ -427,7 +427,7 @@ def from_roman(s):
 <p>Ma funziona? Certo che sì, sì che funziona. E posso dimostrarlo.
 
 <pre class=screen>
-<samp class=p>you@localhost:~/diveintopython3/examples$ </samp><kbd>python3 romantest10.py -v</kbd>
+<samp class=p>you@localhost:~/diveintopython3/esempi$ </samp><kbd>python3 romantest10.py -v</kbd>
 <samp>from_roman dovrebbe fallire con una stringa vuota ... ok
 from_roman dovrebbe fallire con antecedenti malformati ... ok
 from_roman dovrebbe fallire con ingressi diversi da stringhe ... ok
