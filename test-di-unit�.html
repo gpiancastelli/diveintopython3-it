@@ -147,7 +147,7 @@ def to_roman(n):
 </ol>
 <p>Per lanciare i test, eseguite <code>romantest1.py</code> dalla linea di comando. Se chiamate lo script con l'opzione <code>-v</code>, le informazioni visualizzate saranno più verbose in modo che possiate vedere esattamente cosa succede quando ogni test viene eseguito. Con ogni probabilità, il risultato della vostra esecuzione dovrebbe somigliare a questo:
 <pre class=screen>
-<samp class=p>you@localhost:~/diveintopython3/examples$ </samp><kbd>python3 romantest1.py -v</kbd>
+<samp class=p>you@localhost:~/diveintopython3/esempi$ </samp><kbd>python3 romantest1.py -v</kbd>
 <a><samp>test_to_roman_known_values (__main__.KnownValues)</samp>                       <span class=u>&#x2460;</span></a>
 <a><samp>to_roman dovrebbe dare un risultato noto con un ingresso noto ... FAIL</samp>  <span class=u>&#x2461;</span></a>
 <samp>
@@ -216,7 +216,7 @@ sottraggo 4 dal numero in ingresso, aggiungo IV al risultato
 'MCDXXIV'</samp></pre>
 <p>Quindi la funzione <code>to_roman()</code> sembra funzionare, almeno in questo controllo manuale. Ma passerà il test che avete scritto?
 <pre class='nd screen'>
-<samp class=p>you@localhost:~/diveintopython3/examples$ </samp><kbd>python3 romantest1.py -v</kbd>
+<samp class=p>you@localhost:~/diveintopython3/esempi$ </samp><kbd>python3 romantest1.py -v</kbd>
 <samp>test_to_roman_known_values (__main__.KnownValues)
 <a>to_roman dovrebbe dare un risultato noto con un ingresso noto ... ok    <span class=u>&#x2460;</span></a>
 
@@ -264,7 +264,7 @@ OK</samp></pre>
 <p>Notate anche che state passando la funzione <code>to_roman()</code> stessa come un argomento; non la state invocando e non ne state passando il nome sotto forma di stringa. Ho recentemente menzionato quant'è comodo che <a href=il-vostro-primo-programma-python.html#everythingisanobject>ogni cosa in Python sia un oggetto</a>?
 <p>Quindi cosa succede quando lanciate la serie di test con questo nuovo test?
 <pre class=screen>
-<samp class=p>you@localhost:~/diveintopython3/examples$ </samp><kbd>python3 romantest2.py -v</kbd>
+<samp class=p>you@localhost:~/diveintopython3/esempi$ </samp><kbd>python3 romantest2.py -v</kbd>
 <samp>test_to_roman_known_values (__main__.KnownValues)
 to_roman dovrebbe dare un risultato noto con un ingresso noto ... ok
 test_too_large (__main__.ToRomanBadInput)
@@ -295,7 +295,7 @@ FAILED (errors=1)</samp></pre>
 </ol>
 <p>Ora lanciate nuovamente la serie di test.
 <pre class=screen>
-<samp class=p>you@localhost:~/diveintopython3/examples$ </samp><kbd>python3 romantest2.py -v</kbd>
+<samp class=p>you@localhost:~/diveintopython3/esempi$ </samp><kbd>python3 romantest2.py -v</kbd>
 <samp>test_to_roman_known_values (__main__.KnownValues)
 to_roman dovrebbe dare un risultato noto con un ingresso noto ... ok
 test_too_large (__main__.ToRomanBadInput)
@@ -335,7 +335,7 @@ FAILED (failures=1)</samp></pre>
 </ol>
 <p>Questo fa passare il test? Scopriamolo.
 <pre class=screen>
-<samp class=p>you@localhost:~/diveintopython3/examples$ </samp><kbd>python3 romantest2.py -v</kbd>
+<samp class=p>you@localhost:~/diveintopython3/esempi$ </samp><kbd>python3 romantest2.py -v</kbd>
 <samp>test_to_roman_known_values (__main__.KnownValues)
 to_roman dovrebbe dare un risultato noto con un ingresso noto ... ok
 test_too_large (__main__.ToRomanBadInput)
@@ -386,7 +386,7 @@ OK</samp></pre>
 <p>Ora verifichiamo che i test falliscano:
 
 <pre class='nd screen'>
-<samp class=p>you@localhost:~/diveintopython3/examples$ </samp><kbd>python3 romantest3.py -v</kbd>
+<samp class=p>you@localhost:~/diveintopython3/esempi$ </samp><kbd>python3 romantest3.py -v</kbd>
 <samp>test_to_roman_known_values (__main__.KnownValues)
 to_roman dovrebbe dare un risultato noto con un ingresso noto ... ok
 test_negative (__main__.ToRomanBadInput)
@@ -439,7 +439,7 @@ FAILED (failures=2)</samp></pre>
 <p>Potrei fornirvi un'intera serie di esempi non correlati per mostrarvi che la scorciatoia dei confronti multipli allo stesso tempo funziona, ma invece eseguirò semplicemente i test di unità e lo dimostrerò.
 
 <pre class='nd screen'>
-<samp class=p>you@localhost:~/diveintopython3/examples$ </samp><kbd>python3 romantest3.py -v</kbd>
+<samp class=p>you@localhost:~/diveintopython3/esempi$ </samp><kbd>python3 romantest3.py -v</kbd>
 <samp>test_to_roman_known_values (__main__.KnownValues)
 to_roman dovrebbe dare un risultato noto con un ingresso noto ... ok
 test_negative (__main__.ToRomanBadInput)
@@ -490,7 +490,7 @@ class OutOfRangeError(ValueError): pass
 <p>Ora contollate che il test fallisca in maniera appropriata.
 
 <pre class='nd screen'>
-<samp class=p>you@localhost:~/diveintopython3/examples$ </samp><kbd>python3 romantest4.py -v</kbd>
+<samp class=p>you@localhost:~/diveintopython3/esempi$ </samp><kbd>python3 romantest4.py -v</kbd>
 <samp>test_to_roman_known_values (__main__.KnownValues)
 to_roman dovrebbe dare un risultato noto con un ingresso noto ... ok
 test_negative (__main__.ToRomanBadInput)
@@ -538,7 +538,7 @@ FAILED (failures=1)</samp></pre>
 <p>Infine, controllate che il codice faccia effettivamente passare il test.
 
 <pre class='nd screen'>
-<samp class=p>you@localhost:~/diveintopython3/examples$ </samp><kbd>python3 romantest4.py -v</kbd>
+<samp class=p>you@localhost:~/diveintopython3/esempi$ </samp><kbd>python3 romantest4.py -v</kbd>
 <samp>test_to_roman_known_values (__main__.KnownValues)
 to_roman dovrebbe dare un risultato noto con un ingresso noto ... ok
 test_negative (__main__.ToRomanBadInput)
@@ -590,7 +590,7 @@ OK</samp></pre>
 <p>Questi nuovi test non sono ancora nemmeno in grado di fallire. Non abbiamo definito alcuna funzione <code>from_roman()</code>, quindi solleveranno semplicemente qualche errore.
 
 <pre class='nd screen'>
-<samp class=p>you@localhost:~/diveintopython3/examples$ </samp><kbd>python3 romantest5.py</kbd>
+<samp class=p>you@localhost:~/diveintopython3/esempi$ </samp><kbd>python3 romantest5.py</kbd>
 <samp>E.E....
 ======================================================================
 ERROR: test_from_roman_known_values (__main__.KnownValues)
@@ -626,7 +626,7 @@ def from_roman(s):
 <p>Ora i test effettivamente falliranno.
 
 <pre class='nd screen'>
-<samp class=p>you@localhost:~/diveintopython3/examples$ </samp><kbd>python3 romantest5.py</kbd>
+<samp class=p>you@localhost:~/diveintopython3/esempi$ </samp><kbd>python3 romantest5.py</kbd>
 <samp>F.F....
 ======================================================================
 FAIL: test_from_roman_known_values (__main__.KnownValues)
@@ -693,7 +693,7 @@ trovato I di lunghezza1, aggiungo 1
 <p>Tempo di rieseguire i test.
 
 <pre class='nd screen'>
-<samp class=p>you@localhost:~/diveintopython3/examples$ </samp><kbd>python3 romantest5.py</kbd>
+<samp class=p>you@localhost:~/diveintopython3/esempi$ </samp><kbd>python3 romantest5.py</kbd>
 <samp>.......
 ----------------------------------------------------------------------
 Ran 7 tests in 0.060s
@@ -748,7 +748,7 @@ class InvalidRomanNumeralError(ValueError): pass</code></pre>
 <p>Tutti e tre questi test dovrebbero fallire, dato che attualmente la funzione <code>from_roman()</code> non effettua alcun controllo di validità. (Se non falliscono adesso, allora cosa diavolo stanno collaudando?)
 
 <pre class='nd screen'>
-<samp class=p>you@localhost:~/diveintopython3/examples$ </samp><kbd>python3 romantest6.py</kbd>
+<samp class=p>you@localhost:~/diveintopython3/esempi$ </samp><kbd>python3 romantest6.py</kbd>
 <samp>FFF.......
 ======================================================================
 FAIL: test_malformed_antecedents (__main__.FromRomanBadInput)
@@ -812,7 +812,7 @@ def from_roman(s):
 <p>E rieseguire i test&hellip;
 
 <pre class='nd screen'>
-<samp class=p>you@localhost:~/diveintopython3/examples$ </samp><kbd>python3 romantest7.py</kbd>
+<samp class=p>you@localhost:~/diveintopython3/esempi$ </samp><kbd>python3 romantest7.py</kbd>
 <samp>..........
 ----------------------------------------------------------------------
 Ran 10 tests in 0.066s
