@@ -258,7 +258,7 @@ rules = LazyRules()</code></pre>
 <a>        self.cache = []                                                  <span class=u>&#x2461;</span></a></code></pre>
 <ol>
 <li>Quando istanziamo la classe <code>LazyRules</code>, apriamo il file dei pattern ma non lo leggiamo. (Lo faremo più tardi.)
-<li>Dopo aver aperto il file dei pattern, inizializzate la cache<!-- e l'indice di posizione nella cache-->, che userete più tardi (nel metodo <code>__next__()</code>) durante la lettura dei pattern dal file.
+<li>Dopo aver aperto il file dei pattern, inizializzate la cache che userete più tardi (nel metodo <code>__next__()</code>) durante la lettura dei pattern dal file.
 </ol>
 
 <p>Prima di continuare, diamo un'occhiata più da vicino a <var>rules_filename</var>. Non è definita all'interno del metodo <code>__iter__()</code>. In effetti, non è definita all'interno di <em>nessun</em> metodo. &Egrave; definita a livello della classe. &Egrave; una <i>variabile di classe</i>, e sebbene possiate accedervi esattamente come una variabile di istanza (<var>self.rules_filename</var>), è condivisa da tutte le istanze della classe <code>LazyRules</code>.
