@@ -12,7 +12,7 @@ body{counter-reset:h1 8}
 <link rel=stylesheet media=print href=print.css>
 <meta name=viewport content='initial-scale=1.0'>
 </head>
-<form action=http://www.google.com/cse><div><input type=hidden name=cx value=014021643941856155761:l5eihuescdw><input type=hidden name=ie value=UTF-8>&nbsp;<input type=search name=q size=25>&nbsp;<input type=submit name=root value=Search></div></form>
+<form action=http://www.google.com/cse><div><input type=hidden name=cx value=014021643941856155761:l5eihuescdw><input type=hidden name=ie value=UTF-8>&nbsp;<input type=search name=q size=25 placeholder="powered by Google&trade;">&nbsp;<input type=submit name=root value=Search></div></form>
 <p>Voi siete qui: <a href=index.html>Home</a> <span class=u>&#8227;</span> <a href=table-of-contents.html#unit-testing>Dive Into Python 3</a> <span class=u>&#8227;</span>
 <p id=level>Livello di difficoltà: <span class=u title=principiante>&#x2666;&#x2666;&#x2666;&#x2662;&#x2662;</span>
 <h1>Test di unità</h1>
@@ -33,14 +33,14 @@ body{counter-reset:h1 8}
 </ol>
 <p>Cominciamo col tracciare ciò che un modulo <code>roman.py</code> dovrebbe fare. Il modulo avrà due funzioni principali, <code>to_roman()</code> e <code>from_roman()</code>. La funzione <code>to_roman()</code> dovrà prendere un intero da <code>1</code> a <code>3999</code> e restituirne la rappresentazione come numero romano sotto forma di stringa&hellip;
 <p>Fermiamoci subito qui. Ora facciamo qualcosa di un poco inaspettato: scriviamo un test per controllare che la funzione <code>to_roman()</code> faccia quello che volete. Avete letto bene: state per scrivere codice che collauda codice che non avete ancora scritto.
-<p>Questa pratica si chiama <i>collaudo di unità</i>. L'insieme di due funzioni di conversione&nbsp;&mdash;&nbsp;<code>to_roman()</code> e, più tardi, <code>from_roman()</code>&nbsp;&mdash;&nbsp;può essere implementato e collaudato come una singola unità, separata da qualsiasi programma più grande che le importi. Python possiede un framework per il collaudo di unità, un modulo propriamente chiamato <code>unittest</code>.
-<p>Il collaudo di unità è una parte importante di una strategia di sviluppo complessivamente centrata sui test. Se scrivete i test di unità, è importante che li scriviate presto (preferibilmente prima di scrivere il codice che collaudano) e che li manteniate aggiornati man mano che il codice e i requisiti cambiano. Il collaudo di unità non è un rimpiazzo per collaudi funzionali o di sistema di più alto livello, ma è importante in tutte le fasi dello sviluppo.
+<p>Questa pratica si chiama <i>sviluppo guidato dai test</i> o <abbr>TDD</abbr>. L'insieme di due funzioni di conversione&nbsp;&mdash;&nbsp;<code>to_roman()</code> e, più tardi, <code>from_roman()</code>&nbsp;&mdash;&nbsp;può essere implementato e collaudato come una singola unità, separata da qualsiasi programma più grande che le importi. Python possiede un framework per il collaudo di unità, un modulo propriamente chiamato <code>unittest</code>.
+<p>Il collaudo di unità è una parte importante di una strategia di sviluppo complessivamente centrata sui test. Se scrivete i test di unità, è importante che li scriviate presto e che li manteniate aggiornati man mano che il codice e i requisiti cambiano. Molte persone sostengono che i test vadano scritti prima di scrivere il codice che collaudano, e questo è lo stile di sviluppo che mostrerò in questo capitolo. Ma i test di unità portano benefici a prescindere dal momento in cui li scrivete.
 <ul>
-<li>Prima di scrivere codice, vi obbliga a dettagliare i vostri requisiti in modo utile.
-<li>Mentre scrivete codice, vi preserva dallo scriverne troppo. Quando tutti i test passano, la funzione è completa.
+<li>Prima di scrivere codice, scrivere i test di unità vi obbliga a dettagliare i vostri requisiti in modo utile.
+<li>Mentre scrivete codice, i test di unità vi preservano dallo scriverne troppo. Quando tutti i test passano, la funzione è completa.
 <li>Quando applicate il refactoring al codice, vi assicura che la nuova versione si comporta allo stesso modo della vecchia versione.
-<li>Quando state mantenendo il codice, vi aiuta a pararvi il culo quando qualcuno arriva urlando che il vostro ultimo cambiamento ha guastato il suo vecchio codice (&#8220;Ma <em>signore</em>, tutti i test di unità passavano quando l'ho inserito nel nostro sistema di controllo di revisione&hellip;&#8221;)
-<li>Quando scrivete codice in gruppo, aumenta la confidenza che il codice che state per inserire in un sistema di controllo di revisione non andrà a guastare il codice di qualcun altro, perché prima potete lanciare i loro test di unità. (Ho visto questo tipo di cose nelle maratone di programmazione. Un gruppo si divide i compiti, ognuno prende le specifiche per il proprio compito, scrive i relativi test di unità e poi li condivide con il resto del gruppo. In questo modo, nessuno si spinge talmente lontano fino a sviluppare codice che non si interfaccia bene con quello degli altri.)
+<li>Quando state mantenendo il codice, i test vi aiutano a pararvi il culo quando qualcuno arriva urlando che il vostro ultimo cambiamento ha guastato il suo vecchio codice (&#8220;Ma <em>signore</em>, tutti i test di unità passavano quando l'ho inserito nel nostro sistema di controllo di revisione&hellip;&#8221;)
+<li>Quando scrivete codice in gruppo, avere una serie di test completa riduce drammaticamente la probabilità che il vostro codice vada a guastare il codice di qualcun altro, perché prima potete lanciare i loro test di unità. (Ho visto questo tipo di cose nelle maratone di programmazione. Un gruppo si divide i compiti, ognuno prende le specifiche per il proprio compito, scrive i relativi test di unità e poi li condivide con il resto del gruppo. In questo modo, nessuno si spinge talmente lontano fino a sviluppare codice che non si interfaccia bene con quello degli altri.)
 </ul>
 
 <p class=a>&#x2042;
