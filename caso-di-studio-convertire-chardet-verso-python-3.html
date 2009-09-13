@@ -24,7 +24,7 @@ del{background:#f87}
 </blockquote>
 <p id=toc>&nbsp;
 <h2 id=divingin>Immersione!</h2>
-<p class=f>Una codifica di caratteri scorretta o sconosciuta è la causa n°1 della presenza di testo inintelleggibile sul web, nella vostra casella di posta, e in effetti attraverso ogni sistema computerizzato mai realizzato. Nel <a href=stringhe.html>Capitolo 3</a> ho parlato della storia delle codifiche di carattere e della creazione di Unicode, &#8220;una codifica per governarle tutte.&#8221; Mi piacerebbe non dover mai più vedere un carattere incomprensibile su una pagina web, perché tutti i sistemi d'autore memorizzerebbero informazioni di codifica accurate, tutti i protocolli di trasferimento conoscerebbero Unicode e ogni sistema che gestisce del testo manterrebbe una fedeltà perfetta nel convertirlo tra diverse codifiche.
+<p class=f>Una codifica di caratteri scorretta o sconosciuta è la causa n°1 della presenza di testo inintelleggibile sul web, nella vostra casella di posta, e in effetti attraverso ogni sistema computerizzato mai realizzato. Nel <a href=stringhe.html>Capitolo 3</a> ho parlato della storia delle codifiche di carattere e della creazione di Unicode, &#8220;una codifica per governarle tutte&#8221;. Mi piacerebbe non dover mai più vedere un carattere incomprensibile su una pagina web, perché tutti i sistemi d'autore memorizzerebbero informazioni di codifica accurate, tutti i protocolli di trasferimento conoscerebbero Unicode e ogni sistema che gestisce del testo manterrebbe una fedeltà perfetta nel convertirlo tra diverse codifiche.
 <p>Mi piacerebbe anche avere un pony.
 <p>Un pony Unicode.
 <p>Uno Unipony, per così dire.
@@ -37,21 +37,20 @@ del{background:#f87}
 
 <h3 id=faq.impossible>Ma non è impossibile?</h3>
 <p>In generale, sì. Comunque, alcune codifiche sono ottimizzate per lingue specifiche, e le lingue non sono casuali. Alcune sequenze di caratteri compaiono tutte le volte, mentre altre sequenze non hanno senso. Una persona capace di parlare l'inglese correntemente che apre un giornale e vi trova &#8220;txzqJv 2!dasd0a QqdKjvz&#8221; riconoscerà istantaneamente che quello non è inglese (sebbene sia composto interamente da lettere inglesi). Analizzando grandi quantità di testo &#8220;tipico&#8221;, un algoritmo per computer può simulare questa capacità e formulare un'ipotesi fondata sulla lingua in cui è scritto un testo.
-<p>In altre parole, il riconoscimento di una codifica è in realtà il riconoscimento di una lingua, combinata con la conoscenza di quali lingue tendono ad usare determinate codifiche di carattere.
+<p>In altre parole, il riconoscimento di una codifica è in realtà il riconoscimento di una lingua, combinata con la conoscenza di quali lingue tendono a usare determinate codifiche di carattere.
 
 <h3 id=faq.who>Esiste un algoritmo di questo tipo?</h3>
 <p>A quanto pare, sì. Tutti browser più diffusi usano il riconoscimento automatico delle codifiche di carattere, perché il web è pieno di pagine che non hanno alcuna informazione sulla loro codifica. <a href=http://lxr.mozilla.org/seamonkey/source/extensions/universalchardet/src/base/>Mozilla Firefox contiene una libreria per il riconoscimento automatico delle codifiche</a> distribuita sotto licenza open source. <a href=http://chardet.feedparser.org/>Io ho convertito questa libreria in Python 2</a> e ho chiamato il modulo <code>chardet</code>. Questo capitolo vi illustrerà passo per passo il processo di conversione del modulo <code>chardet</code> da Python 2 a Python 3.
 
 <p class=a>&#x2042;
 
-<h2 id=divingin2>Introduzione al modulo <code>chardet</code></h2>
-<p><span class=fixme>[FIXME download link, possibly on chardet.feedparser.org, possibly local]</span>
+<h2 id=divingin2>Una introduzione al modulo <code>chardet</code></h2>
 <p>Prima di cominciare la conversione, potrebbe essere d'aiuto capire come funziona il codice! Questa sezione vuole essere una breve guida alla struttura e al funzionamento del modulo <code>chardet</code>. I sorgenti della libreria sono troppo grandi per riportarne l'intero contenuto qui di seguito, ma potete <a href=http://chardet.feedparser.org/download/>scaricarli dal sito <code>chardet.feedparser.org</code></a>. 
 <aside>Il riconoscimento di codifica è in realtà il riconoscimento di una lingua travestito.</aside>
-<p>Il punto d'ingresso principale per l'algoritmo di riconoscimento è <code>universaldetector.py</code>, dove viene definita la classe <code>UniversalDetector</code>. (Potreste pensare che il punto d'entrata principale sia la funzione <code>detect()</code> in <code>chardet/__init__.py</code>, ma in realtà quella è solo una funzione di convenienza che crea un oggetto di tipo <code>UniversalDetector</code>, lo invoca, e ne restituisce risultato.)
-<p>Ci sono 5 categorie di codifiche che <code>UniversalDetector</code> gestisce:
+<p>Il punto d'ingresso principale per l'algoritmo di riconoscimento è <code>universaldetector.py</code>, dove viene definita la classe <code>UniversalDetector</code>. (Potreste pensare che il punto d'entrata principale sia la funzione <code>detect()</code> in <code>chardet/__init__.py</code>, ma in realtà quella è solo una funzione di convenienza che crea un oggetto di tipo <code>UniversalDetector</code>, lo invoca e ne restituisce risultato.)
+<p>Ci sono 5 categorie di codifiche che <code>UniversalDetector</code> gestisce.
 <ol>
-<li><code>UTF-n</code> con <abbr>BOM</abbr>. Questa comprende <code>UTF-8</code>, sia le varianti Big-Endian che Little-Endian di <code>UTF-16</code>, e tutte e 4 le varianti di <code>UTF-32</code> con ordine di byte differente.
+<li><code>UTF-n</code> con <abbr>BOM</abbr>. Questa categoria comprende <code>UTF-8</code>, sia le varianti Big-Endian che Little-Endian di <code>UTF-16</code>, e tutte e 4 le varianti di <code>UTF-32</code> con ordine di byte differente.
 <li>Codifiche con escape, che sono interamente compatibili con la codifica <abbr>ASCII</abbr> a 7 bit, dove i caratteri non-<abbr>ASCII</abbr> cominciano con una sequenza di escape. Esempi: <code>ISO-2022-JP</code> (giapponese) e <code>HZ-GB-2312</code> (cinese).
 <li>Codifiche multi-byte, dove ogni carattere è rappresentato da un numero variabile di byte. Esempi: <code>Big5</code> (cinese), <code>SHIFT_JIS</code> (giapponese), <code>EUC-KR</code> (coreano) e <code>UTF-8</code> senza <abbr>BOM</abbr>.
 <li>Codifiche a singolo byte, dove ogni carattere è rappresentato da un byte. Esempi: <code>KOI8-R</code> (russo), <code>windows-1255</code> (ebraico) e <code>TIS-620</code> (thai).
@@ -61,18 +60,18 @@ del{background:#f87}
 <p>Se il testo comincia con un <abbr>BOM</abbr>, possiamo ragionevolmente presumere che sia codificato in <code>UTF-8</code>, <code>UTF-16</code>, o <code>UTF-32</code>. (Il <abbr>BOM</abbr> ci dirà esattamente quale; questo è quello a cui serve.) Questa categoria viene gestita direttamente da <code>UniversalDetector</code>, che restituisce il risultato immediatamente senza ulteriori elaborazioni.
 <h3 id=how.esc>Codifiche con escape</h3>
 <p>Se il testo contiene una sequenza di escape riconoscibile che potrebbe indicare una codifica con escape, <code>UniversalDetector</code> crea un oggetto <code>EscCharSetProber</code> (definito in <code>escprober.py</code>) e gli passa il testo.
-<p><code>EscCharSetProber</code> crea una serie di macchine a stati finiti, basate sui modelli di <code>HZ-GB-2312</code>, <code>ISO-2022-CN</code>, <code>ISO-2022-JP</code>, e <code>ISO-2022-KR</code> (definiti in <code>escsm.py</code>). <code>EscCharSetProber</code> passa il testo a ognuna di queste macchine a stati, un byte alla volta. Se una qualsiasi di queste macchine a stati riesce a identificare univocamente la codifica, <code>EscCharSetProber</code> restituisce immediatamente il risultato positivo a <code>UniversalDetector</code>, che lo restituisce al chiamante. Se una qualsiasi delle macchine a stati trova una sequenza illegale, viene scartata e l'elaborazione continua con le altre macchine a stati.
+<p><code>EscCharSetProber</code> crea una serie di macchine a stati finiti, basate sui modelli di <code>HZ-GB-2312</code>, <code>ISO-2022-CN</code>, <code>ISO-2022-JP</code> e <code>ISO-2022-KR</code> (definiti in <code>escsm.py</code>). <code>EscCharSetProber</code> passa il testo a ognuna di queste macchine a stati, un byte alla volta. Se una qualsiasi di queste macchine a stati riesce a identificare univocamente la codifica, <code>EscCharSetProber</code> restituisce immediatamente il risultato positivo a <code>UniversalDetector</code>, che lo restituisce al chiamante. Se una qualsiasi delle macchine a stati trova una sequenza illegale, viene scartata e l'elaborazione continua con le altre macchine a stati.
 <h3 id=how.mb>Codifiche multi-byte</h3>
 <p>Presumendo che non ci sia un <abbr>BOM</abbr>, <code>UniversalDetector</code> controlla se il testo contiene un carattere <i>high-bit</i>, cioè un carattere codificato con un byte il cui bit più significativo sia impostato a 1. Se è così, crea una serie di &#8220;sonde&#8221; per riconoscere le codifiche multi-byte, a singolo byte e, come ultima risorsa, <code>windows-1252</code>.
 <p>La sonda per le codifiche multi-byte, <code>MBCSGroupProber</code> (definita in <code>mbcsgroupprober.py</code>), in realtà si occupa solo di gestire un gruppo di altre sonde, una per ogni codifica multi-byte: <code>Big5</code>, <code>GB2312</code>, <code>EUC-TW</code>, <code>EUC-KR</code>, <code>EUC-JP</code>, <code>SHIFT_JIS</code> e <code>UTF-8</code>. <code>MBCSGroupProber</code> passa il testo a ognuna di queste specifiche sonde e controlla i risultati. Se una sonda riferisce di aver trovato una sequenza illegale di byte, viene scartata da ulteriori elaborazioni (in modo che, per esempio, ogni chiamata successiva a <code>UniversalDetector</code>.<code>feed()</code> eviterà di utilizzare quella sonda). Se una sonda riferisce di essere ragionevolmente sicura di aver riconosciuto la codifica, <code>MBCSGroupProber</code> restituisce questo risultato positivo a <code>UniversalDetector</code>, che restituisce a sua volta il risultato al chiamante.
 <p>La maggior parte delle sonde per le codifiche multi-byte eredita da <code>MultiByteCharSetProber</code> (definita in <code>mbcharsetprober.py</code>) e si occupa semplicemente di agganciare la macchina a stati e l'analizzatore di distribuzione appropriati, lasciando che sia <code>MultiByteCharSetProber</code> a fare il resto del lavoro. <code>MultiByteCharSetProber</code> fa scorrere il testo attraverso la macchina a stati della singola codifica, un byte alla volta, per cercare sequenze di byte che indicherebbero un risultato conclusivo positivo o negativo. Allo stesso tempo, <code>MultiByteCharSetProber</code> passa il testo a un analizzatore di distribuzione specifico per quella codifica.
-<p>Gli analizzatori di distribuzione (ognuno definito in <code>chardistribution.py</code>) si basano su modelli specifici per ogni lingua che descrivono quali caratteri vengono usati più frequentemente in quella lingua. Una volta che <code>MultiByteCharSetProber</code> ha passato abbastanza testo all'analizzatore di distribuzione, questo calcola una stima di confidenza basata sul numero di caratteri frequentemente usati, il numero totale di caratteri e un rapporto di distribuzione specifico per la lingua. Se la confidenza è abbastanza alta, <code>MultiByteCharSetProber</code> restituisce il risultato a <code>MBCSGroupProber</code>, che lo restituisce a <code>UniversalDetector</code>, che lo restituisce al chiamante.
-<p>Il caso del giapponese è più difficile. Gli analizzatori di distribuzione a singolo carattere non sono sempre sufficienti per distinguere tra <code>EUC-JP</code> e <code>SHIFT_JIS</code>, quindi la classe <code>SJISProber</code> (definita in <code>sjisprober.py</code>) sfrutta anche l'analisi di distribuzione a 2 caratteri. <code>SJISContextAnalysis</code> ed <code>EUCJPContextAnalysis</code> (entrambe definite in <code>jpcntx.py</code> ed entrambe estensioni della classe <code>JapaneseContextAnalysis</code>) controllano la frequenza dei caratteri dal sillabario Hiragana all'interno del testo. Una volta che è stato elaborato testo a sufficienza, restituiscono un livello di confidenza a <code>SJISProber</code>, che crea entrambi gli analizzatori e restituisce il livello di confidenza più alto a <code>MBCSGroupProber</code>.
+<p>Gli analizzatori di distribuzione (tutti definiti in <code>chardistribution.py</code>) si basano su modelli, specifici per ogni lingua, che descrivono quali caratteri vengono usati più frequentemente in quella lingua. Una volta che <code>MultiByteCharSetProber</code> ha passato abbastanza testo all'analizzatore di distribuzione, questo calcola una stima di confidenza basata sul numero di caratteri frequentemente usati, sul numero totale di caratteri e su un rapporto di distribuzione specifico per la lingua. Se la confidenza è abbastanza alta, <code>MultiByteCharSetProber</code> restituisce il risultato a <code>MBCSGroupProber</code>, che lo restituisce a <code>UniversalDetector</code>, che lo restituisce al chiamante.
+<p>Il caso del giapponese è più difficile. Gli analizzatori di distribuzione a singolo carattere non sono sempre sufficienti per distinguere tra <code>EUC-JP</code> e <code>SHIFT_JIS</code>, quindi la classe <code>SJISProber</code> (definita in <code>sjisprober.py</code>) sfrutta anche l'analisi di distribuzione a 2 caratteri. <code>SJISContextAnalysis</code> ed <code>EUCJPContextAnalysis</code> (entrambe definite in <code>jpcntx.py</code> ed entrambe estensioni della classe <code>JapaneseContextAnalysis</code>) controllano la frequenza dei caratteri dal sillabario Hiragana all'interno del testo. Una volta che è stato elaborato testo a sufficienza, restituiscono un livello di confidenza a <code>SJISProber</code>, che controlla il risultato di entrambi gli analizzatori e restituisce il livello di confidenza più alto a <code>MBCSGroupProber</code>.
 <h3 id=how.sb>Codifiche a singolo byte</h3>
 <aside>Seriamente, dove'è il mio pony Unicode?</aside>
 <p>La sonda per le codifiche a singolo byte, <code>SBCSGroupProber</code> (definita in <code>sbcsgroupprober.py</code>), si occupa anch'essa di gestire un gruppo di altre sonde, una per ogni combinazione di lingua e codifica a singolo byte: <code>windows-1251</code>, <code>KOI8-R</code>, <code>ISO-8859-5</code>, <code>MacCyrillic</code>, <code>IBM855</code> e <code>IBM866</code> (russo); <code>ISO-8859-7</code> e <code>windows-1253</code> (greco); <code>ISO-8859-5</code> e <code>windows-1251</code> (bulgaro); <code>ISO-8859-2</code> e <code>windows-1250</code> (ungherese); <code>TIS-620</code> (thai); <code>windows-1255</code> e <code>ISO-8859-8</code> (ebraico).
-<p><code>SBCSGroupProber</code> passa il testo a queste sonde, specifiche per coppie di lingua e codifica, e controlla i risultati. Queste sonde sono tutte implementate come una singola classe, <code>SingleByteCharSetProber</code> (definita in <code>sbcharsetprober.py</code>), che prende un modello di lingua come argomento. Il modello di lingua definisce la frequenza con cui sequenze di 2 caratteri differenti appaiono nel testo tipico di quella lingua. <code>SingleByteCharSetProber</code> elabora il testo in ingresso e conteggia le sequenze di 2 caratteri più utilizzate. Una volta che ha elaborato testo a sufficienza, calcola un livello di confidenza basato sul numero delle sequenze più utilizzate, il numero totale di caratteri e un rapporto di distribuzione specifico per lingua.
-<p>L'ebraico viene trattato come un caso a parte. Se il testo sembra essere ebraico sulla base dell'analisi di distribuzione a 2 caratteri, la sonda <code>HebrewProber</code> (definita in <code>hebrewprober.py</code>) prova a distinguere tra ebraico visuale (dove il testo sorgente viene in realtà memorizzato &#8220;all'indietro&#8221; riga per riga e poi visualizzato così com'è in modo da poter essere letto da destra verso sinistra) ed ebraico logico (dove il testo sorgente viene memorizzato nell'ordine di lettura e poi riportato da destra verso sinistra dal programma che lo visualizza). Dato che alcuni caratteri sono codificati in maniera differente a seconda che compaiano nel mezzo o alla fine di una parola, possiamo fare un'ipotesi ragionevole a proposito della direzione del testo sorgente, e restituire la codifica appropriata (<code>windows-1255</code> per l'ebraico logico, oppure <code>ISO-8859-8</code> per l'ebraico visuale).
+<p><code>SBCSGroupProber</code> passa il testo a queste sonde, specifiche per coppie di lingua e codifica, e controlla i risultati. Queste sonde sono tutte implementate come una singola classe, <code>SingleByteCharSetProber</code> (definita in <code>sbcharsetprober.py</code>), che prende un modello di lingua come argomento. Il modello di lingua definisce la frequenza con cui sequenze di 2 caratteri differenti appaiono nel testo tipico di quella lingua. <code>SingleByteCharSetProber</code> elabora il testo in ingresso e conta le sequenze di 2 caratteri più utilizzate. Una volta che ha elaborato testo a sufficienza, calcola un livello di confidenza basato sul numero delle sequenze più utilizzate, sul numero totale di caratteri e su un rapporto di distribuzione specifico per lingua.
+<p>L'ebraico viene trattato come un caso a parte. Se il testo sembra essere ebraico sulla base dell'analisi di distribuzione a 2 caratteri, la sonda <code>HebrewProber</code> (definita in <code>hebrewprober.py</code>) prova a distinguere tra ebraico visuale (dove il testo sorgente viene in realtà memorizzato &#8220;all'indietro&#8221; riga per riga e poi visualizzato così com'è in modo da poter essere letto da destra verso sinistra) ed ebraico logico (dove il testo sorgente viene memorizzato nell'ordine di lettura e poi riportato da destra verso sinistra dal programma che lo visualizza). Dato che alcuni caratteri sono codificati in maniera differente a seconda che compaiano nel mezzo o alla fine di una parola, possiamo fare un'ipotesi ragionevole a proposito della direzione del testo sorgente e restituire la codifica appropriata (<code>windows-1255</code> per l'ebraico logico, oppure <code>ISO-8859-8</code> per l'ebraico visuale).
 <h3 id=how.windows1252><code>windows-1252</code></h3>
 <p>Se <code>UniversalDetector</code> riconosce un carattere high-bit nel testo, ma nessuna delle altre sonde per codifiche multi-byte o a singolo byte restituisce un risultato di confidenza, allora crea una sonda <code>Latin1Prober</code> (definita in <code>latin1prober.py</code>) per cercare di riconoscere testo inglese in una codifica <code>windows-1252</code>. Questo riconscimento è intrinsecamente inaffidabile, perché le lettere inglesi sono rappresentate allo stesso modo in molte codifiche differenti. L'unico modo di distinguere <code>windows-1252</code> è attraverso simboli comunemente usati come virgolette e apostrofi tipografici, simboli di copyright e simili. <code>Latin1Prober</code> riduce automaticamente la propria stima di confidenza per permettere a sonde più accurate di prevalere nel caso sia possibile.
 
@@ -80,12 +79,12 @@ del{background:#f87}
 
 <h2 id=running2to3>Eseguire <code>2to3</code></h2>
 <p>Ora effettueremo la migrazione del modulo <code>chardet</code> da Python 2 a Python 3. Python 3 viene distribuito con uno script di utilità chiamato <code>2to3</code>, che prende in ingresso il vostro codice sorgente in Python 2 e lo converte automaticamente verso Python 3 tanto quanto gli è possibile. In alcuni casi le modifiche sono semplici&nbsp;&mdash;&nbsp;una funzione è stata rinominata oppure spostata in un modulo differente&nbsp;&mdash;&nbsp;ma in altri casi possono diventare piuttosto complesse. Per avere un'idea di tutto quello che lo script <em>può</em> fare, fate riferimento all'appendice <a href=convertire-codice-verso-python-3-con-2to3.html>Convertire codice verso Python 3 con <code>2to3</code></a>. In questo capitolo, cominceremo col lanciare <code>2to3</code> sul package <code>chardet</code>, ma come vedrete ci sarà ancora molto lavoro da fare dopo che gli strumenti automatici avranno eseguito i loro incantesimi.
-<p>Il package <code>chardet</code> è suddiviso in molti file diversi, tutti nella stessa directory. Lo script <code>2to3</code> facilita la conversione di più file in una volta: basta passargli una directory come argomento dalla linea di comando, e <code>2to3</code> convertirà ognuno dei file a turno.
+<p>Il package <code>chardet</code> è suddiviso in molti file diversi, tutti nella stessa directory. Lo script <code>2to3</code> facilita la conversione di più file in una volta: basta passargli una directory come argomento dalla riga di comando e <code>2to3</code> convertirà ognuno dei file a turno.
 <pre class=screen><samp class=p>C:\home\chardet> </samp><kbd>python c:\Python30\Tools\Scripts\2to3.py -w chardet\</kbd>
-<samp>RefactoringTool: Skipping implicit fixer: buffer
-RefactoringTool: Skipping implicit fixer: idioms
-RefactoringTool: Skipping implicit fixer: set_literal
-RefactoringTool: Skipping implicit fixer: ws_comma
+<samp>RefactoringTool: Salto il correttore implicito: buffer
+RefactoringTool: Salto il correttore implicito: idioms
+RefactoringTool: Salto il correttore implicito: set_literal
+RefactoringTool: Salto il correttore implicito: ws_comma
 --- chardet\__init__.py (original)
 +++ chardet\__init__.py (refactored)
 @@ -18,7 +18,7 @@
@@ -140,7 +139,7 @@ RefactoringTool: Skipping implicit fixer: ws_comma
 <mark>. (va avanti così per un po')</mark>
 .
 .
-RefactoringTool: Files that were modified:
+RefactoringTool: File che sono stati modificati:
 RefactoringTool: chardet\__init__.py
 RefactoringTool: chardet\big5prober.py
 RefactoringTool: chardet\chardistribution.py
@@ -172,10 +171,10 @@ RefactoringTool: chardet\universaldetector.py
 RefactoringTool: chardet\utf8prober.py</samp></pre>
 <p>Ora eseguiamo lo script <code>2to3</code> sul programma di collaudo, <code>test.py</code>.
 <pre class='nd screen'><samp class=p>C:\home\chardet> </samp><kbd>python c:\Python30\Tools\Scripts\2to3.py -w test.py</kbd>
-<samp>RefactoringTool: Skipping implicit fixer: buffer
-RefactoringTool: Skipping implicit fixer: idioms
-RefactoringTool: Skipping implicit fixer: set_literal
-RefactoringTool: Skipping implicit fixer: ws_comma
+<samp>RefactoringTool: Salto il correttore implicito: buffer
+RefactoringTool: Salto il correttore implicito: idioms
+RefactoringTool: Salto il correttore implicito: set_literal
+RefactoringTool: Salto il correttore implicito: ws_comma
 --- test.py (original)
 +++ test.py (refactored)
 @@ -4,7 +4,7 @@
@@ -191,21 +190,21 @@ RefactoringTool: Skipping implicit fixer: ws_comma
      u.close()
      result = u.result
      if result['encoding']:
-<del>-        print result['encoding'], 'with confidence', result['confidence']</del>
-<ins>+        print(result['encoding'], 'with confidence', result['confidence'])</ins>
+<del>-        print result['encoding'], 'con confidenza', result['confidence']</del>
+<ins>+        print(result['encoding'], 'con confidenza', result['confidence'])</ins>
      else:
-<del>-        print '******** no result'</del>
-<ins>+        print('******** no result')</ins>
+<del>-        print '******** nessun risultato'</del>
+<ins>+        print('******** nessun risultato')</ins>
      count += 1
-<del>-print count, 'tests'</del>
-<ins>+print(count, 'tests')</ins>
-RefactoringTool: Files that were modified:
+<del>-print count, 'test'</del>
+<ins>+print(count, 'test')</ins>
+RefactoringTool: File che sono stati modificati:
 RefactoringTool: test.py</samp></pre>
 <p>Be', non è stato così difficile. Ci sono state solo alcune istruzioni di <code>print</code> e <code>import</code> da convertire. Parlando di queste ultime, qual <em>era</em> il problema con tutte quelle istruzioni di importazione? Per rispondere a questa domanda, avete bisogno di capire come il modulo <code>chardet</code> è diviso in molteplici file.
 
 <p class=a>&#x2042;
 
-<h2 id=multifile-modules>Una breve digressione nei moduli multi-file</h2>
+<h2 id=multifile-modules>Una breve digressione sui moduli multi-file</h2>
 
 <p><code>chardet</code> è un <i>modulo multi-file</i>. Avrei potuto scegliere di mettere tutto il codice in un unico file (chiamato <code>chardet.py</code>), ma non l'ho fatto. Invece, ho creato una directory (chiamata <code>chardet</code>) e poi ho creato un file <code>__init__.py</code> in quella directory. <em>Se Python vede un file <code>__init__.py</code> in una directory, assume che tutti i file in quella directory siano parte dello stesso modulo.</em> Il nome del modulo è il nome della directory. I file nella directory possono fare riferimento ad altri file nella stessa directory, o persino all'interno di sottodirectory. (Ne parlerò più in dettaglio fra un minuto.) Ma l'intera collezione di file viene presentata ad altro codice Python come un singolo modulo&nbsp;&mdash;&nbsp;come se tutte le funzioni e le classi fossero in un singolo file <code>.py</code>.
 
@@ -223,9 +222,9 @@ RefactoringTool: test.py</samp></pre>
 <samp class=pp>['__builtins__', '__doc__', '__file__', '__name__',
  '__package__', '__path__', '__version__', 'detect']</samp>
 <a><samp class=p>>>> </samp><kbd class=pp>chardet</kbd>                  <span class=u>&#x2461;</span></a>
-<samp class=pp>&lt;module 'chardet' from 'C:\Python31\lib\site-packages\chardet\__init__.py'></samp></pre>
+<samp>&lt;module 'chardet' from 'C:\Python31\lib\site-packages\chardet\__init__.py'></samp></pre>
 <ol>
-<li>A parte le solite proprietà di classe, l'unica cosa contenuta nel modulo <code>chardet</code> è la funzione <code>detect()</code>.
+<li>A parte i soliti attributi di classe, l'unica cosa contenuta nel modulo <code>chardet</code> è la funzione <code>detect()</code>.
 <li>Ecco il vostro primo indizio che il modulo <code>chardet</code> sia più di un semplice file: il &#8220;modulo&#8221; viene mostrato come il file <code>__init__.py</code> nella directory <code>chardet</code>.
 </ol>
 
@@ -247,7 +246,7 @@ RefactoringTool: test.py</samp></pre>
 
 <pre class='nd pp'><code>from . import universaldetector</code></pre>
 
-<p>Tradotta in italiano, quella istruzione significa &#8220;importa il modulo <code>universaldetector</code> che si trova nella stessa directory in cui sono io,&#8221; dove &#8220;io&#8221; è il file <code>chardet/__init__.py</code>. Questa viene chiamata una <i>importazione relativa</i> ed è il modo in cui i file all'interno di un modulo multi-file possono fare riferimento gli uni agli altri, senza preoccuparsi di eventuali conflitti di nomi con gli altri moduli che potreste avere installato nel <a href=your-first-python-program.html#importsearchpath>vostro percorso di ricerca per le importazioni</a>. Questa istruzione <code>import</code> cercherà il modulo <code>universaldetector</code> <em>solo</em> all'interno della directory <code>chardet</code>.
+<p>Tradotta in italiano, quella istruzione significa &#8220;importa il modulo <code>universaldetector</code> che si trova nella stessa directory in cui sono io&#8221;, dove &#8220;io&#8221; è il file <code>chardet/__init__.py</code>. Questa viene chiamata <i>importazione relativa</i> ed è il modo in cui i file all'interno di un modulo multi-file possono fare riferimento gli uni agli altri, senza preoccuparsi di eventuali conflitti di nomi con gli altri moduli che potreste avere installato nel <a href=il-vostro-primo-programma-python.html#importsearchpath>vostro percorso di ricerca per le importazioni</a>. Questa istruzione <code>import</code> cercherà il modulo <code>universaldetector</code> <em>solo</em> all'interno della directory <code>chardet</code>.
 
 <p>Questi due concetti&nbsp;&mdash;&nbsp;<code>__init__.py</code> e le importazioni relative&nbsp;&mdash;&nbsp;significano che potete suddividere il vostro modulo in tutte le parti che preferite. Il modulo <code>chardet</code> comprende 36 file <code>.py</code>&nbsp;&mdash;&nbsp;36! Eppure tutto quello che avete bisogno di fare per cominciare a usarlo è scrivere <code>import chardet</code>, poi potete chiamare la funzione principale <code>chardet.detect()</code>. All'insaputa del vostro codice, la funzione <code>detect()</code> è in realtà definita nel file <code>chardet/__init__.py</code>. E a vostra insaputa, la funzione <code>detect()</code> usa un'importazione relativa per fare riferimento a una classe definita in <code>chardet/universaldetector.py</code>, che a sua volta usa importazioni relative per altri cinque file, tutti contenuti nella directory <code>chardet/</code>.
 
@@ -269,7 +268,7 @@ RefactoringTool: test.py</samp></pre>
     self.done = constants.False
                               ^
 SyntaxError: invalid syntax</samp></pre>
-<p>Hmmm, un piccolo intoppo. In Python 3, <code>False</code> è una parola riservata e quindi non potete usarla come nome di variabile. Diamo un'occhiata a <code>constants.py</code> per vedere dov'è definita. Ecco la versione orginale della parte rilevante di <code>constants.py</code>, prima che lo script <code>2to3</code> la cambiasse:
+<p>Hmmm, un piccolo intoppo. In Python 3, <code>False</code> è una parola riservata e quindi non potete usarla come nome di variabile. Diamo un'occhiata a <code>constants.py</code> per vedere dov'è definita. Ecco la versione orginale della parte rilevante di <code>constants.py</code>, prima che lo script <code>2to3</code> la modificasse:
 <pre class='nd pp'><code>import __builtin__
 if not hasattr(__builtin__, 'False'):
     False = 0
@@ -281,7 +280,7 @@ else:
 <p>Comunque, Python 3 avrà sempre un tipo <code>bool</code>, quindi questo intero frammento di codice è superfluo. La soluzione più semplice consiste nel sostituire tutte le istanze di <code>constants.True</code> e <code>constants.False</code> con <code>True</code> e <code>False</code> rispettivamente e poi cancellare questo codice ormai inutile da <code>constants.py</code>.
 <p>Così questa riga in <code>universaldetector.py</code>:
 <pre class='nd pp'><code>self.done = constants.False</code></pre>
-<p>Diventa
+<p>Diventa:
 <pre class='nd pp'><code>self.done = False</code></pre>
 <p>Aaah, non siete soddisfatti? Il codice è più corto e già più leggibile.
 <h3 id=nomodulenamedconstants>Nessun modulo chiamato <code>constants</code></h3>
@@ -295,9 +294,9 @@ else:
 ImportError: No module named constants</samp></pre>
 <p>Cosa dice? Nessun modulo chiamato <code>constants</code>? Ma certo che c'è un modulo chiamato <code>constants</code>. &Egrave; proprio lì, in <code>chardet/constants.py</code>.
 
-<p>Ricordate quando lo script <code>2to3</code> ha corretto tutte quelle istruzioni di <code>import</code>? Questa libreria contiene un sacco di <code>import</code> relativi&nbsp;&mdash;&nbsp;cioè, <a href=#multifile-modules>moduli che importano altri moduli nell'ambito della libreria</a>&nbsp;&mdash;&nbsp;ma <em>la logica dietro il funzionamento delle importazioni relative è cambiata in Python 3</em>. In Python 2, potevate semplicemente scrivere <code>import constants</code> e l'interprete avrebbe guardato nella direcotry <code>chardet</code> come prima cosa. In Python 3, <a href=http://www.python.org/dev/peps/pep-0328/>tutte le istruzioni di <code>import</code> sono assolute di default</a>. Se volete importare un modulo in maniera relativa in Python 3, dovete farlo esplicitamente:
+<p>Ricordate quando lo script <code>2to3</code> ha corretto tutte quelle istruzioni di <code>import</code>? Questa libreria contiene un sacco di <code>import</code> relativi&nbsp;&mdash;&nbsp;cioè, <a href=#multifile-modules>moduli che importano altri moduli nell'ambito della libreria</a>&nbsp;&mdash;&nbsp;ma <em>la logica dietro il funzionamento delle importazioni relative è cambiata in Python 3</em>. In Python 2, potevate semplicemente scrivere <code>import constants</code> e l'interprete avrebbe guardato nella direcotry <code>chardet</code> come prima cosa. In Python 3, <a href=http://www.python.org/dev/peps/pep-0328/>tutte le istruzioni di <code>import</code> sono assolute per default</a>. Se volete importare un modulo in maniera relativa in Python 3, dovete farlo esplicitamente:
 <pre class='nd pp'><code>from . import constants</code></pre>
-<p>Ma aspettate. Non doveva essere lo script <code>2to3</code> a curarsi di queste cose per voi? Be', lo ha fatto, ma la particolare istruzione di <code>import</code> che ha generato l'errore combina due differenti tipi di importazione in una sola riga: un'importazione relativa del modulo <code>constants</code> all'interno della libreria e un'importazione assoluta del modulo <code>sys</code> che è preinstallato nella libreria standard di Python. In Python 2, potevate combinare questi due tipi in un'unica istruzione <code>import</code>. In Python 3 non potete, ma lo script <code>2to3</code> non è abbastanza scaltro da spezzare l'istruzione di <code>import</code> in due.
+<p>Ma aspettate. Non doveva essere lo script <code>2to3</code> a curarsi di queste cose per voi? Be', lo ha fatto, ma la particolare istruzione di <code>import</code> che ha generato l'errore combina due differenti tipi di importazione in una sola riga: un'importazione relativa del modulo <code>constants</code> all'interno della libreria e un'importazione assoluta del modulo <code>sys</code> che è preinstallato nella libreria standard di Python. In Python 2, potevate combinare questi due tipi in un'unica istruzione <code>import</code>. In Python 3 non potete, ma lo script <code>2to3</code> non è abbastanza scaltro da dividere l'istruzione di <code>import</code> in due.
 <p>La soluzione consiste nel dividere l'istruzione di <code>import</code> manualmente. Così questa doppia istruzione di <code>import</code>:
 <pre class='nd pp'><code>import constants, sys</code></pre>
 <p>Deve diventare due istruzioni di <code>import</code> separate:
@@ -314,12 +313,12 @@ import sys</code></pre>
   File "test.py", line 9, in &lt;module>
     for line in file(f, 'rb'):
 NameError: name 'file' is not defined</samp></pre>
-<p>Questo errore mi ha sorpreso, perché ho usato questo idioma fin da quando riesco a ricordare. In Python 2, la funzione globale <code>file()</code> era un alias per <code>open()</code>, che era la funzione standard da usare per <a href=files.html#reading>aprire i file e leggerli</a>. In Python 3, la funzione globale <code>file()</code> non esiste più, ma la funzione <code>open()</code> esiste ancora.
+<p>Questo errore mi ha sorpreso, perché ho usato questo idioma fin da quando riesco a ricordare. In Python 2, la funzione globale <code>file()</code> era un alias per <code>open()</code>, che era la funzione standard da usare per <a href=file.html#reading>aprire i file e leggerli</a>. In Python 3, la funzione globale <code>file()</code> non esiste più, ma la funzione <code>open()</code> esiste ancora.
 <p>Quindi, la soluzione più semplice al problema della mancanza di <code>file()</code> è chiamare <code>open()</code> al suo posto:
 <pre class='nd pp'><code>for line in open(f, 'rb'):</code></pre>
-<p>E questo è tutto quello che ho da dire in merito.
-<h3 id=cantuseastringpattern>Impossibile usare un pattern di stringa su un oggetto bytes-like</h3>
-<p>Ora le cose cominciano a diventare interessanti. E per &#8220;interessanti&#8221; voglio dire &#8220;incasinate come l'inferno.&#8221;
+<p>E questo è tutto quello che ho da dire al riguardo.
+<h3 id=cantuseastringpattern>Impossibile usare un pattern di stringa su un oggetto tipo bytes</h3>
+<p>Ora le cose cominciano a diventare interessanti. E per &#8220;interessanti&#8221; voglio dire &#8220;incasinate come l'inferno&#8221;.
 <pre class='nd screen'><samp class=p>C:\home\chardet> </samp><kbd>python test.py tests\*\*</kbd>
 <samp>tests\ascii\howto.diveintomark.org.xml</samp>
 <samp class=traceback>Traceback (most recent call last):
@@ -332,9 +331,9 @@ TypeError: can't use a string pattern on a bytes-like object</samp></pre>
 <pre class='nd pp'><code>class UniversalDetector:
     def __init__(self):
         self._highBitDetector = re.compile(r'[\x80-\xFF]')</code></pre>
-<p>Questo codice precompila una espressione regolare progettata per trovare caratteri di tipo non-<abbr>ASCII</abbr> nell'intervallo 128&ndash;255 (0x80&ndash;0xFF). Aspettate, non è proprio esatto; devo essere più preciso nella mia terminologia. Questo pattern è utilizzato per trovare <em>byte</em> di tipo non-<abbr>ASCII</abbr> nell'intervallo 128&ndash;255.
+<p>Questo codice precompila un'espressione regolare progettata per trovare caratteri di tipo non-<abbr>ASCII</abbr> nell'intervallo 128&ndash;255 (0x80&ndash;0xFF). Aspettate, non è proprio esatto; devo essere più preciso nella mia terminologia. Questo pattern è utilizzato per trovare <em>byte</em> di tipo non-<abbr>ASCII</abbr> nell'intervallo 128&ndash;255.
 <p>E il problema è proprio qui.
-<p>In Python 2, una stringa era un array di byte la cui codifica di carattere era memorizzata separatamente. Se volevate che Python 2 tenesse traccia della codifica di carattere, dovevate usare una stringa di tipo Unicode (<code>u''</code>). Ma in Python 3 una stringa è sempre quello che Python 2 chiamava stringa di tipo Unicode&nbsp;&mdash;&nbsp;cioè, un array di caratteri Unicode (possibilmente con lunghezze diverse in termini di byte). Dato che questa espressione regolare è definita come un pattern di stringa, può essere usata solo per fare ricerche in una stringa&nbsp;&mdash;&nbsp;ancora, un array di caratteri. Ma ciò in cui stiamo cercando non è una stringa, bensì un array di byte. La <i>traceback</i>, cioè la traccia dello stack di esecuzione, ci dice che questo errore è apparso in <code>universaldetector.py</code>:
+<p>In Python 2, una stringa era un array di byte la cui codifica di carattere era memorizzata separatamente. Se volevate che Python 2 tenesse traccia della codifica di carattere, dovevate usare una stringa di tipo Unicode (<code>u''</code>). Ma in Python 3 una stringa è sempre quello che Python 2 chiamava stringa di tipo Unicode&nbsp;&mdash;&nbsp;cioè, un array di caratteri Unicode (eventualmente con lunghezze diverse in termini di byte). Dato che questa espressione regolare è definita come un pattern di stringa, può essere usata solo per fare ricerche in una stringa&nbsp;&mdash;&nbsp;ancora, un array di caratteri. Ma quello in cui stiamo cercando non è una stringa, bensì un array di byte. La <i>traceback</i>, cioè la traccia dello stack di esecuzione, ci dice che questo errore è apparso in <code>universaldetector.py</code>:
 <pre class='nd pp'><code>def feed(self, aBuf):
     .
     .
@@ -348,10 +347,10 @@ TypeError: can't use a string pattern on a bytes-like object</samp></pre>
 .
 for line in open(f, 'rb'):
     u.feed(line)</code></pre>
-<aside>Non un vettore di caratteri, ma un vettore di byte.</aside>
-<p>E qui troviamo la nostra risposta: nel metodo <code>UniversalDetector.feed()</code>, <var>aBuf</var> è una riga letta da un file su disco. Guardate attentamente i parametri utilizzati per aprire il file: <code>'rb'</code>. <code>'r'</code> sta per &#8220;read&#8221;, lettura; OK, grazie tante, stiamo leggendo il file. Ah, ma <a href=files.html#binary><code>'b'</code> sta per &#8220;binary&#8221;, binario</a>. Senza il flag <code>'b'</code>, questo ciclo <code>for</code> leggerebbe il file, riga per riga, e convertirebbe ogni riga in una stringa&nbsp;&mdash;&nbsp;un array di caratteri Unicode&nbsp;&mdash;&nbsp;in accordo con la codifica di carattere di default del sistema. Ma con il flag <code>'b'</code>, questo ciclo <code>for</code> legge il file riga per riga e memorizza ogni riga esattamente come appare nel file, sotto forma di un array di byte. Quell'array di byte viene passato a <code>UniversalDetector.feed()</code> e alla fine viene passato alla espressione regolare precompilata, <var>self._highBitDetector</var>, per cercare i&hellip; caratteri high-bit. Ma non abbiamo caratteri. Abbiamo byte. Oops.
+<aside>Non un array di caratteri, ma un array di byte.</aside>
+<p>E qui troviamo la nostra risposta: nel metodo <code>UniversalDetector.feed()</code>, <var>aBuf</var> è una riga letta da un file su disco. Guardate attentamente i parametri utilizzati per aprire il file: <code>'rb'</code>. <code>'r'</code> sta per &#8220;read&#8221;, lettura; va bene, grazie tante, stiamo leggendo il file. Ah, ma <a href=file.html#binary><code>'b'</code> sta per &#8220;binary&#8221;, binario</a>. Senza il flag <code>'b'</code>, questo ciclo <code>for</code> leggerebbe il file riga per riga e convertirebbe ogni riga in una stringa&nbsp;&mdash;&nbsp;un array di caratteri Unicode&nbsp;&mdash;&nbsp;in accordo con la codifica di carattere predefinita del sistema. Ma con il flag <code>'b'</code> questo ciclo <code>for</code> legge il file riga per riga e memorizza ogni riga esattamente come appare nel file, sotto forma di un array di byte. Quell'array di byte viene passato a <code>UniversalDetector.feed()</code> e alla fine viene passato all'espressione regolare precompilata, <var>self._highBitDetector</var>, per cercare i&hellip; caratteri high-bit. Ma non abbiamo caratteri. Abbiamo byte. Oops.
 <p>Quello su cui abbiamo bisogno che l'espressione regolare effettui la ricerca non è un array di caratteri, ma un array di byte.
-<p>Una volta che realizzate questo, la soluzione non è difficile. Le espressioni regolari definite come stringhe possono effettuare ricerche sulle stringe. Le espressioni regolari definite come array di byte possono effettuare ricerche sugli array di byte. Per definire un pattern come un array di byte, cambiamo semplicemente il tipo dell'argomento che usiamo per definire l'espressione regolare ad array di byte. (C'è un altro caso di questo stesso problema, proprio nella riga successiva.)
+<p>Una volta che realizzate questo, la soluzione non è difficile. Le espressioni regolari definite come stringhe possono effettuare ricerche sulle stringhe. Le espressioni regolari definite come array di byte possono effettuare ricerche sugli array di byte. Per definire un pattern come un array di byte, cambiamo semplicemente il tipo dell'argomento che usiamo per definire l'espressione regolare ad array di byte. (C'è un altro caso di questo stesso problema, proprio nella riga successiva.)
 <pre class='nd pp'><code>  class UniversalDetector:
       def __init__(self):
 <del>-         self._highBitDetector = re.compile(r'[\x80-\xFF]')</del>
@@ -386,7 +385,7 @@ for line in open(f, 'rb'):
   File "C:\home\chardet\chardet\universaldetector.py", line 100, in feed
     elif (self._mInputState == ePureAscii) and self._escDetector.search(self._mLastChar + aBuf):
 TypeError: Can't convert 'bytes' object to str implicitly</samp></pre>
-<p>Qui c'è uno sfortunato scontro tra stile di codifica e interprete Python. L'errore di tipo <code>TypeError</code> potrebbe essere dovunque su quella riga, ma la traceback non vi dice esattamente dov'è. Potrebbe essere nella prima condizione o nella seconda, ma la traceback sarebbe la stessa. Per circoscrivere l'errore, dovete spezzare la riga a metà, in questo modo:
+<p>Qui c'è uno sfortunato conflitto tra stile di codifica e interprete Python. L'errore di tipo <code>TypeError</code> potrebbe essere dovunque su quella riga, ma la traceback non vi dice esattamente dov'è. Potrebbe essere nella prima condizione o nella seconda, ma la traceback sarebbe la stessa. Per circoscrivere l'errore, dovete spezzare la riga a metà, in questo modo:
 <pre class='nd pp'><code>elif (self._mInputState == ePureAscii) and \
     self._escDetector.search(self._mLastChar + aBuf):</code></pre>
 <p>E rieseguire il test:
@@ -459,8 +458,8 @@ TypeError: Can't convert 'bytes' object to str implicitly</samp></pre>
   File "C:\home\chardet\chardet\universaldetector.py", line 101, in feed
     self._escDetector.search(self._mLastChar + aBuf):
 TypeError: unsupported operand type(s) for +: 'int' and 'bytes'</samp></pre>
-<p>&hellip;La cattiva notizia è che questo non sempre sembra un progresso.
-<p>Ma questo è un progresso! Davvero! Anche se la traceback evidenzia la stessa riga di codice, questo è un errore diverso da quello di prima. Progresso! Quindi qual è ora il problema? L'ultima volta che ho controllato, questa riga di codice non provava a concatenare un <code>int</code> con un array di byte (<code>bytes</code>). Infatti, avete appena speso un sacco di tempo per <a href=#cantconvertbytesobject>assicurarvi che <var>self._mLastChar</var> fosse un array di byte</a>. Come si è trasformato in un <code>int</code>?
+<p>&hellip;La cattiva notizia è che questo non sempre sembra un passo in avanti.
+<p>Ma questo è un passo in avanti! Davvero! Anche se la traceback evidenzia la stessa riga di codice, questo è un errore diverso da quello di prima. Un passo in avanti! Quindi qual è ora il problema? L'ultima volta che ho controllato, questa riga di codice non provava a concatenare un <code>int</code> con un array di byte (<code>bytes</code>). Infatti, avete appena speso un sacco di tempo per <a href=#cantconvertbytesobject>assicurarvi che <var>self._mLastChar</var> fosse un array di byte</a>. Come si è trasformato in un <code>int</code>?
 <p>La risposta non è nelle righe di codice precedenti, ma nelle righe seguenti.
 <pre class='nd pp'><code>if self._mInputState == ePureAscii:
     if self._highBitDetector.search(aBuf):
@@ -470,7 +469,7 @@ TypeError: unsupported operand type(s) for +: 'int' and 'bytes'</samp></pre>
         self._mInputState = eEscAscii
 
 <mark>self._mLastChar = aBuf[-1]</mark></code></pre>
-<aside>Ogni elemento in una stringa è una stringa. Ogni elemento in un vettore di byte è un intero.</aside>
+<aside>Ogni elemento in una stringa è una stringa. Ogni elemento in un array di byte è un intero.</aside>
 <p>Questo errore non avviene la prima volta che il metodo <code>feed()</code> viene chiamato; avviene la <em>seconda volta</em>, dopo che a <var>self._mLastChar</var> è stato assegnato l'ultimo byte di <var>aBuf</var>. E quindi, qual è il problema con quella operazione? Recuperare un singolo elemento da un array di byte produce un intero, non un array di byte. Per vedere la differenza, seguitemi nella shell interattiva:
 <pre class=screen>
 <a><samp class=p>>>> </samp><kbd class=pp>aBuf = b'\xEF\xBB\xBF'</kbd>         <span class=u>&#x2460;</span></a>
@@ -495,10 +494,10 @@ TypeError: unsupported operand type(s) for +: 'int' and 'bytes'</samp>
 <li>L'ultimo elemento dell'array di byte è 191.
 <li>Quell'ultimo elemento è un intero.
 <li>Concatenare un intero a un array di byte non funziona. Avete appena riprodotto l'errore che è stato trovato in <code>universaldetector.py</code>.
-<li>Ah, questa è la soluzione. Invece di prendere l'ultimo elemento dell'array di byte, <a href=tipi-di-dato-nativi.html#slicinglists>affettate la lista</a> per creare un nuovo array di byte contenente solo l'ultimo elemento. Cioè, cominciate con l'ultimo elemento e continuate la fetta fino alla fine dell'array di byte. Ora <var>mLastChar</var> è un array di byte di lunghezza 1.
+<li>Ah, questa è la soluzione. Invece di prendere l'ultimo elemento dell'array di byte, <a href=tipi-di-dato-nativi.html#slicinglists>affettate la lista</a> per creare un nuovo array di byte contenente solo l'ultimo elemento. Cioè, cominciate con l'ultimo elemento e prolungate la fetta fino alla fine dell'array di byte. Ora <var>mLastChar</var> è un array di byte di lunghezza 1.
 <li>Concatenare un array di byte di lunghezza 1 con un array di byte di lunghezza 3 restituisce un nuovo array di byte di lunghezza 4.
 </ol>
-<p>Quindi, per assicurarvi che il metodo <code>feed()</code> in <code>universaldetector.py</code> continui a lavorare a prescindere da quanto spesso viene invocato, dovete <a href=#cantconvertbytesobject>inizializzare <var>self._mLastChar</var> come un array di byte di lunghezza 0</a> e poi <em>assicurarvi che rimanga un array di byte</em>.
+<p>Quindi, per assicurarvi che il metodo <code>feed()</code> in <code>universaldetector.py</code> continui a lavorare a prescindere da quante volte viene invocato, dovete <a href=#cantconvertbytesobject>inizializzare <var>self._mLastChar</var> come un array di byte di lunghezza 0</a> e poi <em>assicurarvi che rimanga un array di byte</em>.
 <pre class='nd pp'><code>              self._escDetector.search(self._mLastChar + aBuf):
           self._mInputState = eEscAscii
 
@@ -507,7 +506,7 @@ TypeError: unsupported operand type(s) for +: 'int' and 'bytes'</samp>
 <h3 id=ordexpectedstring><code>ord()</code> si aspetta una stringa di lunghezza 1, ma trova un <code>int</code></h3>
 <p>Già stanchi? Ci siete quasi&hellip;
 <pre class='nd screen'><samp class=p>C:\home\chardet> </samp><kbd>python test.py tests\*\*</kbd>
-<samp>tests\ascii\howto.diveintomark.org.xml                       ascii with confidence 1.0
+<samp>tests\ascii\howto.diveintomark.org.xml                       ascii con confidenza 1.0
 tests\Big5\0804.blogspot.com.xml</samp>
 <samp class=traceback>Traceback (most recent call last):
   File "test.py", line 10, in &lt;module>
@@ -521,22 +520,22 @@ tests\Big5\0804.blogspot.com.xml</samp>
   File "C:\home\chardet\chardet\codingstatemachine.py", line 43, in next_state
     byteCls = self._mModel['classTable'][ord(c)]
 TypeError: ord() expected string of length 1, but int found</samp></pre>
-<p>OK, quindi <var>c</var> è un <code>int</code>, ma la funzione <code>ord()</code> si aspetta una stringa di 1 carattere. Abbastanza onesto. Dove viene definito <var>c</var>?
+<p>Bene, quindi <var>c</var> è un <code>int</code>, ma la funzione <code>ord()</code> si aspetta una stringa di 1 carattere. Abbastanza onesto. Dove viene definito <var>c</var>?
 <pre class='nd pp'><code># codingstatemachine.py
 def next_state(self, c):
-    # for each byte we get its class
-    # if it is first byte, we also get byte length
+    # recuperiamo la classe di ogni byte
+    # se è il primo byte, ne recuperiamo anche la lunghezza
     byteCls = self._mModel['classTable'][ord(c)]</code></pre>
 <p>Questo frammento di codice non è di aiuto; il parametro viene semplicemente passato dentro la funzione. Risaliamo la traccia dello stack di esecuzione.
 <pre class='nd pp'><code># utf8prober.py
 def feed(self, aBuf):
     for c in aBuf:
         codingState = self._mCodingSM.next_state(c)</code></pre>
-<p>Vedete? In Python 2, <var>aBuf</var> era una stringa, quindi <var>c</var> era una stringa di 1 carattere. (Questo è quello che si ottiene quando si itera su una stringa&nbsp;&mdash;&nbsp;tutti i caratteri, uno ad uno.) Ma ora <var>aBuf</var> è un vettore di byte, quindi <var>c</var> è un <code>int</code>, non una stringa di 1 carattere. In altre parole, non c'è alcun bisogno di chiamare la funzione <code>ord()</code> perché <var>c</var> è già un <code>int</code>!
+<p>Vedete? In Python 2, <var>aBuf</var> era una stringa, quindi <var>c</var> era una stringa di 1 carattere. (Questo è quello che si ottiene quando si itera su una stringa&nbsp;&mdash;&nbsp;tutti i caratteri, uno a uno.) Ma ora <var>aBuf</var> è un vettore di byte, quindi <var>c</var> è un <code>int</code>, non una stringa di 1 carattere. In altre parole, non c'è alcun bisogno di chiamare la funzione <code>ord()</code> perché <var>c</var> è già un <code>int</code>!
 <p>Perciò:
 <pre class='nd pp'><code>  def next_state(self, c):
-      # for each byte we get its class
-      # if it is first byte, we also get byte length
+      # recuperiamo la classe di ogni byte
+      # se è il primo byte, ne recuperiamo anche la lunghezza
 <del>-     byteCls = self._mModel['classTable'][ord(c)]</del>
 <ins>+     byteCls = self._mModel['classTable'][c]</ins></code></pre>
 <p>Una ricerca sull'intera base di codice per istanze di &#8220;<code>ord(c)</code>&#8221; rivela problemi simili in <code>sbcharsetprober.py</code>&hellip;
@@ -577,7 +576,7 @@ def feed(self, aBuf):
 <h3 id=unorderabletypes>Tipi non ordinabili: <code>int()</code> >= <code>str()</code></h3>
 <p>Continuiamo ancora.
 <pre class='nd screen'><samp class=p>C:\home\chardet> </samp><kbd>python test.py tests\*\*</kbd>
-<samp>tests\ascii\howto.diveintomark.org.xml                       ascii with confidence 1.0
+<samp>tests\ascii\howto.diveintomark.org.xml                       ascii con confidenza 1.0
 tests\Big5\0804.blogspot.com.xml</samp>
 <samp class=traceback>Traceback (most recent call last):
   File "test.py", line 10, in &lt;module>
@@ -593,11 +592,11 @@ tests\Big5\0804.blogspot.com.xml</samp>
   File "C:\home\chardet\chardet\jpcntx.py", line 176, in get_order
     if ((aStr[0] >= '\x81') and (aStr[0] &lt;= '\x9F')) or \
 TypeError: unorderable types: int() >= str()</samp></pre>
-<p>Quindi qual è l'errore in questo caso? &#8220;Unorderable types&#8221;? Tipi non ordinabili? Ancora una volta, la differenza tra array di byte e stringhe sta rialzando la sua testa ripugnante. Date un'occhiata al codice:
+<p>Quindi qual è l'errore in questo caso? &#8220;Unorderable types&#8221;? Tipi non ordinabili? Ancora una volta, la differenza tra array di byte e stringhe sta rialzando la sua ripugnante testa. Date un'occhiata al codice:
 <pre class='nd pp'><code>class SJISContextAnalysis(JapaneseContextAnalysis):
     def get_order(self, aStr):
         if not aStr: return -1, 1
-        # find out current char's byte length
+        # trova la lunghezza in byte del carattere corrente
 <mark>        if ((aStr[0] >= '\x81') and (aStr[0] &lt;= '\x9F')) or \</mark>
            ((aStr[0] >= '\xE0') and (aStr[0] &lt;= '\xFC')):
             charLen = 2
@@ -611,24 +610,24 @@ TypeError: unorderable types: int() >= str()</samp></pre>
     i = self._mNeedToSkipCharNum
     while i &lt; aLen:
 <mark>        order, charLen = self.get_order(aBuf[i:i+2])</mark></code></pre>
-<p>Oh guardate, è il nostro vecchio amico <var>aBuf</var>. Come avrete potuto intuire da tutti gli altri problemi che abbiamo incontrato in questo capitolo, <var>aBuf</var> è un array di byte. Qui, il metodo <code>feed()</code> non sta semplicemente passandolo tutto intero; lo sta affettando. Ma come avete visto <a href=#unsupportedoperandtypeforplus>precedentemente in questo capitolo</a>, affettare un array di byte restituisce un array di byte, quindi il parametro <var>aStr</var> che viene passato al metodo <code>get_order()</code> è ancora un array di byte.
+<p>Oh, guardate, è il nostro vecchio amico <var>aBuf</var>. Come avrete potuto intuire da tutti gli altri problemi che abbiamo incontrato in questo capitolo, <var>aBuf</var> è un array di byte. Qui, il metodo <code>feed()</code> non sta semplicemente passandolo tutto intero, ma lo sta affettando. Però, come avete visto <a href=#unsupportedoperandtypeforplus>precedentemente in questo capitolo</a>, affettare un array di byte restituisce un array di byte, quindi il parametro <var>aStr</var> che viene passato al metodo <code>get_order()</code> è ancora un array di byte.
 <p>E cos'è che questo codice sta cercando di fare con <var>aStr</var>? Prende il primo elemento dell'array di byte e lo confronta con una stringa di lunghezza 1. In Python 2, questo funzionava, perché <var>aStr</var> e <var>aBuf</var> erano stringhe, e <var>aStr[0]</var> sarebbe stata una stringa, e potevate confrontare le stringhe per la disuguaglianza. Ma in Python 3 <var>aStr</var> e <var>aBuf</var> sono array di byte, <var>aStr[0]</var> è un intero e non potete effettuare un confronto di disuguaglianza tra interi e stringhe senza convertire esplicitamente gli uni al tipo delle altre o viceversa.
-<p>In questo caso, non c'è bisogno di rendere il codice più complicato aggiungendo una conversione esplicita. <var>aStr[0]</var> produce un intero; le cose con le quali state facendo il confronto sono tutte costanti. Cambiamole da stringhe di 1 carattere a interi. E visto che ci siamo, rinominiamo <var>aStr</var> in <var>aBuf</var>, dato che in realtà non è una stringa.
+<p>In questo caso, non c'è bisogno di rendere il codice più complicato aggiungendo una conversione esplicita. <var>aStr[0]</var> produce un intero e le cose con le quali state effettuando il confronto sono tutte costanti. Modifichiamole da stringhe di 1 carattere a interi. E visto che ci siamo, cambiamo il nome di <var>aStr</var> in <var>aBuf</var>, dato che in realtà non è una stringa.
 <pre class='nd pp'><code>  class SJISContextAnalysis(JapaneseContextAnalysis):
 <del>-     def get_order(self, aStr):</del>
 <del>-         if not aStr: return -1, 1</del>
 <ins>+     def get_order(self, aBuf):</ins>
 <ins>+         if not aBuf: return -1, 1</ins>
-          # find out current char's byte length
+          # trova la lunghezza in byte del carattere corrente
 <del>-         if ((aStr[0] >= '\x81') and (aStr[0] &lt;= '\x9F')) or \</del>
-<del>-            ((aBuf[0] >= '\xE0') and (aBuf[0] &lt;= '\xFC')):</del>
-<ins>+         if ((aStr[0] >= 0x81) and (aStr[0] &lt;= 0x9F)) or \</ins>
+<del>-            ((aStr[0] >= '\xE0') and (aStr[0] &lt;= '\xFC')):</del>
+<ins>+         if ((aBuf[0] >= 0x81) and (aBuf[0] &lt;= 0x9F)) or \</ins>
 <ins>+            ((aBuf[0] >= 0xE0) and (aBuf[0] &lt;= 0xFC)):</ins>
               charLen = 2
           else:
               charLen = 1
 
-          # return its order if it is hiragana
+          # restituisce il suo ordinale se è hiragana
 <del>-          if len(aStr) > 1:</del>
 <del>-              if (aStr[0] == '\202') and \</del>
 <del>-                 (aStr[1] >= '\x9F') and \</del>
@@ -647,7 +646,7 @@ TypeError: unorderable types: int() >= str()</samp></pre>
 <del>-         if not aStr: return -1, 1</del>
 <ins>+     def get_order(self, aBuf):</ins>
 <ins>+         if not aBuf: return -1, 1</ins>
-          # find out current char's byte length
+          # trova la lunghezza in byte del carattere corrente
 <del>-         if (aStr[0] == '\x8E') or \</del>
 <del>-            ((aStr[0] >= '\xA1') and (aStr[0] &lt;= '\xFE')):</del>
 <ins>+         if (aBuf[0] == 0x8E) or \</ins>
@@ -659,7 +658,7 @@ TypeError: unorderable types: int() >= str()</samp></pre>
           else:
               charLen = 1
 
-        # return its order if it is hiragana
+        # restituisce il suo ordinale se è hiragana
 <del>-        if len(aStr) > 1:</del>
 <del>-            if (aStr[0] == '\xA4') and \</del>
 <del>-               (aStr[1] >= '\xA1') and \</del>
@@ -676,7 +675,7 @@ TypeError: unorderable types: int() >= str()</samp></pre>
 <h3 id=reduceisnotdefined>Il nome globale <code>'reduce'</code> non è definito</h3>
 <p>Ancora una volta sulla breccia&hellip;
 <pre class='nd screen'><samp class=p>C:\home\chardet> </samp><kbd>python test.py tests\*\*</kbd>
-<samp>tests\ascii\howto.diveintomark.org.xml                       ascii with confidence 1.0
+<samp>tests\ascii\howto.diveintomark.org.xml                       ascii con confidenza 1.0
 tests\Big5\0804.blogspot.com.xml</samp>
 <samp class=traceback>Traceback (most recent call last):
   File "test.py", line 12, in &lt;module>
@@ -700,45 +699,45 @@ NameError: global name 'reduce' is not defined</samp></pre>
   
 <del>-     total = reduce(operator.add, self._mFreqCounter)</del>
 <ins>+     total = sum(self._mFreqCounter)</ins></code></pre>
-<p>Dato che non state più usando il modulo <code>operator</code>, potete anche rimuovere quella istruzione di <code>import</code> dall'inizio del file.
+<p>Dato che non state più usando il modulo <code>operator</code>, potete anche rimuovere quell'istruzione di <code>import</code> dall'inizio del file.
 <pre class='nd pp'><code>  from .charsetprober import CharSetProber
   from . import constants
 <del>- import operator</del></code></pre>
 <p>I CAN HAZ TESTZ?
 <pre class='nd screen'><samp class=p>C:\home\chardet> </samp><kbd>python test.py tests\*\*</kbd>
-<samp>tests\ascii\howto.diveintomark.org.xml                       ascii with confidence 1.0
-tests\Big5\0804.blogspot.com.xml                             Big5 with confidence 0.99
-tests\Big5\blog.worren.net.xml                               Big5 with confidence 0.99
-tests\Big5\carbonxiv.blogspot.com.xml                        Big5 with confidence 0.99
-tests\Big5\catshadow.blogspot.com.xml                        Big5 with confidence 0.99
-tests\Big5\coolloud.org.tw.xml                               Big5 with confidence 0.99
-tests\Big5\digitalwall.com.xml                               Big5 with confidence 0.99
-tests\Big5\ebao.us.xml                                       Big5 with confidence 0.99
-tests\Big5\fudesign.blogspot.com.xml                         Big5 with confidence 0.99
-tests\Big5\kafkatseng.blogspot.com.xml                       Big5 with confidence 0.99
-tests\Big5\ke207.blogspot.com.xml                            Big5 with confidence 0.99
-tests\Big5\leavesth.blogspot.com.xml                         Big5 with confidence 0.99
-tests\Big5\letterlego.blogspot.com.xml                       Big5 with confidence 0.99
-tests\Big5\linyijen.blogspot.com.xml                         Big5 with confidence 0.99
-tests\Big5\marilynwu.blogspot.com.xml                        Big5 with confidence 0.99
-tests\Big5\myblog.pchome.com.tw.xml                          Big5 with confidence 0.99
-tests\Big5\oui-design.com.xml                                Big5 with confidence 0.99
-tests\Big5\sanwenji.blogspot.com.xml                         Big5 with confidence 0.99
-tests\Big5\sinica.edu.tw.xml                                 Big5 with confidence 0.99
-tests\Big5\sylvia1976.blogspot.com.xml                       Big5 with confidence 0.99
-tests\Big5\tlkkuo.blogspot.com.xml                           Big5 with confidence 0.99
-tests\Big5\tw.blog.xubg.com.xml                              Big5 with confidence 0.99
-tests\Big5\unoriginalblog.com.xml                            Big5 with confidence 0.99
-tests\Big5\upsaid.com.xml                                    Big5 with confidence 0.99
-tests\Big5\willythecop.blogspot.com.xml                      Big5 with confidence 0.99
-tests\Big5\ytc.blogspot.com.xml                              Big5 with confidence 0.99
-tests\EUC-JP\aivy.co.jp.xml                                  EUC-JP with confidence 0.99
-tests\EUC-JP\akaname.main.jp.xml                             EUC-JP with confidence 0.99
-tests\EUC-JP\arclamp.jp.xml                                  EUC-JP with confidence 0.99
+<samp>tests\ascii\howto.diveintomark.org.xml                       ascii con confidenza 1.0
+tests\Big5\0804.blogspot.com.xml                             Big5 con confidenza 0.99
+tests\Big5\blog.worren.net.xml                               Big5 con confidenza 0.99
+tests\Big5\carbonxiv.blogspot.com.xml                        Big5 con confidenza 0.99
+tests\Big5\catshadow.blogspot.com.xml                        Big5 con confidenza 0.99
+tests\Big5\coolloud.org.tw.xml                               Big5 con confidenza 0.99
+tests\Big5\digitalwall.com.xml                               Big5 con confidenza 0.99
+tests\Big5\ebao.us.xml                                       Big5 con confidenza 0.99
+tests\Big5\fudesign.blogspot.com.xml                         Big5 con confidenza 0.99
+tests\Big5\kafkatseng.blogspot.com.xml                       Big5 con confidenza 0.99
+tests\Big5\ke207.blogspot.com.xml                            Big5 con confidenza 0.99
+tests\Big5\leavesth.blogspot.com.xml                         Big5 con confidenza 0.99
+tests\Big5\letterlego.blogspot.com.xml                       Big5 con confidenza 0.99
+tests\Big5\linyijen.blogspot.com.xml                         Big5 con confidenza 0.99
+tests\Big5\marilynwu.blogspot.com.xml                        Big5 con confidenza 0.99
+tests\Big5\myblog.pchome.com.tw.xml                          Big5 con confidenza 0.99
+tests\Big5\oui-design.com.xml                                Big5 con confidenza 0.99
+tests\Big5\sanwenji.blogspot.com.xml                         Big5 con confidenza 0.99
+tests\Big5\sinica.edu.tw.xml                                 Big5 con confidenza 0.99
+tests\Big5\sylvia1976.blogspot.com.xml                       Big5 con confidenza 0.99
+tests\Big5\tlkkuo.blogspot.com.xml                           Big5 con confidenza 0.99
+tests\Big5\tw.blog.xubg.com.xml                              Big5 con confidenza 0.99
+tests\Big5\unoriginalblog.com.xml                            Big5 con confidenza 0.99
+tests\Big5\upsaid.com.xml                                    Big5 con confidenza 0.99
+tests\Big5\willythecop.blogspot.com.xml                      Big5 con confidenza 0.99
+tests\Big5\ytc.blogspot.com.xml                              Big5 con confidenza 0.99
+tests\EUC-JP\aivy.co.jp.xml                                  EUC-JP con confidenza 0.99
+tests\EUC-JP\akaname.main.jp.xml                             EUC-JP con confidenza 0.99
+tests\EUC-JP\arclamp.jp.xml                                  EUC-JP con confidenza 0.99
 .
 .
 .
-316 tests</samp></pre>
+316 test</samp></pre>
 <p>Porca puttana, funziona davvero! <em><a href=http://www.hampsterdance.com/>/me fa una piccola danza</a></em>
 
 <p class=a>&#x2042;
@@ -746,13 +745,13 @@ tests\EUC-JP\arclamp.jp.xml                                  EUC-JP with confide
 <h2 id=summary>Riepilogo</h2>
 <p>Che cosa abbiamo imparato?
 <ol>
-<li>Convertire qualsiasi quantità non banale di codice da Python 2 verso Python 3 sarà doloroso. Non c'è alcun modo di evitarlo. &Egrave; difficile.
-<li>Lo <a href=porting-code-to-python-3-with-2to3.html>stumento automatico <code>2to3</code></a> è utile per quello che può fare, ma farà solo la parte facile&nbsp;&mdash;&nbsp;rinominerà le funzioni e i moduli, modificherà la sintassi. &Egrave; un impressionante esempio di ingegneria, ma in fondo non è altro che un automa intelligente per la ricerca e la sostituzione.
-<li>Il problema n°1 nella conversione di questa libreria era la differenza tra stringhe e byte. In questo caso sembrava ovvio, dato che lo scopo stesso della libreria <code>chardet</code> è convertire un flusso di byte in una stringa. Ma &#8220;un flusso di byte&#8221; scorre molto più spesso di quanto possiate immaginare. Leggete un file in modalità &#8220;binaria&#8221;? Avrete un flusso di byte. Recuperate una pagina web? Chiamate una <abbr>API</abbr> web? Anche quelle restituiscono un flusso di byte.
+<li>Convertire una qualunque quantità non banale di codice da Python 2 verso Python 3 sarà doloroso. Non c'è alcun modo di evitarlo. &Egrave; difficile.
+<li>Lo <a href=convertire-codice-verso-python-3-con-2to3.html>stumento automatico <code>2to3</code></a> è utile per quello che può fare, ma si occuperà solo della parte facile&nbsp;&mdash;&nbsp;rinominerà le funzioni e i moduli, modificherà la sintassi. &Egrave; un impressionante esempio di ingegneria, ma in fondo non è altro che un automa intelligente per la ricerca e la sostituzione.
+<li>Il problema n°1 nella conversione di questa libreria era la differenza tra stringhe e byte. In questo caso sembrava ovvio, dato che lo scopo stesso della libreria <code>chardet</code> è convertire un flusso di byte in una stringa. Ma &#8220;un flusso di byte&#8221; scorre molto più spesso di quanto possiate immaginare. Leggete un file in modalità &#8220;binaria&#8221;? Avrete un flusso di byte. Prelevate una pagina web? Chiamate una <abbr>API</abbr> web? Anche quelle restituiscono un flusso di byte.
 <li><em>Voi</em> avete bisogno di capire il vostro programma. A fondo. Preferibilmente perché lo avete scritto, ma è necessario almeno che vi troviate a vostro agio con tutte le sue stranezze e i suoi angoli ammuffiti. I bug si annidano ovunque.
-<li>I test sono essenziali. Non convertite nulla senza di loro. L'<em>unica</em> ragione per cui ho una qualche confidenza che <code>chardet</code> funzioni in Python 3 è perché ho cominciato con una serie di test che esercitava tutti i percorsi principali nel codice. Se non avete alcun test, scrivetene alcuni prima di cominciare a convertire verso Python 3. Se avete alcuni test, scrivetene altri. Se avete molti test, allora il vero divertimento può cominciare.
+<li>I test sono essenziali. Non convertite nulla senza di loro. L'<em>unica</em> ragione per cui ho una qualche confidenza che <code>chardet</code> funzioni in Python 3 è perché ho cominciato con una serie di test che esercitava tutti i percorsi principali all'interno del codice. Se non avete nessun test, scrivetene alcuni prima di cominciare a convertire verso Python 3. Se avete alcuni test, scrivetene altri. Se avete molti test, allora il vero divertimento può cominciare.
 </ol>
-<p class=v><a href=distribuire-librerie-python.html rel=prev title='indietro a &#8220;Distribuire librerie Python&#8221;' class=todo><span class=u>&#x261C;</span></a> <a href=distribuire-librerie-python.html rel=next title='indietro a &#8220;Distribuire librerie Python&#8221;'><span class=u>&#x261E;</span></a>
+<p class=v><a href=servizi-web-http.html rel=prev title='indietro a &#8220;Servizi web HTTP&#8221;'><span class=u>&#x261C;</span></a> <a href=distribuire-librerie-python.html rel=next title='avanti a &#8220;Distribuire librerie Python&#8221;'><span class=u>&#x261E;</span></a>
 <p class=c>&copy; 2001&ndash;9 <a href=informazioni-sul-libro.html>Mark Pilgrim</a><br>
 &copy; 2009 <a href=informazioni-sulla-traduzione.html>Giulio Piancastelli</a> per la traduzione italiana
 <script src=j/jquery.js></script>
