@@ -385,7 +385,7 @@ for line in open(f, 'rb'):
   File "C:\home\chardet\chardet\universaldetector.py", line 100, in feed
     elif (self._mInputState == ePureAscii) and self._escDetector.search(self._mLastChar + aBuf):
 TypeError: Can't convert 'bytes' object to str implicitly</samp></pre>
-<p>Qui c'è uno sfortunato conflitto tra stile di codifica e interprete Python. L'errore di tipo <code>TypeError</code> potrebbe essere dovunque su quella riga, ma la traceback non vi dice esattamente dov'è. Potrebbe essere nella prima condizione o nella seconda, ma la traceback sarebbe la stessa. Per circoscrivere l'errore, dovete spezzare la riga a metà, in questo modo:
+<p>Qui c'è una sfortunata collisione tra stile di codifica e interprete Python. L'errore di tipo <code>TypeError</code> potrebbe essere ovunque su quella riga, ma la traceback non vi dice esattamente dov'è. Potrebbe essere nella prima condizione o nella seconda, ma la traceback sarebbe la stessa. Per circoscrivere l'errore, dovete spezzare la riga a metà, in questo modo:
 <pre class='nd pp'><code>elif (self._mInputState == ePureAscii) and \
     self._escDetector.search(self._mLastChar + aBuf):</code></pre>
 <p>E rieseguire il test:
