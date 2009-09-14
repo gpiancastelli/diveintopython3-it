@@ -206,7 +206,7 @@ setup(
 
 <h2 id=trove>Classificare il vostro pacchetto</h2>
 
-<p>L'Indice dei Pacchetti Python (&#8220;PyPI&#8221;) contiene migliaia di librerie Python. I corretti metadati di classificazione consentiranno alle persone interessate di trovare la vostra libreria più facilmente. PyPI vi consente di <a href='http://pypi.python.org/pypi?:action=browse'>scorrere i pacchetti per classificatore</a>. Potete anche selezionare molteplici classificatori per restringere il campo della vostra ricerca. I classificatori non sono metadati invisibili che potete semplicemente ignorare!
+<p>Il Python Package Index (&#8220;PyPI&#8221;, Indice dei Pacchetti Python) contiene migliaia di librerie Python. I corretti metadati di classificazione consentiranno alle persone interessate di trovare la vostra libreria più facilmente. PyPI vi consente di <a href='http://pypi.python.org/pypi?:action=browse'>scorrere i pacchetti per classificatore</a>. Potete anche selezionare molteplici classificatori per restringere il campo della vostra ricerca. I classificatori non sono metadati invisibili che potete semplicemente ignorare!
 
 <p>Per classificare il vostro software, passate un parametro <code>classifiers</code> alla funzione <code>setup()</code> di Distutils. Il parametro <code>classifiers</code> è una lista di stringhe. Il formato di queste stringhe <em>non</em> è libero, perché tutte le stringhe di classificazione dovrebbero provenire da <a href='http://pypi.python.org/pypi?:action=list_classifiers'>questa lista su PyPI</a>.
 
@@ -224,7 +224,7 @@ setup(
 <li><b>Development Status</b>. Il vostro software ha la qualità di una versione beta? Alfa? Pre-alfa? Sceglietene una. Siate onesti.
 <li><b>Intended Audience</b>. Chi scaricherebbe il vostro software? Le scelte più comuni sono <code>Developers</code>, <code>End Users/Desktop</code>, <code>Science/Research</code> e <code>System Administrators</code>.
 <li><b>Framework</b>. Se il vostro software è un componente aggiuntivo per un framework Python più grande come <a href=http://www.djangoproject.com/>Django</a> o <a href=http://www.zope.org/>Zope</a>, includete l'appropriato classificatore <code>Framework</code>, altrimenti omettetelo.
-<li><b>Topic</b>. C'è una <a href='http://pypi.python.org/pypi?:action=list_classifiers'>vasta scelta di argomenti da cui scegliere</a>; scegliete tutti quelli che si applicano al vostro caso.
+<li><b>Topic</b>. C'è un <a href='http://pypi.python.org/pypi?:action=list_classifiers'>vasta gamma di argomenti tra cui scegliere</a>; scegliete tutti quelli che si applicano al vostro caso.
 </ul>
 
 <h3 id=trove-examples>Esempi di buoni classificatori</h3>
@@ -510,7 +510,7 @@ Posso memorizzare i tuoi dati di accesso su PyPI per rendere più veloci le futu
 <a><samp class=p>Salvare i tuoi dati di accesso (y/N)?</samp> <kbd class=pp>n</kbd>                                                        <span class=u>&#x2467;</span></a></pre>
 <ol>
 <li>Quando rilasciate il vostro progetto per la prima volta, Distutils aggiungerà il vostro software all'Indice dei Pacchetti Python e gli darà un proprio <abbr>URL</abbr>. Tutte le volte successive si limiterà ad aggiornare i metadati del progetto con qualsiasi cambiamento possiate aver apportato ai parametri del vostro file <code>setup.py</code>. Poi, assemblerà una distribuzione dei sorgenti (<code>sdist</code>) e un pacchetto di installazione per Windows (<code>bdist_wininst</code>) e li caricherà entrambi su PyPI (<code>upload</code>).
-<li>Digitate <kbd>1</kbd> o premete semplicemente <kbd>INVIO</kbd> per selezionare &#8220;usa il tuo login esistente&#8221;.
+<li>Digitate <kbd>1</kbd> o premete semplicemente <kbd>INVIO</kbd> per selezionare &#8220;usa i tuoi dati di accesso esistenti&#8221;.
 <li>Inserite il nome utente e la password che avete selezionato sulla <a href=http://pypi.python.org/pypi?:action=register_form>pagina di registrazione per gli utenti di PyPI</a>. Distuils non mostrerà la vostra password sullo schermo, né mostrerà asterischi al posto dei caratteri. Digitate semplicemente la vostra password e premete <kbd>INVIO</kbd>.
 <li>Distutils registra il vostro pacchetto sull'Indice dei Pacchetti Python&hellip;
 <li>&hellip;assembla la vostra distribuzione dei sorgenti&hellip;
