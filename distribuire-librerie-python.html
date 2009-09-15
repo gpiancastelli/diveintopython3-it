@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<head>
 <meta charset=utf-8>
 <title>Distribuire librerie Python - Dive into Python 3</title>
 <!--[if IE]><script src=j/html5.js></script><![endif]-->
@@ -12,7 +11,6 @@ mark{display:inline}
 <link rel=stylesheet media='only screen and (max-device-width: 480px)' href=mobile.css>
 <link rel=stylesheet media=print href=print.css>
 <meta name=viewport content='initial-scale=1.0'>
-</head>
 <form action=http://www.google.com/cse><div><input type=hidden name=cx value=014021643941856155761:l5eihuescdw><input type=hidden name=ie value=UTF-8>&nbsp;<input type=search name=q size=25 placeholder="powered by Google&trade;">&nbsp;<input type=submit name=root value=Search></div></form>
 <p>Voi siete qui: <a href=index.html>Home</a> <span class=u>&#8227;</span> <a href=table-of-contents.html#packaging>Dive Into Python 3</a> <span class=u>&#8227;</span>
 <p id=level>Livello di difficoltà: <span class=u title=advanced>&#x2666;&#x2666;&#x2666;&#x2666;&#x2662;</span>
@@ -199,8 +197,6 @@ setup(
 )</code></pre>
 
 <p>Il parametro <code>packages</code> evidenzia una sfortunata sovrapposizione di vocaboli nel processo di distribuzione. Abbiamo parlato del &#8220;pacchetto&#8221; come della cosa che state assemblando (e potenzialmente elencando nell'Indice dei Pacchetti Python). Il parametro <code>packages</code> non si riferisce a questo, ma al fatto che il modulo <code>chardet</code> è un <a href=caso-di-studio-convertire-chardet-verso-python-3.html#multifile-modules>modulo multi-file</a>, talvolta noto come&hellip; &#8220;pacchetto&#8221;. Il parametro <code>packages</code> dice a Distutils di includere la directory <code>chardet/</code>, il suo file <code>__init__.py</code> e tutti gli altri file <code>.py</code> che costituiscono il modulo <code>chardet</code>. Questo è piuttosto importante: tutte le nostre allegre chiacchiere su documentazione e metadati sono irrilevanti se dimenticate di includere il codice vero e proprio!
-
-<p>Anche la libreria <code>httplib2</code> è un modulo multi-file, ha una struttura di directory simile e un parametro <code>packages</code> simile.
 
 <p class=a>&#x2042;
 
@@ -479,7 +475,7 @@ rimuovo 'build\bdist.win32\wininst' (e ogni cosa al suo interno)</samp>
 <li>Caricamento del pacchetto creato con <code>setup.py sdist</code> e <code>setup.py bdist_*</code>
 </ol>
 
-<p>Per registrarvi, andate alla <a href=http://pypi.python.org/pypi?:action=register_form>pagina di registrazione per gli utenti di PyPI</a>. Inserite il nome utente e la password che desiderate, fornite un indirizzo email valido e cliccate il bottone <code>Register</code>. (Se avete una chiave <abbr>PGP</abbr> o <abbr>GPG</abbr> potete fornire anche quella. Se non ne avete una o non sapete cosa significa, non fatelo.) Controllate la vostra casella email: entro pochi minuti dovreste ricevere un messaggio da PyPI contenente un link di verifica. Cliccate sul link per completare il processo di registrazione.
+<p>Per registrarvi, andate alla <a href="http://pypi.python.org/pypi?:action=register_form">pagina di registrazione per gli utenti di PyPI</a>. Inserite il nome utente e la password che desiderate, fornite un indirizzo email valido e cliccate il bottone <code>Register</code>. (Se avete una chiave <abbr>PGP</abbr> o <abbr>GPG</abbr> potete fornire anche quella. Se non ne avete una o non sapete cosa significa, non fatelo.) Controllate la vostra casella email: entro pochi minuti dovreste ricevere un messaggio da PyPI contenente un link di verifica. Cliccate sul link per completare il processo di registrazione.
 
 <p>Ora dovete registrare il vostro software su PyPI e caricarlo. Potete farlo in un unico passo.
 
@@ -511,7 +507,7 @@ Posso memorizzare i tuoi dati di accesso su PyPI per rendere più veloci le futu
 <ol>
 <li>Quando rilasciate il vostro progetto per la prima volta, Distutils aggiungerà il vostro software all'Indice dei Pacchetti Python e gli darà un proprio <abbr>URL</abbr>. Tutte le volte successive si limiterà ad aggiornare i metadati del progetto con qualsiasi cambiamento possiate aver apportato ai parametri del vostro file <code>setup.py</code>. Poi, assemblerà una distribuzione dei sorgenti (<code>sdist</code>) e un pacchetto di installazione per Windows (<code>bdist_wininst</code>) e li caricherà entrambi su PyPI (<code>upload</code>).
 <li>Digitate <kbd>1</kbd> o premete semplicemente <kbd>INVIO</kbd> per selezionare &#8220;usa i tuoi dati di accesso esistenti&#8221;.
-<li>Inserite il nome utente e la password che avete selezionato sulla <a href=http://pypi.python.org/pypi?:action=register_form>pagina di registrazione per gli utenti di PyPI</a>. Distuils non mostrerà la vostra password sullo schermo, né mostrerà asterischi al posto dei caratteri. Digitate semplicemente la vostra password e premete <kbd>INVIO</kbd>.
+<li>Inserite il nome utente e la password che avete selezionato sulla <a href="http://pypi.python.org/pypi?:action=register_form">pagina di registrazione per gli utenti di PyPI</a>. Distuils non mostrerà la vostra password sullo schermo, né mostrerà asterischi al posto dei caratteri. Digitate semplicemente la vostra password e premete <kbd>INVIO</kbd>.
 <li>Distutils registra il vostro pacchetto sull'Indice dei Pacchetti Python&hellip;
 <li>&hellip;assembla la vostra distribuzione dei sorgenti&hellip;
 <li>&hellip;crea il pacchetto di installazione per Windows&hellip;
