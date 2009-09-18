@@ -15,28 +15,28 @@ body{counter-reset:h1 13}
 <p id=level>Livello di difficoltà: <span class=u title=advanced>&#x2666;&#x2666;&#x2666;&#x2666;&#x2662;</span>
 <h1>Serializzare oggetti Python</h1>
 <blockquote class=q>
-<p><span class=u>&#x275D;</span> Every Saturday since we&#8217;ve lived in this apartment, I have awakened at 6:15, poured myself a bowl of cereal, added<br>a quarter-cup of 2% milk, sat on <strong>this</strong> end of <strong>this</strong> couch, turned on BBC America, and watched Doctor Who. <span class=u>&#x275E;</span><br>&mdash; Sheldon, <a href='http://en.wikiquote.org/wiki/The_Big_Bang_Theory#The_Dumpling_Paradox_.5B1.07.5D'>The Big Bang Theory</a>
+<p><span class=u>&#x275D;</span> Da quando viviamo in questo appartamento, ogni sabato mi sono alzato alle 6:15, mi sono preparato una tazza di cereali con 1/16 di litro di latte parzialmente scremato, mi sono seduto su <strong>questo</strong> lato di <strong>questo</strong> divano, ho acceso la TV su BBC America e ho guardato Doctor Who. <span class=u>&#x275E;</span><br>&mdash; Sheldon, <a href='http://en.wikiquote.org/wiki/The_Big_Bang_Theory#The_Dumpling_Paradox_.5B1.07.5D'>The Big Bang Theory</a>
 </blockquote>
 <p id=toc>&nbsp;
 <h2 id=divingin>Immersione!</h2>
-<p>Il concetto di <dfn>serializzazione</dfn> è semplice. Avete una struttura dati in memoria che volete salvare, riutilizzare, o inviare a qualcun altro. Come fareste? Be', questo dipende da come volete salvarla, da come volete riutilizzarla e dal destinatario a cui volete inviarla. Molti videogiochi vi permettono di salvare i vostri progressi quando uscite dal gioco e ricominciare da dove avevate lasciato quando rientrate nel gioco. (In realtà, anche molte applicazioni che non sono giochi lo fanno.) In questo caso, una struttura dati che cattura &#8220;i vostri progressi finora&#8221; deve essere memorizzata su disco quando uscite, poi caricata dal disco quando rientrate. I dati sono intesi solo per essere usati dallo stesso programma che li ha creati, mai per venire inviati in rete né essere letti da altri programmi che non siano quello che li ha creati. Quindi, i problemi di interoperabilità sono limitati ad assicurarsi che versioni più recenti del programma possano leggere i dati salvati da versioni precedenti.
+<p>Il concetto di <dfn>serializzazione</dfn> è semplice. Avete in memoria una struttura dati che volete salvare, riutilizzare, o inviare a qualcun altro. Come fareste? Be', questo dipende da come volete salvarla, dal modo in cui pensate di riutilizzarla e dal destinatario a cui desiderate inviarla. Molti videogiochi vi permettono di salvare i vostri progressi quando uscite dal gioco e di ricominciare da dove avevate lasciato quando rientrate nel gioco. (In realtà, anche molte applicazioni che non sono giochi lo fanno.) In questo caso, una struttura dati che cattura &#8220;i vostri progressi finora&#8221; deve essere memorizzata su disco quando uscite, poi caricata dal disco quando rientrate. I dati sono pensati solo per essere usati dallo stesso programma che li ha creati, mai per venire inviati in rete né per essere letti da altri programmi che non siano quello che li ha creati. Quindi, l'interoperabilità si limita a garantire che versioni più recenti del programma possano leggere i dati salvati dalle versioni precedenti.
 
-<p>Per casi come questi, il modulo <code>pickle</code> è l'ideale. Fa parte della libreria standard di Python, quindi è sempre disponibile. &Egrave; veloce, perché la maggior parte del modulo è scritta in C, come lo stesso interprete Python. Può memorizzare strutture dati Python arbitrariamente complesse.
+<p>Per casi come questi, il modulo <code>pickle</code> è l'ideale: fa parte della libreria standard di Python, quindi è sempre disponibile; è veloce, perché la maggior parte del modulo è scritta in C, come lo stesso interprete Python; e può memorizzare strutture dati Python arbitrariamente complesse.
 
 <p>Cosa può memorizzare il modulo <code>pickle</code>?
 
 <ul>
-<li>Tutti i <a href=tipi-di-dato-nativi.html>tipi di dato nativi</a> che Python supporta: booleani, interi, numeri in vigola mobile, numeri complessi, stringhe, oggetti <code>bytes</code>, array di byte e <code>None</code>.
+<li>Tutti i <a href=tipi-di-dato-nativi.html>tipi di dato nativi</a> supportati da Python: booleani, interi, numeri in virgola mobile, numeri complessi, stringhe, oggetti <code>bytes</code>, array di byte e <code>None</code>.
 <li>Liste, tuple, dizionari e insiemi contenenti qualsiasi combinazione di tipi di dato nativi.
-<li>Liste, tuple, dizionari e insiemi contenenti qualsiasi combinazione di liste, tuple, dizionari e insiemi contenenti qualsiasi combinazione di tipi di dato nativi (e così via, fino al <a title='sys.getrecursionlimit()' href=http://docs.python.org/3.1/library/sys.html#sys.getrecursionlimit>massimo livello di annidamento che Python supporta</a>).
+<li>Liste, tuple, dizionari e insiemi contenenti qualsiasi combinazione di liste, tuple, dizionari e insiemi contenenti qualsiasi combinazione di tipi di dato nativi (e così via, fino al <a title='sys.getrecursionlimit()' href=http://docs.python.org/3.1/library/sys.html#sys.getrecursionlimit>massimo livello di annidamento supportato da Python</a>).
 <li>Funzioni, classi e istanze di classi (con alcune avvertenze).
 </ul>
 
-<p>Se questo non vi basta, potete anche estendere il modulo <code>pickle</code>. Se siete interessati alla estendibilità, controllate la sezione di <a href=#furtherreading>letture di approfondimento</a> al termine del capitolo.
+<p>Se questo non vi basta, potete anche estendere il modulo <code>pickle</code>. Se siete interessati alla estendibilità, controllate le <a href=#furtherreading>letture di approfondimento</a> al termine del capitolo.
 
-<h3 id=administrivia>Una rapida nota sugli esempi di questo capitolo</h3>
+<h3 id=administrivia>Una nota rapida sugli esempi di questo capitolo</h3>
 
-<p>Questo capitolo narra un racconto con due Shell Python. Tutti gli esempi in questo capitolo fanno parte dell'arco di una singola storia. Vi verrà chiesto di spostarvi avanti e indietro tra le due Shell Python man mano che vi mostro i moduli <code>pickle</code> e <code>json</code>.
+<p>Questo capitolo narra il proprio racconto usando due Shell Python. Tutti gli esempi in questo capitolo fanno parte dell'arco di una singola storia. Vi verrà chiesto di spostarvi avanti e indietro tra le due Shell Python man mano che vi mostro le funzioni dei moduli <code>pickle</code> e <code>json</code>.
 
 <p>Per evitare di confondervi, aprite una Shell Python e definite la seguente variabile:
 
@@ -48,7 +48,7 @@ body{counter-reset:h1 13}
 <pre class='nd screen'>
 <samp class=p>>>> </samp><kbd class=pp>shell = 2</kbd></pre>
 
-<p>In tutto questo capitolo, usero la variabile <code>shell</code> per indicare quale Shell Python viene usata in ogni esempio.
+<p>In tutto questo capitolo, userò la variabile <code>shell</code> per indicare la Shell Python che viene usata in ogni esempio.
 
 <p class=a>&#x2042;
 
@@ -72,8 +72,8 @@ body{counter-reset:h1 13}
 <samp class=pp>time.struct_time(tm_year=2009, tm_mon=3, tm_mday=27, tm_hour=22, tm_min=20, tm_sec=42, tm_wday=4, tm_yday=86, tm_isdst=-1)</samp></pre>
 <ol>
 <li>Seguitemi nella Shell Python n°1.
-<li>L'idea qui è quella di costruire un dizionario Python che possa rappresentare qualcosa di utile, come una <a href=xml.html#xml-structure>voce in un feed Atom</a>. Ma voglio anche assicurarmi che contenga diversi tipi di dato, per valorizzare il modulo <code>pickle</code>. Questi valori non hanno alcun significato particolare.
-<li>Il modulo <code>time</code> contiene una struttura dati (<code>time_struct</code>) per rappresentare un punto nel tempo (accurato al millisecondo) e funzioni per manipolare queste strutture. La funzione <code>strptime()</code> prende una stringa formattata e la converte in una <code>time_struct</code>. Questa stringa è nel formato predefinito, ma potete controllarlo con i codici di formato. Leggete la documentazione sul <a href=http://docs.python.org/3.1/library/time.html>modulo <code>time</code></a> per maggiori dettagli.
+<li>L'idea qui è quella di costruire un dizionario Python che possa rappresentare qualcosa di utile, come una <a href=xml.html#xml-structure>voce in un feed Atom</a>. Ma voglio anche assicurarmi che contenga diversi tipi di dato, per mettere in risalto il modulo <code>pickle</code>. Questi valori non hanno alcun significato particolare.
+<li>Il modulo <code>time</code> contiene una struttura dati (<code>time_struct</code>) per rappresentare un punto nel tempo (accurato al millisecondo) e alcune funzioni per manipolare queste strutture. La funzione <code>strptime()</code> prende una stringa formattata e la converte in un oggetto <code>time_struct</code>. Il formato di questa stringa è quello predefinito, ma potete controllarlo con i codici di formato. Leggete la documentazione sul <a href=http://docs.python.org/3.1/library/time.html>modulo <code>time</code></a> per maggiori dettagli.
 </ol>
 
 <p>Questo sembra proprio un bel dizionario Python. Salviamolo in un file.
@@ -88,7 +88,7 @@ body{counter-reset:h1 13}
 <ol>
 <li>Ci troviamo ancora nella Shell Python n°1.
 <li>Usiamo la funzione <code>open()</code> per aprire il file, impostando la modalità a <code>'wb'</code> in modo da aprirlo in scrittura <a href=file.html#binary>in modalità binaria</a>. Circondiamo la funzione con una <a href=file.html#with>istruzione <code>with</code></a> per avere la garanzia che il file venga chiuso automaticamente quando abbiamo finito di lavorare.
-<li>La funzione <code>dump()</code> nel modulo <code>pickle</code> prende una struttura dati Python serializzabile, la serializza in un formato binario specifico per Python usando la versione più recente del protocollo pickle e ne salva la forma serializzata in un file aperto.
+<li>La funzione <code>dump()</code> del modulo <code>pickle</code> prende una struttura dati Python serializzabile, la serializza in un formato binario specifico per Python usando la versione più recente del protocollo pickle e ne salva la forma serializzata in un file aperto.
 </ol>
 
 <p>Quest'ultima frase è molto importante.
@@ -96,10 +96,10 @@ body{counter-reset:h1 13}
 <ul>
 <li>Il modulo <code>pickle</code> prende una struttura dati Python e la salva in un file.
 <li>Per fare questo, <i>serializza</i> la struttura dati usando un formato di dati chiamato &#8220;protocollo pickle&#8221;.
-<li>Il protocollo pickle è specifico per Python; non c'è alcuna garanzia di compatibilità attraverso altri linguaggi. Probabilmente non potreste prendere il file <code>entry.pickle</code> che avete appena creato e farci alcunché di utile in Perl, <abbr>PHP</abbr>, Java, o qualsiasi altro linguaggio.
-<li>Non tutte le strutture dati Python possono essere serializzate dal modulo <code>pickle</code> Il protocollo pickle è cambiato diverse volte man mano che nuoti tipi di dato sono stati aggiunti al linguaggio Python, ma ci sono ancora alcune restrizioni.
+<li>Il protocollo pickle è specifico per Python; non c'è alcuna garanzia di compatibilità verso altri linguaggi. Probabilmente non potreste prendere il file <code>entry.pickle</code> che avete appena creato e farci qualcosa di utile in Perl, <abbr>PHP</abbr>, Java, o qualsiasi altro linguaggio.
+<li>Non tutte le strutture dati Python possono essere serializzate dal modulo <code>pickle</code>. Il protocollo pickle è cambiato diverse volte man mano che nuovi tipi di dato sono stati aggiunti al linguaggio Python, ma ci sono ancora alcune restrizioni.
 <li>Come risultato di questi cambiamenti, non c'è alcuna garanzia di compatibilità tra diverse versioni di Python. Le versioni più recenti supportano i formati di serializzazione più vecchi, ma le vecchie versioni di Python non supportano i nuovi formati (dato che non supportano i nuovi tipi di dato).
-<li>A meno che non specifichiate diversamente, le funzioni del modulo <code>pickle</code> useranno la versione più recente del protocollo pickle. Questo vi assicura di avere la massima flessibilità nei tipi di dato che potete serializzare, ma significa anche che il file risultante non potrà essere letto da vecchie versioni di Python che non supportano la versione più recente del protocollo pickle.
+<li>A meno che non specifichiate diversamente, le funzioni del modulo <code>pickle</code> useranno la versione più recente del protocollo pickle. Questo vi garantisce la massima flessibilità nei tipi di dato che potete serializzare, ma significa anche che il file risultante non potrà essere letto da vecchie versioni di Python che non supportano la versione più recente del protocollo pickle.
 <li>L'ultima versione del protocollo pickle è un formato binario. Assicuratevi di aprire i vostri file pickle <a href=file.html#binary>in modalità binaria</a>, o i dati verranno rovinati durante la scrittura.
 </ul>
 
@@ -107,7 +107,7 @@ body{counter-reset:h1 13}
 
 <h2 id=load>Caricare dati da un file pickle</h2>
 
-<p>Ora spostatevi nella seconda Shell Python&nbsp;&mdash;&nbsp;cioè non quella in cui avete creato il dizionario <code>entry</code>.
+<p>Ora spostatevi nella seconda Shell Python&nbsp;&mdash;&nbsp;cioè  quella in cui <em>non</em> avete creato il dizionario <code>entry</code>.
 
 <pre class=screen>
 <a><samp class=p>>>> </samp><kbd class=pp>shell</kbd>                                    <span class=u>&#x2460;</span></a>
@@ -131,7 +131,7 @@ NameError: name 'entry' is not defined</samp>
  'published': True}</samp></pre>
 <ol>
 <li>Questa è la Shell Python n°2.
-<li>Non c'è alcuna variabile <var>entry</var> definita qui. Avete definito una variabile <var>entry</var> nella Shell Python n°1, ma questo è un ambiente completamente differente con il proprio stato.
+<li>Non c'è alcuna variabile <var>entry</var> definita qui. Avete definito una variabile <var>entry</var> nella Shell Python n°1, ma questo è un ambiente con un proprio stato completamente differente.
 <li>Aprite il file <code>entry.pickle</code> che avete creato nella Shell Python n°1. Il modulo <code>pickle</code> usa un formato di dati binario, quindi dovreste sempre aprire i file pickle in modalità binaria.
 <li>La funzione <code>pickle.load()</code> prende un <a href=file.html#file-objects>oggetto stream</a>, legge i dati serializzati dal flusso, crea un nuovo oggetto Python, ricrea i dati serializzati nel nuovo oggetto Python e infine restituisce questo nuovo oggetto.
 <li>Ora la variabile <var>entry</var> è un dizionario contenente chiavi e valori che sembrano familiari.
@@ -157,7 +157,7 @@ NameError: name 'entry' is not defined</samp>
 <li>Tornate indietro alla Shell Python n°1.
 <li>Aprite il file <code>entry.pickle</code>.
 <li>Caricate i dati serializzati in una nuova variabile chiamata <var>entry2</var>.
-<li>Python conferma che i due dizionari <var>entry</var> e <var>entry2</var> sono uguali. In questa shell, avete costruito <var>entry</var> da zero, cominciando con un dizionario vuoto e assegnando manualmente i valori a chiavi specifiche. Avete serializzato questo dizionario memorizzandolo nel file <code>entry.pickle</code>. Ora avete letto i dati serializzati da quel file e avete creato una riproduzione perfetta della struttura dati originale.
+<li>Python conferma che i due dizionari <var>entry</var> ed <var>entry2</var> sono uguali. In questa shell, avete costruito <var>entry</var> da zero, cominciando con un dizionario vuoto e assegnando manualmente i valori a chiavi specifiche. Avete serializzato questo dizionario memorizzandolo nel file <code>entry.pickle</code>. Ora avete letto i dati serializzati da quel file e avete creato una riproduzione perfetta della struttura dati originale.
 <li>L'uguaglianza non è la stessa cosa dell'identità. Ho detto che avete creato una <em>riproduzione perfetta</em> della struttura dati originale, ed è vero, ma è ancora una copia.
 <li>Per ragioni che diventeranno chiare più avanti in questo capitolo, voglio sottolineare che il valore della chiave <code>'tags'</code> è una tupla e che il valore della chiave <code>'internal_id'</code> è un oggetto <code>bytes</code>.
 </ol>
@@ -178,7 +178,7 @@ NameError: name 'entry' is not defined</samp>
 <a><samp class=p>>>> </samp><kbd class=pp>entry3 == entry</kbd>             <span class=u>&#x2463;</span></a>
 <samp class=pp>True</samp></pre>
 <ol>
-<li>La funzione <code>pickle.dumps()</code> (notate la <code>'s'</code> alla fine del nome della funzione<!--, che in inglese lo rende un nome plurale-->) effettua la stessa serializzazione della funzione <code>pickle.dump()</code>, ma invece di prendere un oggetto stream e scrivere i dati serializzati in un file su disco, restituisce semplicemente i dati serializzati.
+<li>La funzione <code>pickle.dumps()</code> (notate la <code>'s'</code> alla fine del nome della funzione) effettua la stessa serializzazione della funzione <code>pickle.dump()</code>, ma invece di prendere un oggetto stream e scrivere i dati serializzati in un file su disco, restituisce semplicemente i dati serializzati.
 <li>Dato che il protocollo pickle usa un formato di dati binario, la funzione <code>pickle.dumps()</code> restituisce un oggetto <code>bytes</code>.
 <li>La funzione <code>pickle.loads()</code> (anche in questo caso, notate la <code>'s'</code> alla fine del nome della funzione) effettua la stessa deserializzazione della funzione <code>pickle.load()</code>. Invece di prendere un oggetto stream e leggere i dati serializzati da un file, prende un oggetto <code>bytes</code> contenente dati serializzati, come quello restituito dalla funzione <code>pickle.dumps()</code>.
 <li>Il risultato finale è lo stesso: una riproduzione perfetta del dizionario originale.
@@ -196,7 +196,7 @@ NameError: name 'entry' is not defined</samp>
 <li>Python 3.0 ha introdotto un altro protocollo pickle (&#8220;versione 3&#8221;) con supporto esplicito per gli oggetti <code>bytes</code> e gli array di byte. Questo è un formato binario.
 </ul>
 
-<p>Oh, guardate, <a href=stringhe.html#byte-arrays>la differenza tra byte e stringhe</a> solleva la sua ripugnante testa ancora una volta. (Se questo vi sorprende, non siete stati molto attenti.) In pratica, questo significa che, mentre Python 3 è in grado di leggere dati serializzati con la versione 2 del protocollo, Python 2 non è in grado di leggere dati serializzati con la versione 3 del protocollo.
+<p>Oh, guardate, <a href=stringhe.html#byte-arrays>la differenza tra byte e stringhe</a> solleva la sua ripugnante testa ancora una volta. (Se questo vi sorprende, non siete stati molto attenti.) In pratica, questo significa che mentre Python 3 è in grado di leggere dati serializzati con la versione 2 del protocollo, Python 2 non è in grado di leggere dati serializzati con la versione 3 del protocollo.
 
 <p class=a>&#x2042;
 
@@ -281,7 +281,7 @@ struct_time
   357: .    STOP
 <mark>highest protocol among opcodes = 3</mark></samp></pre>
 
-<p>L'informazione più interessante in questo <span class=wtf>disassembly</span> si trova sull'ultima riga, perché include la versione del protocollo pickle con la quale questo file è stato salvato. Non c'è alcun contrassegno di versione esplicito nel protocollo pickle. Per determinare la versione del protocollo che è stata usata per memorizzare un file pickle, dovete esaminare i contrassegni (chiamati &#8220;opcode&#8221; in inglese) all'interno dei dati serializzati e usare la conoscenza <span class=wtf>hard-coded</span> di quali opcode sono stati introdotti con ogni versione del protocollo pickle. La funzione <code>pickle.dis()</code> fa esattamente questo, e stampa il risultato nell'ultima riga del <span class=wtf>disassembly output</span>. Ecco una funzione che restituisce solo il numero di versione, senza stampare nulla:
+<p>L'informazione più interessante in questo disassemblato si trova sull'ultima riga, perché include la versione del protocollo pickle con la quale questo file è stato salvato. Non c'è alcun contrassegno di versione esplicito nel protocollo pickle. Per determinare la versione del protocollo che è stata usata per memorizzare un file pickle, dovete esaminare i contrassegni (chiamati &#8220;opcode&#8221; in inglese) all'interno dei dati serializzati e usare la conoscenza cablata di quali opcode sono stati introdotti con ogni versione del protocollo pickle. La funzione <code>pickle.dis()</code> fa proprio questo, e stampa il risultato nell'ultima riga del disassemblato. Ecco una funzione che restituisce solo il numero di versione, senza stampare nulla:
 
 <p class=d>[<a href=examples/pickleversion.py>scarica <code>pickleversion.py</code></a>]
 <pre class=pp><code>import pickletools
@@ -303,13 +303,13 @@ def protocol_version(file_object):
 
 <p class=a>&#x2042;
 
-<h2 id=json>Serializzare oggetti Python per leggerli in altri linguaggi</h2>
+<h2 id=json>Serializzare oggetti Python per leggerli con altri linguaggi</h2>
 
-<p>Il formato di dati usato dal modulo <code>pickle</code> è specifico per Python. Non fa alcun tentativo di essere compatibile con altri linguaggi di programmazione. Se la compatibilità attraverso i linguaggi è uno dei vostri requisiti, dovete rivolgervi ad altri formati di serializzazione. Uno di questi formati è <a href=http://json.org/><abbr>JSON</abbr></a>. &#8220;<abbr>JSON</abbr>&#8221; sta per &#8220;JavaScript Object Notation,&#8221; (letteralmente, notazione degli oggetti JavaScript) ma non fatevi ingannare dal nome&nbsp;&mdash;&nbsp;<abbr>JSON</abbr> è esplicitamente progettato per essere usabile attraverso molteplici linguaggi di programmazione.
+<p>Il formato di dati usato dal modulo <code>pickle</code> è specifico per Python. Non cerca in alcun modo di essere compatibile con altri linguaggi di programmazione. Se la compatibilità verso altri linguaggi è uno dei vostri requisiti, dovete rivolgervi a formati di serializzazione differenti. Uno di questi formati è <a href=http://json.org/><abbr>JSON</abbr></a>. &#8220;<abbr>JSON</abbr>&#8221; sta per &#8220;JavaScript Object Notation&#8221; (letteralmente, notazione degli oggetti JavaScript) ma non fatevi ingannare dal nome&nbsp;&mdash;&nbsp;<abbr>JSON</abbr> è stato esplicitamente progettato per poter essere usato con molteplici linguaggi di programmazione.
 
 <p>Python 3 include un modulo <code>json</code> nella libreria standard. Come il modulo <code>pickle</code>, anche il modulo <code>json</code> è dotato di funzioni per serializzare strutture dati, memorizzare i dati serializzati su disco, caricare i dati serializzati dal disco e deserializzare i dati in un nuovo oggetto Python. Ma ci sono anche alcune importanti differenze. Prima di tutto, il formato dati <abbr>JSON</abbr> è basato su testo, non binario. La <a href=http://www.ietf.org/rfc/rfc4627.txt>RFC 4627</a> definisce il formato <abbr>JSON</abbr> e il modo in cui diversi tipi di dato devono essere codificati sotto forma di testo. Per esempio, un valore booleano viene memorizzato come la stringa di cinque caratteri <code>'false'</code> oppure come la stringa di quattro caratteri <code>'true'</code>. Tutti i valori in <abbr>JSON</abbr> sono sensibili alle maiuscole.
 
-<p>Secondo, come con ogni formato basato su testo, c'è il problema degli spazi bianchi. <abbr>JSON</abbr> consente la presenza di una quantità arbitraria di spazio bianco (spazi, tabulazioni, ritorni a capo e caratteri di fine riga) tra i valori. Questo spazio bianco è &#8220;insignificante&#8221;, nel senso che i codificatori <abbr>JSON</abbr> possono aggiungere tanto spazio bianco quanto desiderano e i decodificatori <abbr>JSON</abbr> sono obbligati a ignorare lo spazio bianco tra i valori. Questo vi permette di &#8220;<span class=wtf>pretty-print</span>&#8221; i vostri dati <abbr>JSON</abbr>, annidando graziosamente i valori all'interno di altri valori a differenti livelli di indentazione in modo da poterli leggere in un browser standard o in un editor di testo. Il modulo <code>json</code> di Python è dotato di opzioni per <span class=wtf>pretty-printing</span> durante la codifica.
+<p>Secondo, come con ogni formato basato su testo, c'è il problema degli spazi bianchi. <abbr>JSON</abbr> consente la presenza di una quantità arbitraria di spazio bianco (spazi, tabulazioni, ritorni a capo e caratteri di fine riga) tra i valori. Questo spazio bianco è &#8220;insignificante&#8221;, nel senso che i codificatori <abbr>JSON</abbr> possono aggiungere tanto spazio bianco quanto desiderano e i decodificatori <abbr>JSON</abbr> sono obbligati a ignorare lo spazio bianco tra i valori. Questo vi permette di &#8220;<span class=wtf>pretty-print</span>&#8221; i vostri dati <abbr>JSON</abbr>, annidando gradevolmente i valori all'interno di altri valori a differenti livelli di indentazione in modo da poterli leggere in un browser standard o in un editor di testo. Il modulo <code>json</code> di Python è dotato di opzioni per <span class=wtf>pretty-printing</span> durante la codifica.
 
 <p>Terzo, c'è l'eterno problema della codifica di carattere. <abbr>JSON</abbr> codifica i valori come testo semplice, ma come sapete <a href=stringhe.html>il &#8220;testo semplice&#8221; non esiste</a>. <abbr>JSON</abbr> deve essere memorizzato in una codifica Unicode (UTF-32, UTF-16, o la codifica predefinita UTF-8) e la <a href=http://www.ietf.org/rfc/rfc4627.txt>sezione 3 della RFC 4627</a> definisce il modo in cui distinguere quale codifica è stata usata.
 
@@ -317,7 +317,7 @@ def protocol_version(file_object):
 
 <h2 id=json-dump>Salvare i dati in un file <abbr>JSON</abbr></h2>
 
-<p><abbr>JSON</abbr> somiglia notevolmente a una struttura dati che potreste definire manualmente in JavaScript. Questo non è casuale; potete effettivamente usare la funzione JavaScript <code>eval()</code> per &#8220;decodificare&#8221; i dati serializzati in <abbr>JSON</abbr>. (Valgono le solite <a href=uso-avanzato-degli-iteratori.html#eval>avvertenze sugli ingressi non affidabili</a>, ma il punto è che <abbr>JSON</abbr> <em>è</em> codice JavaScript valido.) In quanto tale, <abbr>JSON</abbr> potrebbe già sembrarvi familiare.
+<p><abbr>JSON</abbr> somiglia notevolmente a una struttura dati che potreste definire manualmente in JavaScript. Questa somiglianza non è casuale; potete effettivamente usare la funzione JavaScript <code>eval()</code> per &#8220;decodificare&#8221; i dati serializzati in <abbr>JSON</abbr>. (Valgono le solite <a href=uso-avanzato-degli-iteratori.html#eval>avvertenze sugli ingressi non affidabili</a>, ma il punto è che <abbr>JSON</abbr> <em>è</em> codice JavaScript valido.) In quanto tale, <abbr>JSON</abbr> potrebbe già sembrarvi familiare.
 
 <pre class=screen>
 <samp class=p>>>> </samp><kbd class=pp>shell</kbd>
@@ -332,9 +332,9 @@ def protocol_version(file_object):
 <a><samp class=p>>>> </samp><kbd class=pp>with open('basic.json', mode='w', encoding='utf-8') as f:</kbd>  <span class=u>&#x2461;</span></a>
 <a><samp class=p>... </samp><kbd class=pp>    json.dump(basic_entry, f)</kbd>                              <span class=u>&#x2462;</span></a></pre>
 <ol>
-<li>Creeremo una nuova struttura dati invece di riusare la struttura dati <var>entry</var> esistente. Più avanti in questo capitolo vedremo cosa succede quando proviamo a codificare strutture dati più complesse in <abbr>JSON</abbr>.
-<li><abbr>JSON</abbr> è un formato basato su testo e ciò significa che dovete aprire questo file in modalità testo e specificare una codifica di carattere. Nnon potete sbagliare se scegliete UTF-8.
-<li>Come il modulo <code>pickle</code>, il modulo <code>json</code> definisce una funzione <code>dump()</code> che prende una struttura dati Python e un oggetto stream scrivibile. La funzione <code>dump()</code> serializza la struttura dati Python e la scrive sull'oggetto stream. Effettuare questa operazione all'interno di un'istruzione <code>with</code> ci garantisce che il file verrà opportunamente chiuso quando avremo finito di lavorare.
+<li>Creeremo una nuova struttura dati invece di riutilizzare la struttura dati <var>entry</var> esistente. Più avanti in questo capitolo vedremo cosa succede quando proviamo a codificare strutture dati più complesse in <abbr>JSON</abbr>.
+<li><abbr>JSON</abbr> è un formato basato su testo e ciò significa che dovete aprire questo file in modalità testo e specificare una codifica di carattere. Non potete sbagliare se scegliete UTF-8.
+<li>Come il modulo <code>pickle</code>, il modulo <code>json</code> definisce una funzione <code>dump()</code> che prende una struttura dati Python e un oggetto stream aperto in scrittura. La funzione <code>dump()</code> serializza la struttura dati Python e la scrive sull'oggetto stream. Effettuare questa operazione all'interno di un'istruzione <code>with</code> ci garantisce che il file verrà opportunamente chiuso quando avremo finito di lavorare.
 </ol>
 
 <p>Quindi che aspetto ha la serializzazione <abbr>JSON</abbr> risultante?
@@ -344,7 +344,7 @@ def protocol_version(file_object):
 <samp>{"published": true, "tags": ["diveintopython", "docbook", "html"], "comments_link": null,
 "id": 256, "title": "Dive into history, 2009 edition"}</samp></pre>
 
-<p>Questo è certamente <a href=#debugging>più leggibile di un file pickle</a>. Ma <abbr>JSON</abbr> può contenere una quantità arbitraria di spazio bianco tra i valori, e il modulo <code>json</code> fornisce un modo facile per avantaggiarsi di questa caratteristica per creare file <abbr>JSON</abbr> ancora più leggibili.
+<p>Questo è certamente <a href=#debugging>più leggibile di un file pickle</a>. Ma <abbr>JSON</abbr> può contenere una quantità arbitraria di spazio bianco tra i valori, e il modulo <code>json</code> fornisce un modo facile per beneficiare di questa caratteristica creando file <abbr>JSON</abbr> ancora più leggibili.
 
 <pre class=screen>
 <samp class=p>>>> </samp><kbd class=pp>shell</kbd>
@@ -352,7 +352,7 @@ def protocol_version(file_object):
 <samp class=p>>>> </samp><kbd class=pp>with open('basic-pretty.json', mode='w', encoding='utf-8') as f:</kbd>
 <a><samp class=p>... </samp><kbd class=pp>    json.dump(basic_entry, f, <mark style="display:inline">indent=2</mark>)</kbd>                            <span class=u>&#x2460;</span></a></pre>
 <ol>
-<li>Se passate un parametro <var>indent</var> alla funzione <code>json.dump()</code>, esso renderà il file <abbr>JSON</abbr> risultante più leggibile, a spese di una maggiore dimensione del file. Il parametro <var>indent</var> è un intero: 0 significa &#8220;metti ogni valore su una riga separata&#8221;; un numero più grande di 0 significa &#8220;metti ogni valore su una riga separata e usa questo numero di spazi per indentare le strutture dati annidate&#8221;.
+<li>Se passate un parametro <var>indent</var> alla funzione <code>json.dump()</code>, esso renderà il file <abbr>JSON</abbr> risultante più leggibile a spese di una maggiore dimensione del file. Il parametro <var>indent</var> è un intero: 0 significa &#8220;metti ogni valore su una riga separata&#8221;; un numero più grande di 0 significa &#8220;metti ogni valore su una riga separata e usa questo numero di spazi per indentare le strutture dati annidate&#8221;.
 </ol>
 
 <p>E questo è il risultato:
@@ -375,10 +375,10 @@ def protocol_version(file_object):
 
 <h2 id=json-types>Correlare i tipi di dato Python a <abbr>JSON</abbr></h2>
 
-<p>Dato che il formato <abbr>JSON</abbr> non è specifico per Python, ci sono alcuni sfasamenti nella sua copertura dei tipi di dato Python. Alcuni di questi sono semplicemente differenze di nome, ma ci sono due importanti tipi di dato Python che sono completamente assenti. Vedete se riuscite a capire quali sono:
+<p>Dato che il formato <abbr>JSON</abbr> non è specifico per Python, ci sono alcuni sfasamenti nella sua copertura dei tipi di dato Python. Alcuni di questi sono semplicemente differenze di nome, ma ci sono due importanti tipi di dato Python che sono completamente assenti. Vedete se riuscite a capire quali sono.
 
 <table>
-<tr><th>Notes
+<tr><th>Note
 <th>JSON
 <th>Python 3
 <tr><th>
@@ -414,7 +414,7 @@ def protocol_version(file_object):
 
 <h2 id=json-unknown-types>Serializzare tipi di dato non supportati da <abbr>JSON</abbr></h2>
 
-<p>Anche se <abbr>JSON</abbr> non ha un supporto built-in per i byte, questo non significa che potete serializzare gli oggetti <code>bytes</code>. Il modulo <code>json</code> fornisce <span class=wtf>extensibility hooks</span> per codificare e decodificare tipi di dato sconosciuti. (Per &#8220;sconosciuti&#8221; intendo &#8220;non definito in <abbr>JSON</abbr>&#8221;. Ovviamente il modulo <code>json</code> conosce gli array di byte, ma è vincolato dalle limitazioni della specifica <abbr>JSON</abbr>.) Se volete codificare byte o altri tipi di dato che <abbr>JSON</abbr> non supporta nativamente, dovete fornire codificatori e decodificatori personalizzati per quei tipi.
+<p>Anche se <abbr>JSON</abbr> non ha un supporto built-in per i byte, questo non significa che potete serializzare gli oggetti <code>bytes</code>. Il modulo <code>json</code> fornisce alcuni agganci estendibili per codificare e decodificare tipi di dato sconosciuti. (Per &#8220;sconosciuti&#8221; intendo &#8220;non definiti in <abbr>JSON</abbr>&#8221;. Ovviamente il modulo <code>json</code> conosce gli array di byte, ma è vincolato dalle limitazioni della specifica <abbr>JSON</abbr>.) Se volete codificare byte o altri tipi di dato che <abbr>JSON</abbr> non supporta nativamente, dovete fornire codificatori e decodificatori personalizzati per quei tipi.
 
 <pre class=screen>
 <samp class=p>>>> </samp><kbd class=pp>shell</kbd>
@@ -450,7 +450,7 @@ def protocol_version(file_object):
 <li>Be', <em>questo</em> non va bene. Cos'è successo?
 </ol>
 
-<p>Ecco cos'è successo: la funzione <code>json.dump()</code> ha provato a serializzare l'oggetto <code>bytes</code> <code>b'\xDE\xD5\xB4\xF8'</code>, ma ha fallito perché <abbr>JSON</abbr> non ha alcun supporto per gli oggetti <code>bytes</code>. Tuttavia, se per voi memorizzare i byte è importante, potete definire il vostro &#8220;mini-formato di serializzazione&#8221;.
+<p>Ecco cos'è successo: la funzione <code>json.dump()</code> ha tentato di serializzare l'oggetto <code>bytes</code> <code>b'\xDE\xD5\xB4\xF8'</code>, ma ha fallito perché <abbr>JSON</abbr> non è dotato di alcun supporto per gli oggetti <code>bytes</code>. Tuttavia, se per voi memorizzare i byte è importante, potete definire il vostro &#8220;mini-formato di serializzazione&#8221;.
 
 <p class=d>[<a href=esempi/customserializer.py>scarica <code>customserializer.py</code></a>]
 <pre class=pp><code>
@@ -460,13 +460,13 @@ def protocol_version(file_object):
                 '__value__': list(python_object)}                       <span class=u>&#x2462;</span></a>
 <a>    raise TypeError                                                     <span class=u>&#x2463;</span></a></code></pre>
 <ol>
-<li>Per definire il vostro &#8220;mini-formato di serializzazione&#8221; per un tipo di dato che <abbr>JSON</abbr> non supporta nativamente, vi basta definire una funzione che prende un oggetto Python come parametro. Questo oggetto Python sarà l'effettivo oggetto che la funzione <code>json.dump()</code> non è in grado di serializzare da sola&nbsp;&mdash;&nbsp;in questo caso, l'oggetto <code>bytes</code> <code>b'\xDE\xD5\xB4\xF8'</code>.
-<li>La vostra funzione di serializzazione personalizzata dovrebbe controllare il tipo dell'oggetto Python che la funzione <code>json.dump()</code> le ha passato. Questo non è strettamente necessario se la vostra funzione serializza un solo tipo di dato, ma chiarifica qual è il caso che la vostra funzione sta coprendo e facilita un'eventuale estensione se più tardi avete bisogno di aggiungere serializzazioni per altri tipi di dato.
+<li>Per definire il vostro &#8220;mini-formato di serializzazione&#8221; per un tipo di dato che <abbr>JSON</abbr> non supporta nativamente, vi basta definire una funzione che prende un oggetto Python come parametro. Questo oggetto Python sarà l'effettivo oggetto che la funzione <code>json.dump()</code> non è in grado di serializzare da sola&nbsp;&mdash;&nbsp;in questo caso, l'oggetto <code>b'\xDE\xD5\xB4\xF8'</code> di tipo <code>bytes</code>.
+<li>La vostra funzione di serializzazione personalizzata dovrebbe controllare il tipo dell'oggetto Python che la funzione <code>json.dump()</code> le ha passato. Questo non è strettamente necessario se la vostra funzione serializza un solo tipo di dato, ma chiarisce qual è il caso che la vostra funzione sta affrontando e facilita l'estensione se più tardi avete bisogno di aggiungere serializzazioni per altri tipi di dato.
 <li>In questo caso, ho scelto di convertire un oggetto <code>bytes</code> in un dizionario. La chiave <code>__class__</code> manterrà il tipo di dato originale (sotto forma di stringa, <code>'bytes'</code>) e la chiave <code>__value__</code> manterrà l'effettivo valore. Naturalmente, questo non può essere un oggetto <code>bytes</code>; il punto è proprio quello di convertire l'oggetto in qualcosa che possa essere serializzato in <abbr>JSON</abbr>! Un oggetto <code>bytes</code> è solo una sequenza di interi, ognuno compreso nell'intervallo 0&ndash;255. Possiamo usare la funzione <code>list()</code> per convertire l'oggetto <code>bytes</code> in una lista di interi, in modo che <code>b'\xDE\xD5\xB4\xF8'</code> diventi <code>[222, 213, 180, 248]</code>. (Fate i calcoli! Funziona! Il byte <code>\xDE</code> in esadecimale corrisponde a 222 in decimale, <code>\xD5</code> corrisponde a 213, e così via.)
 <li>Questa riga è importante. La struttura dati che state serializzando potrebbe contenere tipi che né il serializzatore built-in <abbr>JSON</abbr> né il vostro serializzatore personalizzato sono in grado di maneggiare. In questo caso, il vostro serializzatore personalizzato deve sollevare un'eccezione di tipo <code>TypeError</code> in modo che la funzione <code>json.dump()</code> sappia che il vostro serializzatore personalizzato non ha riconosciuto il tipo di dato.
 </ol>
 
-<p>Questo è tutto, non dovete fare altro. In particolare, questa funzione di serializzazione personalizzata <em>restituisce un dizionario Python</em>, non una stringa. Non state facendo l'intera serializzazione in <abbr>JSON</abbr> da soli, ma state solo facendo la parte che converte in un tipo di dato supportato. La funzione <code>json.dump()</code> farà il resto.
+<p>Questo è tutto, non dovete fare altro. In particolare, questa funzione di serializzazione personalizzata <em>restituisce un dizionario Python</em>, non una stringa. Non state completando l'intera serializzazione in <abbr>JSON</abbr> da soli, ma state solo effettuando la conversione in un tipo di dato supportato. La funzione <code>json.dump()</code> farà il resto.
 
 <pre class=screen>
 <samp class=p>>>> </samp><kbd class=pp>shell</kbd>
@@ -491,12 +491,12 @@ def protocol_version(file_object):
 TypeError: time.struct_time(tm_year=2009, tm_mon=3, tm_mday=27, tm_hour=22, tm_min=20, tm_sec=42, tm_wday=4, tm_yday=86, tm_isdst=-1) is not JSON serializable</samp></pre>
 <ol>
 <li>Il modulo <code>customserializer</code> è dove avete appena definito la funzione <code>to_json()</code> dell'esempio precedente.
-<li>Modalità testo, codifica UTF-8, bla bla bla. (Lo dimenticherete! Me lo dimentico anch'io, ogni tanto! E tutto funzionerà esattamente fino al momento in cui smette di funzionare, e in quel momento tutto si bloccherà in maniera spettacolare.)
+<li>Modalità testo, codifica UTF-8, bla bla bla. (Lo dimenticherete! Me lo dimentico anch'io, ogni tanto! E tutto funzionerà esattamente fino al momento in cui smetterà di funzionare, e in quel momento tutto si bloccherà in maniera spettacolare.)
 <li>Questa è la parte importante: per agganciare la vostra funzione di conversione personalizzata alla funzione <code>json.dump()</code>, passate la vostra funzione alla funzione <code>json.dump()</code> nel parametro <var>default</var>. (Urrà, <a href=il-vostro-primo-programma-python.html#everythingisanobject>ogni cosa in Python è un oggetto</a>!)
-<li>Bene, e quindi in realtà non ha funzionato. Ma date un'occhiata all'eccezione. La funzione <code>json.dump()</code> non si sta più lamentando di non essere in grado di serializzare l'oggetto <code>bytes</code>. Ora si lamenta di un oggetto completamente differente: l'oggetto <code>time.struct_time</code>.
+<li>Bene, e quindi in realtà non ha funzionato. Ma date un'occhiata all'eccezione. La funzione <code>json.dump()</code> non si sta più lamentando di non riuscire a serializzare l'oggetto <code>bytes</code>. Ora si lamenta di un oggetto completamente differente: l'oggetto <code>time.struct_time</code>.
 </ol>
 
-<p>Sebbene ottenere un'eccezione differente possa non sembrare un passo avanti, in realtà lo è! Ci vorrà solo un altro aggiustamento per risolvere il problema.
+<p>Sebbene ottenere un'eccezione differente possa non sembrare un passo avanti, in realtà lo è! Ci vorrà solo un altro ritocco per risolvere il problema.
 
 <pre class=pp><code>
 import time
@@ -511,7 +511,7 @@ def to_json(python_object):
     raise TypeError</code></pre>
 <ol>
 <li>Aggiungendo codice alla nostra funzione <code>customserializer.to_json()</code> esistente, dobbiamo controllare se l'oggetto Python (con cui la funzione <code>json.dump()</code> ha dei problemi) è un'istanza della classe <code>time.struct_time</code>.
-<li>Se è così, faremo qualcosa di simile alla conversione che abbiamo fatto per l'oggetto <code>bytes</code>: convertiamo l'oggetto <code>time.struct_time</code> in un dizionario che contiene solo valori serializzabili in formato <abbr>JSON</abbr>. In questo caso, il modo più semplice di convertire una data in un valore serializzabile in formato <abbr>JSON</abbr> è quello di convertirlo in una stringa tramite la funzione <code>time.asctime()</code>. La funzione <code>time.asctime()</code> convertirà la brutta struttura <code>time.struct_time</code> nella stringa <code>'Fri Mar 27 22:20:42 2009'</code>.
+<li>Se è così, faremo qualcosa di simile alla conversione che abbiamo compiuto per l'oggetto <code>bytes</code>: convertiamo l'oggetto <code>time.struct_time</code> in un dizionario che contiene solo valori serializzabili in formato <abbr>JSON</abbr>. In questo caso, il modo più semplice di convertire una data in un valore serializzabile in formato <abbr>JSON</abbr> è quello di convertirla in una stringa tramite la funzione <code>time.asctime()</code>. La funzione <code>time.asctime()</code> convertirà lo sconveniente oggetto di tipo <code>time.struct_time</code> nella stringa <code>'Fri Mar 27 22:20:42 2009'</code>.
 </ol>
 
 <p>Con queste due conversioni personalizzate, l'intera struttura dati <var>entry</var> dovrebbe venire serializzata in <abbr>JSON</abbr> senza ulteriori problemi.
@@ -562,10 +562,10 @@ NameError: name 'entry' is not defined</samp>
 <ol>
 <li>A scopo dimostrativo, spostatevi nella Shell Python n°2 e cancellate la struttura dati <var>entry</var> che avete creato precedentemente in questo capitolo utilizzando il modulo <code>pickle</code>.
 <li>Nel caso più semplice, la funzione <code>json.load()</code> opera allo stesso modo della funzione <code>pickle.load()</code>. Passate un oggetto stream e vi viene restituito un nuovo oggetto Python.
-<li>Ho una buona e una cattiva notizia. Prima la buona notizia: la funzione <code>json.load()</code> legge con successo il file <code>entry.json</code> che avete creato nella Shell Python n°1 e crea un nuovo oggetto Python che contiene i dati. Ora la cattiva notizia: non ha ricreato la struttura dati <var>entry</var> originale. I due valori <code>'internal_id'</code> e <code>'published_date'</code> sono stati ricreati sotto forma di dizionari&nbsp;&mdash;&nbsp;nello specifico, dizionari contenenti i valori compatibili con <abbr>JSON</abbr> che avete creato nella funzione di conversione <code>to_json()</code>.
+<li>Ho una buona e una cattiva notizia. Prima la buona notizia: la funzione <code>json.load()</code> legge con successo il file <code>entry.json</code> che avete creato nella Shell Python n°1 e crea un nuovo oggetto Python che contiene i dati. Ora la cattiva notizia: la funzione non ha ricreato la struttura dati <var>entry</var> originale. I due valori <code>'internal_id'</code> e <code>'published_date'</code> sono stati ricreati sotto forma di dizionari&nbsp;&mdash;&nbsp;nello specifico, dizionari contenenti i valori compatibili con <abbr>JSON</abbr> che avete creato nella funzione di conversione <code>to_json()</code>.
 </ol>
 
-<p>La funzione <code>json.load()</code> non sa nulla di qualsiasi funzione di conversione che potete aver passato a <code>json_dump()</code>. Ciò di cui avete bisogno è l'opposto della funzione <code>to_json()</code>&nbsp;&mdash;&nbsp;una funzione che prenda un oggetto <abbr>JSON</abbr> proveniente da una conversione personalizzata e lo converta indietro al tipo di dato Python originale.
+<p>La funzione <code>json.load()</code> non sa nulla di qualunque funzione di conversione possiate aver passato a <code>json_dump()</code>. Ciò di cui avete bisogno è l'opposto della funzione <code>to_json()</code>&nbsp;&mdash;&nbsp;una funzione che prenda un oggetto <abbr>JSON</abbr> proveniente da una conversione personalizzata e lo converta indietro al tipo di dato Python originale.
 
 <pre class=pp><code># aggiungete questa funzione a customserializer.py
 <a>def from_json(json_object):                                   <span class=u>&#x2460;</span></a>
@@ -578,11 +578,11 @@ NameError: name 'entry' is not defined</samp>
 <ol>
 <li>Anche questa funzione di conversione prende un parametro e restituisce un valore. Ma il parametro che accetta non è una stringa, bensì un oggetto Python&nbsp;&mdash;&nbsp;il risultato della deserializzazione in Python di una stringa codificata in <abbr>JSON</abbr>.
 <li>Tutto quello che vi serve è controllare se questo oggetto contiene la chiave <code>'__class__'</code> che la funzione <code>to_json()</code> aveva creato. Se è così, il valore della chiave <code>'__class__'</code> vi dirà come decodificare il valore nel suo tipo di dato Python originale.
-<li>Per decodificare la stringa restituita dalla funzione <code>time.asctime()</code> che contiene la data, usate la funzione <code>time.strptime()</code>. Questa funzione prende una stringa che contiene una data formattata (in un formato personalizzabile, ma usa lo stesso formato predefinito usato dalla funzione <code>time.asctime()</code>) e restituisce un oggetto <code>time.struct_time</code>.
+<li>Per decodificare la stringa restituita dalla funzione <code>time.asctime()</code> che contiene la data, usate la funzione <code>time.strptime()</code>. Questa funzione prende una stringa che contiene una data formattata (in un formato personalizzabile, ma usa lo stesso formato predefinito della funzione <code>time.asctime()</code>) e restituisce un oggetto <code>time.struct_time</code>.
 <li>Per convertire una lista di interi in un oggetto <code>bytes</code>, potete usare la funzione <code>bytes()</code>.
 </ol>
 
-<p>E questo è tutto: c'erano solo due tipi di dato gestiti dalla funzione <code>to_json()</code> e ora quei due tipi di dato sono gestiti nella funzione <code>from_json()</code>. Questo è il risultato:
+<p>E questo è tutto: c'erano solo due tipi di dato gestiti nella funzione <code>to_json()</code> e ora quei due tipi di dato sono gestiti anche nella funzione <code>from_json()</code>. Questo è il risultato:
 
 <pre class=screen>
 <samp class=p>>>> </samp><kbd class=pp>shell</kbd>
@@ -600,7 +600,7 @@ NameError: name 'entry' is not defined</samp>
  'published_date': time.struct_time(tm_year=2009, tm_mon=3, tm_mday=27, tm_hour=22, tm_min=20, tm_sec=42, tm_wday=4, tm_yday=86, tm_isdst=-1),
  'published': True}</samp></pre>
 <ol>
-<li>Per agganciare la funzione <code>from_json()</code> al processo di deserializzazione, passatela come parametro <var>object_hook</var> alla funzione <code>json.load()</code>. Funzioni che prendono funzioni come parametri: è così comodo!
+<li>Per agganciare la funzione <code>from_json()</code> al processo di deserializzazione, passatela come parametro <var>object_hook</var> alla funzione <code>json.load()</code>. Funzioni che accettano funzioni come parametri: è così comodo!
 <li>Ora la struttura dati <var>entry</var> contiene una chiave <code>'internal_id'</code> il cui valore è un oggetto <code>bytes</code>. Contiene anche una chiave <code>'published_date'</code> il cui valore è un oggetto <code>time.struct_time</code>.
 </ol>
 
@@ -628,7 +628,7 @@ NameError: name 'entry' is not defined</samp>
 <h2 id=furtherreading>Letture di approfondimento</h2>
 
 <blockquote class=note>
-<p><span class=u>&#x261E;</span>Molti articoli sul modulo <code>pickle</code> fanno riferimento a <code>cPickle</code>. In Python 2, c'erano due implementazioni del modulo <code>pickle</code>, una scritta in Python e una scritta in C (ma invocabile da Python). In Python 3, <a href=convertire-codice-verso-python-3-con-2to3.html#othermodules>questi due moduli sono stati consolidati</a>, quindi dovreste sempre scrivere semplicemente <code>import pickle</code>. Potreste trovare utili questi articoli, ma dovreste ignorare l'informazione ormai obsoleta su <code>cPickle</code>.
+<p><span class=u>&#x261E;</span>Molti articoli sul modulo <code>pickle</code> fanno riferimento a <code>cPickle</code>. In Python 2, c'erano due implementazioni del modulo <code>pickle</code>, una scritta in Python e una scritta in C (ma invocabile da Python). In Python 3, <a href=convertire-codice-verso-python-3-con-2to3.html#othermodules>questi due moduli sono stati unificati</a>, quindi dovreste sempre scrivere semplicemente <code>import pickle</code>. Potreste trovare utili questi articoli, ma dovreste ignorare il riferimento ormai obsoleto a <code>cPickle</code>.
 </blockquote>
 
 <p>Sulla serializzazione tramite il modulo <code>pickle</code>:
