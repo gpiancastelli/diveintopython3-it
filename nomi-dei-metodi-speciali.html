@@ -777,7 +777,7 @@ def __exit__(self, *args):
 <td>il costruttore di una classe
 <td><code class=pp>x = MyClass()</code>
 <td><a href=http://www.python.org/doc/3.1/reference/datamodel.html#object.__new__><code>x.<dfn>__new__</dfn>()</code></a>
-<tr><th>
+<tr><th>*
 <td>il distruttore di una classe
 <td><code class=pp>del x</code>
 <td><a href=http://www.python.org/doc/3.1/reference/datamodel.html#object.__del__><code>x.<dfn>__del__</dfn>()</code></a>
@@ -814,6 +814,8 @@ def __exit__(self, *args):
 <td><code class=pp>issubclass(C, MyABC)</code>
 <td><a href=http://docs.python.org/3.1/library/abc.html#abc.ABCMeta.__subclasshook__><code>MyABC.<dfn>__subclasshook__</dfn>(C)</code></a>
 </table>
+
+<p><sup>*</sup> Determinare esattamente quando Python invoca il metodo speciale <code>__del__()</code> è un'operazione <a href=http://www.python.org/doc/3.1/reference/datamodel.html#object.__del__>incredibilmente complicata</a>. Per capirla appieno, avete bisogno di sapere <a href=http://www.python.org/doc/3.1/reference/datamodel.html#objects-values-and-types>come Python tiene traccia degli oggetti in memoria</a>. Ecco un buon articolo <a href=http://www.electricmonk.nl/log/2008/07/07/python-destructor-and-garbage-collection-notes/>sulla garbage collection in Python e sulla sua relazione con i metodi distruttori di classe</a>. Dovreste anche leggere qualcosa sui <a href=http://mindtrove.info/articles/python-weak-references/>riferimenti deboli</a>, sul <a href=http://docs.python.org/3.1/library/weakref.html>modulo <code>weakref</code></a> e probabilmente, per sicurezza, anche sul <a href=http://www.python.org/doc/3.1/library/gc.html>modulo <code>gc</code></a>.
 
 <h2 id=furtherreading>Letture di approfondimento</h2>
 
