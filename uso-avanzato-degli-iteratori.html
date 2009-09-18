@@ -535,7 +535,7 @@ for guess in itertools.permutations(digits, len(characters)):
 
 <p class=xxxl>eval() è un PERICOLO
 
-<p>Be', la parte pericolosa è la valutazione di espressioni arbitrarie provenienti da sorgenti non affidabili. Dovreste usare <code>eval()</code> solo su ingressi affidabili. Naturalmente, il trucco è scoprire cos'è &#8220;affidabile&#8221;. Ma ecco qualcosa che so di sicuro: <b>NON</b> dovreste prendere questo risolutore di alfametica e metterlo su Internet come un piccolo servizio web divertente. Non fate l'errore di pensare: &#8220;Gosh, la funzione effettua un sacco di manipolazioni di stringhe prima di ottenere una stringa da valutare; <em>non riesco a immaginare</em> come qualcuno potrebbe servirsene.&#8221; Qualcuno <b>SCOPRIR&Agrave;</b> come infilare codice eseguibile pericoloso attraverso tutte quelle manipolazioni di stringhe (<a href=http://www.matasano.com/log/1032/this-new-vulnerability-dowds-inhuman-flash-exploit/>sono accadute cose anche più strane</a>), e poi potrete dare al vostro server il bacio d'addio.
+<p>Be', la parte pericolosa è la valutazione di espressioni arbitrarie provenienti da sorgenti non affidabili. Dovreste usare <code>eval()</code> solo su ingressi affidabili. Naturalmente, il trucco è scoprire cos'è &#8220;affidabile&#8221;. Ma ecco qualcosa che so di sicuro: <b>NON</b> dovreste prendere questo risolutore di alfametica e metterlo su Internet come un piccolo servizio web divertente. Non fate l'errore di pensare: &#8220;Gosh, la funzione effettua un sacco di manipolazioni di stringhe prima di ottenere una stringa da valutare; <em>non riesco a immaginare</em> come qualcuno potrebbe servirsene.&#8221; Qualcuno <b>SCOPRIR&Agrave;</b> come infilare codice eseguibile pericoloso attraverso tutte quelle manipolazioni di stringhe (<a href=http://www.securityfocus.com/blogs/746>sono accadute cose anche più strane</a>), e poi potrete dare al vostro server il bacio d'addio.
 
 <p>Ma sicuramente ci sarà <em>qualche</em> modo per valutare espressioni in sicurezza? Per mettere <code>eval()</code> in un ambiente controllato dove non possa accedere o danneggiare il mondo esterno? Be', sì e no.
 
@@ -548,7 +548,7 @@ for guess in itertools.permutations(digits, len(characters)):
 NameError: name 'x' is not defined</samp>
 <a><samp class=p>>>> </samp><kbd class=pp>eval("x * 5", {"x": x}, {})</kbd>         <span class=u>&#x2461;</span></a>
 <samp class=p>>>> </samp><kbd class=pp>import math</kbd>
-<a><samp class=p>>>> </samp><kbd class=pp>eval("math.sqrt(x)", {"x": x}, {})</kbd>  <span class=u>&#x2461;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>eval("math.sqrt(x)", {"x": x}, {})</kbd>  <span class=u>&#x2462;</span></a>
 <samp class=traceback>Traceback (most recent call last):
   File "&lt;stdin>", line 1, in &lt;module>
   File "&lt;string>", line 1, in &lt;module>

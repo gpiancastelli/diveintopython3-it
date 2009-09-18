@@ -371,6 +371,11 @@ rules = LazyRules()</code></pre>
 <li><strong>Separazione di codice e dati.</strong> Tutti i pattern sono archiviati in un file separato. Il codice è codice, i dati sono dati, &#8220;e mai i due si incontreranno&#8221;.
 </ol>
 
+<blockquote class=note>
+<p><span class=u>&#x261E;</span>Questo è veramente il nirvana? Be', sì e no. Ecco una considerazione sull'esempio con <code>LazyRules</code>: il file dei pattern viene aperto (durante l'esecuzione di <code>__init__()</code>) e rimane aperto fino a quando viene ragguinta l'ultima regola. Python chiuderà il file, alla fine, quando uscite dall'interprete, o dopo che l'ultima istanza della classe <code>LazyRules</code> viene distrutta, ma questo potrebbe ancora essere un tempo molto <em>lungo</em>. Se questa classe è parte di un processo Python <span class=wtf>long-running</span>, l'interprete Python potrebbe non terminare mai e l'oggetto <code>LazyRules</code> potrebbe non venire mai distrutto.
+<p>Ci sono modi per aggirare questo problema. Invece di aprire il file durante l'esecuzione di <code>__init__()</code> e lasciarlo aperto mentre leggete le regole una alla volta, potreste aprire il file, leggere tutte le regole e chiudere immediatamente il file. Oppue potreste aprire ilfile, leggere una regola, salvare la posizione di lettura corrente del file con il <a href=file.html#read>metodo <code>tell()</code></a>, chiudere il file e aprirlo più tardi, usando il <a href=file.html#read>metodo <code>seek()</code></a> per continuare a leggere dal punto in cui avevate lasciato. Oppure potreste non preoccuparvi del problema e semplicemente lasciare il file aperto, come in questo esempio di codice. La programmazione è progettazione, e la progettazione è fatta di compromessi e vincoli. Lasciare un file aperto troppo a lungo potrebbe essere un problema; rendere il vostro codice più complicato potrebbe essere un problema. Quale problema è il più grande tra i due dipende dal vostro gruppo di sviluppo, dalla vostra applicazione e dal vostro ambiente di esecuzione.
+</blockquote>
+
 <p class=a>&#x2042;
 
 <h2 id=furtherreading>Letture di approfondimento</h2>
