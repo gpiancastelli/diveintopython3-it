@@ -249,7 +249,7 @@ RefactoringTool: test.py</samp></pre>
 <p>Questi due concetti&nbsp;&mdash;&nbsp;<code>__init__.py</code> e le importazioni relative&nbsp;&mdash;&nbsp;significano che potete suddividere il vostro modulo in tutte le parti che preferite. Il modulo <code>chardet</code> comprende 36 file <code>.py</code>&nbsp;&mdash;&nbsp;36! Eppure tutto quello che avete bisogno di fare per cominciare a usarlo è scrivere <code>import chardet</code>, poi potete chiamare la funzione principale <code>chardet.detect()</code>. All'insaputa del vostro codice, la funzione <code>detect()</code> è in realtà definita nel file <code>chardet/__init__.py</code>. E a vostra insaputa, la funzione <code>detect()</code> usa un'importazione relativa per fare riferimento a una classe definita in <code>chardet/universaldetector.py</code>, che a sua volta usa importazioni relative per altri cinque file, tutti contenuti nella directory <code>chardet/</code>.
 
 <blockquote class=note>
-<p><span class=u>&#x261E;</span>Se vi siete mai trovati a scrivere una libreria Python di grandi dimensioni (o, più probabilmente, quando realizzate che le dimensioni della vostra piccola libreria sono cresciute fino a diventare grandi), prendetevi il tempo di riorganizzarla in un modulo multi-file. Questa è una delle molte cose che Python è capace di fare bene, quindi avantaggiatevene.
+<p><span class=u>&#x261E;</span>Se vi siete mai trovati a scrivere una libreria Python di grandi dimensioni (o, più probabilmente, quando realizzate che le dimensioni della vostra piccola libreria sono cresciute fino a diventare grandi), prendetevi il tempo di riorganizzarla in un modulo multi-file. Questa è una delle molte cose che Python è capace di fare bene, quindi avvantaggiatevene.
 </blockquote>
 
 <p class=a>&#x2042;
