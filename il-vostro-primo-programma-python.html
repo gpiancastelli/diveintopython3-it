@@ -133,7 +133,7 @@ SyntaxError: non-keyword arg after keyword arg</samp></pre>
 <p class=a>&#x2042;
 
 <h2 id=readability>Scrivere codice leggibile</h2>
-<p>Non vi annoierò con una lunga predica sull'importanza di documentare il vostro codice. Vi basti sapere che il codice viene scritto una volta sola ma letto molte volte, e che i lettori più importanti del vostro codice siete voi stessi, sei mesi dopo averlo scritto (cioè dopo che vi siete dimenticati tutto ma avete bisogno di correggere qualcosa). Python facilita la scrittura di codice leggibile, perciò avantaggiatevene. Fra sei mesi mi ringrazierete.
+<p>Non vi annoierò con una lunga predica sull'importanza di documentare il vostro codice. Vi basti sapere che il codice viene scritto una volta sola ma letto molte volte, e che i lettori più importanti del vostro codice siete voi stessi, sei mesi dopo averlo scritto (cioè dopo che vi siete dimenticati tutto ma avete bisogno di correggere qualcosa). Python facilita la scrittura di codice leggibile, perciò avvantaggiatevene. Fra sei mesi mi ringrazierete.
 <h3 id=docstrings>Stringhe di documentazione</h3>
 <p>Potete documentare una funzione Python aggiungendole una stringa di documentazione (chiamata <code>docstring</code> per brevità). Nel nostro programma, la funzione <code>approximate_size()</code> è stata dotata di una <code>docstring</code>:
 <pre class='nd pp'><code>def approximate_size(size, a_kilobyte_is_1024_bytes=True):
@@ -152,7 +152,7 @@ SyntaxError: non-keyword arg after keyword arg</samp></pre>
 <blockquote class='note compare perl5'>
 <p><span class=u>&#x261E;</span>Le triple virgolette sono anche un modo facile per definire una stringa che contiene sia apici che virgolette, come <code>qq/.../</code> in Perl 5.
 </blockquote>
-<p>Tutto quello che si trova tra le triple virgolette rappresenta la <code>docstring</code> della funzione, che documenta quello che la funzione fa. Una <code>docstring</code>, se esiste, deve essere la prima cosa definita in una funzione (cioè, nella riga subito dopo la dichiarazione di funzione). Non avete tecnicamente bisogno di dotare la vostra funzione di una <code>docstring</code>, ma dovreste sempre farlo. So che lo avete sentito in ogni corso di programmazione che avete seguito, ma Python vi dà un incentivo aggiuntivo: la <code>docstring</code> è disponibile a tempo di esecuzione sotto forma di proprietà della funzione.
+<p>Tutto quello che si trova tra le triple virgolette rappresenta la <code>docstring</code> della funzione, che documenta quello che la funzione fa. Una <code>docstring</code>, se esiste, deve essere la prima cosa definita in una funzione (cioè, nella riga subito dopo la dichiarazione di funzione). Non avete tecnicamente bisogno di dotare la vostra funzione di una <code>docstring</code>, ma dovreste sempre farlo. So che lo avete sentito in ogni corso di programmazione che avete seguito, ma Python vi dà un incentivo aggiuntivo: la <code>docstring</code> è disponibile a tempo di esecuzione sotto forma di attributo della funzione.
 <blockquote class=note>
 <p><span class=u>&#x261E;</span>Molti <abbr>IDE</abbr> per Python usano le <code>docstring</code> per fornire documentazione sensibile al contesto, in modo che quando scrivete il nome di una funzione la sua <code>docstring</code> appaia sotto forma di suggerimento. Questa caratteristica può essere incredibilmente utile, ma lo è solamente tanto quanto le <code>docstring</code> che scrivete.
 </blockquote>
@@ -160,7 +160,7 @@ SyntaxError: non-keyword arg after keyword arg</samp></pre>
 <p class=a>&#x2042;
 
 <h2 id=importsearchpath>Il percorso di ricerca di <code>import</code></h2>
-<p>Prima di proseguire, voglio menzionare brevemente il percorso di ricerca delle librerie. Python guarda in diversi posti quando provate a importare un modulo. Nello specifico, guarda in tutte le directory definite in <code>sys.path</code>. Questa proprietà è semplicemente una lista e potete facilmente vederla o modificarla con i metodi standard per le liste. (Imparerete di più sulle liste nel capitolo sui <a href=tipi-di-dato-nativi.html>tipi di dato nativi</a>.)
+<p>Prima di proseguire, voglio menzionare brevemente il percorso di ricerca delle librerie. Python guarda in diversi posti quando provate a importare un modulo. Nello specifico, guarda in tutte le directory definite in <code>sys.path</code>. Questo attributo è semplicemente una lista e potete facilmente vederlo o modificarlo con i metodi standard per le liste. (Imparerete di più sulle liste nel capitolo sui <a href=tipi-di-dato-nativi.html>tipi di dato nativi</a>.)
 <pre class=screen>
 <a><samp class=p>>>> </samp><kbd class=pp>import sys</kbd>                                                 <span class=u>&#x2460;</span></a>
 <a><samp class=p>>>> </samp><kbd class=pp>sys.path</kbd>                                                   <span class=u>&#x2461;</span></a>
@@ -184,7 +184,7 @@ SyntaxError: non-keyword arg after keyword arg</samp></pre>
  '/usr/lib/python3.1/dist-packages', 
  '/usr/local/lib/python3.1/dist-packages']</samp></pre>
 <ol>
-<li>Importare il modulo <code>sys</code> rende disponibili tutte le sue funzioni e proprietà.
+<li>Importare il modulo <code>sys</code> rende disponibili tutte le sue funzioni e i suoi attributi.
 <li><code>sys.path</code> è una lista di nomi di directory che costituiscono il percorso di ricerca corrente. (Il vostro apparirà diverso, a seconda del vostro sistema operativo, della versione di Python che state eseguendo e di dove è stata originariamente installata.) Python cercherà attraverso queste directory (in questo ordine) un file con estensione <code>.py</code> il cui nome corrisponda a quello che state tentando di importare.
 <li>In realtà, ho mentito; la verità è più complicata di così, perché non tutti i moduli sono memorizzati come file <code>.py</code>. Alcuni, come il modulo <code>sys</code>, sono moduli <i>built-in</i>, integrati direttamente all'interno dell'interprete Python. I moduli built-in si comportano esattamente come gli altri moduli, ma il loro codice sorgente Python non è disponibile, perché non sono scritti in Python! (Il modulo <code>sys</code> è scritto in <abbr>C</abbr>.)
 <li>Potete aggiungere a tempo di esecuzione una nuova directory al percorso di ricerca di Python aggiungendo il nome della directory a <code>sys.path</code>; successivamente, Python guarderà anche in quella directory ogni volta che provate a importare un modulo. L'effetto dura fino a quando l'interprete Python è in esecuzione.
@@ -194,7 +194,7 @@ SyntaxError: non-keyword arg after keyword arg</samp></pre>
 <p class=a>&#x2042;
 
 <h2 id=everythingisanobject>Ogni cosa è un oggetto</h2>
-<p>Nel caso vi fosse sfuggito, ho appena detto che le funzioni Python hanno delle proprietà e che quelle proprietà sono disponibili a tempo di esecuzione. Una funzione, come ogni altra cosa in Python, è un oggetto.
+<p>Nel caso vi fosse sfuggito, ho appena detto che le funzioni Python sono dotate di attributi e che questi attributi sono disponibili a tempo di esecuzione. Una funzione, come ogni altra cosa in Python, è un oggetto.
 <p>Lanciate la shell interattiva di Python e seguitemi attraverso questa serie di istruzioni:
 <pre class=screen>
 <a><samp class=p>>>> </samp><kbd class=pp>import humansize</kbd>                               <span class=u>&#x2460;</span></a>
@@ -212,17 +212,17 @@ SyntaxError: non-keyword arg after keyword arg</samp></pre>
 
 </samp></pre>
 <ol>
-<li>La prima riga importa il programma <code>humansize</code> come un modulo&nbsp;&mdash;&nbsp;un pezzo di codice che potete usare interattivamente o da un programma Python più grande. Una volta importato un modulo, potete fare riferimento a ognuna delle sue funzioni, classi, o proprietà pubbliche. I moduli possono sfruttare questa loro caratteristica per accedere alle funzionalità di altri moduli, e voi potete farlo anche nella shell interattiva di Python. Questo è un concetto importante, e lo vedrete ribadito più volte nel seguito di questo libro.
+<li>La prima riga importa il programma <code>humansize</code> come un modulo&nbsp;&mdash;&nbsp;un pezzo di codice che potete usare interattivamente o da un programma Python più grande. Una volta importato un modulo, potete fare riferimento a ognuna delle sue funzioni, classi, o attributi pubblici. I moduli possono sfruttare questa loro caratteristica per accedere alle funzionalità di altri moduli, e voi potete farlo anche nella shell interattiva di Python. Questo è un concetto importante, e lo vedrete ribadito più volte nel seguito di questo libro.
 <li>Quando volete usare funzioni definite in moduli importati, dovete includere il nome del modulo. Quindi non potete semplicemente dire <code>approximate_size</code>, ma dovete scrivere <code>humansize.approximate_size</code>. Se avete usato le classi in Java, la sintassi dovrebbe risultarvi vagamente familiare.
-<li>Invece di invocare la funzione, avete richiesto una delle sue proprietà, <code>__doc__</code>.
+<li>Invece di invocare la funzione, avete richiesto uno dei suoi attributi, <code>__doc__</code>.
 </ol>
 <blockquote class='note compare perl5'>
 <p><span class=u>&#x261E;</span><code>import</code> in Python è come <code>require</code> in Perl. Una volta che avete importato un modulo Python tramite <code>import</code>, potete accedere alle sue funzioni con la sintassi <code><var>modulo</var>.<var>funzione</var></code>; una volta che avete richiesto un modulo Perl tramite <code>require</code>, potete accedere alle sue funzioni con la sintassi <code><var>modulo</var>::<var>funzione</var></code>.
 </blockquote>
 
 <h3 id=whatsanobject>Che cos'è un oggetto?</h3>
-<p>Ogni cosa in Python è un oggetto, e ogni cosa può possedere proprietà e metodi. Tutte le funzioni hanno una proprietà built-in <code>__doc__</code>, che restituisce la <var>docstring</var> definita nel codice sorgente della funzione. Il modulo <code>sys</code> è un oggetto che ha (tra le altre cose) una proprietà chiamata <var>path</var>. E così via.
-<p>Tuttavia, questo non risponde alla domanda fondamentale: che cos'è un oggetto? Linguaggi di programmazione differenti definiscono &#8220;oggetto&#8221; in modi differenti. In alcuni, significa che <em>tutti</em> gli oggetti <em>devono</em> avere proprietà e metodi; in altri, significa che tutti gli oggetti sono estendibili. In Python, la definizione è più lasca. Alcuni oggetti non hanno proprietà né metodi, <em>ma potrebbero averli</em>. Non tutti gli oggetti sono estendibili. Ma ogni cosa è un oggetto nel senso che può essere assegnata a una variabile o passata come argomento a una funzione.
+<p>Ogni cosa in Python è un oggetto, e ogni cosa può possedere attributi e metodi. Tutte le funzioni hanno un attributo built-in <code>__doc__</code>, che restituisce la <var>docstring</var> definita nel codice sorgente della funzione. Il modulo <code>sys</code> è un oggetto che ha (tra le altre cose) un attributo chiamato <var>path</var>. E così via.
+<p>Tuttavia, questo non risponde alla domanda fondamentale: che cos'è un oggetto? Linguaggi di programmazione differenti definiscono &#8220;oggetto&#8221; in modi differenti. In alcuni, significa che <em>tutti</em> gli oggetti <em>devono</em> avere attributi e metodi; in altri, significa che tutti gli oggetti sono estendibili. In Python, la definizione è più lasca. Alcuni oggetti non hanno attributi né metodi, <em>ma potrebbero averli</em>. Non tutti gli oggetti sono estendibili. Ma ogni cosa è un oggetto nel senso che può essere assegnata a una variabile o passata come argomento a una funzione.
 <p>Potreste aver udito il termine &#8220;oggetto di prima classe&#8221; in altri contesti legati alla programmazione. In Python, le funzioni sono <i>oggetti di prima classe</i>. Potete passare una funzione come argomento a un'altra funzione. I moduli sono <i>oggetti di prima classe</i>. Potete passare un intero modulo come argomento a una funzione. Le classi sono oggetti di prima classe e anche le singole istanze di una classe sono oggetti di prima classe.
 <p>Questo concetto è importante, quindi lo ripeterò nel caso vi fosse sfuggito le prime volte: <em>ogni cosa in Python è un oggetto</em>. Le strighe sono oggetti. Le liste sono oggetti. Le funzioni sono oggetti. Le classi sono oggetti. Le istanze di una classe sono oggetti. Persino i moduli sono oggetti.
 
@@ -355,7 +355,7 @@ NameError: name 'an_inteGer' is not defined</samp>
 
 <h2 id=runningscripts>Eseguire gli script</h2>
 <aside>Ogni cosa in Python è un oggetto.</aside>
-<p>I moduli Python sono oggetti e hanno diverse proprietà utili. Potete sfruttare questa caratteristica per collaudare facilmente i vostri moduli mentre li scrivete, includendo uno speciale blocco di codice che viene eseguito quando lanciate il file Python dalla riga di comando. Considerate le ultime righe di <code>humansize.py</code>:
+<p>I moduli Python sono oggetti e hanno diversi attributi utili. Potete sfruttare questa caratteristica per collaudare facilmente i vostri moduli mentre li scrivete, includendo uno speciale blocco di codice che viene eseguito quando lanciate il file Python dalla riga di comando. Considerate le ultime righe di <code>humansize.py</code>:
 <pre class='nd pp'><code>
 if __name__ == '__main__':
     print(approximate_size(1000000000000, False))
@@ -363,7 +363,7 @@ if __name__ == '__main__':
 <blockquote class='note compare clang'>
 <p><span class=u>&#x261E;</span>Come il <abbr>C</abbr>, Python usa <code>==</code> per il confronto e <code>=</code> per l'assegnamento. A differenza del <abbr>C</abbr>, Python non supporta l'assegnamento in linea, quindi non c'è alcuna possibilità di assegnare accidentalmente il valore che pensavate di stare confrontando.
 </blockquote>
-<p>Che cosa rende speciale questa istruzione <code>if</code>? Ebbene, i moduli sono oggetti, e tutti i moduli hanno la proprietà built-in <code>__name__</code>. Il valore della proprietà <code>__name__</code> di un modulo dipende da come state usando il modulo. Se importate un modulo, allora <code>__name__</code> sarà il nome del file del modulo, senza il percorso e l'estensione. 
+<p>Che cosa rende speciale questa istruzione <code>if</code>? Ebbene, i moduli sono oggetti, e tutti i moduli hanno l'attributo built-in <code>__name__</code>. Il valore dell'attributo <code>__name__</code> di un modulo dipende da come state usando il modulo. Se importate un modulo, allora <code>__name__</code> sarà il nome del file del modulo, senza il percorso e l'estensione. 
 <pre class='nd screen'>
 <samp class=p>>>> </samp><kbd class=pp>import humansize</kbd>
 <samp class=p>>>> </samp><kbd class=pp>humansize.__name__</kbd>
