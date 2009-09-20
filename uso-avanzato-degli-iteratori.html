@@ -129,15 +129,9 @@ if __name__ == '__main__':
 <p>Gli <a href=tipi-di-dato-nativi.html#sets>insiemi</a> rendono banale trovare gli elementi unici di una sequenza.
 
 <pre class=screen>
-<samp class=p>>>> </samp><kbd class=pp>a_list = ['a', 'c', 'b', 'a', 'd', 'b']</kbd>
-<!--
-<samp class=p>>>> </samp><kbd class=pp>a_list = ['The', 'sixth', 'sick', "sheik's", 'sixth', "sheep's", 'sick']</kbd>
--->
+<samp class=p>>>> </samp><kbd class=pp>a_list = ['Chi', 'ama', 'chiama', 'chi', 'ama', 'chiamami', 'tu', 'che', 'ami', 'chi', 'chiami']</kbd>
 <a><samp class=p>>>> </samp><kbd class=pp>set(a_list)</kbd>                      <span class=u>&#x2460;</span></a>
-<samp class=pp>{'a', 'c', 'b', 'd'}</samp>
-<!--
-<samp class=pp>{'sixth', 'The', "sheep's", 'sick', "sheik's"}</samp>
--->
+<samp class=pp>{'ami', 'che', 'ama', 'Chi', 'tu', 'chi', 'chiamami', 'chiama', 'chiami'}</samp>
 <samp class=p>>>> </samp><kbd class=pp>a_string = 'EAST IS EAST'</kbd>
 <a><samp class=p>>>> </samp><kbd class=pp>set(a_string)</kbd>                    <span class=u>&#x2461;</span></a>
 <samp class=pp>{'A', ' ', 'E', 'I', 'S', 'T'}</samp>
@@ -147,7 +141,7 @@ if __name__ == '__main__':
 <a><samp class=p>>>> </samp><kbd class=pp>set(''.join(words))</kbd>              <span class=u>&#x2463;</span></a>
 <samp class=pp>{'E', 'D', 'M', 'O', 'N', 'S', 'R', 'Y'}</samp></pre>
 <ol>
-<li>Data una lista contenente diverse stringhe, la funzione <code>set()</code> restituirà un insieme di stringhe uniche dalla lista. Questa operazione ha senso se lo pensate come un ciclo <code>for</code>. Prendete il primo elemento della lista, mettetelo nell'insieme. Il secondo. Il terzo. Il quarto. Il quinto&nbsp;&mdash;&nbsp;aspettate, quello è già nell'insieme, quindi va elencato solo una volta, perché gli insiemi Python non accettano duplicati. Il sesto. Il settimo&nbsp;&mdash;&nbsp;ancora, un duplicato, quindi va elencato solo una volta. Il risultato finale? Tutti gli elementi unici della lista originale, senza alcun duplicato. La lista originale non deve nemmeno essere ordinata prima.
+<li>Data una lista contenente diverse stringhe, la funzione <code>set()</code> restituirà un insieme di stringhe uniche dalla lista. Questa operazione ha senso se lo pensate come un ciclo <code>for</code>. Prendete il primo elemento della lista, mettetelo nell'insieme. Il secondo. Il terzo. Il quarto. Il quinto&nbsp;&mdash;&nbsp;aspettate, quello è già nell'insieme, quindi va elencato solo una volta, perché gli insiemi Python non accettano duplicati. Il sesto, il settimo, l'ottavo, il nono. Poi il decimo&nbsp;&mdash;&nbsp;anche questo è un duplicato, quindi va elencato solo una volta. E l'undicesimo. Il risultato finale? Tutti gli elementi unici della lista originale, senza alcun duplicato. La lista originale non va nemmeno ordinata prima.
 <li>La stessa tecnica funziona con le stringhe, dato che una stringa è solamente una sequenza di caratteri.
 <li>Data una lista di stringhe, <code>''.join(<var>a_list</var>)</code> le concatena tutte in un'unica stringa.
 <li>Quindi, data una lista di stringhe, questa riga di codice restituisce tutti i caratteri unici su tutte le stringhe, senza alcun duplicato.
@@ -183,12 +177,12 @@ AssertionError: Solo per valori molto grandi di 2</samp></pre>
 
 <p>Perciò, questa riga di codice:
 
-<pre class='nd pp'><code>assert len(unique_characters) &lt;= 10, 'Too many letters'</code></pre>
+<pre class='nd pp'><code>assert len(unique_characters) &lt;= 10, 'Troppe lettere'</code></pre>
 
 <p>&hellip;equivale a queste due righe:
 
 <pre class='nd pp'><code>if len(unique_characters) > 10:
-    raise AssertionError('Too many letters')</code></pre>
+    raise AssertionError('Troppe lettere')</code></pre>
 
 <p>Il risolutore di alfametica usa proprio questa istruzione <code>assert</code> per interrompere la propria esecuzione nel caso il rompicapo contenga più di dieci lettere uniche. Dato che a ogni lettera viene assegnata una singola cifra e che ci sono solo dieci cifre, un rompicapo con più di dieci lettere uniche non può avere una soluzione.
 
