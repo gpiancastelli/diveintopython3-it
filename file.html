@@ -16,7 +16,7 @@ mark{display:inline}
 <p id=level>Livello di difficoltà: <span class=u title=intermedio>&#x2666;&#x2666;&#x2666;&#x2662;&#x2662;</span>
 <h1>File</h1>
 <blockquote class=q>
-<p><span class=u>&#x275D;</span> Camminare per nove miglia non è uno scherzo, specialmente sotto la pioggia. <span class=u>&#x275E;</span><br>&mdash; Harry Kemelman, <cite>Nove miglia sotto la pioggia</cite>
+<p><span class=u>&#x275D;</span> Camminare per nove miglia non è uno scherzo, specialmente se piove. <span class=u>&#x275E;</span><br>&mdash; Harry Kemelman, <cite>Nove miglia sotto la pioggia</cite>
 </blockquote>
 <p id=toc>&nbsp;
 <h2 id=divingin>Immersione!</h2>
@@ -93,7 +93,7 @@ UnicodeDecodeError: 'charmap' codec can't decode byte 0x8f in position 28: chara
 <pre class=screen>
 <samp class=p>>>> </samp><kbd class=pp>a_file = open('esempi/chinese.txt', encoding='utf-8')</kbd>
 <a><samp class=p>>>> </samp><kbd class=pp>a_file.read()</kbd>                                            <span class=u>&#x2460;</span></a>
-<samp class=pp>'Dive Into Python 是为有经验的程序员编写的一本 Python 书。\n'</samp>
+<samp class=pp>'Immersione in Python 是为有经验的程序员编写的一本 Python 书。\n'</samp>
 <a><samp class=p>>>> </samp><kbd class=pp>a_file.read()</kbd>                                            <span class=u>&#x2461;</span></a>
 <samp class=pp>''</samp></pre>
 <ol>
@@ -109,36 +109,36 @@ UnicodeDecodeError: 'charmap' codec can't decode byte 0x8f in position 28: chara
 <samp class=pp>''</samp>
 <a><samp class=p>>>> </samp><kbd class=pp>a_file.seek(0)</kbd>                     <span class=u>&#x2461;</span></a>
 <samp class=pp>0</samp>
-<a><samp class=p>>>> </samp><kbd class=pp>a_file.read(16)</kbd>                    <span class=u>&#x2462;</span></a>
-<samp class=pp>'Dive Into Python'</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>a_file.read(20)</kbd>                    <span class=u>&#x2462;</span></a>
+<samp class=pp>'Immersione in Python'</samp>
 <a><samp class=p>>>> </samp><kbd class=pp>a_file.read(1)</kbd>                     <span class=u>&#x2463;</span></a>
 <samp class=pp>' '</samp>
 <samp class=p>>>> </samp><kbd class=pp>a_file.read(1)</kbd>
 <samp class=pp>'是'</samp>
 <a><samp class=p>>>> </samp><kbd class=pp>a_file.tell()</kbd>                      <span class=u>&#x2464;</span></a>
-<samp class=pp>20</samp></pre>
+<samp class=pp>24</samp></pre>
 <ol>
 <li>Dato che vi trovate ancora alla fine del file, ulteriori invocazioni del metodo <code>read()</code> dell'oggetto stream restituiscono semplicemente una stringa vuota.
 <li>Il metodo <code>seek()</code> vi sposta sul byte in una specifica posizione di un file.
 <li>Il metodo <code>read()</code> può accettare come parametro opzionale il numero di caratteri da leggere.
 <li>Se volete, potete anche leggere un carattere alla volta.
-<li>16 + 1 + 1 = &hellip; 20?
+<li>20 + 1 + 1 = &hellip; 24?
 </ol>
 
 <p>Riproviamo ancora.
 
 <pre class=screen>
 # continua dall'esempio precedente
-<a><samp class=p>>>> </samp><kbd class=pp>a_file.seek(17)</kbd>                    <span class=u>&#x2460;</span></a>
-<samp class=pp>17</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>a_file.seek(21)</kbd>                    <span class=u>&#x2460;</span></a>
+<samp class=pp>21</samp>
 <a><samp class=p>>>> </samp><kbd class=pp>a_file.read(1)</kbd>                     <span class=u>&#x2461;</span></a>
 <samp class=pp>'是'</samp>
 <a><samp class=p>>>> </samp><kbd class=pp>a_file.tell()</kbd>                      <span class=u>&#x2462;</span></a>
-<samp class=pp>20</samp></pre>
+<samp class=pp>24</samp></pre>
 <ol>
-<li>Spostatevi al 17° byte.
+<li>Spostatevi al 21° byte.
 <li>Leggete un carattere.
-<li>Ora vi trovate al 20° byte.
+<li>Ora vi trovate al 24° byte.
 </ol>
 
 <p>Ve ne siete già accorti? I metodi <code>seek()</code> e <code>tell()</code> contano sempre i <em>byte</em>, ma dato che avete aperto questo file come testo, il metodo <code>read()</code> conta i <em>caratteri</em>. I caratteri cinesi <a href=stringhe.html#boring-stuff>richiedono più byte per venire codificati in UTF-8</a>. I caratteri inglesi in un file richiedono solo un byte ognuno, quindi potreste essere erroneamente indotti a credere che i metodi <code>seek()</code> e <code>read()</code> stiano contando le stesse cose. Ma questo è vero solo per alcuni caratteri.
@@ -146,8 +146,8 @@ UnicodeDecodeError: 'charmap' codec can't decode byte 0x8f in position 28: chara
 <p>Ma aspettate, le cose peggiorano!
 
 <pre class=screen>
-<a><samp class=p>>>> </samp><kbd class=pp>a_file.seek(18)</kbd>                         <span class=u>&#x2460;</span></a>
-<samp class=pp>18</samp>
+<a><samp class=p>>>> </samp><kbd class=pp>a_file.seek(22)</kbd>                         <span class=u>&#x2460;</span></a>
+<samp class=pp>22</samp>
 <a><samp class=p>>>> </samp><kbd class=pp>a_file.read(1)</kbd>                          <span class=u>&#x2461;</span></a>
 <samp class=traceback>Traceback (most recent call last):
   File "&lt;pyshell#12>", line 1, in &lt;module>
@@ -156,8 +156,8 @@ UnicodeDecodeError: 'charmap' codec can't decode byte 0x8f in position 28: chara
     (result, consumed) = self._buffer_decode(data, self.errors, final)
 UnicodeDecodeError: 'utf8' codec can't decode byte 0x98 in position 0: unexpected code byte</samp></pre>
 <ol>
-<li>Spostatevi al 18° byte e provate a leggere un carattere.
-<li>Perché questo fallisce? Perché non c'è alcun carattere al 18° byte. Il carattere più vicino comincia al 17° byte (e prosegue per tre byte). Il tentativo di leggere un carattere nel mezzo fallirà con un errore di tipo <code>UnicodeDecodeError</code>.
+<li>Spostatevi al 22° byte e provate a leggere un carattere.
+<li>Perché questo fallisce? Perché non c'è alcun carattere al 22° byte. Il carattere più vicino comincia al 21° byte (e prosegue per tre byte). Il tentativo di leggere un carattere nel mezzo fallirà con un errore di tipo <code>UnicodeDecodeError</code>.
 </ol>
 
 <h3 id=close>Chiudere i file</h3>
@@ -207,7 +207,7 @@ ValueError: I/O operation on closed file.</samp>
 <p>Python 2 aveva una soluzione per questo: il blocco <code>try..finally</code>. Questo funziona ancora in Python 3, e potreste vederlo nel codice di altre persone o in codice più vecchio che è stato <a href=caso-di-studio-convertire-chardet-verso-python-3.html>convertito verso Python 3</a>. Ma Python 2.5 ha introdotto una soluzione più pulita, che ora è la soluzione preferita in Python 3: l'istruzione <code>with</code>.
 
 <pre class='nd pp'><code>with open('esempi/chinese.txt', encoding='utf-8') as a_file:
-    a_file.seek(17)
+    a_file.seek(21)
     a_character = a_file.read(1)
     print(a_character)</code></pre>
 
