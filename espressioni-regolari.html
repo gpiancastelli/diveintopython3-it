@@ -99,14 +99,14 @@ body{counter-reset:h1 5}
 <samp class=p>>>> </samp><kbd class=pp>import re</kbd>
 <a><samp class=p>>>> </samp><kbd class=pp>pattern = '^M?M?M?$'</kbd>        <span class=u>&#x2460;</span></a>
 <a><samp class=p>>>> </samp><kbd class=pp>re.search(pattern, 'M')</kbd>     <span class=u>&#x2461;</span></a>
-<samp>&lt;SRE_Match object at 0106FB58></samp>
+<samp>&lt;_sre.SRE_Match object at 0106FB58></samp>
 <a><samp class=p>>>> </samp><kbd class=pp>re.search(pattern, 'MM')</kbd>    <span class=u>&#x2462;</span></a>
-<samp>&lt;SRE_Match object at 0106C290></samp>
+<samp>&lt;_sre.SRE_Match object at 0106C290></samp>
 <a><samp class=p>>>> </samp><kbd class=pp>re.search(pattern, 'MMM')</kbd>   <span class=u>&#x2463;</span></a>
-<samp>&lt;SRE_Match object at 0106AA38></samp>
+<samp>&lt;_sre.SRE_Match object at 0106AA38></samp>
 <a><samp class=p>>>> </samp><kbd class=pp>re.search(pattern, 'MMMM')</kbd>  <span class=u>&#x2464;</span></a>
 <a><samp class=p>>>> </samp><kbd class=pp>re.search(pattern, '')</kbd>      <span class=u>&#x2465;</span></a>
-<samp>&lt;SRE_Match object at 0106F4A8></samp></pre>
+<samp>&lt;_sre.SRE_Match object at 0106F4A8></samp></pre>
 <ol>
 <li>Questo pattern è composto da tre parti. <code>^</code> fa corrispondere quanto segue solo se è all'inizio della stringa. Se questo non fosse specificato, il pattern troverebbe una corrispondenza a prescindere dalla posizione dei caratteri  <code>M</code>, che non è ciò che volete. Voi volete essere sicuri che i caratteri <code>M</code>, se ce ne sono, siano all'inizio della stringa. <code>M?</code> rappresenta una corrispondenza opzionale con un singolo carattere <code>M</code>. Ripetuto tre volte, rappresenta una corrispondenza con una stringa che contiene da zero a tre caratteri <code>M</code> di seguito. E <code>$</code> corrisponde alla fine della stringa. Combinato con il carattere <code>^</code> all'inizio, questo significa che il pattern cerca una corrispondenza con l'intera stringa, senza nessun altro carattere prima o dopo i caratteri <code>M</code>.
 <li>L'essenza del modulo <code>re</code> è la funzione <code>search()</code>, che prende un'espressione regolare (<var>pattern</var>) e una stringa (<code>'M'</code>) per provare a trovarvi una corrispondenza con l'espressione regolare. Se viene trovata una corrispondenza, <code>search()</code> restituisce un oggetto che ha vari metodi per descriverla; se non c'è alcuna corrispondenza, <code>search()</code> restituisce <code>None</code>, il valore nullo di Python. Tutto quello che vi interessa al momento è se il pattern trova una corrispondenza, cosa che potete capire guardando solamente al valore restituito da <code>search()</code>. <code>'M'</code> corrisponde a questa espressione regolare, perché la prima <code>M</code> opzionale corrisponde e la seconda e la terza <code>M</code> opzionali vengono ignorate.
@@ -145,14 +145,14 @@ body{counter-reset:h1 5}
 <samp class=p>>>> </samp><kbd class=pp>import re</kbd>
 <a><samp class=p>>>> </samp><kbd class=pp>pattern = '^M?M?M?(CM|CD|D?C?C?C?)$'</kbd>  <span class=u>&#x2460;</span></a>
 <a><samp class=p>>>> </samp><kbd class=pp>re.search(pattern, 'MCM')</kbd>             <span class=u>&#x2461;</span></a>
-<samp>&lt;SRE_Match object at 01070390></samp>
+<samp>&lt;_sre.SRE_Match object at 01070390></samp>
 <a><samp class=p>>>> </samp><kbd class=pp>re.search(pattern, 'MD')</kbd>              <span class=u>&#x2462;</span></a>
-<samp>&lt;SRE_Match object at 01073A50></samp>
+<samp>&lt;_sre.SRE_Match object at 01073A50></samp>
 <a><samp class=p>>>> </samp><kbd class=pp>re.search(pattern, 'MMMCCC')</kbd>          <span class=u>&#x2463;</span></a>
-<samp>&lt;SRE_Match object at 010748A8></samp>
+<samp>&lt;_sre.SRE_Match object at 010748A8></samp>
 <a><samp class=p>>>> </samp><kbd class=pp>re.search(pattern, 'MCMC')</kbd>            <span class=u>&#x2464;</span></a>
 <a><samp class=p>>>> </samp><kbd class=pp>re.search(pattern, '')</kbd>                <span class=u>&#x2465;</span></a>
-<samp>&lt;SRE_Match object at 01071D98></samp></pre>
+<samp>&lt;_sre.SRE_Match object at 01071D98></samp></pre>
 <ol>
 <li>Questo pattern comincia allo stesso modo del precedente, controllando l'inizio della stringa (<code>^</code>), poi le migliaia (<code>M?M?M?</code>). Dopo prosegue con la nuova parte, tra parentesi, che definisce un insieme di tre pattern mutuamente esclusivi, separati da barre verticali: <code>CM</code>, <code>CD</code> e <code>D?C?C?C?</code> (che contiene una <code>D</code> opzionale seguita da zero fino a tre caratteri <code>C</code> opzionali). Il riconoscitore di espressioni regolari controlla ognuno di questi pattern nell'ordine dato (da sinistra a destra), prende il primo che corrisponde e ignora il resto.
 <li><code>'MCM'</code> corrisponde perché la prima <code>M</code> corrisponde, il secondo e il terzo carattere <code>M</code> vengono ignorati, e <code>CM</code> corrisponde (quindi i pattern <code>CD</code> e <code>D?C?C?C?</code> non vengono mai considerati). <code>MCM</code> è la rappresentazione di <code>1900</code> come numero romano.
