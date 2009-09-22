@@ -60,7 +60,7 @@ body{counter-reset:h1 13}
 <a><samp class=p>>>> </samp><kbd class=pp>shell</kbd>                                                                                              <span class=u>&#x2460;</span></a>
 <samp class=pp>1</samp>
 <a><samp class=p>>>> </samp><kbd class=pp>entry = {}</kbd>                                                                                         <span class=u>&#x2461;</span></a>
-<samp class=p>>>> </samp><kbd class=pp>entry['title'] = 'Dive into history, 2009 edition'</kbd>
+<samp class=p>>>> </samp><kbd class=pp>entry['title'] = 'Immersione nella storia, edizione 2009'</kbd>
 <samp class=p>>>> </samp><kbd class=pp>entry['article_link'] = 'http://diveintomark.org/archives/2009/03/27/dive-into-history-2009-edition'</kbd>
 <samp class=p>>>> </samp><kbd class=pp>entry['comments_link'] = None</kbd>
 <samp class=p>>>> </samp><kbd class=pp>entry['internal_id'] = b'\xDE\xD5\xB4\xF8'</kbd>
@@ -123,7 +123,7 @@ NameError: name 'entry' is not defined</samp>
 <a><samp class=p>>>> </samp><kbd class=pp>entry</kbd>                                    <span class=u>&#x2464;</span></a>
 <samp class=pp>{'comments_link': None,
  'internal_id': b'\xDE\xD5\xB4\xF8',
- 'title': 'Dive into history, 2009 edition',
+ 'title': 'Immersione nella storia, edizione 2009',
  'tags': ('diveintopython', 'docbook', 'html'),
  'article_link':
  'http://diveintomark.org/archives/2009/03/27/dive-into-history-2009-edition',
@@ -206,14 +206,14 @@ NameError: name 'entry' is not defined</samp>
 
 <pre class=screen>
 <samp class=p>you@localhost:~/diveintopython3/examples$ </samp><kbd>ls -l entry.pickle</kbd>
-<samp>-rw-r--r-- 1 you  you  324 Aug  3 13:34 entry.pickle</samp>
+<samp>-rw-r--r-- 1 you  you  365 Aug  3 13:34 entry.pickle</samp>
 <samp class=p>you@localhost:~/diveintopython3/examples$ </samp><kbd>cat entry.pickle</kbd>
 <samp>comments_linkqNXtagsqXdiveintopythonqXdocbookqXhtmlq?qX publishedq?
 XlinkXJhttp://diveintomark.org/archives/2009/03/27/dive-into-history-2009-edition
 q   Xpublished_dateq
 ctime
 struct_time
-?qRqXtitleqXDive into history, 2009 editionqu.</samp></pre>
+?qRqXtitleqXImmersione nella storia, edizione 2009qu.</samp></pre>
 
 <p>Questo non ci aiuta molto. Potete vedere le stringhe, ma gli altri tipi di dato sono composti da caratteri non stampabili (o quantomeno non leggibili). I campi non sono ovviamente delimitati da tabulazioni o spazi. Questo non è un formato di cui vorreste effettuare il debug da soli.
 
@@ -268,17 +268,17 @@ struct_time
   187: q        BINPUT     14
   189: X        BINUNICODE 'title'
   199: q        BINPUT     15
-  201: X        BINUNICODE 'Dive into history, 2009 edition'
-  237: q        BINPUT     16
-  239: X        BINUNICODE 'article_link'
-  256: q        BINPUT     17
-  258: X        BINUNICODE 'http://diveintomark.org/archives/2009/03/27/dive-into-history-2009-edition'
-  337: q        BINPUT     18
-  339: X        BINUNICODE 'published'
-  353: q        BINPUT     19
-  355: \x88     NEWTRUE
-  356: u        SETITEMS   (MARK at 5)
-  357: .    STOP
+  201: X        BINUNICODE 'Immersione nella storia, edizione 2009'
+  244: q        BINPUT     16
+  246: X        BINUNICODE 'article_link'
+  263: q        BINPUT     17
+  265: X        BINUNICODE 'http://diveintomark.org/archives/2009/03/27/dive-into-history-2009-edition'
+  344: q        BINPUT     18
+  346: X        BINUNICODE 'published'
+  360: q        BINPUT     19
+  362: \x88     NEWTRUE
+  363: u        SETITEMS   (MARK at 5)
+  364: .    STOP
 <mark>highest protocol among opcodes = 3</mark></samp></pre>
 
 <p>L'informazione più interessante in questo disassemblato si trova sull'ultima riga, perché include la versione del protocollo pickle con la quale questo file è stato salvato. Non c'è alcun contrassegno di versione esplicito nel protocollo pickle. Per determinare la versione del protocollo che è stata usata per memorizzare un file pickle, dovete esaminare i contrassegni (chiamati &#8220;opcode&#8221; in inglese) all'interno dei dati serializzati e usare la conoscenza cablata di quali opcode sono stati introdotti con ogni versione del protocollo pickle. La funzione <code>pickle.dis()</code> fa proprio questo, e stampa il risultato nell'ultima riga del disassemblato. Ecco una funzione che restituisce solo il numero di versione, senza stampare nulla:
@@ -324,7 +324,7 @@ def protocol_version(file_object):
 <samp class=pp>1</samp>
 <a><samp class=p>>>> </samp><kbd class=pp>basic_entry = {}</kbd>                                           <span class=u>&#x2460;</span></a>
 <samp class=p>>>> </samp><kbd class=pp>basic_entry['id'] = 256</kbd>
-<samp class=p>>>> </samp><kbd class=pp>basic_entry['title'] = 'Dive into history, 2009 edition'</kbd>
+<samp class=p>>>> </samp><kbd class=pp>basic_entry['title'] = 'Immersione nella storia, edizione 2009'</kbd>
 <samp class=p>>>> </samp><kbd class=pp>basic_entry['tags'] = ('diveintopython', 'docbook', 'html')</kbd>
 <samp class=p>>>> </samp><kbd class=pp>basic_entry['published'] = True</kbd>
 <samp class=p>>>> </samp><kbd class=pp>basic_entry['comments_link'] = None</kbd>
@@ -342,7 +342,7 @@ def protocol_version(file_object):
 <pre class=screen>
 <samp class=p>you@localhost:~/diveintopython3/examples$ </samp><kbd>cat basic.json</kbd>
 <samp>{"published": true, "tags": ["diveintopython", "docbook", "html"], "comments_link": null,
-"id": 256, "title": "Dive into history, 2009 edition"}</samp></pre>
+"id": 256, "title": "Immersione nella storia, edizione 2009"}</samp></pre>
 
 <p>Questo è certamente <a href=#debugging>più leggibile di un file pickle</a>. Ma <abbr>JSON</abbr> può contenere una quantità arbitraria di spazio bianco tra i valori, e il modulo <code>json</code> fornisce un modo facile per beneficiare di questa caratteristica creando file <abbr>JSON</abbr> ancora più leggibili.
 
@@ -368,7 +368,7 @@ def protocol_version(file_object):
   ], 
   "comments_link": null, 
   "id": 256, 
-  "title": "Dive into history, 2009 edition"
+  "title": "Immersione nella storia, edizione 2009"
 }</samp></pre>
 
 <p class=a>&#x2042;
@@ -422,7 +422,7 @@ def protocol_version(file_object):
 <a><samp class=p>>>> </samp><kbd class=pp>entry</kbd>                                                 <span class=u>&#x2460;</span></a>
 <samp class=pp>{'comments_link': None,
  'internal_id': b'\xDE\xD5\xB4\xF8',
- 'title': 'Dive into history, 2009 edition',
+ 'title': 'Immersione nella storia, edizione 2009',
  'tags': ('diveintopython', 'docbook', 'html'),
  'article_link': 'http://diveintomark.org/archives/2009/03/27/dive-into-history-2009-edition',
  'published_date': time.struct_time(tm_year=2009, tm_mon=3, tm_mday=27, tm_hour=22, tm_min=20, tm_sec=42, tm_wday=4, tm_yday=86, tm_isdst=-1),
@@ -529,7 +529,7 @@ def to_json(python_object):
 <samp class=p>you@localhost:~/diveintopython3/examples$ </samp><kbd>cat example.json</kbd>
 <samp>{"published_date": {"__class__": "time.asctime", "__value__": "Fri Mar 27 22:20:42 2009"},
 "comments_link": null, "internal_id": {"__class__": "bytes", "__value__": [222, 213, 180, 248]},
-"tags": ["diveintopython", "docbook", "html"], "title": "Dive into history, 2009 edition",
+"tags": ["diveintopython", "docbook", "html"], "title": "Immersione nella storia, edizione 2009",
 "article_link": "http://diveintomark.org/archives/2009/03/27/dive-into-history-2009-edition",
 "published": true}</samp></pre>
 
@@ -554,7 +554,7 @@ NameError: name 'entry' is not defined</samp>
 <a><samp class=p>>>> </samp><kbd class=pp>entry</kbd>                                                 <span class=u>&#x2462;</span></a>
 <samp class=pp>{'comments_link': None,
  'internal_id': {'__class__': 'bytes', '__value__': [222, 213, 180, 248]},
- 'title': 'Dive into history, 2009 edition',
+ 'title': 'Immersione nella storia, edizione 2009',
  'tags': ['diveintopython', 'docbook', 'html'],
  'article_link': 'http://diveintomark.org/archives/2009/03/27/dive-into-history-2009-edition',
  'published_date': {'__class__': 'time.asctime', '__value__': 'Fri Mar 27 22:20:42 2009'},
@@ -594,7 +594,7 @@ NameError: name 'entry' is not defined</samp>
 <a><samp class=p>>>> </samp><kbd class=pp>entry</kbd>                                                             <span class=u>&#x2461;</span></a>
 <samp class=pp>{'comments_link': None,
  'internal_id': b'\xDE\xD5\xB4\xF8',
- 'title': 'Dive into history, 2009 edition',
+ 'title': 'Immersione nella storia, edizione 2009',
  'tags': ['diveintopython', 'docbook', 'html'],
  'article_link': 'http://diveintomark.org/archives/2009/03/27/dive-into-history-2009-edition',
  'published_date': time.struct_time(tm_year=2009, tm_mon=3, tm_mday=27, tm_hour=22, tm_min=20, tm_sec=42, tm_wday=4, tm_yday=86, tm_isdst=-1),
