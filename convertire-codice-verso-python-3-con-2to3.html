@@ -176,8 +176,8 @@ h3:before{counter-increment:h3;content:'A.' counter(h2) '.' counter(h3) '. '}
 
 <ol>
 <li>La forma più semplice.
-<li>L'operatore <code>or</code> ha la precedenza sull'operatore <code>in</code>, quindi in questo caso non c'è alcun bisogno di usare le parentesi attorno a <code>x in a_dictionary</code> o a <code>y in a_dictionary</code>.
-<li>D'altra parte, in questo caso <em>avete</em> bisogno di usare le parentesi attorno a <code>x or y</code>, per lo stesso motivo&nbsp;&mdash;&nbsp;<code>or</code> ha la precedenza su <code>in</code>. Notate che questo codice è completamente differente da quello nella riga precedente. Python interpreta prima <code>x or y</code>, che dà come risultato <var>x</var> (se <var>x</var> è <a href=tipi-di-dato-nativi.html#booleans>vero in un contesto logico</a>) o <var>y</var>; poi prende quel singolo valore e controlla se è una chiave di <var>a_dictionary</var>.
+<li>L'operatore <code>in</code> ha la precedenza sull'operatore <code>or</code>, quindi in questo caso non c'è alcun bisogno di usare le parentesi attorno a <code>x in a_dictionary</code> o a <code>y in a_dictionary</code>.
+<li>D'altra parte, in questo caso <em>avete</em> bisogno di usare le parentesi attorno a <code>x or y</code>, per lo stesso motivo&nbsp;&mdash;&nbsp;<code>in</code> ha la precedenza su <code>or</code>. Notate che questo codice è completamente differente da quello nella riga precedente. Python interpreta prima <code>x or y</code>, che dà come risultato <var>x</var> (se <var>x</var> è <a href=tipi-di-dato-nativi.html#booleans>vero in un contesto logico</a>) o <var>y</var>; poi prende quel singolo valore e controlla se è una chiave di <var>a_dictionary</var>.
 <li>L'operatore <code>in</code> ha la precedenza sull'operatore <code>+</code>, quindi questa forma non avrebbe tecnicamente bisogno delle parentesi attorno a <code>x + y</code>, ma <code>2to3</code> le aggiunge comunque.
 <li>Questa forma ha certamente bisogno delle parentesi attorno a <code>y in a_dictionary</code>, dato che l'operatore <code>in</code> ha la precedenza sull'operatore <code>+</code>.
 </ol>
