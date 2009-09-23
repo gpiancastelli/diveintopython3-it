@@ -454,11 +454,11 @@ def protocol_version(file_object):
 
 <p class=d>[<a href=esempi/customserializer.py>scarica <code>customserializer.py</code></a>]
 <pre class=pp><code>
-<a>def to_json(python_object):                                             <span class=u>&#x2460;</span></a>
-<a>    if isinstance(python_object, bytes):                                <span class=u>&#x2461;</span></a>
+<a>def to_json(python_object):                                                 <span class=u>&#x2460;</span></a>
+<a>    if isinstance(python_object, bytes):                                    <span class=u>&#x2461;</span></a>
 <a>        return {'__class__': 'bytes',
-                '__value__': list(python_object)}                       <span class=u>&#x2462;</span></a>
-<a>    raise TypeError                                                     <span class=u>&#x2463;</span></a></code></pre>
+                '__value__': list(python_object)}                           <span class=u>&#x2462;</span></a>
+<a>    raise TypeError(repr(python_object) + ' non è serializzabile in JSON')  <span class=u>&#x2463;</span></a></code></pre>
 <ol>
 <li>Per definire il vostro &#8220;mini-formato di serializzazione&#8221; per un tipo di dato che <abbr>JSON</abbr> non supporta nativamente, vi basta definire una funzione che prende un oggetto Python come parametro. Questo oggetto Python sarà l'effettivo oggetto che la funzione <code>json.dump()</code> non è in grado di serializzare da sola&nbsp;&mdash;&nbsp;in questo caso, l'oggetto <code>b'\xDE\xD5\xB4\xF8'</code> di tipo <code>bytes</code>.
 <li>La vostra funzione di serializzazione personalizzata dovrebbe controllare il tipo dell'oggetto Python che la funzione <code>json.dump()</code> le ha passato. Questo non è strettamente necessario se la vostra funzione serializza un solo tipo di dato, ma chiarisce qual è il caso che la vostra funzione sta affrontando e facilita l'estensione se più tardi avete bisogno di aggiungere serializzazioni per altri tipi di dato.
@@ -487,8 +487,8 @@ def protocol_version(file_object):
   File "C:\Python31\lib\json\encoder.py", line 416, in _iterencode
     o = _default(o)
   File "/Users/pilgrim/diveintopython3/examples/customserializer.py", line 12, in to_json
-<a>    raise TypeError(repr(python_object) + ' is not JSON serializable')                     <span class=u>&#x2463;</span></a>
-TypeError: time.struct_time(tm_year=2009, tm_mon=3, tm_mday=27, tm_hour=22, tm_min=20, tm_sec=42, tm_wday=4, tm_yday=86, tm_isdst=-1) is not JSON serializable</samp></pre>
+<a>    raise TypeError(repr(python_object) + ' non è serializzabile in JSON')                 <span class=u>&#x2463;</span></a>
+TypeError: time.struct_time(tm_year=2009, tm_mon=3, tm_mday=27, tm_hour=22, tm_min=20, tm_sec=42, tm_wday=4, tm_yday=86, tm_isdst=-1) non è serializzabile in JSON</samp></pre>
 <ol>
 <li>Il modulo <code>customserializer</code> è dove avete appena definito la funzione <code>to_json()</code> dell'esempio precedente.
 <li>Modalità testo, codifica UTF-8, bla bla bla. (Lo dimenticherete! Me lo dimentico anch'io, ogni tanto! E tutto funzionerà esattamente fino al momento in cui smetterà di funzionare, e in quel momento tutto si bloccherà in maniera spettacolare.)
@@ -508,7 +508,7 @@ def to_json(python_object):
     if isinstance(python_object, bytes):
         return {'__class__': 'bytes',
                 '__value__': list(python_object)}
-    raise TypeError</code></pre>
+    raise TypeError(repr(python_object) + ' non è serializzabile in JSON')</code></pre>
 <ol>
 <li>Aggiungendo codice alla nostra funzione <code>customserializer.to_json()</code> esistente, dobbiamo controllare se l'oggetto Python (con cui la funzione <code>json.dump()</code> ha dei problemi) è un'istanza della classe <code>time.struct_time</code>.
 <li>Se è così, faremo qualcosa di simile alla conversione che abbiamo compiuto per l'oggetto <code>bytes</code>: convertiamo l'oggetto <code>time.struct_time</code> in un dizionario che contiene solo valori serializzabili in formato <abbr>JSON</abbr>. In questo caso, il modo più semplice di convertire una data in un valore serializzabile in formato <abbr>JSON</abbr> è quello di convertirla in una stringa tramite la funzione <code>time.asctime()</code>. La funzione <code>time.asctime()</code> convertirà lo sconveniente oggetto di tipo <code>time.struct_time</code> nella stringa <code>'Fri Mar 27 22:20:42 2009'</code>.
