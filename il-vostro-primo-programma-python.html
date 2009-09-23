@@ -53,18 +53,18 @@ def approximate_size(size, a_kilobyte_is_1024_bytes=True):
 if __name__ == '__main__':
     print(approximate_size(1000000000000, False))
     print(approximate_size(1000000000000))</code></pre>
-<p>Ora eseguiamo il programma dalla linea di comando. Sotto Windows avremo qualcosa di simile a questo:
+<p>Ora eseguiamo il programma dalla linea di comando. Su Windows avremo qualcosa di simile a questo:
 <pre class='nd screen'>
 <samp class=p>c:\home\diveintopython3\examples> </samp><kbd>c:\python31\python.exe humansize.py</kbd>
 <samp>1.0 TB
 931.3 GiB</samp></pre>
-<p>Sotto Mac OS X o Linux avremo qualcosa di simile a questo:
+<p>Su Mac OS X o Linux avremo qualcosa di simile a questo:
 <pre class='nd screen'>
 <samp class=p>you@localhost:~/diveintopython3/examples$ </samp><kbd>python3 humansize.py</kbd>
 <samp>1.0 TB
 931.3 GiB</samp></pre>
 
-<p>Che cos'è appena successo? Avete eseguito il vostro primo programma Python. Avete invocato l'interprete Python dalla riga di comando e gli avete passato il nome dello script che volevate far eseguire all'interprete. Lo script definisce una singola funzione, la funzione <code>approximate_size()</code>, che prende una dimensione esatta di un file in byte e ne calcola una versione più &#8220;carina&#8221; (ma approssimata). Lo avete probabilmente visto fare in Esplora Risorse sotto Windows, o nel Finder di Mac OS X, oppure in Nautilus o Dolphin o Thunar sotto Linux. Se visualizzate una cartella di documenti come una lista a più colonne, il programma mostrerà una tabella con l'icona di ogni documento, il nome, la dimensione, il tipo, la data dell'ultima modifica, e così via. Se la cartella contiene un file di 1093 byte chiamato <code>TODO</code>, il vostro programma di gestione dei file non visualizzerà <code>TODO 1093 byte</code>, ma vi mostrerà qualcosa di simile a <code>TODO 1 KB</code>. Questo è ciò che fa la funzione <code>approximate_size()</code>.
+<p>Che cos'è appena successo? Avete eseguito il vostro primo programma Python. Avete invocato l'interprete Python dalla riga di comando e gli avete passato il nome dello script che volevate far eseguire all'interprete. Lo script definisce una singola funzione, la funzione <code>approximate_size()</code>, che prende una dimensione esatta di un file in byte e ne calcola una versione più &#8220;carina&#8221; (ma approssimata). Lo avete probabilmente visto fare in Esplora Risorse su Windows, o nel Finder di Mac OS X, oppure in Nautilus o Dolphin o Thunar su Linux. Se visualizzate una cartella di documenti come una lista a più colonne, il programma mostrerà una tabella con l'icona di ogni documento, il nome, la dimensione, il tipo, la data dell'ultima modifica, e così via. Se la cartella contiene un file di 1093 byte chiamato <code>TODO</code>, il vostro programma di gestione dei file non visualizzerà <code>TODO 1093 byte</code>, ma vi mostrerà qualcosa di simile a <code>TODO 1 KB</code>. Questo è ciò che fa la funzione <code>approximate_size()</code>.
 
 <p>Guardate in fondo al programma e vedrete due chiamate a <code>print(approximate_size(<var>argomenti</var>))</code>. Queste sono invocazioni di funzione&nbsp;&mdash;&nbsp;prima chiamano la funzione <code>approximate_size()</code> passandole un certo numero di argomenti, poi prendono il valore di ritorno e lo passano direttamente alla funzione <code>print()</code>. La funzione <code>print()</code> è predefinita, perciò non ne vedrete mai la dichiarazione esplicita. Potete semplicemente usarla, sempre e dovunque. (Ci sono molte funzioni predefinite e molte altre funzioni che sono suddivise in <i>moduli</i>. Sii paziente, cavalletta.)
 

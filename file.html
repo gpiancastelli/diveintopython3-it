@@ -32,7 +32,7 @@ mark{display:inline}
 
 <ol>
 <li>Non è solo il nome di un file, ma è la combinazione di un percorso di directory e di un nome di file. Un'ipotetica funzione di apertura di file potrebbe accettare due argomenti&nbsp;&mdash;&nbsp;un percorso di directory e un nome di file&nbsp;&mdash;&nbsp;ma la funzione <code>open()</code> ne accetta solo uno. In Python, ogni volta che avete bisogno di un &#8220;nome di file&#8221; potete anche includere un percorso di directory intero o parziale.
-<li>Il percorso di directory usa i caratteri di slash, ma io non vi ho detto quale sistema operativo stavo usando. Windows usa i caratteri di backslash per denotare le sottodirectory, mentre Mac OS X e Linux usano i caratteri di slash. Ma in Python gli slash funzionano sempre, persino sotto Windows.
+<li>Il percorso di directory usa i caratteri di slash, ma io non vi ho detto quale sistema operativo stavo usando. Windows usa i caratteri di backslash per denotare le sottodirectory, mentre Mac OS X e Linux usano i caratteri di slash. Ma in Python gli slash funzionano sempre, persino su Windows.
 <li>Il percorso di directory non comincia con uno slash o una lettera di disco, quindi viene chiamato <i>percorso relativo</i>. Potreste chiedervi: relativo a cosa? Sii paziente, cavalletta.
 <li>&Egrave; una stringa. Tutti i sistemi operativi moderni (persino Windows!) usano Unicode per memorizzare i nomi di file e directory. Python 3 supporta pienamente i nomi di percorso in codifiche diverse da <abbr>ASCII</abbr>.
 <li>Il file non deve necessariamente trovarsi sul vostro disco locale. Potreste aver montato un disco di rete, oppure quel file potrebbe essere una finzione appartenente a <a href=http://en.wikipedia.org/wiki/Filesystem_in_Userspace>un file system interamente virtuale</a>. Se il vostro computer lo considera un file e può accedervi come a un file, Python può aprirlo.
@@ -45,7 +45,7 @@ mark{display:inline}
 <p>I byte sono byte, <a href=stringhe.html#byte-arrays>i caratteri sono un'astrazione</a>. Una stringa è una sequenza di caratteri Unicode. Ma un file su disco non è una sequenza di caratteri Unicode, bensì una sequenza di byte. Quindi se leggete un &#8220;file di testo&#8221; dal disco, in che modo Python converte quella sequenza di byte in una sequenza di caratteri? Decodifica i byte seguendo un particolare algoritmo di codifica di carattere e restituisce una sequenza di caratteri Unicode (altrimenti noti come una stringa).
 
 <pre>
-# Questo esempio è stato creato sotto Windows. Altre piattaforme potrebbero
+# Questo esempio è stato creato su Windows. Altre piattaforme potrebbero
 # comportarsi in maniera diversa, per le ragioni illustrate di seguito.
 <samp class=p>>>> </samp><kbd class=pp>file = open('esempi/chinese.txt')</kbd>
 <samp class=p>>>> </samp><kbd class=pp>a_string = file.read()</kbd>
@@ -61,7 +61,7 @@ UnicodeDecodeError: 'charmap' codec can't decode byte 0x8f in position 28: chara
 <p>Ma aspettate, le cose sono peggio di così! La codifica predefinita <em>dipende dalla piattaforma</em>, quindi questo codice <em>potrebbe</em> funzionare sul vostro computer (se la vostra codifica predefinita è UTF-8), ma poi fallirebbe quando lo distribuite a qualcun altro (la cui codifica predefinita è differente, come CP-1252).
 
 <blockquote class=note>
-<p><span class=u>&#x261E;</span>Se avete bisogno di ottenere la codifica di carattere predefinita, importate il modulo <code>locale</code> e invocate <code>locale.getpreferredencoding()</code>. Sul mio portatile Windows la funzione restituisce <code>'cp1252'</code>, ma sulla macchina Linux che ho di sopra restituisce <code>'UTF-8'</code>. Non riesco a mantenere la consistenza nemmeno in casa mia! I vostri risultati potrebbero essere differenti (persino sotto Windows) a seconda di quale versione del vostro sistema operativo avete installato e di come sono configurate le impostazioni regionali e di linuga. Questo è il motivo per cui è così importante specificare la codifica ogni volta che aprite un file.
+<p><span class=u>&#x261E;</span>Se avete bisogno di ottenere la codifica di carattere predefinita, importate il modulo <code>locale</code> e invocate <code>locale.getpreferredencoding()</code>. Sul mio portatile Windows la funzione restituisce <code>'cp1252'</code>, ma sulla macchina Linux che ho di sopra restituisce <code>'UTF-8'</code>. Non riesco a mantenere la consistenza nemmeno in casa mia! I vostri risultati potrebbero essere differenti (persino su Windows) a seconda di quale versione del vostro sistema operativo avete installato e di come sono configurate le impostazioni regionali e di linuga. Questo è il motivo per cui è così importante specificare la codifica ogni volta che aprite un file.
 </blockquote>
 
 <h3 id=file-objects>Oggetti stream</h3>
@@ -424,7 +424,7 @@ AttributeError: '_io.BufferedReader' object has no attribute 'encoding'</samp></
 <samp>Camminare per nove miglia non è uno scherzo, specialmente se piove.</samp></pre>
 <ol>
 <li>Dovreste sempre aprire i file compressi con gzip in modalità binaria. (Notate il carattere <code>'b'</code> nell'argomento <code>mode</code>.)
-<li>Ho realizzato questo esempio sotto Linux. Se non avete familiarità con la riga di comando, sappiate che questo comando mostra &#8220;l'elenco esteso&#8221; del file gzip che avete appena creato nella Shell Python. Questo elenco mostra che il file esiste (bene) e che è di 79 byte. Questo file è in realtà più grande della stringa con cui avete cominciato! Il formato gzip include un'intestazione di lunghezza fissa che contiene alcuni metadati sul file, quindi è inefficiente per file estremamente piccoli.
+<li>Ho realizzato questo esempio su Linux. Se non avete familiarità con la riga di comando, sappiate che questo comando mostra &#8220;l'elenco esteso&#8221; del file gzip che avete appena creato nella Shell Python. Questo elenco mostra che il file esiste (bene) e che è di 79 byte. Questo file è in realtà più grande della stringa con cui avete cominciato! Il formato gzip include un'intestazione di lunghezza fissa che contiene alcuni metadati sul file, quindi è inefficiente per file estremamente piccoli.
 <li>Il comando <code>gunzip</code> (pronunciato &#8220;gee-unzip&#8221; in inglese) decomprime il file e memorizza i contenuti in un nuovo file chiamato con lo stesso nome del file compresso ma senza l'estensione <code>.gz</code>.
 <li>Il comando <code>cat</code> mostra i contenuti di un file. Questo file contiene la stringa che avevate originariamente scritto direttamente sul file compresso <code>out.log.gz</code> dall'interno della Shell Python.
 </ol>

@@ -52,7 +52,7 @@ del{background:#f87}
 <li>Codifiche con escape, che sono interamente compatibili con la codifica <abbr>ASCII</abbr> a 7 bit, dove i caratteri non-<abbr>ASCII</abbr> cominciano con una sequenza di escape. Esempi: <code>ISO-2022-JP</code> (giapponese) e <code>HZ-GB-2312</code> (cinese).
 <li>Codifiche multi-byte, dove ogni carattere è rappresentato da un numero variabile di byte. Esempi: <code>Big5</code> (cinese), <code>SHIFT_JIS</code> (giapponese), <code>EUC-KR</code> (coreano) e <code>UTF-8</code> senza <abbr>BOM</abbr>.
 <li>Codifiche a singolo byte, dove ogni carattere è rappresentato da un byte. Esempi: <code>KOI8-R</code> (russo), <code>windows-1255</code> (ebraico) e <code>TIS-620</code> (thai).
-<li><code>windows-1252</code>, che viene usato principalmente sotto Microsoft Windows da direttori d'azienda che non distinguerebbero una codifica di carattere da un buco in terra.
+<li><code>windows-1252</code>, che viene usato principalmente su Microsoft Windows da direttori d'azienda che non distinguerebbero una codifica di carattere da un buco in terra.
 </ol>
 <h3 id=how.bom><code>UTF-n</code> con <abbr>BOM</abbr></h3>
 <p>Se il testo comincia con un <abbr>BOM</abbr>, possiamo ragionevolmente presumere che sia codificato in <code>UTF-8</code>, <code>UTF-16</code>, o <code>UTF-32</code>. (Il <abbr>BOM</abbr> ci dirà esattamente quale; questo è quello a cui serve.) Questa categoria viene gestita direttamente da <code>UniversalDetector</code>, che restituisce il risultato immediatamente senza ulteriori elaborazioni.
