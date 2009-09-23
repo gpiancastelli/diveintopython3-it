@@ -75,9 +75,9 @@ FAILED (failures=1)</samp></pre>
 <pre class=pp><code>def from_roman(s):
     '''converte un numero romano in un intero'''
 <a>    if not s:                                                                     <span class=u>&#x2460;</span></a>
-        raise InvalidRomanNumeralError, 'La stringa in ingresso non può essere vuota'
+        raise InvalidRomanNumeralError('La stringa in ingresso non può essere vuota')
     if not re.search(romanNumeralPattern, s):
-<a>        raise InvalidRomanNumeralError, 'Numero romano non valido: {}'.format(s)  <span class=u>&#x2461;</span></a>
+<a>        raise InvalidRomanNumeralError('Numero romano non valido: {}'.format(s))  <span class=u>&#x2461;</span></a>
 
     result = 0
     index = 0
