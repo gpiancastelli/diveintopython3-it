@@ -37,7 +37,7 @@ S = 6
 T = 2
 E = 4</code></pre>
 
-<p>Rompicapo come questi sono chiamati <i>criptarismi</i> o più precisamente criptarismi <i>alfametici</i>. Le lettere formano parole vere, ma se sostituite ogni lettera con una cifra da 0 a <code>9</code>, il rompicapo &#8220;forma&#8221; anche un'equazione aritmetica. Il trucco è scoprire quali lettere corrispondono a quali cifre. Tutte le occorrenze di ogni lettera devono corrispondere alla stessa cifra, nessuna cifra può essere ripetuta e nessuna &#8220;parola&#8221; può cominciare con la cifra 0.
+<p>Rompicapi come questi sono chiamati <i>criptarismi</i> o più precisamente criptarismi <i>alfametici</i>. Le lettere formano parole vere, ma se sostituite ogni lettera con una cifra da 0 a <code>9</code>, il rompicapo &#8220;forma&#8221; anche un'equazione aritmetica. Il trucco è scoprire quali lettere corrispondono a quali cifre. Tutte le occorrenze di ogni lettera devono corrispondere alla stessa cifra, nessuna cifra può essere ripetuta e nessuna &#8220;parola&#8221; può cominciare con la cifra 0.
 
 <p>Il rompicapo alfametico più conosciuto è <code>SEND + MORE = MONEY</code>.
 
@@ -102,13 +102,13 @@ if __name__ == '__main__':
 <li>Qui il pattern di espressione regolare corrisponde a sequenze di lettere. Ancora una volta, il valore di ritorno è una lista, e ogni elemento nella lista è una stringa che corrisponde a quel pattern di espressione regolare.
 </ol>
 
-<p>Ecco un altro esempio che metterà un po' alla prova la vostra mente.
+<p>Ecco un altro esempio per mettere alla prova la vostra mente.
 
 <pre class='nd screen'>
 <samp class=p>>>> </samp><kbd class=pp>re.findall(' c.*? c', 'Chi ama chiama chi ama, chiamami tu che chi ami chiami.')</kbd>
 <samp class=pp>[' chiama c', ' chiamami tu c', ' chi ami c']</samp></pre>
 
-<p>Sorpresi? L'espressione regolare cerca uno spazio, una <code>c</code> e poi la serie di caratteri più corta possibile contenente qualsiasi carattere (<code>.*?</code>), poi uno spazio, poi un'altra <code>c</code>. Bene, guardando la stringa di ingresso, vedo cinque corrispondenze:
+<p>Sorpresi? L'espressione regolare cerca uno spazio, una <code>c</code> e poi la serie di caratteri più corta possibile contenente qualsiasi carattere (<code>.*?</code>), poi uno spazio, poi un'altra <code>c</code>. Bene, guardando la stringa in ingresso, vedo cinque corrispondenze:
 
 <ol>
 <li><code>Chi ama<mark> chiama c</mark>hi ama, chiamami tu che chi ami chiami.</code>
@@ -124,9 +124,9 @@ if __name__ == '__main__':
 
 <p class=a>&#x2042;
 
-<h2 id=unique-items>Trovare elementi unici in una sequenza</h2>
+<h2 id=unique-items>Eliminare gli elementi ripetuti da una sequenza</h2>
 
-<p>Gli <a href=tipi-di-dato-nativi.html#sets>insiemi</a> rendono banale trovare gli elementi unici di una sequenza.
+<p>Gli <a href=tipi-di-dato-nativi.html#sets>insiemi</a> rendono banale eliminare gli elementi ripetuti da una sequenza.
 
 <pre class=screen>
 <samp class=p>>>> </samp><kbd class=pp>a_list = ['Chi', 'ama', 'chiama', 'chi', 'ama', 'chiamami', 'tu', 'che', 'ami', 'chi', 'chiami']</kbd>
@@ -141,10 +141,10 @@ if __name__ == '__main__':
 <a><samp class=p>>>> </samp><kbd class=pp>set(''.join(words))</kbd>              <span class=u>&#x2463;</span></a>
 <samp class=pp>{'E', 'D', 'M', 'O', 'N', 'S', 'R', 'Y'}</samp></pre>
 <ol>
-<li>Data una lista contenente diverse stringhe, la funzione <code>set()</code> restituirà un insieme di stringhe uniche dalla lista. Questa operazione ha senso se lo pensate come un ciclo <code>for</code>. Prendete il primo elemento della lista, mettetelo nell'insieme. Il secondo. Il terzo. Il quarto. Il quinto&nbsp;&mdash;&nbsp;aspettate, quello è già nell'insieme, quindi va elencato solo una volta, perché gli insiemi Python non accettano duplicati. Il sesto, il settimo, l'ottavo, il nono. Poi il decimo&nbsp;&mdash;&nbsp;anche questo è un duplicato, quindi va elencato solo una volta. E l'undicesimo. Il risultato finale? Tutti gli elementi unici della lista originale, senza alcun duplicato. La lista originale non va nemmeno ordinata prima.
+<li>Data una lista contenente diverse stringhe, la funzione <code>set()</code> restituirà un insieme di stringhe uniche a partire dalla lista. Questa operazione ha senso se la pensate come un ciclo <code>for</code>. Prendete il primo elemento della lista, mettetelo nell'insieme. Il secondo. Il terzo. Il quarto. Il quinto&nbsp;&mdash;&nbsp;aspettate, questo è già nell'insieme, quindi va elencato solo una volta, perché gli insiemi Python non accettano ripetizioni. Il sesto, il settimo, l'ottavo, il nono. Poi il decimo&nbsp;&mdash;&nbsp;anche questo elemento è ripetuto, quindi va elencato solo una volta. E l'undicesimo. Il risultato finale? Un insieme di elementi unici creato a partire dalla lista originale, senza alcuna ripetizione. La lista originale non va nemmeno ordinata prima.
 <li>La stessa tecnica funziona con le stringhe, dato che una stringa è solamente una sequenza di caratteri.
-<li>Data una lista di stringhe, <code>''.join(<var>a_list</var>)</code> le concatena tutte in un'unica stringa.
-<li>Quindi, data una lista di stringhe, questa riga di codice restituisce tutti i caratteri unici su tutte le stringhe, senza alcun duplicato.
+<li>Data una lista di stringhe, <code>''.join(<var>lista</var>)</code> le concatena tutte in un'unica stringa.
+<li>Quindi, data una lista di stringhe, questa riga di codice restituisce un insieme di caratteri unici senza alcuna ripetizione creato a partire da tutte le stringhe.
 </ol>
 
 <p>Il risolutore di alfametica usa questa tecnica per ottenere una lista di tutti i caratteri unici nel rompicapo.
@@ -303,7 +303,7 @@ StopIteration</samp>
 <samp class=pp>[('A', 'B'), ('A', 'C'), ('B', 'C')]</samp></pre>
 <ol>
 <li>La funzione <code>itertools.product()</code> restituisce un iteratore contenente il prodotto cartesiano di due sequenze.
-<li>La funzione <code>itertools.combinations()</code> restituisce un iteratore contenente tutte le possibili combinazioni di lunghezza data a partire dalla sequenza data. Questa funzione si comporta come la funzione <code>itertools.permutations()</code>, a parte il fatto che le combinazioni non includono elementi che siano il duplicato di altri elementi in ordine differente. Quindi <code>itertools.permutations('ABC', 2)</code> restituirà sia <code>('A', 'B')</code> che <code>('B', 'A')</code> (tra le altre), ma <code>itertools.combinations('ABC', 2)</code> non restituirà <code>('B', 'A')</code> perché è il duplicato di <code>('A', 'B')</code> con un diverso ordine degli elementi.
+<li>La funzione <code>itertools.combinations()</code> restituisce un iteratore contenente tutte le possibili combinazioni di lunghezza data a partire dalla sequenza data. Questa funzione si comporta come la funzione <code>itertools.permutations()</code>, a parte il fatto che le combinazioni non includono elementi che siano una copia di altri elementi in ordine differente. Quindi <code>itertools.permutations('ABC', 2)</code> restituirà sia <code>('A', 'B')</code> che <code>('B', 'A')</code> (tra le altre), ma <code>itertools.combinations('ABC', 2)</code> non restituirà <code>('B', 'A')</code> perché è una copia di <code>('A', 'B')</code> con un diverso ordine degli elementi.
 </ol>
 
 <p class=d>[<a href=esempi/favorite-people.txt>scarica <code>favorite-people.txt</code></a>]
@@ -609,7 +609,7 @@ NameError: name '__import__' is not defined</samp></pre>
 
 <ol>
 <li><a href=#re-findall>Trova tutte le lettere nel rompicapo</a> con la funzione <code>re.findall()</code>
-<li><a href=#unique-items>Trova tutte le lettere <em>uniche</em> nel rompicapo</a> con gli insiemi e la funzione <code>set()</code>
+<li><a href=#unique-items>Trova tutte le lettere <em>uniche</em> nel rompicapo</a> eliminando le ripetizioni con gli insiemi e la funzione <code>set()</code>
 <li><a href=#assert>Controlla se ci sono più di 10 lettere uniche</a> (cioè se il rompicapo è assolutamente irrisolvibile) con un'istruzione <code>assert</code>
 <li><a href=#generator-objects>Converte le lettere nei loro equivalenti <abbr>ASCII</abbr></a> con un oggetto generatore
 <li><a href=#permutations>Calcola tutte le possibili soluzioni</a> con la funzione <code>itertools.permutations()</code>
