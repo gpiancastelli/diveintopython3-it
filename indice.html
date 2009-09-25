@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<title>Indice - Immersione in Python 3</title>
+<link rel=stylesheet href=dip3.css>
+<style>
+h1:before{content:''}
+ol,ul{font-weight:bold}
+li ol{font-weight:normal}
+#convertire-codice-verso-python-3-con-2to3,#nomi-dei-metodi-speciali,#dove-proseguire-da-qui{list-style:none;margin:0 0 0 -2em}
+#convertire-codice-verso-python-3-con-2to3 > ol,#nomi-dei-metodi-speciali > ol,#dove-proseguire-da-qui > ol{margin:0;padding:0 0 0 4.5em}
+#convertire-codice-verso-python-3-con-2to3:before{content:'A. \00a0 \00a0'}
+#nomi-dei-metodi-speciali:before{content:'B. \00a0 \00a0'}
+#dove-proseguire-da-qui:before{content:'C. \00a0 \00a0'}
+</style>
+<link rel=stylesheet media='only screen and (max-device-width: 480px)' href=mobile.css>
+<link rel=stylesheet media=print href=print.css>
+<meta name=viewport content='initial-scale=1.0'>
+<form action=http://www.google.com/cse><div><input type=hidden name=cx value=014021643941856155761:l5eihuescdw><input type=hidden name=ie value=UTF-8><input type=search name=q size=25 placeholder="powered by Google&trade;">&nbsp;<input type=submit name=sa value=Search></div></form>
+<p>Voi siete qui: <a href=index.html>Inizio</a> <span class=u>&#8227;</span> Immersione in Python 3 <span class=u>&#8227;</span>
+<h1>Indice</h1>
+<!-- toc -->
+<ol start=-1>
+<li id=novità><a href=novità.html>Cosa c'è di nuovo in &#8220;Immersione in Python 3&#8221;</a>
+<ol>
+<li><a href=novità.html#divingin><i>alias</i> &#8220;il livello meno&#8221;</a>
+</ol>
+<li id=installare-python><a href=installare-python.html>Installare Python</a>
+<ol>
+<li><a href=installare-python.html#divingin>Immersione!</a>
+<li><a href=installare-python.html#which>Quale Python vi serve?</a>
+<li><a href=installare-python.html#windows>Installare su Microsoft Windows</a>
+<li><a href=installare-python.html#macosx>Installare su Mac OS X</a>
+<li><a href=installare-python.html#ubuntu>Installare su Ubuntu Linux</a>
+<li><a href=installare-python.html#other>Installare su altre piattaforme</a>
+<li><a href=installare-python.html#idle>Usare la Shell Python</a>
+<li><a href=installare-python.html#editors>Editor e IDE per Python</a>
+</ol>
+<li id=il-vostro-primo-programma-python><a href=il-vostro-primo-programma-python.html>Il vostro primo programma Python</a>
+<ol>
+<li><a href=il-vostro-primo-programma-python.html#divingin>Immersione!</a>
+<li><a href=il-vostro-primo-programma-python.html#declaringfunctions>Dichiarare funzioni</a>
+<ol>
+<li><a href=il-vostro-primo-programma-python.html#optional-arguments>Argomenti opzionali e con nome</a>
+</ol>
+<li><a href=il-vostro-primo-programma-python.html#readability>Scrivere codice leggibile</a>
+<ol>
+<li><a href=il-vostro-primo-programma-python.html#docstrings>Stringhe di documentazione</a>
+</ol>
+<li><a href=il-vostro-primo-programma-python.html#importsearchpath>Il percorso di ricerca di <code>import</code></a>
+<li><a href=il-vostro-primo-programma-python.html#everythingisanobject>Ogni cosa è un oggetto</a>
+<ol>
+<li><a href=il-vostro-primo-programma-python.html#whatsanobject>Che cos'è un oggetto?</a>
+</ol>
+<li><a href=il-vostro-primo-programma-python.html#indentingcode>Indentare il codice</a>
+<li><a href=il-vostro-primo-programma-python.html#exceptions>Eccezioni</a>
+<ol>
+<li><a href=il-vostro-primo-programma-python.html#importerror>Catturare gli errori di importazione</a>
+</ol>
+<li><a href=il-vostro-primo-programma-python.html#nameerror>Variabili non legate</a>
+<li><a href=il-vostro-primo-programma-python.html#case>Tutto è sensibile alle maiuscole</a>
+<li><a href=il-vostro-primo-programma-python.html#runningscripts>Eseguire gli script</a>
+<li><a href=il-vostro-primo-programma-python.html#furtherreading>Letture di approfondimento</a>
+</ol>
+<li id=tipi-di-dato-nativi><a href=tipi-di-dato-nativi.html>Tipi di dato nativi</a>
+<ol>
+<li><a href=tipi-di-dato-nativi.html#divingin>Immersione!</a>
+<li><a href=tipi-di-dato-nativi.html#booleans>Booleani</a>
+<li><a href=tipi-di-dato-nativi.html#numbers>Numeri</a>
+<ol>
+<li><a href=tipi-di-dato-nativi.html#number-coercion>Convertire interi a reali e viceversa</a>
+<li><a href=tipi-di-dato-nativi.html#common-numerical-operations>Operazioni comuni sui numeri</a>
+<li><a href=tipi-di-dato-nativi.html#fractions>Frazioni</a>
+<li><a href=tipi-di-dato-nativi.html#trig>Trigonometria</a>
+<li><a href=tipi-di-dato-nativi.html#numbers-in-a-boolean-context>Numeri in un contesto logico</a>
+</ol>
+<li><a href=tipi-di-dato-nativi.html#lists>Liste</a>
+<ol>
+<li><a href=tipi-di-dato-nativi.html#creatinglists>Creare una lista</a>
+<li><a href=tipi-di-dato-nativi.html#slicinglists>Affettare una lista</a>
+<li><a href=tipi-di-dato-nativi.html#extendinglists>Aggiungere elementi a una lista</a>
+<li><a href=tipi-di-dato-nativi.html#searchinglists>Cercare valori in una lista</a>
+<li><a href=tipi-di-dato-nativi.html#removingfromlists>Rimuovere elementi da una lista</a>
+<li><a href=tipi-di-dato-nativi.html#popgoestheweasel>Rimuovere elementi da una lista: giro bonus</a>
+<li><a href=tipi-di-dato-nativi.html#lists-in-a-boolean-context>Liste in un contesto logico</a>
+</ol>
+<li><a href=tipi-di-dato-nativi.html#tuples>Tuple</a>
+<ol>
+<li><a href=tipi-di-dato-nativi.html#tuples-in-a-boolean-context>Tuple in un contesto logico</a>
+<li><a href=tipi-di-dato-nativi.html#multivar>Assegnare più di un valore alla volta</a>
+</ol>
+<li><a href=tipi-di-dato-nativi.html#sets>Insiemi</a>
+<ol>
+<li><a href=tipi-di-dato-nativi.html#creating-a-set>Creare un insieme</a>
+<li><a href=tipi-di-dato-nativi.html#modifying-sets>Modificare un insieme</a>
+<li><a href=tipi-di-dato-nativi.html#removing-from-sets>Rimuovere elementi da un insieme</a>
+<li><a href=tipi-di-dato-nativi.html#common-set-operations>Operazioni comuni sugli insiemi</a>
+<li><a href=tipi-di-dato-nativi.html#sets-in-a-boolean-context>Insiemi in un contesto logico</a>
+</ol>
+<li><a href=tipi-di-dato-nativi.html#dictionaries>Dizionari</a>
+<ol>
+<li><a href=tipi-di-dato-nativi.html#creating-dictionaries>Creare un dizionario</a>
+<li><a href=tipi-di-dato-nativi.html#modifying-dictionaries>Modificare un dizionario</a>
+<li><a href=tipi-di-dato-nativi.html#mixed-value-dictionaries>Dizionari a valori misti</a>
+<li><a href=tipi-di-dato-nativi.html#dictionaries-in-a-boolean-context>Dizionari in un contesto logico</a>
+</ol>
+<li><a href=tipi-di-dato-nativi.html#none><code>None</code></a>
+<ol>
+<li><a href=tipi-di-dato-nativi.html#none-in-a-boolean-context><code>None</code> in un contesto logico</a>
+</ol>
+<li><a href=tipi-di-dato-nativi.html#furtherreading>Letture di approfondimento</a>
+</ol>
+<li id=descrizioni><a href=descrizioni.html>Descrizioni</a>
+<ol>
+<li><a href=descrizioni.html#divingin>Immersione!</a>
+<li><a href=descrizioni.html#os>Lavorare con i file e le directory</a>
+<ol>
+<li><a href=descrizioni.html#getcwd>La directory di lavoro corrente</a>
+<li><a href=descrizioni.html#ospath>Lavorare con i nomi di file e directory</a>
+<li><a href=descrizioni.html#glob>Elencare il contenuto delle directory</a>
+<li><a href=descrizioni.html#osstat>Ottenere metadati sui file</a>
+<li><a href=descrizioni.html#abspath>Costruire nomi di percorso assoluti</a>
+</ol>
+<li><a href=descrizioni.html#listcomprehension>Descrizioni di lista</a>
+<li><a href=descrizioni.html#dictionarycomprehension>Descrizioni di dizionario</a>
+<ol>
+<li><a href=descrizioni.html#stupiddicttricks>Altra roba divertente da fare con le descrizioni di dizionario</a>
+</ol>
+<li><a href=descrizioni.html#setcomprehension>Descrizioni di insieme</a>
+<li><a href=descrizioni.html#furtherreading>Letture di approfondimento</a>
+</ol>
+<li id=stringhe><a href=stringhe.html>Stringhe</a>
+<ol>
+<li><a href=stringhe.html#boring-stuff>Alcune cose noiose che avete bisogno di sapere prima di potervi immergere</a>
+<li><a href=stringhe.html#one-ring-to-rule-them-all>Unicode</a>
+<li><a href=stringhe.html#divingin>Immersione!</a>
+<li><a href=stringhe.html#formatting-strings>Formattare le stringhe</a>
+<ol>
+<li><a href=stringhe.html#compound-field-names>Nomi di campo composti</a>
+<li><a href=stringhe.html#format-specifiers>Specifiche di formato</a>
+</ol>
+<li><a href=stringhe.html#common-string-methods>Altri metodi di uso comune per le stringhe</a>
+<ol>
+<li><a href=stringhe.html#slicingstrings>Affettare una stringa</a>
+</ol>
+<li><a href=stringhe.html#byte-arrays>Stringhe vs. byte</a>
+<li><a href=stringhe.html#py-encoding>Post Scriptum: codifica di caratteri per il codice sorgente Python</a>
+<li><a href=stringhe.html#furtherreading>Letture di approfondimento</a>
+</ol>
+<li id=espressioni-regolari><a href=espressioni-regolari.html>Espressioni regolari</a>
+<ol>
+<li><a href=espressioni-regolari.html#divingin>Immersione!</a>
+<li><a href=espressioni-regolari.html#streetaddresses>Caso di studio: indirizzi delle vie</a>
+<li><a href=espressioni-regolari.html#romannumerals>Caso di studio: numeri romani</a>
+<ol>
+<li><a href=espressioni-regolari.html#thousands>Controllare le migliaia</a>
+<li><a href=espressioni-regolari.html#hundreds>Controllare le centinaia</a>
+</ol>
+<li><a href=espressioni-regolari.html#nmsyntax>Usare la sintassi <code>{n,m}</code></a>
+<ol>
+<li><a href=espressioni-regolari.html#tensandones>Controllare le decine e le unità</a>
+</ol>
+<li><a href=espressioni-regolari.html#verbosere>Espressioni regolari verbose</a>
+<li><a href=espressioni-regolari.html#phonenumbers>Caso di studio: riconoscere i numeri di telefono</a>
+<li><a href=espressioni-regolari.html#summary>Riepilogo</a>
+</ol>
+<li id=generatori><a href=generatori.html>Chiusure <i class=baa>&amp;</i> generatori</a>
+<ol>
+<li><a href=generatori.html#divingin>Immersione!</a>
+<li><a href=generatori.html#i-know>Ci sono, usiamo le espressioni regolari!</a>
+<li><a href=generatori.html#a-list-of-functions>Una lista di funzioni</a>
+<li><a href=generatori.html#a-list-of-patterns>Una lista di pattern</a>
+<li><a href=generatori.html#a-file-of-patterns>Un file di pattern</a>
+<li><a href=generatori.html#generators>Generatori</a>
+<ol>
+<li><a href=generatori.html#a-fibonacci-generator>Un generatore di Fibonacci</a>
+<li><a href=generatori.html#a-plural-rule-generator>Un generatore di regole per i sostantivi plurali</a>
+</ol>
+<li><a href=generatori.html#furtherreading>Letture di approfondimento</a>
+</ol>
+<li id=iteratori><a href=iteratori.html>Classi <i class=baa>&amp;</i> iteratori</a>
+<ol>
+<li><a href=iteratori.html#divingin>Immersione!</a>
+<li><a href=iteratori.html#defining-classes>Definire le classi</a>
+<ol>
+<li><a href=iteratori.html#init-method>Il metodo <code>__init__()</code></a>
+</ol>
+<li><a href=iteratori.html#instantiating-classes>Istanziare le classi</a>
+<li><a href=iteratori.html#instance-variables>Variabili di istanza</a>
+<li><a href=iteratori.html#a-fibonacci-iterator>Un iteratore di Fibonacci</a>
+<li><a href=iteratori.html#a-plural-rule-iterator>Un iteratore di regole per i sostantivi plurali</a>
+<li><a href=iteratori.html#furtherreading>Letture di approfondimento</a>
+</ol>
+<li id=uso-avanzato-degli-iteratori><a href=uso-avanzato-degli-iteratori.html>Uso avanzato degli iteratori</a>
+<ol>
+<li><a href=uso-avanzato-degli-iteratori.html#divingin>Immersione!</a>
+<li><a href=uso-avanzato-degli-iteratori.html#re-findall>Trovare tutte le occorrenze di un pattern</a>
+<li><a href=uso-avanzato-degli-iteratori.html#unique-items>Eliminare gli elementi ripetuti da una sequenza</a>
+<li><a href=uso-avanzato-degli-iteratori.html#assert>Fare asserzioni</a>
+<li><a href=uso-avanzato-degli-iteratori.html#generator-expressions>Espressioni generatore</a>
+<li><a href=uso-avanzato-degli-iteratori.html#permutations>Calcolare le permutazioni&hellip; in maniera ritardata!</a>
+<li><a href=uso-avanzato-degli-iteratori.html#more-itertools>Altra roba divertente nel modulo <code>itertools</code></a>
+<li><a href=uso-avanzato-degli-iteratori.html#string-translate>Un nuovo tipo di manipolazione di stringhe</a>
+<li><a href=uso-avanzato-degli-iteratori.html#eval>Valutare stringhe arbitrarie come espressioni Python</a>
+<li><a href=uso-avanzato-degli-iteratori.html#alphametics-finale>Mettere tutto insieme</a>
+<li><a href=uso-avanzato-degli-iteratori.html#furtherreading>Letture di approfondimento</a>
+</ol>
+<li id=test-di-unità><a href=test-di-unità.html>Test di unità</a>
+<ol>
+<li><a href=test-di-unità.html#divingin>Immersione! (Oppure no?)</a>
+<li><a href=test-di-unità.html#romantest1>Una singola domanda</a>
+<li><a href=test-di-unità.html#romantest2>&#8220;Fermati e prendi fuoco&#8221;</a>
+<li><a href=test-di-unità.html#romantest3>Più fermate, più fuoco</a>
+<li><a href=test-di-unità.html#romantest4>E ancora una cosa&hellip;</a>
+<li><a href=test-di-unità.html#romantest5>Una piacevole simmetria</a>
+<li><a href=test-di-unità.html#romantest6>Altri ingressi non validi</a>
+</ol>
+<li id=refactoring><a href=refactoring.html>Refactoring</a>
+<ol>
+<li><a href=refactoring.html#divingin>Immersione!</a>
+<li><a href=refactoring.html#changing-requirements>Gestire il cambiamento dei requisiti</a>
+<li><a href=refactoring.html#refactoring>Refactoring</a>
+<li><a href=refactoring.html#summary>Riepilogo</a>
+</ol>
+<li id=file><a href=file.html>File</a>
+<ol>
+<li><a href=file.html#divingin>Immersione!</a>
+<li><a href=file.html#reading>Leggere dai file di testo</a>
+<ol>
+<li><a href=file.html#encoding>La codifica di carattere solleva la sua ripugnante testa</a>
+<li><a href=file.html#file-objects>Oggetti stream</a>
+<li><a href=file.html#read>Leggere dati da un file di testo</a>
+<li><a href=file.html#close>Chiudere i file</a>
+<li><a href=file.html#with>Chiudere i file automaticamente</a>
+<li><a href=file.html#for>Leggere i dati una riga alla volta</a>
+</ol>
+<li><a href=file.html#writing>Scrivere sui file di testo</a>
+<ol>
+<li><a href=file.html#encoding-again>La codifica di carattere, ancora una volta</a>
+</ol>
+<li><a href=file.html#binary>File binari</a>
+<li><a href=file.html#file-like-objects>Oggetti stream per sorgenti diverse dai file</a>
+<ol>
+<li><a href=file.html#gzip>Lavorare con i file compressi</a>
+</ol>
+<li><a href=file.html#stdio>I canali standard di ingresso, uscita ed errore</a>
+<ol>
+<li><a href=file.html#redirect>Redirigere il canale standard di uscita</a>
+</ol>
+<li><a href=file.html#furtherreading>Letture di approfondimento</a>
+</ol>
+<li id=xml><a href=xml.html>XML</a>
+<ol>
+<li><a href=xml.html#divingin>Immersione!</a>
+<li><a href=xml.html#xml-intro>Un corso accelerato di XML in 5 minuti</a>
+<li><a href=xml.html#xml-structure>La struttura di un feed Atom</a>
+<li><a href=xml.html#xml-parse>Riconoscere XML</a>
+<ol>
+<li><a href=xml.html#xml-elements>Gli elementi sono liste</a>
+<li><a href=xml.html#xml-attributes>Gli attributi sono dizionari</a>
+</ol>
+<li><a href=xml.html#xml-find>Cercare nodi all'interno di un documento XML</a>
+<li><a href=xml.html#xml-lxml>Proseguire con lxml</a>
+<li><a href=xml.html#xml-generate>Generare XML</a>
+<li><a href=xml.html#xml-custom-parser>Riconoscere documenti XML contenenti errori di malformazione</a>
+<li><a href=xml.html#furtherreading>Letture di approfondimento</a>
+</ol>
+<li id=serializzare-oggetti-python><a href=serializzare-oggetti-python.html>Serializzare oggetti Python</a>
+<ol>
+<li><a href=serializzare-oggetti-python.html#divingin>Immersione!</a>
+<ol>
+<li><a href=serializzare-oggetti-python.html#administrivia>Una nota rapida sugli esempi di questo capitolo</a>
+</ol>
+<li><a href=serializzare-oggetti-python.html#dump>Salvare dati in un file pickle</a>
+<li><a href=serializzare-oggetti-python.html#load>Caricare dati da un file pickle</a>
+<li><a href=serializzare-oggetti-python.html#dumps>Serializzare senza un file</a>
+<li><a href=serializzare-oggetti-python.html#protocol-versions>I byte e le stringhe sollevano ancora la loro ripugnante testa</a>
+<li><a href=serializzare-oggetti-python.html#debugging>Effettuare il debug dei file pickle</a>
+<li><a href=serializzare-oggetti-python.html#json>Serializzare oggetti Python per leggerli con altri linguaggi</a>
+<li><a href=serializzare-oggetti-python.html#json-dump>Salvare i dati in un file <abbr>JSON</abbr></a>
+<li><a href=serializzare-oggetti-python.html#json-types>Correlare i tipi di dato Python a <abbr>JSON</abbr></a>
+<li><a href=serializzare-oggetti-python.html#json-unknown-types>Serializzare tipi di dato non supportati da <abbr>JSON</abbr></a>
+<li><a href=serializzare-oggetti-python.html#json-load>Caricare dati da un file <abbr>JSON</abbr></a>
+<li><a href=serializzare-oggetti-python.html#furtherreading>Letture di approfondimento</a>
+</ol>
+<li id=servizi-web-http><a href=servizi-web-http.html>Servizi web HTTP</a>
+<ol>
+<li><a href=servizi-web-http.html#divingin>Immersione!</a>
+<li><a href=servizi-web-http.html#http-features>Le caratteristiche di HTTP</a>
+<ol>
+<li><a href=servizi-web-http.html#caching>La cache</a>
+<li><a href=servizi-web-http.html#last-modified>Il controllo della modifica più recente</a>
+<li><a href=servizi-web-http.html#etags>Gli ETag</a>
+<li><a href=servizi-web-http.html#compression>La compressione</a>
+<li><a href=servizi-web-http.html#redirects>Le redirezioni</a>
+</ol>
+<li><a href=servizi-web-http.html#dont-try-this-at-home>Come non prelevare dati via HTTP</a>
+<li><a href=servizi-web-http.html#whats-on-the-wire>Cosa viene trasmesso attraverso la rete?</a>
+<li><a href=servizi-web-http.html#introducing-httplib2>Una introduzione ad <code>httplib2</code></a>
+<ol>
+<li><a href=servizi-web-http.html#why-bytes>Una breve digressione per spiegare perché <code>httplib2</code> restituisce byte invece di stringhe</a>
+<li><a href=servizi-web-http.html#httplib2-caching>Come <code>httplib2</code> gestisce la cache</a>
+<li><a href=servizi-web-http.html#httplib2-etags>Come <code>httplib2</code> gestisce le intestazioni <code>Last-Modified</code> ed <code>ETag</code></a>
+<li><a href=servizi-web-http.html#httplib2-compression>Come <code>http2lib</code> gestisce la compressione</a>
+<li><a href=servizi-web-http.html#httplib2-redirects>Come <code>httplib2</code> gestisce le redirezioni</a>
+</ol>
+<li><a href=servizi-web-http.html#beyond-get>Oltre HTTP GET</a>
+<li><a href=servizi-web-http.html#beyond-post>Oltre HTTP POST</a>
+<li><a href=servizi-web-http.html#furtherreading>Letture di approfondimento</a>
+</ol>
+<li id=caso-di-studio-convertire-chardet-verso-python-3><a href=caso-di-studio-convertire-chardet-verso-python-3.html>Caso di studio: convertire <code>chardet</code> verso Python 3</a>
+<ol>
+<li><a href=caso-di-studio-convertire-chardet-verso-python-3.html#divingin>Immersione!</a>
+<li><a href=caso-di-studio-convertire-chardet-verso-python-3.html#faq.what>Che cos'è il riconoscimento automatico delle codifiche di carattere?</a>
+<ol>
+<li><a href=caso-di-studio-convertire-chardet-verso-python-3.html#faq.impossible>Ma non è impossibile?</a>
+<li><a href=caso-di-studio-convertire-chardet-verso-python-3.html#faq.who>Esiste un algoritmo di questo tipo?</a>
+</ol>
+<li><a href=caso-di-studio-convertire-chardet-verso-python-3.html#divingin2>Una introduzione al modulo <code>chardet</code></a>
+<ol>
+<li><a href=caso-di-studio-convertire-chardet-verso-python-3.html#how.bom><code>UTF-n</code> con <abbr>BOM</abbr></a>
+<li><a href=caso-di-studio-convertire-chardet-verso-python-3.html#how.esc>Codifiche con escape</a>
+<li><a href=caso-di-studio-convertire-chardet-verso-python-3.html#how.mb>Codifiche multi-byte</a>
+<li><a href=caso-di-studio-convertire-chardet-verso-python-3.html#how.sb>Codifiche a singolo byte</a>
+<li><a href=caso-di-studio-convertire-chardet-verso-python-3.html#how.windows1252><code>windows-1252</code></a>
+</ol>
+<li><a href=caso-di-studio-convertire-chardet-verso-python-3.html#running2to3>Eseguire <code>2to3</code></a>
+<li><a href=caso-di-studio-convertire-chardet-verso-python-3.html#multifile-modules>Una breve digressione sui moduli multi-file</a>
+<li><a href=caso-di-studio-convertire-chardet-verso-python-3.html#manual>Risolvere quello che <code>2to3</code> non può</a>
+<ol>
+<li><a href=caso-di-studio-convertire-chardet-verso-python-3.html#falseisinvalidsyntax><code>False</code> è sintassi non valida</a>
+<li><a href=caso-di-studio-convertire-chardet-verso-python-3.html#nomodulenamedconstants>Nessun modulo chiamato <code>constants</code></a>
+<li><a href=caso-di-studio-convertire-chardet-verso-python-3.html#namefileisnotdefined>Il nome <var>'file'</var> non è definito</a>
+<li><a href=caso-di-studio-convertire-chardet-verso-python-3.html#cantuseastringpattern>Impossibile usare un pattern di stringa su un oggetto tipo bytes</a>
+<li><a href=caso-di-studio-convertire-chardet-verso-python-3.html#cantconvertbytesobject>Impossibile convertire implicitamente un oggetto <code>'bytes'</code> a <code>str</code></a>
+<li><a href=caso-di-studio-convertire-chardet-verso-python-3.html#unsupportedoperandtypeforplus>Tipi di operando non supportati per +: <code>'int'</code> e <code>'bytes'</code></a>
+<li><a href=caso-di-studio-convertire-chardet-verso-python-3.html#ordexpectedstring><code>ord()</code> si aspetta una stringa di lunghezza 1, ma trova un <code>int</code></a>
+<li><a href=caso-di-studio-convertire-chardet-verso-python-3.html#unorderabletypes>Tipi non ordinabili: <code>int()</code> >= <code>str()</code></a>
+<li><a href=caso-di-studio-convertire-chardet-verso-python-3.html#reduceisnotdefined>Il nome globale <code>'reduce'</code> non è definito</a>
+</ol>
+<li><a href=caso-di-studio-convertire-chardet-verso-python-3.html#summary>Riepilogo</a>
+</ol>
+<li id=distribuire-librerie-python><a href=distribuire-librerie-python.html>Distribuire librerie Python</a>
+<ol>
+<li><a href=distribuire-librerie-python.html#divingin>Immersione!</a>
+<li><a href=distribuire-librerie-python.html#cantdo>Cose che Distutils non può fare per voi</a>
+<li><a href=distribuire-librerie-python.html#structure>La struttura delle directory</a>
+<li><a href=distribuire-librerie-python.html#setuppy>Scrivere il vostro programma di installazione</a>
+<li><a href=distribuire-librerie-python.html#trove>Classificare il vostro pacchetto</a>
+<ol>
+<li><a href=distribuire-librerie-python.html#trove-examples>Esempi di buoni classificatori</a>
+</ol>
+<li><a href=distribuire-librerie-python.html#manifest>Specificare file aggiuntivi con un manifesto</a>
+<li><a href=distribuire-librerie-python.html#check>Controllare che il vostro programma di installazione non contenga errori</a>
+<li><a href=distribuire-librerie-python.html#sdist>Creare una distribuzione dei sorgenti</a>
+<li><a href=distribuire-librerie-python.html#bdist>Creare un programma di installazione grafico</a>
+<ol>
+<li><a href=distribuire-librerie-python.html#linux>Assemblare pacchetti di installazione per altri sistemi operativi</a>
+</ol>
+<li><a href=distribuire-librerie-python.html#pypi>Aggiungere il vostro software all'Indice dei Pacchetti Python</a>
+<li><a href=distribuire-librerie-python.html#future>I molti possibili futuri della distribuzione di librerie Python</a>
+<li><a href=distribuire-librerie-python.html#furtherreading>Letture di approfondimento</a>
+</ol>
+<li id=convertire-codice-verso-python-3-con-2to3><a href=convertire-codice-verso-python-3-con-2to3.html>Convertire codice verso Python 3 con <code>2to3</code></a>
+<ol>
+<li><a href=convertire-codice-verso-python-3-con-2to3.html#divingin>Immersione!</a>
+<li><a href=convertire-codice-verso-python-3-con-2to3.html#print>L'istruzione <code>print</code></a>
+<li><a href=convertire-codice-verso-python-3-con-2to3.html#unicodeliteral>Letterali stringa Unicode</a>
+<li><a href=convertire-codice-verso-python-3-con-2to3.html#unicode>La funzione globale <code>unicode()</code></a>
+<li><a href=convertire-codice-verso-python-3-con-2to3.html#long>Il tipo di dato <code>long</code></a>
+<li><a href=convertire-codice-verso-python-3-con-2to3.html#ne>Il confronto di disuguaglianza con &lt;></a>
+<li><a href=convertire-codice-verso-python-3-con-2to3.html#has_key>Il metodo <code>has_key()</code> per i dizionari</a>
+<li><a href=convertire-codice-verso-python-3-con-2to3.html#dict>Metodi dei dizionari che restituiscono liste</a>
+<li><a href=convertire-codice-verso-python-3-con-2to3.html#imports>Moduli che sono stati rinominati o riorganizzati</a>
+<ol>
+<li><a href=convertire-codice-verso-python-3-con-2to3.html#http><code>http</code></a>
+<li><a href=convertire-codice-verso-python-3-con-2to3.html#urllib><code>urllib</code></a>
+<li><a href=convertire-codice-verso-python-3-con-2to3.html#dbm><code>dbm</code></a>
+<li><a href=convertire-codice-verso-python-3-con-2to3.html#xmlrpc><code>xmlrpc</code></a>
+<li><a href=convertire-codice-verso-python-3-con-2to3.html#othermodules>Altri moduli</a>
+</ol>
+<li><a href=convertire-codice-verso-python-3-con-2to3.html#import>Importazioni relative all'interno di un pacchetto</a>
+<li><a href=convertire-codice-verso-python-3-con-2to3.html#next>Il metodo <code>next()</code> degli iteratori</a>
+<li><a href=convertire-codice-verso-python-3-con-2to3.html#filter>La funzione globale <code>filter()</code></a>
+<li><a href=convertire-codice-verso-python-3-con-2to3.html#map>La funzione globale <code>map()</code></a>
+<li><a href=convertire-codice-verso-python-3-con-2to3.html#reduce>La funzione globale <code>reduce()</code></a>
+<li><a href=convertire-codice-verso-python-3-con-2to3.html#apply>La funzione globale <code>apply()</code></a>
+<li><a href=convertire-codice-verso-python-3-con-2to3.html#intern>La funzione globale <code>intern()</code></a>
+<li><a href=convertire-codice-verso-python-3-con-2to3.html#exec>L'istruzione <code>exec</code></a>
+<li><a href=convertire-codice-verso-python-3-con-2to3.html#execfile>L'istruzione <code>execfile</code></a>
+<li><a href=convertire-codice-verso-python-3-con-2to3.html#repr>I letterali <code>repr</code> (i backtick)</a>
+<li><a href=convertire-codice-verso-python-3-con-2to3.html#except>L'istruzione <code>try...except</code></a>
+<li><a href=convertire-codice-verso-python-3-con-2to3.html#raise>L'istruzione <code>raise</code></a>
+<li><a href=convertire-codice-verso-python-3-con-2to3.html#throw>Il metodo <code>throw</code> dei generatori</a>
+<li><a href=convertire-codice-verso-python-3-con-2to3.html#xrange>La funzione globale <code>xrange()</code></a>
+<li><a href=convertire-codice-verso-python-3-con-2to3.html#funcattrs>Gli attributi <code>func_*</code> delle funzioni</a>
+<li><a href=convertire-codice-verso-python-3-con-2to3.html#xreadlines>Il metodo di I/O <code>xreadlines()</code></a>
+<li><a href=convertire-codice-verso-python-3-con-2to3.html#tuple_params>Funzioni <code>lambda</code> che accettano una tupla invece di parametri multipli</a>
+<li><a href=convertire-codice-verso-python-3-con-2to3.html#methodattrs>Attributi speciali dei metodi</a>
+<li><a href=convertire-codice-verso-python-3-con-2to3.html#nonzero>Il metodo speciale <code>__nonzero__</code></a>
+<li><a href=convertire-codice-verso-python-3-con-2to3.html#numliterals>Letterali in base otto</a>
+<li><a href=convertire-codice-verso-python-3-con-2to3.html#renames><code>sys.maxint</code></a>
+<li><a href=convertire-codice-verso-python-3-con-2to3.html#callable>La funzione globale <code>callable()</code></a>
+<li><a href=convertire-codice-verso-python-3-con-2to3.html#zip>La funzione globale <code>zip()</code></a>
+<li><a href=convertire-codice-verso-python-3-con-2to3.html#standarderror>L'eccezione di tipo <code>StandardError</code></a>
+<li><a href=convertire-codice-verso-python-3-con-2to3.html#types>Le costanti del modulo <code>types</code></a>
+<li><a href=convertire-codice-verso-python-3-con-2to3.html#isinstance>La funzione globale <code>isinstance()</code></a>
+<li><a href=convertire-codice-verso-python-3-con-2to3.html#basestring>Il tipo di dato <code>basestring</code></a>
+<li><a href=convertire-codice-verso-python-3-con-2to3.html#itertools>Il modulo <code>itertools</code></a>
+<li><a href=convertire-codice-verso-python-3-con-2to3.html#sys_exc><code>sys.exc_type</code>, <code>sys.exc_value</code>, <code>sys.exc_traceback</code></a>
+<li><a href=convertire-codice-verso-python-3-con-2to3.html#paren>Descrizioni di lista sulle tuple</a>
+<li><a href=convertire-codice-verso-python-3-con-2to3.html#getcwdu>La funzione <code>os.getcwdu()</code></a>
+<li><a href=convertire-codice-verso-python-3-con-2to3.html#metaclass>Metaclassi</a>
+<li><a href=convertire-codice-verso-python-3-con-2to3.html#nitpick>Questioni di stile</a>
+<ol>
+<li><a href=convertire-codice-verso-python-3-con-2to3.html#set_literal>Letterali <code>set()</code> (esplicita)</a>
+<li><a href=convertire-codice-verso-python-3-con-2to3.html#buffer>La funzione globale <code>buffer()</code> (esplicita)</a>
+<li><a href=convertire-codice-verso-python-3-con-2to3.html#wscomma>Gli spazi bianchi attorno alle virgole (esplicita)</a>
+<li><a href=convertire-codice-verso-python-3-con-2to3.html#idioms>Idiomi comuni (esplicita)</a>
+</ol>
+</ol>
+<li id=nomi-dei-metodi-speciali><a href=nomi-dei-metodi-speciali.html>Nomi dei metodi speciali</a>
+<ol>
+<li><a href=nomi-dei-metodi-speciali.html#divingin>Immersione!</a>
+<li><a href=nomi-dei-metodi-speciali.html#basics>Le basi</a>
+<li><a href=nomi-dei-metodi-speciali.html#acts-like-iterator>Classi che si comportano come iteratori</a>
+<li><a href=nomi-dei-metodi-speciali.html#computed-attributes>Attributi calcolati</a>
+<li><a href=nomi-dei-metodi-speciali.html#acts-like-function>Classi che si comportano come funzioni</a>
+<li><a href=nomi-dei-metodi-speciali.html#acts-like-list>Classi che si comportano come sequenze</a>
+<li><a href=nomi-dei-metodi-speciali.html#acts-like-dict>Classi che si comportano come dizionari</a>
+<li><a href=nomi-dei-metodi-speciali.html#acts-like-number>Classi che si comportano come numeri</a>
+<li><a href=nomi-dei-metodi-speciali.html#rich-comparisons>Classi che possono essere confrontate</a>
+<li><a href=nomi-dei-metodi-speciali.html#pickle>Classi che possono essere serializzate</a>
+<li><a href=nomi-dei-metodi-speciali.html#context-managers>Classi che possono essere usate in un blocco <code>with</code></a>
+<li><a href=nomi-dei-metodi-speciali.html#esoterica>Roba veramente esoterica</a>
+<li><a href=nomi-dei-metodi-speciali.html#furtherreading>Letture di approfondimento</a>
+</ol>
+<li id=dove-proseguire-da-qui><a href=dove-proseguire-da-qui.html>Dove proseguire da qui</a>
+<ol>
+<li><a href=dove-proseguire-da-qui.html#things-to-read>Cose da leggere</a>
+<li><a href=dove-proseguire-da-qui.html#code>Dove cercare codice compatibile con Python 3</a>
+</ol>
+</ol>
+<!-- /toc -->
+<p class=c>&copy; 2001&ndash;9 <a href=informazioni-sul-libro.html>Mark Pilgrim</a><br>
+&copy; 2009 <a href=informazioni-sulla-traduzione.html>Giulio Piancastelli</a> per la traduzione italiana
+<!--[if IE]><script src=j/html5.js></script><![endif]-->
