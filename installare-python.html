@@ -30,7 +30,7 @@ h2,.i>li{clear:both}
 
 <p>Se state usando un account su un server remoto, il vostro <abbr>ISP</abbr> potrebbe avere già installato Python 3. Se state usando Linux a casa, anche in questo caso potreste già avere Python 3. La maggior parte delle distribuzioni GNU/Linux popolari includono Python 2 nella propria installazione predefinita; il numero di distribuzioni che includono anche Python 3 è limitato, ma in costante aumento. (Come vedrete in questo capitolo, potete avere più di una versione di Python installata sul vostro computer.) Mac OS X include una versione di Python 2 a riga di comando, ma al momento della scrittura non include Python 3. Microsoft Windows non include alcuna versione di Python. Ma non disperate! Potete aprirvi la strada verso l'installazione di Python a colpi di mouse, a prescindere da quale sistema operativo usate.
 
-<p>Il modo più facile di controllare se avete Python 3 sul vostro sistema Linux o Mac OS X è quello di ricorrere alla riga di comando. Su Linux, cercate un programma chiamato <b><code>Terminal</code></b> nel vostro menu <b><code>Applications</code></b>. (Potrebbe trovarsi in un sottomenu come <b><code>Accessories</code></b> o <b><code>System</code></b>.) Su Mac OS X, c'è un'applicazione chiamata <b><code>Terminal.app</code></b> nella vostra cartella <code>/Application/Utilities/</code>.
+<p>Il modo più facile di controllare se avete Python 3 sul vostro sistema Linux o Mac OS X è quello di ricorrere alla riga di comando. Su Linux, cercate un programma chiamato <b><code>Terminale</code></b> nel vostro menu <b><code>Applicazioni</code></b>. (Potrebbe trovarsi in un sottomenu come <b><code>Accessori</code></b> o <b><code>Strumenti di sistema</code></b>.) Su Mac OS X, c'è un'applicazione chiamata <b><code>Terminal.app</code></b> nella vostra cartella <code>/Application/Utilities/</code>.
 
 <p>Una volta che vi trovate al prompt della riga di comando, digitate semplicemente <kbd>python3</kbd> (tutto in minuscolo, senza spazi) e guardate cosa succede. Sul mio sistema Linux di casa, Python 3 è già installato, così questo comando mi fa entrare nella <i><dfn>shell interattiva</dfn> di Python</i>.
 
@@ -70,22 +70,22 @@ Digitate "help", "copyright", "credits" o "license" per maggiori informazioni.
 
 <ol class=i>
 <li>
-<p class='ss nm'><img src=i/win-install-0-security-warning.png width=409 height=309 alt='[Windows dialog: open file security warning]'>
+<p class='ss nm'><img src=i/win-install-0-security-warning.png width=404 height=309 alt="[Finestra di dialogo di Windows: avviso di sicurezza per l'apertura del file]">
 <p>Fate doppio click sul file <code>.msi</code> dopo aver finito di scaricarlo. Windows vi presenterà un avvertimento di sicurezza, dato che state per lanciare codice eseguibile. Il programma di installazione ufficiale di Python è firmato digitalmente dalla <a href=http://www.python.org/psf/>Python Software Foundation</a>, la società no-profit che sovraintende allo sviluppo di Python. Diffidate dalle imitazioni!
 <p>Cliccate sul bottone <code>Esegui</code> per lanciare il programma di installazione di Python 3.
 
 <li>
-<p class='ss nm'><img src=i/win-install-1-all-users-or-just-me.png width=499 height=432 alt='[Python installer: select whether to install Python 3.1 for all users of this computer]'>
+<p class='ss nm'><img src=i/win-install-1-all-users-or-just-me.png width=499 height=432 alt='[Installazione di Python: selezionare se installare Python 3.1 per tutti gli utenti di questo computer]'>
 <p>Come prima cosa, il programma di installazione vi chiederà se volete installare Python 3 per tutti gli utenti o solo per voi. La scelta predefinita è &#8220;install for all users&#8221; (cioè &#8220;installa per tutti gli utenti&#8221;), che è quella migliore a meno che non abbiate una buona ragione per scegliere altrimenti. (Una delle possibili ragioni per cui potreste preferire &#8220;install just for me&#8221;, cioè &#8220;installa solo per me&#8221;, è che state installando Python sul computer della vostra azienda e non avete i diritti di amministrazione sul vostro account Windows. Ma allora, perché state installando Python senza il permesso dell'amministratore di Windows della vostra azienda? Non cacciatemi in questi guai!)
 <p>Cliccate sul bottone <code>Next</code> per confermare la vostra scelta sul tipo di installazione.
 
 <li>
-<p class='ss nm'><img src=i/win-install-2-destination-directory.png width=499 height=432 alt='[Python installer: select destination directory]'>
+<p class='ss nm'><img src=i/win-install-2-destination-directory.png width=499 height=432 alt='[Installazione di Python: selezionare la directory di destinazione]'>
 <p>Successivamente, il programma di installazione vi chiederà di scegliere una directory di destinazione. La scelta predefinita per tutte le versioni di Python 3.1.x è <code>C:\Python31\</code>, che dovrebbe andare bene per la maggior parte degli utenti a meno che non ci sia una ragione particolare per cambiarla. Se usate una partizione separata per installare le applicazioni, potete selezionarla usando i controlli incorporati, oppure potete semplicemente digitare il percorso nel campo di testo sottostante. Non siete costretti a installare Python sul disco <code>C:</code>, ma potete installarlo su qualsiasi disco e in qualsiasi cartella.
 <p>Cliccate sul bottone <code>Next</code> per confermare la vostra scelta sulla directory di destinazione.
 
 <li>
-<p class='ss nm'><img src=i/win-install-3-customize.png width=499 height=432 alt='[Python installer: customize Python 3.1]'>
+<p class='ss nm'><img src=i/win-install-3-customize.png width=499 height=432 alt='[Installazione di Python: personalizzare Python 3.1]'>
 <p>La schermata seguente sembra complicata, ma in realtà non lo è. Come accade in molti programmi di installazione, avete la possibilità di non installare ogni singolo componente di Python 3. Se lo spazio su disco è limitato, potete escludere alcuni componenti.
 <ul>
 <li><b>Register Extensions</b> (estensioni del registro) vi permette di fare doppio click sugli script Python (i file <code>.py</code>) per eseguirli. Raccomandato ma non obbligatorio. (Questa opzione non richiede spazio su disco, quindi non ha molto senso escluderla.)
@@ -96,25 +96,25 @@ Digitate "help", "copyright", "credits" o "license" per maggiori informazioni.
 </ul>
 
 <li>
-<p class='ss nm'><img src=i/win-install-3a-disk-usage.png width=499 height=432 alt='[Python installer: disk space requirements]'>
+<p class='ss nm'><img src=i/win-install-3a-disk-usage.png width=499 height=432 alt='[Installazione di Python: requisiti per lo spazio su disco]'>
 <p>Se non siete sicuri di quanto spazio libero avete su disco, cliccate sul bottone <code>Disk Usage</code>. Il programma di installazione elencherà i vostri dischi e calcolerà sia quanto spazio è disponibile su ognuno sia quanto spazio rimarrebbe dopo l'installazione.
 <p>Cliccate sul bottone <code>OK</code> per ritornare alla schermata &#8220;Customizing Python&#8221; (cioè &#8220;Personalizzare Python&#8221;).
 
 <li>
-<p class='ss nm'><img src=i/win-install-3b-test-suite.png width=499 height=432 alt='[Python installer: removing Test Suite option will save 7908KB on your hard drive]'>
+<p class='ss nm'><img src=i/win-install-3b-test-suite.png width=499 height=432 alt="[Installazione di Python: rimuovere l'opzione Test Suite risparmierà 7908KB sul vostro disco fisso]">
 <p>Se decidete di escludere un'opzione, cliccate sul bottone alla sinistra dell'opzione e selezionate &#8220;Entire feature will be unavailable&#8221; (cioè &#8220;L'intera funzione non sarà disponibile&#8221;) dalla lista a cascata che comparirà. Per esempio, escludendo i test risparmierete l'enorme spazio su disco di 7908 <abbr>KB</abbr>.
 <p>Cliccate sul bottone <code>Next</code> per confermare la vostra scelta sulle opzioni.
 
 <li>
-<p class='ss nm'><img src=i/win-install-4-copying.png width=499 height=432 alt='[Python installer: progress meter]'>
+<p class='ss nm'><img src=i/win-install-4-copying.png width=499 height=432 alt='[Installazione di Python: indicatore di progresso]'>
 <p>Il programma di installazione copierà tutti i file necessari nella directory di destinazione che avete scelto. (Questa operazione avviene così velocemente che ho dovuto fare ben tre tentativi prima di riuscire a catturarne un'immagine!)
 
 <li>
-<p class='ss nm'><img src=i/win-install-5-finish.png width=499 height=432 alt='[Python installer: installation completed. Special Windows thanks to Mark Hammond, without whose years of freely shared Windows expertise, Python for Windows would still be Python for DOS.]'>
+<p class='ss nm'><img src=i/win-install-5-finish.png width=499 height=432 alt='[Installazione di Python: installazione completata. Un ringraziamento speciale a Mark Hammond, senza i cui anni di esperienza su Windows gratuitamente condivisa Python per Windows sarebbe ancora Python per DOS.]'>
 <p>Cliccate sul bottone <code>Finish</code> per uscire dal programma di installazione.
 
 <li>
-<p class='ss nm'><img src=i/win-interactive-shell.png width=677 height=715 alt='[Windows Python Shell, a graphical interactive shell for Python]'>
+<p class='ss nm'><img src=i/win-interactive-shell.png width=677 height=715 alt='[La Shell Python su Windows, una shell grafica interattiva per Python]'>
 <p>Nel vostro menu <code>Start</code> dovrebbe esserci un nuovo elemento chiamato <code>Python 3.1</code>. Al suo interno, c'è un programma chiamato <abbr>IDLE</abbr>. Selezionate questo elemento per lanciare la Shell Python interattiva.
 
 </ol>
@@ -132,37 +132,37 @@ Digitate "help", "copyright", "credits" o "license" per maggiori informazioni.
 <ol class=i>
 
 <li>
-<p class='ss nm'><img src=i/mac-install-0-dmg-contents.png width=752 height=438 alt='[contents of Python installer disk image]'>
+<p class='ss nm'><img src=i/mac-install-0-dmg-contents.png width=752 height=438 alt='[Contenuti della immagine del disco del programma di installazione per Python]'>
 <p>Il vostro browser dovrebbe montare automaticamente l'immagine del disco e aprire una finestra del Finder per mostrarvene i contenuti. (Se questo non accade, dovrete trovare l'immagine del disco nella cartella in cui l'avete scaricata e fare doppio clic su di essa per montarla. Il suo nome dovrebbe essere qualcosa di simile a <code>python-3.1.dmg</code>.) L'immagine del disco contiene un certo numero di file di testo (<code>Build.txt</code>, <code>License.txt</code>, <code>ReadMe.txt</code>) e l'effettivo pacchetto di installazione, chiamato <code>Python.mpkg</code>.
 <p>Fate doppio clic sul pacchetto di installazione <code>Python.mpkg</code> per lanciare il programma di installazione di Python per Mac.
 
 <li>
-<p class='ss nm'><img src=i/mac-install-1-welcome.png width=622 height=442 alt='[Python installer: welcome screen]'>
+<p class='ss nm'><img src=i/mac-install-1-welcome.png width=622 height=442 alt='[Installazione di Python: schermata di benvenuto]'>
 <p>La prima schermata del programma di installazione vi presenta una breve descrizione di Python, poi vi rimanda al file <code>ReadMe.txt</code> (che non avete letto, giusto?) per maggiori dettagli.
 <p>Cliccate sul bottone <code>Continue</code> per proseguire.
 
 <li>
-<p class='ss nm'><img src=i/mac-install-2-information.png width=622 height=442 alt='[Python installer: information about supported architectures, disk space, and acceptable destination folders]'>
+<p class='ss nm'><img src=i/mac-install-2-information.png width=622 height=442 alt='[Installazione di Python: informazioni sulle architetture supportate, sullo spazio su disco e sulle possibili cartelle di destinazione]'>
 <p>La pagina successiva contiene effettivamente alcune importanti informazioni: Python richiede Mac OS X 10.3 o una versione più recente. Se state ancora usando Mac OS X 10.2, dovreste davvero aggiornarlo. Apple non rilascia più aggiornamenti di sicurezza per il vostro sistema operativo e il vostro computer sarà probabilmente a rischio se doveste mai collegarvi in rete. In più, non potete usare Python 3.
 <p>Cliccate sul bottone <code>Continue</code> per avanzare.
 
 <li>
-<p class='ss nm'><img src=i/mac-install-3-license.png width=622 height=442 alt='[Python installer: software license agreement]'>
+<p class='ss nm'><img src=i/mac-install-3-license.png width=622 height=442 alt='[Installazione di Python: il contratto di licenza software]'>
 <p>Come tutti i migliori programmi di installazione, il programma di installazione di Python vi mostra il contratto di licenza software che dovete sottoscrivere. Python è open source e la sua licenza è <a href=http://opensource.org/licenses/>approvata dalla Open Source Initiative</a>. Python ha avuto un certo numero di proprietari e sponsor durante la sua storia, ognuno dei quali ha lasciato il suo marchio sulla licenza software. Ma il risultato finale è questo: Python è open source e potete usarlo su qualsiasi piattaforma, per qualsiasi scopo, senza pagare nulla e senza avere alcun obbligo di reciprocità.
 <p>Cliccare sul bottone <code>Continue</code> ancora una volta.
 
 <li>
-<p class='ss nm'><img src=i/mac-install-4-license-dialog.png width=622 height=442 alt='[Python installer: dialog to accept license agreement]'>
+<p class='ss nm'><img src=i/mac-install-4-license-dialog.png width=622 height=442 alt='[Installazione di Python: dialogo per accettare il contratto di licenza]'>
 <p>A causa dei cavilli del framework di installazione standard di Apple, dovete &#8220;accettare&#8221; i termini della licenza software per poter completare l'installazione. Dato che Python è open source, in realtà state &#8220;accettando&#8221; che la licenza vi garantisca diritti aggiuntivi piuttosto che privarvene.
 <p>Cliccate sul bottone <code>Agree</code> per continuare.
 
 <li>
-<p class='ss nm'><img src=i/mac-install-5-standard-install.png width=622 height=442 alt='[Python installer: standard install screen]'>
+<p class='ss nm'><img src=i/mac-install-5-standard-install.png width=622 height=442 alt="[Installazione di Python: schermata per l'installazione standard]">
 <p>La schermata successiva vi permette di cambiare il percorso di installazione. <strong>Dovete</strong> installare Python sul disco di avvio, ma a causa delle limitazioni del programma di installazione questo non viene imposto. A dire il vero, non ho mai avuto necessità di cambiare il percorso di installazione.
 <p>Da questa schermata potete anche personalizzare l'installazione per escludere alcune funzionalità. Se volete fare questo, cliccate sul bottone <code>Customize</code>, altrimenti cliccate sul bottone <code>Install</code>.
 
 <li>
-<p class='ss nm'><img src=i/mac-install-6-custom-install.png width=622 height=442 alt='[Python installer: custom install screen]'>
+<p class='ss nm'><img src=i/mac-install-6-custom-install.png width=622 height=442 alt="[Installazione di Python: schermata per l'installazione personalizzata]">
 <p>Se scegliete un'installazione personalizzata, il programma di installazione vi mostrerà la seguente lista di funzionalità:
 <ul>
 <li><b>Python Framework</b> (framework Python). Questo è il cuore di Python ed è sia selezionato che disabilitato perché deve per forza essere installato.
@@ -176,26 +176,26 @@ Digitate "help", "copyright", "credits" o "license" per maggiori informazioni.
 <p>Cliccate sul bottone <code>Install</code> per continuare.
 
 <li>
-<p class='ss nm'><img src=i/mac-install-7-admin-password.png width=622 height=457 alt='[Python installer: dialog to enter administrative password]'>
+<p class='ss nm'><img src=i/mac-install-7-admin-password.png width=622 height=457 alt='[Installazione di Python: dialogo per introdurre la password di amministrazione]'>
 <p>Dato che i framework di sistema e gli eseguibili vengono installati in <code>/usr/local/bin/</code>, il programma di installazione vi chiederà una password di amministrazione. Non c'è alcun modo di installare Python per Mac senza privilegi di amministrazione.
 <p>Cliccate sul bottone <code>OK</code> per cominciare l'installazione.
 
 <li>
-<p class='ss nm'><img src=i/mac-install-8-progress.png width=622 height=442 alt='[Python installer: progress meter]'>
+<p class='ss nm'><img src=i/mac-install-8-progress.png width=622 height=442 alt='[Installazione di Python: indicatore di progresso]'>
 <p>Il programma di installazione mostrerà un indicatore di progresso mentre installa le funzionalità che avete selezionato.
 
 <li>
-<p class='ss nm'><img src=i/mac-install-9-succeeded.png width=622 height=442 alt='[Python installer: install succeeded]'>
+<p class='ss nm'><img src=i/mac-install-9-succeeded.png width=622 height=442 alt='[Installazione di Python: installazione completata con successo]'>
 <p>Supponendo che tutto sia andato bene, il programma di installazione vi mostrerà un grande segno di spunta verde per comunicarvi che l'installazione è stata completata con successo.
 <p>Cliccate sul bottone <code>Close</code> per uscire dal programma di installazione.
 
 <li>
-<p class='ss nm'><img src=i/mac-install-10-application-folder.png width=488 height=482 alt='[contents of /Applications/Python 3.1/ folder]'>
+<p class='ss nm'><img src=i/mac-install-10-application-folder.png width=488 height=482 alt='[Contenuti della cartella /Applications/Python 3.1/]'>
 <p>Supponendo che non abbiate cambiato il percorso di installazione, potete trovare i file appena installati nella cartella <code>Python 3.1</code> all'interno della vostra cartella <code>/Applications</code>. L'elemento più importante è <abbr>IDLE</abbr>, la Shell Python grafica.
 <p>Fate doppio clic su <abbr>IDLE</abbr> per lanciare la Shell Python.
 
 <li>
-<p class='ss nm'><img src=i/mac-interactive-shell.png width=522 height=538 alt='[Mac Python Shell, a graphical interactive shell for Python]'>
+<p class='ss nm'><img src=i/mac-interactive-shell.png width=522 height=538 alt='[La Shell Python su Mac, una shell grafica interattiva per Python]'>
 <p>La Shell Python è il luogo in cui passerete la maggior parte del vostro tempo durante l'esplorazione del linguaggio. Gli esempi in questo libro assumeranno che sappiate usare la Shell Python.
 
 </ol>
@@ -206,49 +206,49 @@ Digitate "help", "copyright", "credits" o "license" per maggiori informazioni.
 
 <h2 id=ubuntu>Installare su Ubuntu Linux</h2>
 
-<p>Le moderne distribuzioni Linux sono supportate da enormi archivi di applicazioni precompilate pronte da installare. I dettagli esatti variano da distribuzione a distribuzione. Su Ubuntu Linux, il modo più facile per installare Python 3 è attraverso l'applicazione <code>Add/Remove</code> nel vostro menu <code>Applications</code>.
+<p>Le moderne distribuzioni Linux sono supportate da enormi archivi di applicazioni precompilate pronte da installare. I dettagli esatti variano da distribuzione a distribuzione. Su Ubuntu Linux, il modo più facile per installare Python 3 è attraverso l'applicazione <code>Aggiungi/Rimuovi</code> nel vostro menu <code>Applicazioni</code>.
 
 <ol class=i>
 <li>
-<p class='ss nm'><img src=i/ubu-install-0-add-remove-programs.png width=920 height=473 alt='[Add/Remove: Canonical-maintained applications]'>
-<p>Quando lanciate per la prima volta l'applicazione <code>Add/Remove</code>, vi verrà mostrata una lista di applicazioni preselezionate raggruppate in diverse categorie. Alcune sono già installate, altre no. Dato che l'archivio contiene più di 10.000 applicazioni, ci sono diversi filtri che potete applicare per vedere porzioni ridotte dell'archivio. Il filtro predefinito è &#8220;Canonical-maintained applications&#8221;, che è un piccolo sottoinsieme del numero totale di applicazioni ufficialmente supportate da Canonical, l'azienda che crea e mantiene la distribuzione Ubuntu.
+<p class='ss nm' style='float:none;text-align:center'><img src=i/ubu-install-0-add-remove-programs.png width=820 height=439 alt='[Aggiungi/Rimuovi: applicazioni mantenute da Canonical]'>
+<p>Quando lanciate per la prima volta l'applicazione <code>Aggiungi/Rimuovi</code>, vi verrà mostrata una lista di applicazioni preselezionate raggruppate in diverse categorie. Alcune sono già installate, altre no. Dato che l'archivio contiene più di 10.000 applicazioni, ci sono diversi filtri che potete applicare per vedere porzioni ridotte dell'archivio. Il filtro predefinito è &#8220;Applicazioni mantenute da Canonical&#8221;, che è un piccolo sottoinsieme del numero totale di applicazioni ufficialmente supportate da Canonical, l'azienda che crea e mantiene la distribuzione Ubuntu.
 
 <li>
-<p class='ss nm'><img src=i/ubu-install-1-all-open-source-applications.png width=920 height=473 alt='[Add/Remove: all open source applications]'>
-<p>Python 3 non è mantenuto da Canonical, quindi il primo passo da fare è scorrere il menu dei filtri e selezionare &#8220;All Open Source applications&#8221;.
+<p class='ss nm' style='float:none;text-align:center'><img src=i/ubu-install-1-all-open-source-applications.png width=820 height=439 alt='[Aggiungi/Rimuovi: tutte le applicazioni open source]'>
+<p>Python 3 non è mantenuto da Canonical, quindi il primo passo da fare è scorrere il menu dei filtri e selezionare &#8220;Tutte le applicazioni open source&#8221;.
 
 <li>
-<p class='ss nm'><img src=i/ubu-install-2-search-python-3.png width=920 height=473 alt='[Add/Remove: search for Python 3]'>
-<p>Una volta che avete espanso il filtro per includere tutte le applicazioni open source, usate la casella Search immediatamente a destra del menu dei filtri per cercare <kbd>Python 3</kbd>.
+<p class='ss nm' style='float:none;text-align:center'><img src=i/ubu-install-2-search-python-3.png width=820 height=439 alt='[Aggiungi/Rimuovi: ricerca di Python 3]'>
+<p>Una volta che avete espanso il filtro per includere tutte le applicazioni open source, usate la casella Cerca immediatamente a destra del menu dei filtri per cercare <kbd>Python 3</kbd>.
 
 <li>
-<p class='ss nm'><img src=i/ubu-install-3-select-python-3.png width=920 height=473 alt='[Add/Remove: select Python 3.0 package]'>
-<p>Ora la lista delle applicazioni si è ristretta alle sole che corrispondono a <kbd>Python 3</kbd>. Selezionerete due pacchetti. Il primo è <code>Python (v3.0)</code>, che contiene l'interprete Python.
+<p class='ss nm' style='float:none;text-align:center'><img src=i/ubu-install-3-select-python-3.png width=820 height=439 alt='[Aggiungi/Rimuovi: selezione del pacchetto Python 3.0]'>
+<p>Ora la lista delle applicazioni si è ristretta alle sole che corrispondono a <kbd>Python 3</kbd>. Selezionerete due pacchetti. Il primo è <code>Python (v. 3.0)</code>, che contiene l'interprete Python.
 <li>
-<p class='ss nm'><img src=i/ubu-install-4-select-idle.png width=920 height=473 alt='[Add/Remove: select IDLE for Python 3.0 package]'>
-<p>Il secondo pacchetto che volete è immediatamente sopra: <code>IDLE (using Python-3.0)</code>. Questa è la Shell Python grafica che userete in questo libro.
-<p>Dopo aver selezionato questi due pacchetti, cliccate sul bottone <code>Apply Changes</code> per continuare.
+<p class='ss nm' style='float:none;text-align:center'><img src=i/ubu-install-4-select-idle.png width=820 height=439 alt='[Aggiungi/Rimuovi: selezione del pacchetto IDLE per Python 3.0]'>
+<p>Il secondo pacchetto che volete è immediatamente sopra: <code>IDLE (utilizza Python-3.0)</code>. Questa è la Shell Python grafica che userete in questo libro.
+<p>Dopo aver selezionato questi due pacchetti, cliccate sul bottone <code>Applica modifiche</code> per continuare.
 
 <li>
-<p class='ss nm'><img src=i/ubu-install-5-apply-changes.png width=635 height=364 alt='[Add/Remove: apply changes]'>
-<p>Il programma di gestione dei pacchetti vi chiederà di confermare che volete aggiungere sia <code>IDLE (using Python-3.0)</code> sia <code>Python (v3.0)</code>.
-<p>Cliccate sul bottone <code>Apply</code> per continuare.
+<p class='ss nm'><img src=i/ubu-install-5-apply-changes.png width=431 height=302 alt='[Aggiungi/Rimuovi: applica modifiche]'>
+<p>Il programma di gestione dei pacchetti vi chiederà di confermare che volete aggiungere sia <code>IDLE (utilizza Python-3.0)</code> sia <code>Python (v. 3.0)</code>.
+<p>Cliccate sul bottone <code>Applica</code> per continuare.
 
 <li>
-<p class='ss nm'><img src=i/ubu-install-6-download-progress.png width=287 height=211 alt='[Add/Remove: download progress meter]'>
+<p class='ss nm'><img src=i/ubu-install-6-download-progress.png width=293 height=206 alt='[Aggiungi/Rimuovi: indicatore di progresso per lo scaricamento dei pacchetti]'>
 <p>Il programma di gestione dei pacchetti vi mostrerà un indicatore di progresso mentre scarica i pacchetti necessari dall'archivio online di Canonical.
 
 <li>
-<p class='ss nm'><img src=i/ubu-install-7-install-progress.png width=486 height=258 alt='[Add/Remove: installation progress meter]'>
+<p class='ss nm'><img src=i/ubu-install-7-install-progress.png width=484 height=259 alt="[Aggiungi/Rimuovi: indicatore di progresso per l'installazione]">
 <p>Una volta che i pacchetti sono stati scaricati, il programma di gestione dei pacchetti comincerà automaticamente a installarli.
 
 <li>
-<p class='ss nm'><img src=i/ubu-install-8-success.png width=591 height=296 alt='[Add/Remove: new applications have been installed]'>
+<p class='ss nm'><img src=i/ubu-install-8-success.png width=436 height=252 alt='[Aggiungi/Rimuovi: sono state installate nuove applicazioni]'>
 <p>Se tutto è andato bene, il programma di gestione dei pacchetti confermerà che entrambi i pacchetti sono stati installati con successo. Da qui, potete fare doppio clic su <abbr>IDLE</abbr> per lanciare la Shell Python, oppure potete cliccare sul bottone <code>Close</code> per uscire dal programma di gestione dei pacchetti.
-<p>Potete sempre rieseguire la Shell Python andando nel vostro menu <code>Applications</code>, poi nel sottomenu <code>Programming</code> e selezionando la voce <abbr>IDLE</abbr>.
+<p>Potete sempre rieseguire la Shell Python andando nel vostro menu <code>Applicazioni</code>, poi nel sottomenu <code>Programmazione</code> e selezionando la voce <abbr>IDLE</abbr>.
 
 <li>
-<p class='ss nm'><img src=i/ubu-interactive-shell.png width=679 height=687 alt='[Linux Python Shell, a graphical interactive shell for Python]'>
+<p class='ss nm'><img src=i/ubu-interactive-shell.png width=677 height=684 alt='[La Shell Python su Linux, una shell grafica interattiva per Python]'>
 <p>La Shell Python è il luogo in cui passerete la maggior parte del vostro tempo durante l'esplorazione del linguaggio. Gli esempi in questo libro assumeranno che sappiate usare la Shell Python.
 
 </ol>
