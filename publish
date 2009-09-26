@@ -1,8 +1,23 @@
 #!/bin/sh
 
+die () {
+  echo "$1" >/dev/stderr
+  exit 1
+}
+
+echo "started build"
+
+# build table of contents
+# Well, not really, since it mostly won't change anymore now
+#python3 util/buildtoc.py
+
+revision=`hg tip | grep changeset|cut -d":" -f2|cut -d" " -f4`
+today=`date +"%Y-%m-%d"`
+
 # make build directory and copy original files there for preflighting
 mkdir build
-# don't know about robots.txt yet
+mkdir build/d
+# No robots.txt since we don't live on a website root
 #cp robots.txt *.css build/
 cp *.css build/
 cp -R j build/
@@ -10,70 +25,121 @@ cp -R i build/
 # not running examples right now
 #rm examples/*.pyc
 cp -R esempi build/
+# not copying .htaccess files because of my server limitations
+#cp .htaccess build/
 
-# I don't even know how I write HTML myself, so I just copy file
-cp *.html build/
-## minimize HTML (NB: this script is quite fragile and relies on knowledge of how I write HTML)
-#for f in *.html; do
-#  python htmlminimizer.py "$f" build/"$f"
-#done
+echo "building HTML distribution"
+htmlbasedir=diveintopython3-it-r"$revision"-"$today"
+htmldir=build/"$htmlbasedir"
+mkdir -p "$htmldir"
+cp *.html "$htmldir"/
+cp dip3.css "$htmldir"/
+mkdir "$htmldir"/i
+cp i/*.png "$htmldir"/i/
+mkdir "$htmldir"/j
+cp j/dip3.js j/html5.js j/jquery.js j/prettify.js "$htmldir"/j/
+mkdir "$htmldir"/esempi
+cp esempi/*.jpg esempi/*.json esempi/*.pickle esempi/*.py esempi/*.txt esempi/*.xml "$htmldir"/esempi/
+cd build/ && \
+    zip -9rq diveintopython3-it-html-r"$revision"-"$today".zip "$htmlbasedir" && \
+cd ..
+echo "Redirect /d/diveintopython3-it-html-latest.zip http://gpiancastelli.altervista.org/dip3-it/d/diveintopython3-it-html-r$revision-$today.zip" >> build/d/.htaccess
+mv "$htmldir" "$htmldir".html.bak
 
-# No sitemap
-## build sitemap
-# ls build/*.html | sed -e "s|build/|http://diveintopython3.org/|g" -e "s|/index.html|/|g" > build/sitemap.txt
+echo "building PDF distribution"
+python3 util/flatten.py # outputs to build/single.html
+pdfbasedir="$htmlbasedir"
+pdfdir="$htmldir"
+mkdir -p "$pdfdir"
+pdffile="$pdfdir"/diveintopython3-it-r"$revision".pdf
+prince --style=prince.css --output="$pdffile" build/single.html 2>build/prince.log
+mkdir "$pdfdir"/esempi
+cp esempi/*.jpg esempi/*.json esempi/*.pickle esempi/*.py esempi/*.txt esempi/*.xml "$pdfdir"/esempi/
+cd build/ && \
+    zip -9rq diveintopython3-it-pdf-r"$revision"-"$today".zip "$pdfbasedir" && \
+cd ..
+echo "Redirect /d/diveintopython3-it-pdf-latest.zip http://gpiancastelli.altervista.org/dip3-it/d/diveintopython3-it-pdf-r$revision-$today.zip" >> build/d/.htaccess
+mv "$pdfdir" "$pdfdir".pdf.bak
+mv build/single.html build/single.html.bak
+
+# Not linting JavaScript myself; trust Mark on this one
+#echo "linting JS"
+#
+#[ -n "$(which js 2>/dev/null)" ] || die "SpiderMonkey (js or js.exe) not found"
+#js_lint_results=`js j/jslint.js < build/j/dip3.js 2>/dev/null`
+#[ "$js_lint_results" = "jslint: No problems found." ] || die "$js_lint_results"
+
+# minimize HTML (NB: this script is quite fragile and relies on knowledge of how I write HTML)
+# Yeah, I'll try and do it anyway, since I didn't really changed the original HTML structure
+for f in *.html; do
+  python3 util/htmlminimizer.py "$f" build/"$f" || die "Failed to minimize $f"
+done
+
+# build sitemap
+ls build/*.html | sed -e "s|build/|http://gpiancastelli.altervista.org/dip3-it/|g" -e "s|/index.html|/|g" > build/sitemap.txt || die "Failed to build sitemap"
 
 # No tracking code for now
-## add evil tracking code
+#echo "adding evil tracking code"
+#
+# add Google Analytics script
 #for f in build/*.html; do
-#  cat "$f" j/ga.js > build/tmp
-#  mv build/tmp "$f"
+#  cat "$f" j/ga.js > build/tmp && \
+#      mv build/tmp "$f" || die "Could not add tracking code to $f"
 #done
 
+# minimize JS and CSS
+echo "minimizing JS"
 revision=`hg log|grep changeset|cut -d":" -f3|head -1`
-
-# minimize JS
-java -jar util/yuicompressor-2.4.2.jar build/j/prettify.js > build/j/prettify.min.js
-java -jar util/yuicompressor-2.4.2.jar build/j/dip3.js > build/j/dip3.min.js
+java -jar util/yuicompressor-2.4.2.jar build/j/prettify.js > build/j/prettify.min.js && \
+    java -jar util/yuicompressor-2.4.2.jar build/j/dip3.js > build/j/dip3.min.js || die "Failed to minimize JS"
 
 # combine jQuery and our script
-cat build/j/jquery.min.js build/j/prettify.min.js build/j/dip3.min.js > build/j/$revision.js
-sed -i -e "s|<script src=j/jquery.js></script>||g" build/*.html
-sed -i -e "s|<script src=j/prettify.js></script>||g" build/*.html
-sed -i -e "s|<script src=j/dip3.js>|<script src=j/${revision}.js>|g" build/*.html
+echo "combining JS"
+cat build/j/jquery.min.js build/j/prettify.min.js build/j/dip3.min.js > build/j/$revision.js && \
+    sed -i -e "s|<script src=j/jquery.js></script>||g" build/*.html && \
+    sed -i -e "s|<script src=j/prettify.js></script>||g" build/*.html && \
+    sed -i -e "s|<script src=j/dip3.js>|<script src=j/${revision}.js>|g" build/*.html || die "Failed to combine JS"
 
-# minimize CSS
-java -jar util/yuicompressor-2.4.2.jar build/dip3.css > build/$revision.css
-java -jar util/yuicompressor-2.4.2.jar build/dip3-it.css > build/$revision-it.css
-java -jar util/yuicompressor-2.4.2.jar build/mobile.css > build/m-$revision.css
-java -jar util/yuicompressor-2.4.2.jar build/print.css > build/p-$revision.css
-sed -i -e "s|;}|}|g" build/$revision.css
-sed -i -e "s|;}|}|g" build/$revision-it.css
-sed -i -e "s|;}|}|g" build/m-$revision.css
-sed -i -e "s|;}|}|g" build/p-$revision.css
+echo "minimizing CSS"
+java -jar util/yuicompressor-2.4.2.jar build/dip3.css > build/$revision.css && \
+    java -jar util/yuicompressor-2.4.2.jar build/dip3-it.css > build/$revision-it.css && \
+    java -jar util/yuicompressor-2.4.2.jar build/mobile.css > build/m-$revision.css && \
+    java -jar util/yuicompressor-2.4.2.jar build/print.css > build/p-$revision.css && \
+    sed -i -e "s|;}|}|g" build/$revision.css && \
+    sed -i -e "s|;}|}|g" build/$revision-it.css && \
+    sed -i -e "s|;}|}|g" build/m-$revision.css && \
+    sed -i -e "s|;}|}|g" build/p-$revision.css || die "Failed to minimize CSS"
 
 # put CSS inline
+echo "inlining CSS"
 css=`cat build/$revision.css`
 cssit=`cat build/$revision-it.css`
 mobilecss=`cat build/m-$revision.css`
 printcss=`cat build/p-$revision.css`
-sed -i -e "s|<link rel=stylesheet href=dip3.css>|<style>${css}</style>|g" -e "s|<link rel=stylesheet href=dip3-it.css>|<style>${cssit}</style>|g" -e "s|<link rel=stylesheet media='only screen and (max-device-width: 480px)' href=mobile.css>|<style>@media screen and (max-device-width:480px){${mobilecss}}</style>|g" -e "s|<link rel=stylesheet media=print href=print.css>|<style>@media print{${printcss}}</style>|g" -e "s|</style><style>||g" build/*.html
+sed -i -e "s|<link rel=stylesheet href=dip3.css>|<style>${css}</style>|g" -e "s|<link rel=stylesheet href=dip3-it.css>|<style>${cssit}</style>|g" -e "s|<link rel=stylesheet media='only screen and (max-device-width: 480px)' href=mobile.css>|<style>@media screen and (max-device-width:480px){${mobilecss}}</style>|g" -e "s|<link rel=stylesheet media=print href=print.css>|<style>@media print{${printcss}}</style>|g" -e "s|</style><style>||g" build/*.html || die "Failed to inline CSS"
 
 # remove unused CSS properties on a page-by-page basis
+echo "removing unused CSS"
 for f in build/*.html; do
-  python2.6 util/lesscss.py "$f"
+  python2.6 util/lesscss.py "$f" || die "Failed to remove unused CSS"
 done
 
 # minimize URLs
-sed -i -e "s|=http:|=|g" build/*.html
-# files are not available from URL root
-sed -i -e "s|href=index.html|href=/dip3-it|g" build/*.html
+echo "minimizing URLs"
+sed -i -e "s|=http:|=|g" build/*.html && \
+    # files are not available from URL root
+    sed -i -e "s|href=index.html|href=/dip3-it|g" build/*.html || die "Failed to minimize URLs"
 
 # set file permissions (hg resets these, don't know why)
-chmod 755 build/j build/i
-# chmod 644 build/*.html build/*.css build/examples/*.py build/examples/*.txt build/*.txt build/j/*.js build/j/.htaccess build/i/* build/i/.htaccess
-chmod 644 build/*.html build/*.css build/esempi/*.py build/esempi/*.txt build/j/*.js build/j/.htaccess build/i/* build/i/.htaccess
+chmod 755 build/esempi build/j build/i build/d && \
+#chmod 644 build/*.html build/*.css build/*.txt build/*.zip build/examples/* build/examples/.htaccess build/j/* build/j/.htaccess build/i/* build/i/.htaccess build/d/.htaccess build/.htaccess || die "Failed to reset file permissions"
+    chmod 644 build/*.html build/*.css build/esempi/* build/j/* build/j/.htaccess build/i/* build/i/.htaccess build/d/.htaccess || die "Failed to reset file permissions"
+
+# TODO Remove placeholder when everything is OK!
+exit 0
 
 # ship it!
+echo "publishing"
 # using FTP to ship
 #rsync -essh -avzP build/j/$revision.js build/j/html5.js build/j/.htaccess diveintomark.org:~/web/diveintopython3.org/j/
 #rsync -essh -avzP build/*.html build/examples build/*.txt build/i diveintomark.org:~/web/diveintopython3.org/
