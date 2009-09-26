@@ -1,0 +1,106 @@
+#!/bin/sh
+
+# make build directory and copy original files there for preflighting
+mkdir build
+# don't know about robots.txt yet
+#cp robots.txt *.css build/
+cp *.css build/
+cp -R j build/
+cp -R i build/
+# not running examples right now
+#rm examples/*.pyc
+cp -R esempi build/
+
+# I don't even know how I write HTML myself, so I just copy file
+cp *.html build/
+## minimize HTML (NB: this script is quite fragile and relies on knowledge of how I write HTML)
+#for f in *.html; do
+#  python htmlminimizer.py "$f" build/"$f"
+#done
+
+# No sitemap
+## build sitemap
+# ls build/*.html | sed -e "s|build/|http://diveintopython3.org/|g" -e "s|/index.html|/|g" > build/sitemap.txt
+
+# No tracking code for now
+## add evil tracking code
+#for f in build/*.html; do
+#  cat "$f" j/ga.js > build/tmp
+#  mv build/tmp "$f"
+#done
+
+revision=`hg log|grep changeset|cut -d":" -f3|head -1`
+
+# minimize JS
+java -jar util/yuicompressor-2.4.2.jar build/j/prettify.js > build/j/prettify.min.js
+java -jar util/yuicompressor-2.4.2.jar build/j/dip3.js > build/j/dip3.min.js
+
+# combine jQuery and our script
+cat build/j/jquery.min.js build/j/prettify.min.js build/j/dip3.min.js > build/j/$revision.js
+sed -i -e "s|<script src=j/jquery.js></script>||g" build/*.html
+sed -i -e "s|<script src=j/prettify.js></script>||g" build/*.html
+sed -i -e "s|<script src=j/dip3.js>|<script src=j/${revision}.js>|g" build/*.html
+
+# minimize CSS
+java -jar util/yuicompressor-2.4.2.jar build/dip3.css > build/$revision.css
+java -jar util/yuicompressor-2.4.2.jar build/dip3-it.css > build/$revision-it.css
+java -jar util/yuicompressor-2.4.2.jar build/mobile.css > build/m-$revision.css
+java -jar util/yuicompressor-2.4.2.jar build/print.css > build/p-$revision.css
+sed -i -e "s|;}|}|g" build/$revision.css
+sed -i -e "s|;}|}|g" build/$revision-it.css
+sed -i -e "s|;}|}|g" build/m-$revision.css
+sed -i -e "s|;}|}|g" build/p-$revision.css
+
+# put CSS inline
+css=`cat build/$revision.css`
+cssit=`cat build/$revision-it.css`
+mobilecss=`cat build/m-$revision.css`
+printcss=`cat build/p-$revision.css`
+sed -i -e "s|<link rel=stylesheet href=dip3.css>|<style>${css}</style>|g" -e "s|<link rel=stylesheet href=dip3-it.css>|<style>${cssit}</style>|g" -e "s|<link rel=stylesheet media='only screen and (max-device-width: 480px)' href=mobile.css>|<style>@media screen and (max-device-width:480px){${mobilecss}}</style>|g" -e "s|<link rel=stylesheet media=print href=print.css>|<style>@media print{${printcss}}</style>|g" -e "s|</style><style>||g" build/*.html
+
+# remove unused CSS properties on a page-by-page basis
+for f in build/*.html; do
+  python2.6 util/lesscss.py "$f"
+done
+
+# minimize URLs
+sed -i -e "s|=http:|=|g" build/*.html
+# files are not available from URL root
+sed -i -e "s|href=index.html|href=/dip3-it|g" build/*.html
+
+# set file permissions (hg resets these, don't know why)
+chmod 755 build/j build/i
+# chmod 644 build/*.html build/*.css build/examples/*.py build/examples/*.txt build/*.txt build/j/*.js build/j/.htaccess build/i/* build/i/.htaccess
+chmod 644 build/*.html build/*.css build/esempi/*.py build/esempi/*.txt build/j/*.js build/j/.htaccess build/i/* build/i/.htaccess
+
+# ship it!
+# using FTP to ship
+#rsync -essh -avzP build/j/$revision.js build/j/html5.js build/j/.htaccess diveintomark.org:~/web/diveintopython3.org/j/
+#rsync -essh -avzP build/*.html build/examples build/*.txt build/i diveintomark.org:~/web/diveintopython3.org/
+HOST=$1
+USER=$2
+PASS=$3
+# NB: won't upload .htaccess files on my server because it doesn't allow to adjust the required settings
+ftp -inv $HOST <<EOF
+quote user $USER
+quote pass $PASS
+cd dip3-it
+lcd build
+mput *.css
+mput *.html
+cd j
+lcd j
+mput *.js
+cd ../i
+lcd ../i
+mput *.png
+cd ../esempi
+lcd ../esempi
+mput *.py
+mput *.xml
+mput *.txt
+bye
+EOF
+
+# ...and finally clean everything by removing build directory
+rm -rf build
