@@ -421,7 +421,7 @@ mark{display:inline}
 <li>Il primo risultato <em>è</em> un figlio diretto dell'elemento radice. Come potete vedere dai suoi attributi, quello è il collegamento alternativo a livello di feed che punta alla versione <abbr>HTML</abbr> del sito web descritto dal feed.
 <li>Gli altri tre risultati sono i collegamenti alternativi a livello di singola voce. Ogni elemento <code>entry</code> ha un singolo elemento figlio <code>link</code> e, a causa del doppio slash all'inizio della richiesta, questa richiesta li trova tutti e tre.
 </ol>
-
+<!--
 <p>Cosa dite? Volete la potenza del metodo <code>findall()</code>, ma preferireste lavorare con un iteratore invece che costruire una lista completa? ElementTree può fare anche questo.
 
 <pre class=screen>
@@ -443,7 +443,7 @@ StopIteration</samp></pre>
 <li>Il metodo <code>getiterator()</code> può prendere zero o più argomenti. Se viene chiamato senza argomenti, restituisce un iteratore che produce ogni elemento ed elemento figlio nell'intero documento. Oppure, come viene mostrato qui, potete invocarlo con il nome di un elemento nel formato standard di ElementTree. In questo caso, il metodo restituisce un iteratore che produce solo gli elementi con quel nome.
 <li>Invocare ripetutamente la funzione <code>next()</code> con questo iteratore finirà per restituire tutti gli elementi del documento corrispondenti alla richiesta che avete passato al metodo <code>getiterator()</code>.
 </ol>
-
+-->
 <p>Nel complesso, il metodo <code>findall()</code> è una caratteristica molto potente di ElementTree, ma la sintassi utilizzata nelle sue richieste può risultare un po' sorprendente. Viene ufficialmente descritta come un &#8220;<a href=http://effbot.org/zone/element-xpath.htm>sottoinsieme ristretto delle espressioni XPath</a>&#8221;. <a href=http://www.w3.org/TR/xpath>XPath</a> è uno standard W3C per effettuare ricerche nei documenti <abbr>XML</abbr>. La sintassi delle richieste di ElementTree è abbastanza simile a XPath da consentire ricerche di base, ma abbastanza diversa da potervi infastidire se conoscete già XPath. Ora diamo un'occhiata a una libreria <abbr>XML</abbr> di terze parti che estende la <abbr>API</abbr> di ElementTree con un supporto completo per XPath.
 
 <p class=a>&#x2042;

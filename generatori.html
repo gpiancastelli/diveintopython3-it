@@ -343,6 +343,8 @@ def plural(noun, rules_filename='plural5-rules.txt'):
 
 <h3 id=a-fibonacci-generator>Un generatore di Fibonacci</h3>
 
+<aside>&#8220;yield&#8221; mette in pausa una funzione. &#8220;next()&#8221; la riavvia da dove era rimasta sospesa.</aside>
+
 <p class=d>[<a href=esempi/fibonacci.py>scarica <code>fibonacci.py</code></a>]
 <pre class=pp><code>def fib(max):
 <a>    a, b = 0, 1          <span class=u>&#x2460;</span></a>
@@ -354,8 +356,6 @@ def plural(noun, rules_filename='plural5-rules.txt'):
 <li><var>a</var> è il numero corrente nella sequenza, quindi producetelo in uscita.
 <li><var>b</var> è il numero successivo nella sequenza, quindi assegnatelo ad <var>a</var>, ma calcolate anche il prossimo valore (<code>a + b</code>) e assegnatelo a <var>b</var> per usarlo più tardi. Notate che questo accade in parallelo; se <var>a</var> è <code>3</code> e <var>b</var> è <code>5</code>, allora <code>a, b = b, a + b</code> imposterà <var>a</var> a <code>5</code> (il valore precedente di <var>b</var>) e <var>b</var> a <code>8</code> (la somma dei valori precedenti di <var>a</var> e <var>b</var>).
 </ol>
-
-<aside>&#8220;yield&#8221; mette in pausa una funzione. &#8220;next()&#8221; la riavvia da dove era rimasta sospesa.</aside>
 
 <p>Quindi avete una funzione che produce in uscita numeri di Fibonacci successivi. Certo, potreste farlo con la ricorsione, ma in questo modo è più facile da leggere. In più, funziona bene con i cicli <code>for</code>.
 
