@@ -311,7 +311,7 @@ def protocol_version(file_object):
 
 <p>Secondo, come con ogni formato basato su testo, c'è il problema degli spazi bianchi. <abbr>JSON</abbr> consente la presenza di una quantità arbitraria di spazio bianco (spazi, tabulazioni, ritorni a capo e caratteri di fine riga) tra i valori. Questo spazio bianco è &#8220;insignificante&#8221;, nel senso che i codificatori <abbr>JSON</abbr> possono aggiungere tanto spazio bianco quanto desiderano e i decodificatori <abbr>JSON</abbr> sono obbligati a ignorare lo spazio bianco tra i valori. Questo vi permette di &#8220;formattare la stampa&#8221; dei vostri dati <abbr>JSON</abbr>, annidando gradevolmente i valori contenuti in altri valori a differenti livelli di indentazione in modo da poterli leggere in un browser standard o in un editor di testo. Il modulo <code>json</code> di Python è dotato di opzioni per formattare i dati stampati durante la codifica.
 
-<p>Terzo, c'è l'eterno problema della codifica di carattere. <abbr>JSON</abbr> codifica i valori come testo semplice, ma come sapete <a href=stringhe.html>il &#8220;testo semplice&#8221; non esiste</a>. <abbr>JSON</abbr> deve essere memorizzato in una codifica Unicode (UTF-32, UTF-16, o la codifica predefinita UTF-8) e la <a href=http://www.ietf.org/rfc/rfc4627.txt>sezione 3 della RFC 4627</a> definisce il modo in cui distinguere quale codifica è stata usata.
+<p>Terzo, c'è l'eterno problema della codifica di carattere. <abbr>JSON</abbr> codifica i valori come testo semplice, ma come sapete <a href=stringhe.html>il &#8220;testo semplice&#8221; non esiste</a>. <abbr>JSON</abbr> deve essere memorizzato in una codifica Unicode (<abbr>UTF-32</abbr>, <abbr>UTF-16</abbr>, o la codifica predefinita <abbr>UTF-8</abbr>) e la <a href=http://www.ietf.org/rfc/rfc4627.txt>sezione 3 della RFC 4627</a> definisce il modo in cui distinguere quale codifica è stata usata.
 
 <p class=a>&#x2042;
 
@@ -333,7 +333,7 @@ def protocol_version(file_object):
 <a><samp class=p>... </samp><kbd class=pp>    json.dump(basic_entry, f)</kbd>                              <span class=u>&#x2462;</span></a></pre>
 <ol>
 <li>Creeremo una nuova struttura dati invece di riutilizzare la struttura dati <var>entry</var> esistente. Più avanti in questo capitolo vedremo cosa succede quando proviamo a codificare strutture dati più complesse in <abbr>JSON</abbr>.
-<li><abbr>JSON</abbr> è un formato basato su testo e ciò significa che dovete aprire questo file in modalità testo e specificare una codifica di carattere. Non potete sbagliare se scegliete UTF-8.
+<li><abbr>JSON</abbr> è un formato basato su testo e ciò significa che dovete aprire questo file in modalità testo e specificare una codifica di carattere. Non potete sbagliare se scegliete <abbr>UTF-8</abbr>.
 <li>Come il modulo <code>pickle</code>, il modulo <code>json</code> definisce una funzione <code>dump()</code> che prende una struttura dati Python e un oggetto stream aperto in scrittura. La funzione <code>dump()</code> serializza la struttura dati Python e la scrive sull'oggetto stream. Effettuare questa operazione all'interno di un'istruzione <code>with</code> ci garantisce che il file verrà opportunamente chiuso quando avremo finito di lavorare.
 </ol>
 
@@ -446,7 +446,7 @@ def protocol_version(file_object):
 <mark>TypeError: b'\xDE\xD5\xB4\xF8' is not JSON serializable</mark></samp></pre>
 <ol>
 <li>Bene, è il momento di rivisitare la struttura dati <var>entry</var>. Ha tutto: un valore booleano, un valore <code>None</code>, una tupla di stringhe, un oggetto <code>bytes</code> e una struttura temporale dal modulo <code>time</code>.
-<li>So di averlo già detto, ma vale la pena ripeterlo: <abbr>JSON</abbr> è un formato basato su testo. Aprite sempre i file <abbr>JSON</abbr> in modalità testo con una codifica di carattere UTF-8.
+<li>So di averlo già detto, ma vale la pena ripeterlo: <abbr>JSON</abbr> è un formato basato su testo. Aprite sempre i file <abbr>JSON</abbr> in modalità testo con una codifica di carattere <abbr>UTF-8</abbr>.
 <li>Be', <em>questo</em> non va bene. Cos'è successo?
 </ol>
 
@@ -491,7 +491,7 @@ def protocol_version(file_object):
 TypeError: time.struct_time(tm_year=2009, tm_mon=3, tm_mday=27, tm_hour=22, tm_min=20, tm_sec=42, tm_wday=4, tm_yday=86, tm_isdst=-1) non è serializzabile in JSON</samp></pre>
 <ol>
 <li>Il modulo <code>customserializer</code> è dove avete appena definito la funzione <code>to_json()</code> dell'esempio precedente.
-<li>Modalità testo, codifica UTF-8, bla bla bla. (Lo dimenticherete! Me lo dimentico anch'io, ogni tanto! E tutto funzionerà esattamente fino al momento in cui smetterà di funzionare, e in quel momento tutto si bloccherà in maniera spettacolare.)
+<li>Modalità testo, codifica <abbr>UTF-8</abbr>, bla bla bla. (Lo dimenticherete! Me lo dimentico anch'io, ogni tanto! E tutto funzionerà esattamente fino al momento in cui smetterà di funzionare, e in quel momento tutto si bloccherà in maniera spettacolare.)
 <li>Questa è la parte importante: per agganciare la vostra funzione di conversione personalizzata alla funzione <code>json.dump()</code>, passate la vostra funzione alla funzione <code>json.dump()</code> nel parametro <var>default</var>. (Urrà, <a href=il-vostro-primo-programma-python.html#everythingisanobject>ogni cosa in Python è un oggetto</a>!)
 <li>Bene, e quindi in realtà non ha funzionato. Ma date un'occhiata all'eccezione. La funzione <code>json.dump()</code> non si sta più lamentando di non riuscire a serializzare l'oggetto <code>bytes</code>. Ora si lamenta di un oggetto completamente differente: l'oggetto <code>time.struct_time</code>.
 </ol>

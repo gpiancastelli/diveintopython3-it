@@ -58,7 +58,7 @@ UnicodeDecodeError: 'charmap' codec can't decode byte 0x8f in position 28: chara
 
 <p>Che cos'è appena successo? Non avete specificato una codifica di carattere, quindi Python è obbligato a usare la codifica predefinita. Qual è la codifica predefinita? Se osservate attentamente la traccia dello stack, potete vedere che l'esecuzione si blocca nel file <code>cp1252.py</code>, indicando che in questo caso Python sta usando CP-1252 come codifica predefinita. (CP-1252 è una codifica comune sui computer che eseguono Microsoft Windows.) L'insieme di caratteri CP-1252 non supporta i caratteri contenuti in questo file, quindi la lettura fallisce con un brutto errore di tipo <code>UnicodeDecodeError</code>.
 
-<p>Ma aspettate, le cose sono peggio di così! La codifica predefinita <em>dipende dalla piattaforma</em>, quindi questo codice <em>potrebbe</em> funzionare sul vostro computer (se la vostra codifica predefinita è UTF-8), ma poi fallirebbe quando lo distribuite a qualcun altro (la cui codifica predefinita è differente, come CP-1252).
+<p>Ma aspettate, le cose sono peggio di così! La codifica predefinita <em>dipende dalla piattaforma</em>, quindi questo codice <em>potrebbe</em> funzionare sul vostro computer (se la vostra codifica predefinita è <abbr>UTF-8</abbr>), ma poi fallirebbe quando lo distribuite a qualcun altro (la cui codifica predefinita è differente, come <abbr>CP-1252</abbr>).
 
 <blockquote class=note>
 <p><span class=u>&#x261E;</span>Se avete bisogno di ottenere la codifica di carattere predefinita, importate il modulo <code>locale</code> e invocate <code>locale.getpreferredencoding()</code>. Sul mio portatile Windows la funzione restituisce <code>'cp1252'</code>, ma sulla macchina Linux che ho di sopra restituisce <code>'UTF-8'</code>. Non riesco a mantenere la consistenza nemmeno in casa mia! I vostri risultati potrebbero essere differenti (persino su Windows) a seconda di quale versione del vostro sistema operativo avete installato e di come sono configurate le impostazioni regionali e di linuga. Questo è il motivo per cui è così importante specificare la codifica ogni volta che aprite un file.
@@ -141,7 +141,7 @@ UnicodeDecodeError: 'charmap' codec can't decode byte 0x8f in position 28: chara
 <li>Ora vi trovate al 24° byte.
 </ol>
 
-<p>Ve ne siete già accorti? I metodi <code>seek()</code> e <code>tell()</code> contano sempre i <em>byte</em>, ma dato che avete aperto questo file come testo, il metodo <code>read()</code> conta i <em>caratteri</em>. I caratteri cinesi <a href=stringhe.html#boring-stuff>richiedono più byte per venire codificati in UTF-8</a>. I caratteri inglesi in un file richiedono solo un byte ognuno, quindi potreste essere erroneamente indotti a credere che i metodi <code>seek()</code> e <code>read()</code> stiano contando le stesse cose. Ma questo è vero solo per alcuni caratteri.
+<p>Ve ne siete già accorti? I metodi <code>seek()</code> e <code>tell()</code> contano sempre i <em>byte</em>, ma dato che avete aperto questo file come testo, il metodo <code>read()</code> conta i <em>caratteri</em>. I caratteri cinesi <a href=stringhe.html#boring-stuff>richiedono più byte per venire codificati in <abbr>UTF-8</abbr></a>. I caratteri inglesi in un file richiedono solo un byte ognuno, quindi potreste essere erroneamente indotti a credere che i metodi <code>seek()</code> e <code>read()</code> stiano contando le stesse cose. Ma questo è vero solo per alcuni caratteri.
 
 <p>Ma aspettate, le cose peggiorano!
 
@@ -341,12 +341,12 @@ AttributeError: '_io.BufferedReader' object has no attribute 'encoding'</samp></
 # continua dall'esempio precedente
 <samp class=p>>>> </samp><kbd class=pp>an_image.tell()</kbd>
 <samp class=pp>0</samp>
-<a><samp class=p>>>> </samp><kbd class=pp>data = image.read(3)</kbd>    <span class=u>&#x2460;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>data = an_image.read(3)</kbd>  <span class=u>&#x2460;</span></a>
 <samp class=p>>>> </samp><kbd class=pp>data</kbd>
 <samp class=pp>b'\xff\xd8\xff'</samp>
-<a><samp class=p>>>> </samp><kbd class=pp>type(data)</kbd>              <span class=u>&#x2461;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>type(data)</kbd>               <span class=u>&#x2461;</span></a>
 <samp class=pp>&lt;class 'bytes'></samp>
-<a><samp class=p>>>> </samp><kbd class=pp>an_image.tell()</kbd>         <span class=u>&#x2462;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>an_image.tell()</kbd>          <span class=u>&#x2462;</span></a>
 <samp class=pp>3</samp>
 <samp class=p>>>> </samp><kbd class=pp>an_image.seek(0)</kbd>
 <samp class=pp>0</samp>

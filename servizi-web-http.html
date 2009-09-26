@@ -352,18 +352,18 @@ Writing c:\python31\Lib\site-packages\httplib2-python3_0.5.0-py3.1.egg-info</sam
 running build
 running build_py
 creating build
-creating build/lib.linux-x86_64-3.0
-creating build/lib.linux-x86_64-3.0/httplib2
-copying httplib2/iri2uri.py -> build/lib.linux-x86_64-3.0/httplib2
-copying httplib2/__init__.py -> build/lib.linux-x86_64-3.0/httplib2
+creating build/lib.linux-x86_64-3.1
+creating build/lib.linux-x86_64-3.1/httplib2
+copying httplib2/iri2uri.py -> build/lib.linux-x86_64-3.1/httplib2
+copying httplib2/__init__.py -> build/lib.linux-x86_64-3.1/httplib2
 running install_lib
-creating /usr/local/lib/python3.0/dist-packages/httplib2
-copying build/lib.linux-x86_64-3.0/httplib2/iri2uri.py -> /usr/local/lib/python3.0/dist-packages/httplib2
-copying build/lib.linux-x86_64-3.0/httplib2/__init__.py -> /usr/local/lib/python3.0/dist-packages/httplib2
-byte-compiling /usr/local/lib/python3.0/dist-packages/httplib2/iri2uri.py to iri2uri.pyc
-byte-compiling /usr/local/lib/python3.0/dist-packages/httplib2/__init__.py to __init__.pyc
+creating /usr/local/lib/python3.1/dist-packages/httplib2
+copying build/lib.linux-x86_64-3.1/httplib2/iri2uri.py -> /usr/local/lib/python3.1/dist-packages/httplib2
+copying build/lib.linux-x86_64-3.1/httplib2/__init__.py -> /usr/local/lib/python3.1/dist-packages/httplib2
+byte-compiling /usr/local/lib/python3.1/dist-packages/httplib2/iri2uri.py to iri2uri.pyc
+byte-compiling /usr/local/lib/python3.1/dist-packages/httplib2/__init__.py to __init__.pyc
 running install_egg_info
-Writing /usr/local/lib/python3.0/dist-packages/httplib2-python3_0.5.0.egg-info</samp></pre>
+Writing /usr/local/lib/python3.1/dist-packages/httplib2-python3_0.5.0.egg-info</samp></pre>
 
 <p>Per utilizzare <code>httplib2</code>, create un'istanza della classe <code>httplib2.Http</code>.
 
@@ -399,7 +399,7 @@ Writing /usr/local/lib/python3.0/dist-packages/httplib2-python3_0.5.0.egg-info</
 <ol>
 <li>la codifica data nel parametro <code>charset</code> dell'intestazione <abbr>HTTP</abbr> <code>Content-Type</code>, oppure
 <li>la codifica data nell'attributo <code>encoding</code> della dichiarazione <abbr>XML</abbr> all'interno del documento, oppure
-<li><code>utf-8</code>
+<li><abbr>UTF-8</abbr>
 </ol>
 
 <p>D'altra parte, se il tipo di contenuto dato nell'intestazione <abbr>HTTP</abbr> <code>Content-Type</code> è <code>text/xml</code>, <code>text/xml-external-parsed-entity</code>, o un sottotipo come per esempio <code>text/QualsiasiCosa+xml</code>, allora l'attributo di codifica della dichiarazione <abbr>XML</abbr> nel documento viene completamente ignorato e la codifica è
@@ -885,7 +885,7 @@ status=Aggiornamento+di+prova+da+Python+3'
 &lt;/user>
 &lt;/status></samp></pre>
 <ol>
-<li>Ricordatevi che i dati restituiti da <code>httplib2</code> sono sempre <a href=stringhe.html#byte-arrays>byte</a>, non stringhe. Per convertirli in una stringa, dovete decodificarli utilizzando la codifica di carattere corretta. I metodi della <abbr>API</abbr> di Identi.ca restituiscono sempre i risultati in UTF-8, quindi questa parte è facile.
+<li>Ricordatevi che i dati restituiti da <code>httplib2</code> sono sempre <a href=stringhe.html#byte-arrays>byte</a>, non stringhe. Per convertirli in una stringa, dovete decodificarli utilizzando la codifica di carattere corretta. I metodi della <abbr>API</abbr> di Identi.ca restituiscono sempre i risultati in <abbr>UTF-8</abbr>, quindi questa parte è facile.
 <li>Ecco il testo del messaggio di stato che abbiamo appena pubblicato.
 <li>Ecco l'identificatore unico per il nuovo messaggio di stato. Identi.ca lo usa per costruire un <abbr>URL</abbr> in modo da visualizzare il messaggio sul web.
 </ol>

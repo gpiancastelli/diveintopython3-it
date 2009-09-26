@@ -68,19 +68,19 @@ Il tuo alfabeto termina dove il mio inizia! <span class=u>&#x275E;</span><br>&md
 
 <p>Altre persone hanno ponderato a lungo su questi problemi, e hanno trovato una soluzione:
 
-<p class=xxxl>UTF-8
+<p class=xxxl><abbr>UTF-8</abbr>
 
-<p>UTF-8 è un sistema di codifica Unicode a <em>lunghezza variabile</em>. Cioè, caratteri differenti occupano un numero differente di byte. Per i caratteri <abbr>ASCII</abbr> (A-Z, <i class=baa>&amp;</i>c.) UTF-8 usa solo un byte per carattere. In effetti, usa gli stessi identici byte; i primi 128 caratteri (0&ndash;127) in UTF-8 sono indistinguibili da quelli <abbr>ASCII</abbr>. I caratteri &#8220;Extended Latin&#8221; come &ntilde; e &ouml; finiscono per occupare due byte. (I byte non sono semplicemente dei &#8220;code point&#8221; Unicode come sarebbero in UTF-16, ma i bit vengono pesantemente manipolati in qualche modo.) Caratteri cinesi come &#x4E2D; finiscono per occupare tre byte. I caratteri raramente usati del &#8220;piano astrale&#8221; occupano quattro byte.
+<p><abbr>UTF-8</abbr> è un sistema di codifica Unicode a <em>lunghezza variabile</em>. Cioè, caratteri differenti occupano un numero differente di byte. Per i caratteri <abbr>ASCII</abbr> (A-Z, <i class=baa>&amp;</i>c.) <abbr>UTF-8</abbr> usa solo un byte per carattere. In effetti, usa gli stessi identici byte; i primi 128 caratteri (0&ndash;127) in <abbr>UTF-8</abbr> sono indistinguibili da quelli <abbr>ASCII</abbr>. I caratteri &#8220;Extended Latin&#8221; come &ntilde; e &ouml; finiscono per occupare due byte. (I byte non sono semplicemente <i>code point</i> Unicode come sarebbero in <abbr>UTF-16</abbr>, ma i bit vengono pesantemente manipolati in qualche modo.) Caratteri cinesi come &#x4E2D; finiscono per occupare tre byte. I caratteri raramente usati del &#8220;piano astrale&#8221; occupano quattro byte.
 
 <p>Svantaggi: dato che ogni carattere può occupare un numero differente di byte, accedere al carattere di posizione <var>N</var> è una operazione da O(N)&nbsp;&mdash;&nbsp;cioè, più lunga è la stringa, più tempo ci vuole per trovare uno specifico carattere. In più, i bit devono essere manipolati per codificare i caratteri in byte e decodificare i byte in caratteri.
 
-<p>Vantaggi: la codifica dei caratteri <abbr>ASCII</abbr> comuni è super-efficiente. Per i caratteri Extended Latin non è peggiore rispetto alla codifica UTF-16 e per i caratteri cinesi è migliore rispetto a UTF-32. In più (e dovete fidarvi di me su questo, perché non vi mostrerò i calcoli), grazie alla natura esatta delle manipolazioni sui bit, non ci sono problemi di ordinamento dei byte. Un documento codificato in UTF-8 usa esattamente lo stesso flusso di byte su qualsiasi computer.
+<p>Vantaggi: la codifica dei caratteri <abbr>ASCII</abbr> comuni è super-efficiente. Per i caratteri Extended Latin non è peggiore rispetto alla codifica <abbr>UTF-16</abbr> e per i caratteri cinesi è migliore rispetto a <abbr>UTF-32</abbr>. In più (e dovete fidarvi di me su questo, perché non vi mostrerò i calcoli), grazie alla natura esatta delle manipolazioni sui bit, non ci sono problemi di ordinamento dei byte. Un documento codificato in <abbr>UTF-8</abbr> usa esattamente lo stesso flusso di byte su qualsiasi computer.
 
 <p class=a>&#x2042;
 
 <h2 id=divingin>Immersione!</h2>
 
-<p>In Python 3, tutte le stringhe sono sequenze di caratteri Unicode. Non esistono stringhe Python codificate in UTF-8, o stringhe Python codificate in CP-1252. &#8220;Questa stringa è in UTF-8?&#8221; è una domanda non valida. UTF-8 è un modo di codificare caratteri come sequenze di byte. Se volete prendere una stringa e trasformarla in una sequenza di byte attraverso una particolare codifica di carattere, Python 3 vi può aiutare. Se volete prendere una sequenza di byte e trasformarla in una stringa, Python 3 può aiutarvi anche in questo caso. I byte non sono caratteri, i byte sono byte. I caratteri sono un'astrazione. Una stringa è una sequenza di quelle astrazioni.
+<p>In Python 3, tutte le stringhe sono sequenze di caratteri Unicode. Non esistono stringhe Python codificate in <abbr>UTF-8</abbr>, o stringhe Python codificate in <abbr>CP-1252</abbr>. &#8220;Questa stringa è in <abbr>UTF-8</abbr>?&#8221; è una domanda non valida. <abbr>UTF-8</abbr> è un modo di codificare caratteri come sequenze di byte. Se volete prendere una stringa e trasformarla in una sequenza di byte attraverso una particolare codifica di carattere, Python 3 vi può aiutare. Se volete prendere una sequenza di byte e trasformarla in una stringa, Python 3 può aiutarvi anche in questo caso. I byte non sono caratteri, i byte sono byte. I caratteri sono un'astrazione. Una stringa è una sequenza di quelle astrazioni.
 
 <pre class=screen>
 <a><samp class=p>>>> </samp><kbd class=pp>s = '深入 Python'</kbd>    <span class=u>&#x2460;</span></a>
@@ -393,23 +393,23 @@ TypeError: Can't convert 'bytes' object to str implicitly</samp>
 <samp class=pp>True</samp></pre>
 <ol>
 <li>Questa è una stringa. Ha nove caratteri.
-<li>Questo è un oggetto <code>bytes</code>. Ha 13 byte. &Egrave; la sequenza di byte che si ottiene codificando <var>a_string</var> in UTF-8.
-<li>Questo è un oggetto <code>bytes</code>. Ha 11 byte. &Egrave; la sequenza di byte che si ottiene codificando <var>a_string</var> in <a href=http://en.wikipedia.org/wiki/GB_18030>GB18030</a>.
-<li>Questo è un oggetto <code>bytes</code>. Ha 11 byte. &Egrave; una <em>sequenza completamente diversa di byte</em> che si ottiene codificando <var>a_string</var> in <a href=http://en.wikipedia.org/wiki/Big5>Big5</a>.
-<li>Questa è una stringa. Ha nove caratteri. &Egrave; la sequenza di caratteri che si ottiene decodificando <var>by</var> con l'algoritmo di codifica Big5. &Egrave; identica alla stringa originale.
+<li>Questo è un oggetto <code>bytes</code>. Ha 13 byte. &Egrave; la sequenza di byte che si ottiene codificando <var>a_string</var> in <abbr>UTF-8</abbr>.
+<li>Questo è un oggetto <code>bytes</code>. Ha 11 byte. &Egrave; la sequenza di byte che si ottiene codificando <var>a_string</var> in <a href=http://en.wikipedia.org/wiki/GB_18030><abbr>GB18030</abbr></a>.
+<li>Questo è un oggetto <code>bytes</code>. Ha 11 byte. &Egrave; una <em>sequenza completamente diversa di byte</em> che si ottiene codificando <var>a_string</var> in <a href=http://en.wikipedia.org/wiki/Big5><abbr>Big5</abbr></a>.
+<li>Questa è una stringa. Ha nove caratteri. &Egrave; la sequenza di caratteri che si ottiene decodificando <var>by</var> con l'algoritmo di codifica <abbr>Big5</abbr>. &Egrave; identica alla stringa originale.
 </ol>
 
 <p class=a>&#x2042;
 
 <h2 id=py-encoding>Post Scriptum: codifica di caratteri per il codice sorgente Python</h2>
 
-<p>Python 3 assume che il vostro codice sorgente&nbsp;&mdash;&nbsp;cioè ogni file <code>.py</code>&nbsp;&mdash;&nbsp;sia codificato in UTF-8.
+<p>Python 3 assume che il vostro codice sorgente&nbsp;&mdash;&nbsp;cioè ogni file <code>.py</code>&nbsp;&mdash;&nbsp;sia codificato in <abbr>UTF-8</abbr>.
 
 <blockquote class='note compare python2'>
-<p><span class=u>&#x261E;</span>In Python 2, la codifica di <dfn>default</dfn> per i file <code>.py</code> era <abbr>ASCII</abbr>. In Python 3, <a href=http://www.python.org/dev/peps/pep-3120/>la codifica di default è UTF-8</a>.
+<p><span class=u>&#x261E;</span>In Python 2, la codifica di <dfn>default</dfn> per i file <code>.py</code> era <abbr>ASCII</abbr>. In Python 3, <a href=http://www.python.org/dev/peps/pep-3120/>la codifica di default è <abbr>UTF-8</abbr></a>.
 </blockquote>
 
-<p>Se volete usare una codifica differente nel vostro codice Python, potete inserire una dichiarazione di codifica nella prima riga di ogni file. Questa dichiarazione definisce windows-1252 come codifica di un file <code>.py</code>
+<p>Se volete usare una codifica differente nel vostro codice Python, potete inserire una dichiarazione di codifica nella prima riga di ogni file. Questa dichiarazione definisce <abbr>windows-1252</abbr> come codifica di un file <code>.py</code>
 
 <pre class='nd pp'><code># -*- coding: windows-1252 -*-</code></pre>
 

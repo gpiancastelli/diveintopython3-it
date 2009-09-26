@@ -307,19 +307,19 @@ class FieldStorage:
 <tr><th>
 <td>ottenere un valore tramite la sua chiave
 <td><code class=pp>x[key]</code>
-<td><a href=http://www.python.org/doc/3.1/reference/datamodel.html#object.__getitem__><code>x.<dfn>__getitem__</dfn>(<var>'key'</var>)</code></a>
+<td><a href=http://www.python.org/doc/3.1/reference/datamodel.html#object.__getitem__><code>x.<dfn>__getitem__</dfn>(<var>key</var>)</code></a>
 <tr><th>
 <td>impostare un valore tramite la sua chiave
 <td><code class=pp>x[key] = value</code>
-<td><a href=http://www.python.org/doc/3.1/reference/datamodel.html#object.__setitem__><code>x.<dfn>__setitem__</dfn>(<var>'key'</var>, <var>value</var>)</code></a>
+<td><a href=http://www.python.org/doc/3.1/reference/datamodel.html#object.__setitem__><code>x.<dfn>__setitem__</dfn>(<var>key</var>, <var>value</var>)</code></a>
 <tr><th>
 <td>eliminare una coppia chiave-valore
 <td><code class=pp>del x[key]</code>
-<td><a href=http://www.python.org/doc/3.1/reference/datamodel.html#object.__delitem__><code>x.<dfn>__delitem__</dfn>(<var>'key'</var>)</code></a>
+<td><a href=http://www.python.org/doc/3.1/reference/datamodel.html#object.__delitem__><code>x.<dfn>__delitem__</dfn>(<var>key</var>)</code></a>
 <tr><th>
 <td>fornire un valore di default per chiavi mancanti
 <td><code class=pp>x[nonexistent_key]</code>
-<td><a href=http://docs.python.org/3.1/library/collections.html#collections.defaultdict.__missing__><code>x.<dfn>__missing__</dfn>(<var>'nonexistent_key'</var>)</code></a>
+<td><a href=http://docs.python.org/3.1/library/collections.html#collections.defaultdict.__missing__><code>x.<dfn>__missing__</dfn>(<var>nonexistent_key</var>)</code></a>
 </table>
 
 <p>La <a href=#acts-like-list-example>classe <code>FieldStorage</code></a> del <a href=http://docs.python.org/3.1/library/cgi.html>modulo <code>cgi</code></a> definisce anche questi metodi speciali, in modo che possiate fare cose come queste:
