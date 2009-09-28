@@ -43,7 +43,7 @@ cp esempi/*.jpg esempi/*.json esempi/*.pickle esempi/*.py esempi/*.txt esempi/*.
 cd build/ && \
     zip -9rq diveintopython3-it-html-r"$revision"-"$today".zip "$htmlbasedir" && \
 cd ..
-echo "Redirect /d/diveintopython3-it-html-latest.zip http://gpiancastelli.altervista.org/dip3-it/d/diveintopython3-it-html-r$revision-$today.zip" >> build/d/.htaccess
+echo "Redirect /dip3-it/d/diveintopython3-it-html-latest.zip http://gpiancastelli.altervista.org/dip3-it/d/diveintopython3-it-html-r$revision-$today.zip" >> build/d/.htaccess
 mv "$htmldir" "$htmldir".html.bak
 
 echo "building PDF distribution"
@@ -58,7 +58,7 @@ cp esempi/*.jpg esempi/*.json esempi/*.pickle esempi/*.py esempi/*.txt esempi/*.
 cd build/ && \
     zip -9rq diveintopython3-it-pdf-r"$revision"-"$today".zip "$pdfbasedir" && \
 cd ..
-echo "Redirect /d/diveintopython3-it-pdf-latest.zip http://gpiancastelli.altervista.org/dip3-it/d/diveintopython3-it-pdf-r$revision-$today.zip" >> build/d/.htaccess
+echo "Redirect /dip3-it/d/diveintopython3-it-pdf-latest.zip http://gpiancastelli.altervista.org/dip3-it/d/diveintopython3-it-pdf-r$revision-$today.zip" >> build/d/.htaccess
 mv "$pdfdir" "$pdfdir".pdf.bak
 mv build/single.html build/single.html.bak
 
@@ -135,18 +135,13 @@ chmod 755 build/esempi build/j build/i build/d && \
 #chmod 644 build/*.html build/*.css build/*.txt build/*.zip build/examples/* build/examples/.htaccess build/j/* build/j/.htaccess build/i/* build/i/.htaccess build/d/.htaccess build/.htaccess || die "Failed to reset file permissions"
     chmod 644 build/*.html build/*.css build/esempi/* build/j/* build/j/.htaccess build/i/* build/i/.htaccess build/d/.htaccess || die "Failed to reset file permissions"
 
-# TODO Remove placeholder when everything is OK!
-exit 0
-
 # ship it!
 echo "publishing"
 # using FTP to ship
-#rsync -essh -avzP build/j/$revision.js build/j/html5.js build/j/.htaccess diveintomark.org:~/web/diveintopython3.org/j/
-#rsync -essh -avzP build/*.html build/examples build/*.txt build/i diveintomark.org:~/web/diveintopython3.org/
 HOST=$1
 USER=$2
 PASS=$3
-# NB: won't upload .htaccess files on my server because it doesn't allow to adjust the required settings
+# NB: won't upload some .htaccess files because of some server limitations
 ftp -inv $HOST <<EOF
 quote user $USER
 quote pass $PASS
@@ -165,6 +160,12 @@ lcd ../esempi
 mput *.py
 mput *.xml
 mput *.txt
+cd ../d
+lcd ..
+mput *.zip
+cd ..
+lcd d
+put .htaccess
 bye
 EOF
 
