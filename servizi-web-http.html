@@ -53,6 +53,8 @@ mark{display:inline}
 
 <p>La cosa più importante da capire per un qualsiasi tipo di servizio web è che l'accesso alla rete è incredibilmente costoso. Non nel senso di &#8220;euro e centesimi&#8221; (sebbene la banda non sia gratis). Voglio dire che ci vuole un tempo estremamente lungo per aprire una connessione, spedire una richiesta e ricevere una risposta da un server remoto. Anche sulla connessione a banda larga più veloce, la <i>latenza</i> (il tempo che ci vuole per spedire una richiesta e cominciare a ricevere i dati in una risposta) può ancora essere più grande di quanto prevedete. Un router si comporta in modo strano, un pacchetto viene scartato, un proxy intermedio è sotto attacco&nbsp;&mdash;&nbsp;non c'è <a href=http://isc.sans.org/>mai un momento di calma</a> sulla rete Internet pubblica, e potrebbe non esserci nulla che voi possiate fare.
 
+<aside><code>Cache-Control</code> significa: &#8220;Non scocciarmi fino alla prossima settimana.&#8221;</aside>
+
 <p><abbr>HTTP</abbr> è progettato con l'uso della cache in mente. Esiste un'intera categoria di dispositivi (chiamati &#8220;proxy di cache&#8221;) il cui solo lavoro è di sedere in mezzo tra voi e il resto del mondo e minimizzare l'accesso alla rete. La vostra azienda o il vostro <abbr>ISP</abbr> quasi certamente gestisce alcuni proxy di cache, anche se voi non ve ne rendete conto. Questi dispositivi funzionano perché l'uso della cache è integrato nel protocollo <abbr>HTTP</abbr>.
 
 <p>Ecco un esempio concreto di come funziona la cache. Visitate <a href=http://diveintomark.org/><code>diveintomark.org</code></a> nel vostro browser. Quella pagina include un'immagine di sfondo, <a href=http://wearehugh.com/m.jpg><code>wearehugh.com/m.jpg</code></a>. Quando il vostro browser scarica quell'immagine, il server include le seguenti intestazioni <abbr>HTTP</abbr>:
@@ -82,6 +84,8 @@ Content-Type: image/jpeg</code></pre>
 <h3 id=last-modified>Il controllo della modifica più recente</h3>
 
 <p>Alcuni dati non cambiano mai, mentre altri dati cambiano continuamente. Nel mezzo, c'è un vasto assortimento di dati che <em>potrebbero</em> essere cambiati, ma non lo hanno fatto. Il feed di CNN.com viene aggiornato ogni pochi minuti, ma il feed del mio weblog potrebbe non cambiare per diversi giorni o intere settimane. In quest'ultimo caso, non voglio dire ai client di mantenere in cache il mio feed per intere settimane, perché quando scrivo effettivamente qualcosa i miei lettori potrebbero non vederla per settimane (perché stanno rispettando le mie intestazioni di cache che dicono &#8220;non preoccuparti di controllare questo feed per settimane&#8221;). D'altra parte, non voglio che i client scarichino il mio intero feed una volta ogni ora se non è cambiato!
+
+<aside><code>Last-Modified</code> significa: &#8220;Stessa merda, altro giorno.&#8221;</aside>
 
 <p><abbr>HTTP</abbr> fornisce una soluzione anche a questo problema. Quando richiedete un dato per la prima volta, il server può spedire indietro un'intestazione <code>Last-Modified</code>. Questa è esattamente ciò che sembra: la data in cui i dati sono stati modificati. Quell'immagine di sfondo riferita da <code>diveintomark.org</code> includeva un'intestazione <code>Last-Modified</code>.
 
@@ -118,6 +122,8 @@ Cache-Control: max-age=31536000, public</samp></pre>
 
 <p>Gli ETag sono un modo alternativo per effettuare il <a href=#last-modified>controllo della modifica più recente</a>. Con gli ETag, il server spedisce un codice hash in un'intestazione <code>ETag</code> insieme ai dati che avete richiesto. (Decidere come determinare esattamente questo hash è interamente compito del server. L'unico requisito è che l'hash cambi quando i dati cambiano.) Quell'immagine di sfondo riferita da <code>diveintomark.org</code> aveva un'intestazione <code>ETag</code>.
 
+<aside><code>ETag</code> significa: &#8220;Nulla di nuovo sotto il sole.&#8221;</aside>
+
 <pre class=nd><code>HTTP/1.1 200 OK
 Date: Sun, 31 May 2009 17:14:04 GMT
 Server: Apache
@@ -131,7 +137,7 @@ Connection: close
 Content-Type: image/jpeg
 </code></pre>
 
-La seconda volta che richiedete gli stessi dati, includete il valore di ETag in un'intestazione <code>If-None-Match</code> della vostra richiesta. Se i dati non sono cambiati, il server vi restituirà un codice di stato <code>304</code>. Come con il controllo sulla data della modifica più recente, il server invia <em>solo</em> il codice di stato <code>304</code>, evitando di spedirvi gli stessi dati una seconda volta. Includendo il valore di ETag nella vostra seconda richiesta, state dicendo al server che non c'è alcun bisogno di rispedire gli stessi dati se quei dati corrispondono ancora a questo hash, dato che <a href=#caching>avete ancora i dati dall'ultima volta</a>.
+<p>La seconda volta che richiedete gli stessi dati, includete il valore di ETag in un'intestazione <code>If-None-Match</code> della vostra richiesta. Se i dati non sono cambiati, il server vi restituirà un codice di stato <code>304</code>. Come con il controllo sulla data della modifica più recente, il server invia <em>solo</em> il codice di stato <code>304</code>, evitando di spedirvi gli stessi dati una seconda volta. Includendo il valore di ETag nella vostra seconda richiesta, state dicendo al server che non c'è alcun bisogno di rispedire gli stessi dati se quei dati corrispondono ancora a questo hash, dato che <a href=#caching>avete ancora i dati dall'ultima volta</a>.
 
 <p>Utilizzando ancora <kbd>curl</kbd>:
 
@@ -161,6 +167,8 @@ Cache-Control: max-age=31536000, public</samp></pre>
 <h3 id=redirects>Le redirezioni</h3>
 
 <p><a href=http://www.w3.org/Provider/Style/URI>Gli <abbr>URI</abbr> fighi non cambiano</a>, ma molti <abbr>URI</abbr> sono seriamente sfigati. I siti web vengono riorganizzati, le pagine vengono spostate a nuovi indirizzi. Persino i servizi web possono venire riorganizzati. Un feed pubblicato all'indirizzo <code>http://example.com/index.xml</code> potrebbe venire spostato all'indirizzo <code>http://example.com/xml/atom.xml</code>. Oppure un intero dominio potrebbe spostarsi, man mano che un'organizzazione si espande e viene ristrutturata: <code>http://www.example.com/index.xml</code> diventa <code>http://server-farm-1.example.com/index.xml</code>.
+
+<aside><code>Location</code> significa: &#8220;Guarda là!&#8221;</aside>
 
 <p>Ogni volta che richiedete un qualsiasi tipo di risorsa da un server <abbr>HTTP</abbr>, il server include un codice di stato nella propria risposta. Il codice di stato <code>200</code> significa &#8220;è tutto normale, ecco la pagina che avete chiesto&#8221;. Il codice di stato <code>404</code> significa &#8220;pagina non trovata&#8221;. (Avete probabilmente visto errori 404 navigando sul web.) I codici di stato che cominciano con 3 indicano una qualche forma di redirezione.
 
@@ -224,6 +232,8 @@ reply: 'HTTP/1.1 200 OK'
 <li>La terza riga specifica gli algoritmi di compressione che il client supporta. Come avevo menzionato in precedenza, <a href=#compression><code>urllib.request</code> non supporta la compressione</a> di default.
 <li>La quarta riga specifica il nome della libreria che sta effettuando la richiesta. Per default, questo nome è <code>Python-urllib</code> più un numero di versione. Sia <code>urllib.request</code> che <code>httplib2</code> permettono di cambiare il nome dell'applicazione usata semplicemente aggiungendo un'intestazione <code>User-Agent</code> alla richiesta (che sostituirà il valore predefinito).
 </ol>
+
+<aside>Stiamo scaricando 3070 byte quando avremmo potuto scaricarne 941.</aside>
 
 <p>Ora diamo un'occhiata ai dati che il server ha inviato nella sua risposta.
 
@@ -394,6 +404,8 @@ Writing /usr/local/lib/python3.1/dist-packages/httplib2-python3_0.5.0.egg-info</
 
 <p>Se sapete che tipo di risorsa vi aspettate (in questo caso, un documento <abbr>XML</abbr>), forse potreste &#8220;semplicemente&#8221; passare l'oggetto <code>bytes</code> restituito alla funzione <a href=xml.html#xml-parse><code>xml.etree.ElementTree.parse()</code></a>. Questo funzionerà purché il documento <abbr>XML</abbr> includa informazioni sulla propria codifica di carattere (come accade in questo caso), ma questa è una caratteristica opzionale e non tutti i documenti <abbr>XML</abbr> lo fanno. Se un documento <abbr>XML</abbr> non include informazioni di codifica, il client è tenuto a controllare il protocollo di trasporto a cui sono allegati i dati&nbsp;&mdash;&nbsp;cioè l'intestazione <abbr>HTTP</abbr> <code>Content-Type</code>, che può includere un parametro <code>charset</code>.
 
+<p class=ss><a style=border:0 href=http://www.cafepress.com/feedparser><img src=http://feedparser.org/img/feedparser.jpg alt='[Maglietta "Io supporto la RFC 3023"]' width=150 height=150></a>
+
 <p>Ma le cose vanno anche peggio di così. Ora le informazioni sulla codifica di carattere possono trovarsi in due posti: all'interno del documento <abbr>XML</abbr> e nell'intestazione <abbr>HTTP</abbr> <code>Content-Type</code>. Se l'informazione è in <em>entrambi</em> i posti, quale deve essere ritenuta valida? Secondo la <a href=http://www.ietf.org/rfc/rfc3023.txt>RFC 3023</a> (vi giuro che non me lo sto inventando), se il tipo di contenuto fornito nell'intestazione <abbr>HTTP</abbr> <code>Content-Type</code> è <code>application/xml</code>, <code>application/xml-dtd</code>, <code>application/xml-external-parsed-entity</code>, o un qualsiasi sottotipo di <code>application/xml</code> come per esempio <code>application/atom+xml</code> o <code>application/rss+xml</code> o persino <code>application/rdf+xml</code>, allora la codifica è
 
 <ol>
@@ -456,6 +468,8 @@ Writing /usr/local/lib/python3.1/dist-packages/httplib2-python3_0.5.0.egg-info</
 <li>Abbiamo anche &#8220;ricevuto&#8221; un codice di stato <abbr>HTTP</abbr> che indica che la &#8220;richiesta&#8221; ha avuto successo.
 <li>Qui sta il punto: questa &#8220;risposta&#8221; è stata generata dalla cache locale di <code>httplib2</code>. Quel nome di directory che avete passato nel creare l'oggetto <code>httplib2.Http</code>&nbsp;&mdash;&nbsp;quella directory conserva la cache di <code>httplib2</code> per tutte le operazioni che ha mai effettuato.
 </ol>
+
+<aside>Cosa viene trasmesso attraverso la rete? Proprio nulla.</aside>
 
 <blockquote class=note>
 <p><span class=u>&#x261E;</span>Se volete attivare le informazioni di debug di <code>httplib2</code>, dovete impostare una costante a livello di modulo (<code>httplib2.debuglevel</code>) e poi creare un nuovo oggetto <code>httplib2.Http</code>. Se volete disattivare le informazioni di debug, dovete modificare la stessa costante a livello di modulo e poi creare un nuovo oggetto <code>httplib2.Http</code>.
@@ -576,6 +590,8 @@ user-agent: Python-httplib2/$Rev: 259 $'
 </ol>
 
 <h3 id=httplib2-compression>Come <code>http2lib</code> gestisce la compressione</h3>
+
+<aside>&#8220;Facciamo musica di entrambi i generi, country E western.&#8221;</aside>
 
 <p><abbr>HTTP</abbr> supporta <a href=#compression>due tipi di compressione</a>. <code>httplib2</code> li supporta entrambi.
 
