@@ -16,7 +16,8 @@ pqd = pq(filename=filename)
 with open(filename, 'rb') as fopen:
     raw_data = fopen.read()
 
-if raw_data.count('</a><script src=j/'): # HACK HACK HACK
+#if raw_data.count('</a><script src=j/'): # HACK HACK HACK
+if raw_data.count('<pre'): # revert HACK because it doesn't work for me
     def keep(s):
         for selector in SELECTOR_EXCEPTIONS:
             if s == selector: return True
