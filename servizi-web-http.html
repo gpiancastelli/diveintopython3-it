@@ -102,7 +102,7 @@ Connection: close
 Content-Type: image/jpeg
 </code></pre>
 
-<p>Quando richiedete gli stessi dati una seconda (o terza, o quarta) volta, potete spedire insieme alla vostra richiesta un'intestazione <code>If-Modified-Since</code> contenente la data che avete ottenuto dal server l'ultima volta. Se i dati non sono cambiati da allora, il server rimanda indietro lo speciale codice di stato <abbr>HTTP</abbr> <code>304</code>, per indicare che &#8220;questi dati non sono cambiati dall'ultima volta che li avete richiesti&#8221. Potete verificare questo comportamento dalla linea di comando, utilizzando <a href=http://curl.haxx.se/>curl</a>:
+<p>Quando richiedete gli stessi dati una seconda (o terza, o quarta) volta, potete spedire insieme alla vostra richiesta un'intestazione <code>If-Modified-Since</code> contenente la data che avete ottenuto dal server l'ultima volta. Se i dati non sono cambiati da allora, il server rimanda indietro lo speciale codice di stato <abbr>HTTP</abbr> <code>304</code>, per indicare che &#8220;questi dati non sono cambiati dall'ultima volta che li avete richiesti&#8221;. Potete verificare questo comportamento dalla linea di comando, utilizzando <a href=http://curl.haxx.se/>curl</a>:
 
 <pre class='nd screen'>
 <samp class=p>you@localhost:~$ </samp><kbd>curl -I <mark>-H "If-Modified-Since: Fri, 22 Aug 2008 04:28:16 GMT"</mark> http://wearehugh.com/m.jpg</kbd>
