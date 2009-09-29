@@ -35,6 +35,8 @@ body{counter-reset:h1 3}
 <li>Il risultato della funzione viene spiegato.
 </ol>
 
+<aside>C'è sempre una directory di lavoro corrente.</aside>
+
 <p>Se non conoscete la directory di lavoro corrente, il passo n°1 probabilmente fallirà con un errore di tipo <code>ImportError</code>. Questo avviene perché Python cercherà il modulo di esempio nel <a href=il-vostro-primo-programma-python.html#importsearchpath>percorso di ricerca per le importazioni</a>, ma non lo troverà perché la cartella <code>esempi</code> non è una delle directory contenute nel percorso di ricerca. Per risolvere questo problema, avete due alternative.
 
 <ol>
@@ -108,6 +110,8 @@ body{counter-reset:h1 3}
 <h3 id=glob>Elencare il contenuto delle directory</h3>
 
 <p>Il modulo <code>glob</code> è un altro strumento incluso nella libreria standard di Python. Vi fornisce un modo facile per ottenere programmaticamente il contenuto di una directory e usa quelle combinazioni di caratteri chiamate wildcard che potreste aver già visto lavorando sulla riga di comando.
+
+<aside>Il modulo <code>glob</code> usa le wildcard tipiche della shell.</aside>
 
 <pre class=screen>
 <samp class=p>>>> </samp><kbd class=pp>os.chdir('/Users/pilgrim/diveintopython3/')</kbd>
@@ -189,6 +193,9 @@ body{counter-reset:h1 3}
 <samp>c:\Users\pilgrim\diveintopython3\esempi\feed.xml</samp></pre>
 
 <h2 id=listcomprehension>Descrizioni di lista</h2>
+
+<!--<aside>Potete usare un'espressione Python qualsiasi in una descrizione di lista.</aside>-->
+<aside>Una descrizione di lista può contenere un'espressione Python qualsiasi.</aside>
 
 <p>Una <dfn>descrizione di lista</dfn> fornisce un modo compatto di correlare una lista con un'altra lista applicando una funzione a ogni elemento della prima lista.
 

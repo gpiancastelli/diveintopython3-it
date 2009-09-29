@@ -39,7 +39,7 @@ E = 4</code></pre>
 
 <p>Rompicapi come questi sono chiamati <i>criptarismi</i> o più precisamente criptarismi <i>alfametici</i>. Le lettere formano parole vere, ma se sostituite ogni lettera con una cifra da 0 a <code>9</code>, il rompicapo &#8220;forma&#8221; anche un'equazione aritmetica. Il trucco è scoprire quali lettere corrispondono a quali cifre. Tutte le occorrenze di ogni lettera devono corrispondere alla stessa cifra, nessuna cifra può essere ripetuta e nessuna &#8220;parola&#8221; può cominciare con la cifra 0.
 
-<p>Il rompicapo alfametico più conosciuto è <code>SEND + MORE = MONEY</code>.
+<aside>Il rompicapo alfametico più conosciuto è <code>SEND + MORE = MONEY</code>.</aside>
 
 <p>In questo capitolo, analizzeremo un incredibile programma Python originariamente scritto da Raymond Hettinger. Questo programma risolve rompicapi di alfametica <em>in sole 14 righe di codice</em>.
 
@@ -107,6 +107,8 @@ if __name__ == '__main__':
 <pre class='nd screen'>
 <samp class=p>>>> </samp><kbd class=pp>re.findall(' c.*? c', 'Chi ama chiama chi ama, chiamami tu che chi ami chiami.')</kbd>
 <samp class=pp>[' chiama c', ' chiamami tu c', ' chi ami c']</samp></pre>
+
+<aside>Questo è uno degli <a href=http://it.wikipedia.org/wiki/Scioglilingua>scioglilingua più facili</a> che esistono in italiano.</aside>
 
 <p>Sorpresi? L'espressione regolare cerca uno spazio, una <code>c</code> e poi la serie di caratteri più corta possibile contenente qualsiasi carattere (<code>.*?</code>), poi uno spazio, poi un'altra <code>c</code>. Bene, guardando la stringa in ingresso, vedo cinque corrispondenze:
 
@@ -258,6 +260,8 @@ StopIteration</samp></pre>
 <li>Notate che le permutazioni sono ordinate: <code>(2, 1)</code> è diversa da <code>(1, 2)</code>.
 <li>Ecco qua! Quelle che abbiamo visto sono tutte le permutazioni degli elementi di <code>[1, 2, 3]</code> presi 2 alla volta. Coppie come <code>(1, 1)</code> e <code>(2, 2)</code> non compaiono mai, perché contengono ripetizioni e quindi non sono permutazioni valide. Quando non ci sono più permutazioni, l'iteratore solleva un'eccezione di tipo <code>StopIteration</code>.
 </ol>
+
+<aside>Il modulo <code>itertools</code> contiene i più svariati tipi di roba divertente.</aside>
 
 <p>La funzione <code>permutations()</code> non deve per forza prendere una lista. Può accettare qualsiasi sequenza&nbsp;&mdash;&nbsp;persino una stringa.
 
@@ -438,6 +442,8 @@ for guess in itertools.permutations(digits, len(characters)):
 <li>Ricordate, i byte in Python 3 sono interi. La funzione <code>ord()</code> restituisce il valore <abbr>ASCII</abbr> di un carattere, che nel caso delle lettere A&ndash;Z è sempre un byte da 65 a 90.
 <li>Il metodo <code>translate()</code> fa scorrere una stringa attraverso la tabella di traduzione passata come argomento, sostituendo tutte le occorrenze delle chiavi della tabella con i valori corrispondenti. In questo caso, &#8220;traducendo&#8221; <code>MARK</code> in <code>MORK</code>.
 </ol>
+
+<aside>Ora state arrivando alla parte <em>davvero</em> divertente.</aside>
 
 <p>Che cos'ha a che fare questo con la soluzione dei rompicapi alfametici? A quanto pare, tutto.
 

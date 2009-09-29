@@ -56,6 +56,8 @@ mark{display:inline}
 UnicodeDecodeError: 'charmap' codec can't decode byte 0x8f in position 28: character maps to &lt;undefined></samp>
 <samp class=p>>>> </samp></pre>
 
+<aside>La codifica predefinita dipende dalla piattaforma.</aside>
+
 <p>Che cos'è appena successo? Non avete specificato una codifica di carattere, quindi Python è obbligato a usare la codifica predefinita. Qual è la codifica predefinita? Se osservate attentamente la traccia dello stack, potete vedere che l'esecuzione si blocca nel file <code>cp1252.py</code>, indicando che in questo caso Python sta usando CP-1252 come codifica predefinita. (CP-1252 è una codifica comune sui computer che eseguono Microsoft Windows.) L'insieme di caratteri CP-1252 non supporta i caratteri contenuti in questo file, quindi la lettura fallisce con un brutto errore di tipo <code>UnicodeDecodeError</code>.
 
 <p>Ma aspettate, le cose sono peggio di così! La codifica predefinita <em>dipende dalla piattaforma</em>, quindi questo codice <em>potrebbe</em> funzionare sul vostro computer (se la vostra codifica predefinita è <abbr>UTF-8</abbr>), ma poi fallirebbe quando lo distribuite a qualcun altro (la cui codifica predefinita è differente, come <abbr>CP-1252</abbr>).
@@ -100,6 +102,8 @@ UnicodeDecodeError: 'charmap' codec can't decode byte 0x8f in position 28: chara
 <li>Una volta che avete aperto un file (con la codifica corretta), leggere da quel file è semplicemente una questione di invocare il metodo <code>read()</code> dell'oggetto stream. Il risultato è una stringa.
 <li>In modo forse abbastanza sorprendente, leggere ancora dal file non solleva un'eccezione. Python non considera una lettura dopo la fine del file come un errore, ma restituisce semplicemente una stringa vuota.
 </ol>
+
+<aside>Usate sempre il parametro <code>encoding</code> quando aprite un file.</aside>
 
 <p>E se voleste rileggere un file?
 
@@ -202,6 +206,8 @@ ValueError: I/O operation on closed file.</samp>
 
 <h3 id=with>Chiudere i file automaticamente</h3>
 
+<aside><code>try..finally</code> va bene. <code>with</code> va molto meglio.</aside>
+
 <p>Gli oggetti stream hanno un metodo <code>close()</code> esplicito, ma cosa succede se il vostro codice ha un bug e si blocca prima che possiate chiamare <code>close()</code>? Quel file potrebbe teoricamente rimanere aperto per un tempo molto più lungo del necessario. Mentre state effettuando il debug sul vostro computer locale questo non è un grande problema, ma su un server di produzione forse lo è.
 
 <p>Python 2 aveva una soluzione per questo: il blocco <code>try..finally</code>. Questo funziona ancora in Python 3, e potreste vederlo nel codice di altre persone o in codice più vecchio che è stato <a href=caso-di-studio-convertire-chardet-verso-python-3.html>convertito verso Python 3</a>. Ma Python 2.5 ha introdotto una soluzione più pulita, che ora è la soluzione preferita in Python 3: l'istruzione <code>with</code>.
@@ -274,6 +280,8 @@ ValueError: zero length field name in format</samp></pre>
 <p class=a>&#x2042;
 
 <h2 id=writing>Scrivere sui file di testo</h2>
+
+<aside>Dovete solo aprire un file e cominciare a scrivere.</aside>
 
 <p>Potete scrivere sui file in modo simile a come li leggete. Prima aprite un file e ottenete un oggetto stream, poi usate i metodi dell'oggetto stream per scrivere dati sul file, infine chiudete il file.
 
@@ -363,6 +371,8 @@ AttributeError: '_io.BufferedReader' object has no attribute 'encoding'</samp></
 
 <h2 id=file-like-objects>Oggetti stream per sorgenti diverse dai file</h2>
 
+<aside>Per leggere da un falso file, vi basta chiamare <code>read()</code>.</aside>
+
 <p>Immaginate di scrivere una libreria e che una delle vostre funzioni di libreria debba leggere alcuni dati da un file. La funzione potrebbe semplicemente prendere il nome di file sotto forma di stringa, aprire il file in lettura, leggerlo e chiuderlo prima di uscire. Ma non dovreste fare in questo modo. Invece, la vostra <abbr>API</abbr> dovrebbe accettare <em>un oggetto stream arbitrario</em>.
 
 <p>Nel caso più semplice, un oggetto stream è qualsiasi cosa con un metodo <code>read()</code> che accetta un parametro opzionale <var>size</var> e restituisce una stringa. Quando viene chiamato senza parametro <var>size</var>, il metodo <code>read()</code> dovrebbe leggere tutto quello che c'è da leggere dalla sorgente in ingresso e restituire tutti i dati come un singolo valore. Quando viene chiamato con il parametro <var>size</var>, il metodo legge tanti dati quanti sono stati indicati e restituisce quei dati. Quando viene nuovamente chiamato, riprende da dove era rimasto e restituisce il blocco di dati successivo.
@@ -432,6 +442,8 @@ AttributeError: '_io.BufferedReader' object has no attribute 'encoding'</samp></
 <p class=a>&#x2042;
 
 <h2 id=stdio>I canali standard di ingresso, uscita ed errore</h2>
+
+<aside><code>sys.stdin</code>, <code>sys.stdout</code>, <code>sys.stderr</code>.</aside>
 
 <p>I guru della riga di comando conoscono già il concetto di canale standard di ingresso, uscita ed errore. Questa sezione è per tutti gli altri.
 
