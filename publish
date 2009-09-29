@@ -110,18 +110,14 @@ java -jar util/yuicompressor-2.4.2.jar build/dip3.css > build/$revision.css && \
     sed -i -e "s|;}|}|g" build/m-$revision.css && \
     sed -i -e "s|;}|}|g" build/p-$revision.css || die "Failed to minimize CSS"
 
-# put CSS inline
+# put CSS inline and remove unused CSS properties on a page-by-page basis
 echo "inlining CSS"
-css=`cat build/$revision.css`
-cssit=`cat build/$revision-it.css`
-mobilecss=`cat build/m-$revision.css`
-printcss=`cat build/p-$revision.css`
-sed -i -e "s|<link rel=stylesheet href=dip3.css>|<style>${css}</style>|g" -e "s|<link rel=stylesheet href=dip3-it.css>|<style>${cssit}</style>|g" -e "s|<link rel=stylesheet media='only screen and (max-device-width: 480px)' href=mobile.css>|<style>@media screen and (max-device-width:480px){${mobilecss}}</style>|g" -e "s|<link rel=stylesheet media=print href=print.css>|<style>@media print{${printcss}}</style>|g" -e "s|</style><style>||g" build/*.html || die "Failed to inline CSS"
-
-# remove unused CSS properties on a page-by-page basis
-echo "removing unused CSS"
 for f in build/*.html; do
-  python2.6 util/lesscss.py "$f" || die "Failed to remove unused CSS"
+  css=`python2.6 util/lesscss.py "$f" "build/$revision.css"` || die "Failed to remove unused CSS"
+  cssit=`python2.6 util/lesscss.py "$f" "build/$revision-it.css"` || die "Failed to remove unused CSS"
+  mobilecss=`python2.6 util/lesscss.py "$f" "build/m-$revision.css"` || die "Failed to remove unused CSS"
+  printcss=`python2.6 util/lesscss.py "$f" "build/p-$revision.css"` || die "Failed to remove unused CSS"
+  sed -i -e "s|<link rel=stylesheet href=dip3.css>|<style>${css}</style>|g" -e "s|<link rel=stylesheet href=dip3-it.css>|<style>${cssit}</style>|g" -e "s|<link rel=stylesheet media='only screen and (max-device-width: 480px)' href=mobile.css>|<style>@media screen and (max-device-width:480px){${mobilecss}}</style>|g" -e "s|<link rel=stylesheet media=print href=print.css>|<style>@media print{${printcss}}</style>|g" -e "s|</style><style>||g" "$f" || die "Failed to inline CSS"
 done
 
 # minimize URLs
@@ -136,6 +132,7 @@ chmod 755 build/esempi build/j build/i build/d && \
     chmod 644 build/*.html build/*.css build/esempi/* build/j/* build/j/.htaccess build/i/* build/i/.htaccess build/d/.htaccess || die "Failed to reset file permissions"
 
 # ship it!
+#die "Aborting without publishing"
 echo "publishing"
 # using FTP to ship
 HOST=$1
