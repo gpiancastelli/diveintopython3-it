@@ -73,7 +73,7 @@ ZeroDivisionError: int division or modulo by zero</samp></pre>
 <p>I numeri sono meravigliosi. Ce ne sono così tanti tra cui scegliere. Python supporta sia gli <dfn>interi</dfn> che i <dfn>numeri in virgola mobile</dfn>. Non c'è alcuna dichiarazione di tipo per distinguerli, perché Python è in grado di farlo grazie alla presenza o meno del punto <dfn>decimale</dfn>.
 <pre class=screen>
 <a><samp class=p>>>> </samp><kbd class=pp>type(1)</kbd>                 <span class=u>&#x2460;</span></a>
-<samp class=pp>&lt;class 'int'></samp>
+<samp>&lt;class 'int'></samp>
 <a><samp class=p>>>> </samp><kbd class=pp>isinstance(1, int)</kbd>      <span class=u>&#x2461;</span></a>
 <samp class=pp>True</samp>
 <a><samp class=p>>>> </samp><kbd class=pp>1 + 1</kbd>                   <span class=u>&#x2462;</span></a>
@@ -81,7 +81,7 @@ ZeroDivisionError: int division or modulo by zero</samp></pre>
 <a><samp class=p>>>> </samp><kbd class=pp>1 + 1.0</kbd>                 <span class=u>&#x2463;</span></a>
 <samp class=pp>2.0</samp>
 <samp class=p>>>> </samp><kbd class=pp>type(2.0)</kbd>
-<samp class=pp>&lt;class 'float'></samp></pre>
+<samp>&lt;class 'float'></samp></pre>
 <ol>
 <li>Potete usare la funzione <code>type()</code> per controllare il tipo di qualsiasi valore o variabile. Come vi sareste aspettati, <code>1</code> è un <code>int</code>.
 <li>Similmente, potete usare la funzione <code>isinstance()</code> per controllare se un valore o una variabile è di un certo tipo.
@@ -102,7 +102,7 @@ ZeroDivisionError: int division or modulo by zero</samp></pre>
 <a><samp class=p>>>> </samp><kbd class=pp>1.12345678901234567890</kbd>  <span class=u>&#x2464;</span></a>
 <samp class=pp>1.1234567890123457</samp>
 <a><samp class=p>>>> </samp><kbd class=pp>type(1000000000000000)</kbd>  <span class=u>&#x2465;</span></a>
-<samp class=pp>&lt;class 'int'></samp></pre>
+<samp>&lt;class 'int'></samp></pre>
 <ol>
 <li>Potete convertire esplicitamente un <code>int</code> in un <code>float</code> chiamando la funzione <code>float()</code>.
 <li>Naturalmente, potete anche convertire esplicitamente un <code>float</code> in un <code>int</code> chiamando <code>int()</code>.
@@ -518,9 +518,9 @@ AttributeError: 'tuple' object has no attribute 'remove'</samp>
 <a><samp class=p>>>> </samp><kbd class=pp>is_it_true((False,))</kbd>       <span class=u>&#x2462;</span></a>
 <samp>sì, è vero</samp>
 <a><samp class=p>>>> </samp><kbd class=pp>type((False))</kbd>              <span class=u>&#x2463;</span></a>
-<samp class=pp>&lt;class 'bool'></samp>
+<samp>&lt;class 'bool'></samp>
 <samp class=p>>>> </samp><kbd class=pp>type((False,))</kbd>
-<samp class=pp>&lt;class 'tuple'></samp></pre>
+<samp>&lt;class 'tuple'></samp></pre>
 <ol>
 <li>In un contesto logico, una tupla vuota è falsa.
 <li>Qualsiasi tupla con almeno un elemento è vera.
@@ -577,7 +577,7 @@ AttributeError: 'tuple' object has no attribute 'remove'</samp>
 <samp class=p>>>> </samp><kbd class=pp>a_set</kbd>
 <samp class=pp>{1}</samp>
 <a><samp class=p>>>> </samp><kbd class=pp>type(a_set)</kbd>     <span class=u>&#x2461;</span></a>
-<samp class=pp>&lt;class 'set'></samp>
+<samp>&lt;class 'set'></samp>
 <a><samp class=p>>>> </samp><kbd class=pp>a_set = {1, 2}</kbd>  <span class=u>&#x2462;</span></a>
 <samp class=p>>>> </samp><kbd class=pp>a_set</kbd>
 <samp class=pp>{1, 2}</samp></pre>
@@ -609,12 +609,12 @@ AttributeError: 'tuple' object has no attribute 'remove'</samp>
 <a><samp class=p>>>> </samp><kbd class=pp>a_set</kbd>            <span class=u>&#x2461;</span></a>
 <samp class=pp>set()</samp>
 <a><samp class=p>>>> </samp><kbd class=pp>type(a_set)</kbd>      <span class=u>&#x2462;</span></a>
-<samp class=pp>&lt;class 'set'></samp>
+<samp>&lt;class 'set'></samp>
 <a><samp class=p>>>> </samp><kbd class=pp>len(a_set)</kbd>       <span class=u>&#x2463;</span></a>
 <samp class=pp>0</samp>
 <a><samp class=p>>>> </samp><kbd class=pp>not_sure = {}</kbd>    <span class=u>&#x2464;</span></a>
 <samp class=p>>>> </samp><kbd class=pp>type(not_sure)</kbd>
-<samp class=pp>&lt;class 'dict'></samp></pre>
+<samp>&lt;class 'dict'></samp></pre>
 <ol>
 <li>Per creare un insieme vuoto, chiamate <code>set()</code> senza argomenti.
 <li>La rappresentazione stampata di un insieme vuoto ha un'aria un po' strana. Vi sareste aspettati <code>{}</code>, forse? Ma quella rappresentazione denoterebbe un dizionario vuoto. Imparerete cosa sono i dizionari più avanti in questo capitolo.
@@ -914,7 +914,7 @@ KeyError: 'db.diveintopython3.org'</samp></pre>
 <p><code>None</code> è l'unico valore nullo. Ha un proprio tipo di dato (<code>NoneType</code>). Potete assegnare <code>None</code> a qualsiasi variabile, ma non potete creare altri oggetti di tipo <code>NoneType</code>. Tutte le varibili il cui valore è <code>None</code> sono uguali tra loro.
 <pre class='nd screen'>
 <samp class=p>>>> </samp><kbd class=pp>type(None)</kbd>
-<samp class=pp>&lt;class 'NoneType'></samp>
+<samp>&lt;class 'NoneType'></samp>
 <samp class=p>>>> </samp><kbd class=pp>None == False</kbd>
 <samp class=pp>False</samp>
 <samp class=p>>>> </samp><kbd class=pp>None == 0</kbd>
