@@ -19,19 +19,19 @@ body{counter-reset:h1 2}
 </blockquote>
 <p id=toc>&nbsp;
 <h2 id=divingin>Immersione!</h2>
-<p class=f>Mettete da parte <a href=il-vostro-primo-programma-python.html>il vostro primo programma Python</a> per un minuto, e parliamo di tipi di dato. In Python, <a href=il-vostro-primo-programma-python.html#declaringfunctions>ogni valore ha un tipo di dato</a>, ma non avete bisogno di dichiarare il tipo di dato delle variabili. Come mai? In base all'assegnamento originale di ogni variabile, Python capisce di quale tipo è e ne tiene traccia internamente.
+<p class=f>Mettete da parte <a href=il-vostro-primo-programma-python.html>il vostro primo programma Python</a> per un minuto, e parliamo di tipi di dato. In Python, <a href=il-vostro-primo-programma-python.html#declaringfunctions>ogni valore ha un tipo di dato</a>, ma non è necessario dichiarare il tipo di dato delle variabili. Come mai? In base all'assegnamento originale di ogni variabile, Python capisce di quale tipo è e ne tiene traccia internamente.
 <p>Python ha molti tipi di dato nativi. Questi sono quelli più importanti:
 <ol>
 <li><b>Booleani</b>: sono solamente <code>True</code> oppure <code>False</code>.
 <li><b>Numeri</b>: possono essere interi (<code>1</code> e <code>2</code>), reali (<code>1.1</code> e <code>1.2</code>), frazioni (<code>1/2</code> e <code>2/3</code>), o persino <a href=http://it.wikipedia.org/wiki/Numero_complesso>numeri complessi</a>.
-<li><b>Stringhe</b>: sono sequenze di caratteri Unicode, <i>e.g.</i> un documento <abbr>HTML</abbr>.
-<li><b>Byte</b> e <b>byte array</b>: <i>e.g.</i> un file <abbr>JPEG</abbr> contenente un'immagine.
+<li><b>Stringhe</b>: sono sequenze di caratteri Unicode, per esempio un documento <abbr>HTML</abbr>.
+<li><b>Byte</b> e <b>byte array</b>: per esempio un file <abbr>JPEG</abbr> contenente un'immagine.
 <li><b>Liste</b>: sono sequenze ordinate di valori.
 <li><b>Tuple</b>: sono sequenze di valori ordinate e immutabili.
 <li><b>Insiemi</b>: sono gruppi non ordinati di valori.
 <li><b>Dizionari</b>: sono gruppi non ordinati di coppie chiave-valore.
 </ol>
-<p>Naturalmente, esistono molti più tipi di questi. <a href=il-vostro-primo-programma-python.html#everythingisanobject>Ogni cosa è un oggetto</a> in Python, quindi ci sono anche tipi come <i>modulo</i>, <i>funzione</i>, <i>classe</i>, <i>metodo</i>, <i>file</i> e persino <i>codice compilato</i>. Ne avete già visti alcuni: <a href=il-vostro-primo-programma-python.html#runningscripts>i moduli hanno un nome</a>, <a href=il-vostro-primo-programma-python.html#docstrings>le funzioni sono dotate di una <code>docstring</code></a>, <i class=baa>&amp;</i>c. Imparerete cosa sono le classi nel capitolo <a href=iterators.html>Classi <i class=baa>&amp;</i> iteratori</a> e cosa sono i file nel capitolo <a href=file.html>File</a>.
+<p>Naturalmente, esistono molti più tipi di questi. <a href=il-vostro-primo-programma-python.html#everythingisanobject>Ogni cosa è un oggetto</a> in Python, quindi ci sono anche tipi come <i>modulo</i>, <i>funzione</i>, <i>classe</i>, <i>metodo</i>, <i>file</i> e persino <i>codice compilato</i>. Ne avete già visti alcuni: <a href=il-vostro-primo-programma-python.html#runningscripts>i moduli hanno un nome</a>, <a href=il-vostro-primo-programma-python.html#docstrings>le funzioni sono dotate di una <code>docstring</code></a>, <i class=baa>&amp;</i>c. Imparerete cosa sono le classi nel capitolo <a href=iteratori.html>Classi <i class=baa>&amp;</i> iteratori</a> e cosa sono i file nel capitolo <a href=file.html>File</a>.
 <p>Stringhe e byte sono abbastanza importanti&nbsp;&mdash;&nbsp;e abbastanza complicati&nbsp;&mdash;&nbsp;da essere trattati in un capitolo a parte. Diamo un'occhiata agli altri per primi.
 
 <p class=a>&#x2042;
@@ -134,7 +134,6 @@ ZeroDivisionError: int division or modulo by zero</samp></pre>
 <li>L'operatore <code>/</code> esegue la divisione in virgola mobile. Restituisce un <code>float</code> anche quando il numeratore e il denominatore sono entrambi numeri di tipo <code>int</code>.
 <li>L'operatore <code>//</code> esegue un tipo strambo di divisione tra interi. Quando il risultato è positivo, potete immaginarla come un troncamento (non un arrotondamento) a 0 decimali, ma fate attenzione.
 <li>Quando eseguite la divisione intera tra numeri negativi, l'operatore <code>//</code> arrotonda &#8220;per eccesso&#8221; verso l'intero più vicino. Matematicamente parlando, l'arrotondamento è &#8220;per difetto&#8221;, dato che <code>&minus;6</code> è inferiore a <code>&minus;5</code>, ma se vi attendete un troncamento a <code>&minus;5</code> potreste essere indotti in errore.
-<!--potrebbe indurvi a un errore se vi aspettaste un troncamento a <code>&minus;5</code>.-->
 <li>L'operatore <code>//</code> non restituisce sempre un intero. Se il numeratore o il denominatore sono di tipo <code>float</code>, effettuerà un arrontondamento all'intero più vicino, ma l'effettivo valore di ritorno sarà un <code>float</code>.
 <li>L'operatore <code>**</code> significa &#8220;elevato alla potenza di&#8221;. <code>11<sup>2</sup></code> vale <code>121</code>.
 <li>L'operatore <code>%</code> dà il resto dopo aver effettuato una divisione di tipo intero. <code>11</code> diviso per <code>2</code> vale <code>5</code> con il resto di <code>1</code>, quindi il risultato in questo caso è <code>1</code>.
@@ -178,7 +177,7 @@ ZeroDivisionError: Fraction(0, 0)</samp></pre>
 <samp class=pp>0.99999999999999989</samp></pre>
 <ol>
 <li>Il modulo <code>math</code> include una costante per &pi;, il rapporto tra la circonferenza di un cerchio e il suo diametro.
-<li>Il modulo <code>math</code> contiene tutte le funzioni trigonometriche di base, comprese <code>sin()</code>, <code>cos()</code>, <code>tan()</code>, e varianti come <code>asin()</code>.
+<li>Il modulo <code>math</code> contiene tutte le funzioni trigonometriche di base, comprese <code>sin()</code>, <code>cos()</code>, <code>tan()</code> e varianti come <code>asin()</code>.
 <li>Notate, comunque, che la precisione numerica di Python non è infinita. <code>tan(&pi; / 4)</code> dovrebbe restituire <code>1.0</code>, non <code>0.99999999999999989</code>.
 </ol>
 <h3 id=numbers-in-a-boolean-context>Numeri in un contesto logico</h3>
@@ -208,8 +207,8 @@ ZeroDivisionError: Fraction(0, 0)</samp></pre>
 <samp>no, è falso</samp></pre>
 <ol>
 <li>Sapevate di poter definire le vostre funzioni nella shell interattiva di Python? Vi basta premere <kbd>INVIO</kbd> alla fine di ogni riga, e <kbd>INVIO</kbd> su una riga vuota per concludere la definizione.
-<li>In un contesto logico, gli interi diversi da zero sono veri; 0 è falso.
-<li>I numeri in virgola mobile diversi da zero sono veri; <code>0.0</code> è falso. Fate attenzione! Se c'è anche il più piccolo errore di arrotondamento (non impossibile, come avete visto nella sezione precedente) allora Python opererà su <code>0.0000000000001</code> invece di 0 e restituirà <code>True</code>.
+<li>In un contesto logico, gli interi diversi da zero sono veri e 0 è falso.
+<li>I numeri in virgola mobile diversi da zero sono veri e <code>0.0</code> è falso. Fate attenzione! Se c'è anche il più piccolo errore di arrotondamento (non impossibile, come avete visto nella sezione precedente) allora Python opererà su <code>0.0000000000001</code> invece di 0 e restituirà <code>True</code>.
 <li>Anche le frazioni possono essere usate in un contesto logico. <code>Fraction(0, n)</code> è falso per tutti i valori di <var>n</var>. Tutte le altre frazioni sono vere.
 </ol>
 
@@ -241,7 +240,7 @@ ZeroDivisionError: Fraction(0, 0)</samp></pre>
 <li>Per prima cosa, definite una lista di cinque elementi. Notate che essi mantengono il loro ordine originale. Questo non è un caso, poiché una lista è un insieme ordinato di elementi.
 <li>Una lista può essere usata come un array il cui indice parte da zero. Il primo elemento di una lista non vuota è sempre <code>a_list[0]</code>.
 <li>L'ultimo elemento di questa lista di cinque elementi è <code>a_list[4]</code>, perché l'indice delle liste parte sempre da zero.
-<li>Un indice negativo accede gli elementi a partire dalla fine della lista, contando all'indietro. L'ultimo elemento di una lista non vuota è sempre <code>a_list[-1]</code>.
+<li>Un indice negativo accede agli elementi a partire dalla fine della lista, contando all'indietro. L'ultimo elemento di una lista non vuota è sempre <code>a_list[-1]</code>.
 <li>Se l'indice negativo vi confonde, pensatela in questo modo: <code>a_list[-<var>n</var>] == a_list[len(a_list) - <var>n</var>]</code>. Quindi, in questa lista, <code>a_list[-3] == a_list[5 - 3] == a_list[2]</code>.
 </ol>
 <h3 id=slicinglists>Affettare una lista</h3>
@@ -264,7 +263,7 @@ ZeroDivisionError: Fraction(0, 0)</samp></pre>
 <samp class=pp>['a', 'b', 'mpilgrim', 'z', 'esempio']</samp></pre>
 <ol>
 <li>Potete ottenere una parte di una lista, chiamata &#8220;fetta&#8221;, specificando due indici. Il valore di ritorno è una nuova lista che contiene tutti gli elementi della lista, in ordine, a cominciare dal primo indice della fetta (in questo caso <code>a_list[1]</code>) fino al secondo indice della fetta escluso (in questo caso <code>a_list[3]</code>).
-<li>Affettare una lista funziona anche se uno o entrambi gli indici della fetta sono negativi. Se vi è d'aiuto, potete pensarla in questo modo: leggendo la lista da sinistra a destra, il primo indice della fetta indica il primo elemento che volete, e il secondo indice della fetta indica il primo elemento che non volete. Il valore di ritorno è tutto quello che sta in mezzo.
+<li>L'affettatura di una lista funziona anche se uno o entrambi gli indici della fetta sono negativi. Se vi è d'aiuto, potete pensarla in questo modo: leggendo la lista da sinistra a destra, il primo indice della fetta indica il primo elemento che volete, e il secondo indice della fetta indica il primo elemento che non volete. Il valore di ritorno è tutto quello che sta in mezzo.
 <li>L'indice delle liste comincia da zero, quindi <code>a_list[0:3]</code> restituisce i primi tre elementi della lista, cominciando da <code>a_list[0]</code> fino a <code>a_list[3]</code> escluso.
 <li>Se l'indice sinistro della fetta è 0, potete ometterlo e 0 diventa implicito. Quindi <code>a_list[:3]</code> è la stessa cosa di <code>a_list[0:3]</code>, perché lo 0 iniziale è implicito.
 <li>Similmente, se l'indice destro della fetta è la lunghezza della lista, potete ometterlo. Quindi <code>a_list[3:]</code> è la stessa cosa di <code>a_list[3:5]</code>, perché questa lista ha cinque elementi. C'è una piacevole simmetria qui. In questa lista di cinque elementi, <code>a_list[:3]</code> restituisce i primi 3 elementi e <code>a_list[3:]</code> restituisce gli ultimi due elementi. In effetti, <code>a_list[:<var>n</var>]</code> restituirà sempre i primi <var>n</var> elementi e <code>a_list[<var>n</var>:]</code> restituirà il resto, a prescindere dalla lunghezza della lista.
@@ -342,12 +341,12 @@ ValueError: list.index(x): x not in list</samp></pre>
 
 <li>Come potreste aspettarvi, il metodo <code>count()</code> restituisce il numero di occorrenze di uno specifico valore in una lista.
 <li>Nel caso tutto quello che vogliate sapere sia se un valore è presente nella lista oppure no, l'operatore <code>in</code> è leggermente più veloce rispetto al metodo <code>count()</code>. L'operatore <code>in</code> restituisce sempre <code>True</code> o <code>False</code>, senza dirvi dove si trova il valore.
-<li>Se avete bisogno di sapere esattamente dove si trova un valore nella lista, chiamate il metodo <code>index()</code>. Per default cercherà nell'intera lista, anche se potete specificare come secondo argomento l'indice (a partire da 0) da cui cominciare, e persino l'indice (a partire da 0) in cui terminare la ricerca come terzo argomento.
+<li>Se avete bisogno di sapere esattamente dove si trova un valore nella lista, chiamate il metodo <code>index()</code>. Per default cercherà nell'intera lista, anche se potete specificare come secondo argomento l'indice (a partire da 0) da cui cominciare, e come terzo argomento persino l'indice (a partire da 0) in cui terminare la ricerca.
 <li>Il metodo <code>index()</code> trova la <em>prima</em> occorrenza di un valore nella lista. In questo caso, <code>'nuovo'</code> appare due volte nella lista, in <code>a_list[2]</code> e <code>a_list[4]</code>, ma il metodo <code>index()</code> restituirà solamente l'indice della prima occorrenza.
-<li>Come <em>non</em> vi sareste aspettati, se il valore non viene trovato nella lista, il metodo <code>index()</code> solleverà un'eccezione.
+<li>Come <em>non</em> vi sareste aspettati, se il valore non viene trovato nella lista il metodo <code>index()</code> solleverà un'eccezione.
 </ol>
 
-<p>Siete sorpresi? Ma è così: il metodo <code>index()</code> solleva un'eccezione se non trova il valore nella lista. Questa è una differenza considerevole rispetto alla maggior parte dei linguaggi, che resituiscono un qualche indice non valido (come <code>-1</code>). Mentre questo può sembrare fastidioso all'inizio, penso che finirete per apprezzarlo. Significa che il vostro programma fallirà alla sorgente del problema invece di fallire stranamente e silenziosamente più tardi. Ricordate, <a href=#creatinglists><code>-1</code> è un indice di lista valido</a>. Se il metodo <code>index()</code> restituisse <code>-1</code>, questo potrebbe condurre ad alcune sessioni di debug non esattamente divertenti!
+<p>Siete sorpresi? Ma è così: il metodo <code>index()</code> solleva un'eccezione se non trova il valore nella lista. Questa è una differenza considerevole rispetto alla maggior parte dei linguaggi, che resituiscono un qualche indice non valido (come <code>-1</code>). Sebbene questo possa sembrare fastidioso all'inizio, penso che finirete per apprezzarlo. Significa che il vostro programma fallirà alla sorgente del problema invece di fallire stranamente e silenziosamente più tardi. Ricordate, <a href=#creatinglists><code>-1</code> è un indice di lista valido</a>. Se il metodo <code>index()</code> restituisse <code>-1</code>, questo potrebbe condurre ad alcune sessioni di debug non esattamente divertenti!
 
 <h3 id=removingfromlists>Rimuovere elementi da una lista</h3>
 
@@ -410,13 +409,13 @@ ValueError: list.remove(x): x not in list</samp></pre>
   File "&lt;stdin>", line 1, in &lt;module>
 IndexError: pop from empty list</samp></pre>
 <ol>
-<li>Quando viene invocato senza argomenti, il metodo <code>pop()</code> per le liste rimuove l'ultimo elemento nella lista <em>e restituisce il valore che ha rimosso</em>.
+<li>Quando viene invocato senza argomenti, il metodo <code>pop()</code> delle liste rimuove l'ultimo elemento nella lista <em>e restituisce il valore che ha rimosso</em>.
 <li>Potete rimuovere elementi arbitrari da una lista passando un indice posizionale al metodo <code>pop()</code>. Il metodo rimuoverà quell'elemento, sposterà tutti gli elementi seguenti per &#8220;riempire il buco&#8221; e restituirà il valore che ha rimosso.
 <li>Invocare <code>pop()</code> su una lista vuota solleva un'eccezione.
 </ol>
 
 <blockquote class='note compare perl'>
-<p><span class=u>&#x261E;</span>Chiamare il metodo <code>pop()</code> per le liste senza un argomento ha lo stesso effetto della funzione <code>pop()</code> in Perl: rimuove l'ultimo elemento da una lista e restituisce il valore dell'elemento rimosso. Perl possiede un'altra funzione, <code>shift()</code>, che rimuove il primo elemento e restituisce il suo valore; in Python, questa operazione è equivalente a <code><var>a_list</var>.pop(0)</code>.
+<p><span class=u>&#x261E;</span>Chiamare il metodo <code>pop()</code> delle liste senza un argomento ha lo stesso effetto della funzione <code>pop()</code> in Perl: rimuove l'ultimo elemento da una lista e restituisce il valore dell'elemento rimosso. Perl possiede un'altra funzione, <code>shift()</code>, che rimuove il primo elemento e restituisce il suo valore; in Python, questa operazione è equivalente a <code><var>a_list</var>.pop(0)</code>.
 </blockquote>
 
 <h3 id=lists-in-a-boolean-context>Liste in un contesto logico</h3>
@@ -459,9 +458,9 @@ IndexError: pop from empty list</samp></pre>
 <samp class=pp>('b', 'mpilgrim')</samp></pre>
 <ol>
 <li>Una tupla si definisce nello stesso modo di una lista, a parte il fatto che l'intero insieme di elementi è racchiuso tra parentesi tonde invece che parentesi quadre.
-<li>Gli elementi di una tupla hanno un ordine definito, esattamente come in una lista. Gli indici di una tupla partono da zero, esattamente come una in lista, quindi il primo elemento di una tupla non vuota è sempre <code>a_tuple[0]</code>.
+<li>Gli elementi di una tupla hanno un ordine definito, esattamente come in una lista. Gli indici di una tupla partono da zero, esattamente come in una lista, quindi il primo elemento di una tupla non vuota è sempre <code>a_tuple[0]</code>.
 <li>Gli indici negativi partono dalla fine della tupla, esattamente come in una lista.
-<li>Anche l'affettamento funziona esattamente come per una lista. Quando affettate una lista, ottenete una nuova lista; quando affettate una tupla, ottenete una nuova tupla.
+<li>Anche l'affettatura funziona esattamente come per una lista. Quando affettate una lista, ottenete una nuova lista; quando affettate una tupla, ottenete una nuova tupla.
 </ol>
 
 <p>La differenza principale tra tuple e liste è che le tuple non possono essere modificate. In termini tecnici, le tuple sono <dfn>immutabili</dfn>. In termini pratici, non sono dotate di alcun metodo che vi permetterebbe di modificarle. Le liste hanno metodi come <code>append()</code>, <code>extend()</code>, <code>insert()</code>, <code>remove()</code> e <code>pop()</code>. Le tuple sono prive di tutti questi metodi. Potete affettare una tupla (perché questa operazione crea una nuova tupla) e potete controllare se una tupla contiene un particolare valore (perché questa operazione non modifica la tupla) e&hellip; questo è tutto.
@@ -525,8 +524,8 @@ AttributeError: 'tuple' object has no attribute 'remove'</samp>
 <ol>
 <li>In un contesto logico, una tupla vuota è falsa.
 <li>Qualsiasi tupla con almeno un elemento è vera.
-<li>Qualsiasi tupla con almeno un elemento è vera. Il valore degli elementi è irrilevante. Ma cosa fa lì quella virgola?
-<li>Per creare una tupla di un elemento, dovete inserire una virgola dopo il valore. Senza la virgola, Python assume semplicemente che abbiate inserito una coppia aggiuntiva di parentesi, che è innocua ma non crea una tupla.
+<li>Qualsiasi tupla con almeno un elemento è vera. Il valore degli elementi è irrilevante. Ma cosa ci fa lì quella virgola?
+<li>Per creare una tupla di un elemento, dovete inserire una virgola dopo il valore. Senza la virgola, Python presume che abbiate semplicemente inserito una coppia aggiuntiva di parentesi, che è innocua ma non crea una tupla.
 </ol>
 
 <h3 id=multivar>Assegnare più di un valore alla volta</h3>
@@ -557,7 +556,7 @@ AttributeError: 'tuple' object has no attribute 'remove'</samp>
 <samp class=p>>>> </samp><kbd class=pp>SUNDAY</kbd>
 <samp class=pp>6</samp></pre>
 <ol>
-<li>La funzione predefinita <code>range()</code> costruisce una sequenza di interi. (Tecnicamente, la funzione <code>range()</code> restuitsce un <a href=iterators.html>iteratore</a>, non una lista di tuple, ma imparerete la distinzione più avanti.) <var>MONDAY</var>, <var>TUESDAY</var>, <var>WEDNESDAY</var>, <var>THURSDAY</var>, <var>FRIDAY</var>, <var>SATURDAY</var> e <var>SUNDAY</var> sono le variabili che state definendo. (Questo esempio proviene dal modulo <code>calendar</code>, un piccolo modulo divertente che stampa calendari, come il programma <abbr>UNIX</abbr> <code>cal</code>. Il modulo <code>calendar</code> definisce costanti intere per i giorni della settimana.)
+<li>La funzione predefinita <code>range()</code> costruisce una sequenza di interi. (Tecnicamente, la funzione <code>range()</code> restuitsce un <a href=iteratori.html>iteratore</a>, non una lista di tuple, ma imparerete la distinzione più avanti.) <var>MONDAY</var>, <var>TUESDAY</var>, <var>WEDNESDAY</var>, <var>THURSDAY</var>, <var>FRIDAY</var>, <var>SATURDAY</var> e <var>SUNDAY</var> sono le variabili che state definendo. (Questo esempio proviene dal modulo <code>calendar</code>, un piccolo modulo divertente che stampa calendari, come il programma <abbr>UNIX</abbr> <code>cal</code>. Il modulo <code>calendar</code> definisce costanti intere per i giorni della settimana.)
 <li>Ora ogni variabile ha il suo valore: <var>MONDAY</var> vale 0, <var>TUESDAY</var> vale <code>1</code>, e così via.
 </ol>
 
@@ -567,7 +566,7 @@ AttributeError: 'tuple' object has no attribute 'remove'</samp>
 
 <h2 id=sets>Insiemi</h2>
 
-<p>Un <dfn>insieme</dfn> è un &#8220;gruppo&#8221; non ordinato di valori unici. Un singolo insieme può contenete valori di qualsiasi tipo di dato. Una volta che avete due insiemi, potete effettuare le classiche operazioni sugli insiemi come l'unione, l'intersezione e la differenza tra insiemi.
+<p>Un <dfn>insieme</dfn> è un &#8220;gruppo&#8221; non ordinato di valori unici. Un singolo insieme può contenere valori di qualsiasi tipo di dato. Una volta che avete due insiemi, potete effettuare le classiche operazioni sugli insiemi come l'unione, l'intersezione e la differenza tra insiemi.
 
 <h3 id=creating-a-set>Creare un insieme</h3>
 
@@ -584,7 +583,7 @@ AttributeError: 'tuple' object has no attribute 'remove'</samp>
 <samp class=pp>{1, 2}</samp></pre>
 <ol>
 <li>Per creare un insieme con un valore, mettete il valore tra parentesi graffe (<code>{}</code>).
-<li>Gli insiemi sono effettivamente implementati come <a href=iterators.html#defining-classes>classi</a>, ma non preoccupatevi di questo per ora.
+<li>Gli insiemi sono effettivamente implementati come <a href=iteratori.html#defining-classes>classi</a>, ma non preoccupatevi di questo per ora.
 <li>Per creare un insieme con più valori, separate i valori con virgole e circondate il tutto con parentesi graffe.
 </ol>
 
@@ -837,7 +836,7 @@ KeyError: 'db.diveintopython3.org'</samp></pre>
 <li>Per prima cosa, create un nuovo dizionario con due elementi e assegnatelo alla variabile <var>a_dict</var>. Ogni elemento è una coppia chiave-valore, e l'intero insieme di elementi è racchiuso tra parentesi graffe.
 <li><code>'server'</code> è una chiave, e il suo valore associato, riferito da <code>a_dict['server']</code>, è <code>'db.diveintopython3.org'</code>.
 <li><code>'database'</code> è una chiave, e il suo valore associato, riferito da <code>a_dict['database']</code>, è <code>'mysql'</code>.
-<li>Potete ottenere i valori attraverso le chiavi, ma non potete ottenere le chiavi attraverso i valori. Quindi, <code>a_dict['server']</code> è <code>'db.diveintopython3.org'</code>, ma <code>a_dict['db.diveintopython3.org']</code> solleva un'eccezione, perché <code>'db.diveintopython3.org'</code> non è una chiave.
+<li>Potete ottenere i valori attraverso le chiavi, ma non potete ottenere le chiavi attraverso i valori. Quindi, <code>a_dict['server']</code> è <code>'db.diveintopython3.org'</code>, ma <code>a_dict['db.diveintopython3.org']</code> solleva un'eccezione perché <code>'db.diveintopython3.org'</code> non è una chiave.
 </ol>
 <h3 id=modifying-dictionaries>Modificare un dizionario</h3>
 <p>I dizionari non hanno alcun limite predefinito sulla propria dimensione. Potete aggiungere nuove coppie chiave-valore a un dizionario in ogni momento, oppure potete modificare il valore di una chiave esistente. Continuando dall'esempio precedente:
@@ -861,7 +860,7 @@ KeyError: 'db.diveintopython3.org'</samp></pre>
 <li>Potete aggiungere nuove coppie chiave-valore in ogni momento. Questa sintassi è identica a quella per modificare valori già esistenti.
 <li>Il nuovo elemento del dizionario (chiave <code>'user'</code>, valore <code>'mark'</code>) appare nel mezzo. In effetti, è stata solamente una coincidenza che gli elementi apparissero in ordine nel primo esempio; è allo stesso modo una coincidenza che appaiano fuori ordine ora.
 <li>Assegnare un valore a una chiave esistente nel dizionario sostituisce semplicemente il vecchio valore con il nuovo.
-<li>Questo assegnamento reinserirà "mark" come valore della chiave <code>user</code>? No! Guardate bene la chiave&nbsp;&mdash;&nbsp;c'è una <kbd>U</kbd> maiuscola in <kbd>"User"</kbd>. Le chiavi di un dizionario sono sensibili alle maiuscole, quindi questa istruzione crea una nuova coppia chiave-valore, senza sovrascriverne una esistente. A voi potrebbe sembrare simile, ma per quanto riguarda Python la chiave è completamente diversa.
+<li>Questo assegnamento reinserirà <code>'mark'</code> come valore della chiave <code>'user'</code>? No! Guardate bene la chiave&nbsp;&mdash;&nbsp;c'è una <kbd>U</kbd> maiuscola in <kbd>'User'</kbd>. Le chiavi di un dizionario sono sensibili alle maiuscole, quindi questa istruzione crea una nuova coppia chiave-valore, senza sovrascriverne una esistente. A voi potrebbe sembrare simile, ma per quanto riguarda Python la chiave è completamente diversa.
 </ol>
 <h3 id=mixed-value-dictionaries>Dizionari a valori misti</h3>
 <p>I dizionari non funzionano solo con le stringhe. I valori in un dizionario possono appartenere a qualsiasi tipo di dato, compresi interi, booleani, oggetti arbitrari e persino altri dizionari. E all'interno di un singolo dizionario i valori non devono essere tutti dello stesso tipo, ma potete mescolarli a piacimento. Le chiavi di un dizionario hanno maggiori restrizioni, ma possono essere stringhe, interi, e di pochi altri tipi. Potete mescolare anche i tipi di dato delle chiavi all'interno di un singolo dizionario.
@@ -885,9 +884,9 @@ KeyError: 'db.diveintopython3.org'</samp></pre>
 <ol>
 <li>Similmente a quello che accade per le <a href=#lists>liste</a> e gli <a href=#sets>insiemi</a>, la funzione <code>len()</code> vi restituisce il numero di chiavi in un dizionario.
 <li>E come per le liste e gli insiemi, potete usare l'operatore <code>in</code> per verificare se una chiave specifica è definita in un dizionario.
-<li><code>1000</code> <em>è</em> una chiave nel dizionario <code>SUFFIXES</code>; il suo valore è una lista di otto elementi (otto stringhe, per essere precisi).
-<li>Similmente, <code>1024</code> è una chiave nel dizionario <code>SUFFIXES</code>; il suo valore è anch'esso una lista di otto elementi.
-<li>Dato che <code>SUFFIXES[1000]</code> è una lista, potete accedere ai singoli elementi in quella lista attraverso il loro indice a partire da 0.
+<li><code>1000</code> <em>è</em> una chiave nel dizionario <code>SUFFIXES</code> e il suo valore è una lista di otto elementi (otto stringhe, per essere precisi).
+<li>Similmente, <code>1024</code> è una chiave nel dizionario <code>SUFFIXES</code> e il suo valore è anch'esso una lista di otto elementi.
+<li>Dato che <code>SUFFIXES[1000]</code> è una lista, potete accedere ai singoli elementi contenuti in quella lista attraverso il loro indice a partire da 0.
 </ol>
 <h3 id=dictionaries-in-a-boolean-context>Dizionari in un contesto logico</h3>
 <aside>I dizionari vuoti sono falsi; tutti gli altri dizionari sono veri.</aside>
