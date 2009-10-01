@@ -103,7 +103,7 @@ body{counter-reset:h1 3}
 <samp class=pp>'.py'</samp></pre>
 <ol>
 <li>La funzione <code>split()</code> suddivide un nome di percorso completo e restituisce una tupla contenente il percorso e il nome di file.
-<li>Ricordate quando ho detto che potevate usare un <a href=tipi-di-dato-nativi.html#multivar>assegnamento multi-variabile</a> per restituire più di un valore da una funzione? La funzione <code>os.path.split()</code> fa esattamente questo. Se assegnate il valore restituito dalla funzione <code>split()</code> a una tupla di due variabili, ogni variabile riceve il valore del corrispondente elemento contenuto nella tupla restituita.
+<li>Ricordate quando ho detto che potevate usare un <a href=tipi-di-dato-nativi.html#multivar>assegnamento multivariabile</a> per restituire più di un valore da una funzione? La funzione <code>os.path.split()</code> fa esattamente questo. Se assegnate il valore restituito dalla funzione <code>split()</code> a una tupla di due variabili, ogni variabile riceve il valore del corrispondente elemento contenuto nella tupla restituita.
 <li>La prima variabile, <var>dirname</var>, riceve il primo elemento della tupla restituita dalla funzione <code>os.path.split()</code>, cioè il percorso del file.
 <li>La seconda variabile, <var>filename</var>, riceve il valore del secondo elemento della tupla restituita dalla funzione <code>os.path.split()</code>, cioè il nome del file.
 <li>Il modulo <code>os.path</code> contiene anche la funzione <code>os.path.splitext()</code>, che suddivide un nome di file e restituisce una tupla contenente il nome del file e l'estensione del file. Potete usare la tecnica già vista per assegnare ogni valore a variabili separate.
