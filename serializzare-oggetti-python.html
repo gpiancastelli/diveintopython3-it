@@ -205,9 +205,9 @@ NameError: name 'entry' is not defined</samp>
 <p>Che aspetto ha il protocollo pickle? Abbandoniamo la Shell Python per un momento e diamo un'occhiata a quel file <code>entry.pickle</code> che abbiamo creato.
 
 <pre class=screen>
-<samp class=p>you@localhost:~/diveintopython3/examples$ </samp><kbd>ls -l entry.pickle</kbd>
+<samp class=p>you@localhost:~/diveintopython3/esempi$ </samp><kbd>ls -l entry.pickle</kbd>
 <samp>-rw-r--r-- 1 you  you  365 Aug  3 13:34 entry.pickle</samp>
-<samp class=p>you@localhost:~/diveintopython3/examples$ </samp><kbd>cat entry.pickle</kbd>
+<samp class=p>you@localhost:~/diveintopython3/esempi$ </samp><kbd>cat entry.pickle</kbd>
 <samp>comments_linkqNXtagsqXdiveintopythonqXdocbookqXhtmlq?qX publishedq?
 XlinkXJhttp://diveintomark.org/archives/2009/03/27/dive-into-history-2009-edition
 q   Xpublished_dateq
@@ -283,7 +283,7 @@ struct_time
 
 <p>L'informazione più interessante in questo disassemblato si trova sull'ultima riga, perché include la versione del protocollo pickle con la quale questo file è stato salvato. Non c'è alcun contrassegno di versione esplicito nel protocollo pickle. Per determinare la versione del protocollo che è stata usata per memorizzare un file pickle, dovete esaminare i contrassegni (chiamati &#8220;opcode&#8221; in inglese) all'interno dei dati serializzati e usare la conoscenza cablata di quali opcode sono stati introdotti con ogni versione del protocollo pickle. La funzione <code>pickle.dis()</code> fa proprio questo, e stampa il risultato nell'ultima riga del disassemblato. Ecco una funzione che restituisce solo il numero di versione, senza stampare nulla:
 
-<p class=d>[<a href=examples/pickleversion.py>scarica <code>pickleversion.py</code></a>]
+<p class=d>[<a href=esempi/pickleversion.py>scarica <code>pickleversion.py</code></a>]
 <pre class=pp><code>import pickletools
 
 def protocol_version(file_object):
@@ -340,7 +340,7 @@ def protocol_version(file_object):
 <p>Quindi che aspetto ha la serializzazione <abbr>JSON</abbr> risultante?
 
 <pre class=screen>
-<samp class=p>you@localhost:~/diveintopython3/examples$ </samp><kbd>cat basic.json</kbd>
+<samp class=p>you@localhost:~/diveintopython3/esempi$ </samp><kbd>cat basic.json</kbd>
 <samp>{"published": true, "tags": ["diveintopython", "docbook", "html"], "comments_link": null,
 "id": 256, "title": "Immersione nella storia, edizione 2009"}</samp></pre>
 
@@ -358,7 +358,7 @@ def protocol_version(file_object):
 <p>E questo è il risultato:
 
 <pre class=screen>
-<samp class=p>you@localhost:~/diveintopython3/examples$ </samp><kbd>cat basic-pretty.json</kbd>
+<samp class=p>you@localhost:~/diveintopython3/esempi$ </samp><kbd>cat basic-pretty.json</kbd>
 <samp>{
   "published": true, 
   "tags": [
@@ -486,7 +486,7 @@ def protocol_version(file_object):
     for chunk in chunks:
   File "C:\Python31\lib\json\encoder.py", line 416, in _iterencode
     o = _default(o)
-  File "/Users/pilgrim/diveintopython3/examples/customserializer.py", line 12, in to_json
+  File "/Users/pilgrim/diveintopython3/esempi/customserializer.py", line 12, in to_json
 <a>    raise TypeError(repr(python_object) + ' non è serializzabile in JSON')                 <span class=u>&#x2463;</span></a>
 TypeError: time.struct_time(tm_year=2009, tm_mon=3, tm_mday=27, tm_hour=22, tm_min=20, tm_sec=42, tm_wday=4, tm_yday=86, tm_isdst=-1) non è serializzabile in JSON</samp></pre>
 <ol>
@@ -524,9 +524,9 @@ def to_json(python_object):
 <samp class=p>... </samp></pre>
 
 <pre class=screen>
-<samp class=p>you@localhost:~/diveintopython3/examples$ </samp><kbd>ls -l example.json</kbd>
+<samp class=p>you@localhost:~/diveintopython3/esempi$ </samp><kbd>ls -l example.json</kbd>
 <samp>-rw-r--r-- 1 you  you  391 Aug  3 13:34 entry.json</samp>
-<samp class=p>you@localhost:~/diveintopython3/examples$ </samp><kbd>cat example.json</kbd>
+<samp class=p>you@localhost:~/diveintopython3/esempi$ </samp><kbd>cat example.json</kbd>
 <samp>{"published_date": {"__class__": "time.asctime", "__value__": "Fri Mar 27 22:20:42 2009"},
 "comments_link": null, "internal_id": {"__class__": "bytes", "__value__": [222, 213, 180, 248]},
 "tags": ["diveintopython", "docbook", "html"], "title": "Immersione nella storia, edizione 2009",
