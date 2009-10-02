@@ -19,9 +19,9 @@ body{counter-reset:h1 7}
 </blockquote>
 <p id=toc>&nbsp;
 <h2 id=divingin>Immersione!</h2>
-<p class=f>In verità, i generatori sono solo un caso speciale di <i>iteratori</i>. Una funzione che produce valori tramite <code>yield</code> è un modo carino e compatto di costruire un iteratore senza costruire un iteratore. Lasciate che vi mostri cosa voglio dire.
+<p class=f>In verità, i generatori sono solo un caso speciale di <i>iteratori</i>. Una funzione che produce valori tramite <code>yield</code> è un modo gradevole e compatto di costruire un iteratore senza costruire un iteratore. Lasciate che vi mostri cosa voglio dire.
 
-<p>Ricordate il <a href=a-fibonacci-generator>generatore di Fibonacci</a>? Qui di seguito lo trovate reimplementato da zero sotto forma di iteratore:
+<p>Ricordate il <a href=generatori.html#a-fibonacci-generator>generatore di Fibonacci</a>? Qui di seguito lo trovate reimplementato da zero sotto forma di iteratore:
 
 <p class=d>[<a href=esempi/fibonacci2.py>scarica <code>fibonacci2.py</code></a>]
 <pre class=pp><code>class Fib:
@@ -59,7 +59,7 @@ body{counter-reset:h1 7}
 <a>    pass           <span class=u>&#x2461;</span></a></code></pre>
 <ol>
 <li>Il nome di questa classe è <code>PapayaWhip</code>, e non eredita da nessun'altra classe. I nomi delle classi solitamente cominciano con una lettera maiuscola, <code>OgniParolaInQuestoModo</code>, ma questa è solo una convenzione, non un obbligo.
-<li>Lo avrete probabilmente già indovinato, ma ogni cosa in una classe è indentata, esattamente come il codice all'interno di una funzione, di un'istruzione <code>if</code>, dei cicli <code>for</code>, o di ogni altro blocco di codice. La prima riga non indentata non fa più parte della definizione di classe.
+<li>Lo avrete probabilmente già indovinato, ma ogni cosa in una classe è indentata, esattamente come il codice all'interno di una funzione, di un'istruzione <code>if</code>, di un ciclo <code>for</code>, o di ogni altro blocco di codice. La prima riga non indentata non fa più parte della definizione di classe.
 </ol>
 
 <p>Questa classe <code>PapayaWhip</code> non definisce alcun metodo o attributo, ma sintatticamente la definizione deve contenere qualcosa, ed ecco il motivo per la presenza di quella istruzione <code>pass</code>. Questa è una parola riservata di Python che significa solo &#8220;circolate, non c'è nulla da vedere&#8221;. &Egrave; un'istruzione che non fa nulla, e un buon segnaposto da sfruttare quando state definendo lo scheletro di funzioni o classi.
@@ -80,12 +80,12 @@ body{counter-reset:h1 7}
 <a>    def __init__(self, max):                                          <span class=u>&#x2461;</span></a></code></pre>
 <ol>
 <li>Anche le classi possono (e dovrebbero) avere una <code>docstring</code>, esattamente come i moduli e le funzioni.
-<li>Il metodo <code>__init__()</code> viene chiamato immediatamente dopo la creazione di un'istanza della classe. Sarebbe allettante&nbsp;&mdash;&nbsp;ma tecnicamente scorretto&nbsp;&mdash;&nbsp;dire che questo metodo è il &#8220;costruttore&#8221; della classe. &Egrave; allettante, perché il metodo somiglia a un costruttore <abbr>C++</abbr> (per convenzione, il metodo <code>__init__()</code> è il primo metodo definito nella classe), agisce come un costruttore (è il primo frammento di codice eseguito in un'istanza appena creata della classe) e ha persino un nome che suona come quello di un costruttore. Ma è scorretto, perché l'oggetto è già stato costruito nel momento in cui il metodo <code>__init__()</code> viene invocato, e un riferimento valido alla nuova istanza della classe è già disponibile.
+<li>Il metodo <code>__init__()</code> viene chiamato immediatamente dopo la creazione di un'istanza della classe. Sarebbe allettante&nbsp;&mdash;&nbsp;ma tecnicamente scorretto&nbsp;&mdash;&nbsp;dire che questo metodo è il &#8220;costruttore&#8221; della classe. &Egrave; allettante perché il metodo somiglia a un costruttore <abbr>C++</abbr> (per convenzione, il metodo <code>__init__()</code> è il primo metodo definito nella classe), agisce come un costruttore (è il primo frammento di codice eseguito in un'istanza appena creata della classe) e ha persino un nome che suona come quello di un costruttore. Ma è scorretto perché l'oggetto è già stato costruito nel momento in cui il metodo <code>__init__()</code> viene invocato, e un riferimento valido alla nuova istanza della classe è già disponibile.
 </ol>
 
-<p>Il primo argomento di ogni metodo in una classe, compreso il metodo <code>__init__()</code>, è sempre un riferimento all'istanza corrente della classe. Per convenzione, questo argomento viene chiamato <var>self</var>. Questo argomento occupa il ruolo della parola riservata <code>this</code> in <abbr>C++</abbr> o Java, ma <var>self</var> non è una parola riservata in Python, semplicemente una convenzione nominale. Nondimeno, per favore non chiamatelo in modi diversi da <var>self</var>, perché questa è una convenzione molto forte.
+<p>Il primo argomento di ogni metodo in una classe, compreso il metodo <code>__init__()</code>, è sempre un riferimento all'istanza corrente della classe. Per convenzione, questo argomento viene chiamato <var>self</var>. Questo argomento occupa il ruolo della parola riservata <code>this</code> in <abbr>C++</abbr> o Java, ma <var>self</var> non è una parola riservata in Python, bensì semplicemente una convenzione nominale. Nondimeno, per favore non chiamatelo in modi diversi da <var>self</var> perché questa è una convenzione molto forte.
 
-<p>Nel metodo <code>__init__()</code>, <var>self</var> si riferisce all'oggetto appena creato; in altri metodi della classe, si riferisce all'istanza il cui metodo è stato invocato. Sebbene abbiate bisogno di specificare esplicitamente <var>self</var> quando definite il metodo, <em>non</em> dovete specificarlo quando chiamate il metodo; Python lo aggiungerà per voi automaticamente.
+<p>Nel metodo <code>__init__()</code> <var>self</var> si riferisce all'oggetto appena creato; in altri metodi della classe si riferisce all'istanza il cui metodo è stato invocato. Sebbene abbiate bisogno di specificare esplicitamente <var>self</var> quando definite il metodo, <em>non</em> dovete specificarlo quando chiamate il metodo; Python lo aggiungerà per voi automaticamente.
 
 <p class=a>&#x2042;
 
@@ -104,12 +104,12 @@ body{counter-reset:h1 7}
 <ol>
 <li>State creando un'istanza della classe <code>Fib</code> (definita nel modulo <code>fibonacci2</code>) e assegnando l'istanza appena creata alla variabile <var>fib</var>. State passando un parametro, <code>100</code>, che finirà per diventare l'argomento <var>max</var> del metodo <code>__init__()</code> in <code>Fib</code>.
 <li><var>fib</var> è ora un'istanza della classe <code>Fib</code>.
-<li>Ogni istanza di una classe ha un attributo built-in, <code>__class__</code>, che è la classe dell'oggetto. I programmatori Java potrebbero avere familiarità con la classe <code>Class</code>, che contiene metodi come <code>getName()</code> e <code>getSuperclass()</code> per ottenere metainformazioni su un oggetto. In Python, questo tipo di metadati si può ottenere attraverso gli attributi, ma l'idea è la stessa.
+<li>Ogni istanza di una classe ha un attributo built-in chiamato <code>__class__</code> che è la classe dell'oggetto. I programmatori Java potrebbero avere familiarità con la classe <code>Class</code>, che contiene metodi come <code>getName()</code> e <code>getSuperclass()</code> per ottenere metainformazioni su un oggetto. In Python, questo tipo di metadati si può ottenere attraverso gli attributi, ma l'idea è la stessa.
 <li>Potete accedere alla <code>docstring</code> dell'istanza esattamente come con una funzione o un modulo. Tutte le istanze di una classe condividono la stessa <code>docstring</code>.
 </ol>
 
 <blockquote class='note compare java'>
-<p><span class=u>&#x261E;</span>In Python, vi basta invocare una classe come se fosse una funzione per creare una nuova istanza della classe. Non c'è nessun operatore <code>new</code> esplicito come in <abbr>C++</abbr> o Java.
+<p><span class=u>&#x261E;</span>In Python, vi basta invocare una classe come se fosse una funzione per creare una nuova istanza della classe. Non c'è nessun operatore <code>new</code> esplicito come in <abbr>C++</abbr> o in Java.
 </blockquote>
 
 <p class=a>&#x2042;
@@ -181,7 +181,7 @@ Tutti e tre i metodi di classe <code>__init__</code>, <code>__iter__</code> e <c
 <li>&#8220;Invocare&#8221; <code>Fib(max)</code> vuol dire in realtà creare un'istanza di questa classe e chiamare il suo metodo <code>__init__()</code> con <var>max</var>. Il metodo <code>__init__()</code> salva il valore massimo come una variabile di istanza in modo che altri metodi possano usarlo più tardi.
 <li>Il metodo <code>__iter__()</code> viene invocato ogni volta che qualcuno chiama <code>iter(fib)</code>. (Come vedrete fra un minuto, un ciclo <code>for</code> chiama questo metodo automaticamente, ma potete chiamarlo anche voi manualmente.) Dopo aver eseguito l'inizializzazione che prepara l'iterazione (in questo caso, impostando i valori di <code>self.a</code> e <code>self.b</code>, i nostri due contatori), il metodo <code>__iter__()</code> può restituire qualsiasi oggetto che implementi un metodo <code>__next__()</code>. In questo caso (e nella maggior parte dei casi) <code>__iter__()</code> restituisce semplicemente <var>self</var>, dato che questa classe implementa il proprio metodo <code>__next__()</code>.
 <li>Il metodo <code>__next__()</code> viene invocato ogni volta che qualcuno chiama <code>next()</code> su un iteratore di un'istanza di una classe. Questo avrà più senso fra un minuto.
-<li>Quando il metodo <code>__next__()</code> solleva un'eccezione di tipo <code>StopIteration</code>, questo segnala al chiamante che l'iterazione è esaurita. A differenza della maggior parte delle eccezioni, questa non rappresenta un errore, ma una condizione normale che significa solamente che l'iteratore non ha più valori da generare. Se il chiamante è un ciclo <code>for</code>, noterà questa eccezione di tipo <code>StopIteration</code> e uscirà normalmente dal ciclo. (In altre parole, sopprimerà l'eccezione.) Questo piccolo tocco di magia è in realtà la chiave per usare gli iteratori nei cicli <code>for</code>.
+<li>Quando il metodo <code>__next__()</code> solleva un'eccezione di tipo <code>StopIteration</code>, questo segnala al chiamante che l'iterazione è esaurita. A differenza della maggior parte delle eccezioni questa non rappresenta un errore, ma una condizione normale che significa solamente che l'iteratore non ha più valori da generare. Se il chiamante è un ciclo <code>for</code>, noterà questa eccezione di tipo <code>StopIteration</code> e uscirà normalmente dal ciclo. (In altre parole, sopprimerà l'eccezione.) Questo piccolo tocco di magia è in realtà la chiave per usare gli iteratori nei cicli <code>for</code>.
 <li>Per produrre in uscita il valore successivo, il metodo <code>__next__()</code> di un iteratore restituisce semplicemente il valore tramite l'istruzione <code>return</code>. Qui <code>yield</code> non viene usato; quello è zucchero sintattico che si applica solo quando state usando i generatori. Qui invece state creando il vostro iteratore da zero; quindi, usate <code>return</code>.
 </ol>
 
@@ -311,11 +311,11 @@ rules = LazyRules()</code></pre>
         return funcs</code></pre>
 <ol>
 <li>Il metodo <code>__next__()</code> viene chiamato ogni volta che qualcuno&nbsp;&mdash;&nbsp;diciamo, un ciclo <code>for</code>&nbsp;&mdash;&nbsp;chiama <code>next(rules)</code>. Questo metodo si capisce meglio se cominciamo dalla fine e lo leggiamo all'indietro. Quindi, facciamolo.
-<li>L'ultima parte di questa funzione dovrebbe sembrare quantomeno familiare. La funzione <code>build_match_and_apply_functions()</code> non è cambiata, ma è la stessa che è sempre stata.
+<li>L'ultima parte di questa funzione dovrebbe sembrare quantomeno familiare. La funzione <code>build_match_and_apply_functions()</code> non è cambiata, è la stessa che è sempre stata.
 <li>L'unica differenza è che, prima di restituire le funzioni di ricerca e sostituzione (che sono memorizzate nella tupla <var>funcs</var>), dobbiamo salvarle in <code>self.cache</code>.
 </ol>
 
-<p>Muovendosi all'indietro&hellip;
+<p>Muovendoci all'indietro&hellip;
 
 <pre class=pp><code>    def __next__(self):
         .
@@ -347,7 +347,7 @@ rules = LazyRules()</code></pre>
         .
         .</code></pre>
 <ol>
-<li><code>self.cache</code> sarà una lista di funzioni per cercare corrispondenze con le singole regole e poi sostituirle. (Almeno <em>questo</em> dovrebbe suonarvi familiare!) <code>self.cache_index</code> tiene traccia di quale elemento in cache dovremo restituire successivamente. Se non abbiamo ancora esaurito la cache (cioè se la lunghezza di <code>self.cache</code> è maggiore di <code>self.cache_index</code>), allora l'accesso alla cache ha successo! Urrà! Possiamo restituire le funzioni di ricerca e sostituzione dalla cache invece che costruirle da zero.
+<li><code>self.cache</code> sarà una lista di funzioni per cercare corrispondenze con le singole regole e poi sostituirle. (Almeno <em>questo</em> dovrebbe suonarvi familiare!) <code>self.cache_index</code> tiene traccia di quale elemento in cache dovremo restituire successivamente. Se non abbiamo ancora esaurito la cache (cioè se la lunghezza di <code>self.cache</code> è maggiore di <code>self.cache_index</code>), allora l'accesso alla cache ha successo! Urrà! Possiamo restituire le funzioni di ricerca e sostituzione dalla cache anziché costruirle da zero.
 <li>D'altra parte, se il tentativo di accesso alla cache fallisce <em>e</em> l'oggetto file è stato chiuso (cosa che potrebbe accadere più avanti nel metodo, come avete visto nel precedente frammento di codice) allora non c'è nient'altro che possiamo fare. Se il file è chiuso, vuol dire che lo abbiamo esaurito&nbsp;&mdash;&nbsp;abbiamo già letto ogni riga dal file dei pattern e abbiamo già costruito e memorizzato le funzioni di ricerca e sostituzione per ogni pattern. Il file è esaurito; la cache è esaurita; anche io sono ormai esaurito... Ma tenete duro, abbiamo quasi finito.
 </ol>
 
@@ -358,16 +358,16 @@ rules = LazyRules()</code></pre>
 <li>Quando si richiedono a <var>rules</var> le prime funzioni di ricerca e sostituzione, l'istanza controlla la propria cache ma scopre che è vuota. Quindi legge una singola riga dal file dei pattern, costruisce le funzioni di ricerca e sostituzione per i pattern di quella riga e le memorizza nella cache.
 <li>Diciamo che, per fare un esempio, proprio la prima regola trova una corrispondenza. Se è così, nessuna nuova coppia di funzioni viene costruita e nessun'altra riga viene letta dal file.
 <li>In più, sempre per fare un esempio, supponiamo che il chiamante invochi <em>di nuovo</em> la funzione <code>plural()</code> per costruire il plurale di una parola diversa. Il ciclo <code>for</code> nella funzione <code>plural()</code> chiamerà <code>iter(rules)</code>, che azzererà l'indice della cache ma non toccherà l'oggetto file aperto.
-<li>Alla prima iterazione, il ciclo <code>for</code> chiederà un valore a <var>rules</var>, che invocherà il proprio metodo <code>__next__()</code>. Questa volta, però, la cache è caricata con una singola coppia di funzioni di ricerca e sostituzione, corrispondenti ai pattern nella prima riga del file dei pattern. Visto che la coppia è stata costruita e memorizzata nel tentativo di pluralizzare la parola precedente, viene recuperata dalla cache. L'indice della cache viene incrementato, e il file aperto non viene mai toccato.
-<li>Diciamo ora che, per fare un esempio, la prima regola questa volta non genera alcuna corrispondenza. Quindi il ciclo <code>for</code> ricomincia da capo e chiede un altro valore a <var>rules</var>, che invoca il metodo <code>__next__()</code> una seconda volta. Questa volta, la cache è esaurita&nbsp;&mdash;&nbsp;conteneva un solo elemento, e noi ne stiamo chiedendo un secondo&nbsp;&mdash;&nbsp;quindi il metodo <code>__next__()</code> prosegue. Legge un'altra riga dal file aperto, costruisce le funzioni di ricerca e sostituzione sulla base dei pattern e le memorizza in cache.
-<li>Questo processo di lettura-costruzione-memorizzazione continuerà fino a quando le regole lette dal file dei pattern non corrisponderanno alla parola che stiamo cercando di pluralizzare. Se troviamo una regola che corrisponde prima della fine del file, semplicemente la usiamo e ci fermiamo, con il file ancora aperto. Il puntatore del file rimarrà dovunque avremo smesso di leggere, aspettando il prossimo comando di <code>readline()</code>. Nel frattempo, la cache contiene ora più elementi, e se ricominciamo ancora a cercare di pluralizzare una nuova parola, ognuno degli elementi in cache verrà provato prima di leggere la riga successiva dal file dei pattern.
+<li>Alla prima iterazione, il ciclo <code>for</code> chiederà un valore a <var>rules</var>, che invocherà il proprio metodo <code>__next__()</code>. Questa volta, però, la cache è caricata con una singola coppia di funzioni di ricerca e sostituzione, corrispondenti ai pattern nella prima riga del file dei pattern. Visto che la coppia è stata costruita e memorizzata nel tentativo di pluralizzare la parola precedente, viene recuperata dalla cache. L'indice della cache viene incrementato e il file aperto non viene mai toccato.
+<li>Diciamo ora che, per fare un esempio, la prima regola questa volta non genera alcuna corrispondenza. Quindi il ciclo <code>for</code> ricomincia da capo e chiede un altro valore a <var>rules</var>, che invoca il metodo <code>__next__()</code> una seconda volta. Questa volta la cache è esaurita&nbsp;&mdash;&nbsp;conteneva un solo elemento e noi ne stiamo chiedendo un secondo&nbsp;&mdash;&nbsp;quindi il metodo <code>__next__()</code> prosegue. Legge un'altra riga dal file aperto, costruisce le funzioni di ricerca e sostituzione sulla base dei pattern e le memorizza in cache.
+<li>Questo processo di lettura-costruzione-memorizzazione continuerà fino a quando le regole lette dal file dei pattern non corrisponderanno alla parola che stiamo cercando di pluralizzare. Se troviamo una regola che corrisponde prima della fine del file, semplicemente la usiamo e ci fermiamo, con il file ancora aperto. Il puntatore del file rimarrà ovunque avremo smesso di leggere, aspettando la prossima invocazione di <code>readline()</code>. Nel frattempo, la cache contiene ora più elementi, e se ricominciamo ancora a cercare di pluralizzare una nuova parola ognuno degli elementi in cache verrà provato prima di leggere la riga successiva dal file dei pattern.
 </ul>
 
 <p>Abbiamo raggiunto il nirvana della pluralizzazione.
 
 <ol>
-<li><strong>Costo di inizializzazione minimo.</strong> L'unica cosa che succede durante l'importazione del modulo è la creazione di una singola istanza di una classe e l'apertura di un file (ma senza alcuna lettura).
-<li><strong>Prestazioni massime.</strong> L'esempio precedente avrebbe letto tutto il file e costruito funzioni dinamicamente ogni volta che volevate pluralizzare una parola. Questa versione memorizza le funzioni non appena vengono costruite, e nel caso peggiore leggerà tutto il file dei pattern una volta sola, a prescindere dal numero di parole che pluralizzate.
+<li><strong>Costo di inizializzazione minimo.</strong> L'unica cosa che accade durante l'importazione del modulo è la creazione di una singola istanza di una classe e l'apertura di un file (ma senza alcuna lettura).
+<li><strong>Prestazioni massime.</strong> L'esempio precedente avrebbe letto tutto il file e costruito funzioni dinamicamente ogni volta che volevate pluralizzare una parola. Questa versione memorizza le funzioni non appena vengono costruite e, nel caso peggiore, leggerà tutto il file dei pattern una volta sola a prescindere dal numero di parole che pluralizzate.
 <li><strong>Separazione di codice e dati.</strong> Tutti i pattern sono archiviati in un file separato. Il codice è codice, i dati sono dati, &#8220;e mai i due si incontreranno&#8221;.
 </ol>
 
