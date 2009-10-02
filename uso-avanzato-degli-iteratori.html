@@ -37,7 +37,7 @@ S = 6
 T = 2
 E = 4</code></pre>
 
-<p>Rompicapi come questi sono chiamati <i>criptarismi</i> o più precisamente criptarismi <i>alfametici</i>. Le lettere formano parole vere, ma se sostituite ogni lettera con una cifra da 0 a <code>9</code>, il rompicapo &#8220;forma&#8221; anche un'equazione aritmetica. Il trucco è scoprire quali lettere corrispondono a quali cifre. Tutte le occorrenze di ogni lettera devono corrispondere alla stessa cifra, nessuna cifra può essere ripetuta e nessuna &#8220;parola&#8221; può cominciare con la cifra 0.
+<p>Rompicapi come questi sono chiamati <i>criptarismi</i> o più precisamente criptarismi <i>alfametici</i>. Le lettere formano parole vere, ma se sostituite ogni lettera con una cifra da 0 a <code>9</code> il rompicapo &#8220;forma&#8221; anche un'equazione aritmetica. Il trucco è scoprire quali lettere corrispondono a quali cifre. Tutte le occorrenze di ogni lettera devono corrispondere alla stessa cifra, nessuna cifra può essere ripetuta e nessuna &#8220;parola&#8221; può cominciare con la cifra 0.
 
 <aside>Il rompicapo alfametico più conosciuto è <code>SEND + MORE = MONEY</code>.</aside>
 
@@ -72,16 +72,16 @@ if __name__ == '__main__':
         if solution:
             print(solution)</code></pre>
 
-<p>Potete eseguire il programma dalla riga di comando. Su Linux, avrete qualcosa di simile a questo. (Le seguenti esecuzioni potrebbero impiegare un po' di tempo, a seconda della velocità del vostro computer, e non c'è nessun indicatore di progresso. Siate pazienti!)
+<p>Potete eseguire il programma dalla riga di comando. Su Linux, avrete qualcosa di simile a questo. (Le seguenti esecuzioni potrebbero impiegare un po' di tempo a seconda della velocità del vostro computer, e non c'è nessun indicatore di progresso. Siate pazienti!)
 
 <pre class='nd screen'>
-<samp class=p>you@localhost:~/diveintopython3/examples$ </samp><kbd>python3 alphametics.py "HAWAII + IDAHO + IOWA + OHIO = STATES"</kbd>
+<samp class=p>you@localhost:~/diveintopython3/esempi$ </samp><kbd>python3 alphametics.py "HAWAII + IDAHO + IOWA + OHIO = STATES"</kbd>
 <samp>HAWAII + IDAHO + IOWA + OHIO = STATES
 510199 + 98153 + 9301 + 3593 == 621246</samp>
-<samp class=p>you@localhost:~/diveintopython3/examples$ </samp><kbd>python3 alphametics.py "I + LOVE + YOU == DORA"</kbd>
+<samp class=p>you@localhost:~/diveintopython3/esempi$ </samp><kbd>python3 alphametics.py "I + LOVE + YOU == DORA"</kbd>
 <samp>I + LOVE + YOU == DORA
 1 + 2784 + 975 == 3760</samp>
-<samp class=p>you@localhost:~/diveintopython3/examples$ </samp><kbd>python3 alphametics.py "SEND + MORE == MONEY"</kbd>
+<samp class=p>you@localhost:~/diveintopython3/esempi$ </samp><kbd>python3 alphametics.py "SEND + MORE == MONEY"</kbd>
 <samp>SEND + MORE == MONEY
 9567 + 1085 == 10652</samp></pre>
 
@@ -98,8 +98,8 @@ if __name__ == '__main__':
 <a><samp class=p>>>> </samp><kbd class=pp>re.findall('[A-Z]+', 'SEND + MORE == MONEY')</kbd>        <span class=u>&#x2461;</span></a>
 <samp class=pp>['SEND', 'MORE', 'MONEY']</samp></pre>
 <ol>
-<li>Il modulo <code>re</code> è l'implementazione Python delle <a href=espressioni-regolari.html>espressioni regolari</a>. Include un'elegante funzione chiamata <code>findall()</code> che accetta un pattern di espressione regolare e una stringa e trova tutte le occorrenze del pattern all'interno della stringa. In questo caso, il pattern corrisponde a sequenze di numeri. La funzione <code>findall()</code> restituisce una lista di tutte le sottostringhe che corrispondono al pattern.
-<li>Qui il pattern di espressione regolare corrisponde a sequenze di lettere. Ancora una volta, il valore di ritorno è una lista, e ogni elemento nella lista è una stringa che corrisponde a quel pattern di espressione regolare.
+<li>Il modulo <code>re</code> è l'implementazione Python delle <a href=espressioni-regolari.html>espressioni regolari</a>. Include un'elegante funzione chiamata <code>findall()</code> che accetta un pattern di espressione regolare e una stringa e trova tutte le occorrenze del pattern all'interno della stringa. In questo caso il pattern corrisponde a sequenze di numeri. La funzione <code>findall()</code> restituisce una lista di tutte le sottostringhe che corrispondono al pattern.
+<li>Qui il pattern di espressione regolare corrisponde a sequenze di lettere. Ancora una volta, il valore di ritorno è una lista e ogni elemento nella lista è una stringa che corrisponde a quel pattern di espressione regolare.
 </ol>
 
 <p>Ecco un altro esempio per mettere alla prova la vostra mente.
@@ -172,7 +172,7 @@ AssertionError</samp>
   File "&lt;stdin>", line 1, in &lt;module>
 AssertionError: Solo per valori molto grandi di 2</samp></pre>
 <ol>
-<li>L'istruzione <code>assert</code> è seguita da una qualsiasi espressione Python valida. In questo caso, l'espressione <code>1 + 1 == 2</code> viene valutata a <code>True</code>, quindi l'istruzione <code>assert</code> non fa nulla.
+<li>L'istruzione <code>assert</code> è seguita da una qualsiasi espressione Python valida. In questo caso l'espressione <code>1 + 1 == 2</code> viene valutata a <code>True</code>, quindi l'istruzione <code>assert</code> non fa nulla.
 <li>Tuttavia, se l'espressione Python viene valutata a <code>False</code>, l'istruzione <code>assert</code> solleverà un'eccezione di tipo <code>AssertionError</code>.
 <li>Potete anche includere un messaggio di spiegazione che viene stampato nel caso l'eccezione <code>AssertionError</code> venga sollevata.
 </ol>
@@ -290,7 +290,7 @@ StopIteration</samp>
  ('C', 'A', 'B'), ('C', 'B', 'A')]</samp></pre>
 <ol>
 <li>Una stringa è semplicemente una sequenza di caratteri. Allo scopo di trovare permutazioni, la stringa <code>'ABC'</code> è equivalente alla lista <code>['A', 'B', 'C']</code>.
-<li>La prima permutazione dei 3 elementi in <code>['A', 'B', 'C']</code>, presi 3 alla volta, è <code>('A', 'B', 'C')</code>. Esistono altre cinque permutazioni&nbsp;&mdash;&nbsp;gli stessi tre caratteri in ogni ordine possibile.
+<li>La prima permutazione dei 3 elementi in <code>['A', 'B', 'C']</code> presi 3 alla volta è <code>('A', 'B', 'C')</code>. Esistono altre cinque permutazioni&nbsp;&mdash;&nbsp;gli stessi tre caratteri in ogni ordine possibile.
 <li>Dato che la funzione <code>permutations()</code> restituisce sempre un iteratore, si può facilmente effettuare il debug sulle permutazioni passando l'iteratore alla funzione built-in <code>list()</code> per vedere immediatamente tutte le permutazioni.
 </ol>
 
@@ -332,7 +332,7 @@ StopIteration</samp>
 <li>Questo idioma restituisce una lista delle righe in un file di testo.
 <li>Sfortunatamente (per questo esempio), l'idioma <code>list(open(<var>nomedelfile</var>))</code> include anche i ritorni a capo alla fine di ogni riga. Questa descrizione di lista usa il metodo <code>rstrip()</code> delle stringhe per togliere lo spazio bianco alla fine di ogni riga. (Le stringhe sono anche dotate di un metodo <code>lstrip()</code> per togliere lo spazio bianco all'inizio e di un metodo <code>strip()</code> che toglie lo spazio bianco sia all'inizio che alla fine.)
 <li>La funzione <code>sorted()</code> prende una lista e la restituisce ordinata. L'ordine predefinito è quello alfabetico.
-<li>Ma la funzione <code>sorted()</code> può anche prendere una funzione come parametro <var>key</var> e ordinare in base a essa. In questo caso, la funzione di ordinamento è <code>len()</code>, quindi questa invocazione ordina sulla base della lunghezza di ogni elemento, calcolando <code>len(<var>ogni_elemento</var>)</code>. I nomi più corti vengono prima, poi quelli più lunghi, poi quelli ancora più lunghi.
+<li>Ma la funzione <code>sorted()</code> può anche prendere una funzione come parametro <var>key</var> e ordinare in base a essa. In questo caso la funzione di ordinamento è <code>len()</code>, quindi questa invocazione ordina sulla base della lunghezza di ogni elemento calcolando <code>len(<var>ogni_elemento</var>)</code>. I nomi più corti vengono prima, poi quelli più lunghi, poi quelli ancora più lunghi.
 </ol>
 
 <p>Che cos'ha a che fare tutto questo con il modulo <code>itertools</code>? Sono contento che lo abbiate chiesto.
@@ -369,12 +369,12 @@ Wesley</samp></pre>
 <ol>
 <li>La funzione <code>itertools.groupby()</code> prende una sequenza e una funzione chiave e restituisce un iteratore che genera coppie. Ogni coppia è composta dal risultato dell'applicazione della funzione chiave a ogni elemento (<code>funzione_chiave(<var>ogni_elemento</var>)</code>) e da un altro iteratore che contiene tutti gli elementi che condividono quel risultato.
 <li>L'invocazione della funzione <code>list()</code> ha &#8220;esaurito&#8221; l'iteratore, cioè avete già generato tutti gli elementi nell'iteratore per costruire la lista. Non c'è nessun pulsante di &#8220;reset&#8221; su un iteratore, perciò non potete semplicemente ricominciare da capo una volta che lo avete esaurito. Se volete attraversarlo di nuovo (diciamo, nel ciclo <code>for</code> successivo) dovete chiamare ancora <code>itertools.groupby()</code> per creare un nuovo iteratore.
-<li>In questo esempio, data una lista di nomi <em>già ordinata per lunghezza</em>, <code>itertools.groupby(names, len)</code> metterà tutti i nomi di 4 lettere in un iteratore, tutti i nomi di 5 lettere in un altro iteratore, e così via. La funzione <code>groupby()</code> è completamente generica; potrebbe raggruppare stringhe sulla base della prima lettera, numeri sulla base del loro numero di fattori, oppure utilizzando qualsiasi altra funzione chiave che vi possa venire in mente.
+<li>In questo esempio, data una lista di nomi <em>già ordinata per lunghezza</em>, <code>itertools.groupby(names, len)</code> metterà tutti i nomi di 4 lettere in un iteratore, tutti i nomi di 5 lettere in un altro iteratore, e così via. La funzione <code>groupby()</code> è completamente generica; potrebbe raggruppare stringhe sulla base della prima lettera, numeri sulla base del loro numero di fattori oppure utilizzando qualsiasi altra funzione chiave che vi possa venire in mente.
 </ol>
 <!-- YO DAWG, WE HEARD YOU LIKE LOOPING, SO WE PUT AN ITERATOR IN YOUR ITERATOR SO YOU CAN LOOP WHILE YOU LOOP. -->
 
 <blockquote class=note>
-<p><span class=u>&#x261E;</span>La funzione <code>itertools.groupby()</code> funziona solo se la sequenza in ingresso è già ordinata secondo il criterio seguito dalla funzione di raggruppamento. Nell'esempio precedente, avete raggruppato una lista di nomi secondo la funzione <code>len()</code>. Questa operazione ha funzionato solo perché la lista in ingresso era già ordinata per lunghezza.
+<p><span class=u>&#x261E;</span>La funzione <code>itertools.groupby()</code> funziona solo se la sequenza in ingresso è già ordinata secondo il criterio seguito dalla funzione di raggruppamento. Nell'esempio precedente avete raggruppato una lista di nomi secondo la funzione <code>len()</code>. Questa operazione ha funzionato solo perché la lista in ingresso era già ordinata per lunghezza.
 </blockquote>
 
 <p>State guardando da vicino?
@@ -394,7 +394,7 @@ Wesley</samp></pre>
 <ol>
 <li>La funzione <code>itertools.chain()</code> prende due iteratori e restituisce un iteratore che contiene tutti gli elementi del primo iteratore seguiti da tutti gli elementi del secondo iteratore. (In realtà, può prendere un numero qualsiasi di iteratori e concatenarli tutti nell'ordine in cui sono stati passati alla funzione.)
 <li>La funzione <code>zip()</code> fa qualcosa di prosaico che si rivela estremamente utile: prende un numero qualsiasi di sequenze e restituisce un iteratore che restituisce tuple contenenti il primo elemento di ogni sequenza, poi il secondo elemento di ognuna, poi il terzo, e così via.
-<li>La funzione <code>zip()</code> si ferma alla fine della sequenza più corta. <code>range(10, 14)</code> contiene 4 elementi (10, 11, 12 e 13), ma <code>range(0, 3)</code> ne contiene solo 3, quindi la funzione <code>zip()</code> restituisce un iteratore di 3 elementi.
+<li>La funzione <code>zip()</code> si ferma alla fine della sequenza più corta. <code>range(10, 14)</code> contiene 4 elementi (10, 11, 12 e 13) ma <code>range(0, 3)</code> ne contiene solo 3, quindi la funzione <code>zip()</code> restituisce un iteratore di 3 elementi.
 <li>D'altra parte, la funzione <code>itertools.zip_longest()</code> si ferma alla fine della sequenza <em>più lunga</em>, inserendo il valore <code>None</code> per elementi oltre la fine delle sequenze più corte.
 </ol>
 
@@ -535,9 +535,9 @@ for guess in itertools.permutations(digits, len(characters)):
 
 <p class=xxxl>eval() è un PERICOLO
 
-<p>Be', la parte pericolosa è la valutazione di espressioni arbitrarie provenienti da sorgenti non affidabili. Dovreste usare <code>eval()</code> solo su ingressi affidabili. Naturalmente, il trucco è scoprire cos'è &#8220;affidabile&#8221;. Ma ecco qualcosa che so di sicuro: <b>NON</b> dovreste prendere questo risolutore di alfametica e metterlo su Internet come un piccolo servizio web divertente. Non fate l'errore di pensare: &#8220;Gosh, la funzione effettua un sacco di manipolazioni di stringhe prima di ottenere una stringa da valutare; <em>non riesco a immaginare</em> come qualcuno potrebbe servirsene.&#8221; Qualcuno <b>SCOPRIR&Agrave;</b> come infilare codice eseguibile pericoloso attraverso tutte quelle manipolazioni di stringhe (<a href=http://www.securityfocus.com/blogs/746>sono accadute cose anche più strane</a>), e poi potrete dare al vostro server il bacio d'addio.
+<p>Be', la parte pericolosa è la valutazione di espressioni arbitrarie provenienti da sorgenti non affidabili. Dovreste usare <code>eval()</code> solo su ingressi affidabili. Naturalmente il trucco è scoprire cos'è &#8220;affidabile&#8221;. Ma ecco qualcosa che so di sicuro: <b>NON</b> dovreste prendere questo risolutore di alfametica e metterlo su Internet come un piccolo servizio web divertente. Non fate l'errore di pensare: &#8220;Gosh, la funzione effettua un sacco di manipolazioni di stringhe prima di ottenere una stringa da valutare; <em>non riesco a immaginare</em> come qualcuno potrebbe servirsene.&#8221; Qualcuno <b>SCOPRIR&Agrave;</b> come infilare codice eseguibile pericoloso attraverso tutte quelle manipolazioni di stringhe (<a href=http://www.securityfocus.com/blogs/746>sono accadute cose anche più strane</a>), e poi potrete dare al vostro server il bacio d'addio.
 
-<p>Ma sicuramente ci sarà <em>qualche</em> modo per valutare espressioni in sicurezza? Per mettere <code>eval()</code> in un ambiente controllato dove non possa accedere o danneggiare il mondo esterno? Be', sì e no.
+<p>Ma sicuramente ci sarà <em>qualche</em> modo per valutare espressioni in sicurezza? Per mettere <code>eval()</code> in un ambiente controllato dove non possa accedere al mondo esterno o danneggiarlo? Be', sì e no.
 
 <pre class=screen>
 <samp class=p>>>> </samp><kbd class=pp>x = 5</kbd>
@@ -554,7 +554,7 @@ NameError: name 'x' is not defined</samp>
   File "&lt;string>", line 1, in &lt;module>
 NameError: name 'math' is not defined</samp></pre>
 <ol>
-<li>Il secondo e terzo parametro passati alla funzione <code>eval()</code> agiscono come spazi di nomi globali e locali in cui valutare l'espressione. In questo caso, sono entrambi vuoti, così quando la stringa <code>"x * 5"</code> viene valutata non esiste alcun riferimento a <var>x</var> né nello spazio di nomi globale né in quello locale, quindi <code>eval()</code> solleva un'eccezione.
+<li>Il secondo e terzo parametro passati alla funzione <code>eval()</code> agiscono come spazi di nomi globali e locali in cui valutare l'espressione. In questo caso sono entrambi vuoti, così quando la stringa <code>"x * 5"</code> viene valutata non esiste alcun riferimento a <var>x</var> né nello spazio di nomi globale né in quello locale, quindi <code>eval()</code> solleva un'eccezione.
 <li>Potete selettivamente includere specifici valori nello spazio di nomi globale elencandoli individualmente. Poi quelle variabili&nbsp;&mdash;&nbsp;e solo quelle&nbsp;&mdash;&nbsp;saranno disponibili durante la valutazione.
 <li>Anche se avete appena importato il modulo <code>math</code>, non lo avete incluso nello spazio di nomi passato alla funzione <code>eval()</code>, così la valutazione è fallita.
 </ol>
@@ -591,8 +591,8 @@ NameError: name '__import__' is not defined</samp>
   File "&lt;string>", line 1, in &lt;module>
 NameError: name '__import__' is not defined</samp></pre>
 <ol>
-<li>Per valutare espressioni non affidabili in maniera sicura, avete bisogno di definire nello spazio di nomi globale un dizionario che faccia corrispondere <code>"__builtins__"</code> a <code>None</code>, il valore nullo di Python. Internamente, le funzioni &#8220;built-in&#8221; sono contenute in uno pseudo-modulo chiamato <code>"__builtins__"</code>. Questo pseudo-modulo (cioè l'insieme delle funzioni built-in) viene reso disponibile alle espressioni valutate a meno che non lo rimpiazziate esplicitamente.
-<li>Assicuratevi di aver rimpiazzato <code>__builtins__</code> e non <code>__builtin__</code> o <code>__built-ins__</code> o qualche altra variazione che funzionerà benissimo ma vi esporrà a rischi catastrofici.
+<li>Per valutare espressioni non affidabili in maniera sicura, avete bisogno di definire nello spazio di nomi globale un dizionario che faccia corrispondere <code>"__builtins__"</code> a <code>None</code>, il valore nullo di Python. Internamente, le funzioni &#8220;built-in&#8221; sono contenute in uno pseudomodulo chiamato <code>"__builtins__"</code>. Questo pseudomodulo (cioè l'insieme delle funzioni built-in) viene reso disponibile alle espressioni valutate a meno che non lo ridefiniate esplicitamente.
+<li>Assicuratevi di aver ridefinito <code>__builtins__</code> e non <code>__builtin__</code> o <code>__built-ins__</code> o qualche altra variazione che funzionerà benissimo ma vi esporrà a rischi catastrofici.
 </ol>
 
 <p>Quindi <code>eval()</code> è sicura ora? Be', sì e no.
@@ -602,7 +602,7 @@ NameError: name '__import__' is not defined</samp></pre>
 <a><samp class=p>... </samp><kbd class=pp>    {"__builtins__":None}, {})</kbd>          <span class=u>&#x2460;</span></a>
 </pre>
 <ol>
-<li>Anche senza accedere a <code>__builtins__</code>, potete ancora lanciare un attacco di negazione del servizio. Per esempio, elevare <code>2</code> alla potenza di <code>2147483647</code> utilizzerà il 100% della <abbr>CPU</abbr> del vostro server per un bel po' di tempo. (Se state provando a farlo nella shell interattiva, premete alcune volte <kbd>Ctrl-C</kbd> per interrompere la computazione.) Tecnicamente questa espressione <em>restituirà</em> un valore alla fine, ma nel frattempo il vostro server non riuscirà proprio a fare nient'altro.
+<li>Anche senza accedere a <code>__builtins__</code> potete ancora lanciare un attacco di negazione del servizio. Per esempio, elevare <code>2</code> alla potenza di <code>2147483647</code> utilizzerà il 100% della <abbr>CPU</abbr> del vostro server per un bel po' di tempo. (Se state provando a farlo nella shell interattiva, premete alcune volte <kbd>Ctrl-C</kbd> per interrompere la computazione.) Tecnicamente questa espressione <em>restituirà</em> un valore alla fine, ma nel frattempo il vostro server non riuscirà a fare proprio nient'altro.
 </ol>
 
 <p>In conclusione, <em>è</em> possibile valutare in sicurezza espressioni Python non affidabili, per una qualche definizione di &#8220;sicurezza&#8221; che si scopre non essere terribilmente utile nella vita reale. Va benissimo se state semplicemente divertendovi un po' e va benissimo se usate solo ingressi affidabili. Ma, in qualsiasi altra situazione, significa andare in cerca di guai.
