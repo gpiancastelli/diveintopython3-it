@@ -22,7 +22,7 @@ mark{display:inline}
 <h2 id=divingin>Immersione!</h2>
 <p class=f>La maggior parte dei capitoli in questo libro è stata costruita attorno al codice di un programma di esempio. Ma <abbr>XML</abbr> non ha a che fare con il codice; ha a che fare con i dati. Uno degli usi più comuni di <abbr>XML</abbr> è il &#8220;syndication feed&#8221; che elenca gli ultimi articoli di un blog, un forum, o un altro sito web frequentemente aggiornato. La maggior parte dei software più popolari per la gestione di contenuti web è in grado di produrre un feed e aggiornarlo ogni volta che vengono pubblicati nuovi messaggi, discussioni, o articoli. Potete seguire un singolo blog &#8220;abbonandovi&#8221; al suo feed, e potete seguire più di un blog alla volta utilizzando un &#8220;<a href=http://en.wikipedia.org/wiki/List_of_feed_aggregators>aggregatore di feed</a>&#8221; dedicato come <a href=http://www.google.com/reader/>Google Reader</a>.
 
-<p>Qui di seguito, dunque, trovate il documento <abbr>XML</abbr> contenente i dati con cui lavoreremo in questo capitolo. &Egrave; un feed&nbsp;&mdash;&nbsp;nello specifico, un <a href=http://atompub.org/rfc4287.html>syndication feed in formato Atom</a>.
+<p>Qui di seguito, dunque, trovate il documento <abbr>XML</abbr> che contiene i dati con cui lavoreremo in questo capitolo. &Egrave; un feed&nbsp;&mdash;&nbsp;nello specifico, un <a href=http://atompub.org/rfc4287.html>syndication feed in formato Atom</a>.
 
 <p class=d>[<a href=esempi/feed.xml>scarica <code>feed.xml</code></a>]
 <pre class=pp><code>&lt;?xml version='1.0' encoding='utf-8'?>
@@ -98,7 +98,7 @@ mark{display:inline}
 
 <p>Se conoscete già <abbr>XML</abbr>, potete saltare questa sezione.
 
-<p><abbr>XML</abbr> è un modo generalizzato di descrivere strutture dati gerarchiche. Un <i>documento</i> <abbr>XML</abbr> contiene uno o più <i>elementi</i> che sono delimitati da <i>tag di apertura e di chiusura</i>. Questo è un documento <abbr>XML</abbr> completo (anche se noioso):
+<p><abbr>XML</abbr> è un modo generalizzato di descrivere strutture dati gerarchiche. Un <i>documento</i> <abbr>XML</abbr> contiene uno o più <i>elementi</i> che sono delimitati da <i>tag di apertura e chiusura</i>. Questo è un documento <abbr>XML</abbr> completo (anche se noioso):
 
 <pre class='nd pp'><code><a>&lt;foo>   <span class=u>&#x2460;</span></a>
 <a>&lt;/foo>  <span class=u>&#x2461;</span></a></code></pre>
@@ -147,7 +147,7 @@ mark{display:inline}
 
 <pre class='nd pp'><code>&lt;foo<mark>/</mark>></code></pre>
 
-<p>Così come le funzioni Python possono essere dichiarate in <i>moduli</i> differenti, gli elementi <abbr>XML</abbr> possono essere dichiarati in <i>spazi di nomi</i> differenti. Di solito, gli spazi di nomi sono identificati da un URL. Potete usare una dichiarazione <code>xmlns</code> per definire uno <i>spazio di nomi di default</i>. Una dichiarazione di spazio di nomi ha un aspetto simile a un attributo, ma viene impiegata con uno scopo differente.
+<p>Così come le funzioni Python possono essere dichiarate in <i>moduli</i> differenti, gli elementi <abbr>XML</abbr> possono essere dichiarati in <i>spazi di nomi</i> differenti. Di solito, gli spazi di nomi sono identificati da un URL. Potete usare una dichiarazione <code>xmlns</code> per definire uno <i>spazio di nomi predefinito</i>. Una dichiarazione di spazio di nomi ha un aspetto simile a un attributo, ma viene impiegata con uno scopo differente.
 
 <pre class='nd pp'><code><a>&lt;feed <mark>xmlns='http://www.w3.org/2005/Atom'</mark>>  <span class=u>&#x2460;</span></a>
 <a>  &lt;title>dive into mark&lt;/title>             <span class=u>&#x2461;</span></a>
@@ -168,7 +168,7 @@ mark{display:inline}
 <li>Anche l'elemento <code>title</code> si trova nello spazio di nomi <code>http://www.w3.org/2005/Atom</code>.
 </ol>
 
-<p>Un qualsiasi riconoscitore <abbr>XML</abbr> considera <em>identici</em> i due documenti <abbr>XML</abbr> precedenti. Spazio di nomi + nome dell'elemento = identità del documento <abbr>XML</abbr>. I prefissi esistono solamente per fare riferimento agli spazi di nomi, così l'effettivo nome del prefisso (<code>atom</code>) è irrilevante. Gli spazi di nomi corrispondono, i nomi degli elementi corrispondono, gli attributi (o il fatto che siano assenti) corrispondono e il contenuto testuale di ogni elemento corrisponde, quindi i documenti <abbr>XML</abbr> sono uguali.
+<p>Un qualsiasi riconoscitore <abbr>XML</abbr> considera <em>identici</em> i due documenti <abbr>XML</abbr> precedenti. Spazio di nomi + nome dell'elemento = identità <abbr>XML</abbr>. I prefissi esistono solamente per fare riferimento agli spazi di nomi, così l'effettivo nome del prefisso (<code>atom</code>) è irrilevante. Gli spazi di nomi corrispondono, i nomi degli elementi corrispondono, gli attributi (o il fatto che siano assenti) corrispondono e il contenuto testuale di ogni elemento corrisponde, quindi i documenti <abbr>XML</abbr> sono uguali.
 
 <p>Infine, i documenti <abbr>XML</abbr> possono contentere <a href=stringhe.html#one-ring-to-rule-them-all>informazioni sulla codifica di carattere</a> nella prima riga, prima dell'elemento radice. (Se siete curiosi di sapere come fa un documento a contenere informazioni che è necessario conoscere prima di poterlo leggere, la <a href=http://www.w3.org/TR/REC-xml/#sec-guessing-no-ext-info>Sezione F della specifica <abbr>XML</abbr></a> descrive in dettaglio come risolvere questo Comma 22.)
 
@@ -379,7 +379,7 @@ mark{display:inline}
 <a><samp class=p>>>> </samp><kbd class=pp>foo_element = entries[0].find('{http://www.w3.org/2005/Atom}foo')</kbd>      <span class=u>&#x2462;</span></a>
 <samp class=p>>>> </samp><kbd class=pp>foo_element</kbd>
 <samp class=p>>>> </samp><kbd class=pp>type(foo_element)</kbd>
-<samp class=pp>&lt;class 'NoneType'></samp>
+<samp>&lt;class 'NoneType'></samp>
 </pre>
 <ol>
 <li>Avete visto questo metodo in azione nell'esempio precedente. Trova tutti gli elementi <code>atom:entry</code>.
@@ -450,7 +450,7 @@ StopIteration</samp></pre>
 
 <h2 id=xml-lxml>Proseguire con lxml</h2>
 
-<p><a href=http://codespeak.net/lxml/><code>lxml</code></a> è una libreria open source di terze parti che si basa sul popolare <a href=http://www.xmlsoft.org/>riconoscitore libxml2</a>. Fornisce una <abbr>API</abbr> compatibile al 100% con ElementTree, poi la estende con un supporto completo per XPath 1.0 e alcune altre finezze. Ne esistono <a href=http://pypi.python.org/pypi/lxml/>pacchetti di installazione disponibili per Windows</a>, mentre gli utenti Linux dovrebbero sempre provare a usare strumenti specifici per la loro distribuzione, come <code>yum</code> o <code>apt-get</code>, che permettono di installare librerie precompilate scaricandole dagli archivi della distribuzione. Altrimenti, dovrete <a href=http://codespeak.net/lxml/installation.html>installare <code>lxml</code> manualmente</a>.
+<p><a href=http://codespeak.net/lxml/><code>lxml</code></a> è una libreria open source di terze parti basata sul popolare <a href=http://www.xmlsoft.org/>riconoscitore libxml2</a>. Fornisce una <abbr>API</abbr> compatibile al 100% con ElementTree, poi la estende con un supporto completo per XPath 1.0 e alcune altre raffinatezze. Ne esistono <a href=http://pypi.python.org/pypi/lxml/>pacchetti di installazione disponibili per Windows</a>, mentre gli utenti Linux dovrebbero sempre provare a usare strumenti specifici per la loro distribuzione, come <code>yum</code> o <code>apt-get</code>, che permettono di installare librerie precompilate scaricandole dagli archivi della distribuzione. Altrimenti, dovrete <a href=http://codespeak.net/lxml/installation.html>installare <code>lxml</code> manualmente</a>.
 
 <pre class=screen>
 <a><samp class=p>>>> </samp><kbd class=pp>from lxml import etree</kbd>                   <span class=u>&#x2460;</span></a>
@@ -474,7 +474,7 @@ StopIteration</samp></pre>
 except ImportError:
     import xml.etree.ElementTree as etree</code></pre>
 
-<p>Ma <code>lxml</code> è molto di più che una ElementTree più veloce. Il suo metodo <code>findall()</code> include il supporto per espressioni più complicate.
+<p>Ma <code>lxml</code> è molto più di una ElementTree più veloce. Il suo metodo <code>findall()</code> include il supporto per espressioni più complicate.
 
 <pre class=screen>
 <a><samp class=p>>>> </samp><kbd class=pp>import lxml.etree</kbd>                                                                   <span class=u>&#x2460;</span></a>
@@ -535,9 +535,9 @@ except ImportError:
 <li>Potete serializzare qualsiasi elemento (e i suoi figli) in ogni momento utilizzando la funzione <code>tostring()</code> di ElementTree.
 </ol>
 
-<p>Quella serializzazione vi ha sorpreso? Il modo in cui ElementTree serializza gli spazi di nomi <abbr>XML</abbr> è tecnicamente accurato ma non ottimale. Il documento <abbr>XML</abbr> di esempio all'inizio di questo capitolo definiva uno <i>spazio di nomi di default</i> (<code>xmlns='http://www.w3.org/2005/Atom'</code>). Definire uno spazio di nomi di default è utile per documenti&nbsp;&mdash;&nbsp;come i feed Atom&nbsp;&mdash;&nbsp;dove tutti gli elementi sono nello stesso spazio di nomi, perché potete dichiarare lo spazio di nomi una volta sola e dichiarare ogni elemento utilizzando semplicemente il suo nome locale (<code>&lt;feed></code>, <code>&lt;link></code>, <code>&lt;entry></code>). Non c'è alcun bisogno di usare un prefisso a meno che non vogliate dichiarare elementi appartenenti a un altro spazio di nomi.
+<p>Quella serializzazione vi ha sorpreso? Il modo in cui ElementTree serializza gli spazi di nomi <abbr>XML</abbr> è tecnicamente accurato ma non ottimale. Il documento <abbr>XML</abbr> di esempio all'inizio di questo capitolo definiva uno <i>spazio di nomi predefinito</i> (<code>xmlns='http://www.w3.org/2005/Atom'</code>). Definire uno spazio di nomi predefinito è utile per documenti&nbsp;&mdash;&nbsp;come i feed Atom&nbsp;&mdash;&nbsp;dove tutti gli elementi sono nello stesso spazio di nomi, perché potete dichiarare lo spazio di nomi una volta sola e dichiarare ogni elemento utilizzando semplicemente il suo nome locale (<code>&lt;feed></code>, <code>&lt;link></code>, <code>&lt;entry></code>). Non c'è alcun bisogno di usare un prefisso a meno che non vogliate dichiarare elementi appartenenti a un altro spazio di nomi.
 
-<p>Un riconoscitore <abbr>XML</abbr> non sarà in grado di &#8220;vedere&#8221; alcuna differenza tra un documento <abbr>XML</abbr> con uno spazio di nomi di default e un documento <abbr>XML</abbr> con uno spazio di nomi che utilizza un prefisso. La rappresentazione <abbr>DOM</abbr> che risulta da questa serializzazione:
+<p>Un riconoscitore <abbr>XML</abbr> non sarà in grado di &#8220;vedere&#8221; alcuna differenza tra un documento <abbr>XML</abbr> con uno spazio di nomi predefinito e un documento <abbr>XML</abbr> con uno spazio di nomi che utilizza un prefisso. La rappresentazione <abbr>DOM</abbr> che risulta da questa serializzazione:
 
 <pre class='nd pp'><code>&lt;ns0:feed xmlns:ns0='http://www.w3.org/2005/Atom' xml:lang='it'/></code></pre>
 
@@ -545,7 +545,7 @@ except ImportError:
 
 <pre class='nd pp'><code>&lt;feed xmlns='http://www.w3.org/2005/Atom' xml:lang='it'/></code></pre>
 
-<p>L'unica differenza concreta è che la seconda serializzazione è più corta di alcuni caratteri. Se dovessimo riscrivere interamente il nostro feed di esempio con un prefisso <code>ns0:</code> in ogni tag di apertura e chiusura, aggiungeremmo 4 caratteri per tag di apertura &times; 79 tag + 4 caratteri per la dichiarazione di spazio di nomi, per un totale di 320 caratteri. Assumendo una <a href=stringhe.html#byte-arrays>codifica UTF-8</a>, il totale corrisponde a 320 byte aggiuntivi. (Dopo aver compresso il documento tramite gzip, la differenza scende a 21 byte, ciò nondimeno 21 byte sono 21 byte.) Forse per voi non ha importanza, ma per qualcosa come un feed Atom, che potrebbe essere scaricato diverse migliaia di volte a ogni cambiamento, il risparmio di alcuni byte per ogni richiesta può accumularsi velocemente.
+<p>L'unica differenza concreta è che la seconda serializzazione è più corta di alcuni caratteri. Se dovessimo riscrivere interamente il nostro feed di esempio con un prefisso <code>ns0:</code> in ogni tag di apertura e chiusura, aggiungeremmo 4 caratteri per tag di apertura &times; 79 tag + 4 caratteri per la dichiarazione di spazio di nomi, per un totale di 320 caratteri. Assumendo una <a href=stringhe.html#byte-arrays>codifica <abbr>UTF-8</abbr></a>, il totale corrisponde a 320 byte aggiuntivi. (Dopo aver compresso il documento tramite gzip, la differenza scende a 21 byte, ciò nondimeno 21 byte sono 21 byte.) Forse per voi non ha importanza, ma per qualcosa come un feed Atom, che potrebbe essere scaricato diverse migliaia di volte a ogni cambiamento, il risparmio di alcuni byte per ogni richiesta può accumularsi velocemente.
 
 <p>La libreria built-in ElementTree non offre un controllo così accurato sulla serializzazione di elementi in uno spazio di nomi, ma <code>lxml</code> lo fa.
 
@@ -559,9 +559,9 @@ except ImportError:
 <samp class=p>>>> </samp><kbd class=pp>print(lxml.etree.tounicode(new_feed))</kbd>
 <samp class=pp>&lt;feed xmlns='http://www.w3.org/2005/Atom' xml:lang='it'/></samp></pre>
 <ol>
-<li>Per cominciare, definite una corrispondenza di spazi di nomi sotto forma di un dizionario in cui i valori siano gli spazi di nomi e le chiavi siano i prefissi desiderati. Usate <code>None</code> come prefisso per dichiarare uno spazio di nomi di default.
+<li>Per cominciare, definite una corrispondenza di spazi di nomi sotto forma di un dizionario in cui i valori siano gli spazi di nomi e le chiavi siano i prefissi desiderati. Usate <code>None</code> come prefisso per dichiarare uno spazio di nomi predefinito.
 <li>Ora potete passare l'argomento <var>nsmap</var> specifico per <code>lxml</code> quando create un elemento, così <code>lxml</code> rispetterà i prefissi per gli spazi di nomi che avete definito.
-<li>Come vi sareste aspettati, questa serializzazione definisce lo spazio di nomi Atom come spazio di nomi di default e dichiara l'elemento <code>feed</code> senza un prefisso per lo spazio di nomi.
+<li>Come vi sareste aspettati, questa serializzazione definisce lo spazio di nomi Atom come spazio di nomi predefinito e dichiara l'elemento <code>feed</code> senza un prefisso per lo spazio di nomi.
 <li>Oops, abbiamo dimenticato di aggiungere l'attributo <code>xml:lang</code>. Potete sempre aggiungere attributi a qualsiasi elemento tramite il metodo <code>set()</code>. Questo metodo prende due argomenti: il nome dell'attributo nel formato standard di ElementTree, poi il valore dell'attributo. (Questo metodo non è specifico per <code>lxml</code>. L'unica parte specifica per <code>lxml</code> in questo esempio era l'argomento <var>nsmap</var> usato per controllare i prefissi degli spazi di nomi nell'uscita serializzata.)
 </ol>
 
@@ -570,12 +570,12 @@ except ImportError:
 <pre class=screen>
 <a><samp class=p>>>> </samp><kbd class=pp>title = lxml.etree.SubElement(new_feed, 'title',</kbd>          <span class=u>&#x2460;</span></a>
 <a><samp class=p>... </samp><kbd class=pp>    attrib={'type':'html'})</kbd>                               <span class=u>&#x2461;</span></a>
-<samp class=p>>>> </samp><kbd class=pp>print(lxml.etree.tounicode(new_feed))</kbd>
+<a><samp class=p>>>> </samp><kbd class=pp>print(lxml.etree.tounicode(new_feed))</kbd>                     <span class=u>&#x2462;</span></a>
 <samp class=pp>&lt;feed xmlns='http://www.w3.org/2005/Atom' xml:lang='it'>&lt;title type='html'/>&lt;/feed></samp>
-<a><samp class=p>>>> </samp><kbd class=pp>title.text = 'dive into &amp;hellip;'</kbd>                         <span class=u>&#x2462;</span></a>
-<a><samp class=p>>>> </samp><kbd class=pp>print(lxml.etree.tounicode(new_feed))</kbd>                     <span class=u>&#x2463;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>title.text = 'dive into &amp;hellip;'</kbd>                         <span class=u>&#x2463;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>print(lxml.etree.tounicode(new_feed))</kbd>                     <span class=u>&#x2464;</span></a>
 <samp class=pp>&lt;feed xmlns='http://www.w3.org/2005/Atom' xml:lang='it'>&lt;title type='html'>dive into &amp;amp;hellip;&lt;/title>&lt;/feed></samp>
-<a><samp class=p>>>> </samp><kbd class=pp>print(lxml.etree.tounicode(new_feed, pretty_print=True))</kbd>  <span class=u>&#x2464;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>print(lxml.etree.tounicode(new_feed, pretty_print=True))</kbd>  <span class=u>&#x2465;</span></a>
 <samp class=pp>&lt;feed xmlns='http://www.w3.org/2005/Atom' xml:lang='it'>
   &lt;title type='html'>dive into &amp;amp;hellip;&lt;/title>
 &lt;/feed></samp></pre>
@@ -589,7 +589,7 @@ except ImportError:
 </ol>
 
 <blockquote class=note>
-<p><span class=u>&#x261E;</span>Potreste voler anche provare <a href=http://github.com/galvez/xmlwitch/tree/master>xmlwitch</a>, un'altra libreria di terze parti per generare <abbr>XML</abbr> che fa largo uso della <a href=nomi-dei-metodi-speciali.html#context-managers>istruzione <code>with</code></a> per rendere più leggibile il codice di generazione di documenti <abbr>XML</abbr>.
+<p><span class=u>&#x261E;</span>Potreste anche voler provare <a href=http://github.com/galvez/xmlwitch/tree/master>xmlwitch</a>, un'altra libreria di terze parti per generare <abbr>XML</abbr> che fa largo uso della <a href=nomi-dei-metodi-speciali.html#context-managers>istruzione <code>with</code></a> per rendere più leggibile il codice di generazione di documenti <abbr>XML</abbr>.
 </blockquote>
 
 <p class=a>&#x2042;
