@@ -39,9 +39,9 @@ mark{display:inline}
 <li><a href=http://docs.python.org/3.1/library/urllib.request.html><code>urllib.request</code></a> è un livello di astrazione costruito sulla base di <code>http.client</code>. Fornisce una <abbr>API</abbr> standard per accedere sia ai server <abbr>HTTP</abbr> sia ai server <abbr>FTP</abbr>, segue automaticamente le redirezioni <abbr>HTTP</abbr> e gestisce alcune forme comuni di autenticazione <abbr>HTTP</abbr>.
 </ul>
 
-<p>Quindi quale delle due dovreste usare? Nessuna. Invece, dovreste usare <a href=http://code.google.com/p/httplib2/><code>httplib2</code></a>, una libreria open source di terze parti che implementa <abbr>HTTP</abbr> in maniera più completa rispetto ad <code>http.client</code> ma fornisce astrazioni migliori rispetto ad <code>urllib.request</code>.
+<p>Quindi quale delle due dovreste usare? Nessuna. Invece, dovreste usare <a href=http://code.google.com/p/httplib2/><code>httplib2</code></a>, una libreria open source di terze parti che implementa <abbr>HTTP</abbr> in maniera più completa rispetto ad <code>http.client</code> ma fornisce astrazioni migliori rispetto a <code>urllib.request</code>.
 
-<p>Per comprendere perché <code>httplib2</code> è la scelta giusta, dovete prima conoscere <abbr>HTTP</abbr>.
+<p>Per comprendere perché <code>httplib2</code> è la scelta giusta dovete prima conoscere <abbr>HTTP</abbr>.
 
 <p class=a>&#x2042;
 
@@ -55,7 +55,7 @@ mark{display:inline}
 
 <aside><code>Cache-Control</code> significa: &#8220;Non scocciarmi fino alla prossima settimana.&#8221;</aside>
 
-<p><abbr>HTTP</abbr> è progettato con l'uso della cache in mente. Esiste un'intera categoria di dispositivi (chiamati &#8220;proxy di cache&#8221;) il cui solo lavoro è di sedere in mezzo tra voi e il resto del mondo e minimizzare l'accesso alla rete. La vostra azienda o il vostro <abbr>ISP</abbr> quasi certamente gestisce alcuni proxy di cache, anche se voi non ve ne rendete conto. Questi dispositivi funzionano perché l'uso della cache è integrato nel protocollo <abbr>HTTP</abbr>.
+<p><abbr>HTTP</abbr> è progettato con l'uso della cache in mente. Esiste un'intera categoria di dispositivi (chiamati &#8220;proxy di cache&#8221;) il cui solo lavoro è sedere in mezzo tra voi e il resto del mondo e minimizzare l'accesso alla rete. La vostra azienda o il vostro <abbr>ISP</abbr> quasi certamente gestisce alcuni proxy di cache, anche se voi non ve ne rendete conto. Questi dispositivi funzionano perché l'uso della cache è integrato nel protocollo <abbr>HTTP</abbr>.
 
 <p>Ecco un esempio concreto di come funziona la cache. Visitate <a href=http://diveintomark.org/><code>diveintomark.org</code></a> nel vostro browser. Quella pagina include un'immagine di sfondo, <a href=http://wearehugh.com/m.jpg><code>wearehugh.com/m.jpg</code></a>. Quando il vostro browser scarica quell'immagine, il server include le seguenti intestazioni <abbr>HTTP</abbr>:
 
@@ -71,11 +71,11 @@ Content-Length: 12405
 Connection: close
 Content-Type: image/jpeg</code></pre>
 
-<p>Le intestazioni <code>Cache-Control</code> ed <code>Expires</code> dicono al vostro browser (e a qualsiasi proxy di cache tra voi e il server) che questa immagine può essere tenuta in cache per un anno. <em>Un anno!</em> E se, nel prossimo anno, visitate un'altra pagina che include un collegamento a questa immagine, il vostro browser caricherà l'immagine dalla propria cache <em>senza generare alcun tipo di attività di rete</em>.
+<p>Le intestazioni <code>Cache-Control</code> ed <code>Expires</code> dicono al vostro browser (e a qualsiasi proxy di cache tra voi e il server) che questa immagine può essere tenuta in cache per un anno. <em>Un anno!</em> E se nel prossimo anno visitate un'altra pagina che include un collegamento a questa immagine, il vostro browser caricherà l'immagine dalla propria cache <em>senza generare alcun tipo di attività di rete</em>.
 
 <p>Ma aspettate, le cose migliorano. Diciamo che per qualche motivo il vostro browser cancella l'immagine dalla vostra cache locale. Magari ha finito lo spazio su disco, magari voi avete pulito la cache manualmente. Ma le intestazioni <abbr>HTTP</abbr> dicevano che questi dati potevano essere memorizzati in cache da proxy di cache pubblici (grazie a quella parola chiave <code>public</code> nell'intestazione <code>Cache-Control</code>). I proxy di cache sono progettati per avere tonnellate di spazio di memorizzazione, probabilmente molto più di quanto abbiate allocato per il vostro browser locale.
 
-<p>Se la vostra azienda o il vostro <abbr>ISP</abbr> gestisce un proxy di cache, il proxy potrebbe ancora avere l'immagine nella propria cache. Quando visitate <code>diveintomark.org</code> un'altra volta, il vostro browser cercherà l'immagine nella sua cache locale ma non la troverà, quindi effettuerà una richiesta di rete per cercare di scaricarla dal server remoto. Ma se il proxy di cache ha ancora una copia dell'immagine, intercetterà quella richiesta e preleverà l'immagine dalla <em>propria</em> cache. Questo significa che la vostra richiesta non raggiungerà mai il server remoto; in effetti, non lascerà mai la rete della vostra azienda. Questo rende lo scaricamento più veloce (meno salti sui nodi della rete) e fa risparmiare denaro alla vostra compagnia (meno dati che vengono scaricati dal mondo esterno).
+<p>Se la vostra azienda o il vostro <abbr>ISP</abbr> gestisce un proxy di cache, il proxy potrebbe ancora avere l'immagine nella propria cache. Quando visitate <code>diveintomark.org</code> un'altra volta, il vostro browser cercherà l'immagine nella sua cache locale ma non la troverà, quindi effettuerà una richiesta di rete per cercare di scaricarla dal server remoto. Ma se il proxy di cache ha ancora una copia dell'immagine, intercetterà quella richiesta e preleverà l'immagine dalla <em>propria</em> cache. Questo significa che la vostra richiesta non raggiungerà mai il server remoto; in effetti, non lascerà mai la rete della vostra azienda. Questo rende lo scaricamento più veloce (meno salti sui nodi della rete) e fa risparmiare denaro alla vostra azienda (meno dati che vengono scaricati dal mondo esterno).
 
 <p>L'uso della cache in <abbr>HTTP</abbr> funziona solo quando tutti fanno la loro parte. Da un lato, i server devono spedire le intestazioni corrette nelle loro risposte. Dall'altro lato, i client devono comprendere e rispettare quelle intestazioni prima di richiedere due volte gli stessi dati. I proxy nel mezzo non sono una panacea; possono essere tanto intelligenti solo quanto i server e i client permettono loro di essere.
 
@@ -83,7 +83,7 @@ Content-Type: image/jpeg</code></pre>
 
 <h3 id=last-modified>Il controllo della modifica più recente</h3>
 
-<p>Alcuni dati non cambiano mai, mentre altri dati cambiano continuamente. Nel mezzo, c'è un vasto assortimento di dati che <em>potrebbero</em> essere cambiati, ma non lo hanno fatto. Il feed di CNN.com viene aggiornato ogni pochi minuti, ma il feed del mio weblog potrebbe non cambiare per diversi giorni o intere settimane. In quest'ultimo caso, non voglio dire ai client di mantenere in cache il mio feed per intere settimane, perché quando scrivo effettivamente qualcosa i miei lettori potrebbero non vederla per settimane (perché stanno rispettando le mie intestazioni di cache che dicono &#8220;non preoccuparti di controllare questo feed per settimane&#8221;). D'altra parte, non voglio che i client scarichino il mio intero feed una volta ogni ora se non è cambiato!
+<p>Alcuni dati non cambiano mai, mentre altri dati cambiano continuamente. Nel mezzo, c'è un vasto assortimento di dati che <em>potrebbero</em> essere cambiati ma non lo hanno fatto. Il feed di CNN.com viene aggiornato ogni pochi minuti, ma il feed del mio weblog potrebbe non cambiare per diversi giorni o intere settimane. In quest'ultimo caso, non voglio dire ai client di mantenere in cache il mio feed per intere settimane, perché quando scrivo effettivamente qualcosa i miei lettori potrebbero non vederla per settimane (perché stanno rispettando le mie intestazioni di cache che dicono &#8220;non preoccuparti di controllare questo feed per settimane&#8221;). D'altra parte, non voglio che i client scarichino il mio intero feed una volta ogni ora se non è cambiato!
 
 <aside><code>Last-Modified</code> significa: &#8220;Stessa merda, altro giorno.&#8221;</aside>
 
@@ -102,7 +102,7 @@ Connection: close
 Content-Type: image/jpeg
 </code></pre>
 
-<p>Quando richiedete gli stessi dati una seconda (o terza, o quarta) volta, potete spedire insieme alla vostra richiesta un'intestazione <code>If-Modified-Since</code> contenente la data che avete ottenuto dal server l'ultima volta. Se i dati non sono cambiati da allora, il server rimanda indietro lo speciale codice di stato <abbr>HTTP</abbr> <code>304</code>, per indicare che &#8220;questi dati non sono cambiati dall'ultima volta che li avete richiesti&#8221;. Potete verificare questo comportamento dalla linea di comando, utilizzando <a href=http://curl.haxx.se/>curl</a>:
+<p>Quando richiedete gli stessi dati una seconda (o terza, o quarta) volta, potete spedire insieme alla vostra richiesta un'intestazione <code>If-Modified-Since</code> contenente la data che avete ottenuto dal server l'ultima volta. Se i dati non sono cambiati da allora, il server rimanda indietro lo speciale codice di stato <abbr>HTTP</abbr> <code>304</code>, per indicare che &#8220;questi dati non sono cambiati dall'ultima volta che li avete richiesti&#8221;. Potete verificare questo comportamento dalla riga di comando usando <a href=http://curl.haxx.se/>curl</a>:
 
 <pre class='nd screen'>
 <samp class=p>you@localhost:~$ </samp><kbd>curl -I <mark>-H "If-Modified-Since: Fri, 22 Aug 2008 04:28:16 GMT"</mark> http://wearehugh.com/m.jpg</kbd>
@@ -137,7 +137,7 @@ Connection: close
 Content-Type: image/jpeg
 </code></pre>
 
-<p>La seconda volta che richiedete gli stessi dati, includete il valore di ETag in un'intestazione <code>If-None-Match</code> della vostra richiesta. Se i dati non sono cambiati, il server vi restituirà un codice di stato <code>304</code>. Come con il controllo sulla data della modifica più recente, il server invia <em>solo</em> il codice di stato <code>304</code>, evitando di spedirvi gli stessi dati una seconda volta. Includendo il valore di ETag nella vostra seconda richiesta, state dicendo al server che non c'è alcun bisogno di rispedire gli stessi dati se quei dati corrispondono ancora a questo hash, dato che <a href=#caching>avete ancora i dati dall'ultima volta</a>.
+<p>La seconda volta che richiedete gli stessi dati, includete il valore di ETag in un'intestazione <code>If-None-Match</code> della vostra richiesta. Se i dati non sono cambiati, il server vi restituirà un codice di stato <code>304</code>. Come con il controllo sulla data della modifica più recente, il server invia <em>solo</em> il codice di stato <code>304</code>, evitando di spedirvi gli stessi dati una seconda volta. Includendo il valore di ETag nella vostra seconda richiesta state dicendo al server che non c'è alcun bisogno di rispedire gli stessi dati se quei dati corrispondono ancora a questo hash, dato che <a href=#caching>avete ancora i dati dall'ultima volta</a>.
 
 <p>Utilizzando ancora <kbd>curl</kbd>:
 
@@ -166,7 +166,7 @@ Cache-Control: max-age=31536000, public</samp></pre>
 
 <h3 id=redirects>Le redirezioni</h3>
 
-<p><a href=http://www.w3.org/Provider/Style/URI>Gli <abbr>URI</abbr> fighi non cambiano</a>, ma molti <abbr>URI</abbr> sono seriamente sfigati. I siti web vengono riorganizzati, le pagine vengono spostate a nuovi indirizzi. Persino i servizi web possono venire riorganizzati. Un feed pubblicato all'indirizzo <code>http://example.com/index.xml</code> potrebbe venire spostato all'indirizzo <code>http://example.com/xml/atom.xml</code>. Oppure un intero dominio potrebbe spostarsi, man mano che un'organizzazione si espande e viene ristrutturata: <code>http://www.example.com/index.xml</code> diventa <code>http://server-farm-1.example.com/index.xml</code>.
+<p><a href=http://www.w3.org/Provider/Style/URI>Gli <abbr>URI</abbr> fighi non cambiano</a>, ma molti <abbr>URI</abbr> sono seriamente sfigati. I siti web vengono riorganizzati, le pagine vengono spostate a nuovi indirizzi, persino i servizi web possono venire riorganizzati. Un feed pubblicato all'indirizzo <code>http://example.com/index.xml</code> potrebbe venire spostato all'indirizzo <code>http://example.com/xml/atom.xml</code>. Oppure un intero dominio potrebbe spostarsi, man mano che un'organizzazione si espande e viene ristrutturata: <code>http://www.example.com/index.xml</code> diventa <code>http://server-farm-1.example.com/index.xml</code>.
 
 <aside><code>Location</code> significa: &#8220;Guarda là!&#8221;</aside>
 
@@ -233,7 +233,7 @@ reply: 'HTTP/1.1 200 OK'
 <li>La quarta riga specifica il nome della libreria che sta effettuando la richiesta. Per default, questo nome è <code>Python-urllib</code> più un numero di versione. Sia <code>urllib.request</code> che <code>httplib2</code> permettono di cambiare il nome dell'applicazione usata semplicemente aggiungendo un'intestazione <code>User-Agent</code> alla richiesta (che sostituirà il valore predefinito).
 </ol>
 
-<aside>Stiamo scaricando 3070 byte quando avremmo potuto scaricarne 941.</aside>
+<aside>Stiamo scaricando 3070 byte mentre ne avremmo potuti scaricare 941.</aside>
 
 <p>Ora diamo un'occhiata ai dati che il server ha inviato nella sua risposta.
 
@@ -264,7 +264,7 @@ Content-Type: application/xml</samp>
 <li>E infine scarichiamo i dati effettivi invocando <code>response.read()</code>. Come potete vedere dal risultato della funzione <code>len()</code>, questa operazione scarica tutti i 3070 byte in una volta sola.
 </ol>
 
-<p>Come potete vedere, questo codice è già inefficiente: ha richiesto (e ricevuto) dati non compressi. So per certo che questo server supporta la <a href=#compression>compressione tramite gzip</a>, ma la compressione <abbr>HTTP</abbr> è opzionale. Non l'abbiamo richiesta e quindi non l'abbiamo ottenuta. Questo significa che stiamo scaricando 3070 byte mentre ne avremmo potuti scaricare solamente 941. Cattivo cane, niente biscotto.
+<p>Come potete vedere, questo codice è già inefficiente: ha richiesto (e ricevuto) dati non compressi. So per certo che questo server supporta la <a href=#compression>compressione tramite gzip</a>, ma la compressione <abbr>HTTP</abbr> è opzionale. Non l'abbiamo richiesta e quindi non l'abbiamo ottenuta. Questo significa che stiamo scaricando 3070 byte mentre ne avremmo potuti scaricare solo 941. Cattivo cane, niente biscotto.
 
 <p>Ma aspettate, le cose peggiorano! Per vedere quanto questo codice sia davvero inefficiente, richiediamo lo stesso feed una seconda volta.
 
@@ -391,7 +391,7 @@ Writing /usr/local/lib/python3.1/dist-packages/httplib2-python3_0.5.0.egg-info</
 <li>L'interfaccia principale al modulo <code>httplib2</code> è l'oggetto <code>Http</code>. Per ragioni che vedrete nella prossima sezione, dovreste sempre passare un nome di directory quando create un oggetto <code>Http</code>. La directory non deve per forza esistere, <code>httplib2</code> la creerà se è necessario.
 <li>Una volta che avete un oggetto <code>Http</code>, recuperare dati è tanto semplice quanto invocare il metodo <code>request()</code> con l'indirizzo dei dati che volete. Questo metodo emetterà una richiesta <abbr>HTTP</abbr> <code>GET</code> per quell'<abbr>URL</abbr>. (Più avanti in questo capitolo vedrete come emettere altre richieste <abbr>HTTP</abbr>, come <code>POST</code>.)
 <li>Il metodo <code>request()</code> restituisce due valori. Il primo è un oggetto <code>httplib2.Response</code>, che contiene tutte le intestazioni <abbr>HTTP</abbr> restituite dal server. Per esempio, il codice di stato <code>200</code> memorizzato nell'attributo <code>status</code> indica che la richiesta ha avuto successo.
-<li>La variabile <var>content</var> contiene i dati effettivi che sono stati restituiti dal server <abbr>HTTP</abbr>. I dati vengono restituiti come un <a href=stringhe.html#byte-arrays>oggetto <code>bytes</code>, non una stringa</a>. Se li volete sotto forma di stringa, avete bisogno di <a href=http://feedparser.org/docs/character-encoding.html>determinarne la codifica di carattere</a> ed effettuare da voi la conversione.
+<li>La variabile <var>content</var> contiene i dati effettivi che sono stati restituiti dal server <abbr>HTTP</abbr>. I dati vengono restituiti come un <a href=stringhe.html#byte-arrays>oggetto <code>bytes</code>, non una stringa</a>. Se li volete sotto forma di stringa dovete <a href=http://feedparser.org/docs/character-encoding.html>determinarne la codifica di carattere</a> ed effettuare da voi la conversione.
 </ol>
 
 <blockquote class=note>
@@ -418,7 +418,7 @@ Writing /usr/local/lib/python3.1/dist-packages/httplib2-python3_0.5.0.egg-info</
 
 <ol>
 <li>la codifica data nel parametro <code>charset</code> dell'intestazione <abbr>HTTP</abbr> <code>Content-Type</code>, oppure
-<li><code>us-ascii</code>
+<li><abbr>US-ASCII</abbr>
 </ol>
 
 <p>E questo è solo per i documenti <abbr>XML</abbr>. Per i documenti <abbr>HTML</abbr>, i browser web hanno costruito <a type=application/pdf href=http://www.adambarth.com/papers/2009/barth-caballero-song.pdf>regole per il content sniffing</a> [<abbr>PDF</abbr>] talmente bizantine che <a href='http://www.google.com/search?q=barth+content-type+processing+model'>stiamo ancora cercando di capire come funzionano</a>.
@@ -427,7 +427,7 @@ Writing /usr/local/lib/python3.1/dist-packages/httplib2-python3_0.5.0.egg-info</
 
 <h3 id=httplib2-caching>Come <code>httplib2</code> gestisce la cache</h3>
 
-<p>Ricordate quando nella sezione precedente ho detto che dovreste sempre creare un oggetto <code>httplib2.Http</code> con un nome di directory? Il motivo è la cache.
+<p>Ricordate quando, nella sezione precedente, ho detto che dovreste sempre creare un oggetto <code>httplib2.Http</code> con un nome di directory? Il motivo è la cache.
 
 <pre class=screen>
 # continua dall'<a href=#introducing-httplib2>esempio precedente</a>
@@ -439,7 +439,7 @@ Writing /usr/local/lib/python3.1/dist-packages/httplib2-python3_0.5.0.egg-info</
 <samp class=p>>>> </samp><kbd class=pp>len(content2)</kbd>
 <samp class=pp>3070</samp></pre>
 <ol>
-<li>Questo non dovrebbe essere terribilmente sorprendente. &Egrave; la stessa cosa che avete fatto l'ultima volta, se non che state mettendo il risultato in due nuove variabili.
+<li>Questo non dovrebbe essere terribilmente sorprendente. &Egrave; la stessa cosa che avete fatto l'ultima volta, senonché state mettendo il risultato in due nuove variabili.
 <li>Il valore del codice di stato <abbr>HTTP</abbr> memorizzato in <code>status</code> è ancora <code>200</code>, proprio come l'ultima volta.
 <li>Anche il contenuto scaricato è lo stesso dell'ultima volta.
 </ol>
@@ -475,11 +475,11 @@ Writing /usr/local/lib/python3.1/dist-packages/httplib2-python3_0.5.0.egg-info</
 <p><span class=u>&#x261E;</span>Se volete attivare le informazioni di debug di <code>httplib2</code>, dovete impostare una costante a livello di modulo (<code>httplib2.debuglevel</code>) e poi creare un nuovo oggetto <code>httplib2.Http</code>. Se volete disattivare le informazioni di debug, dovete modificare la stessa costante a livello di modulo e poi creare un nuovo oggetto <code>httplib2.Http</code>.
 </blockquote>
 
-<p>Avete già richiesto in precedenza i dati a questo <abbr>URL</abbr>. Quella richiesta ha avuto successo (<code>status: 200</code>). Quella risposta includeva non solo i dati del feed, ma anche un insieme di <a href=#caching>intestazioni di cache</a> che dicevano a chiunque fosse in ascolto che poteva tenere in cache questa risorsa per 24 ore. (<code>Cache-Control: max-age=86400</code>, che sono 24 ore misurate in secondi). <code>httplib2</code> comprende e rispetta queste intestazioni di cache, e ha memorizzato la risposta precedente nella directory <code>.cache</code> (il cui nome avete passato quando avete creato l'oggetto <code>Http</code>). Quella informazione in cache non è ancora scaduta, quindi la seconda volta che richiedete i dati a questo <abbr>URL</abbr>, <code>httplib2</code> semplicemente restituisce il risultato in cache senza nemmeno utilizzare la rete.
+<p>Avete già richiesto in precedenza i dati a questo <abbr>URL</abbr>. Quella richiesta ha avuto successo (<code>status: 200</code>). Quella risposta includeva non solo i dati del feed, ma anche un insieme di <a href=#caching>intestazioni di cache</a> che dicevano a chiunque fosse in ascolto che poteva tenere in cache questa risorsa per 24 ore. (<code>Cache-Control: max-age=86400</code>, che sono 24 ore misurate in secondi). <code>httplib2</code> comprende e rispetta queste intestazioni di cache, e ha memorizzato la risposta precedente nella directory <code>.cache</code> (il cui nome avete passato quando avete creato l'oggetto <code>Http</code>). Quella informazione in cache non è ancora scaduta, quindi la seconda volta che richiedete i dati a questo <abbr>URL</abbr> <code>httplib2</code> semplicemente restituisce il risultato in cache senza nemmeno utilizzare la rete.
 
 <p>Ho detto &#8220;semplicemente&#8221;, ma ovviamente c'è molta complessità nascosta dietro questa semplicità. <code>httplib2</code> gestisce l'uso della cache da parte di <abbr>HTTP</abbr> in maniera <em>automatica</em> e <em>predefinita</em>. Casomai per qualche ragione aveste bisogno di sapere se una risposta proveniva dalla cache, potete controllare l'attributo <code>response.fromcache</code>. Altrimenti, tutto funziona e basta.
 
-<p id=bypass-the-cache>Ora, supponete di avere i dati nella cache, ma di voler aggirare la cache e riottenerli dal server remoto. I browser talvolta lo fanno se l'utente lo richiede esplicitamente. Per esempio, premere <kbd>F5</kbd> aggiorna la pagina corrente, ma premere <kbd>Ctrl+F5</kbd> aggira la cache e riottiene la pagina corrente dal server remoto. Potreste pensare: &#8220;Oh, cancellerò semplicemente i dati dalla mia cache locale, poi li richiederò di nuovo.&#8221; Potreste farlo, ma ricordate che potrebbero esserci più parti coinvolte che solo voi e il server remoto. Cosa mi dite di quei server proxy intermedi? Quelli sono completamente al di là del vostro controllo, potrebbero ancora avere quei dati nella propria cache e ve li restituiranno tranquillamente perché (per quanto li riguarda) la loro cache è ancora valida.
+<p id=bypass-the-cache>Ora, supponete di avere i dati nella cache, ma di voler aggirare la cache e riottenerli dal server remoto. I browser talvolta lo fanno se l'utente lo richiede esplicitamente. Per esempio, premere <kbd>F5</kbd> aggiorna la pagina corrente, ma premere <kbd>Ctrl+F5</kbd> aggira la cache e riottiene la pagina corrente dal server remoto. Potreste pensare: &#8220;Oh, cancellerò semplicemente i dati dalla mia cache locale, poi li richiederò di nuovo.&#8221; Potreste farlo, ma ricordate che potrebbero esserci più parti coinvolte anziché solo voi e il server remoto. Cosa mi dite di quei server proxy intermedi? Quelli sono completamente al di là del vostro controllo, potrebbero ancora avere quei dati nella propria cache e ve li restituiranno tranquillamente perché (per quanto li riguarda) la loro cache è ancora valida.
 
 <p>Invece di manipolare la vostra cache locale e sperare per il meglio, dovreste usare le caratteristiche di <abbr>HTTP</abbr> per assicurarvi che la vostra richiesta raggiunga effettivamente il server remoto.
 
@@ -579,7 +579,7 @@ user-agent: Python-httplib2/$Rev: 259 $'
 <a><samp class=p>>>> </samp><kbd class=pp>len(content)</kbd>                                                  <span class=u>&#x2467;</span></a>
 <samp class=pp>6657</samp></pre>
 <ol>
-<li>Avete richiesto ancora la stessa pagina, con lo stesso oggetto <code>Http</code> (e la stessa cache locale).
+<li>Avete richiesto ancora la stessa pagina con lo stesso oggetto <code>Http</code> (e la stessa cache locale).
 <li><code>httplib2</code> spedisce il validatore <code>ETag</code> al server nell'intestazione <code>If-None-Match</code>.
 <li><code>httplib2</code> spedisce al server anche il validatore <code>Last-Modified</code> nell'intestazione <code>If-Modified-Since</code>.
 <li>Il server ha esaminato questi validatori, ha esaminato la pagina che avete richiesto e ha determinato che la pagina non è cambiata dall'ultima volta che l'avete richiesta, quindi risponde con un codice di stato <code>304</code> e <em>nessun dato</em>.
@@ -690,9 +690,9 @@ reply: 'HTTP/1.1 200 OK'</samp></pre>
  'date': 'Wed, 03 Jun 2009 02:21:41 GMT',
  'content-type': 'text/html; charset=iso-8859-1'}</samp>
 <a><samp class=p>>>> </samp><kbd class=pp>type(response)</kbd>                                                        <span class=u>&#x2461;</span></a>
-<samp class=pp>&lt;class 'httplib2.Response'></samp>
+<samp>&lt;class 'httplib2.Response'></samp>
 <samp class=p>>>> </samp><kbd class=pp>type(response.previous)</kbd>
-<samp class=pp>&lt;class 'httplib2.Response'></samp>
+<samp>&lt;class 'httplib2.Response'></samp>
 <a><samp class=p>>>> </samp><kbd class=pp>response.previous.previous</kbd>                                            <span class=u>&#x2462;</span></a>
 <samp class=p>>>></samp></pre>
 <ol>
@@ -786,7 +786,7 @@ Aggiorna lo stato dell'utente autenticato. Richiede il parametro <code>status</c
 </dl>
 </blockquote>
 
-<p>Come funziona questo metodo? Per pubblicare un nuovo messaggio su Identi.ca avete bisogno di emettere una richiesta <abbr>HTTP</abbr> <code>POST</code> verso <code>http://identi.ca/api/statuses/update.<i>formato</i></code>. (Il <var>formato</var> non è parte dell'<abbr>URL</abbr>, ma dovete sostituirlo con il formato dei dati che volete farvi restituire dal server in risposta alla vostra richiesta. Quindi se volete una risposta in <abbr>XML</abbr> dovreste spedire la richiesta a <code>https://identi.ca/api/statuses/update.xml</code>.) La richiesta deve includere un parametro chiamato <code>status</code>, che contiene il testo del vostro aggiornamento di stato. E la richiesta deve essere autenticata.
+<p>Come funziona questo metodo? Per pubblicare un nuovo messaggio su Identi.ca avete bisogno di emettere una richiesta <abbr>HTTP</abbr> <code>POST</code> verso <code>http://identi.ca/api/statuses/update.<i>formato</i></code>. (Il <var>formato</var> non è parte dell'<abbr>URL</abbr>, ma dovete sostituirlo con il formato dei dati che volete farvi restituire dal server in risposta alla vostra richiesta. Quindi, se volete una risposta in <abbr>XML</abbr> dovreste spedire la richiesta a <code>https://identi.ca/api/statuses/update.xml</code>.) La richiesta deve includere un parametro chiamato <code>status</code> che contiene il testo del vostro aggiornamento di stato. E la richiesta deve essere autenticata.
 
 <p>Autenticata? Certamente. Per aggiornare il vostro stato su Identi.ca dovete provare chi siete. Identi.ca non è un wiki, solo voi potete aggiornare il vostro stato. Identi.ca utilizza la <a href=http://en.wikipedia.org/wiki/Basic_access_authentication>Basic Authentication di <abbr>HTTP</abbr></a> (<i>alias</i> <a href=http://www.ietf.org/rfc/rfc2617.txt>RFC 2617</a>) via <abbr>SSL</abbr> per fornire un'autenticazione sicura ma facile da usare. <code>httplib2</code> supporta la Basic Authentication sia via <abbr>SSL</abbr> che via <abbr>HTTP</abbr>, quindi questa parte è facile.
 
@@ -901,7 +901,7 @@ status=Aggiornamento+di+prova+da+Python+3'
 &lt;/user>
 &lt;/status></samp></pre>
 <ol>
-<li>Ricordatevi che i dati restituiti da <code>httplib2</code> sono sempre <a href=stringhe.html#byte-arrays>byte</a>, non stringhe. Per convertirli in una stringa, dovete decodificarli utilizzando la codifica di carattere corretta. I metodi della <abbr>API</abbr> di Identi.ca restituiscono sempre i risultati in <abbr>UTF-8</abbr>, quindi questa parte è facile.
+<li>Ricordatevi che i dati restituiti da <code>httplib2</code> sono sempre <a href=stringhe.html#byte-arrays>byte</a>, non stringhe. Per convertirli in una stringa dovete decodificarli utilizzando la codifica di carattere corretta. I metodi della <abbr>API</abbr> di Identi.ca restituiscono sempre i risultati in <abbr>UTF-8</abbr>, quindi questa parte è facile.
 <li>Ecco il testo del messaggio di stato che abbiamo appena pubblicato.
 <li>Ecco l'identificatore unico per il nuovo messaggio di stato. Identi.ca lo usa per costruire un <abbr>URL</abbr> in modo da visualizzare il messaggio sul web.
 </ol>
@@ -928,8 +928,8 @@ status=Aggiornamento+di+prova+da+Python+3'
 <ol>
 <li>Il server ha restituito un documento <abbr>XML</abbr>, giusto? Voi sapete <a href=xml.html#xml-parse>come riconoscere un documento <abbr>XML</abbr></a>.
 <li>Il metodo <code>findtext()</code> trova la prima istanza dell'espressione data e ne estrae il contenuto testuale. In questo caso, stavamo giusto cercando un elemento <code>&lt;id></code>.
-<li>Sulla base del contenuto testuale dell'elemento <code>&lt;id></code>, possiamo costruire un <abbr>URL</abbr> per cancellare il messaggio di stato che abbiamo appena pubblicato.
-<li>Per cancellare un messaggio, vi basta emettere una richiesta <abbr>HTTP</abbr> <code>DELETE</code> verso quell'<abbr>URL</abbr>.
+<li>Sulla base del contenuto testuale dell'elemento <code>&lt;id></code> possiamo costruire un <abbr>URL</abbr> per cancellare il messaggio di stato che abbiamo appena pubblicato.
+<li>Per cancellare un messaggio vi basta emettere una richiesta <abbr>HTTP</abbr> <code>DELETE</code> verso quell'<abbr>URL</abbr>.
 </ol>
 
 <p>Questo è quello che viene trasmesso attraverso la rete:
@@ -945,7 +945,7 @@ user-agent: Python-httplib2/$Rev: 259 $
 <a>send: b'DELETE /api/statuses/destroy/5131472.xml HTTP/1.1      <span class=u>&#x2462;</span></a>
 Host: identi.ca
 Accept-Encoding: identity
-<a>authorization: Basic HASH_SEGRETO_COSTRUITO_DA_HTTPLIB2       <span class=u>&#x2463;</span></a>
+<a>authorization: Basic HASH_SEGRETO_COSTRUITO_DA_HTTPLIB2        <span class=u>&#x2463;</span></a>
 user-agent: Python-httplib2/$Rev: 259 $
 
 '
