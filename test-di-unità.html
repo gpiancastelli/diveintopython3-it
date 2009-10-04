@@ -19,7 +19,7 @@ body{counter-reset:h1 9}
 </blockquote>
 <p id=toc>&nbsp;
 <h2 id=divingin>Immersione! (Oppure no?)</h2>
-<p class=f>In questo capitolo scriverete e farete il debug di un insieme di funzioni di utilità per convertire da e verso i numeri romani. Avete visto le meccaniche per la costruzione e la validazione dei numeri romani nel <a href=espressioni-regolari.html#romannumerals>&#8220;Caso di studio: numeri romani&#8221;</a>. Ora fate un passo indietro e considerate come potremmo fare per trasformare quel programma in un'utilità a due vie.
+<p class=f>In questo capitolo scriverete e farete il debug di un insieme di funzioni di utilità per convertire numeri interi in numeri romani e viceversa. Avete visto le meccaniche per la costruzione e la validazione dei numeri romani nel <a href=espressioni-regolari.html#romannumerals>&#8220;Caso di studio: numeri romani&#8221;</a>. Ora fate un passo indietro e considerate come potremmo fare per trasformare quel programma in un'utilità a due vie.
 <p><a href=espressioni-regolari.html#romannumerals>Le regole per i numeri romani</a> ci hanno condotto a una serie di interessanti osservazioni:
 <ol>
 <li>C'è un solo modo corretto di rappresentare un particolare numero come numero romano.
@@ -194,7 +194,7 @@ def to_roman(n):
     return result</code></pre>
 <ol>
 <li><var>roman_numeral_map</var> è una tupla di tuple che definisce tre cose: la rappresentazione a caratteri dei numeri romani di base; l'ordine dei numeri romani (discendente secondo il valore, da <code>M</code> fino a <code>I</code>); il valore di ogni numero romano. Ogni tupla interna rappresenta una coppia <code>(<var>numero</var>, <var>valore</var>)</code>. Non ci sono solo i numeri romani con un singolo carattere; sono definite anche coppie di due caratteri come <code>CM</code> (&#8220;un centinaio meno un migliaio&#8221;). Questo rende più semplice il codice della funzione <code>to_roman()</code>.
-<li>Ed ecco dove la ricca struttura dati di <var>roman_numeral_map</var> vi ricompensa, perché non avete bisogno di alcuna logica speciale per gestire la regola di sottrazione. Per convertire verso i numeri romani, dovete semplicemente iterare attraverso <var>roman_numeral_map</var> cercando il più grande valore intero minore o uguale al numero in ingresso. Una volta trovato, aggiungete la rappresentazione del numero romano alla fine del risultato, sottraete il corrispondente valore intero dal numero in ingresso, insaponate, sciacquate, ripetete.
+<li>Ed ecco dove la ricca struttura dati di <var>roman_numeral_map</var> vi ricompensa, perché non avete bisogno di alcuna logica speciale per gestire la regola di sottrazione. Per convertire in numeri romani, dovete semplicemente iterare attraverso <var>roman_numeral_map</var> cercando il più grande valore intero minore o uguale al numero in ingresso. Una volta trovato, aggiungete la rappresentazione del numero romano alla fine del risultato, sottraete il corrispondente valore intero dal numero in ingresso, insaponate, sciacquate, ripetete.
 </ol>
 <p>Se non vi è ancora chiaro come lavora la funzione <code>to_roman()</code>, aggiungete una chiamata a <code>print()</code> alla fine del ciclo <code>while</code>:
 <pre class='nd pp'><code>
@@ -559,7 +559,7 @@ OK</samp></pre>
 
 <h2 id=romantest5>Una piacevole simmetria</h2>
 
-<p>Convertire una stringa da un numero romano a un intero sembra più difficile che convertire un intero in un numero romano. Di certo c'è il problema della validazione. &Egrave; facile controllare se un intero è più grande di 0, ma è un po' più difficile controllare se una stringa contiene un numero romano valido. Tuttavia abbiamo già costruito <a href=espressioni-regolari.html#romannumerals>un'espressione regolare per controllare i numeri romani</a>, quindi questa parte è fatta.
+<p>Convertire una stringa da un numero romano in un intero sembra più difficile che convertire un intero in un numero romano. Di certo c'è il problema della validazione. &Egrave; facile controllare se un intero è più grande di 0, ma è un po' più difficile controllare se una stringa contiene un numero romano valido. Tuttavia abbiamo già costruito <a href=espressioni-regolari.html#romannumerals>un'espressione regolare per controllare i numeri romani</a>, quindi questa parte è fatta.
 
 <p>Questo ci lascia il problema di convertire la stringa. Come vedremo fra un minuto, grazie alla ricca struttura dati che abbiamo definito per correlare i singoli numeri romani ai loro valori interi, il succo della funzione <code>from_roman()</code> è tanto semplice quanto quello della funzione <code>to_roman()</code>.
 
