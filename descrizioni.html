@@ -168,7 +168,7 @@ body{counter-reset:h1 3}
 <li><code>feed.xml</code> è un file che si trova nella cartella <code>esempi</code>. Invocare la funzione <code>os.stat()</code> restituisce un oggetto che contiene diversi tipi di metadati sul file.
 <li><code>st_mtime</code> è la data di modifica, ma è in un formato che non è molto utile. (Tecnicamente, rappresenta il numero di secondi trascorsi dal 1° gennaio 1970. Non sto scherzando.)
 <li>Il modulo <code>time</code> è parte della libreria standard di Python e contiene funzioni di conversione tra differenti rappresentazioni temporali, funzioni per formattare i valori temporali in stringhe e funzioni per lavorare con i fusi orari.
-<li>La funzione <code>time.localtime()</code> converte un valore temporale dal numero di secondi trascorsi dal 1° gennaio 1970 (come rappresentato dalla proprietà <code>st_mtime</code> restituita dalla funzione <code>os.stat()</code>) a una struttura più utile contenente anno, mese, giorno, ora, minuto, secondo, e così via. La modifica più recente a questo file è stata effettuata il 13 giugno 2009, attorno alle 17:25.
+<li>La funzione <code>time.localtime()</code> converte un valore temporale espresso come numero di secondi trascorsi dal 1° gennaio 1970 (come rappresentato dalla proprietà <code>st_mtime</code> restituita dalla funzione <code>os.stat()</code>) in una struttura più utile contenente anno, mese, giorno, ora, minuto, secondo, e così via. La modifica più recente a questo file è stata effettuata il 13 giugno 2009, attorno alle 17:25.
 </ol>
 
 <pre class=screen>

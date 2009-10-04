@@ -38,7 +38,7 @@ del{background:#f87}
 <p>In altre parole, il riconoscimento di una codifica è in realtà il riconoscimento di una lingua combinato con la conoscenza di quali lingue tendono a usare determinate codifiche di carattere.
 
 <h3 id=faq.who>Esiste un algoritmo di questo tipo?</h3>
-<p>A quanto pare, sì. Tutti browser più diffusi usano il riconoscimento automatico delle codifiche di carattere, perché il web è pieno di pagine che non hanno alcuna informazione sulla loro codifica. <a href=http://lxr.mozilla.org/seamonkey/source/extensions/universalchardet/src/base/>Mozilla Firefox contiene una libreria per il riconoscimento automatico delle codifiche</a> distribuita sotto licenza open source. <a href=http://chardet.feedparser.org/>Io ho convertito questa libreria in Python 2</a> e ho chiamato il modulo <code>chardet</code>. Questo capitolo vi illustrerà passo per passo il processo di conversione del modulo <code>chardet</code> da Python 2 a Python 3.
+<p>A quanto pare, sì. Tutti browser più diffusi usano il riconoscimento automatico delle codifiche di carattere, perché il web è pieno di pagine che non hanno alcuna informazione sulla loro codifica. <a href=http://lxr.mozilla.org/seamonkey/source/extensions/universalchardet/src/base/>Mozilla Firefox contiene una libreria per il riconoscimento automatico delle codifiche</a> distribuita sotto licenza open source. <a href=http://chardet.feedparser.org/>Io ho convertito questa libreria verso Python 2</a> e ho chiamato il modulo <code>chardet</code>. Questo capitolo vi illustrerà passo per passo il processo di conversione del modulo <code>chardet</code> da Python 2 verso Python 3.
 
 <p class=a>&#x2042;
 
@@ -373,7 +373,7 @@ for line in open(f, 'rb'):
 <ins>+         aBuf = re.sub(b'([A-Za-z])+', b' ', aBuf)</ins>
           return aBuf</code></pre>
         
-<h3 id=cantconvertbytesobject>Impossibile convertire implicitamente un oggetto <code>'bytes'</code> a <code>str</code></h3>
+<h3 id=cantconvertbytesobject>Impossibile convertire implicitamente un oggetto <code>'bytes'</code> in <code>str</code></h3>
 <p>Sempre più curioso&hellip;
 <pre class='nd screen'><samp class=p>C:\home\chardet> </samp><kbd>python test.py tests\*\*</kbd>
 <samp>tests\ascii\howto.diveintomark.org.xml</samp>
@@ -609,7 +609,7 @@ TypeError: unorderable types: int() >= str()</samp></pre>
     while i &lt; aLen:
 <mark>        order, charLen = self.get_order(aBuf[i:i+2])</mark></code></pre>
 <p>Oh, guardate, è il nostro vecchio amico <var>aBuf</var>. Come avrete potuto intuire da tutti gli altri problemi che abbiamo incontrato in questo capitolo, <var>aBuf</var> è un array di byte. Qui il metodo <code>feed()</code> non sta semplicemente passandolo tutto intero, ma lo sta affettando. Però, come avete visto <a href=#unsupportedoperandtypeforplus>precedentemente in questo capitolo</a>, affettare un array di byte restituisce un array di byte, quindi il parametro <var>aStr</var> che viene passato al metodo <code>get_order()</code> è ancora un array di byte.
-<p>E cos'è che questo codice sta cercando di fare con <var>aStr</var>? Prende il primo elemento dell'array di byte e lo confronta con una stringa di lunghezza 1. In Python 2 questo funzionava, perché <var>aStr</var> e <var>aBuf</var> erano stringhe, e <var>aStr[0]</var> sarebbe stata una stringa, e potevate confrontare le stringhe per la disuguaglianza. Ma in Python 3 <var>aStr</var> e <var>aBuf</var> sono array di byte, <var>aStr[0]</var> è un intero e non potete effettuare un confronto di disuguaglianza tra interi e stringhe senza convertire esplicitamente gli uni al tipo delle altre o viceversa.
+<p>E cos'è che questo codice sta cercando di fare con <var>aStr</var>? Prende il primo elemento dell'array di byte e lo confronta con una stringa di lunghezza 1. In Python 2 questo funzionava, perché <var>aStr</var> e <var>aBuf</var> erano stringhe, e <var>aStr[0]</var> sarebbe stata una stringa, e potevate confrontare le stringhe per la disuguaglianza. Ma in Python 3 <var>aStr</var> e <var>aBuf</var> sono array di byte, <var>aStr[0]</var> è un intero e non potete effettuare un confronto di disuguaglianza tra interi e stringhe senza convertire esplicitamente gli uni nel tipo delle altre o viceversa.
 <p>In questo caso non c'è bisogno di rendere il codice più complicato aggiungendo una conversione esplicita. <var>aStr[0]</var> produce un intero e le cose con le quali state effettuando il confronto sono tutte costanti. Modifichiamole da stringhe di 1 carattere a interi. E visto che ci siamo, cambiamo il nome di <var>aStr</var> in <var>aBuf</var>, dato che in realtà non è una stringa.
 <pre class='nd pp'><code>  class SJISContextAnalysis(JapaneseContextAnalysis):
 <del>-     def get_order(self, aStr):</del>

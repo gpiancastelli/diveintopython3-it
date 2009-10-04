@@ -565,7 +565,7 @@ NameError: name 'entry' is not defined</samp>
 <li>Ho una buona e una cattiva notizia. Prima la buona notizia: la funzione <code>json.load()</code> legge con successo il file <code>entry.json</code> che avete creato nella Shell Python n°1 e crea un nuovo oggetto Python che contiene i dati. Ora la cattiva notizia: la funzione non ha ricreato la struttura dati <var>entry</var> originale. I due valori <code>'internal_id'</code> e <code>'published_date'</code> sono stati ricreati sotto forma di dizionari&nbsp;&mdash;&nbsp;nello specifico, dizionari contenenti i valori compatibili con <abbr>JSON</abbr> che avete creato nella funzione di conversione <code>to_json()</code>.
 </ol>
 
-<p>La funzione <code>json.load()</code> non sa nulla di qualunque funzione di conversione possiate aver passato a <code>json_dump()</code>. Ciò di cui avete bisogno è l'opposto della funzione <code>to_json()</code>&nbsp;&mdash;&nbsp;una funzione che prenda un oggetto <abbr>JSON</abbr> proveniente da una conversione personalizzata e lo converta indietro al tipo di dato Python originale.
+<p>La funzione <code>json.load()</code> non sa nulla di qualunque funzione di conversione possiate aver passato a <code>json_dump()</code>. Ciò di cui avete bisogno è l'opposto della funzione <code>to_json()</code>&nbsp;&mdash;&nbsp;una funzione che prenda un oggetto <abbr>JSON</abbr> proveniente da una conversione personalizzata e lo converta all'indietro nel tipo di dato Python originale.
 
 <pre class=pp><code># aggiungete questa funzione a customserializer.py
 <a>def from_json(json_object):                                   <span class=u>&#x2460;</span></a>
