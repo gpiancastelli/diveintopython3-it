@@ -411,14 +411,14 @@ Writing /usr/local/lib/python3.1/dist-packages/httplib2-python3_0.5.0.egg-info</
 <ol>
 <li>la codifica data nel parametro <code>charset</code> dell'intestazione <abbr>HTTP</abbr> <code>Content-Type</code>, oppure
 <li>la codifica data nell'attributo <code>encoding</code> della dichiarazione <abbr>XML</abbr> all'interno del documento, oppure
-<li><abbr>UTF-8</abbr>
+<li><abbr>UTF-8</abbr>.
 </ol>
 
 <p>D'altra parte, se il tipo di contenuto dato nell'intestazione <abbr>HTTP</abbr> <code>Content-Type</code> è <code>text/xml</code>, <code>text/xml-external-parsed-entity</code>, o un sottotipo come per esempio <code>text/QualsiasiCosa+xml</code>, allora l'attributo di codifica della dichiarazione <abbr>XML</abbr> nel documento viene completamente ignorato e la codifica è
 
 <ol>
 <li>la codifica data nel parametro <code>charset</code> dell'intestazione <abbr>HTTP</abbr> <code>Content-Type</code>, oppure
-<li><abbr>US-ASCII</abbr>
+<li><abbr>US-ASCII</abbr>.
 </ol>
 
 <p>E questo è solo per i documenti <abbr>XML</abbr>. Per i documenti <abbr>HTML</abbr>, i browser web hanno costruito <a type=application/pdf href=http://www.adambarth.com/papers/2009/barth-caballero-song.pdf>regole per il content sniffing</a> [<abbr>PDF</abbr>] talmente bizantine che <a href='http://www.google.com/search?q=barth+content-type+processing+model'>stiamo ancora cercando di capire come funzionano</a>.
