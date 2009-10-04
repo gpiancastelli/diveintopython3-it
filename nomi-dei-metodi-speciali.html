@@ -436,8 +436,8 @@ class FieldStorage:
 <p>Esiste un secondo insieme di metodi speciali per l'aritmetica con <i>operandi rovesciati</i>. Data un'operazione aritmetica con due operandi (<i>e.g.</i> <code>x / y</code>), ci sono due modi di eseguirla:
 
 <ol>
-<li>Dire a <var>x</var> di dividersi per <var>y</var>, oppure
-<li>Dire a <var>y</var> di dividere <var>x</var> per lei stessa
+<li>dire a <var>x</var> di dividersi per <var>y</var>, oppure
+<li>dire a <var>y</var> di dividere <var>x</var> per lei stessa.
 </ol>
 
 <p>L'insieme di metodi speciali appena visto adotta il primo approccio: dato <code>x / y</code>, fornisce a <var>x</var> un modo per dire: &#8220;So come dividermi per <var>y</var>.&#8221; L'insieme di metodi speciali che segue adotta il secondo approccio, fornendo a <var>y</var> un modo per dire: &#8220;So come fare il denominatore e dividere <var>x</var> per me stessa.&#8221;
@@ -558,7 +558,7 @@ class FieldStorage:
 <td><a href=http://www.python.org/doc/3.1/reference/datamodel.html#object.__ior__><code>x.<dfn>__ior__</dfn>(<var>y</var>)</code></a>
 </table>
 
-<p>Notate che la maggior parte dei metodi per le operazioni in loco non è richiesta. Se non definite il metodo per una particolare operazione in loco, Python proverà a utilizzare gli altri metodi. Per esempio, cercando di eseguire l'espressione <code>x /= y</code>, Python proverà a:
+<p>Notate che la maggior parte dei metodi per le operazioni in loco non è richiesta. Se non definite il metodo per una particolare operazione in loco, Python proverà a utilizzare gli altri metodi. Per esempio, cercando di eseguire l'espressione <code>x /= y</code>, Python proverà a&hellip;
 
 <ol>
 <li>Invocare <code>x.__itruediv__(<var>y</var>)</code>. Se questo metodo è definito e restituisce un valore diverso da <code>NotImplemented</code>, abbiamo finito.

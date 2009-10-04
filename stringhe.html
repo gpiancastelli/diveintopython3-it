@@ -185,7 +185,7 @@ def approximate_size(size, a_kilobyte_is_1024_bytes=True):
 <samp class=p>>>> </samp><kbd class=pp>'1MB = 1000{0.modules[humansize].SUFFIXES[1000][0]}'.format(sys)</kbd>
 <samp class=pp>'1MB = 1000KB'</samp></pre>
 
-<p>Funziona in questo modo:
+<p>Funziona in questo modo.
 
 <ul>
 <li>Il modulo <code>sys</code> mantiene informazioni sull'istanza dell'interprete Python attualmente in esecuzione. Visto che lo avete appena importato, potete passare il modulo <code>sys</code> stesso come argomento al metodo <code>format()</code>. Quindi il campo di sostituzione <code>{0}</code> si riferisce al modulo <code>sys</code>.
