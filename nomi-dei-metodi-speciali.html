@@ -149,10 +149,10 @@ h3:before{counter-increment:h3;content:'B.' counter(h2) '.' counter(h3) '. '}
 <a><samp class=p>>>> </samp><kbd class=pp>dyn.color</kbd>                      <span class=u>&#x2463;</span></a>
 <samp class=pp>'LemonChiffon'</samp></pre>
 <ol>
-<li>Il nome dell'attributo viene passato al metodo <code>__getattr__()</code> sotto forma di stringa. Se il nome è <code>'color'</code>, il metodo restituisce un valore. (In questo caso, il valore è solo una stringa costante, ma normalmente effettuereste una qualche sorta di computazione e ne restituireste il risultato.)
-<li>Se il nome dell'attributo è sconosciuto, il metodo <code>__getattr__()</code> deve sollevare un'eccezione di tipo <code>AttributeError</code>, altrimenti il vostro codice fallirà silenziosamente quando accedete ad attributi non definiti. (Tecnicamente, se il metodo non solleva un'eccezione o restituisce esplicitamente un valore, allora restituisce <code>None</code>, il valore nullo di Python. In questo caso, <em>tutti</em> gli attributi non esplicitamente definiti varrebbero <code>None</code>, che quasi sicuramente non è ciò che desiderate.)
+<li>Il nome dell'attributo viene passato al metodo <code>__getattr__()</code> sotto forma di stringa. Se il nome è <code>'color'</code>, il metodo restituisce un valore. (In questo caso il valore è solo una stringa costante, ma normalmente effettuereste una qualche sorta di computazione e ne restituireste il risultato.)
+<li>Se il nome dell'attributo è sconosciuto, il metodo <code>__getattr__()</code> deve sollevare un'eccezione di tipo <code>AttributeError</code>, altrimenti il vostro codice fallirà silenziosamente quando accedete ad attributi non definiti. (Tecnicamente, se il metodo non solleva un'eccezione o restituisce esplicitamente un valore, allora restituisce <code>None</code>, il valore nullo di Python. In questo caso <em>tutti</em> gli attributi non esplicitamente definiti varrebbero <code>None</code>, che quasi sicuramente non è ciò che volete.)
 <li>L'istanza <var>dyn</var> non ha un attributo chiamato <var>color</var>, quindi il metodo <code>__getattr__()</code> viene invocato per fornirne il valore calcolato.
-<li>Dopo aver esplicitamente impostato <var>dyn.color</var>, il metodo <code>__getattr__()</code> non viene più invocato per fornire il valore di <var>dyn.color</var>, perché <var>dyn.color</var> è già definito in questa istanza.
+<li>Dopo aver esplicitamente impostato <var>dyn.color</var>, il metodo <code>__getattr__()</code> non viene più invocato per fornire il valore di <var>dyn.color</var> perché <var>dyn.color</var> è già definito in questa istanza.
 </ol>
 
 <p>D'altra parte, il metodo <code>__getattribute__()</code> viene invocato in maniera assoluta e incondizionata.
@@ -197,7 +197,7 @@ h3:before{counter-increment:h3;content:'B.' counter(h2) '.' counter(h3) '. '}
 AttributeError</samp></pre>
 <ol>
 <li>Questa classe definisce un metodo <code>__getattribute__()</code> che solleva sempre un'eccezione di tipo <code>AttributeError</code>. Nessun accesso ad attributi o metodi avrà successo.
-<li>Quando invocate <code>hero.swim()</code>, Python cerca un metodo <code>swim()</code> nella classe <code>Rastan</code>. Questa ricerca passa attraverso il metodo <code>__getattribute__()</code>, <em>perché tutti gli accessi ad attributi e metodi passano attraverso il metodo <code>__getattribute__()</code></em>. In questo caso, il metodo <code>__getattribute__()</code> solleva un'eccezione di tipo <code>AttributeError</code>, quindi l'accesso al metodo fallisce, quindi la chiamata di metodo fallisce.
+<li>Quando invocate <code>hero.swim()</code>, Python cerca un metodo <code>swim()</code> nella classe <code>Rastan</code>. Questa ricerca passa attraverso il metodo <code>__getattribute__()</code>, <em>perché tutti gli accessi ad attributi e metodi passano attraverso il metodo <code>__getattribute__()</code></em>. In questo caso il metodo <code>__getattribute__()</code> solleva un'eccezione di tipo <code>AttributeError</code>, quindi l'accesso al metodo fallisce, quindi la chiamata di metodo fallisce.
 </ol>
 
 <h2 id=acts-like-function>Classi che si comportano come funzioni</h2>
@@ -215,7 +215,7 @@ AttributeError</samp></pre>
 <td><a href=http://www.python.org/doc/3.1/reference/datamodel.html#object.__call__><code>my_instance.<dfn>__call__</dfn>()</code></a>
 </table>
 
-<p>Il <a href=http://docs.python.org/3.1/library/zipfile.html>modulo <code>zipfile</code></a> usa questa tecnica per definire una classe che possa <dfn>decodificare</dfn> un file <dfn>zip</dfn> <dfn>criptato</dfn> con una certa password. L'algoritmo di <dfn>decodifica</dfn> per i file zip richiede di memorizzare uno stato durante l'esecuzione. Definire il decodificatore come una classe vi permette di mantenere questo stato all'interno di una singola istanza di tale classe. Lo stato viene inizializzato nel metodo <code>__init__()</code> e aggiornato man mano che il file viene <dfn>decodificato</dfn>. Ma dato che la classe è anche &#8220;invocabile&#8221; come una funzione, potete passare l'istanza come primo argomento alla funzione <code>map()</code>, in questo modo:
+<p>Il <a href=http://docs.python.org/3.1/library/zipfile.html>modulo <code>zipfile</code></a> usa questa tecnica per definire una classe che possa <dfn>decodificare</dfn> un file <dfn>zip</dfn> <dfn>criptato</dfn> con una certa password. L'algoritmo di <dfn>decodifica</dfn> per i file zip richiede di memorizzare uno stato durante l'esecuzione. Definire il decodificatore come una classe vi permette di mantenere questo stato all'interno di una singola istanza di tale classe. Lo stato viene inizializzato nel metodo <code>__init__()</code> e aggiornato man mano che il file viene <dfn>decodificato</dfn>. Ma dato che la classe è anche &#8220;invocabile&#8221; come una funzione, potete passare l'istanza come primo argomento alla funzione <code>map()</code> in questo modo:
 
 <pre class=pp><code># estratto da zipfile.py
 class _ZipDecrypter:
@@ -243,14 +243,14 @@ bytes = zef_file.read(12)
 <a>h = list(map(zd, bytes[0:12]))             <span class=u>&#x2463;</span></a></code></pre>
 <ol>
 <li>La classe <code>_ZipDecrypter</code> mantiene il proprio stato sotto forma di tre chiavi di cifratura, che vengono successivamente aggiornate facendone ruotare i bit nel metodo <code>_UpdateKeys()</code> (che qui non viene mostrato).
-<li>La classe definisce un metodo <code>__call__()</code> che rende le istanze di questa classe invocabili come funzioni. In questo caso, il metodo <code>__call__()</code> decodifica un singolo byte del file zip, quindi aggiorna le chiavi di cifratura sulla base del byte che è stato decodificato.
+<li>La classe definisce un metodo <code>__call__()</code> che rende le istanze di questa classe invocabili come funzioni. In questo caso il metodo <code>__call__()</code> decodifica un singolo byte del file zip, quindi aggiorna le chiavi di cifratura sulla base del byte che è stato decodificato.
 <li><var>zd</var> è un'istanza della classe <code>_ZipDecrypter</code>. La variabile <var>pwd</var> viene passata al metodo <code>__init__()</code>, dove viene memorizzata e usata per aggiornare le chiavi di cifratura per la prima volta.
 <li>Dati i primi 12 byte di un file zip, li decodificate applicando <var>zd</var> ai byte, in sostanza &#8220;invocando&#8221; 12 volte <var>zd</var>, quindi invocando 12 volte il metodo <code>__call__()</code>, che per 12 volte aggiorna lo stato interno del decodificatore e restituisce un byte come risultato.
 </ol>
 
 <h2 id=acts-like-list>Classi che si comportano come sequenze</h2>
 
-<p>Nel caso la vostra classe agisca come contenitore per un insieme di valori&nbsp;&mdash;&nbsp;cioè, nel caso abbia senso chiedere se la vostra classe &#8220;contiene&#8221; un valore&nbsp;&mdash;&nbsp;allora dovrebbe probabilmente definire i seguenti metodi speciali che le permettono di assumere il comportamento di una sequenza.
+<p>Nel caso la vostra classe agisca come contenitore per un insieme di valori&nbsp;&mdash;&nbsp;cioè nel caso abbia senso chiedere se la vostra classe &#8220;contiene&#8221; un valore&nbsp;&mdash;&nbsp;allora dovrebbe probabilmente definire i seguenti metodi speciali che le permettono di assumere il comportamento di una sequenza.
 
 <table>
 <tr><th>Note
@@ -317,12 +317,12 @@ class FieldStorage:
 <td><code class=pp>del x[key]</code>
 <td><a href=http://www.python.org/doc/3.1/reference/datamodel.html#object.__delitem__><code>x.<dfn>__delitem__</dfn>(<var>key</var>)</code></a>
 <tr><th>
-<td>fornire un valore di default per chiavi mancanti
+<td>fornire un valore predefinito per chiavi mancanti
 <td><code class=pp>x[nonexistent_key]</code>
 <td><a href=http://docs.python.org/3.1/library/collections.html#collections.defaultdict.__missing__><code>x.<dfn>__missing__</dfn>(<var>nonexistent_key</var>)</code></a>
 </table>
 
-<p>La <a href=#acts-like-list-example>classe <code>FieldStorage</code></a> del <a href=http://docs.python.org/3.1/library/cgi.html>modulo <code>cgi</code></a> definisce anche questi metodi speciali, in modo che possiate fare cose come queste:
+<p>La <a href=#acts-like-list-example>classe <code>FieldStorage</code></a> del <a href=http://docs.python.org/3.1/library/cgi.html>modulo <code>cgi</code></a> definisce anche questi metodi speciali in modo che possiate fare cose come queste:
 
 <pre class=pp><code># Uno script che risponde a http://example.com/search?q=cgi
 import cgi
@@ -354,7 +354,7 @@ class FieldStorage:
 
 <h2 id=acts-like-number>Classi che si comportano come numeri</h2>
 
-<p>Usando i metodi speciali appropriati, potete definire classi che si comportano come numeri. Questo significa che potete sommarle, sottrarle ed eseguire su di esse altre operazioni matematiche. Questo è il modo in cui sono realizzate le <dfn>frazioni</dfn>&nbsp;&mdash;&nbsp;la classe <code><dfn>Fraction</dfn></code> implementa questi metodi speciali, in modo che possiate fare cose come questa:
+<p>Usando i metodi speciali appropriati, potete definire classi che si comportano come numeri. Questo significa che potete sommarle, sottrarle ed eseguire su di esse altre operazioni matematiche. Questo è il modo in cui sono realizzate le <dfn>frazioni</dfn>&nbsp;&mdash;&nbsp;la classe <code><dfn>Fraction</dfn></code> implementa questi metodi speciali in modo che possiate fare cose come questa:
 
 <pre class=screen>
 <samp class=p>>>> </samp><kbd class=pp>from fractions import Fraction</kbd>
@@ -831,12 +831,12 @@ def __exit__(self, *args):
 <li><a href=http://docs.python.org/3.1/library/abc.html>Il modulo <code>abc</code> (&#8220;Classi di Base Astratte&#8221;)</a>
 </ul>
 
-<p>Altre letture di intrattenimento:
+<p>Altre letture divertenti:
 
 <ul>
-<li><a href=http://www.python.org/doc/3.1/library/string.html#formatspec>Il mini-linguaggio per le specifiche di formato</a>
-<li><a href=http://www.python.org/doc/3.1/reference/datamodel.html>Il modello dei dati di Python</a>
-<li><a href=http://www.python.org/doc/3.1/library/stdtypes.html>I tipi built-in</a>
+<li><a href=http://www.python.org/doc/3.1/library/string.html#formatspec>Mini-linguaggio per le specifiche di formato</a>
+<li><a href=http://www.python.org/doc/3.1/reference/datamodel.html>Modello dei dati di Python</a>
+<li><a href=http://www.python.org/doc/3.1/library/stdtypes.html>Tipi built-in</a>
 <li><a href=http://www.python.org/dev/peps/pep-0357/><abbr>PEP</abbr> 357: Fare in modo di poter affettare qualsiasi oggetto</a>
 <li><a href=http://www.python.org/dev/peps/pep-3119/><abbr>PEP</abbr> 3119: Introduzione alle classi di base astratte</a>
 </ul>
