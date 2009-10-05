@@ -112,7 +112,7 @@ function showTOC() {
 		toc += '</ol>';
 		level -= 1;
     }
-    toc = '<span class="nm u">&#9662;</span> <a href="javascript:hideTOC()">nascondi l\'indice</a><ol start=0><li><a href=table-of-contents.html><span class=u>&uarr;</span> Indice completo</a></li>' + toc.substring(4);
+    toc = '<span class="nm u">&#9662;</span> <a href="javascript:hideTOC()">nascondi l\'indice</a><ol start=0><li><a href=indice.html><span class=u>&uarr;</span> Indice completo</a></li>' + toc.substring(4);
     $("#toc").html(toc);
 }
 
@@ -152,7 +152,7 @@ $(document).ready(function() {
 		var postelm = $(this).next().get(0);
 		var postid = postelm.id || ("postautopre" + i);
 		postelm.id = postid;
-		$(this).before('<p class=skip><a href=#' + postid + '>skip over this code listing</a>');
+		$(this).before('<p class=skip><a href=#' + postid + '>salta questo listato di codice</a>');
 	    });
 	
 	/* make skip links disappear until you tab to them */
