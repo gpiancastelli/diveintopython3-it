@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <meta charset=utf-8>
-<title>Cosa c'è di nuovo in Immersione in Python 3</title>
+<title>Cosa c&#8217;è di nuovo in Immersione in Python 3</title>
 <!--[if IE]><script src=j/html5.js></script><![endif]-->
 <link rel=stylesheet href=dip3.css>
 <style>
@@ -12,18 +12,18 @@ h3:before{content:''}
 <meta name=viewport content='initial-scale=1.0'>
 <form action=http://www.google.com/cse><div><input type=hidden name=cx value=014021643941856155761:l5eihuescdw><input type=hidden name=ie value=UTF-8>&nbsp;<input type=search name=q size=25 placeholder="powered by Google&trade;">&nbsp;<input type=submit name=sa value=Search></div></form>
 <p>Voi siete qui: <a href=index.html>Inizio</a> <span class=u>&#8227;</span> <a href=indice.html#novità>Immersione in Python 3</a> <span class=u>&#8227;</span>
-<h1>Cosa c'è di nuovo in &#8220;Immersione in Python 3&#8221;</h1>
+<h1>Cosa c&#8217;è di nuovo in &#8220;Immersione in Python 3&#8221;</h1>
 <blockquote class=q>
 <p><span class=u>&#x275D;</span> Non è da qui che siamo entrati? <span class=u>&#x275E;</span><br>&mdash; Pink Floyd, The Wall
 </blockquote>
 <p id=toc>&nbsp;
 <h2 id=divingin><i>alias</i> &#8220;il livello meno&#8221;</h2>
 
-<p class=f>Avete letto l'originale &#8220;<a href=http://it.diveintopython.org/>Immersione in Python</a>&#8221; e forse avete perfino comprato <a href=http://diveintopython.org>il libro in inglese</a>. (Grazie!) Conoscete già Python 2 piuttosto bene. Siete pronti a saltare il fosso e imparare Python 3. &hellip; Se tutto questo è vero, continuate a leggere. (Se niente di tutto questo è vero, vi converrebbe <a href=installare-python.html>cominciare dall'inizio</a>.)
+<p class=f>Avete letto l&#8217;originale &#8220;<a href=http://it.diveintopython.org/>Immersione in Python</a>&#8221; e forse avete perfino comprato <a href=http://diveintopython.org>il libro in inglese</a>. (Grazie!) Conoscete già Python 2 piuttosto bene. Siete pronti a saltare il fosso e imparare Python 3. &hellip; Se tutto questo è vero, continuate a leggere. (Se niente di tutto questo è vero, vi converrebbe <a href=installare-python.html>cominciare dall&#8217;inizio</a>.)
 
 <p>Python 3 include uno script chiamato <code>2to3</code>. Imparate come funziona. Amatelo. Usatelo. <a href=convertire-codice-verso-python-3-con-2to3.html>Convertire codice verso Python 3 con <code>2to3</code></a> è una guida di riferimento a tutte le cose che lo strumento <code>2to3</code> è in grado di correggere automaticamente. Dato che molte di quelle correzioni sono modifiche alla sintassi, la guida è un buon punto di partenza per imparare molti dei cambiamenti sintattici di Python 3. (Ora <code>print</code> è una funzione, <code>`x`</code> non funziona, <i class=baa>&amp;</i>c.)
 
-<p><a href=caso-di-studio-convertire-chardet-verso-python-3.html>Caso di studio: convertire <code>chardet</code> verso Python 3</a> documenta il mio tentativo (infine coronato dal successo) di convertire una libreria non banale da Python 2 verso Python 3. Potrebbe esservi d'aiuto; potrebbe non esserlo. Il capitolo ha una curva di apprendimento abbastanza ripida, dato che dovete prima capire più o meno come funziona la libreria in modo da poter poi capire i problemi che sono comparsi e come risolverli. Molti malfunzionamenti coinvolgono le stringhe. Parlando delle quali&hellip;
+<p><a href=caso-di-studio-convertire-chardet-verso-python-3.html>Caso di studio: convertire <code>chardet</code> verso Python 3</a> documenta il mio tentativo (infine coronato dal successo) di convertire una libreria non banale da Python 2 verso Python 3. Potrebbe esservi d&#8217;aiuto; potrebbe non esserlo. Il capitolo ha una curva di apprendimento abbastanza ripida, dato che dovete prima capire più o meno come funziona la libreria in modo da poter poi capire i problemi che sono comparsi e come risolverli. Molti malfunzionamenti coinvolgono le stringhe. Parlando delle quali&hellip;
 
 <p>Stringhe. Whew. Da dove cominciare. Python 2 aveva &#8220;stringhe&#8221; e &#8220;stringhe Unicode&#8221;. Python 3 ha &#8220;byte&#8221; e &#8220;stringhe&#8221;. Cioè, tutte le stringhe ora sono stringhe Unicode, e se volete lavorare con un insieme di byte dovete usare il nuovo tipo <code>bytes</code>. Python 3 non effettuerà <em>mai</em> una conversione implicita tra stringhe e byte, quindi se non siete sempre sicuri di cosa state usando i vostri programmi si bloccheranno quasi sicuramente. Leggete <a href=stringhe.html>il capitolo sulle stringhe</a> per maggiori dettagli.
 
@@ -32,19 +32,19 @@ h3:before{content:''}
 <ul>
 <li>Nel capitolo <a href=file.html>File</a> imparerete la differenza tra leggere file in modalità &#8220;binaria&#8221; e in modalità &#8220;testo&#8221;. Leggere (e scrivere!) file in modalità testo richiede un parametro <code>encoding</code>. Alcuni metodi dei file di testo contano i caratteri, ma altri metodi contano i byte. Se il vostro programma presume che un carattere sia uguale a un byte, si <em>bloccherà</em> sui caratteri multibyte.
 <li>Nel capitolo <a href=servizi-web-http.html>Servizi web <abbr>HTTP</abbr></a> il modulo <code>httplib2</code> preleva intestazioni e dati via <abbr>HTTP</abbr>. Le intestazioni <abbr>HTTP</abbr> vengono restituite come stringhe, ma il corpo di una risposta <abbr>HTTP</abbr> viene restituito sotto forma di byte.
-<li>Nel capitolo <a href=serializzare-oggetti-python.html>Serializzare oggetti Python</a> imparerete perché il modulo <code>pickle</code> in Python 3 definisce un nuovo formato di dati che non è compatibile all'indietro con Python 2. (Suggerimento: è a causa di byte e stringhe.) Imparerete anche <abbr>JSON</abbr>, che non offre alcun supporto per il tipo <code>bytes</code>. Vi mostrerò come aggirare questa limitazione.
+<li>Nel capitolo <a href=serializzare-oggetti-python.html>Serializzare oggetti Python</a> imparerete perché il modulo <code>pickle</code> in Python 3 definisce un nuovo formato di dati che non è compatibile all&#8217;indietro con Python 2. (Suggerimento: è a causa di byte e stringhe.) Imparerete anche <abbr>JSON</abbr>, che non offre alcun supporto per il tipo <code>bytes</code>. Vi mostrerò come aggirare questa limitazione.
 <li>Il capitolo <a href=caso-di-studio-convertire-chardet-verso-python-3.html>Caso di studio: convertire <code>chardet</code> verso Python 3</a> è un macello totale di byte e stringhe. 
 </ul>
 
-<p>Anche se non siete interessati a Unicode (oh, ma lo sarete), vorrete sapere come <a href=stringhe.html#formatting-strings>formattare le stringhe in Python 3</a>, che è un'operazione completamente diversa rispetto a Python 2.
+<p>Anche se non siete interessati a Unicode (oh, ma lo sarete), vorrete sapere come <a href=stringhe.html#formatting-strings>formattare le stringhe in Python 3</a>, che è un&#8217;operazione completamente diversa rispetto a Python 2.
 
-<p>Gli iteratori sono ovunque in Python 3, e li capisco molto meglio rispetto a quando ho scritto &#8220;Immersione in Python&#8221; cinque anni fa. Anche voi avete bisogno di capirli, perché molte funzioni che erano solite restituire liste in Python 2 ora restituiranno iteratori in Python 3. Come minimo, dovreste leggere <a href=iteratori.html#a-fibonacci-iterator>la seconda metà del capitolo sugli iteratori</a> e <a href=uso-avanzato-degli-iteratori.html#generator-expressions>la seconda metà del capitolo sull'uso avanzato degli iteratori</a>.
+<p>Gli iteratori sono ovunque in Python 3, e li capisco molto meglio rispetto a quando ho scritto &#8220;Immersione in Python&#8221; cinque anni fa. Anche voi avete bisogno di capirli, perché molte funzioni che erano solite restituire liste in Python 2 ora restituiranno iteratori in Python 3. Come minimo, dovreste leggere <a href=iteratori.html#a-fibonacci-iterator>la seconda metà del capitolo sugli iteratori</a> e <a href=uso-avanzato-degli-iteratori.html#generator-expressions>la seconda metà del capitolo sull&#8217;uso avanzato degli iteratori</a>.
 
-<p>A grande richiesta ho aggiunto un'appendice sui <a href=nomi-dei-metodi-speciali.html>nomi dei metodi speciali</a>, che è più o meno simile al <a href=http://www.python.org/doc/3.1/reference/datamodel.html#special-method-names>capitolo intitolato &#8220;Modello dei dati&#8221; nella documentazione di Python</a> ma è condita da osservazioni ironiche e pungenti.
+<p>A grande richiesta ho aggiunto un&#8217;appendice sui <a href=nomi-dei-metodi-speciali.html>nomi dei metodi speciali</a>, che è più o meno simile al <a href=http://www.python.org/doc/3.1/reference/datamodel.html#special-method-names>capitolo intitolato &#8220;Modello dei dati&#8221; nella documentazione di Python</a> ma è condita da osservazioni ironiche e pungenti.
 
 <p>Al tempo in cui stavo scrivendo &#8220;Immersione in Python&#8221;, tutte le librerie XML disponibili facevano schifo. Poi Fredrik Lundh ha implementato <a href=http://effbot.org/zone/element-index.htm>ElementTree</a>, che non fa per niente schifo. Gli dèi di Python hanno saggiamente <a href=http://docs.python.org/3.1/library/xml.etree.elementtree.html>incorporato ElementTree nella libreria standard</a> e ora ElementTree forma le basi per il <a href=xml.html>mio nuovo capitolo su XML</a>. Le vecchie librerie per il riconscimento di XML sono ancora in giro, ma dovreste evitarle, perché fanno schifo!
 
-<p>Un'altra novità di Python&nbsp;&mdash;&nbsp;non nel linguaggio ma nella comunità&nbsp;&mdash;&nbsp;è la comparsa di archivi di codice come il <a href=http://pypi.python.org/>Python Package Index</a> (PyPI, Indice dei Pacchetti Python). Python viene distribuito con alcuni strumenti utili per impacchettare il vostro codice in formati standard e distribuire quei pacchetti su PyPI. Leggete il capitolo <a href=distribuire-librerie-python.html>Distribuire librerie Python</a> per conoscere i dettagli.
+<p>Un&#8217;altra novità di Python&nbsp;&mdash;&nbsp;non nel linguaggio ma nella comunità&nbsp;&mdash;&nbsp;è la comparsa di archivi di codice come il <a href=http://pypi.python.org/>Python Package Index</a> (PyPI, Indice dei Pacchetti Python). Python viene distribuito con alcuni strumenti utili per impacchettare il vostro codice in formati standard e distribuire quei pacchetti su PyPI. Leggete il capitolo <a href=distribuire-librerie-python.html>Distribuire librerie Python</a> per conoscere i dettagli.
 
 <p class=c>&copy; 2001&ndash;9 <a href=informazioni-sul-libro.html>Mark Pilgrim</a><br>
 &copy; 2009 <a href=informazioni-sulla-traduzione.html>Giulio Piancastelli</a> per la traduzione italiana
