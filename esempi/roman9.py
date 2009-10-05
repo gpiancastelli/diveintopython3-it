@@ -1,8 +1,8 @@
-'''Convert to and from Roman numerals
+'''Conversione di interi in numeri romani e viceversa.
 
-This program is part of 'Dive Into Python 3', a free Python book for
-experienced programmers.  Visit http://diveintopython3.org/ for the
-latest version.
+Questo programma fa parte di 'Immersione in Python 3', un libro gratuito
+sul linguaggio Python per programmatori esperti. Visitate l'indirizzo
+http://gpiancastelli.altervista.org/dip3-it per la versione più recente.
 '''
 import re
 
@@ -25,23 +25,23 @@ roman_numeral_map = (('M',  1000),
                      ('I',  1))
 
 roman_numeral_pattern = re.compile('''
-    ^                   # beginning of string
-    M{0,4}              # thousands - 0 to 4 M's
-    (CM|CD|D?C{0,3})    # hundreds - 900 (CM), 400 (CD), 0-300 (0 to 3 C's),
-                        #            or 500-800 (D, followed by 0 to 3 C's)
-    (XC|XL|L?X{0,3})    # tens - 90 (XC), 40 (XL), 0-30 (0 to 3 X's),
-                        #        or 50-80 (L, followed by 0 to 3 X's)
-    (IX|IV|V?I{0,3})    # ones - 9 (IX), 4 (IV), 0-3 (0 to 3 I's),
-                        #        or 5-8 (V, followed by 0 to 3 I's)
-    $                   # end of string
+    ^                   # inizio della stringa
+    M{0,4}              # migliaia - da 0 a 4 M
+    (CM|CD|D?C{0,3})    # centinaia - 900 (CM), 400 (CD), 0-300 (da 0 a 3 C),
+                        #             o 500-800 (D, seguita da 0 fino a 3 C)
+    (XC|XL|L?X{0,3})    # decine - 90 (XC), 40 (XL), 0-30 (da 0 a 3 X),
+                        #          o 50-80 (L, seguita da 0 fino a 3 X)
+    (IX|IV|V?I{0,3})    # unità - 9 (IX), 4 (IV), 0-3 (da 0 a 3 I),
+                        #         o 5-8 (V, seguita da 0 fino a 3 I)
+    $                   # fine della stringa
     ''', re.VERBOSE)
 
 def to_roman(n):
-    '''convert integer to Roman numeral'''
+    '''converte un intero in un numero romano'''
     if not (0 < n < 5000):
-        raise OutOfRangeError('number out of range (must be 1..4999)')
+        raise OutOfRangeError("numero fuori dall'intervallo (deve essere tra 1 e 4999)")
     if not isinstance(n, int):
-        raise NotIntegerError('non-integers can not be converted')
+        raise NotIntegerError('numeri non interi non possono essere convertiti')
 
     result = ''
     for numeral, integer in roman_numeral_map:
@@ -51,13 +51,13 @@ def to_roman(n):
     return result
 
 def from_roman(s):
-    '''convert Roman numeral to integer'''
+    '''converte un numero romano in un intero'''
     if not isinstance(s, str):
-        raise InvalidRomanNumeralError('Input must be a string')
+        raise InvalidRomanNumeralError("L'ingresso deve essere una stringa")
     if not s:
-        raise InvalidRomanNumeralError('Input can not be blank')
+        raise InvalidRomanNumeralError('La stringa in ingresso non può essere vuota')
     if not roman_numeral_pattern.search(s):
-        raise InvalidRomanNumeralError('Invalid Roman numeral: {0}'.format(s))
+        raise InvalidRomanNumeralError('Numero romano non valido: {0}'.format(s))
 
     result = 0
     index = 0

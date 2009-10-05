@@ -1,6 +1,6 @@
-'''Pluralize English nouns (stage 3)
+'''Pluralizza nomi in inglese (versione 3)
 
-Command line usage:
+Uso dalla riga di comando:
 $ python plural3.py noun
 nouns
 '''

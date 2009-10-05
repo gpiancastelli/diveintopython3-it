@@ -1,4 +1,4 @@
-'''Fibonacci generator'''
+'''Generatore di Fibonacci'''
 
 def fib(max):
     a, b = 0, 1
