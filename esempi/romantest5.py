@@ -1,8 +1,8 @@
-'''Unit test for roman1.py
+'''Test di unità per roman5.py
 
-This program is part of 'Dive Into Python 3', a free Python book for
-experienced programmers.  Visit http://diveintopython3.org/ for the
-latest version.
+Questo programma fa parte di 'Immersione in Python 3', un libro gratuito
+sul linguaggio Python per programmatori esperti. Visitate l'indirizzo
+http://gpiancastelli.altervista.org/dip3-it per la versione più recente.
 '''
 
 import roman5
@@ -67,37 +67,37 @@ class KnownValues(unittest.TestCase):
                      (3999, 'MMMCMXCIX'))
 
     def test_to_roman_known_values(self):
-        '''to_roman should give known result with known input'''
+        '''to_roman dovrebbe dare un risultato noto con un ingresso noto'''
         for integer, numeral in self.known_values:
             result = roman5.to_roman(integer)
             self.assertEqual(numeral, result)
 
     def test_from_roman_known_values(self):
-        '''from_roman should give known result with known input'''
+        '''from_roman dovrebbe dare un risultato noto con un ingresso noto'''
         for integer, numeral in self.known_values:
             result = roman5.from_roman(numeral)
             self.assertEqual(integer, result)
 
 class ToRomanBadInput(unittest.TestCase):
     def test_too_large(self):
-        '''to_roman should fail with large input'''
+        '''to_roman dovrebbe fallire con numeri grandi'''
         self.assertRaises(roman5.OutOfRangeError, roman5.to_roman, 4000)
 
     def test_zero(self):
-        '''to_roman should fail with 0 input'''
+        '''to_roman dovrebbe fallire con il numero 0'''
         self.assertRaises(roman5.OutOfRangeError, roman5.to_roman, 0)
 
     def test_negative(self):
-        '''to_roman should fail with negative input'''
+        '''to_roman dovrebbe fallire con numeri negativi'''
         self.assertRaises(roman5.OutOfRangeError, roman5.to_roman, -1)
 
     def test_non_integer(self):
-        '''to_roman should fail with non-integer input'''
+        '''to_roman dovrebbe fallire con numeri non interi'''
         self.assertRaises(roman5.NotIntegerError, roman5.to_roman, 0.5)
 
 class RoundtripCheck(unittest.TestCase):
     def test_roundtrip(self):
-        '''from_roman(to_roman(n))==n for all n'''
+        '''from_roman(to_roman(n))==n per tutti gli n'''
         for integer in range(1, 4000):
             numeral = roman5.to_roman(integer)
             result = roman5.from_roman(numeral)

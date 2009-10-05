@@ -1,8 +1,8 @@
-'''Unit test for roman1.py
+'''Test di unità per roman1.py
 
-This program is part of 'Dive Into Python 3', a free Python book for
-experienced programmers.  Visit http://diveintopython3.org/ for the
-latest version.
+Questo programma fa parte di 'Immersione in Python 3', un libro gratuito
+sul linguaggio Python per programmatori esperti. Visitate l'indirizzo
+http://gpiancastelli.altervista.org/dip3-it per la versione più recente.
 '''
 
 import roman1
@@ -67,7 +67,7 @@ class KnownValues(unittest.TestCase):
                      (3999, 'MMMCMXCIX'))
 
     def test_to_roman_known_values(self):
-        '''to_roman should give known result with known input'''
+        '''to_roman dovrebbe dare un risultato noto con un ingresso noto'''
         for integer, numeral in self.known_values:
             result = roman1.to_roman(integer)
             self.assertEqual(numeral, result)

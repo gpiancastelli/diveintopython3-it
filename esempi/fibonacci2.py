@@ -1,7 +1,7 @@
-'''Fibonacci iterator'''
+'''Iteratore di Fibonacci'''
 
 class Fib:
-    '''iterator that yields numbers in the Fibonacci sequence'''
+    '''iteratore che produce i numeri della sequenza di Fibonacci'''
     
     def __init__(self, max):
         self.max = max

@@ -1,6 +1,6 @@
-'''Pluralize English nouns (stage 5)
+'''Pluralizza nomi in inglese (versione 5)
 
-Command line usage:
+Uso dalla riga di comando:
 $ python plural5.py noun
 nouns
 '''
@@ -24,7 +24,7 @@ def plural(noun, rules_filename='plural5-rules.txt'):
     for matches_rule, apply_rule in rules(rules_filename):
         if matches_rule(noun):
             return apply_rule(noun)
-    raise ValueError('no matching rule for {0}'.format(noun))
+    raise ValueError('nessuna regola per {0}'.format(noun))
 
 if __name__ == '__main__':
     import sys

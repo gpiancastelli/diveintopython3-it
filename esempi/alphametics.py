@@ -1,4 +1,4 @@
-'''Find solutions to alphametic equations.
+'''Trova le soluzioni di equazioni alfametiche.
 
 >>> alphametics.solve('SEND + MORE == MONEY')
 '9567 + 1085 == 10652'
@@ -10,7 +10,7 @@ import itertools
 def solve(puzzle):
     words = re.findall('[A-Z]+', puzzle.upper())
     unique_characters = set(''.join(words))
-    assert len(unique_characters) <= 10, 'Too many letters'
+    assert len(unique_characters) <= 10, 'Troppe lettere'
     first_letters = {word[0] for word in words}
     n = len(first_letters)
     sorted_characters = ''.join(first_letters) + \

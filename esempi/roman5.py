@@ -1,8 +1,8 @@
-'''Convert to and from Roman numerals
+'''Conversione di interi in numeri romani e viceversa.
 
-This program is part of 'Dive Into Python 3', a free Python book for
-experienced programmers.  Visit http://diveintopython3.org/ for the
-latest version.
+Questo programma fa parte di 'Immersione in Python 3', un libro gratuito
+sul linguaggio Python per programmatori esperti. Visitate l'indirizzo
+http://gpiancastelli.altervista.org/dip3-it per la versione più recente.
 '''
 class OutOfRangeError(ValueError): pass
 class NotIntegerError(ValueError): pass
@@ -22,11 +22,11 @@ roman_numeral_map = (('M',  1000),
                      ('I',  1))
 
 def to_roman(n):
-    '''convert integer to Roman numeral'''
+    '''converte un intero in un numero romano'''
     if not (0 < n < 4000):
-        raise OutOfRangeError('number out of range (must be 1..3999)')
+        raise OutOfRangeError("numero fuori dall'intervallo (deve essere tra 1 e 3999)")
     if not isinstance(n, int):
-        raise NotIntegerError('non-integers can not be converted')
+        raise NotIntegerError('numeri non interi non possono essere convertiti')
 
     result = ''
     for numeral, integer in roman_numeral_map:
@@ -36,7 +36,7 @@ def to_roman(n):
     return result
 
 def from_roman(s):
-    '''convert Roman numeral to integer'''
+    '''converte un numero romano in un intero'''
     result = 0
     index = 0
     for numeral, integer in roman_numeral_map:

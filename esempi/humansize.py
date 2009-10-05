@@ -1,10 +1,10 @@
-'''Convert file sizes to human-readable form.
+'''Converte dimensioni di file in una forma leggibile.
 
-Available functions:
+Funzioni disponibili:
 approximate_size(size, a_kilobyte_is_1024_bytes)
-    takes a file size and returns a human-readable string
+    prende una dimensione di file e restituisce una stringa leggibile.
 
-Examples:
+Esempi:
 >>> approximate_size(1024)
 '1.0 KiB'
 >>> approximate_size(1000, False)
@@ -16,18 +16,18 @@ SUFFIXES = {1000: ['KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
             1024: ['KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB']}
 
 def approximate_size(size, a_kilobyte_is_1024_bytes=True):
-    '''Convert a file size to human-readable form.
+    '''Converte la dimensione di un file in una forma leggibile.
 
-    Keyword arguments:
-    size -- file size in bytes
-    a_kilobyte_is_1024_bytes -- if True (default), use multiples of 1024
-                                if False, use multiples of 1000
+    Argomenti con nome:
+    size -- dimensione del file in byte
+    a_kilobyte_is_1024_bytes -- se True (default), usa multipli di 1024
+                                se False, usa multipli di 1000
 
-    Returns: string
+    Restituisce: stringa
 
     '''
     if size < 0:
-        raise ValueError('number must be non-negative')
+        raise ValueError('il numero non deve essere negativo')
 
     multiple = 1024 if a_kilobyte_is_1024_bytes else 1000
     for suffix in SUFFIXES[multiple]:
@@ -35,7 +35,7 @@ def approximate_size(size, a_kilobyte_is_1024_bytes=True):
         if size < multiple:
             return '{0:.1f} {1}'.format(size, suffix)
 
-    raise ValueError('number too large')
+    raise ValueError('numero troppo grande')
 
 if __name__ == '__main__':
     print(approximate_size(1000000000000, False))

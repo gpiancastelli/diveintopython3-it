@@ -1,11 +1,11 @@
-'''Unit test for plural1.py'''
+'''Test di unità per plural4.py'''
 
 import plural4
 import unittest
 
 class KnownValues(unittest.TestCase):
     def test_sxz(self):
-        'words ending in S, X, and Z'
+        'parole che finiscono con S, X, o Z'
         nouns = {
             'bass': 'basses',
             'bus': 'buses',
@@ -21,7 +21,7 @@ class KnownValues(unittest.TestCase):
             self.assertEqual(plural4.plural(singular), plural)
 
     def test_h(self):
-        'words ending in H'
+        'parole che finiscono con H'
         nouns = {
             'coach': 'coaches',
             'glitch': 'glitches',
@@ -34,7 +34,7 @@ class KnownValues(unittest.TestCase):
             self.assertEqual(plural4.plural(singular), plural)
 
     def test_y(self):
-        'words ending in Y'
+        'parole che finiscono con Y'
         nouns = {
             'utility': 'utilities',
             'vacancy': 'vacancies',
@@ -45,7 +45,7 @@ class KnownValues(unittest.TestCase):
             self.assertEqual(plural4.plural(singular), plural)
 
     def test_default(self):
-        'unexceptional words'
+        'parole comuni'
         nouns = {
             'papaya': 'papayas',
             'whip': 'whips',

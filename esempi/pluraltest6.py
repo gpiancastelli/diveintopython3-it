@@ -1,11 +1,11 @@
-'''Unit test for plural6.py'''
+'''Test di unità per plural6.py'''
 
 import plural6
 import unittest
 
 class KnownValues(unittest.TestCase):
     def test_sxz(self):
-        'words ending in S, X, and Z'
+        'parole che finiscono con S, X, o Z'
         nouns = {
             'bass': 'basses',
             'bus': 'buses',
@@ -21,7 +21,7 @@ class KnownValues(unittest.TestCase):
             self.assertEqual(plural6.plural(singular), plural)
 
     def test_h(self):
-        'words ending in H'
+        'parole che finiscono con H'
         nouns = {
             'coach': 'coaches',
             'glitch': 'glitches',
@@ -34,7 +34,7 @@ class KnownValues(unittest.TestCase):
             self.assertEqual(plural6.plural(singular), plural)
 
     def test_y(self):
-        'words ending in Y'
+        'parole che finiscono con Y'
         nouns = {
             'utility': 'utilities',
             'vacancy': 'vacancies',
@@ -45,7 +45,7 @@ class KnownValues(unittest.TestCase):
             self.assertEqual(plural6.plural(singular), plural)
 
     def test_ouce(self):
-        'words ending in OUSE'
+        'parole che finiscono con OUSE'
         nouns = {
              'mouse': 'mice',
              'louse': 'lice'
@@ -54,7 +54,7 @@ class KnownValues(unittest.TestCase):
             self.assertEqual(plural6.plural(singular), plural)
 
     def test_child(self):
-        'special case: child'
+        'caso particolare: child'
         nouns = {
              'child': 'children'
              }
@@ -62,7 +62,7 @@ class KnownValues(unittest.TestCase):
             self.assertEqual(plural6.plural(singular), plural)
 
     def test_oot(self):
-        'special case: foot'
+        'caso particolare: foot'
         nouns = {
              'foot': 'feet'
              }
@@ -70,7 +70,7 @@ class KnownValues(unittest.TestCase):
             self.assertEqual(plural6.plural(singular), plural)
 
     def test_ooth(self):
-        'words ending in OOTH'
+        'parole che finiscono con OOTH'
         nouns = {
              'booth': 'booths',
              'tooth': 'teeth'
@@ -79,7 +79,7 @@ class KnownValues(unittest.TestCase):
             self.assertEqual(plural6.plural(singular), plural)
 
     def test_f_ves(self):
-        'words ending in F that become VES'
+        'parole che finiscono con una F che diventa VES'
         nouns = {
              'leaf': 'leaves',
              'loaf': 'loaves'
@@ -88,7 +88,7 @@ class KnownValues(unittest.TestCase):
             self.assertEqual(plural6.plural(singular), plural)
 
     def test_sis(self):
-        'words ending in SIS'
+        'parole che finiscono con SIS'
         nouns = {
              'thesis': 'theses'
              }
@@ -96,7 +96,7 @@ class KnownValues(unittest.TestCase):
             self.assertEqual(plural6.plural(singular), plural)
 
     def test_man(self):
-        'words ending in MAN'
+        'parole che finiscono con MAN'
         nouns = {
              'man': 'men',
              'mailman': 'mailmen',
@@ -107,7 +107,7 @@ class KnownValues(unittest.TestCase):
             self.assertEqual(plural6.plural(singular), plural)
 
     def test_ife(self):
-        'words ending in IFE'
+        'parole che finiscono con IFE'
         nouns = {
              'knife': 'knives',
              'wife': 'wives',
@@ -117,7 +117,7 @@ class KnownValues(unittest.TestCase):
             self.assertEqual(plural6.plural(singular), plural)
 
     def test_eau(self):
-        'words ending in EAU'
+        'parole che finiscono con EAU'
         nouns = {
              'tableau': 'tableaux'
              }
@@ -125,7 +125,7 @@ class KnownValues(unittest.TestCase):
             self.assertEqual(plural6.plural(singular), plural)
 
     def test_elf(self):
-        'words ending in ELF'
+        'parole che finiscono con ELF'
         nouns = {
              'elf': 'elves',
              'shelf': 'shelves',
@@ -136,7 +136,7 @@ class KnownValues(unittest.TestCase):
             self.assertEqual(plural6.plural(singular), plural)
 
     def test_same(self):
-        'words that are their own plural'
+        'parole che sono il loro stesso plurale'
         nouns = {
              'sheep': 'sheep',
              'deer': 'deer',
@@ -150,7 +150,7 @@ class KnownValues(unittest.TestCase):
             self.assertEqual(plural6.plural(singular), plural)
 
     def test_default(self):
-        'unexceptional words'
+        'parole comuni'
         nouns = {
             'papaya': 'papayas',
             'whip': 'whips',
