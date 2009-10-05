@@ -18,13 +18,13 @@ body{counter-reset:h1 3}
 </blockquote>
 <p id=toc>&nbsp;
 <h2 id=divingin>Immersione!</h2>
-<p class=f>Questo capitolo vi insegnerà le descrizioni di lista, le descrizioni di dizionario e le descrizioni di insieme: tre concetti correlati basati su un'unica tecnica molto potente. Ma prima vorrei fare una breve digressione per parlarvi di due moduli che vi aiuteranno a navigare nel vostro file system locale.
+<p class=f>Questo capitolo vi insegnerà le descrizioni di lista, le descrizioni di dizionario e le descrizioni di insieme: tre concetti correlati basati su un&#8217;unica tecnica molto potente. Ma prima vorrei fare una breve digressione per parlarvi di due moduli che vi aiuteranno a navigare nel vostro file system locale.
 
 <p class=a>&#x2042;
 
 <h2 id=os>Lavorare con i file e le directory</h2>
 
-<p>Python 3 include un modulo chiamato <code>os</code>, che sta per &#8220;sistema operativo&#8221;. Il <a href=http://docs.python.org/3.1/library/os.html>modulo <code>os</code></a> contiene una pletora di funzioni per ottenere informazioni su&nbsp;&mdash;&nbsp;e, in alcuni casi, manipolare&nbsp;&mdash;&nbsp;directory locali, file, processi e variabili d'ambiente. Python fa del suo meglio per offrire una <abbr>API</abbr> unificata attraverso <a href=installare-python.html>tutti i sistemi operativi supportati</a> in modo che i vostri programmi possano funzionare su qualsiasi computer utilizzando la più piccola quantità possibile di codice specifico per la piattaforma.
+<p>Python 3 include un modulo chiamato <code>os</code>, che sta per &#8220;sistema operativo&#8221;. Il <a href=http://docs.python.org/3.1/library/os.html>modulo <code>os</code></a> contiene una pletora di funzioni per ottenere informazioni su&nbsp;&mdash;&nbsp;e, in alcuni casi, manipolare&nbsp;&mdash;&nbsp;directory locali, file, processi e variabili d&#8217;ambiente. Python fa del suo meglio per offrire una <abbr>API</abbr> unificata attraverso <a href=installare-python.html>tutti i sistemi operativi supportati</a> in modo che i vostri programmi possano funzionare su qualsiasi computer utilizzando la più piccola quantità possibile di codice specifico per la piattaforma.
 
 <h3 id=getcwd>La directory di lavoro corrente</h3>
 
@@ -36,7 +36,7 @@ body{counter-reset:h1 3}
 <li>Il risultato della funzione viene spiegato.
 </ol>
 
-<aside>C'è sempre una directory di lavoro corrente.</aside>
+<aside>C&#8217;è sempre una directory di lavoro corrente.</aside>
 
 <p>Se non conoscete la directory di lavoro corrente, il passo n°1 probabilmente fallirà con un errore di tipo <code>ImportError</code>. Questo avviene perché Python cercherà il modulo di esempio nel <a href=il-vostro-primo-programma-python.html#importsearchpath>percorso di ricerca per le importazioni</a>, ma non lo troverà perché la cartella <code>esempi</code> non è una delle directory contenute nel percorso di ricerca. Per risolvere questo problema, avete due alternative.
 
@@ -45,7 +45,7 @@ body{counter-reset:h1 3}
 <li>Cambiare la directory di lavoro corrente impostandola alla cartella <code>esempi</code>.
 </ol>
 
-<p>La directory di lavoro corrente è una proprietà invisibile che Python mantiene in memoria tutto il tempo. C'è sempre una directory di lavoro corrente, sia che vi troviate nella Shell Python, o che eseguiate il vostro programma Python dalla riga di comando, oppure che invochiate uno script <abbr>CGI</abbr> Python su un server web in rete da qualche parte.
+<p>La directory di lavoro corrente è una proprietà invisibile che Python mantiene in memoria tutto il tempo. C&#8217;è sempre una directory di lavoro corrente, sia che vi troviate nella Shell Python, o che eseguiate il vostro programma Python dalla riga di comando, oppure che invochiate uno script <abbr>CGI</abbr> Python su un server web in rete da qualche parte.
 
 <p>Il modulo <code>os</code> contiene due funzioni per lavorare con la directory di lavoro corrente.
 
@@ -80,8 +80,8 @@ body{counter-reset:h1 3}
 <ol>
 <li>La funzione <code>os.path.join()</code> costruisce un nome di percorso a partire da uno o più nomi di percorso parziali. In questo caso, non fa altro che concatenare stringhe.
 <li>In questo caso leggermente meno elementare, <code>join()</code> aggiungerà un carattere di slash ulteriore al nome di percorso prima di unirlo al nome del file. Il carattere è un backslash anziché uno slash, perché ho realizzato questo esempio su Windows. Se replicate questo esempio su Linux o Mac OS X, vedrete uno slash. Python è in grado di accedere al file a prescindere da quale tipo di carattere di slash usate nel nome del percorso.
-<li>La funzione <code>os.path.expanduser()</code> espanderà un nome di percorso che usa il carattere <code>~</code> per rappresentare la directory personale dell'utente corrente. Questa operazione funziona su tutte le piattaforme dove gli utenti hanno una directory personale, comprese Linux, Mac OS X e Windows. Il percorso restituito non ha uno slash finale, ma la funzione <code>os.path.join()</code> non se ne preoccupa.
-<li>Combinando queste tecniche, potete facilmente costruire nomi di percorso per directory e file che si trovano nella directory personale dell'utente. La funzione <code>os.path.join()</code> può accettare un numero qualsiasi di argomenti. Ero felicissimo quando l'ho scoperto, perché <code>aggiungiSlashSeNecessario()</code> è una di quelle piccole funzioni stupide che mi tocca sempre scrivere quando costruisco il mio armamentario di utilità in un nuovo linguaggio. <em>Non</em> dovete scrivere questa piccola funzione stupida in Python, perché alcune persone intelligenti se ne sono già occupate per voi.
+<li>La funzione <code>os.path.expanduser()</code> espanderà un nome di percorso che usa il carattere <code>~</code> per rappresentare la directory personale dell&#8217;utente corrente. Questa operazione funziona su tutte le piattaforme dove gli utenti hanno una directory personale, comprese Linux, Mac OS X e Windows. Il percorso restituito non ha uno slash finale, ma la funzione <code>os.path.join()</code> non se ne preoccupa.
+<li>Combinando queste tecniche, potete facilmente costruire nomi di percorso per directory e file che si trovano nella directory personale dell&#8217;utente. La funzione <code>os.path.join()</code> può accettare un numero qualsiasi di argomenti. Ero felicissimo quando l&#8217;ho scoperto, perché <code>aggiungiSlashSeNecessario()</code> è una di quelle piccole funzioni stupide che mi tocca sempre scrivere quando costruisco il mio armamentario di utilità in un nuovo linguaggio. <em>Non</em> dovete scrivere questa piccola funzione stupida in Python, perché alcune persone intelligenti se ne sono già occupate per voi.
 </ol>
 
 <p>Il modulo <code>os.path</code> contiene anche funzioni per suddividere nomi di percorso completi, nomi di directory e nomi di file nelle loro parti costituenti.
@@ -105,7 +105,7 @@ body{counter-reset:h1 3}
 <li>Ricordate quando ho detto che potevate usare un <a href=tipi-di-dato-nativi.html#multivar>assegnamento multivariabile</a> per restituire più di un valore da una funzione? La funzione <code>os.path.split()</code> fa esattamente questo. Se assegnate il valore restituito dalla funzione <code>split()</code> a una tupla di due variabili, ogni variabile riceve il valore del corrispondente elemento contenuto nella tupla restituita.
 <li>La prima variabile, <var>dirname</var>, riceve il primo elemento della tupla restituita dalla funzione <code>os.path.split()</code>, cioè il percorso del file.
 <li>La seconda variabile, <var>filename</var>, riceve il valore del secondo elemento della tupla restituita dalla funzione <code>os.path.split()</code>, cioè il nome del file.
-<li>Il modulo <code>os.path</code> contiene anche la funzione <code>os.path.splitext()</code>, che suddivide un nome di file e restituisce una tupla contenente il nome del file e l'estensione del file. Potete usare la tecnica già vista per assegnare ogni valore a variabili separate.
+<li>Il modulo <code>os.path</code> contiene anche la funzione <code>os.path.splitext()</code>, che suddivide un nome di file e restituisce una tupla contenente il nome del file e l&#8217;estensione del file. Potete usare la tecnica già vista per assegnare ogni valore a variabili separate.
 </ol>
 
 <h3 id=glob>Elencare il contenuto delle directory</h3>
@@ -143,12 +143,12 @@ body{counter-reset:h1 3}
 <ol>
 <li>Il modulo <code>glob</code> prende una wildcard e restituisce il percorso di tutti i file e le directory che corrispondono alla wildcard. In questo esempio, la wildcard è un percorso di directory più &#8220;<code>*.xml</code>&#8221;, che corrisponde a tutti i file <code>.xml</code> nella sottodirectory <code>esempi</code>.
 <li>Ora impostiamo la directory di lavoro corrente alla sottodirectory <code>esempi</code>. La funzione <code>os.chdir()</code> può accettare nomi di percorso relativi.
-<li>Potete includere molteplici wildcard nel vostro pattern di tipo glob. Questo esempio trova tutti i file nella directory di lavoro corrente che terminano con l'estensione <code>.py</code> e contengono la parola <code>test</code> da qualche parte nel loro nome.
+<li>Potete includere molteplici wildcard nel vostro pattern di tipo glob. Questo esempio trova tutti i file nella directory di lavoro corrente che terminano con l&#8217;estensione <code>.py</code> e contengono la parola <code>test</code> da qualche parte nel loro nome.
 </ol>
 
 <h3 id=osstat>Ottenere metadati sui file</h3>
 
-<p>Tutti i file system moderni memorizzano alcuni metadati su ogni file: la data di creazione, la data dell'ultima modifica, la dimensione del file, e così via. Python vi fornisce una singola <abbr>API</abbr> per accedere a questi metadati. Non avete bisogno di aprire il file, tutto quello che vi serve è il suo nome.
+<p>Tutti i file system moderni memorizzano alcuni metadati su ogni file: la data di creazione, la data dell&#8217;ultima modifica, la dimensione del file, e così via. Python vi fornisce una singola <abbr>API</abbr> per accedere a questi metadati. Non avete bisogno di aprire il file, tutto quello che vi serve è il suo nome.
 
 <pre class=screen>
 <samp class=p>>>> </samp><kbd class=pp>import os</kbd>
@@ -199,7 +199,7 @@ body{counter-reset:h1 3}
 
 <aside>Una descrizione di lista può contenere una espressione Python qualsiasi.</aside>
 
-<p>Una <dfn>descrizione di lista</dfn> fornisce un modo compatto di correlare una lista con un'altra lista applicando una funzione a ogni elemento della prima lista.
+<p>Una <dfn>descrizione di lista</dfn> fornisce un modo compatto di correlare una lista con un&#8217;altra lista applicando una funzione a ogni elemento della prima lista.
 
 <pre class=screen>
 <samp class=p>>>> </samp><kbd class=pp>a_list = [1, 9, 8, 4]</kbd>
@@ -211,12 +211,12 @@ body{counter-reset:h1 3}
 <samp class=p>>>> </samp><kbd class=pp>a_list</kbd>
 <samp class=pp>[2, 18, 16, 8]</samp></pre>
 <ol>
-<li>Per capire il senso di questa espressione, esaminatela da destra verso sinistra. <var>a_list</var> è la lista di partenza. L'interprete Python percorre <var>a_list</var> un elemento alla volta, assegnando temporaneamente il valore di ogni elemento alla variabile <var>elem</var>. Poi, Python applica la funzione <code><var>elem</var> * 2</code> e aggiunge quel risultato in coda alla lista restituita.
+<li>Per capire il senso di questa espressione, esaminatela da destra verso sinistra. <var>a_list</var> è la lista di partenza. L&#8217;interprete Python percorre <var>a_list</var> un elemento alla volta, assegnando temporaneamente il valore di ogni elemento alla variabile <var>elem</var>. Poi, Python applica la funzione <code><var>elem</var> * 2</code> e aggiunge quel risultato in coda alla lista restituita.
 <li>Una descrizione di lista crea una nuova lista e non modifica la lista originale.
 <li>Assegnare il risultato di una descrizione di lista alla variabile che contiene la lista di partenza non crea problemi. Python costruisce la nuova lista in memoria e quando la descrizione di lista è completa ne assegna il risultato alla variabile originale.
 </ol>
 
-<p>Una descrizione di lista può contenere un'espressione Python qualsiasi, incluse le funzioni del modulo <code>os</code> per manipolare file e directory.
+<p>Una descrizione di lista può contenere un&#8217;espressione Python qualsiasi, incluse le funzioni del modulo <code>os</code> per manipolare file e directory.
 
 <pre class=screen>
 <samp class=p>>>> </samp><kbd class=pp>import os, glob</kbd>
@@ -245,10 +245,10 @@ body{counter-reset:h1 3}
  'romantest9.py']</samp>
 </pre>
 <ol>
-<li>Per filtrare una lista potete includere una clausola <code>if</code> in fondo alla descrizione di lista. L'espressione dopo la parola chiave <code>if</code> verrà valutata per ogni elemento della lista. Se l'espressione viene valutata a <code>True</code>, l'elemento verrà incluso nel risultato. Questa descrizione di lista esamina la lista di tutti i file <code>.py</code> nella directory corrente e l'espressione <code>if</code> filtra quella lista controllando se la dimensione di ogni file è più grande di <code>6000</code> byte. Ci sono sei file con questa caratteristica, quindi la descrizione di lista restituisce una lista di sei nomi di file.
+<li>Per filtrare una lista potete includere una clausola <code>if</code> in fondo alla descrizione di lista. L&#8217;espressione dopo la parola chiave <code>if</code> verrà valutata per ogni elemento della lista. Se l&#8217;espressione viene valutata a <code>True</code>, l&#8217;elemento verrà incluso nel risultato. Questa descrizione di lista esamina la lista di tutti i file <code>.py</code> nella directory corrente e l&#8217;espressione <code>if</code> filtra quella lista controllando se la dimensione di ogni file è più grande di <code>6000</code> byte. Ci sono sei file con questa caratteristica, quindi la descrizione di lista restituisce una lista di sei nomi di file.
 </ol>
 
-<p>Tutti gli esempi di descrizioni di lista visti finora hanno utilizzato espressioni semplici&nbsp;&mdash;&nbsp;moltiplica un numero per una costante, invoca una singola funzione, o semplicemente restituisci gli elementi della lista originale (dopo averli filtrati). Ma non c'è alcun limite alla complessità delle descrizioni di lista.
+<p>Tutti gli esempi di descrizioni di lista visti finora hanno utilizzato espressioni semplici&nbsp;&mdash;&nbsp;moltiplica un numero per una costante, invoca una singola funzione, o semplicemente restituisci gli elementi della lista originale (dopo averli filtrati). Ma non c&#8217;è alcun limite alla complessità delle descrizioni di lista.
 
 <pre class=screen>
 <samp class=p>>>> </samp><kbd class=pp>import os, glob</kbd>
@@ -293,13 +293,13 @@ body{counter-reset:h1 3}
 <ol>
 <li>Questa non è una descrizione di dizionario, ma una <a href=#listcomprehension>descrizione di lista</a>. Trova tutti i file <code>.py</code> il cui nome contiene la parola <code>test</code>, poi costruisce una tupla contenente il nome del file e i metadati del file (invocando la funzione <code>os.stat()</code>).
 <li>Ogni elemento della lista risultante è una tupla.
-<li>Questa è una descrizione di dizionario. La sintassi è simile a quella per una descrizione di lista, con due differenze. Primo, è racchiusa tra parentesi graffe anziché parentesi quadre. Secondo, invece di una singola espressione per ogni elemento, contiene due espressioni separate da un carattere di due punti. L'espressione prima dei due punti (<code>f</code> in questo esempio) è la chiave del dizionario, l'espressione dopo i due punti (<code>os.stat(f)</code> in questo esempio) è il valore.
+<li>Questa è una descrizione di dizionario. La sintassi è simile a quella per una descrizione di lista, con due differenze. Primo, è racchiusa tra parentesi graffe anziché parentesi quadre. Secondo, invece di una singola espressione per ogni elemento, contiene due espressioni separate da un carattere di due punti. L&#8217;espressione prima dei due punti (<code>f</code> in questo esempio) è la chiave del dizionario, l&#8217;espressione dopo i due punti (<code>os.stat(f)</code> in questo esempio) è il valore.
 <li>Una descrizione di dizionario restituisce un dizionario.
-<li>Le chiavi di questo particolare dizionario sono semplicemente i nomi di file restituiti dall'invocazione di <code>glob.glob('*test*.py')</code>.
+<li>Le chiavi di questo particolare dizionario sono semplicemente i nomi di file restituiti dall&#8217;invocazione di <code>glob.glob('*test*.py')</code>.
 <li>Il valore associato a ogni chiave è il valore restituito dalla funzione <code>os.stat()</code>. Questo significa che possiamo &#8220;cercare&#8221; un file tramite il nome per ottenere i suoi metadati. Una delle parti dei metadati è <code>st_size</code>, la dimensione del file. Il file <code>alphameticstest.py</code> è di <code>2509</code> byte.
 </ol>
 
-<p>Come con le descrizioni di lista, potete includere una clausola <code>if</code> in una descrizione di dizionario per filtrare la sequenza in ingresso sulla base di un'espressione che viene valutata per ogni elemento.
+<p>Come con le descrizioni di lista, potete includere una clausola <code>if</code> in una descrizione di dizionario per filtrare la sequenza in ingresso sulla base di un&#8217;espressione che viene valutata per ogni elemento.
 
 <pre class=screen>
 <samp class=p>>>> </samp><kbd class=pp>import os, glob, humansize</kbd>
@@ -313,8 +313,8 @@ body{counter-reset:h1 3}
 <ol>
 
 <li>Questa descrizione di dizionario costruisce una lista di tutti i file nella directory di lavoro corrente (<code>glob.glob('*')</code>), ottiene i metadati di ogni file (<code>os.stat(f)</code>) e costruisce un dizionario le cui chiavi sono i nomi dei file e i cui valori sono i metadati di ogni file.
-<li>Questa descrizione di dizionario viene costruita a partire dalla descrizione precedente, filtrandola per escludere i file più piccoli di <code>6000</code> byte (<code>if meta.st_size > 6000</code>) e usando poi la lista filtrata per costruire un dizionario le cui chiavi sono i nomi dei file senza l'estensione (<code>os.path.splitext(f)[0]</code>) e i cui valori sono le dimensioni approssimate di ogni file (<code>humansize.approximate_size(meta.st_size)</code>).
-<li>Come avete visto nell'esempio precedente, ci sono sei file con le caratteristiche richieste, quindi ci sono sei file in questo dizionario.
+<li>Questa descrizione di dizionario viene costruita a partire dalla descrizione precedente, filtrandola per escludere i file più piccoli di <code>6000</code> byte (<code>if meta.st_size > 6000</code>) e usando poi la lista filtrata per costruire un dizionario le cui chiavi sono i nomi dei file senza l&#8217;estensione (<code>os.path.splitext(f)[0]</code>) e i cui valori sono le dimensioni approssimate di ogni file (<code>humansize.approximate_size(meta.st_size)</code>).
+<li>Come avete visto nell&#8217;esempio precedente, ci sono sei file con le caratteristiche richieste, quindi ci sono sei file in questo dizionario.
 <li>Il valore corrispondente a ogni chiave è la stringa restituita dalla funzione <code>approximate_size()</code>.
 </ol>
 
@@ -331,7 +331,7 @@ body{counter-reset:h1 3}
 
 <h2 id=setcomprehension>Descrizioni di insieme</h2>
 
-<p>Non va dimenticato che anche gli insiemi hanno la propria sintassi di descrizione. Questa sintassi è notevolmente simile a quella per le descrizioni di dizionario. L'unica differenza è che gli insiemi contengono solo valori invece di coppie chiave:valore.
+<p>Non va dimenticato che anche gli insiemi hanno la propria sintassi di descrizione. Questa sintassi è notevolmente simile a quella per le descrizioni di dizionario. L&#8217;unica differenza è che gli insiemi contengono solo valori invece di coppie chiave:valore.
 
 <pre class=screen>
 <samp class=p>>>> </samp><kbd class=pp>a_set = set(range(10))</kbd>
@@ -345,8 +345,8 @@ body{counter-reset:h1 3}
 <samp class=pp>{32, 1, 2, 4, 8, 64, 128, 256, 16, 512}</samp>
 </pre>
 <ol>
-<li>Le descrizioni di insieme possono prendere in ingresso un insieme. Questa descrizione di insieme calcola i quadrati dell'insieme dei numeri da 0 a <code>9</code>.
-<li>Come con le descrizioni di lista e di dizionario, le descrizioni di insieme possono contenere una clausola <code>if</code> per filtrare gli elementi prima di restituirli nell'insieme dei risultati.
+<li>Le descrizioni di insieme possono prendere in ingresso un insieme. Questa descrizione di insieme calcola i quadrati dell&#8217;insieme dei numeri da 0 a <code>9</code>.
+<li>Come con le descrizioni di lista e di dizionario, le descrizioni di insieme possono contenere una clausola <code>if</code> per filtrare gli elementi prima di restituirli nell&#8217;insieme dei risultati.
 <li>Le descrizioni di insieme non hanno necessariamente bisogno di prendere in ingresso un insieme, ma possono accettare qualsiasi sequenza.
 </ol>
 
@@ -361,7 +361,7 @@ body{counter-reset:h1 3}
 <li><a href=http://docs.python.org/3.1/library/glob.html>Il modulo <code>glob</code></a>
 <li><a href=http://www.doughellmann.com/PyMOTW/glob/><code>glob</code>&nbsp;&mdash;&nbsp;Corrispondenze di pattern per i nomi di file</a>
 <li><a href=http://docs.python.org/3.1/library/time.html>Il modulo <code>time</code></a>
-<li><a href=http://www.doughellmann.com/PyMOTW/time/><code>time</code>&nbsp;&mdash;&nbsp;Funzioni per manipolare l'orario</a>
+<li><a href=http://www.doughellmann.com/PyMOTW/time/><code>time</code>&nbsp;&mdash;&nbsp;Funzioni per manipolare l&#8217;orario</a>
 <li><a href=http://docs.python.org/3.1/tutorial/datastructures.html#list-comprehensions>Descrizioni di lista</a>
 <li><a href=http://docs.python.org/3.1/tutorial/datastructures.html#nested-list-comprehensions>Descrizioni di lista annidate</a>
 <li><a href=http://docs.python.org/3.1/tutorial/datastructures.html#looping-techniques>Tecniche di attraversamento</a>

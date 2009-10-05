@@ -19,29 +19,29 @@ Il tuo alfabeto termina dove il mio inizia! <span class=u>&#x275E;</span><br>&md
 </blockquote>
 <p id=toc>&nbsp;
 <h2 id=boring-stuff>Alcune cose noiose che avete bisogno di sapere prima di potervi immergere</h2>
-<p class=f>Sapevate che la popolazione di <a href=http://en.wikipedia.org/wiki/Bougainville_Province>Bougainville</a> ha il più piccolo alfabeto del mondo? Il loro <a href=http://en.wikipedia.org/wiki/Rotokas_alphabet>alfabeto Rotokas</a> è composto da sole 12 lettere: A, E, G, I, K, O, P, R, S, T, U e V. All'altra estremità dello spettro, lingue come il cinese, il giapponese e il coreano hanno migliaia di caratteri. L'inglese, ovviamente, ha 26 lettere&nbsp;&mdash;&nbsp;52 se contate le maiuscole e le minuscole separatamente&nbsp;&mdash;&nbsp;più una manciata di <i class=baa>!@#$%&amp;</i> simboli di punteggiatura.
+<p class=f>Sapevate che la popolazione di <a href=http://en.wikipedia.org/wiki/Bougainville_Province>Bougainville</a> ha il più piccolo alfabeto del mondo? Il loro <a href=http://en.wikipedia.org/wiki/Rotokas_alphabet>alfabeto Rotokas</a> è composto da sole 12 lettere: A, E, G, I, K, O, P, R, S, T, U e V. All&#8217;altra estremità dello spettro, lingue come il cinese, il giapponese e il coreano hanno migliaia di caratteri. L&#8217;inglese, ovviamente, ha 26 lettere&nbsp;&mdash;&nbsp;52 se contate le maiuscole e le minuscole separatamente&nbsp;&mdash;&nbsp;più una manciata di <i class=baa>!@#$%&amp;</i> simboli di punteggiatura.
 
-<p>Quando alcune persone parlano di &#8220;testo&#8221; stanno pensando a &#8220;caratteri e simboli su uno schermo di computer&#8221;. Ma i computer non si occupano di caratteri e simboli; i computer maneggiano bit e byte. Ogni frammento di testo che avete mai visto sullo schermo di un computer si trova in realtà memorizzato in una particolare <i>codifica di carattere</i>. Parlando per sommi capi, la codifica di carattere fornisce una corrispondenza tra quello che vedete sul vostro schermo e quello che il vostro computer mantiene effettivamente in memoria e su disco. Ci sono molte codifiche di carattere diverse, alcune ottimizzate per particolari lingue come il russo o il cinese o l'inglese, e altre che possono essere usate per più di una lingua.
+<p>Quando alcune persone parlano di &#8220;testo&#8221; stanno pensando a &#8220;caratteri e simboli su uno schermo di computer&#8221;. Ma i computer non si occupano di caratteri e simboli; i computer maneggiano bit e byte. Ogni frammento di testo che avete mai visto sullo schermo di un computer si trova in realtà memorizzato in una particolare <i>codifica di carattere</i>. Parlando per sommi capi, la codifica di carattere fornisce una corrispondenza tra quello che vedete sul vostro schermo e quello che il vostro computer mantiene effettivamente in memoria e su disco. Ci sono molte codifiche di carattere diverse, alcune ottimizzate per particolari lingue come il russo o il cinese o l&#8217;inglese, e altre che possono essere usate per più di una lingua.
 
 <p>In realtà le cose sono molto più complicate di così. Molti caratteri sono comuni a più di una codifica, ma ogni codifica può usare una diversa sequenza di byte per archiviare effettivamente quei caratteri in memoria o su disco. Quindi potete pensare alla codifica di carattere come a una sorta di chiave di decodifica. Ogni volta che qualcuno vi dà una sequenza di byte&nbsp;&mdash;&nbsp;un file, una pagina web, qualsiasi cosa&nbsp;&mdash;&nbsp;e afferma che si tratta di &#8220;testo&#8221;, avete bisogno di sapere quale codifica di carattere è stata usata in modo da poter decodificare i byte in caratteri. Se vi viene data la chiave sbagliata, o addirittura nessuna chiave, vi ritrovate con il non invidiabile compito di scoprire il codice da soli. Probabilmente sceglierete quello sbagliato, e il risultato non sarà intelleggibile.
 
 <aside>Tutto quello che pensavate di sapere sulle stringhe è sbagliato.</aside>
 
-<p>Sicuramente avrete visto pagine web con strani caratteri simili a punti interrogativi in posti dove dovrebbero trovarsi gli apostrofi. Di solito questo significa che l'autore della pagina non ha dichiarato correttamente la codifica dei caratteri, il vostro browser non ha potuto fare altro che tirare a indovinare, e il risultato è stato un misto di caratteri attesi e inattesi. In inglese è solo un fastidio; in altre lingue il risultato potrebbe essere completamente illeggibile.
+<p>Sicuramente avrete visto pagine web con strani caratteri simili a punti interrogativi in posti dove dovrebbero trovarsi gli apostrofi. Di solito questo significa che l&#8217;autore della pagina non ha dichiarato correttamente la codifica dei caratteri, il vostro browser non ha potuto fare altro che tirare a indovinare, e il risultato è stato un misto di caratteri attesi e inattesi. In inglese è solo un fastidio; in altre lingue il risultato potrebbe essere completamente illeggibile.
 
-<p>Esistono codifiche di carattere per tutte le lingue più diffuse al mondo. Dato che ogni lingua è differente e che la memoria e lo spazio su disco sono stati storicamente costosi, ogni codifica di carattere è ottimizzata per una particolare lingua. Con questo voglio dire che ogni codifica usa gli stessi numeri (0&ndash;255) per rappresentare i caratteri di quella lingua. Per esempio, avrete probabilmente familiarità con la codifica <abbr>ASCII</abbr>, che memorizza i caratteri inglesi come numeri da 0 a 127. (65 è la &#8220;A&#8221; maiuscola, 97 è la &#8220;a&#8221; minuscola, <i class=baa>&amp;</i>c.) L'inglese ha un alfabeto molto semplice, quindi può essere completamente espresso in meno di 128 numeri. Per quelli di voi che sanno contare in base 2, questo significa utilizzare 7 degli 8 bit contenuti in un byte.
+<p>Esistono codifiche di carattere per tutte le lingue più diffuse al mondo. Dato che ogni lingua è differente e che la memoria e lo spazio su disco sono stati storicamente costosi, ogni codifica di carattere è ottimizzata per una particolare lingua. Con questo voglio dire che ogni codifica usa gli stessi numeri (0&ndash;255) per rappresentare i caratteri di quella lingua. Per esempio, avrete probabilmente familiarità con la codifica <abbr>ASCII</abbr>, che memorizza i caratteri inglesi come numeri da 0 a 127. (65 è la &#8220;A&#8221; maiuscola, 97 è la &#8220;a&#8221; minuscola, <i class=baa>&amp;</i>c.) L&#8217;inglese ha un alfabeto molto semplice, quindi può essere completamente espresso in meno di 128 numeri. Per quelli di voi che sanno contare in base 2, questo significa utilizzare 7 degli 8 bit contenuti in un byte.
 
-<p>Le lingue dell'Europa occidentale come il francese, lo spagnolo e il tedesco hanno più lettere dell'inglese. O, più precisamente, hanno lettere combinate con vari segni diacritici, come il carattere <code>&ntilde;</code> in spagnolo. La codifica più comune per queste lingue è la <abbr>CP-1252</abbr>, anche chiamata &#8220;<abbr>windows-1252</abbr>&#8221; perché viene largamente utilizzata su Microsoft Windows. La codifica <abbr>CP-1252</abbr> condivide caratteri con la codifica <abbr>ASCII</abbr> nell'intervallo 0&ndash;127, ma poi si espande nell'intervallo 128&ndash;255 per caratteri come la n-con-sopra-una-tilde (241), la u-con-sopra-due-punti (252), <i class=baa>&amp;</i>c. Questa è ancora una codifica a singolo byte, comunque; il numero più elevato, 255, sta ancora in un byte.
+<p>Le lingue dell&#8217;Europa occidentale come il francese, lo spagnolo e il tedesco hanno più lettere dell&#8217;inglese. O, più precisamente, hanno lettere combinate con vari segni diacritici, come il carattere <code>&ntilde;</code> in spagnolo. La codifica più comune per queste lingue è la <abbr>CP-1252</abbr>, anche chiamata &#8220;<abbr>windows-1252</abbr>&#8221; perché viene largamente utilizzata su Microsoft Windows. La codifica <abbr>CP-1252</abbr> condivide caratteri con la codifica <abbr>ASCII</abbr> nell&#8217;intervallo 0&ndash;127, ma poi si espande nell&#8217;intervallo 128&ndash;255 per caratteri come la n-con-sopra-una-tilde (241), la u-con-sopra-due-punti (252), <i class=baa>&amp;</i>c. Questa è ancora una codifica a singolo byte, comunque; il numero più elevato, 255, sta ancora in un byte.
 
-<p>Poi ci sono lingue come il cinese, il giapponese e il coreano che hanno talmente tanti caratteri da richiedere un insieme di caratteri a più byte. Cioè, ogni &#8220;carattere&#8221; è rappresentato da un numero a 2 byte tra 0 e 65535. Ma codifiche multibyte differenti hanno gli stessi problemi di codifiche a singolo byte differenti, e cioè che ognuna usa gli stessi numeri per indicare cose diverse. &Egrave; solo che l'intervallo dei numeri è più ampio, perché ci sono molti più caratteri da rappresentare.
+<p>Poi ci sono lingue come il cinese, il giapponese e il coreano che hanno talmente tanti caratteri da richiedere un insieme di caratteri a più byte. Cioè, ogni &#8220;carattere&#8221; è rappresentato da un numero a 2 byte tra 0 e 65535. Ma codifiche multibyte differenti hanno gli stessi problemi di codifiche a singolo byte differenti, e cioè che ognuna usa gli stessi numeri per indicare cose diverse. &Egrave; solo che l&#8217;intervallo dei numeri è più ampio, perché ci sono molti più caratteri da rappresentare.
 
-<p>Questo andava quasi bene in un mondo senza reti, dove il &#8220;testo&#8221; era qualcosa che scrivevate voi stessi e di cui occasionalmente stampavate qualche copia. Non c'era molto &#8220;testo semplice&#8221;. I programmatori scrivevano il codice sorgente in <abbr>ASCII</abbr> e tutti gli altri usavano i word processor, ognuno dei quali definiva il proprio formato (non di testo) che teneva traccia delle informazioni sulla codifica di carattere insieme agli stili, <i class=baa>&amp;</i>c. Le persone leggevano questi documenti con lo stesso word processor dell'autore originale, così ogni cosa funzionava, più o meno.
+<p>Questo andava quasi bene in un mondo senza reti, dove il &#8220;testo&#8221; era qualcosa che scrivevate voi stessi e di cui occasionalmente stampavate qualche copia. Non c&#8217;era molto &#8220;testo semplice&#8221;. I programmatori scrivevano il codice sorgente in <abbr>ASCII</abbr> e tutti gli altri usavano i word processor, ognuno dei quali definiva il proprio formato (non di testo) che teneva traccia delle informazioni sulla codifica di carattere insieme agli stili, <i class=baa>&amp;</i>c. Le persone leggevano questi documenti con lo stesso word processor dell&#8217;autore originale, così ogni cosa funzionava, più o meno.
 
-<p>Considerate ora l'avvento di reti globali come l'email e il web. Un sacco di &#8220;testo semplice&#8221; svolazzante per il globo, scritto su un computer, trasmesso attraverso un secondo computer e ricevuto e visualizzato da un terzo computer. I computer possono vedere solo numeri, ma i numeri potrebbero rappresentare cose diverse. Oh no! Cosa fare? I sistemi dovettero essere progettati per trasportare le informazioni di codifica insieme a ogni frammento di &#8220;testo semplice&#8221;. Ricordatevi che è la chiave di decodifica a correlare i numeri leggibili dal computer con i caratteri leggibili dalle persone. Una chiave di decodifica mancante significa testo alterato, inintelleggibile, o peggio.
+<p>Considerate ora l&#8217;avvento di reti globali come l&#8217;email e il web. Un sacco di &#8220;testo semplice&#8221; svolazzante per il globo, scritto su un computer, trasmesso attraverso un secondo computer e ricevuto e visualizzato da un terzo computer. I computer possono vedere solo numeri, ma i numeri potrebbero rappresentare cose diverse. Oh no! Cosa fare? I sistemi dovettero essere progettati per trasportare le informazioni di codifica insieme a ogni frammento di &#8220;testo semplice&#8221;. Ricordatevi che è la chiave di decodifica a correlare i numeri leggibili dal computer con i caratteri leggibili dalle persone. Una chiave di decodifica mancante significa testo alterato, inintelleggibile, o peggio.
 
 <p>Considerate ora il tentativo di memorizzare molti frammenti di testo nello stesso posto, come nella stessa tabella di un database che contiene tutte le email che avete mai ricevuto. Avete ancora bisogno di archiviare la codifica di carattere insieme a ogni frammento di testo in modo da poterlo visualizzare correttamente. Pensate sia difficile? Provate a fare una ricerca nel vostro database di posta elettronica, il che significa effettuare al volo conversioni tra molteplici codifiche. Non vi sembra divertente?
 
-<p>Ora considerate la possibilità di documenti scritti in più lingue, dove i caratteri presi da diverse lingue sono uno di fianco all'altro nello stesso documento. (Suggerimento: i programmi che provavano a farlo tipicamente usavano codici di escape per passare da una &#8220;modalità&#8221; all'altra. Puff, eccovi in modalità russa koi8-r, quindi 241 rappresenta Я; puff, ora siete in modalità Mac Greek, quindi 241 rappresenta ώ.) E naturalmente vorrete effettuare ricerche anche su <em>quei</em> documenti.
+<p>Ora considerate la possibilità di documenti scritti in più lingue, dove i caratteri presi da diverse lingue sono uno di fianco all&#8217;altro nello stesso documento. (Suggerimento: i programmi che provavano a farlo tipicamente usavano codici di escape per passare da una &#8220;modalità&#8221; all&#8217;altra. Puff, eccovi in modalità russa koi8-r, quindi 241 rappresenta Я; puff, ora siete in modalità Mac Greek, quindi 241 rappresenta ώ.) E naturalmente vorrete effettuare ricerche anche su <em>quei</em> documenti.
 
 <p>E ora piangete pure, perché tutto quello che pensavate di sapere sulle stringhe è sbagliato e il &#8220;testo semplice&#8221; non esiste.
 
@@ -51,19 +51,19 @@ Il tuo alfabeto termina dove il mio inizia! <span class=u>&#x275E;</span><br>&md
 
 <p><i>Entra <dfn>Unicode</dfn>.</i>
 
-<p>Unicode è un sistema progettato per rappresentare <em>qualsiasi</em> carattere proveniente da <em>qualsiasi</em> lingua. Unicode rappresenta ogni lettera, carattere, o ideogramma come un numero di 4 byte. Ogni numero rappresenta un unico carattere usato in almeno una delle lingue del mondo. (Non tutti i numeri sono utilizzati, ma ne vengono adoperati più di 65535, quindi 2 byte non sarebbero stati sufficienti.) I caratteri usati in più di una lingua corrispondono generalmente allo stesso numero, a meno che non ci sia una buona ragione etimologica per non farlo. In ogni caso, c'è esattamente 1 numero per carattere ed esattamente 1 carattere per numero. Ogni numero rappresenta sempre un solo carattere, quindi non ci sono &#8220;modalità&#8221; di cui tenere traccia. <code>U+0041</code> è sempre <code>'A'</code>, anche se la vostra lingua non possiede alcuna <code>'A'</code>.
+<p>Unicode è un sistema progettato per rappresentare <em>qualsiasi</em> carattere proveniente da <em>qualsiasi</em> lingua. Unicode rappresenta ogni lettera, carattere, o ideogramma come un numero di 4 byte. Ogni numero rappresenta un unico carattere usato in almeno una delle lingue del mondo. (Non tutti i numeri sono utilizzati, ma ne vengono adoperati più di 65535, quindi 2 byte non sarebbero stati sufficienti.) I caratteri usati in più di una lingua corrispondono generalmente allo stesso numero, a meno che non ci sia una buona ragione etimologica per non farlo. In ogni caso, c&#8217;è esattamente 1 numero per carattere ed esattamente 1 carattere per numero. Ogni numero rappresenta sempre un solo carattere, quindi non ci sono &#8220;modalità&#8221; di cui tenere traccia. <code>U+0041</code> è sempre <code>'A'</code>, anche se la vostra lingua non possiede alcuna <code>'A'</code>.
 
-<p>A prima vista, sembra una grande idea. Una codifica per dominarle tutte. Più di una lingua per documento. Nessun &#8220;passaggio di modalità&#8221; per cambiare codifica a metà del testo. Ma l'ovvia domanda dovrebbe subito saltarvi in mente. Quattro byte? Per ogni singolo carattere<span class=u title='interrobang!'>&#8253;</span> Sembra uno spreco orrendo, specialmente per lingue come l'inglese e lo spagnolo che necessitano di meno di un byte (256 numeri) per esprimere ogni possibile carattere. In effetti è uno spreco persino per lingue basate su ideogrammi (come il cinese) che non hanno mai bisogno di più di due byte per carattere.
+<p>A prima vista, sembra una grande idea. Una codifica per dominarle tutte. Più di una lingua per documento. Nessun &#8220;passaggio di modalità&#8221; per cambiare codifica a metà del testo. Ma l&#8217;ovvia domanda dovrebbe subito saltarvi in mente. Quattro byte? Per ogni singolo carattere<span class=u title='punto esclarrogativo!'>&#8253;</span> Sembra uno spreco orrendo, specialmente per lingue come l&#8217;inglese e lo spagnolo che necessitano di meno di un byte (256 numeri) per esprimere ogni possibile carattere. In effetti è uno spreco persino per lingue basate su ideogrammi (come il cinese) che non hanno mai bisogno di più di due byte per carattere.
 
 <p>Esiste una codifica Unicode che usa quattro byte per carattere. &Egrave; chiamata <abbr>UTF-32</abbr>, perché 32 bit = 4 byte. <abbr>UTF-32</abbr> è la codifica più semplice; prende ogni carattere Unicode (un numero di 4 byte) e rappresenta il carattere con quello stesso numero. Questo ha alcuni vantaggi, il più importante dei quali è la possibilità di accedere al carattere di posizione <var>N</var> in una stringa in tempo costante, perché il carattere di posizione <var>N</var> comincia al byte di posizione <var>4&times;N</var>. Ha anche diversi svantaggi, il più ovvio dei quali è la necessità di usare quattro maledetti byte per memorizzare ogni maledetto carattere.
 
-<p>Anche se i caratteri Unicode sono molti, a quanto pare la maggior parte delle persone non ne userà nessuno al di là dei primi 65535. Quindi, esiste un'altra codifica Unicode, chiamata <abbr>UTF-16</abbr> (perché 16 bit = 2 byte). <abbr>UTF-16</abbr> codifica ogni carattere tra 0 e 65535 come due byte, e poi usa un qualche sporco trucco nel caso dobbiate effettivamente rappresentare i rari caratteri Unicode che si trovano nel &#8220;piano astrale&#8221; al di là di 65535. Il vantaggio più ovvio: <abbr>UTF-16</abbr> è due volte più efficiente in termini di spazio rispetto a <abbr>UTF-32</abbr>, perché ogni carattere richiede solo due byte da memorizzare invece di quattro byte (a parte quelli per cui non è così). E potete ancora facilmente accedere al carattere di posizione <var>N</var> in una stringa in tempo costante, se ipotizzate che la stringa non includa alcun carattere del piano astrale, che è una buona ipotesi fino a quando non lo è più.
+<p>Anche se i caratteri Unicode sono molti, a quanto pare la maggior parte delle persone non ne userà nessuno al di là dei primi 65535. Quindi, esiste un&#8217;altra codifica Unicode, chiamata <abbr>UTF-16</abbr> (perché 16 bit = 2 byte). <abbr>UTF-16</abbr> codifica ogni carattere tra 0 e 65535 come due byte, e poi usa un qualche sporco trucco nel caso dobbiate effettivamente rappresentare i rari caratteri Unicode che si trovano nel &#8220;piano astrale&#8221; al di là di 65535. Il vantaggio più ovvio: <abbr>UTF-16</abbr> è due volte più efficiente in termini di spazio rispetto a <abbr>UTF-32</abbr>, perché ogni carattere richiede solo due byte da memorizzare invece di quattro byte (a parte quelli per cui non è così). E potete ancora facilmente accedere al carattere di posizione <var>N</var> in una stringa in tempo costante, se ipotizzate che la stringa non includa alcun carattere del piano astrale, che è una buona ipotesi fino a quando non lo è più.
 
 <p>Ma sia <abbr>UTF-32</abbr> che <abbr>UTF-16</abbr> presentano anche altri svantaggi non banali. Sistemi computerizzati differenti memorizzano i singoli byte in modi differenti. Questo significa che il carattere <code>U+4E2D</code> potrebbe essere memorizzato in <abbr>UTF-16</abbr> come <code>4E 2D</code> oppure <code>2D 4E</code>, a seconda che il sistema sia di tipo big-endian o little-endian. (Per <abbr>UTF-32</abbr> sono possibili ancora più ordinamenti di byte.) Fino a quando i vostri documenti non lasciano mai il vostro computer, siete al sicuro&nbsp;&mdash;&nbsp;applicazioni differenti sullo stesso computer utilizzeranno sempre lo stesso ordine dei byte. Ma nel momento in cui volete trasferire documenti tra sistemi, forse su una qualche sorta di world wide web, avrete bisogno di un modo per indicare in quale ordine sono memorizzati i vostri byte. Altrimenti, il sistema ricevente non ha alcun modo di sapere se la sequenza di due byte <code>4E 2D</code> rappresenta <code>U+4E2D</code> oppure <code>U+2D4E</code>.
 
-<p>Per risolvere <em>questo</em> problema, le codifiche Unicode multibyte definiscono un &#8220;Byte Order Mark&#8221;, uno speciale carattere non stampabile che potete includere all'inizio del vostro documento per indicare in quale ordine sono memorizzati i vostri byte. Per <abbr>UTF-16</abbr>, il Byte Order Mark è <code>U+FEFF</code>. Se ricevete un documento <abbr>UTF-16</abbr> che comincia con i byte <code>FF FE</code>, sapete che l'ordine dei byte va in una certa direzione; se comincia con <code>FE FF</code>, sapete che l'ordine dei byte è quello inverso.
+<p>Per risolvere <em>questo</em> problema, le codifiche Unicode multibyte definiscono un &#8220;Byte Order Mark&#8221;, uno speciale carattere non stampabile che potete includere all&#8217;inizio del vostro documento per indicare in quale ordine sono memorizzati i vostri byte. Per <abbr>UTF-16</abbr>, il Byte Order Mark è <code>U+FEFF</code>. Se ricevete un documento <abbr>UTF-16</abbr> che comincia con i byte <code>FF FE</code>, sapete che l&#8217;ordine dei byte va in una certa direzione; se comincia con <code>FE FF</code>, sapete che l&#8217;ordine dei byte è quello inverso.
 
-<p>Tuttavia, <abbr>UTF-16</abbr> non è esattamente l'ideale, specialmente se avete a che fare con un sacco di caratteri <abbr>ASCII</abbr>. Se ci pensate, persino una pagina web in cinese conterrà un sacco di caratteri <abbr>ASCII</abbr>&nbsp;&mdash;&nbsp;tutti gli elementi e gli attributi che circondano i caratteri stampabili cinesi. Essere in grado di accedere al carattere di posizione <var>N</var> in tempo costante è piacevole, ma rimane ancora l'irritante problema di quei caratteri del piano astrale, il che significa che non potete <em>garantire</em> che ogni carattere sia esattamente due byte, e quindi non potete <em>davvero</em> accedere al carattere di posizione <var>N</var> in tempo costante a meno che non manteniate un indice separato. E ragazzi, c'è sicuramente moltissimo testo <abbr>ASCII</abbr> nel mondo&hellip;
+<p>Tuttavia, <abbr>UTF-16</abbr> non è esattamente l&#8217;ideale, specialmente se avete a che fare con un sacco di caratteri <abbr>ASCII</abbr>. Se ci pensate, persino una pagina web in cinese conterrà un sacco di caratteri <abbr>ASCII</abbr>&nbsp;&mdash;&nbsp;tutti gli elementi e gli attributi che circondano i caratteri stampabili cinesi. Essere in grado di accedere al carattere di posizione <var>N</var> in tempo costante è piacevole, ma rimane ancora l&#8217;irritante problema di quei caratteri del piano astrale, il che significa che non potete <em>garantire</em> che ogni carattere sia esattamente due byte, e quindi non potete <em>davvero</em> accedere al carattere di posizione <var>N</var> in tempo costante a meno che non manteniate un indice separato. E ragazzi, c&#8217;è sicuramente moltissimo testo <abbr>ASCII</abbr> nel mondo&hellip;
 
 <p>Altre persone hanno ponderato a lungo su questi problemi, e hanno trovato una soluzione:
 
@@ -79,7 +79,7 @@ Il tuo alfabeto termina dove il mio inizia! <span class=u>&#x275E;</span><br>&md
 
 <h2 id=divingin>Immersione!</h2>
 
-<p>In Python 3, tutte le stringhe sono sequenze di caratteri Unicode. Non esistono stringhe Python codificate in <abbr>UTF-8</abbr>, o stringhe Python codificate in <abbr>CP-1252</abbr>. &#8220;Questa stringa è in <abbr>UTF-8</abbr>?&#8221; è una domanda non valida. <abbr>UTF-8</abbr> è un modo di codificare caratteri come sequenze di byte. Se volete prendere una stringa e trasformarla in una sequenza di byte attraverso una particolare codifica di carattere, Python 3 vi può aiutare. Se volete prendere una sequenza di byte e trasformarla in una stringa, Python 3 può aiutarvi anche in questo caso. I byte non sono caratteri, i byte sono byte. I caratteri sono un'astrazione. Una stringa è una sequenza di quelle astrazioni.
+<p>In Python 3, tutte le stringhe sono sequenze di caratteri Unicode. Non esistono stringhe Python codificate in <abbr>UTF-8</abbr>, o stringhe Python codificate in <abbr>CP-1252</abbr>. &#8220;Questa stringa è in <abbr>UTF-8</abbr>?&#8221; è una domanda non valida. <abbr>UTF-8</abbr> è un modo di codificare caratteri come sequenze di byte. Se volete prendere una stringa e trasformarla in una sequenza di byte attraverso una particolare codifica di carattere, Python 3 vi può aiutare. Se volete prendere una sequenza di byte e trasformarla in una stringa, Python 3 può aiutarvi anche in questo caso. I byte non sono caratteri, i byte sono byte. I caratteri sono un&#8217;astrazione. Una stringa è una sequenza di quelle astrazioni.
 
 <pre class=screen>
 <a><samp class=p>>>> </samp><kbd class=pp>s = '深入 Python'</kbd>    <span class=u>&#x2460;</span></a>
@@ -93,7 +93,7 @@ Il tuo alfabeto termina dove il mio inizia! <span class=u>&#x275E;</span><br>&md
 <li>Per creare una stringa, racchiudetela tra apici. Le stringhe Python possono essere definite utilizzando apici (<code>'</code>) oppure virgolette (<code>"</code>).<!--"-->
 <li>La funzione built-in <code><dfn>len</dfn>()</code> restituisce la lunghezza della stringa, cioè il numero di caratteri. Questa è la stessa funzione che utilizzate per <a href=tipi-di-dato-nativi.html#extendinglists>trovare la lunghezza di una lista, di una tupla, di un insieme, o di un dizionario</a>. Una stringa è come una lista di caratteri.
 <li>Esattamente come ottenete singoli elementi da una lista, potete ottenere singoli caratteri da una stringa usando la notazione a indice.
-<li>Esattamente come con le liste, potete <dfn>concatenare</dfn> le stringhe utilizzando l'operatore <code>+</code>.
+<li>Esattamente come con le liste, potete <dfn>concatenare</dfn> le stringhe utilizzando l&#8217;operatore <code>+</code>.
 </ol>
 
 <p class=a>&#x2042;
@@ -101,7 +101,7 @@ Il tuo alfabeto termina dove il mio inizia! <span class=u>&#x275E;</span><br>&md
 <h2 id=formatting-strings>Formattare le stringhe</h2>
 
 <aside>Le stringhe possono essere definite utilizzando apici oppure virgolette.</aside>
-<p>Diamo un'altra occhiata a <a href=il-vostro-primo-programma-python.html#divingin><code>humansize.py</code></a>:
+<p>Diamo un&#8217;altra occhiata a <a href=il-vostro-primo-programma-python.html#divingin><code>humansize.py</code></a>:
 
 <p class=d>[<a href=esempi/humansize.py>scarica <code>humansize.py</code></a>]
 <pre class=pp><code><a>SUFFIXES = {1000: ['KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],         <span class=u>&#x2460;</span></a>
@@ -130,13 +130,13 @@ def approximate_size(size, a_kilobyte_is_1024_bytes=True):
     raise ValueError('numero troppo grande')</code></pre>
 <ol>
 <li><code>'KB'</code>, <code>'MB'</code>, <code>'GB'</code>&hellip; ognuna di quelle è una stringa.
-<li>Le <code>docstring</code> di una funzione sono stringhe. Questa <code>docstring</code> si estende su più righe, e quindi usa tre apici consecutivi all'inizio e alla fine della stringa.
+<li>Le <code>docstring</code> di una funzione sono stringhe. Questa <code>docstring</code> si estende su più righe, e quindi usa tre apici consecutivi all&#8217;inizio e alla fine della stringa.
 <li>Questi tre apici consecutivi concludono la <code>docstring</code>.
-<li>C'è un'altra stringa, passata all'eccezione come un messaggio di errore.
-<li>C'è una&hellip; ehi, che diavolo è quello?
+<li>C&#8217;è un&#8217;altra stringa, passata all&#8217;eccezione come un messaggio di errore.
+<li>C&#8217;è una&hellip; ehi, che diavolo è quello?
 </ol>
 
-<p>Python 3 supporta la <dfn>formattazione</dfn> di valori in stringhe. Sebbene questo possa includere espressioni molto complicate, l'uso più basilare consiste nell'inserire un valore in una stringa con un singolo segnaposto.
+<p>Python 3 supporta la <dfn>formattazione</dfn> di valori in stringhe. Sebbene questo possa includere espressioni molto complicate, l&#8217;uso più basilare consiste nell&#8217;inserire un valore in una stringa con un singolo segnaposto.
 
 <pre class=screen>
 <samp class=p>>>> </samp><kbd class=pp>username = 'mark'</kbd>
@@ -145,12 +145,12 @@ def approximate_size(size, a_kilobyte_is_1024_bytes=True):
 <samp class=pp>"La password di mark è PapayaWhip"</samp></pre>
 <ol>
 <li>No, la mia password non è davvero <kbd>PapayaWhip</kbd>.
-<li>Ci sono un sacco di cose che stanno succedendo qui. Prima di tutto, c'è una chiamata di metodo su un letterale stringa. <em>Le stringhe sono oggetti</em> e gli oggetti hanno metodi. Secondo, l'intera espressione viene valutata come una stringa. Terzo, <code>{0}</code> e <code>{1}</code> sono <i>campi di sostituzione</i>, che vengono rimpiazzati dagli argomenti passati al metodo <code><dfn>format</dfn>()</code>.
+<li>Ci sono un sacco di cose che stanno succedendo qui. Prima di tutto, c&#8217;è una chiamata di metodo su un letterale stringa. <em>Le stringhe sono oggetti</em> e gli oggetti hanno metodi. Secondo, l&#8217;intera espressione viene valutata come una stringa. Terzo, <code>{0}</code> e <code>{1}</code> sono <i>campi di sostituzione</i>, che vengono rimpiazzati dagli argomenti passati al metodo <code><dfn>format</dfn>()</code>.
 </ol>
 
 <h3 id=compound-field-names>Nomi di campo composti</h3>
 
-<p>L'esempio precedente mostra il caso più semplice, dove i campi di sostituzione sono semplicemente interi. I campi di sostituzione interi sono trattati come indici di posizione nella lista di argomenti del metodo <code>format()</code>. Questo significa che <code>{0}</code> è rimpiazzato dal primo argomento (<var>username</var> in questo caso), <code>{1}</code> è rimpiazzato dal secondo argomento (<var>password</var>), <i class=baa>&amp;</i>c. Potete avere tanti indici di posizione quanti sono gli argomenti e potete avere tanti argomenti quanti ne volete. Ma i campi di sostituzione sono molto più potenti di così.
+<p>L&#8217;esempio precedente mostra il caso più semplice, dove i campi di sostituzione sono semplicemente interi. I campi di sostituzione interi sono trattati come indici di posizione nella lista di argomenti del metodo <code>format()</code>. Questo significa che <code>{0}</code> è rimpiazzato dal primo argomento (<var>username</var> in questo caso), <code>{1}</code> è rimpiazzato dal secondo argomento (<var>password</var>), <i class=baa>&amp;</i>c. Potete avere tanti indici di posizione quanti sono gli argomenti e potete avere tanti argomenti quanti ne volete. Ma i campi di sostituzione sono molto più potenti di così.
 
 <pre class=screen>
 <samp class=p>>>> </samp><kbd class=pp>import humansize</kbd>
@@ -169,10 +169,10 @@ def approximate_size(size, a_kilobyte_is_1024_bytes=True):
 <p>Questo esempio mostra che <em>i campi di sostituzione possono accedere a elementi e proprietà di una struttura dati usando (quasi) la stessa sintassi di Python</em>. Quelli che abbiamo appena visto si chiamano <i>nomi di campo composti</i>. Per formare un nome di campo composto che sia valido, è possibile:
 
 <ul>
-<li>passare una lista e accedere a un elemento della lista tramite indice (come nell'esempio precedente);
+<li>passare una lista e accedere a un elemento della lista tramite indice (come nell&#8217;esempio precedente);
 <li>passare un dizionario e accedere a un valore del dizionario tramite chiave;
 <li>passare un modulo e accedere alle variabili e alle funzioni del modulo tramite nome;
-<li>passare un'istanza di una classe e accedere alle proprietà e ai metodi dell'istanza tramite nome;
+<li>passare un&#8217;istanza di una classe e accedere alle proprietà e ai metodi dell&#8217;istanza tramite nome;
 <li>utilizzare <em>una qualsiasi combinazione dei nomi precedenti</em>.
 </ul>
 
@@ -187,28 +187,28 @@ def approximate_size(size, a_kilobyte_is_1024_bytes=True):
 <p>Funziona in questo modo.
 
 <ul>
-<li>Il modulo <code>sys</code> mantiene informazioni sull'istanza dell'interprete Python attualmente in esecuzione. Visto che lo avete appena importato, potete passare il modulo <code>sys</code> stesso come argomento al metodo <code>format()</code>. Quindi il campo di sostituzione <code>{0}</code> si riferisce al modulo <code>sys</code>.
-<li><code>sys.modules</code> è un dizionario di tutti i moduli che sono stati importati in questa istanza dell'interprete Python. Le chiavi sono i nomi dei moduli sotto forma di stringhe, i valori sono gli oggetti modulo stessi. Quindi il campo di sostituzione <code>{0.modules}</code> si riferisce al dizionario dei moduli importati.
-<li><code>sys.modules['humansize']</code> è il modulo <code>humansize</code> che avete appena importato. Il campo di sostituzione <code>{0.modules[humansize]}</code> si riferisce al modulo <code>humansize</code>. Notate la leggera differenza nella sintassi. In vero codice Python, le chiavi del dizionario <code>sys.modules</code> sono stringhe; per riferirvi a esse, avete bisogno di mettere le virgolette attorno al nome del modulo (<i>e.g.</i> <code>'humansize'</code>). Ma nell'ambito di un campo di sostituzione le virgolette attorno al nome della chiave del dizionario vanno omesse (<i>e.g.</i> <code>humansize</code>). Per citare la <a href=http://www.python.org/dev/peps/pep-3101/><abbr>PEP</abbr> 3101: Formattazione avanzata delle stringhe</a>: &#8220;Le regole per riconoscere la chiave di un elemento sono molto semplici. Se comincia con una cifra, allora viene trattato come un numero, altrimenti viene usato come una stringa.&#8221;
-<li><code>sys.modules['humansize'].SUFFIXES</code> è il dizionario definito all'inizio del modulo <code>humansize</code>. Il campo di sostituzione <code>{0.modules[humansize].SUFFIXES}</code> si riferisce a quel dizionario.
+<li>Il modulo <code>sys</code> mantiene informazioni sull&#8217;istanza dell&#8217;interprete Python attualmente in esecuzione. Visto che lo avete appena importato, potete passare il modulo <code>sys</code> stesso come argomento al metodo <code>format()</code>. Quindi il campo di sostituzione <code>{0}</code> si riferisce al modulo <code>sys</code>.
+<li><code>sys.modules</code> è un dizionario di tutti i moduli che sono stati importati in questa istanza dell&#8217;interprete Python. Le chiavi sono i nomi dei moduli sotto forma di stringhe, i valori sono gli oggetti modulo stessi. Quindi il campo di sostituzione <code>{0.modules}</code> si riferisce al dizionario dei moduli importati.
+<li><code>sys.modules['humansize']</code> è il modulo <code>humansize</code> che avete appena importato. Il campo di sostituzione <code>{0.modules[humansize]}</code> si riferisce al modulo <code>humansize</code>. Notate la leggera differenza nella sintassi. In vero codice Python, le chiavi del dizionario <code>sys.modules</code> sono stringhe; per riferirvi a esse, avete bisogno di mettere le virgolette attorno al nome del modulo (<i>e.g.</i> <code>'humansize'</code>). Ma nell&#8217;ambito di un campo di sostituzione le virgolette attorno al nome della chiave del dizionario vanno omesse (<i>e.g.</i> <code>humansize</code>). Per citare la <a href=http://www.python.org/dev/peps/pep-3101/><abbr>PEP</abbr> 3101: Formattazione avanzata delle stringhe</a>: &#8220;Le regole per riconoscere la chiave di un elemento sono molto semplici. Se comincia con una cifra, allora viene trattato come un numero, altrimenti viene usato come una stringa.&#8221;
+<li><code>sys.modules['humansize'].SUFFIXES</code> è il dizionario definito all&#8217;inizio del modulo <code>humansize</code>. Il campo di sostituzione <code>{0.modules[humansize].SUFFIXES}</code> si riferisce a quel dizionario.
 <li><code>sys.modules['humansize'].SUFFIXES[1000]</code> è una lista di suffissi <abbr>SI</abbr>: <code>['KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']</code>. Quindi il campo di sostituzione <code>{0.modules[humansize].SUFFIXES[1000]}</code> si riferisce a quella lista.
 <li><code>sys.modules['humansize'].SUFFIXES[1000][0]</code> è il primo elemento nella lista dei suffissi <abbr>SI</abbr>: <code>'KB'</code>. Quindi, il campo di sostituzione completo <code>{0.modules[humansize].SUFFIXES[1000][0]}</code> è rimpiazzato dalla stringa di due caratteri <code>KB</code>.
 </ul>
 
 <h3 id=format-specifiers>Specifiche di formato</h3>
 
-<p>Ma aspettate! C'è di più! Diamo un'altra occhiata a quella strana linea di codice in <code>humansize.py</code>:
+<p>Ma aspettate! C&#8217;è di più! Diamo un&#8217;altra occhiata a quella strana linea di codice in <code>humansize.py</code>:
 
 <pre class='nd pp'><code>if size &lt; multiple:
     return '{0:.1f} {1}'.format(size, suffix)</code></pre>
 
-<p><code>{1}</code> viene rimpiazzato dal secondo argomento passato al metodo <code>format()</code>, che è <var>suffix</var>. Ma che cos'è <code>{0:.1f}</code>? &Egrave; due cose: <code>{0}</code>, che riconoscerete, e <code>:.1f</code>, che non riconoscerete. La seconda metà (dai due punti in poi compresi) definisce una <i>specifica di formato</i>, che raffina ulteriormente il modo in cui la variabile rimpiazzata dovrà essere formattata.
+<p><code>{1}</code> viene rimpiazzato dal secondo argomento passato al metodo <code>format()</code>, che è <var>suffix</var>. Ma che cos&#8217;è <code>{0:.1f}</code>? &Egrave; due cose: <code>{0}</code>, che riconoscerete, e <code>:.1f</code>, che non riconoscerete. La seconda metà (dai due punti in poi compresi) definisce una <i>specifica di formato</i>, che raffina ulteriormente il modo in cui la variabile rimpiazzata dovrà essere formattata.
 
 <blockquote class='note compare clang'>
 <p><span class=u>&#x261E;</span>Le specifiche di formato vi permettono di manipolare il testo di sostituzione in una varietà di modi utili, come accade con la funzione <code><dfn>printf</dfn>()</code> in C. Potete aggiungere blocchi di zeri o spazi, allineare stringhe, controllare la precisione dei decimali e persino convertire i numeri in esadecimali.
 </blockquote>
 
-<p>Nell'ambito di un campo di sostituzione, i due punti (<code>:</code>) segnano l'inizio della specifica di formato. La specifica di formato &#8220;<code>.1</code>&#8221; significa &#8220;arrotonda al decimale più vicino&#8221; (cioè mostra solo una cifra dopo il punto decimale). La specifica di formato &#8220;<code>f</code>&#8221; significa &#8220;numero in virgola fissa&#8221; (al contrario della notazione esponenziale o di qualche altra rappresentazione decimale). Quindi, data una dimensione <var>size</var> di <code>698.24</code> e un suffisso <var>suffix</var> di <code>'GB'</code>, la stringa formattata diventerà <code>'698.3 GB'</code>, perché <code>698.24</code> viene arrotondato alla prima cifra decimale e il suffisso viene aggiunto dopo il numero.
+<p>Nell&#8217;ambito di un campo di sostituzione, i due punti (<code>:</code>) segnano l&#8217;inizio della specifica di formato. La specifica di formato &#8220;<code>.1</code>&#8221; significa &#8220;arrotonda al decimale più vicino&#8221; (cioè mostra solo una cifra dopo il punto decimale). La specifica di formato &#8220;<code>f</code>&#8221; significa &#8220;numero in virgola fissa&#8221; (al contrario della notazione esponenziale o di qualche altra rappresentazione decimale). Quindi, data una dimensione <var>size</var> di <code>698.24</code> e un suffisso <var>suffix</var> di <code>'GB'</code>, la stringa formattata diventerà <code>'698.3 GB'</code>, perché <code>698.24</code> viene arrotondato alla prima cifra decimale e il suffisso viene aggiunto dopo il numero.
 
 <pre class='nd screen'>
 <samp class=p>>>> </samp><kbd class=pp>'{0:.1f} {1}'.format(698.24, 'GB')</kbd>
@@ -240,9 +240,9 @@ experience of years.</samp>
 <a><samp class=p>>>> </samp><kbd class=pp>s.lower().count('f')</kbd>               <span class=u>&#x2463;</span></a>
 <samp class=pp>6</samp></pre>
 <ol>
-<li>Potete introdurre stringhe <dfn>multiriga</dfn> nella shell interattiva di Python. Una volta che avete cominciato una stringa su più righe con i tripli apici, vi basta premere <kbd>INVIO</kbd> e la shell interattiva vi permetterà di continuare la stringa. Digitare i tripli apici di chiusura termina la stringa, e il successivo <kbd>INVIO</kbd> eseguirà il comando (in questo caso, l'assegnamento della stringa a <var>s</var>).
+<li>Potete introdurre stringhe <dfn>multiriga</dfn> nella shell interattiva di Python. Una volta che avete cominciato una stringa su più righe con i tripli apici, vi basta premere <kbd>INVIO</kbd> e la shell interattiva vi permetterà di continuare la stringa. Digitare i tripli apici di chiusura termina la stringa, e il successivo <kbd>INVIO</kbd> eseguirà il comando (in questo caso, l&#8217;assegnamento della stringa a <var>s</var>).
 <li>Il metodo <code><dfn>splitlines</dfn>()</code> prende una stringa multiriga e restituisce una lista di stringhe, una per ogni riga della stringa originale. Notate che i caratteri di ritorno a capo alla fine di ogni riga non sono inclusi.
-<li>Il metodo <code>lower()</code> converte l'intera stringa in minuscolo. (Similmente, il metodo <code>upper()</code> converte una stringa in maiuscolo.) 
+<li>Il metodo <code>lower()</code> converte l&#8217;intera stringa in minuscolo. (Similmente, il metodo <code>upper()</code> converte una stringa in maiuscolo.) 
 <li>Il metodo <code>count()</code> conta il numero di occorrenze di una sottostringa. Sì, ci sono davvero sei &#8220;f&#8221; in quella frase!
 </ol>
 
@@ -262,12 +262,12 @@ experience of years.</samp>
 
 <ol>
 <li>Il metodo <code><dfn>split</dfn>()</code> delle stringhe prende un delimitatore come argomento e restituisce una lista di stringhe dividendo la stringa in corrispondenza del delimitatore. In questo caso, il delimitatore è un carattere di E commerciale, ma potrebbe essere qualsiasi cosa.
-<li>Ora abbiamo una lista di stringhe, ognuna contenente una chiave, seguita da un segno di uguale, seguito da un valore. Possiamo usare una <a href=descrizioni.html#listcomprehension>descrizione di lista</a> per iterare sull'intera lista e dividere ogni stringa in due stringhe in corrispondenza del primo segno di uguale. (In teoria, anche un valore potrebbe contenere un segno di uguale. Se avessimo usato <code>'chiave=valore=pippo'.split('=')</code>, avremmo ottenuto una lista di tre elementi, <code>['chiave', 'valore', 'pippo']</code>.)
+<li>Ora abbiamo una lista di stringhe, ognuna contenente una chiave, seguita da un segno di uguale, seguito da un valore. Possiamo usare una <a href=descrizioni.html#listcomprehension>descrizione di lista</a> per iterare sull&#8217;intera lista e dividere ogni stringa in due stringhe in corrispondenza del primo segno di uguale. (In teoria, anche un valore potrebbe contenere un segno di uguale. Se avessimo usato <code>'chiave=valore=pippo'.split('=')</code>, avremmo ottenuto una lista di tre elementi, <code>['chiave', 'valore', 'pippo']</code>.)
 <li>Infine, Python può trasformare quella lista-di-liste in un dizionario semplicemente passandola alla funzione <code>dict()</code>.
 </ol>
 
 <blockquote class=note>
-<p><span class=u>&#x261E;</span>L'esempio precedente somiglia molto al riconoscimento dei parametri di richiesta in un <abbr>URL</abbr>, ma in effetti il riconoscimento degli <abbr>URL</abbr> nella vita reale è molto più complicato di così. Se avete a che fare con i parametri di richiesta in un <abbr>URL</abbr>, vi conviene utilizzare la funzione <a href=http://docs.python.org/3.1/library/urllib.parse.html#urllib.parse.parse_qs><code>urllib.parse.parse_qs()</code></a>, che è in grado di gestire alcuni casi limite non banali.
+<p><span class=u>&#x261E;</span>L&#8217;esempio precedente somiglia molto al riconoscimento dei parametri di richiesta in un <abbr>URL</abbr>, ma in effetti il riconoscimento degli <abbr>URL</abbr> nella vita reale è molto più complicato di così. Se avete a che fare con i parametri di richiesta in un <abbr>URL</abbr>, vi conviene utilizzare la funzione <a href=http://docs.python.org/3.1/library/urllib.parse.html#urllib.parse.parse_qs><code>urllib.parse.parse_qs()</code></a>, che è in grado di gestire alcuni casi limite non banali.
 </blockquote>
 
 <h3 id=slicingstrings>Affettare una stringa</h3>
@@ -286,17 +286,17 @@ experience of years.</samp>
 <samp class=pp>' dove il mio inizia!'</samp></pre>
 <ol>
 <li>Potete ottenere una parte di una stringa, chiamata &#8220;fetta&#8221;, specificando due indici. Il valore di ritorno è una nuova stringa che contiene tutti i caratteri della stringa, in ordine, a partire dal primo indice della fetta.
-<li>Come nell'affettare liste, potete usare indici negativi per affettare le stringhe.
-<li>L'indice delle stringhe comincia da zero, quindi <code>a_string[0:2]</code> restituisce i primi due caratteri della stringa, cominciando da <code>a_string[0]</code> fino a <code>a_string[2]</code> escluso.
-<li>Se l'indice sinistro della fetta è 0, potete ometterlo e 0 diventa implicito. Quindi <code>a_string[:23]</code> è la stessa cosa di <code>a_string[0:23]</code>, perché lo 0 iniziale è implicito.
-<li>Similmente, se l'indice destro della fetta è la lunghezza della stringa, potete ometterlo. Quindi <code>a_string[23:]</code> è la stessa cosa di <code>a_string[23:43]</code>, perché questa stringa ha 43 caratteri. C'è una piacevole simmetria qui. In questa stringa di 43 caratteri, <code>a_string[:23]</code> restituisce sempre i primi 23 caratteri e <code>a_string[23:]</code> restituisce tutto tranne i primi 23 caratteri. In effetti, <code>a_string[:<var>n</var>]</code> restituirà sempre i primi <var>n</var> caratteri e <code>a_string[<var>n</var>:]</code> restituirà il resto, a prescindere dalla lunghezza della stringa.
+<li>Come nell&#8217;affettare liste, potete usare indici negativi per affettare le stringhe.
+<li>L&#8217;indice delle stringhe comincia da zero, quindi <code>a_string[0:2]</code> restituisce i primi due caratteri della stringa, cominciando da <code>a_string[0]</code> fino a <code>a_string[2]</code> escluso.
+<li>Se l&#8217;indice sinistro della fetta è 0, potete ometterlo e 0 diventa implicito. Quindi <code>a_string[:23]</code> è la stessa cosa di <code>a_string[0:23]</code>, perché lo 0 iniziale è implicito.
+<li>Similmente, se l&#8217;indice destro della fetta è la lunghezza della stringa, potete ometterlo. Quindi <code>a_string[23:]</code> è la stessa cosa di <code>a_string[23:43]</code>, perché questa stringa ha 43 caratteri. C&#8217;è una piacevole simmetria qui. In questa stringa di 43 caratteri, <code>a_string[:23]</code> restituisce sempre i primi 23 caratteri e <code>a_string[23:]</code> restituisce tutto tranne i primi 23 caratteri. In effetti, <code>a_string[:<var>n</var>]</code> restituirà sempre i primi <var>n</var> caratteri e <code>a_string[<var>n</var>:]</code> restituirà il resto, a prescindere dalla lunghezza della stringa.
 </ol>
 
 <p class=a>&#x2042;
 
 <h2 id=byte-arrays>Stringhe vs. byte</h2>
 
-<p>I <dfn>byte</dfn> sono byte; i caratteri sono un'astrazione. Una sequenza immutabile di caratteri Unicode si chiama <i>stringa</i>. Una sequenza immutabile di numeri-tra-0-e-255 si chiama oggetto <i>byte</i>.
+<p>I <dfn>byte</dfn> sono byte; i caratteri sono un&#8217;astrazione. Una sequenza immutabile di caratteri Unicode si chiama <i>stringa</i>. Una sequenza immutabile di numeri-tra-0-e-255 si chiama oggetto <i>byte</i>.
 
 <pre class=screen>
 <a><samp class=p>>>> </samp><kbd class=pp>by = b'abcd\x65'</kbd>  <span class=u>&#x2460;</span></a>
@@ -321,10 +321,10 @@ TypeError: 'bytes' object does not support item assignment</samp></pre>
 <li>Per definire un oggetto <code><dfn>bytes</dfn></code>, usate la sintassi <code>b''</code> per i &#8220;letterali byte&#8221;. Ogni byte nel letterale byte può essere un carattere <abbr>ASCII</abbr> o un numero esadecimale codificato da <code>\x00</code> a <code>\xff</code> (0&ndash;255).
 <li>Il tipo di un oggetto <code>bytes</code> è <code>bytes</code>.
 <li>Esattamente come con le liste e le stringhe, potete ottenere la lunghezza di un oggetto <code>bytes</code> con la funzione built-in <code>len()</code>.
-<li>Esattamente come con le liste e le stringhe, potete usare l'operatore <code>+</code> per concatenare oggetti <code>bytes</code>. Il risultato è un nuovo oggetto <code>bytes</code>.
+<li>Esattamente come con le liste e le stringhe, potete usare l&#8217;operatore <code>+</code> per concatenare oggetti <code>bytes</code>. Il risultato è un nuovo oggetto <code>bytes</code>.
 <li>Concatenare un oggetto <code>bytes</code> di 5 byte e un oggetto <code>bytes</code> di 1 byte dà come risultato un oggetto <code>bytes</code> di 6 byte.
 <li>Esattamente come con le liste e le stringhe, potete usare la notazione a indici per ottenere i singoli byte in un oggetto <code>bytes</code>. Gli elementi di una stringa sono stringhe; gli elementi di un oggetto <code>bytes</code> sono interi. Nello specifico, interi tra 0 e 255.
-<li>Un oggetto <code>bytes</code> è immutabile, quindi non potete assegnare singoli byte. Se avete bisogno di cambiare i singoli byte, potete usare i metodi per <a href=#slicingstrings>affettare le stringhe</a> e gli operatori di concatenazione (che funzionano allo stesso modo delle stringhe), oppure potete convertire l'oggetto <code>bytes</code> in un oggetto <code>bytearray</code>.
+<li>Un oggetto <code>bytes</code> è immutabile, quindi non potete assegnare singoli byte. Se avete bisogno di cambiare i singoli byte, potete usare i metodi per <a href=#slicingstrings>affettare le stringhe</a> e gli operatori di concatenazione (che funzionano allo stesso modo delle stringhe), oppure potete convertire l&#8217;oggetto <code>bytes</code> in un oggetto <code>bytearray</code>.
 </ol>
 
 <pre class=screen>
@@ -340,10 +340,10 @@ TypeError: 'bytes' object does not support item assignment</samp></pre>
 <ol>
 <li>Per convertire un oggetto <code>bytes</code> in un oggetto <code>bytearray</code> modificabile, usate la funzione built-in <code>bytearray()</code>.
 <li>Tutti i metodi e le operazioni che si possono eseguire su un oggetto <code>bytes</code> si possono eseguire anche su un oggetto <code>bytearray</code>.
-<li>L'unica differenza è che, con un oggetto <code>bytearray</code>, potete assegnare i singoli byte utilizzando la notazione a indici. Il valore assegnato deve essere un intero tra 0 e 255.
+<li>L&#8217;unica differenza è che, con un oggetto <code>bytearray</code>, potete assegnare i singoli byte utilizzando la notazione a indici. Il valore assegnato deve essere un intero tra 0 e 255.
 </ol>
 
-<p>L'unica cosa che <em>non potete mai fare</em> è mescolare stringhe e byte.
+<p>L&#8217;unica cosa che <em>non potete mai fare</em> è mescolare stringhe e byte.
 
 <pre class=screen>
 <samp class=p>>>> </samp><kbd class=pp>by = b'd'</kbd>
@@ -360,11 +360,11 @@ TypeError: Can't convert 'bytes' object to str implicitly</samp>
 <samp class=pp>1</samp></pre>
 <ol>
 <li>Non potete concatenare stringhe e byte. Sono due tipi di dato differenti.
-<li>Non potete contare le occorrenze di byte in una stringa, perché non c'è alcun byte in una stringa. Una stringa è una sequenza di caratteri. Forse intendevate &#8220;conta le occorrenze della stringa che si otterrebbe dopo aver decodificato questa sequenza di byte in una particolare codifica di caratteri&#8221;? Ebbene, allora dovete dirlo esplicitamente. Python 3 non convertirà <dfn>implicitamente</dfn> byte in stringhe o stringhe in byte.
+<li>Non potete contare le occorrenze di byte in una stringa, perché non c&#8217;è alcun byte in una stringa. Una stringa è una sequenza di caratteri. Forse intendevate &#8220;conta le occorrenze della stringa che si otterrebbe dopo aver decodificato questa sequenza di byte in una particolare codifica di caratteri&#8221;? Ebbene, allora dovete dirlo esplicitamente. Python 3 non convertirà <dfn>implicitamente</dfn> byte in stringhe o stringhe in byte.
 <li>Per una sorprendente coincidenza, questa riga di codice dice &#8220;conta le occorrenze della stringa che si otterrebbe dopo aver decodificato questa sequenza di byte in una particolare codifica di caratteri&#8221;.
 </ol>
 
-<p>Ed ecco il collegamento tra stringhe e byte: gli oggetti <code>bytes</code> hanno un metodo <code><dfn>decode</dfn>()</code> che prende una codifica di caratteri e restituisce una stringa, e le stringhe hanno un metodo <code><dfn>encode</dfn>()</code> che prende una codifica di caratteri e restituisce un oggetto <code>bytes</code>. Nell'esempio precedente, la decodifica era relativamente semplice&nbsp;&mdash;&nbsp;convertire una sequenza di byte in una stringa di caratteri attraverso la codifica <abbr>ASCII</abbr>. Ma lo stesso procedimento funziona con qualsiasi codifica che supporti i caratteri della stringa&nbsp;&mdash;&nbsp;persino codifiche legacy (non Unicode).
+<p>Ed ecco il collegamento tra stringhe e byte: gli oggetti <code>bytes</code> hanno un metodo <code><dfn>decode</dfn>()</code> che prende una codifica di caratteri e restituisce una stringa, e le stringhe hanno un metodo <code><dfn>encode</dfn>()</code> che prende una codifica di caratteri e restituisce un oggetto <code>bytes</code>. Nell&#8217;esempio precedente, la decodifica era relativamente semplice&nbsp;&mdash;&nbsp;convertire una sequenza di byte in una stringa di caratteri attraverso la codifica <abbr>ASCII</abbr>. Ma lo stesso procedimento funziona con qualsiasi codifica che supporti i caratteri della stringa&nbsp;&mdash;&nbsp;persino codifiche legacy (non Unicode).
 
 <pre class=screen>
 <a><samp class=p>>>> </samp><kbd class=pp>a_string = '深入 Python'</kbd>         <span class=u>&#x2460;</span></a>
@@ -395,7 +395,7 @@ TypeError: Can't convert 'bytes' object to str implicitly</samp>
 <li>Questo è un oggetto <code>bytes</code>. Ha 13 byte. &Egrave; la sequenza di byte che si ottiene codificando <var>a_string</var> in <abbr>UTF-8</abbr>.
 <li>Questo è un oggetto <code>bytes</code>. Ha 11 byte. &Egrave; la sequenza di byte che si ottiene codificando <var>a_string</var> in <a href=http://en.wikipedia.org/wiki/GB_18030><abbr>GB18030</abbr></a>.
 <li>Questo è un oggetto <code>bytes</code>. Ha 11 byte. &Egrave; una <em>sequenza completamente diversa di byte</em> che si ottiene codificando <var>a_string</var> in <a href=http://en.wikipedia.org/wiki/Big5><abbr>Big5</abbr></a>.
-<li>Questa è una stringa. Ha nove caratteri. &Egrave; la sequenza di caratteri che si ottiene decodificando <var>by</var> con l'algoritmo di codifica <abbr>Big5</abbr>. &Egrave; identica alla stringa originale.
+<li>Questa è una stringa. Ha nove caratteri. &Egrave; la sequenza di caratteri che si ottiene decodificando <var>by</var> con l&#8217;algoritmo di codifica <abbr>Big5</abbr>. &Egrave; identica alla stringa originale.
 </ol>
 
 <p class=a>&#x2042;
@@ -427,14 +427,14 @@ TypeError: Can't convert 'bytes' object to str implicitly</samp>
 
 <ul>
 <li><a href=http://docs.python.org/3.1/howto/unicode.html>Guida pratica a Unicode e Python</a>
-<li><a href=http://docs.python.org/3.0/whatsnew/3.0.html#text-vs-data-instead-of-unicode-vs-8-bit>Cosa c'è di nuovo in Python 3: testo vs. dati invece di Unicode vs. 8-bit</a>
+<li><a href=http://docs.python.org/3.0/whatsnew/3.0.html#text-vs-data-instead-of-unicode-vs-8-bit>Cosa c&#8217;è di nuovo in Python 3: testo vs. dati invece di Unicode vs. 8-bit</a>
 </ul>
 
 <p>Su Unicode in generale:
 
 <ul>
 <li><a href=http://www.joelonsoftware.com/articles/Unicode.html>Il minimo sindacale che ogni sviluppatore di software deve assolutamente sapere su Unicode e sugli insiemi di caratteri (niente scuse!)</a>
-<li><a href=http://www.tbray.org/ongoing/When/200x/2003/04/06/Unicode>L'essenza di Unicode</a>
+<li><a href=http://www.tbray.org/ongoing/When/200x/2003/04/06/Unicode>L&#8217;essenza di Unicode</a>
 <li><a href=http://www.tbray.org/ongoing/When/200x/2003/04/13/Strings>Le stringhe di caratteri</a>
 <li><a href=http://www.tbray.org/ongoing/When/200x/2003/04/26/UTF>Caratteri vs. byte</a>
 </ul>

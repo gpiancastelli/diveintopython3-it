@@ -19,7 +19,7 @@ mark{display:inline}
 </blockquote>
 <p id=toc>&nbsp;
 <h2 id=divingin>Immersione!</h2>
-<p class=f>E quindi volete rilasciare un programma, una libreria, un framework, un'applicazione scritta in Python. Eccellente. Il mondo ha bisogno di più codice Python.
+<p class=f>E quindi volete rilasciare un programma, una libreria, un framework, un&#8217;applicazione scritta in Python. Eccellente. Il mondo ha bisogno di più codice Python.
 
 <p>Python 3 include un framework di distribuzione chiamato Distutils. Distutils è molte cose: uno strumento di assemblaggio (per voi), uno strumento di installazione (per i vostri utenti), un formato di metadati per pacchetti software (per i motori di ricerca) e anche di più. Si integra con il <a href=http://pypi.python.org/>Python Package Index</a> (&#8220;PyPI&#8221;, Indice dei Pacchetti Python), un archivio centrale per librerie Python open source.
 
@@ -72,14 +72,14 @@ Questa versione richiede Python 3 o successivo; una versione per Python 2 è dis
 )</code></pre>
 
 <blockquote class=note>
-<p><span class=u>&#x261E;</span><code>chardet</code> e <code>httplib2</code> sono open source, ma non c'è alcun requisito che vi obbliga a rilasciare le vostre librerie Python secondo i termini di qualche licenza particolare. Il processo descritto in questo capitolo funzionerà per qualsiasi software Python a prescindere dalla licenza.
+<p><span class=u>&#x261E;</span><code>chardet</code> e <code>httplib2</code> sono open source, ma non c&#8217;è alcun requisito che vi obbliga a rilasciare le vostre librerie Python secondo i termini di qualche licenza particolare. Il processo descritto in questo capitolo funzionerà per qualsiasi software Python a prescindere dalla licenza.
 </blockquote>
 
 <p class=a>&#x2042;
 
 <h2 id=cantdo>Cose che Distutils non può fare per voi</h2>
 
-<p>Rilasciare il vostro primo pacchetto Python è un processo che potrebbe intimidirvi. (Rilasciare il secondo è un po' più facile.) Distutils cerca di automatizzare questo processo per quanto è possibile, ma ci sono alcune cose che dovete proprio fare da soli.
+<p>Rilasciare il vostro primo pacchetto Python è un processo che potrebbe intimidirvi. (Rilasciare il secondo è un po&#8217; più facile.) Distutils cerca di automatizzare questo processo per quanto è possibile, ma ci sono alcune cose che dovete proprio fare da soli.
 
 <ul>
 <li><b>Scegliete una licenza</b>. Questo è un argomento complicato, gravido di politica e di problemi. Se desiderate rilasciare il vostro software come open source, vi offro umilmente cinque consigli:
@@ -114,12 +114,12 @@ Questa versione richiede Python 3 o successivo; una versione per Python 2 è dis
    +--iri2uri.py</pre>
 <ol>
 <li>Create una directory radice per contenere ogni cosa. Datele lo stesso nome del vostro modulo Python.
-<li>Per favorire gli utenti Windows, il vostro file &#8220;leggimi&#8221; dovrebbe includere un'estensione <code>.txt</code> e dovrebbe usare i ritorni a capo in stile Windows. Solo perché <em>voi</em> usate un esotico editor di testo che lanciate dalla riga di comando e che include il proprio linguaggio di macro non significa che dovete rendere la vita difficile ai vostri utenti. (I vostri utenti usano Blocco note. Triste ma vero.) Anche se vi trovate su Linux o Mac OS X, il vostro esotico editor di testo senza dubbio è dotato di un'opzione per salvare i file con i ritorni a capo in stile Windows.
+<li>Per favorire gli utenti Windows, il vostro file &#8220;leggimi&#8221; dovrebbe includere un&#8217;estensione <code>.txt</code> e dovrebbe usare i ritorni a capo in stile Windows. Solo perché <em>voi</em> usate un esotico editor di testo che lanciate dalla riga di comando e che include il proprio linguaggio di macro non significa che dovete rendere la vita difficile ai vostri utenti. (I vostri utenti usano Blocco note. Triste ma vero.) Anche se vi trovate su Linux o Mac OS X, il vostro esotico editor di testo senza dubbio è dotato di un&#8217;opzione per salvare i file con i ritorni a capo in stile Windows.
 <li>Il vostro programma di installazione per Distutils dovrebbe essere chiamato <code>setup.py</code> a meno che non abbiate una buona ragione per chiamarlo diversamente. E non avete una buona ragione per chiamarlo diversamente.
-<li>Se il vostro software Python è composto da un singolo file <code>.py</code>, dovreste mettere quel file nella directory radice a fianco del vostro file &#8220;leggimi&#8221; e del vostro programma di installazione. Ma <code>httplib2</code> non è composto da un singolo file <code>.py</code>, bensì è <a href=caso-di-studio-convertire-chardet-verso-python-3.html#multifile-modules>un modulo multifile</a>. Ma questo va benissimo! Semplicemente, mettete la directory <code>httplib2</code> nella directory radice, in modo da avere un file <code>__init__.py</code> all'interno della directory <code>httplib2/</code> all'interno della directory radice <code>httplib2/</code>. Questo non è un problema, e in effetti semplificherà il vostro processo di impacchettamento.
+<li>Se il vostro software Python è composto da un singolo file <code>.py</code>, dovreste mettere quel file nella directory radice a fianco del vostro file &#8220;leggimi&#8221; e del vostro programma di installazione. Ma <code>httplib2</code> non è composto da un singolo file <code>.py</code>, bensì è <a href=caso-di-studio-convertire-chardet-verso-python-3.html#multifile-modules>un modulo multifile</a>. Ma questo va benissimo! Semplicemente, mettete la directory <code>httplib2</code> nella directory radice, in modo da avere un file <code>__init__.py</code> all&#8217;interno della directory <code>httplib2/</code> all&#8217;interno della directory radice <code>httplib2/</code>. Questo non è un problema, e in effetti semplificherà il vostro processo di impacchettamento.
 </ol>
 
-<p>La directory <code>chardet</code> è strutturata in maniera leggermente differente. Come <code>httplib2</code>, anche <code>chardet</code> è un <a href=caso-di-studio-convertire-chardet-verso-python-3.html#multifile-modules>modulo multifile</a>, quindi contiene una directory <code>chardet/</code> all'interno della directory radice <code>chardet/</code>. In aggiunta al file <code>README.txt</code>, <code>chardet</code> include la propria documentazione formattata in <abbr>HTML</abbr> nella directory <code>docs/</code>. La directory <code>docs/</code> contiene diversi file <code>.html</code> e <code>.css</code> e una sottodirectory <code>images/</code> che contiene diversi file <code>.png</code> e <code>.gif</code>. (Questo risulterà importante più avanti.) Infine, per rispettare le convenzioni del software rilasciato sotto licenza <abbr>(L)GPL</abbr>, include un file separato chiamato <code>COPYING.txt</code> che contiene il testo completo della licenza <abbr>LGPL</abbr>.
+<p>La directory <code>chardet</code> è strutturata in maniera leggermente differente. Come <code>httplib2</code>, anche <code>chardet</code> è un <a href=caso-di-studio-convertire-chardet-verso-python-3.html#multifile-modules>modulo multifile</a>, quindi contiene una directory <code>chardet/</code> all&#8217;interno della directory radice <code>chardet/</code>. In aggiunta al file <code>README.txt</code>, <code>chardet</code> include la propria documentazione formattata in <abbr>HTML</abbr> nella directory <code>docs/</code>. La directory <code>docs/</code> contiene diversi file <code>.html</code> e <code>.css</code> e una sottodirectory <code>images/</code> che contiene diversi file <code>.png</code> e <code>.gif</code>. (Questo risulterà importante più avanti.) Infine, per rispettare le convenzioni del software rilasciato sotto licenza <abbr>(L)GPL</abbr>, include un file separato chiamato <code>COPYING.txt</code> che contiene il testo completo della licenza <abbr>LGPL</abbr>.
 
 <pre class=nd><code>
 chardet/
@@ -157,7 +157,7 @@ chardet/
 
 <pre class='nd pp'><code>from distutils.core import setup</code></pre>
 
-<p>Questa riga importa la funzione <code>setup()</code>, che è il punto d'ingresso principale di Distutils. Il 95% di tutti i programmi di installazione di Distutils è composto da una singola invocazione a <code>setup()</code> e basta. (Mi sono assolutamente appena inventato questa statistica, ma se il vostro programma di installazione di Distutils fa altre cose oltre a invocare la funzione <code>setup()</code>, dovreste avere una buona ragione. Avete una buona ragione? Non penso proprio.)
+<p>Questa riga importa la funzione <code>setup()</code>, che è il punto d&#8217;ingresso principale di Distutils. Il 95% di tutti i programmi di installazione di Distutils è composto da una singola invocazione a <code>setup()</code> e basta. (Mi sono assolutamente appena inventato questa statistica, ma se il vostro programma di installazione di Distutils fa altre cose oltre a invocare la funzione <code>setup()</code>, dovreste avere una buona ragione. Avete una buona ragione? Non penso proprio.)
 
 <p>La funzione <code>setup()</code> <a href=http://docs.python.org/3.1/distutils/apiref.html#distutils.core.setup>può accettare dozzine di parametri</a>. Per salvaguardare la sanità mentale di chiunque sia coinvolto, dovete usare gli <a href=il-vostro-primo-programma-python.html#optional-arguments>argomenti con nome</a> per tutti i parametri. Questa non è semplicemente una convenzione, ma un requisito vincolante. Il vostro programma di installazione si bloccherà se provate a invocare la funzione <code>setup()</code> con argomenti senza nome.
 
@@ -183,7 +183,7 @@ chardet/
 <p><span class=u>&#x261E;</span>I metadati da utilizzare nei programmi di installazione sono definiti nella <a href=http://www.python.org/dev/peps/pep-0314/><abbr>PEP</abbr> 314</a>.
 </blockquote>
 
-<p>Ora diamo un'occhiata al programma di installazione per <code>chardet</code>. Contiene tutti questi parametri obbligatori e raccomandati, più uno che non ho ancora menzionato: <code>packages</code>.
+<p>Ora diamo un&#8217;occhiata al programma di installazione per <code>chardet</code>. Contiene tutti questi parametri obbligatori e raccomandati, più uno che non ho ancora menzionato: <code>packages</code>.
 
 <pre class='nd pp'><code>from distutils.core import setup
 setup(
@@ -195,7 +195,7 @@ setup(
     ...
 )</code></pre>
 
-<p>Il parametro <code>packages</code> evidenzia una sfortunata sovrapposizione di vocaboli nel processo di distribuzione. Abbiamo parlato del &#8220;pacchetto&#8221; come della cosa che state assemblando (e potenzialmente elencando nell'Indice dei Pacchetti Python). Il parametro <code>packages</code> non si riferisce a questo, ma al fatto che il modulo <code>chardet</code> è un <a href=caso-di-studio-convertire-chardet-verso-python-3.html#multifile-modules>modulo multifile</a>, talvolta noto come&hellip; &#8220;pacchetto&#8221;. Il parametro <code>packages</code> dice a Distutils di includere la directory <code>chardet/</code>, il suo file <code>__init__.py</code> e tutti gli altri file <code>.py</code> che costituiscono il modulo <code>chardet</code>. Questo è piuttosto importante: tutte le nostre allegre chiacchiere su documentazione e metadati sono irrilevanti se dimenticate di includere il codice vero e proprio!
+<p>Il parametro <code>packages</code> evidenzia una sfortunata sovrapposizione di vocaboli nel processo di distribuzione. Abbiamo parlato del &#8220;pacchetto&#8221; come della cosa che state assemblando (e potenzialmente elencando nell&#8217;Indice dei Pacchetti Python). Il parametro <code>packages</code> non si riferisce a questo, ma al fatto che il modulo <code>chardet</code> è un <a href=caso-di-studio-convertire-chardet-verso-python-3.html#multifile-modules>modulo multifile</a>, talvolta noto come&hellip; &#8220;pacchetto&#8221;. Il parametro <code>packages</code> dice a Distutils di includere la directory <code>chardet/</code>, il suo file <code>__init__.py</code> e tutti gli altri file <code>.py</code> che costituiscono il modulo <code>chardet</code>. Questo è piuttosto importante: tutte le nostre allegre chiacchiere su documentazione e metadati sono irrilevanti se dimenticate di includere il codice vero e proprio!
 
 <p class=a>&#x2042;
 
@@ -209,7 +209,7 @@ setup(
 
 <ul>
 <li><b>Programming Language</b>. In particolare, dovreste includere sia <code>"Programming Language :: Python"</code> che <code>"Programming Language :: Python :: 3"</code>. Se non li includete, il vostro pacchetto non verrà mostrato in <a href='http://pypi.python.org/pypi?:action=browse&amp;c=533&amp;show=all'>questa lista di librerie compatibili con Python 3</a>, che viene segnalata a lato di ogni singola pagina del sito <code>pypi.python.org</code>.
-<li><b>License</b>. Questa è <em>la prima cosa in assoluto che controllo</em> quando sto considerando librerie di terze parti. Non obbligatemi a dare la caccia a questa informazione vitale. Non includete più di un classificatore di licenza a meno che il vostro software non sia esplicitamente rilasciato secondo i termini di più di una licenza. (E non rilasciate software secondo i termini di più di una licenza a meno che non siate obbligati a farlo. E non obbligate altri sviluppatori a farlo. La questione delle licenze è già una seccatura così com'è, non peggioratela.)
+<li><b>License</b>. Questa è <em>la prima cosa in assoluto che controllo</em> quando sto considerando librerie di terze parti. Non obbligatemi a dare la caccia a questa informazione vitale. Non includete più di un classificatore di licenza a meno che il vostro software non sia esplicitamente rilasciato secondo i termini di più di una licenza. (E non rilasciate software secondo i termini di più di una licenza a meno che non siate obbligati a farlo. E non obbligate altri sviluppatori a farlo. La questione delle licenze è già una seccatura così com&#8217;è, non peggioratela.)
 <li><b>Operating System</b>. Se il vostro software funziona solo su Windows (o Mac OS X, o Linux), voglio saperlo prima, non dopo. Se il vostro software funziona ovunque senza alcun codice specifico per la piattaforma, usate il classificatore <code>"Operating System :: OS Independent"</code>. Classificatori <code>Operating System</code> molteplici sono necessari solo se il vostro software richiede uno specifico supporto per ogni piattaforma. (Questo non è molto comune.)
 </ul>
 
@@ -218,8 +218,8 @@ setup(
 <ul>
 <li><b>Development Status</b>. Il vostro software ha la qualità di una versione beta? Alfa? Pre-alfa? Sceglietene una. Siate onesti.
 <li><b>Intended Audience</b>. Chi scaricherebbe il vostro software? Le scelte più comuni sono <code>Developers</code>, <code>End Users/Desktop</code>, <code>Science/Research</code> e <code>System Administrators</code>.
-<li><b>Framework</b>. Se il vostro software è un componente aggiuntivo per un framework Python più grande come <a href=http://www.djangoproject.com/>Django</a> o <a href=http://www.zope.org/>Zope</a>, includete l'appropriato classificatore <code>Framework</code>, altrimenti omettetelo.
-<li><b>Topic</b>. C'è un <a href='http://pypi.python.org/pypi?:action=list_classifiers'>vasta gamma di argomenti tra cui scegliere</a>; scegliete tutti quelli che si applicano al vostro caso.
+<li><b>Framework</b>. Se il vostro software è un componente aggiuntivo per un framework Python più grande come <a href=http://www.djangoproject.com/>Django</a> o <a href=http://www.zope.org/>Zope</a>, includete l&#8217;appropriato classificatore <code>Framework</code>, altrimenti omettetelo.
+<li><b>Topic</b>. C&#8217;è un <a href='http://pypi.python.org/pypi?:action=list_classifiers'>vasta gamma di argomenti tra cui scegliere</a>; scegliete tutti quelli che si applicano al vostro caso.
 </ul>
 
 <h3 id=trove-examples>Esempi di buoni classificatori</h3>
@@ -250,7 +250,7 @@ Intended Audience :: Developers
 Topic :: Text Processing :: Linguistic
 Topic :: Software Development :: Libraries :: Python Modules</code></pre>
 
-<p>Ed ecco i classificatori di <a href=http://pypi.python.org/pypi/httplib2><code>httplib2</code></a>, il modulo <abbr>HTTP</abbr> che ho menzionato all'inizio di questo capitolo. <code>httplib2</code> è di qualità beta, indipendente dalla piattaforma, distribuita secondo la licenza <abbr>MIT</abbr> e rivolta agli sviluppatori che programmano in Python.
+<p>Ed ecco i classificatori di <a href=http://pypi.python.org/pypi/httplib2><code>httplib2</code></a>, il modulo <abbr>HTTP</abbr> che ho menzionato all&#8217;inizio di questo capitolo. <code>httplib2</code> è di qualità beta, indipendente dalla piattaforma, distribuita secondo la licenza <abbr>MIT</abbr> e rivolta agli sviluppatori che programmano in Python.
 
 <pre><code>Programming Language :: Python
 Programming Language :: Python :: 3
@@ -273,20 +273,20 @@ Topic :: Software Development :: Libraries :: Python Modules</code></pre>
 <li>i singoli file <code>.py</code> elencati nel parametro <code>py_modules</code>.
 </ul>
 
-<p>Questo includerà <a href=#structure>tutti i file del progetto <code>httplib2</code></a>. Ma per il progetto <code>chardet</code> vogliamo anche includere il file di licenza <code>COPYING.txt</code> e l'intera directory <code>docs/</code> che contiene immagini e file <abbr>HTML</abbr>. Per dire a Distutils di includere anche questi file e queste directory aggiuntive quando assembla il pacchetto di distribuzione per <code>chardet</code>, avete bisogno di un <i>file manifesto</i>.
+<p>Questo includerà <a href=#structure>tutti i file del progetto <code>httplib2</code></a>. Ma per il progetto <code>chardet</code> vogliamo anche includere il file di licenza <code>COPYING.txt</code> e l&#8217;intera directory <code>docs/</code> che contiene immagini e file <abbr>HTML</abbr>. Per dire a Distutils di includere anche questi file e queste directory aggiuntive quando assembla il pacchetto di distribuzione per <code>chardet</code>, avete bisogno di un <i>file manifesto</i>.
 
 <p>Un file manifesto è un file di testo chiamato <code>MANIFEST.in</code>. Mettetelo nella directory radice del progetto, a fianco di <code>README.txt</code> e <code>setup.py</code>. I file manifesto <em>non</em> sono programmi Python, ma sono file di testo che contengono una serie di &#8220;comandi&#8221; in un formato definito da Distutils. I comandi di manifesto vi permettono di includere o escludere specifici file e directory.
 
-<p>Questo è l'intero file manifesto per il progetto <code>chardet</code>:
+<p>Questo è l&#8217;intero file manifesto per il progetto <code>chardet</code>:
 
 <pre class=nd><code><a>include COPYING.txt                                <span class=u>&#x2460;</span></a>
 <a>recursive-include docs *.html *.css *.png *.gif    <span class=u>&#x2461;</span></a></code></pre>
 <ol>
 <li>La prima riga è ovvia: include il file <code>COPYING.txt</code> che si trova nella directory radice del progetto.
-<li>La seconda riga è un po' più complicata. Il comando <code>recursive-include</code> prende un nome di directory e uno o più nomi di file. I nomi di file non si limitano a indicare file specifici, ma possono includere wildcard. Questa riga significa: &#8220;Vedi quella directory <code>docs/</code> nella directory radice del progetto? Cerca (ricorsivamente) in quella directory i file <code>.html</code>, <code>.css</code>, <code>.png</code> e <code>.gif</code>. Li voglio tutti nel mio pacchetto di distribuzione.&#8221;
+<li>La seconda riga è un po&#8217; più complicata. Il comando <code>recursive-include</code> prende un nome di directory e uno o più nomi di file. I nomi di file non si limitano a indicare file specifici, ma possono includere wildcard. Questa riga significa: &#8220;Vedi quella directory <code>docs/</code> nella directory radice del progetto? Cerca (ricorsivamente) in quella directory i file <code>.html</code>, <code>.css</code>, <code>.png</code> e <code>.gif</code>. Li voglio tutti nel mio pacchetto di distribuzione.&#8221;
 </ol>
 
-<p>Tutti i comandi di manifesto preservano la struttura di directory che avete impostato nella directory del vostro progetto. Quel comando <code>recursive-include</code> non metterà un gruppo di file <code>.html</code> e <code>.png</code> nella directory radice del pacchetto di distribuzione. Invece, manterrà la struttura della directory <code>docs/</code> esistente, includendo solo quei file contenuti dentro quella directory che corrispondono alle wildcard date. (Non l'ho detto prima, ma la documentazione di <code>chardet</code> è in realtà scritta in <abbr>XML</abbr> e convertita in <abbr>HTML</abbr> da un programma separato. Non voglio includere i file <abbr>XML</abbr> nel pacchetto di distribuzione, ma solo i file <abbr>HTML</abbr> e le immagini.)
+<p>Tutti i comandi di manifesto preservano la struttura di directory che avete impostato nella directory del vostro progetto. Quel comando <code>recursive-include</code> non metterà un gruppo di file <code>.html</code> e <code>.png</code> nella directory radice del pacchetto di distribuzione. Invece, manterrà la struttura della directory <code>docs/</code> esistente, includendo solo quei file contenuti dentro quella directory che corrispondono alle wildcard date. (Non l&#8217;ho detto prima, ma la documentazione di <code>chardet</code> è in realtà scritta in <abbr>XML</abbr> e convertita in <abbr>HTML</abbr> da un programma separato. Non voglio includere i file <abbr>XML</abbr> nel pacchetto di distribuzione, ma solo i file <abbr>HTML</abbr> e le immagini.)
 
 <blockquote class=note>
 <p><span class=u>&#x261E;</span>I file manifesto hanno il proprio singolare formato. Leggete <a href=http://docs.python.org/3.1/distutils/sourcedist.html#manifest>Specificare i file da distribuire</a> e <a href=http://docs.python.org/3.1/distutils/commandref.html#sdist-cmd>I comandi per i modelli di manifesto</a> se volete conoscere i dettagli.
@@ -303,7 +303,7 @@ Topic :: Software Development :: Libraries :: Python Modules</code></pre>
 <samp>eseguo il comando check
 attenzione: controllo: metadato richiesto mancante: version</samp></pre>
 
-<p>Una volta che includete un parametro <code>version</code> (e tutti gli altri metadati obbligatori), l'esecuzione del comando <code>check</code> somiglierà a questa:
+<p>Una volta che includete un parametro <code>version</code> (e tutti gli altri metadati obbligatori), l&#8217;esecuzione del comando <code>check</code> somiglierà a questa:
 
 <pre class=screen>
 <samp class=p>c:\Users\pilgrim\chardet> </samp><kbd>c:\python31\python.exe setup.py check</kbd>
@@ -313,7 +313,7 @@ attenzione: controllo: metadato richiesto mancante: version</samp></pre>
 
 <h2 id=sdist>Creare una distribuzione dei sorgenti</h2>
 
-<p>Distutils supporta l'assemblaggio di diversi tipi di pacchetti di distribuzione. Come minimo, dovreste creare una &#8220;distribuzione dei sorgenti&#8221; che contenga il vostro codice sorgente, il vostro programma di setup di Distutils, il vostro file &#8220;leggimi&#8221; e tutti i <a href=#manifest>file aggiuntivi che volete includere</a>. Per creare una distribuzione dei sorgenti passate il comando <code>sdist</code> al vostro programma di installazione di Distutils.
+<p>Distutils supporta l&#8217;assemblaggio di diversi tipi di pacchetti di distribuzione. Come minimo, dovreste creare una &#8220;distribuzione dei sorgenti&#8221; che contenga il vostro codice sorgente, il vostro programma di setup di Distutils, il vostro file &#8220;leggimi&#8221; e tutti i <a href=#manifest>file aggiuntivi che volete includere</a>. Per creare una distribuzione dei sorgenti passate il comando <code>sdist</code> al vostro programma di installazione di Distutils.
 
 <pre class=screen>
 <samp class=p>c:\Users\pilgrim\chardet> </samp><kbd><mark>c:\python31\python.exe setup.py sdist</mark></kbd>
@@ -463,9 +463,9 @@ rimuovo 'build\bdist.win32\wininst' (e ogni cosa al suo interno)</samp>
 
 <p class=a>&#x2042;
 
-<h2 id=pypi>Aggiungere il vostro software all'Indice dei Pacchetti Python</h2>
+<h2 id=pypi>Aggiungere il vostro software all&#8217;Indice dei Pacchetti Python</h2>
 
-<p>Caricare il vostro software sull'Indice dei Pacchetti Python è un processo che si svolge in tre fasi.
+<p>Caricare il vostro software sull&#8217;Indice dei Pacchetti Python è un processo che si svolge in tre fasi.
 
 <ol>
 <li>Registrazione di un utente
@@ -503,17 +503,17 @@ Posso memorizzare i tuoi dati di accesso su PyPI per rendere più veloci le futu
 (i dati verranno memorizzati in c:\home\.pypirc)</samp>
 <a><samp class=p>Salvare i tuoi dati di accesso (y/N)?</samp> <kbd class=pp>n</kbd>                                                        <span class=u>&#x2467;</span></a></pre>
 <ol>
-<li>Quando rilasciate il vostro progetto per la prima volta, Distutils aggiungerà il vostro software all'Indice dei Pacchetti Python e gli darà un proprio <abbr>URL</abbr>. Tutte le volte successive si limiterà ad aggiornare i metadati del progetto con qualsiasi cambiamento possiate aver apportato ai parametri del vostro file <code>setup.py</code>. Poi, assemblerà una distribuzione dei sorgenti (<code>sdist</code>) e un pacchetto di installazione per Windows (<code>bdist_wininst</code>) e li caricherà entrambi su PyPI (<code>upload</code>).
+<li>Quando rilasciate il vostro progetto per la prima volta, Distutils aggiungerà il vostro software all&#8217;Indice dei Pacchetti Python e gli darà un proprio <abbr>URL</abbr>. Tutte le volte successive si limiterà ad aggiornare i metadati del progetto con qualsiasi cambiamento possiate aver apportato ai parametri del vostro file <code>setup.py</code>. Poi, assemblerà una distribuzione dei sorgenti (<code>sdist</code>) e un pacchetto di installazione per Windows (<code>bdist_wininst</code>) e li caricherà entrambi su PyPI (<code>upload</code>).
 <li>Digitate <kbd>1</kbd> o premete semplicemente <kbd>INVIO</kbd> per selezionare &#8220;usa i tuoi dati di accesso esistenti&#8221;.
 <li>Inserite il nome utente e la password che avete selezionato sulla <a href="http://pypi.python.org/pypi?:action=register_form">pagina di registrazione per gli utenti di PyPI</a>. Distuils non mostrerà la vostra password sullo schermo, né mostrerà asterischi al posto dei caratteri. Digitate semplicemente la vostra password e premete <kbd>INVIO</kbd>.
-<li>Distutils registra il vostro pacchetto sull'Indice dei Pacchetti Python&hellip;
+<li>Distutils registra il vostro pacchetto sull&#8217;Indice dei Pacchetti Python&hellip;
 <li>&hellip;assembla la vostra distribuzione dei sorgenti&hellip;
 <li>&hellip;crea il pacchetto di installazione per Windows&hellip;
-<li>&hellip;e li carica entrambi sull'Indice dei Pacchetti Python.
+<li>&hellip;e li carica entrambi sull&#8217;Indice dei Pacchetti Python.
 <li>Se volete automatizzare il processo di rilascio delle nuove versioni, avrete bisogno di salvare le vostre credenziali su PyPI in un file locale. Questo è assolutamente insicuro e completamente opzionale.
 </ol>
 
-<p>Congratulazioni, ora avete la vostra pagina sull'Indice dei Pacchetti Python! L'indirizzo è <code>http://pypi.python.org/pypi/<i>NOME</i></code>, dove <i>NOME</i> è la stringa che avete passato nel parametro <var>name</var> nel vostro file <code>setup.py</code>.
+<p>Congratulazioni, ora avete la vostra pagina sull&#8217;Indice dei Pacchetti Python! L&#8217;indirizzo è <code>http://pypi.python.org/pypi/<i>NOME</i></code>, dove <i>NOME</i> è la stringa che avete passato nel parametro <var>name</var> nel vostro file <code>setup.py</code>.
 
 <p>Se volete rilasciare una nuova versione, vi basta aggiornare il vostro file <code>setup.py</code> con il nuovo numero di versione e invocare lo stesso comando di prima:
 
@@ -525,9 +525,9 @@ Posso memorizzare i tuoi dati di accesso su PyPI per rendere più veloci le futu
 
 <h2 id=future>I molti possibili futuri della distribuzione di librerie Python</h2>
 
-<p>Distutils non è la quintessenza della distribuzione di librerie Python, ma al momento della scrittura (agosto 2009) è l'unico framework per la creazione di pacchetti che funziona con Python 3. Ci sono un certo numero di altri framework per Python 2: alcuni si concentrano sull'installazione, altri sul collaudo e il deployment. In futuro, alcuni o persino tutti potrebbero venire convertiti verso Python 3.
+<p>Distutils non è la quintessenza della distribuzione di librerie Python, ma al momento della scrittura (agosto 2009) è l&#8217;unico framework per la creazione di pacchetti che funziona con Python 3. Ci sono un certo numero di altri framework per Python 2: alcuni si concentrano sull&#8217;installazione, altri sul collaudo e il deployment. In futuro, alcuni o persino tutti potrebbero venire convertiti verso Python 3.
 
-<p>Questi framework si concentrano sull'installazione:
+<p>Questi framework si concentrano sull&#8217;installazione:
 
 <ul>
 <li><a href=http://pypi.python.org/pypi/setuptools>Setuptools</a>
@@ -556,13 +556,13 @@ Posso memorizzare i tuoi dati di accesso su PyPI per rendere più veloci le futu
 <li><a href=http://docs.python.org/3.1/distutils/apiref.html#module-distutils.core>Le funzionalità principali di Distutils</a> elenca tutti i possibili argomenti per la funzione <code>setup()</code>
 <li><a href=http://wiki.python.org/moin/Distutils/Cookbook>Il ricettario di Distutils</a>
 <li><a href=http://www.python.org/dev/peps/pep-0370/><abbr>PEP</abbr> 370: directory <code>site-packages</code> per il singolo utente</a>
-<li><a href=http://jessenoller.com/2009/07/19/pep-370-per-user-site-packages-and-environment-stew/>La <abbr>PEP</abbr> 370 e lo &#8220;stufato d'ambiente&#8221;</a>
+<li><a href=http://jessenoller.com/2009/07/19/pep-370-per-user-site-packages-and-environment-stew/>La <abbr>PEP</abbr> 370 e lo &#8220;stufato d&#8217;ambiente&#8221;</a>
 </ul>
 
 <p>Su altri framework per la creazione di pacchetti:
 
 <ul>
-<li><a href=http://groups.google.com/group/django-developers/msg/5407cdb400157259>L'ecosistema della creazione di pacchetti Python</a>
+<li><a href=http://groups.google.com/group/django-developers/msg/5407cdb400157259>L&#8217;ecosistema della creazione di pacchetti Python</a>
 <li><a href=http://www.b-list.org/weblog/2008/dec/14/packaging/>Sulla distribuzione</a>
 <li><a href=http://blog.ianbicking.org/2008/12/14/a-few-corrections-to-on-packaging/>Alcune correzioni a &#8220;Sulla distribuzione&#8221;</a>
 <li><a href=http://www.b-list.org/weblog/2008/dec/15/pip/>Perché mi piace Pip</a>

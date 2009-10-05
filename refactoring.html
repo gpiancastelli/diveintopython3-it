@@ -14,7 +14,7 @@ body{counter-reset:h1 10}
 <p id=level>Livello di difficoltà: <span class=u title=avanzato>&#x2666;&#x2666;&#x2666;&#x2666;&#x2662;</span>
 <h1>Refactoring</h1>
 <blockquote class=q>
-<p><span class=u>&#x275D;</span> Dopo aver suonato una quantità immensa di note e ancora altre note, è la semplicità che emerge come l'autentico sigillo dell'arte. <span class=u>&#x275E;</span><br>&mdash; <a href=http://en.wikiquote.org/wiki/Fr%C3%A9d%C3%A9ric_Chopin>Frédéric Chopin</a>
+<p><span class=u>&#x275D;</span> Dopo aver suonato una quantità immensa di note e ancora altre note, è la semplicità che emerge come l&#8217;autentico sigillo dell&#8217;arte. <span class=u>&#x275E;</span><br>&mdash; <a href=http://en.wikiquote.org/wiki/Fr%C3%A9d%C3%A9ric_Chopin>Frédéric Chopin</a>
 </blockquote>
 <p id=toc>&nbsp;
 <h2 id=divingin>Immersione!</h2>
@@ -24,7 +24,7 @@ body{counter-reset:h1 10}
 <a><samp class=p>>>> </samp><kbd class=pp>roman7.from_roman('')</kbd> <span class=u>&#x2460;</span></a>
 <samp class=pp>0</samp></pre>
 <ol>
-<li>Questo è un bug. Una stringa vuota dovrebbe sollevare un'eccezione di tipo <code>InvalidRomanNumeralError</code>, esattamente come ogni altra sequenza di caratteri che non rappresenta un numero romano valido.
+<li>Questo è un bug. Una stringa vuota dovrebbe sollevare un&#8217;eccezione di tipo <code>InvalidRomanNumeralError</code>, esattamente come ogni altra sequenza di caratteri che non rappresenta un numero romano valido.
 </ol>
 
 <p>Dopo aver riprodotto il bug, e prima di correggerlo, dovreste scrivere un test che fallisce, mettendo così il bug in evidenza.
@@ -37,7 +37,7 @@ body{counter-reset:h1 10}
         '''from_roman dovrebbe fallire con una stringa vuota'''
 <a>        self.assertRaises(roman6.InvalidRomanNumeralError, roman6.from_roman, '') <span class=u>&#x2460;</span></a></code></pre>
 <ol>
-<li>Qui le cose sono piuttosto semplici. Chiamate <code>from_roman()</code> con una stringa vuota e vi assicurate che sollevi un'eccezione di tipo <code>InvalidRomanNumeralError</code>. La parte difficile è stata trovare il bug; ora che lo conoscete, scrivere un test per verificarlo è la parte facile.
+<li>Qui le cose sono piuttosto semplici. Chiamate <code>from_roman()</code> con una stringa vuota e vi assicurate che sollevi un&#8217;eccezione di tipo <code>InvalidRomanNumeralError</code>. La parte difficile è stata trovare il bug; ora che lo conoscete, scrivere un test per verificarlo è la parte facile.
 </ol>
 
 <p>Dato che il vostro codice ha un bug e ora avete un test che verifica quel bug, il test fallirà:
@@ -86,8 +86,8 @@ FAILED (failures=1)</samp></pre>
             index += len(numeral)
     return result</code></pre>
 <ol>
-<li>Sono necessarie solo due righe di codice: un controllo esplicito per una stringa vuota e un'istruzione di <code>raise</code>.
-<li>Non penso di aver ancora menzionato questa particolarità da nessuna parte in questo libro, quindi vi serva come ultima lezione sulla <a href=stringhe.html#formatting-strings>formattazione di stringhe</a>. A partire da Python 3.1, potete omettere i numeri quando usate gli indici posizionali in una specifica di formato. Questo vuol dire che, invece di usare la specifica di formato <code>{0}</code> per fare riferimento al primo parametro del metodo <code>format()</code>, potete semplicemente usare <code>{}</code>, che Python completerà con l'indice posizionale corretto. Questo funziona con qualsiasi numero di argomenti: la prima <code>{}</code> è <code>{0}</code>, la seconda <code>{}</code> è <code>{1}</code>, e così via.
+<li>Sono necessarie solo due righe di codice: un controllo esplicito per una stringa vuota e un&#8217;istruzione di <code>raise</code>.
+<li>Non penso di aver ancora menzionato questa particolarità da nessuna parte in questo libro, quindi vi serva come ultima lezione sulla <a href=stringhe.html#formatting-strings>formattazione di stringhe</a>. A partire da Python 3.1, potete omettere i numeri quando usate gli indici posizionali in una specifica di formato. Questo vuol dire che, invece di usare la specifica di formato <code>{0}</code> per fare riferimento al primo parametro del metodo <code>format()</code>, potete semplicemente usare <code>{}</code>, che Python completerà con l&#8217;indice posizionale corretto. Questo funziona con qualsiasi numero di argomenti: la prima <code>{}</code> è <code>{0}</code>, la seconda <code>{}</code> è <code>{1}</code>, e così via.
 </ol>
 
 <pre class=screen>
@@ -120,7 +120,7 @@ Ran 11 tests in 0.156s
 <h2 id=changing-requirements>Gestire il cambiamento dei requisiti</h2>
 <p>Nonostante facciate del vostro meglio per tenere i vostri committenti con i piedi ben piantati per terra in modo da ottenere requisiti precisi sotto la minaccia di orribili torture a base di forbici e cera calda, i requisiti cambieranno. La maggior parte dei committenti non sa cosa vuole fino a quando non la vede, e anche se lo sapesse non sarebbe così brava a descrivere ciò che vuole in maniera sufficientemente precisa da risultare utile. E anche se lo fosse, vorrebbe comunque di più nella versione successiva. Quindi siate preparati ad aggiornare i vostri test man mano che i requisiti cambiano.
 
-<p>Supponete per esempio di volere espandere l'intervallo dei numeri romani gestito dalle funzioni di conversione. Normalmente nessun carattere in un numero romano può essere ripetuto più di tre volte di seguito. Ma i Romani erano disposti a fare uno strappo a quella regola per poter rappresentare <code>4000</code> con 4 <code>M</code> di seguito. Se fate questa modifica sarete in grado di allargare l'intervallo di numeri convertibili da <code>1..3999</code> a <code>1..4999</code>. Ma prima è necessario fare alcuni cambiamenti ai vostri test.
+<p>Supponete per esempio di volere espandere l&#8217;intervallo dei numeri romani gestito dalle funzioni di conversione. Normalmente nessun carattere in un numero romano può essere ripetuto più di tre volte di seguito. Ma i Romani erano disposti a fare uno strappo a quella regola per poter rappresentare <code>4000</code> con 4 <code>M</code> di seguito. Se fate questa modifica sarete in grado di allargare l&#8217;intervallo di numeri convertibili da <code>1..3999</code> a <code>1..4999</code>. Ma prima è necessario fare alcuni cambiamenti ai vostri test.
 
 <p class=d>[<a href=esempi/roman8.py>scarica <code>roman8.py</code></a>]
 <pre class=pp><code>class KnownValues(unittest.TestCase):
@@ -161,10 +161,10 @@ class RoundtripCheck(unittest.TestCase):
             result = roman8.from_roman(numeral)
             self.assertEqual(integer, result)</code></pre>
 <ol>
-<li>I valori noti già esistenti non cambiano (sono ancora tutti valori ragionevoli da collaudare), ma avete bisogno di aggiungerne alcuni nell'intervallo delle quattro migliaia. Qui ho incluso <code>4000</code> (il più corto), <code>4500</code> (il secondo più corto), <code>4888</code> (il più lungo) e <code>4999</code> (il più grande).
+<li>I valori noti già esistenti non cambiano (sono ancora tutti valori ragionevoli da collaudare), ma avete bisogno di aggiungerne alcuni nell&#8217;intervallo delle quattro migliaia. Qui ho incluso <code>4000</code> (il più corto), <code>4500</code> (il secondo più corto), <code>4888</code> (il più lungo) e <code>4999</code> (il più grande).
 <li>La definizione di &#8220;numero grande&#8221; è cambiata. Questo test invocava <code>to_roman()</code> con <code>4000</code> e si aspettava un errore, ma ora che i valori <code>4000-4999</code> sono validi avete bisogno di alzare la soglia a <code>5000</code>.
 <li>Anche la definizione di &#8220;cifre ripetute troppe volte&#8221; è cambiata. Questo test invocava <code>from_roman()</code> con <code>'MMMM'</code> e si aspettava un errore, ma ora che <code>MMMM</code> è considerato un numero romano valido avete bisogno di alzare il valore limite a <code>'MMMMM'</code>.
-<li>Il test di consistenza controlla ogni numero nell'intervallo, da <code>1</code> fino a <code>3999</code>. Dato che ora l'intervallo si è allargato, anche questo ciclo <code>for</code> deve essere aggiornato per arrivare fino a <code>4999</code>.
+<li>Il test di consistenza controlla ogni numero nell&#8217;intervallo, da <code>1</code> fino a <code>3999</code>. Dato che ora l&#8217;intervallo si è allargato, anche questo ciclo <code>for</code> deve essere aggiornato per arrivare fino a <code>4999</code>.
 </ol>
 
 <p>Ora i vostri test sono aggiornati rispetto ai nuovi requisiti, ma il vostro codice non lo è, quindi quando li eseguite aspettatevi diversi fallimenti.
@@ -220,11 +220,11 @@ Ran 12 tests in 0.171s
 FAILED (errors=3)</samp></pre>
 <ol>
 <li>Il test sui valori noti per <code>from_roman()</code> fallirà non appena arriva a <code>'MMMM'</code>, perché <code>from_roman()</code> pensa ancora che questo sia un numero romano non valido.
-<li>Il test sui valori noti per <code>to_roman()</code> fallirà non appena arriva a <code>4000</code>, perché <code>to_roman()</code> pensa ancora che questo numero sia fuori dall'intervallo di validità.
-<li>Anche il controllo di consistenza fallirà non appena arriva a <code>4000</code>, perché <code>to_roman()</code> pensa ancora che questo numero sia fuori dall'intervallo di validità.
+<li>Il test sui valori noti per <code>to_roman()</code> fallirà non appena arriva a <code>4000</code>, perché <code>to_roman()</code> pensa ancora che questo numero sia fuori dall&#8217;intervallo di validità.
+<li>Anche il controllo di consistenza fallirà non appena arriva a <code>4000</code>, perché <code>to_roman()</code> pensa ancora che questo numero sia fuori dall&#8217;intervallo di validità.
 </ol>
 
-<p>Ora che i vostri test falliscono a causa dei nuovi requisiti, potete pensare a correggere il codice per riallinearlo con i test. (Quando cominciate a utilizzare i test di unità per la prima volta, potrebbe sembrarvi strano che il codice sotto collaudo non sia mai &#8220;avanti&#8221; rispetto ai test. Mentre il codice è indietro avete ancora del lavoro da fare, e appena lo avete rimesso in pari con i test potete smettere di programmare. Dopo averci fatto l'abitudine, vi chiederete come facevate a programmare senza i test.)
+<p>Ora che i vostri test falliscono a causa dei nuovi requisiti, potete pensare a correggere il codice per riallinearlo con i test. (Quando cominciate a utilizzare i test di unità per la prima volta, potrebbe sembrarvi strano che il codice sotto collaudo non sia mai &#8220;avanti&#8221; rispetto ai test. Mentre il codice è indietro avete ancora del lavoro da fare, e appena lo avete rimesso in pari con i test potete smettere di programmare. Dopo averci fatto l&#8217;abitudine, vi chiederete come facevate a programmare senza i test.)
 
 <p class=d>[<a href=esempi/roman9.py>scarica <code>roman9.py</code></a>]
 <pre class=pp><code>roman_numeral_pattern = re.compile('''
@@ -258,8 +258,8 @@ def from_roman(s):
     .
     .</code></pre>
 <ol>
-<li>Non avete bisogno di fare alcun cambiamento alla funzione <code>from_roman()</code>. L'unico cambiamento è a <var>roman_numeral_pattern</var>. Se guardate da vicino la prima sezione dell'espressione regolare, noterete che ho cambiato il massimo numero di caratteri <code>M</code> opzionali da <code>3</code> a <code>4</code>. Questa modifica renderà legali i numeri romani equivalenti fino a <code>4999</code> anziché <code>3999</code>. La funzione <code>from_roman()</code> è in effetti completamente generica: controlla semplicemente i caratteri ripetuti nei numeri romani e li somma, senza preoccuparsi di quante volte si ripetano. In precedenza la funzione non poteva gestire <code>'MMMM'</code> solo perché l'avevate esplicitamente fermata utilizzando la corrispondenza con il pattern dell'espressione regolare.
-<li>La funzione <code>to_roman()</code> ha bisogno solo di un piccolo cambiamento nel controllo sull'intervallo. Laddove controllavate che fosse <code>0 &lt; n &lt; 4000</code>, ora controllate che sia <code>0 &lt; n &lt; 5000</code>. Anche il messaggio di errore che sollevate tramite <code>raise</code> va modificato per riflettere il nuovo intervallo accettabile (<code>tra 1 e 4999</code> anziché <code>tra 1 e 3999</code>). Non avete bisogno di fare alcun cambiamento al resto della funzione, perché gestisce già i nuovi casi. (Aggiunge tranquillamente <code>'M'</code> per ogni migliaia che trova; ricevuto in ingresso <code>4000</code>, restituirà in uscita <code>'MMMM'</code>. In precedenza la funzione non poteva farlo solo perché l'avevate esplicitamente fermata tramite il controllo sull'intervallo.)
+<li>Non avete bisogno di fare alcun cambiamento alla funzione <code>from_roman()</code>. L&#8217;unico cambiamento è a <var>roman_numeral_pattern</var>. Se guardate da vicino la prima sezione dell&#8217;espressione regolare, noterete che ho cambiato il massimo numero di caratteri <code>M</code> opzionali da <code>3</code> a <code>4</code>. Questa modifica renderà legali i numeri romani equivalenti fino a <code>4999</code> anziché <code>3999</code>. La funzione <code>from_roman()</code> è in effetti completamente generica: controlla semplicemente i caratteri ripetuti nei numeri romani e li somma, senza preoccuparsi di quante volte si ripetano. In precedenza la funzione non poteva gestire <code>'MMMM'</code> solo perché l&#8217;avevate esplicitamente fermata utilizzando la corrispondenza con il pattern dell&#8217;espressione regolare.
+<li>La funzione <code>to_roman()</code> ha bisogno solo di un piccolo cambiamento nel controllo sull&#8217;intervallo. Laddove controllavate che fosse <code>0 &lt; n &lt; 4000</code>, ora controllate che sia <code>0 &lt; n &lt; 5000</code>. Anche il messaggio di errore che sollevate tramite <code>raise</code> va modificato per riflettere il nuovo intervallo accettabile (<code>tra 1 e 4999</code> anziché <code>tra 1 e 3999</code>). Non avete bisogno di fare alcun cambiamento al resto della funzione, perché gestisce già i nuovi casi. (Aggiunge tranquillamente <code>'M'</code> per ogni migliaia che trova; ricevuto in ingresso <code>4000</code>, restituirà in uscita <code>'MMMM'</code>. In precedenza la funzione non poteva farlo solo perché l&#8217;avevate esplicitamente fermata tramite il controllo sull&#8217;intervallo.)
 </ol>
 
 <p>Potreste non essere convinti che questi due piccoli cambiamenti siano tutto ciò di cui avete bisogno. Ehi, non siete obbligati a fidarvi della mia parola: controllate voi stessi.
@@ -297,9 +297,9 @@ Ran 12 tests in 0.203s
 
 <p>Il refactoring è il procedimento tramite il quale si modifica codice già funzionante allo scopo di farlo funzionare meglio. Di solito, &#8220;meglio&#8221; significa &#8220;più velocemente&#8221;, ma può anche voler dire &#8220;usando meno memoria&#8221;, oppure &#8220;usando meno spazio su disco&#8221;, o semplicemente &#8220;in maniera più elegante&#8221;. Qualsiasi cosa voglia dire per voi, per il vostro progetto, nel vostro ambiente, il refactoring è importante per la salute a lungo termine di qualsiasi programma.
 
-<p>Nel nostro caso, &#8220;meglio&#8221; significa sia &#8220;più velocemente&#8221; che &#8220;in maniera più facile da mantenere&#8221;. Nello specifico, la funzione <code>from_roman()</code> è lenta e più complessa di quanto vorrei, a causa di quella grossa e disgustosa espressione regolare che usate per validare i numeri romani. Ora, potreste pensare: &#8220;Certo, l'espressione regolare è lunga e intricata, ma in quale altro modo si suppone che io controlli che una stringa arbitraria sia un numero romano valido?&#8221;
+<p>Nel nostro caso, &#8220;meglio&#8221; significa sia &#8220;più velocemente&#8221; che &#8220;in maniera più facile da mantenere&#8221;. Nello specifico, la funzione <code>from_roman()</code> è lenta e più complessa di quanto vorrei, a causa di quella grossa e disgustosa espressione regolare che usate per validare i numeri romani. Ora, potreste pensare: &#8220;Certo, l&#8217;espressione regolare è lunga e intricata, ma in quale altro modo si suppone che io controlli che una stringa arbitraria sia un numero romano valido?&#8221;
 
-<p>Risposta: di numeri romani validi ce ne sono solo 5000; perché non costruite semplicemente una tabella di ricerca? Questa idea diventa ancora migliore nel momento in cui realizzate che <em>non avete per niente bisogno di usare un'espressione regolare</em>. Mentre costruite la tabella di ricerca per convertire i numeri interi in numeri romani potete costruire la tabella di ricerca inversa per convertire i numeri romani in interi. Nel momento in cui avete bisogno di controllare se una stringa arbitraria è un numero romano valido avrete già raccolto tutti i numeri romani validi. La &#8220;verifica&#8221; si riduce a un singolo accesso a un dizionario.
+<p>Risposta: di numeri romani validi ce ne sono solo 5000; perché non costruite semplicemente una tabella di ricerca? Questa idea diventa ancora migliore nel momento in cui realizzate che <em>non avete per niente bisogno di usare un&#8217;espressione regolare</em>. Mentre costruite la tabella di ricerca per convertire i numeri interi in numeri romani potete costruire la tabella di ricerca inversa per convertire i numeri romani in interi. Nel momento in cui avete bisogno di controllare se una stringa arbitraria è un numero romano valido avrete già raccolto tutti i numeri romani validi. La &#8220;verifica&#8221; si riduce a un singolo accesso a un dizionario.
 
 <p>E la cosa migliore di tutte è che avete già un insieme completo di test di unità. Potete cambiare metà del codice nel modulo ma i test di unità rimarranno gli stessi. Questo significa che potete dimostrare&nbsp;&mdash;&nbsp;a voi stessi e agli altri&nbsp;&mdash;&nbsp;che il nuovo codice funziona tanto bene quanto quello originale.
 
@@ -362,7 +362,7 @@ def build_lookup_tables():
 
 build_lookup_tables()</code></pre>
 
-<p>Dividiamo il programma in frammenti più comprensibili. Teoricamente, la riga più importante è l'ultima:
+<p>Dividiamo il programma in frammenti più comprensibili. Teoricamente, la riga più importante è l&#8217;ultima:
 
 <pre class='nd pp'><code>build_lookup_tables()</code></pre>
 
@@ -392,9 +392,9 @@ def build_lookup_tables():
 <a>        to_roman_table.append(roman_numeral)       <span class=u>&#x2462;</span></a>
         from_roman_table[roman_numeral] = integer</code></pre>
 <ol>
-<li>Questa è una tecnica di programmazione ingegnosa&hellip; forse troppo ingegnosa. La funzione <code>to_roman()</code> è definita sopra; accede alla tabella di ricerca e ne restituisce i valori. Ma la funzione <code>build_lookup_tables()</code> ridefinisce la funzione <code>to_roman()</code> per fare effettivamente qualcosa di più (come accadeva nell'esempio precedente, prima che aggiungeste una tabella di ricerca). Nell'ambito della funzione <code>build_lookup_tables()</code>, una chiamata a <code>to_roman()</code> invocherà questa versione ridefinita. Una volta usciti dalla funzione <code>build_lookup_tables()</code>, la versione ridefinita scompare&nbsp;&mdash;&nbsp;essa è definita solo nell'ambito locale della funzione <code>build_lookup_tables()</code>.
+<li>Questa è una tecnica di programmazione ingegnosa&hellip; forse troppo ingegnosa. La funzione <code>to_roman()</code> è definita sopra; accede alla tabella di ricerca e ne restituisce i valori. Ma la funzione <code>build_lookup_tables()</code> ridefinisce la funzione <code>to_roman()</code> per fare effettivamente qualcosa di più (come accadeva nell&#8217;esempio precedente, prima che aggiungeste una tabella di ricerca). Nell&#8217;ambito della funzione <code>build_lookup_tables()</code>, una chiamata a <code>to_roman()</code> invocherà questa versione ridefinita. Una volta usciti dalla funzione <code>build_lookup_tables()</code>, la versione ridefinita scompare&nbsp;&mdash;&nbsp;essa è definita solo nell&#8217;ambito locale della funzione <code>build_lookup_tables()</code>.
 <li>Questa riga di codice chiamerà la funzione <code>to_roman()</code> ridefinita, che calcola effettivamente il numero romano.
-<li>Una volta che avete ottenuto il risultato (dalla funzione <code>to_roman()</code> ridefinita), potete aggiungere l'intero e il suo numero romano equivalente a entrambe le tabelle di ricerca.
+<li>Una volta che avete ottenuto il risultato (dalla funzione <code>to_roman()</code> ridefinita), potete aggiungere l&#8217;intero e il suo numero romano equivalente a entrambe le tabelle di ricerca.
 </ol>
 
 <p>Una volta che le tabelle di ricerca sono popolate, il resto del codice è sia semplice che veloce.
@@ -458,7 +458,7 @@ OK</samp></pre>
 
 <h2 id=summary>Riepilogo</h2>
 
-<p>Il collaudo di unità è un potente concetto che, se adeguatamente implementato, può sia ridurre i costi di manutenzione sia aumentare la flessibilità di ogni progetto a lungo termine. &Egrave; anche importante capire che il collaudo di unità non è una panacea, un Risolutore Magico di Problemi, o la cosiddetta pallottola d'argento. Scrivere buoni test di unità è difficile e mantenerli aggiornati richiede disciplina (specialmente quando i committenti vi urlano dietro per farvi correggere bug critici). I test di unità non sostituiscono altre forme di collaudo, compresi i test funzionali, i test di integrazione e i test di accettazione per l'utente. Ma sono convenienti, e funzionano, e una volta che li avete visti funzionare vi chiederete come avete fatto a lavorare senza fino a quel momento. 
+<p>Il collaudo di unità è un potente concetto che, se adeguatamente implementato, può sia ridurre i costi di manutenzione sia aumentare la flessibilità di ogni progetto a lungo termine. &Egrave; anche importante capire che il collaudo di unità non è una panacea, un Risolutore Magico di Problemi, o la cosiddetta pallottola d&#8217;argento. Scrivere buoni test di unità è difficile e mantenerli aggiornati richiede disciplina (specialmente quando i committenti vi urlano dietro per farvi correggere bug critici). I test di unità non sostituiscono altre forme di collaudo, compresi i test funzionali, i test di integrazione e i test di accettazione per l&#8217;utente. Ma sono convenienti, e funzionano, e una volta che li avete visti funzionare vi chiederete come avete fatto a lavorare senza fino a quel momento. 
 
 <p>Questi pochi capitoli hanno coperto diversi argomenti, molti dei quali non erano nemmeno specifici per Python. Esistono framework per il collaudo di unità in molti linguaggi, e tutti vi richiedono di applicare una serie di pratiche basate sugli stessi concetti elementari:
 

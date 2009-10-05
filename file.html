@@ -19,7 +19,7 @@ mark{display:inline}
 </blockquote>
 <p id=toc>&nbsp;
 <h2 id=divingin>Immersione!</h2>
-<p class=f>Il mio portatile Windows aveva 38.493 file prima che installassi una sola applicazione. L'installazione di Python 3 ha aggiunto quasi 3.000 file a quel totale. I file sono il paradigma di memorizzazione principale di tutti i sistemi operativi più importanti; il concetto è talmente radicato che la maggior parte delle persone avrebbe difficoltà a <a href=http://en.wikipedia.org/wiki/Computer_file#History>immaginare un'alternativa</a>. Il vostro computer, metaforicamente parlando, annega nei file.
+<p class=f>Il mio portatile Windows aveva 38.493 file prima che installassi una sola applicazione. L&#8217;installazione di Python 3 ha aggiunto quasi 3.000 file a quel totale. I file sono il paradigma di memorizzazione principale di tutti i sistemi operativi più importanti; il concetto è talmente radicato che la maggior parte delle persone avrebbe difficoltà a <a href=http://en.wikipedia.org/wiki/Computer_file#History>immaginare un&#8217;alternativa</a>. Il vostro computer, metaforicamente parlando, annega nei file.
 
 <h2 id=reading>Leggere dai file di testo</h2>
 
@@ -30,18 +30,18 @@ mark{display:inline}
 <p>Python possiede una funzione <code>open()</code> predefinita che prende un nome di file come argomento. Qui il nome del file è <code class=pp>'esempi/chinese.txt'</code>. Ci sono cinque cose interessanti da notare a proposito di questo nome di file.
 
 <ol>
-<li>Non è solo il nome di un file, ma è la combinazione di un percorso di directory e di un nome di file. Un'ipotetica funzione di apertura di file potrebbe accettare due argomenti&nbsp;&mdash;&nbsp;un percorso di directory e un nome di file&nbsp;&mdash;&nbsp;ma la funzione <code>open()</code> ne accetta solo uno. In Python, ogni volta che avete bisogno di un &#8220;nome di file&#8221; potete anche includere un percorso di directory intero o parziale.
+<li>Non è solo il nome di un file, ma è la combinazione di un percorso di directory e di un nome di file. Un&#8217;ipotetica funzione di apertura di file potrebbe accettare due argomenti&nbsp;&mdash;&nbsp;un percorso di directory e un nome di file&nbsp;&mdash;&nbsp;ma la funzione <code>open()</code> ne accetta solo uno. In Python, ogni volta che avete bisogno di un &#8220;nome di file&#8221; potete anche includere un percorso di directory intero o parziale.
 <li>Il percorso di directory usa i caratteri di slash, ma io non vi ho detto quale sistema operativo stavo usando. Windows usa i caratteri di backslash per denotare le sottodirectory, mentre Mac OS X e Linux usano i caratteri di slash. Ma in Python gli slash funzionano sempre, persino su Windows.
 <li>Il percorso di directory non comincia con uno slash o una lettera di disco, quindi viene chiamato <i>percorso relativo</i>. Potreste chiedervi: relativo a cosa? Sii paziente, cavalletta.
 <li>&Egrave; una stringa. Tutti i sistemi operativi moderni (persino Windows!) usano Unicode per memorizzare i nomi di file e directory. Python 3 supporta pienamente i nomi di percorso in codifiche diverse da <abbr>ASCII</abbr>.
 <li>Il file non deve necessariamente trovarsi sul vostro disco locale. Potreste aver montato un disco di rete, oppure quel file potrebbe essere una finzione appartenente a <a href=http://en.wikipedia.org/wiki/Filesystem_in_Userspace>un file system interamente virtuale</a>. Se il vostro computer lo considera un file e può accedervi come a un file, Python può aprirlo.
 </ol>
 
-<p>Ma quella invocazione alla funzione <code>open()</code> non si è fermata al nome di file. C'è un altro argomento, chiamato <code>encoding</code>. Oh, cavoli, <a href=stringhe.html#boring-stuff>questo suona spaventosamente familiare</a>.
+<p>Ma quella invocazione alla funzione <code>open()</code> non si è fermata al nome di file. C&#8217;è un altro argomento, chiamato <code>encoding</code>. Oh, cavoli, <a href=stringhe.html#boring-stuff>questo suona spaventosamente familiare</a>.
 
 <h3 id=encoding>La codifica di carattere solleva la sua ripugnante testa</h3>
 
-<p>I byte sono byte, <a href=stringhe.html#byte-arrays>i caratteri sono un'astrazione</a>. Una stringa è una sequenza di caratteri Unicode. Ma un file su disco non è una sequenza di caratteri Unicode, bensì una sequenza di byte. Quindi, se leggete un &#8220;file di testo&#8221; dal disco, in che modo Python converte quella sequenza di byte in una sequenza di caratteri? Decodifica i byte seguendo un particolare algoritmo di codifica di carattere e restituisce una sequenza di caratteri Unicode (altrimenti nota come una stringa).
+<p>I byte sono byte, <a href=stringhe.html#byte-arrays>i caratteri sono un&#8217;astrazione</a>. Una stringa è una sequenza di caratteri Unicode. Ma un file su disco non è una sequenza di caratteri Unicode, bensì una sequenza di byte. Quindi, se leggete un &#8220;file di testo&#8221; dal disco, in che modo Python converte quella sequenza di byte in una sequenza di caratteri? Decodifica i byte seguendo un particolare algoritmo di codifica di carattere e restituisce una sequenza di caratteri Unicode (altrimenti nota come una stringa).
 
 <pre>
 # Questo esempio è stato creato su Windows. Altre piattaforme potrebbero
@@ -57,7 +57,7 @@ UnicodeDecodeError: 'charmap' codec can't decode byte 0x8f in position 28: chara
 
 <aside>La codifica predefinita dipende dalla piattaforma.</aside>
 
-<p>Che cos'è appena successo? Non avete specificato una codifica di carattere, quindi Python è obbligato a usare la codifica predefinita. Qual è la codifica predefinita? Se osservate attentamente la traccia dello stack, potete vedere che l'esecuzione si blocca nel file <code>cp1252.py</code>, indicando che in questo caso Python sta usando <abbr>CP-1252</abbr> come codifica predefinita. (<abbr>CP-1252</abbr> è una codifica comune sui computer che eseguono Microsoft Windows.) L'insieme di caratteri <abbr>CP-1252</abbr> non supporta i caratteri contenuti in questo file, quindi la lettura fallisce con un brutto errore di tipo <code>UnicodeDecodeError</code>.
+<p>Che cos&#8217;è appena successo? Non avete specificato una codifica di carattere, quindi Python è obbligato a usare la codifica predefinita. Qual è la codifica predefinita? Se osservate attentamente la traccia dello stack, potete vedere che l&#8217;esecuzione si blocca nel file <code>cp1252.py</code>, indicando che in questo caso Python sta usando <abbr>CP-1252</abbr> come codifica predefinita. (<abbr>CP-1252</abbr> è una codifica comune sui computer che eseguono Microsoft Windows.) L&#8217;insieme di caratteri <abbr>CP-1252</abbr> non supporta i caratteri contenuti in questo file, quindi la lettura fallisce con un brutto errore di tipo <code>UnicodeDecodeError</code>.
 
 <p>Ma aspettate, le cose sono peggio di così! La codifica predefinita <em>dipende dalla piattaforma</em>, quindi questo codice <em>potrebbe</em> funzionare sul vostro computer (se la vostra codifica predefinita è <abbr>UTF-8</abbr>), ma poi fallirebbe quando lo distribuite a qualcun altro (la cui codifica predefinita è differente, come <abbr>CP-1252</abbr>).
 
@@ -78,9 +78,9 @@ UnicodeDecodeError: 'charmap' codec can't decode byte 0x8f in position 28: chara
 <a><samp class=p>>>> </samp><kbd class=pp>a_file.mode</kbd>                                              <span class=u>&#x2462;</span></a>
 <samp class=pp>'r'</samp></pre>
 <ol>
-<li>L'attributo <code>name</code> riflette il nome che avete passato alla funzione <code>open()</code> quando avete aperto il file. Questo nome non viene normalizzato sotto forma di nome di percorso assoluto.
-<li>Similmente, l'attributo <code>encoding</code> riflette la codifica che avete passato alla funzione <code>open()</code>. Se non avete specificato la codifica quando avete aperto il file (cattivi sviluppatori!) allora l'attributo <code>encoding</code> rifletterà il valore restituito da <code>locale.getpreferredencoding()</code>.
-<li>L'attributo <code>mode</code> vi dice in quale modalità è stato aperto il file. Potete passare un parametro <var>mode</var> opzionale alla funzione <code>open()</code>. Non avete specificato una modalità quando avete aperto questo file, così Python usa <code>'r'</code> per default, che significa &#8220;apri in sola lettura, in modalità testo&#8221. Come vedrete più avanti in questo capitolo, la modalità del file serve a vari scopi: diverse modalità vi permettono di scrivere su un file, aggiungere dati in fondo al file, o aprire un file in modalità binaria (nel qual caso avrete a che fare con byte invece di stringhe).
+<li>L&#8217;attributo <code>name</code> riflette il nome che avete passato alla funzione <code>open()</code> quando avete aperto il file. Questo nome non viene normalizzato sotto forma di nome di percorso assoluto.
+<li>Similmente, l&#8217;attributo <code>encoding</code> riflette la codifica che avete passato alla funzione <code>open()</code>. Se non avete specificato la codifica quando avete aperto il file (cattivi sviluppatori!) allora l&#8217;attributo <code>encoding</code> rifletterà il valore restituito da <code>locale.getpreferredencoding()</code>.
+<li>L&#8217;attributo <code>mode</code> vi dice in quale modalità è stato aperto il file. Potete passare un parametro <var>mode</var> opzionale alla funzione <code>open()</code>. Non avete specificato una modalità quando avete aperto questo file, così Python usa <code>'r'</code> per default, che significa &#8220;apri in sola lettura, in modalità testo&#8221. Come vedrete più avanti in questo capitolo, la modalità del file serve a vari scopi: diverse modalità vi permettono di scrivere su un file, aggiungere dati in fondo al file, o aprire un file in modalità binaria (nel qual caso avrete a che fare con byte invece di stringhe).
 </ol>
 
 <blockquote class=note>
@@ -98,8 +98,8 @@ UnicodeDecodeError: 'charmap' codec can't decode byte 0x8f in position 28: chara
 <a><samp class=p>>>> </samp><kbd class=pp>a_file.read()</kbd>                                            <span class=u>&#x2461;</span></a>
 <samp class=pp>''</samp></pre>
 <ol>
-<li>Una volta che avete aperto un file (con la codifica corretta), leggere da quel file è semplicemente una questione di invocare il metodo <code>read()</code> dell'oggetto stream. Il risultato è una stringa.
-<li>In modo forse abbastanza sorprendente, leggere ancora dal file non solleva un'eccezione. Python non considera una lettura dopo la fine del file come un errore, ma restituisce semplicemente una stringa vuota.
+<li>Una volta che avete aperto un file (con la codifica corretta), leggere da quel file è semplicemente una questione di invocare il metodo <code>read()</code> dell&#8217;oggetto stream. Il risultato è una stringa.
+<li>In modo forse abbastanza sorprendente, leggere ancora dal file non solleva un&#8217;eccezione. Python non considera una lettura dopo la fine del file come un errore, ma restituisce semplicemente una stringa vuota.
 </ol>
 
 <aside>Usate sempre il parametro <code>encoding</code> quando aprite un file.</aside>
@@ -121,7 +121,7 @@ UnicodeDecodeError: 'charmap' codec can't decode byte 0x8f in position 28: chara
 <a><samp class=p>>>> </samp><kbd class=pp>a_file.tell()</kbd>                      <span class=u>&#x2464;</span></a>
 <samp class=pp>24</samp></pre>
 <ol>
-<li>Dato che vi trovate ancora alla fine del file, ulteriori invocazioni del metodo <code>read()</code> dell'oggetto stream restituiscono semplicemente una stringa vuota.
+<li>Dato che vi trovate ancora alla fine del file, ulteriori invocazioni del metodo <code>read()</code> dell&#8217;oggetto stream restituiscono semplicemente una stringa vuota.
 <li>Il metodo <code>seek()</code> vi sposta sul byte in una specifica posizione di un file.
 <li>Il metodo <code>read()</code> può accettare come parametro opzionale il numero di caratteri da leggere.
 <li>Se volete, potete anche leggere un carattere alla volta.
@@ -160,7 +160,7 @@ UnicodeDecodeError: 'charmap' codec can't decode byte 0x8f in position 28: chara
 UnicodeDecodeError: 'utf8' codec can't decode byte 0x98 in position 0: unexpected code byte</samp></pre>
 <ol>
 <li>Spostatevi al 22° byte e provate a leggere un carattere.
-<li>Perché questo fallisce? Perché non c'è alcun carattere al 22° byte. Il carattere più vicino comincia al 21° byte (e prosegue per tre byte). Il tentativo di leggere un carattere nel mezzo fallirà con un errore di tipo <code>UnicodeDecodeError</code>.
+<li>Perché questo fallisce? Perché non c&#8217;è alcun carattere al 22° byte. Il carattere più vicino comincia al 21° byte (e prosegue per tre byte). Il tentativo di leggere un carattere nel mezzo fallirà con un errore di tipo <code>UnicodeDecodeError</code>.
 </ol>
 
 <h3 id=close>Chiudere i file</h3>
@@ -171,9 +171,9 @@ UnicodeDecodeError: 'utf8' codec can't decode byte 0x98 in position 0: unexpecte
 # continua dall'esempio precedente
 <samp class=p>>>> </samp><kbd class=pp>a_file.close()</kbd></pre>
 
-<p>Be', <em>questo</em> è stato un anticlimax.
+<p>Be&#8217;, <em>questo</em> è stato un anticlimax.
 
-<p>L'oggetto stream <var>a_file</var> esiste ancora, perché l'invocazione del suo metodo <code>close()</code> non distrugge l'oggetto vero e proprio. Ma non è particolarmente utile.
+<p>L&#8217;oggetto stream <var>a_file</var> esiste ancora, perché l&#8217;invocazione del suo metodo <code>close()</code> non distrugge l&#8217;oggetto vero e proprio. Ma non è particolarmente utile.
 
 <pre class=screen>
 # continua dall'esempio precedente
@@ -196,11 +196,11 @@ ValueError: I/O operation on closed file.</samp>
 <a><samp class=p>>>> </samp><kbd class=pp>a_file.closed</kbd>                           <span class=u>&#x2464;</span></a>
 <samp class=pp>True</samp></pre>
 <ol>
-<li>Non potete leggere da un file chiuso: questa operazione solleva un'eccezione di tipo <code>IOError</code>.
-<li>Non potete neanche effettuare un'operazione di posizionamento su un file chiuso.
-<li>Non c'è nessuna posizione corrente in un file chiuso, quindi anche il metodo <code>tell()</code> fallisce.
-<li>Forse in modo sorprendente, invocare il metodo <code>close()</code> su un oggetto stream il cui file è stato chiuso <em>non</em> solleva un'eccezione. Semplicemente, non fa nulla.
-<li>Gli oggetti stream chiusi hanno almeno un attributo utile: l'attributo <code>closed</code> vi confermerà che il file è chiuso.
+<li>Non potete leggere da un file chiuso: questa operazione solleva un&#8217;eccezione di tipo <code>IOError</code>.
+<li>Non potete neanche effettuare un&#8217;operazione di posizionamento su un file chiuso.
+<li>Non c&#8217;è nessuna posizione corrente in un file chiuso, quindi anche il metodo <code>tell()</code> fallisce.
+<li>Forse in modo sorprendente, invocare il metodo <code>close()</code> su un oggetto stream il cui file è stato chiuso <em>non</em> solleva un&#8217;eccezione. Semplicemente, non fa nulla.
+<li>Gli oggetti stream chiusi hanno almeno un attributo utile: l&#8217;attributo <code>closed</code> vi confermerà che il file è chiuso.
 </ol>
 
 <h3 id=with>Chiudere i file automaticamente</h3>
@@ -209,26 +209,26 @@ ValueError: I/O operation on closed file.</samp>
 
 <p>Gli oggetti stream hanno un metodo <code>close()</code> esplicito, ma cosa succede se il vostro codice ha un bug e si blocca prima che possiate chiamare <code>close()</code>? Quel file potrebbe teoricamente rimanere aperto per un tempo molto più lungo del necessario. Mentre state effettuando il debug sul vostro computer locale questo non è un grande problema, ma su un server di produzione forse lo è.
 
-<p>Python 2 aveva una soluzione per questo: il blocco <code>try..finally</code>. Questo funziona ancora in Python 3, e potreste vederlo nel codice di altre persone o in codice più vecchio che è stato <a href=caso-di-studio-convertire-chardet-verso-python-3.html>convertito verso Python 3</a>. Ma Python 2.5 ha introdotto una soluzione più pulita, che ora è la soluzione preferita in Python 3: l'istruzione <code>with</code>.
+<p>Python 2 aveva una soluzione per questo: il blocco <code>try..finally</code>. Questo funziona ancora in Python 3, e potreste vederlo nel codice di altre persone o in codice più vecchio che è stato <a href=caso-di-studio-convertire-chardet-verso-python-3.html>convertito verso Python 3</a>. Ma Python 2.5 ha introdotto una soluzione più pulita, che ora è la soluzione preferita in Python 3: l&#8217;istruzione <code>with</code>.
 
 <pre class='nd pp'><code>with open('esempi/chinese.txt', encoding='utf-8') as a_file:
     a_file.seek(21)
     a_character = a_file.read(1)
     print(a_character)</code></pre>
 
-<p>Questo codice invoca <code>open()</code> ma non invoca mai <code>a_file.close()</code>. L'istruzione <code>with</code> comincia un blocco di codice, come un'istruzione <code>if</code> o un ciclo <code>for</code>. All'interno di questo blocco di codice, potete usare la variabile <var>a_file</var> come l'oggetto stream restituito dalla chiamata a <code>open()</code>. Tutti i normali metodi degli oggetti stream sono disponibili&nbsp;&mdash;&nbsp;<code>seek()</code>, <code>read()</code>, qualsiasi cosa di cui abbiate bisogno. Quando il blocco <code>with</code> finisce, <em>Python invoca <code>a_file.close()</code> automaticamente</em>.
+<p>Questo codice invoca <code>open()</code> ma non invoca mai <code>a_file.close()</code>. L&#8217;istruzione <code>with</code> comincia un blocco di codice, come un&#8217;istruzione <code>if</code> o un ciclo <code>for</code>. All&#8217;interno di questo blocco di codice, potete usare la variabile <var>a_file</var> come l&#8217;oggetto stream restituito dalla chiamata a <code>open()</code>. Tutti i normali metodi degli oggetti stream sono disponibili&nbsp;&mdash;&nbsp;<code>seek()</code>, <code>read()</code>, qualsiasi cosa di cui abbiate bisogno. Quando il blocco <code>with</code> finisce, <em>Python invoca <code>a_file.close()</code> automaticamente</em>.
 
-<p>Ecco la sorpresa: a prescindere da come e quando uscite dal blocco <code>with</code>, Python chiuderà quel file&hellip; anche se &#8220;uscite&#8221; attraverso un'eccezione non gestita. Esatto, anche se il vostro codice solleva un'eccezione e il vostro programma si blocca, quel file verrà chiuso. Garantito.
+<p>Ecco la sorpresa: a prescindere da come e quando uscite dal blocco <code>with</code>, Python chiuderà quel file&hellip; anche se &#8220;uscite&#8221; attraverso un&#8217;eccezione non gestita. Esatto, anche se il vostro codice solleva un&#8217;eccezione e il vostro programma si blocca, quel file verrà chiuso. Garantito.
 
 <blockquote class=note>
-<p><span class=u>&#x261E;</span>In termini tecnici, l'istruzione <code>with</code> crea un <dfn>contesto di esecuzione</dfn>. In questi esempi, l'oggetto stream agisce come un <dfn>gestore di contesto</dfn>. Python crea l'oggetto stream <var>a_file</var> e gli dice che sta entrando nel contesto di esecuzione. Quando il blocco di codice dell'istruzione <code>with</code> viene completato, Python dice all'oggetto stream che sta uscendo dal contesto di esecuzione e l'oggetto stream invoca il proprio metodo <code>close()</code>. Leggete la sezione <a href=nomi-dei-metodi-speciali.html#context-managers>Classi che possono essere usate in un blocco <code>with</code></a> nell'appendice B per i dettagli.
+<p><span class=u>&#x261E;</span>In termini tecnici, l&#8217;istruzione <code>with</code> crea un <dfn>contesto di esecuzione</dfn>. In questi esempi, l&#8217;oggetto stream agisce come un <dfn>gestore di contesto</dfn>. Python crea l&#8217;oggetto stream <var>a_file</var> e gli dice che sta entrando nel contesto di esecuzione. Quando il blocco di codice dell&#8217;istruzione <code>with</code> viene completato, Python dice all&#8217;oggetto stream che sta uscendo dal contesto di esecuzione e l&#8217;oggetto stream invoca il proprio metodo <code>close()</code>. Leggete la sezione <a href=nomi-dei-metodi-speciali.html#context-managers>Classi che possono essere usate in un blocco <code>with</code></a> nell&#8217;appendice B per i dettagli.
 </blockquote>
 
-<p>Non c'è nulla di specifico per i file nell'istruzione <code>with</code>: è semplicemente un framework generico per creare contesti di esecuzione e informare gli oggetti sul fatto che stanno entrando o uscendo da un contesto di esecuzione. Se l'oggetto in questione è un flusso, allora esegue utili operazioni relative ai file (come chiudere il file automaticamente). Ma questo comportamento è definito nell'oggetto stream, non nell'istruzione <code>with</code>. Ci sono molti altri modi per usare i gestori di contesto che non hanno nulla a che fare con i file. Potete persino creare il vostro gestore, come vedrete più avanti in questo capitolo.
+<p>Non c&#8217;è nulla di specifico per i file nell&#8217;istruzione <code>with</code>: è semplicemente un framework generico per creare contesti di esecuzione e informare gli oggetti sul fatto che stanno entrando o uscendo da un contesto di esecuzione. Se l&#8217;oggetto in questione è un flusso, allora esegue utili operazioni relative ai file (come chiudere il file automaticamente). Ma questo comportamento è definito nell&#8217;oggetto stream, non nell&#8217;istruzione <code>with</code>. Ci sono molti altri modi per usare i gestori di contesto che non hanno nulla a che fare con i file. Potete persino creare il vostro gestore, come vedrete più avanti in questo capitolo.
 
 <h3 id=for>Leggere i dati una riga alla volta</h3>
 
-<p>Una &#8220;riga&#8221; di un file di testo è esattamente quello che pensate che sia&nbsp;&mdash;&nbsp;digitate alcune parole, premete <kbd>INVIO</kbd> e ora vi trovate su una nuova riga. Una riga di testo è una sequenza di caratteri delimitata da&hellip; cosa, esattamente? Be', è complicato, perché i file di testo possono usare diversi caratteri per contrassegnare la fine di una riga. Ogni sistema operativo ha le proprie convenzioni. Alcuni usano un carattere di ritorno a capo, altri usano un carattere di fine riga e alcuni usano entrambi i caratteri al termine di ogni riga.
+<p>Una &#8220;riga&#8221; di un file di testo è esattamente quello che pensate che sia&nbsp;&mdash;&nbsp;digitate alcune parole, premete <kbd>INVIO</kbd> e ora vi trovate su una nuova riga. Una riga di testo è una sequenza di caratteri delimitata da&hellip; cosa, esattamente? Be&#8217;, è complicato, perché i file di testo possono usare diversi caratteri per contrassegnare la fine di una riga. Ogni sistema operativo ha le proprie convenzioni. Alcuni usano un carattere di ritorno a capo, altri usano un carattere di fine riga e alcuni usano entrambi i caratteri al termine di ogni riga.
 
 <p>Ora tirate un sospiro di sollievo, perché <em>Python gestisce i caratteri di fine riga automaticamente</em> per default. Se dite &#8220;voglio leggere questo file di testo una riga alla volta&#8221;, Python scoprirà che tipo di carattere di fine riga viene usato dal file di testo e ogni cosa funzionerà a dovere.
 
@@ -246,8 +246,8 @@ ValueError: I/O operation on closed file.</samp>
 <a>        print('{:>4} {}'.format(line_number, a_line.rstrip()))        <span class=u>&#x2462;</span></a></code></pre>
 <ol>
 <li>Usando <a href=#with>il pattern <code>with</code></a>, aprite il file in sicurezza e lasciate che Python lo chiuda per voi.
-<li>Per leggere un file una riga alla volta usate un ciclo <code>for</code>. Questo è tutto. Oltre a possedere metodi espliciti come <code>read()</code>, <em>l'oggetto stream è anche un <a href=iteratori.html>iteratore</a></em> che restituisce una singola riga ogni volta che gli chiedete un valore.
-<li>Usando <a href=stringhe.html#formatting-strings>il metodo <code>format()</code> delle stringhe</a>, potete stampare il numero di riga e la riga stessa. La specifica di formato <code>{:>4}</code> significa &#8220;stampa l'argomento giustificato a destra all'interno di 4 spazi&#8221;. La variabile <var>a_line</var> contiene la riga completa, ritorni a capo e tutto quanto. Il metodo <code>rstrip()</code> delle stringhe rimuove gli spazi bianchi in coda, compresi i caratteri di ritorno a capo.
+<li>Per leggere un file una riga alla volta usate un ciclo <code>for</code>. Questo è tutto. Oltre a possedere metodi espliciti come <code>read()</code>, <em>l&#8217;oggetto stream è anche un <a href=iteratori.html>iteratore</a></em> che restituisce una singola riga ogni volta che gli chiedete un valore.
+<li>Usando <a href=stringhe.html#formatting-strings>il metodo <code>format()</code> delle stringhe</a>, potete stampare il numero di riga e la riga stessa. La specifica di formato <code>{:>4}</code> significa &#8220;stampa l&#8217;argomento giustificato a destra all&#8217;interno di 4 spazi&#8221;. La variabile <var>a_line</var> contiene la riga completa, ritorni a capo e tutto quanto. Il metodo <code>rstrip()</code> delle stringhe rimuove gli spazi bianchi in coda, compresi i caratteri di ritorno a capo.
 </ol>
 
 <pre class=screen>
@@ -282,7 +282,7 @@ ValueError: zero length field name in format</samp></pre>
 
 <aside>Dovete solo aprire un file e cominciare a scrivere.</aside>
 
-<p>Potete scrivere sui file in modo simile a come li leggete. Prima aprite un file e ottenete un oggetto stream, poi usate i metodi dell'oggetto stream per scrivere dati sul file, infine chiudete il file.
+<p>Potete scrivere sui file in modo simile a come li leggete. Prima aprite un file e ottenete un oggetto stream, poi usate i metodi dell&#8217;oggetto stream per scrivere dati sul file, infine chiudete il file.
 
 <p>Per aprire un file in modo da scriverci sopra, usate la funzione <code>open()</code> e specificate la modalità di scrittura. Ci sono due modalità per scrivere su un file.
 
@@ -291,9 +291,9 @@ ValueError: zero length field name in format</samp></pre>
 <li>La modalità di &#8220;aggiunta&#8221; aggiungerà i dati alla fine del file. Passate <code>mode='a'</code> alla funzione <code>open()</code>.
 </ul>
 
-<p>In entrambe le modalità, il file verrà automaticamente creato se non esiste già, quindi non c'è mai bisogno di alcuna funzione che, nel caso il file non esista, tergiversi creando un nuovo file vuoto giusto in modo che voi possiate aprirlo per la prima volta. Dovete solo aprire un file e cominciare a scrivere.
+<p>In entrambe le modalità, il file verrà automaticamente creato se non esiste già, quindi non c&#8217;è mai bisogno di alcuna funzione che, nel caso il file non esista, tergiversi creando un nuovo file vuoto giusto in modo che voi possiate aprirlo per la prima volta. Dovete solo aprire un file e cominciare a scrivere.
 
-<p>Dovreste sempre chiudere un file non appena avete finito di scriverlo, in modo da rilasciare il puntatore al file e assicurarvi che i dati vengano effettivamente scritti sul disco. Come quando leggete i dati da un file, potete invocare il metodo <code>close()</code> dell'oggetto stream, oppure potete usare l'istruzione <code>with</code> e lasciare che Python chiuda il file per voi. Scommetto che riuscite a indovinare quale tecnica vi consiglio di usare.
+<p>Dovreste sempre chiudere un file non appena avete finito di scriverlo, in modo da rilasciare il puntatore al file e assicurarvi che i dati vengano effettivamente scritti sul disco. Come quando leggete i dati da un file, potete invocare il metodo <code>close()</code> dell&#8217;oggetto stream, oppure potete usare l&#8217;istruzione <code>with</code> e lasciare che Python chiuda il file per voi. Scommetto che riuscite a indovinare quale tecnica vi consiglio di usare.
 
 <pre class=screen>
 <a><samp class=p>>>> </samp><kbd class=pp>with open('test.log', mode='w', encoding='utf-8') as a_file:</kbd>  <span class=u>&#x2460;</span></a>
@@ -307,15 +307,15 @@ ValueError: zero length field name in format</samp></pre>
 <samp class=p>... </samp><kbd class=pp>    print(a_file.read())</kbd>                              
 <a><samp class=pp>il test ha funzionatoancora una volta</samp>                             <span class=u>&#x2463;</span></a></pre>
 <ol>
-<li>Cominciate baldanzosamente creando il nuovo file <code>test.log</code> (oppure sovrascrivendo il file esistente) e aprendo il file per la scrittura. Usare il parametro <code>mode='w'</code> significa aprire il file in scrittura. Sì, questo è tanto pericoloso quanto sembra. Spero che non vi interessassero i contenuti precedenti di quel file (se c'erano) perché quei dati ora sono scomparsi.
-<li>Potete aggiungere dati al file appena aperto con il metodo <code>write()</code> dell'oggetto stream restituito dalla funzione <code>open()</code>. Dopo che il blocco <code>with</code> si è concluso, Python chiude automaticamente il file.
+<li>Cominciate baldanzosamente creando il nuovo file <code>test.log</code> (oppure sovrascrivendo il file esistente) e aprendo il file per la scrittura. Usare il parametro <code>mode='w'</code> significa aprire il file in scrittura. Sì, questo è tanto pericoloso quanto sembra. Spero che non vi interessassero i contenuti precedenti di quel file (se c&#8217;erano) perché quei dati ora sono scomparsi.
+<li>Potete aggiungere dati al file appena aperto con il metodo <code>write()</code> dell&#8217;oggetto stream restituito dalla funzione <code>open()</code>. Dopo che il blocco <code>with</code> si è concluso, Python chiude automaticamente il file.
 <li>&Egrave; stato così divertente, facciamolo ancora. Ma questa volta con <code>mode='a'</code>, per aggiungere i dati in coda al file invece di sovrascriverlo. Questa modalità non danneggerà <em>mai</em> i contenuti esistenti del file.
-<li>Il file <code>test.log</code> ora contiene sia la riga originale che avete scritto sia la seconda riga che avete aggiunto. Notate anche che i ritorni a capo non sono inclusi. Dato che entrambe le volte non li avete scritti esplicitamente sul file, il file non li contiene. Potete scrivere un ritorno a capo usando il carattere <code>'\n'</code>. Dato che non lo avete fatto, tutto quello che avete scritto sul file è finito su un'unica riga.
+<li>Il file <code>test.log</code> ora contiene sia la riga originale che avete scritto sia la seconda riga che avete aggiunto. Notate anche che i ritorni a capo non sono inclusi. Dato che entrambe le volte non li avete scritti esplicitamente sul file, il file non li contiene. Potete scrivere un ritorno a capo usando il carattere <code>'\n'</code>. Dato che non lo avete fatto, tutto quello che avete scritto sul file è finito su un&#8217;unica riga.
 </ol>
 
 <h3 id=encoding-again>La codifica di carattere, ancora una volta</h3>
 
-<p>Avete notato il parametro <code>encoding</code> che è stato passato alla funzione <code>open()</code> mentre stavate <a href=#writing>aprendo il file in scrittura</a>? &Egrave; importante, non dimenticatevelo mai! Come avete visto all'inizio di questo capitolo, i file non contengono <i>stringhe</i>, ma contengono <i>byte</i>. Leggere una &#8220;stringa&#8221; da un file di testo funziona solo perché avete detto a Python quale codifica usare per leggere un flusso di byte e convertirlo in una stringa. Scrivere testo su un file presenta il problema inverso. Non potete scrivere caratteri su un file: <a href=stringhe.html#byte-arrays>i caratteri sono un'astrazione</a>. Per essere in grado di scrivere sul file, Python ha bisogno di convertire la vostra stringa in una sequenza di byte. L'unico modo per essere sicuri di effettuare la conversione corretta è quello di specificare il parametro <code>encoding</code> quando aprite il file in scrittura.
+<p>Avete notato il parametro <code>encoding</code> che è stato passato alla funzione <code>open()</code> mentre stavate <a href=#writing>aprendo il file in scrittura</a>? &Egrave; importante, non dimenticatevelo mai! Come avete visto all&#8217;inizio di questo capitolo, i file non contengono <i>stringhe</i>, ma contengono <i>byte</i>. Leggere una &#8220;stringa&#8221; da un file di testo funziona solo perché avete detto a Python quale codifica usare per leggere un flusso di byte e convertirlo in una stringa. Scrivere testo su un file presenta il problema inverso. Non potete scrivere caratteri su un file: <a href=stringhe.html#byte-arrays>i caratteri sono un&#8217;astrazione</a>. Per essere in grado di scrivere sul file, Python ha bisogno di convertire la vostra stringa in una sequenza di byte. L&#8217;unico modo per essere sicuri di effettuare la conversione corretta è quello di specificare il parametro <code>encoding</code> quando aprite il file in scrittura.
 
 <p class=a>&#x2042;
 
@@ -336,10 +336,10 @@ ValueError: zero length field name in format</samp></pre>
   File "&lt;stdin>", line 1, in &lt;module>
 AttributeError: '_io.BufferedReader' object has no attribute 'encoding'</samp></pre>
 <ol>
-<li>Aprire un file in modalità binaria è semplice ma sottile. L'unica differenza rispetto ad aprirlo in modalità testo è che il parametro <code>mode</code> contiene un carattere <code>'b'</code>.
-<li>L'oggetto stream che ottenete dall'apertura del file in modalità binaria è dotato di molti degli stessi attributi, incluso l'attributo <code>mode</code> che riflette il parametro <code>mode</code> passato alla funzione <code>open()</code>.
+<li>Aprire un file in modalità binaria è semplice ma sottile. L&#8217;unica differenza rispetto ad aprirlo in modalità testo è che il parametro <code>mode</code> contiene un carattere <code>'b'</code>.
+<li>L&#8217;oggetto stream che ottenete dall&#8217;apertura del file in modalità binaria è dotato di molti degli stessi attributi, incluso l&#8217;attributo <code>mode</code> che riflette il parametro <code>mode</code> passato alla funzione <code>open()</code>.
 <li>Gli oggetti stream binari hanno anche un attributo <code>name</code>, esattamente come gli oggetti stream testuali.
-<li>Ecco una differenza, però: un oggetto stream binario non ha l'attributo <code>encoding</code>. Questo ha senso, giusto? State leggendo (o scrivendo) byte, non stringhe, quindi Python non ha nessuna conversione da fare. Quello che ottenete da un file binario è esattamente quello che ci mettete dentro, e nessuna conversione è necessaria.
+<li>Ecco una differenza, però: un oggetto stream binario non ha l&#8217;attributo <code>encoding</code>. Questo ha senso, giusto? State leggendo (o scrivendo) byte, non stringhe, quindi Python non ha nessuna conversione da fare. Quello che ottenete da un file binario è esattamente quello che ci mettete dentro, e nessuna conversione è necessaria.
 </ol>
 
 <p>Vi ho detto che state leggendo byte? Oh sì, è proprio così.
@@ -361,9 +361,9 @@ AttributeError: '_io.BufferedReader' object has no attribute 'encoding'</samp></
 <samp class=p>>>> </samp><kbd class=pp>len(data)</kbd>
 <samp class=pp>3150</samp></pre>
 <ol>
-<li>Come con i file di testo, potete leggere i file binari un pezzo alla volta. Ma c'è una differenza cruciale&hellip;
+<li>Come con i file di testo, potete leggere i file binari un pezzo alla volta. Ma c&#8217;è una differenza cruciale&hellip;
 <li>&hellip;state leggendo byte, non stringhe. Dato che avete aperto il file in modalità binaria, il metodo <code>read()</code> accetta <em>il numero di byte da leggere</em>, non il numero di caratteri.
-<li>Questo significa che non c'è mai <a href=#read>uno scarto inatteso</a> tra il numero che avete passato al metodo <code>read()</code> e l'indice di posizione che ottenete dal metodo <code>tell()</code>. Il metodo <code>read()</code> legge byte e i metodi <code>seek()</code> e <code>tell()</code> tengono traccia del numero dei byte letti. Per quanto riguarda i file binari, si trovano sempre in accordo.
+<li>Questo significa che non c&#8217;è mai <a href=#read>uno scarto inatteso</a> tra il numero che avete passato al metodo <code>read()</code> e l&#8217;indice di posizione che ottenete dal metodo <code>tell()</code>. Il metodo <code>read()</code> legge byte e i metodi <code>seek()</code> e <code>tell()</code> tengono traccia del numero dei byte letti. Per quanto riguarda i file binari, si trovano sempre in accordo.
 </ol>
 
 <p class=a>&#x2042;
@@ -374,9 +374,9 @@ AttributeError: '_io.BufferedReader' object has no attribute 'encoding'</samp></
 
 <p>Immaginate di scrivere una libreria e che una delle vostre funzioni di libreria debba leggere alcuni dati da un file. La funzione potrebbe semplicemente prendere il nome di file sotto forma di stringa, aprire il file in lettura, leggerlo e chiuderlo prima di uscire. Ma non dovreste fare in questo modo. Invece, la vostra <abbr>API</abbr> dovrebbe accettare <em>un oggetto stream arbitrario</em>.
 
-<p>Nel caso più semplice, un oggetto stream è qualsiasi cosa con un metodo <code>read()</code> che accetta un parametro opzionale <var>size</var> e restituisce una stringa. Quando viene chiamato senza parametro <var>size</var>, il metodo <code>read()</code> dovrebbe leggere tutto quello che c'è da leggere dalla sorgente in ingresso e restituire tutti i dati come un singolo valore. Quando viene chiamato con il parametro <var>size</var>, il metodo legge tanti dati quanti sono stati indicati e restituisce quei dati. Quando viene nuovamente chiamato, riprende da dove era rimasto e restituisce il blocco di dati successivo.
+<p>Nel caso più semplice, un oggetto stream è qualsiasi cosa con un metodo <code>read()</code> che accetta un parametro opzionale <var>size</var> e restituisce una stringa. Quando viene chiamato senza parametro <var>size</var>, il metodo <code>read()</code> dovrebbe leggere tutto quello che c&#8217;è da leggere dalla sorgente in ingresso e restituire tutti i dati come un singolo valore. Quando viene chiamato con il parametro <var>size</var>, il metodo legge tanti dati quanti sono stati indicati e restituisce quei dati. Quando viene nuovamente chiamato, riprende da dove era rimasto e restituisce il blocco di dati successivo.
 
-<p>Questo sembra esattamente l'oggetto stream che ottenete aprendo un file reale. La differenza è che <em>non vi limitate ai file reali</em>. La sorgente in ingresso che viene &#8220;letta&#8221; potrebbe essere qualsiasi cosa: una pagina web, una stringa in memoria, persino l'uscita di un altro programma. Fino a quando le vostre funzioni accettano un oggetto stream e invocano semplicemente il metodo <code>read()</code> dell'oggetto, potete operare su qualsiasi sorgente in ingresso che si comporta come un file, senza usare codice specifico per gestire ogni singolo tipo di ingresso.
+<p>Questo sembra esattamente l&#8217;oggetto stream che ottenete aprendo un file reale. La differenza è che <em>non vi limitate ai file reali</em>. La sorgente in ingresso che viene &#8220;letta&#8221; potrebbe essere qualsiasi cosa: una pagina web, una stringa in memoria, persino l&#8217;uscita di un altro programma. Fino a quando le vostre funzioni accettano un oggetto stream e invocano semplicemente il metodo <code>read()</code> dell&#8217;oggetto, potete operare su qualsiasi sorgente in ingresso che si comporta come un file, senza usare codice specifico per gestire ogni singolo tipo di ingresso.
 
 <pre class=screen>
 <samp class=p>>>> </samp><kbd class=pp>a_string = 'PapayaWhip è il nuovo nero.'</kbd>
@@ -398,10 +398,10 @@ AttributeError: '_io.BufferedReader' object has no attribute 'encoding'</samp></
 <samp class=pp>'nuovo nero.'</samp></pre>
 <ol>
 <li>Il modulo <code>io</code> definisce la classe <code>StringIO</code>, che potete usare per trattare una stringa in memoria come un file.
-<li>Per creare un oggetto stream a partire da una stringa, create un'istanza della classe <code>io.StringIO()</code> e passatele la stringa che volete usare come dati del vostro &#8220;file&#8221;. Ora avete un oggetto stream e potete eseguire qualsiasi operazione relativa ai flussi su di esso.
-<li>Invocare il metodo <code>read()</code> &#8220;legge&#8221; l'intero &#8220;file&#8221; e nel caso di un oggetto <code>StringIO</code> restituisce semplicemente la stringa originale.
+<li>Per creare un oggetto stream a partire da una stringa, create un&#8217;istanza della classe <code>io.StringIO()</code> e passatele la stringa che volete usare come dati del vostro &#8220;file&#8221;. Ora avete un oggetto stream e potete eseguire qualsiasi operazione relativa ai flussi su di esso.
+<li>Invocare il metodo <code>read()</code> &#8220;legge&#8221; l&#8217;intero &#8220;file&#8221; e nel caso di un oggetto <code>StringIO</code> restituisce semplicemente la stringa originale.
 <li>Esattamente come con un vero file, invocare ancora il metodo <code>read()</code> restituisce una stringa vuota.
-<li>Potete esplicitamente tornare all'inizio della stringa con un'operazione di posizionamento, esattamente come accade per un vero file, usando il metodo <code>seek()</code> dell'oggetto <code>StringIO</code>.
+<li>Potete esplicitamente tornare all&#8217;inizio della stringa con un&#8217;operazione di posizionamento, esattamente come accade per un vero file, usando il metodo <code>seek()</code> dell&#8217;oggetto <code>StringIO</code>.
 <li>Potete anche leggere la stringa a blocchi, passando un parametro <var>size</var> al metodo <code>read()</code>.
 </ol>
 
@@ -413,9 +413,9 @@ AttributeError: '_io.BufferedReader' object has no attribute 'encoding'</samp></
 
 <p>La libreria standard di Python contiene moduli che supportano le operazioni di lettura e scrittura sui file compressi. Esistono un certo numero di schemi di compressione differenti; i due più popolari su sistemi diversi da Windows sono <a href=http://docs.python.org/3.1/library/gzip.html>gzip</a> e <a href=http://docs.python.org/3.1/library/bz2.html>bzip2</a>. (Potreste anche avere incontrato <a href=http://docs.python.org/3.1/library/zipfile.html>archivi PKZIP</a> e <a href=http://docs.python.org/3.1/library/tarfile.html>archivi GNU Tar</a>. Python possiede moduli anche per quelli.)
 
-<p>Il modulo <code>gzip</code> vi permette di creare un oggetto stream per leggere o scrivere un file compresso con gzip. L'oggetto stream che vi fornisce supporta il metodo <code>read()</code> (se lo avete aperto in lettura) o il metodo <code>write()</code> (se lo avete aperto in scrittura). Questo significa che potete usare i metodi che avete già imparato per i normali file allo scopo di <em>leggere o scrivere direttamente un file compresso con gzip</em> senza creare un file temporaneo dove memorizzare i dati decompressi.
+<p>Il modulo <code>gzip</code> vi permette di creare un oggetto stream per leggere o scrivere un file compresso con gzip. L&#8217;oggetto stream che vi fornisce supporta il metodo <code>read()</code> (se lo avete aperto in lettura) o il metodo <code>write()</code> (se lo avete aperto in scrittura). Questo significa che potete usare i metodi che avete già imparato per i normali file allo scopo di <em>leggere o scrivere direttamente un file compresso con gzip</em> senza creare un file temporaneo dove memorizzare i dati decompressi.
 
-<p>Come bonus aggiuntivo, il modulo supporta anche l'istruzione <code>with</code>, quindi potete lasciare che sia Python a chiudere automaticamente il vostro file gzip quando avete finito di lavorare.
+<p>Come bonus aggiuntivo, il modulo supporta anche l&#8217;istruzione <code>with</code>, quindi potete lasciare che sia Python a chiudere automaticamente il vostro file gzip quando avete finito di lavorare.
 
 <pre class='nd screen'>
 <samp class=p>you@localhost:~$ </samp><kbd>python3</kbd>
@@ -432,10 +432,10 @@ AttributeError: '_io.BufferedReader' object has no attribute 'encoding'</samp></
 <a><samp class=p>you@localhost:~$ </samp><kbd>cat out.log</kbd>                                                                <span class=u>&#x2463;</span></a>
 <samp>Camminare per nove miglia non è uno scherzo, specialmente se piove.</samp></pre>
 <ol>
-<li>Dovreste sempre aprire i file compressi con gzip in modalità binaria. (Notate il carattere <code>'b'</code> nell'argomento <code>mode</code>.)
-<li>Ho realizzato questo esempio su Linux. Se non avete familiarità con la riga di comando, sappiate che questo comando mostra &#8220;l'elenco esteso&#8221; del file gzip che avete appena creato nella Shell Python. Questo elenco mostra che il file esiste (bene) e che è di 93 byte. Questo file è in realtà più grande della stringa con cui avete cominciato! Il formato gzip include un'intestazione di lunghezza fissa che contiene alcuni metadati sul file, quindi è inefficiente per file estremamente piccoli.
-<li>Il comando <code>gunzip</code> (pronunciato &#8220;gee-unzip&#8221; in inglese) decomprime il file e memorizza i contenuti in un nuovo file chiamato con lo stesso nome del file compresso ma senza l'estensione <code>.gz</code>.
-<li>Il comando <code>cat</code> mostra i contenuti di un file. Questo file contiene la stringa che avevate originariamente scritto direttamente sul file compresso <code>out.log.gz</code> dall'interno della Shell Python.
+<li>Dovreste sempre aprire i file compressi con gzip in modalità binaria. (Notate il carattere <code>'b'</code> nell&#8217;argomento <code>mode</code>.)
+<li>Ho realizzato questo esempio su Linux. Se non avete familiarità con la riga di comando, sappiate che questo comando mostra &#8220;l&#8217;elenco esteso&#8221; del file gzip che avete appena creato nella Shell Python. Questo elenco mostra che il file esiste (bene) e che è di 93 byte. Questo file è in realtà più grande della stringa con cui avete cominciato! Il formato gzip include un&#8217;intestazione di lunghezza fissa che contiene alcuni metadati sul file, quindi è inefficiente per file estremamente piccoli.
+<li>Il comando <code>gunzip</code> (pronunciato &#8220;gee-unzip&#8221; in inglese) decomprime il file e memorizza i contenuti in un nuovo file chiamato con lo stesso nome del file compresso ma senza l&#8217;estensione <code>.gz</code>.
+<li>Il comando <code>cat</code> mostra i contenuti di un file. Questo file contiene la stringa che avevate originariamente scritto direttamente sul file compresso <code>out.log.gz</code> dall&#8217;interno della Shell Python.
 </ol>
 
 <p class=a>&#x2042;
@@ -467,7 +467,7 @@ PapayaWhip</samp>
 <li>Nel caso più semplice, <code>sys.stdout</code> e <code>sys.stderr</code> inviano i loro dati nello stesso posto: un <abbr>IDE</abbr> Python (se ne state usando uno) oppure il terminale (se state eseguendo Python dalla riga di comando). Come il canale di uscita standard, il canale di errore standard non aggiunge i ritorni a capo per voi, perciò se li volete dovrete scrivere i caratteri di ritorno a capo.
 </ol>
 
-<p><code>sys.stdout</code> e <code>sys.stderr</code> sono oggetti stream, ma sono a sola scrittura. Il tentativo di invocare il loro metodo <code>read()</code> solleverà sempre un'eccezione di tipo <code>IOError</code>.
+<p><code>sys.stdout</code> e <code>sys.stderr</code> sono oggetti stream, ma sono a sola scrittura. Il tentativo di invocare il loro metodo <code>read()</code> solleverà sempre un&#8217;eccezione di tipo <code>IOError</code>.
 
 <pre class='nd screen'>
 <samp class=p>>>> </samp><kbd class=pp>import sys</kbd>
@@ -517,28 +517,28 @@ C</samp>
                                                               ^
 SyntaxError: invalid syntax</samp></pre>
 <p>Se è così, probabilmente state usando Python 3.0. Dovreste davvero aggiornarvi a Python 3.1.
-<p>Python 3.0 supportava l'istruzione <code>with</code>, ma ogni istruzione poteva usare solo un gestore di contesto. Python 3.1 vi permette di concatenare molteplici gestori di contesto in una singola istruzione <code>with</code>.
+<p>Python 3.0 supportava l&#8217;istruzione <code>with</code>, ma ogni istruzione poteva usare solo un gestore di contesto. Python 3.1 vi permette di concatenare molteplici gestori di contesto in una singola istruzione <code>with</code>.
 </blockquote>
 
-<p>Esaminiamo l'ultima parte per prima.
+<p>Esaminiamo l&#8217;ultima parte per prima.
 
 <pre class=pp><code>print('A')
 with open('out.log', mode='w', encoding='utf-8') as a_file, RedirectStdoutTo(a_file):
     print('B')
 print('C')</code></pre>
 
-<p>Questa è un'istruzione <code>with</code> complicata. Permettetemi di riscriverla in qualcosa di più riconoscibile.
+<p>Questa è un&#8217;istruzione <code>with</code> complicata. Permettetemi di riscriverla in qualcosa di più riconoscibile.
 
 <pre class=pp><code>with open('out.log', mode='w', encoding='utf-8') as a_file:
     with RedirectStdoutTo(a_file):
         print('B')</code></pre>
 
-<p>Come mostrato dalla riscrittura, avete effettivamente <em>due</em> istruzioni <code>with</code>, una annidata nell'ambito dell'altra. L'istruzione <code>with</code> &#8220;esterna&#8221; dovrebbe esservi familiare ormai: apre in scrittura un file di testo codificato in <abbr>UTF-8</abbr> chiamato <code>out.log</code> e assegna l'oggetto stream a una variabile chiamata <var>a_file</var>. Ma questa non è l'unica cosa strana qui.
+<p>Come mostrato dalla riscrittura, avete effettivamente <em>due</em> istruzioni <code>with</code>, una annidata nell&#8217;ambito dell&#8217;altra. L&#8217;istruzione <code>with</code> &#8220;esterna&#8221; dovrebbe esservi familiare ormai: apre in scrittura un file di testo codificato in <abbr>UTF-8</abbr> chiamato <code>out.log</code> e assegna l&#8217;oggetto stream a una variabile chiamata <var>a_file</var>. Ma questa non è l&#8217;unica cosa strana qui.
 <pre class='nd pp'><code>with RedirectStdoutTo(a_file):</code></pre>
 
-<p>Dov'è la clausola <code>as</code>? L'istruzione <code>with</code> in effetti non ne richiede una. Esattamente come potete invocare una funzione e ignorare il suo valore di ritorno, potete avere un'istruzione <code>with</code> che non assegna il contesto di <code>with</code> a una variabile. In questo caso, siete solo interessati agli effetti collaterali del contesto <code>RedirectStdoutTo</code>.
+<p>Dov&#8217;è la clausola <code>as</code>? L&#8217;istruzione <code>with</code> in effetti non ne richiede una. Esattamente come potete invocare una funzione e ignorare il suo valore di ritorno, potete avere un&#8217;istruzione <code>with</code> che non assegna il contesto di <code>with</code> a una variabile. In questo caso, siete solo interessati agli effetti collaterali del contesto <code>RedirectStdoutTo</code>.
 
-<p>Quali sono questi effetti collaterali? Diamo un'occhiata all'interno della classe <code>RedirectStdoutTo</code>. Questa classe è un <a href=nomi-dei-metodi-speciali.html#context-managers>gestore di contesto</a> personalizzato. Qualsiasi classe può diventare un gestore di contesto definendo due <a href=iteratori.html#a-fibonacci-iterator>metodi speciali</a>: <code>__enter__()</code> ed <code>__exit__()</code>.
+<p>Quali sono questi effetti collaterali? Diamo un&#8217;occhiata all&#8217;interno della classe <code>RedirectStdoutTo</code>. Questa classe è un <a href=nomi-dei-metodi-speciali.html#context-managers>gestore di contesto</a> personalizzato. Qualsiasi classe può diventare un gestore di contesto definendo due <a href=iteratori.html#a-fibonacci-iterator>metodi speciali</a>: <code>__enter__()</code> ed <code>__exit__()</code>.
 
 <pre class=pp><code>class RedirectStdoutTo:
 <a>    def __init__(self, out_new):    <span class=u>&#x2460;</span></a>
@@ -551,9 +551,9 @@ print('C')</code></pre>
 <a>    def __exit__(self, *args):      <span class=u>&#x2462;</span></a>
         sys.stdout = self.out_old</code></pre>
 <ol>
-<li>Il metodo <code>__init__()</code> viene chiamato immediatamente dopo che un'istanza è stata creata. Accetta come parametro l'oggetto stream che volete usare come canale standard di uscita per la vita del contesto. Questo metodo non fa altro che salvare l'oggetto stream in una variabile di istanza in modo che altri metodi possano usarlo più tardi.
-<li>Il metodo <code>__enter__()</code> è un <a href=iteratori.html#a-fibonacci-iterator>metodo speciale per le classi</a>; l'interprete Python lo invoca quando entra in un contesto (cioè all'inizio dell'istruzione <code>with</code>). Questo metodo salva il valore corrente di <code>sys.stdout</code> in <var>self.out_old</var>, poi redirige il canale standard di uscita assegnando <var>self.out_new</var> a <var>sys.stdout</var>.
-<li>Il metodo <code>__exit__()</code> è un altro metodo speciale per le classi; l'interprete Python lo invoca quando esce da un contesto (cioè alla fine dell'istruzione <code>with</code>). Questo metodo ripristina il canale standard di uscita al suo valore originale assegnando il valore salvato in <var>self.out_old</var> a <var>sys.stdout</var>.
+<li>Il metodo <code>__init__()</code> viene chiamato immediatamente dopo che un&#8217;istanza è stata creata. Accetta come parametro l&#8217;oggetto stream che volete usare come canale standard di uscita per la vita del contesto. Questo metodo non fa altro che salvare l&#8217;oggetto stream in una variabile di istanza in modo che altri metodi possano usarlo più tardi.
+<li>Il metodo <code>__enter__()</code> è un <a href=iteratori.html#a-fibonacci-iterator>metodo speciale per le classi</a>; l&#8217;interprete Python lo invoca quando entra in un contesto (cioè all&#8217;inizio dell&#8217;istruzione <code>with</code>). Questo metodo salva il valore corrente di <code>sys.stdout</code> in <var>self.out_old</var>, poi redirige il canale standard di uscita assegnando <var>self.out_new</var> a <var>sys.stdout</var>.
+<li>Il metodo <code>__exit__()</code> è un altro metodo speciale per le classi; l&#8217;interprete Python lo invoca quando esce da un contesto (cioè alla fine dell&#8217;istruzione <code>with</code>). Questo metodo ripristina il canale standard di uscita al suo valore originale assegnando il valore salvato in <var>self.out_old</var> a <var>sys.stdout</var>.
 </ol>
 
 <p>Riepilogando:
@@ -565,9 +565,9 @@ print('C')</code></pre>
 <a>print('C')                                                                             <span class=u>&#x2463;</span></a></code></pre>
 <ol>
 <li>Questo stamperà nella &#8220;finestra interattiva&#8221; del vostro <abbr>IDE</abbr> (o sul terminale, se avete invocato lo script dalla riga di comando).
-<li>Questa <a href=#with>istruzione <code>with</code></a> prende <em>una lista di contesti separati da virgole</em> che agisce come una serie di blocchi <code>with</code> annidati. Il primo contesto nella lista è il blocco &#8220;più esterno&#8221;, l'ultimo è il blocco &#8220;più interno&#8221;. Il primo contesto apre un file, il secondo contesto redirige <code>sys.stdout</code> all'oggetto stream che è stato creato nel primo contesto.
-<li>Dato che questa funzione <code>print()</code> viene invocata nei contesti creati dall'istruzione <code>with</code>, non stamperà sullo schermo ma scriverà sul file <code>out.log</code>.
-<li>Il blocco di codice <code>with</code> è finito. Python ha detto a tutti i gestori di contesto di fare qualunque cosa facciano al momento di uscire da un contesto. I gestori di contesto formano una pila. Uscendo, il secondo contesto ha ripristinato il valore originale di <code>sys.stdout</code>, poi il primo contesto ha chiuso il file chiamato <code>out.log</code>. Dato che il canale standard di uscita è stato ripristinato al suo valore originale, l'invocazione della funzione <code>print()</code> stamperà ancora una volta sullo schermo.
+<li>Questa <a href=#with>istruzione <code>with</code></a> prende <em>una lista di contesti separati da virgole</em> che agisce come una serie di blocchi <code>with</code> annidati. Il primo contesto nella lista è il blocco &#8220;più esterno&#8221;, l&#8217;ultimo è il blocco &#8220;più interno&#8221;. Il primo contesto apre un file, il secondo contesto redirige <code>sys.stdout</code> all&#8217;oggetto stream che è stato creato nel primo contesto.
+<li>Dato che questa funzione <code>print()</code> viene invocata nei contesti creati dall&#8217;istruzione <code>with</code>, non stamperà sullo schermo ma scriverà sul file <code>out.log</code>.
+<li>Il blocco di codice <code>with</code> è finito. Python ha detto a tutti i gestori di contesto di fare qualunque cosa facciano al momento di uscire da un contesto. I gestori di contesto formano una pila. Uscendo, il secondo contesto ha ripristinato il valore originale di <code>sys.stdout</code>, poi il primo contesto ha chiuso il file chiamato <code>out.log</code>. Dato che il canale standard di uscita è stato ripristinato al suo valore originale, l&#8217;invocazione della funzione <code>print()</code> stamperà ancora una volta sullo schermo.
 </ol>
 
 <p>La redirirezione del canale standard di errore funziona esattamente allo stesso modo, usando <code>sys.stderr</code> anziché <code>sys.stdout</code>.
