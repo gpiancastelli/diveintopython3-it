@@ -69,6 +69,7 @@ mv build/single.html build/single.html.bak
 #js_lint_results=`js j/jslint.js < build/j/dip3.js 2>/dev/null`
 #[ "$js_lint_results" = "jslint: No problems found." ] || die "$js_lint_results"
 
+echo "minimizing HTML"
 # minimize HTML (NB: this script is quite fragile and relies on knowledge of how I write HTML)
 # Yeah, I'll try and do it anyway, since I didn't really changed the original HTML structure
 for f in *.html; do
