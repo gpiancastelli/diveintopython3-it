@@ -78,14 +78,12 @@ done
 # build sitemap
 ls build/*.html | sed -e "s|build/|http://gpiancastelli.altervista.org/dip3-it/|g" -e "s|/index.html|/|g" > build/sitemap.txt || die "Failed to build sitemap"
 
-# No tracking code for now
-#echo "adding evil tracking code"
-#
+echo "adding evil tracking code"
 # add Google Analytics script
-#for f in build/*.html; do
-#  cat "$f" j/ga.js > build/tmp && \
-#      mv build/tmp "$f" || die "Could not add tracking code to $f"
-#done
+for f in build/*.html; do
+  cat "$f" j/ga.js > build/tmp && \
+      mv build/tmp "$f" || die "Could not add tracking code to $f"
+done
 
 # minimize JS and CSS
 echo "minimizing JS"
