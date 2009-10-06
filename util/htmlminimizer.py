@@ -4,6 +4,7 @@ import sys
 import re
 import html.entities
 import itertools
+import os.path
 
 #_SERVERS = ['gpiancastelli.altervista.org']
 #available_server = itertools.cycle(_SERVERS)
@@ -50,4 +51,5 @@ with open(output_file, 'w', encoding="utf-8") as _out:
                 _out.write(line)
             else:
                 _out.write(g)
-    
+            if g.lower() == '<!doctype html>':
+                _out.write('\n<!-- sorgente leggibile @ http://bitbucket.org/gpiancastelli/diveintopython3-it/src/tip/{0} -->\n'.format(os.path.basename(input_file)))
