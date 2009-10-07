@@ -34,15 +34,15 @@ h3:before{counter-increment:h3;content:'B.' counter(h2) '.' counter(h3) '. '}
 <tr><th>&#x2460;
 <td>inizializzare un&#8217;istanza
 <td><code class=pp>x = MyClass()</code>
-<td><code class=pp>x.<dfn>__init__</dfn>()</code>
+<td><a href=http://docs.python.org/3.1/reference/datamodel.html#object.__init__><code>x.<dfn>__init__</dfn>()</code></a>
 <tr><th>&#x2461;
 <td>la rappresentazione &#8220;ufficiale&#8221; sotto forma di stringa
 <td><code class=pp><dfn>repr</dfn>(x)</code>
-<td><code class=pp>x.<dfn>__repr__</dfn>()</code>
+<td><a href=http://docs.python.org/3.1/reference/datamodel.html#object.__repr__><code>x.<dfn>__repr__</dfn>()</code></a>
 <tr><th>&#x2462;
 <td>la rappresentazione &#8220;informale&#8221; sotto forma di stringa
 <td><code class=pp><dfn>str</dfn>(x)</code>
-<td><code class=pp>x.<dfn>__str__</dfn>()</code>
+<td><a href=http://docs.python.org/3.1/reference/datamodel.html#object.__str__><code>x.<dfn>__str__</dfn>()</code></a>
 <tr><th>&#x2463;
 <td>la rappresentazione &#8220;informale&#8221; sotto forma di array di byte
 <td><code class=pp><dfn>bytes</dfn>(x)</code>
@@ -50,7 +50,7 @@ h3:before{counter-increment:h3;content:'B.' counter(h2) '.' counter(h3) '. '}
 <tr><th>&#x2464;
 <td>la rappresentazione sotto forma di stringa formattata
 <td><code class=pp>format(x, <var>format_spec</var>)</code>
-<td><code class=pp>x.<dfn>__format__</dfn>(<var>format_spec</var>)</code>
+<td><a href=http://docs.python.org/3.1/reference/datamodel.html#object.__format__><code>x.<dfn>__format__</dfn>(<var>format_spec</var>)</code></a>
 </table>
 <ol>
 <li>Il metodo <code>__init__()</code> viene invocato <em>dopo</em> che l&#8217;istanza è stata creata. Se volete controllare l&#8217;effettivo processo di creazione, usate <a href=#esoterica>il metodo <code>__new__()</code></a>.
@@ -714,9 +714,7 @@ class FieldStorage:
 
 <h2 id=context-managers>Classi che possono essere usate in un blocco <code>with</code></h2>
 
-<p>Python 3 supporta l&#8217;istruzione <code>with</code>, che vi permette di accedere agli attributi e ai metodi di un oggetto senza riferirvi esplicitamente all&#8217;oggetto per ogni accesso. Un blocco <code>with</code> definisce un <a href=http://www.python.org/doc/3.1/library/stdtypes.html#typecontextmanager>contesto di esecuzione</a>; voi &#8220;entrate&#8221; nel contesto quando l&#8217;istruzione <code>with</code> viene eseguita e &#8220;uscite&#8221; dal contesto dopo che l&#8217;ultima istruzione nel blocco è stata eseguita.
-
-<p>Qualsiasi classe può essere usata in un blocco <code>with</code>; non è richiesto alcun metodo speciale. L&#8217;interprete Python creerà il contesto di esecuzione e inoltrerà alla vostra classe tutti gli accessi agli attributi e le chiamate ai metodi. Comunque, se volete che la vostra classe faccia qualcosa di particolare quando entra o esce da un contesto di esecuzione, potete definire i metodi speciali che seguono.
+<p>Un blocco <code>with</code> definisce un <a href=http://www.python.org/doc/3.1/library/stdtypes.html#typecontextmanager>contesto di esecuzione</a>; voi &#8220;entrate&#8221; nel contesto quando l&#8217;istruzione <code>with</code> viene eseguita e &#8220;uscite&#8221; dal contesto dopo che l&#8217;ultima istruzione nel blocco è stata eseguita.
 
 <table>
 <tr><th>Note

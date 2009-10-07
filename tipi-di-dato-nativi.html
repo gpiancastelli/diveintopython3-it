@@ -492,7 +492,7 @@ AttributeError: 'tuple' object has no attribute 'remove'</samp>
 <ul> 
 <li>Le tuple sono più veloci delle liste. Se state definendo un insieme di valori costante e tutto quello per cui lo userete è iterare attraverso i suoi elementi, usate una tupla invece di una lista.
 <li>Il vostro codice sarà più sicuro se &#8220;proteggete dalla scrittura&#8221; i dati che non hanno bisogno di essere modificati. Usare una tupla invece di una lista è come avere un&#8217;istruzione <code>assert</code> implicita che mostra che questi dati sono costanti e che è necessario ricorrere a un ragionamento particolare (e a una funzione particolare) per eludere questo vincolo.
-<li>Alcune tuple possono essere usate come chiavi di un dizionario, come vedrete più avanti in questo capitolo. (Le liste non possono mai essere usate come chiavi di un dizionario.)
+<li>Alcune tuple possono essere usate come chiavi di un dizionario (nello specifico, tuple che contengono valori <i>immutabili</i> come stringhe, numeri e altre tuple). Le liste non possono mai essere usate come chiavi di un dizionario, perché le liste non sono immutabili.
 </ul>
 
 <blockquote class=note>
