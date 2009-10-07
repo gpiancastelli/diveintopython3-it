@@ -427,7 +427,7 @@ AttributeError: '_io.BufferedReader' object has no attribute 'encoding'</samp></
 <samp class=p>>>> </samp><kbd class=pp>exit()</kbd>
 
 <a><samp class=p>you@localhost:~$ </samp><kbd>ls -l out.log.gz</kbd>                                                           <span class=u>&#x2461;</span></a>
-<samp>-rw-r--r--  1 mark mark    93 2009-07-19 14:29 out.log.gz</samp>
+<samp>-rw-r--r--  1 you  you     93 2009-07-19 14:29 out.log.gz</samp>
 <a><samp class=p>you@localhost:~$ </samp><kbd>gunzip out.log.gz</kbd>                                                          <span class=u>&#x2462;</span></a>
 <a><samp class=p>you@localhost:~$ </samp><kbd>cat out.log</kbd>                                                                <span class=u>&#x2463;</span></a>
 <samp>Camminare per nove miglia non è uno scherzo, specialmente se piove.</samp></pre>
@@ -437,6 +437,19 @@ AttributeError: '_io.BufferedReader' object has no attribute 'encoding'</samp></
 <li>Il comando <code>gunzip</code> (pronunciato &#8220;gee-unzip&#8221; in inglese) decomprime il file e memorizza i contenuti in un nuovo file chiamato con lo stesso nome del file compresso ma senza l&#8217;estensione <code>.gz</code>.
 <li>Il comando <code>cat</code> mostra i contenuti di un file. Questo file contiene la stringa che avevate originariamente scritto direttamente sul file compresso <code>out.log.gz</code> dall&#8217;interno della Shell Python.
 </ol>
+
+<blockquote class=pf>
+<p>Avete ottenuto questo errore?
+<pre class='nd screen'>
+<samp class=p>>>> </samp><kbd class=pp>with gzip.open('out.log.gz', mode='wb') as z_file:</kbd>
+<samp class=p>... </samp><kbd class=pp>  z_file.write('Camminare per nove miglia non è [...] se piove.'.encode('utf-8'))</kbd>
+<samp class=p>... </samp>
+<samp class=traceback>Traceback (most recent call last):
+ File "&lt;stdin>", line 1, in &lt;module>
+AttributeError: 'GzipFile' object has no attribute '__exit__'</samp></pre>
+<p>Se è così, probabilmente state usando Python 3.0. Dovreste davvero aggiornarvi a Python 3.1.
+<p>Il modulo <code>gzip</code> incluso in Python 3.0 non supportava l&#8217;uso di un file gzip come gestore di contesto. Python 3.1 ha aggiunto la possibilità di usare oggetti file gzip in un&#8217;istruzione <code>with</code>.
+</blockquote>
 
 <p class=a>&#x2042;
 
