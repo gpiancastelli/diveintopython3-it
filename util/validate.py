@@ -12,6 +12,6 @@ with open(input_filename, encoding='utf-8') as stream:
 html5doc = parser.parse(data, encoding='utf-8')
 if parser.errors:
     for ((line, column), errtype, params) in parser.errors:
-        print("Error: {} {} on line {} of {}".format(errtype, repr(params), line, input_filename), file=sys.stderr)
+        print("Error: {0} {1} on line {2} of {3}".format(errtype, repr(params), line, input_filename), file=sys.stderr)
     sys.exit(1)
 
