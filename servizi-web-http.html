@@ -19,9 +19,9 @@ mark{display:inline}
 </blockquote>
 <p id=toc>&nbsp;
 <h2 id=divingin>Immersione!</h2>
-<p class=f>I servizi web <abbr>HTTP</abbr> sono un modo programmatico di spedire e ricevere dati da server remoti utilizzando nient&#8217;altro che le operazioni di <abbr>HTTP</abbr>. Se volete ottenere dati dal server, usate <abbr>HTTP</abbr> <code>GET</code>; se volete inviare nuovi dati al server, usate <abbr>HTTP</abbr> <code>POST</code>. Alcune delle <abbr>API</abbr> più avanzate per i servizi web <abbr>HTTP</abbr> definiscono anche modi di creare, modificare e cancellare dati utilizzando <abbr>HTTP</abbr> <code>PUT</code> e <abbr>HTTP</abbr> <code>DELETE</code>. In altre parole, i &#8220;verbi&#8221; definiti dal protocollo <abbr>HTTP</abbr> (<code>GET</code>, <code>POST</code>, <code>PUT</code> e <code>DELETE</code>) possono corrispondere direttamente a operazioni a livello di applicazione per recuperare, creare, modificare e cancellare dati.
+<p class=f>I servizi web <abbr>HTTP</abbr> sono un modo programmatico di spedire e ricevere dati da server remoti utilizzando nient&#8217;altro che le operazioni di <abbr>HTTP</abbr>. Se volete ottenere dati dal server, usate <abbr>HTTP</abbr> <code>GET</code>; se volete inviare nuovi dati al server, usate <abbr>HTTP</abbr> <code>POST</code>. Alcune delle <abbr>API</abbr> più avanzate per i servizi web <abbr>HTTP</abbr> permettono anche di creare, modificare e cancellare dati utilizzando <abbr>HTTP</abbr> <code>PUT</code> e <abbr>HTTP</abbr> <code>DELETE</code>. In altre parole, i &#8220;verbi&#8221; definiti dal protocollo <abbr>HTTP</abbr> (<code>GET</code>, <code>POST</code>, <code>PUT</code> e <code>DELETE</code>) possono corrispondere direttamente a operazioni a livello di applicazione per recuperare, creare, modificare e cancellare dati.
 
-<p>Il vantaggio principale di questo approccio è la semplicità, e la sua semplicità si è dimostrata popolare. I dati&nbsp;&mdash;&nbsp;tipicamente in formato <abbr>XML</abbr>&nbsp;&mdash;&nbsp;possono essere assemblati e memorizzati staticamente oppure generati dinamicamente da un programma lato server, e tutti i linguaggi di programmazione più importanti (compreso Python, naturalmente!) includono una libreria <abbr>HTTP</abbr> per scaricarli. Anche le attività di debug vengono facilitate: dato che ogni risorsa in un servizio web <abbr>HTTP</abbr> ha un indirizzo unico (sotto forma di <abbr>URL</abbr>), potete caricarla nel vostro browser web e vederne immediatamente i dati grezzi.
+<p>Il vantaggio principale di questo approccio è la semplicità, e la sua semplicità si è dimostrata popolare. I dati&nbsp;&mdash;&nbsp;tipicamente in formato <a href=xml.html><abbr>XML</abbr></a> o <a href=serializzare-oggetti-python.html#json><abbr>JSON</abbr></a>&nbsp;&mdash;&nbsp;possono essere assemblati e memorizzati staticamente oppure generati dinamicamente da un programma lato server, e tutti i linguaggi di programmazione più importanti (compreso Python, naturalmente!) includono una libreria <abbr>HTTP</abbr> per scaricarli. Anche le attività di debug vengono facilitate: dato che ogni risorsa in un servizio web <abbr>HTTP</abbr> ha un indirizzo unico (sotto forma di <abbr>URL</abbr>), potete caricarla nel vostro browser web e vederne immediatamente i dati grezzi.
 
 <p>Esempi di servizi web <abbr>HTTP</abbr>:
 <ul>
@@ -52,7 +52,7 @@ mark{display:inline}
 
 <p>La cosa più importante da capire per un qualsiasi tipo di servizio web è che l&#8217;accesso alla rete è incredibilmente costoso. Non nel senso di &#8220;euro e centesimi&#8221; (sebbene la banda non sia gratis). Voglio dire che ci vuole un tempo estremamente lungo per aprire una connessione, spedire una richiesta e ricevere una risposta da un server remoto. Anche sulla connessione a banda larga più veloce, la <i>latenza</i> (il tempo che ci vuole per spedire una richiesta e cominciare a ricevere i dati in una risposta) può ancora essere più grande di quanto prevedete. Un router si comporta in modo strano, un pacchetto viene scartato, un proxy intermedio è sotto attacco&nbsp;&mdash;&nbsp;non c&#8217;è <a href=http://isc.sans.org/>mai un momento di calma</a> sulla rete Internet pubblica, e potrebbe non esserci nulla che voi possiate fare.
 
-<aside><code>Cache-Control</code> significa: &#8220;Non scocciarmi fino alla prossima settimana.&#8221;</aside>
+<aside><code>Cache-Control: max-age</code> significa: &#8220;Non scocciarmi fino alla prossima settimana.&#8221;</aside>
 
 <p><abbr>HTTP</abbr> è progettato con l&#8217;uso della cache in mente. Esiste un&#8217;intera categoria di dispositivi (chiamati &#8220;proxy di cache&#8221;) il cui solo lavoro è sedere in mezzo tra voi e il resto del mondo e minimizzare l&#8217;accesso alla rete. La vostra azienda o il vostro <abbr>ISP</abbr> quasi certamente gestisce alcuni proxy di cache, anche se voi non ve ne rendete conto. Questi dispositivi funzionano perché l&#8217;uso della cache è integrato nel protocollo <abbr>HTTP</abbr>.
 
@@ -72,7 +72,7 @@ Content-Type: image/jpeg</code></pre>
 
 <p>Le intestazioni <code>Cache-Control</code> ed <code>Expires</code> dicono al vostro browser (e a qualsiasi proxy di cache tra voi e il server) che questa immagine può essere tenuta in cache per un anno. <em>Un anno!</em> E se nel prossimo anno visitate un&#8217;altra pagina che include un collegamento a questa immagine, il vostro browser caricherà l&#8217;immagine dalla propria cache <em>senza generare alcun tipo di attività di rete</em>.
 
-<p>Ma aspettate, le cose migliorano. Diciamo che per qualche motivo il vostro browser cancella l&#8217;immagine dalla vostra cache locale. Magari ha finito lo spazio su disco, magari voi avete pulito la cache manualmente. Ma le intestazioni <abbr>HTTP</abbr> dicevano che questi dati potevano essere memorizzati in cache da proxy di cache pubblici (grazie a quella parola chiave <code>public</code> nell&#8217;intestazione <code>Cache-Control</code>). I proxy di cache sono progettati per avere tonnellate di spazio di memorizzazione, probabilmente molto più di quanto abbiate allocato per il vostro browser locale.
+<p>Ma aspettate, le cose migliorano. Diciamo che per qualche motivo il vostro browser cancella l&#8217;immagine dalla vostra cache locale. Magari ha finito lo spazio su disco, magari voi avete pulito la cache manualmente. Ma le intestazioni <abbr>HTTP</abbr> dicevano che questi dati potevano essere memorizzati in cache da proxy di cache pubblici. (Tecnicamente, la cosa importante è quello che le intestazioni <em>non</em> dicono: l&#8217;intestazione <code>Cache-Control</code> non contiene la parola chiave <code>private</code>, quindi questi dati sono memorizzabili in cache per default.) I proxy di cache sono progettati per avere tonnellate di spazio di memorizzazione, probabilmente molto più di quanto abbiate allocato per il vostro browser locale.
 
 <p>Se la vostra azienda o il vostro <abbr>ISP</abbr> gestisce un proxy di cache, il proxy potrebbe ancora avere l&#8217;immagine nella propria cache. Quando visitate <code>diveintomark.org</code> un&#8217;altra volta, il vostro browser cercherà l&#8217;immagine nella sua cache locale ma non la troverà, quindi effettuerà una richiesta di rete per cercare di scaricarla dal server remoto. Ma se il proxy di cache ha ancora una copia dell&#8217;immagine, intercetterà quella richiesta e preleverà l&#8217;immagine dalla <em>propria</em> cache. Questo significa che la vostra richiesta non raggiungerà mai il server remoto; in effetti, non lascerà mai la rete della vostra azienda. Questo rende lo scaricamento più veloce (meno salti sui nodi della rete) e fa risparmiare denaro alla vostra azienda (meno dati che vengono scaricati dal mondo esterno).
 
@@ -84,7 +84,7 @@ Content-Type: image/jpeg</code></pre>
 
 <p>Alcuni dati non cambiano mai, mentre altri dati cambiano continuamente. Nel mezzo, c&#8217;è un vasto assortimento di dati che <em>potrebbero</em> essere cambiati ma non lo hanno fatto. Il feed di CNN.com viene aggiornato ogni pochi minuti, ma il feed del mio weblog potrebbe non cambiare per diversi giorni o intere settimane. In quest&#8217;ultimo caso, non voglio dire ai client di mantenere in cache il mio feed per intere settimane, perché quando scrivo effettivamente qualcosa i miei lettori potrebbero non vederla per settimane (perché stanno rispettando le mie intestazioni di cache che dicono &#8220;non preoccuparti di controllare questo feed per settimane&#8221;). D&#8217;altra parte, non voglio che i client scarichino il mio intero feed una volta ogni ora se non è cambiato!
 
-<aside><code>Last-Modified</code> significa: &#8220;Stessa merda, altro giorno.&#8221;</aside>
+<aside><code>304 Not Modified</code> significa: &#8220;Stessa merda, altro giorno.&#8221;</aside>
 
 <p><abbr>HTTP</abbr> fornisce una soluzione anche a questo problema. Quando richiedete un dato per la prima volta, il server può spedire indietro un&#8217;intestazione <code>Last-Modified</code>. Questa è esattamente ciò che sembra: la data in cui i dati sono stati modificati. Quell&#8217;immagine di sfondo riferita da <code>diveintomark.org</code> includeva un&#8217;intestazione <code>Last-Modified</code>.
 
@@ -101,7 +101,7 @@ Connection: close
 Content-Type: image/jpeg
 </code></pre>
 
-<p>Quando richiedete gli stessi dati una seconda (o terza, o quarta) volta, potete spedire insieme alla vostra richiesta un&#8217;intestazione <code>If-Modified-Since</code> contenente la data che avete ottenuto dal server l&#8217;ultima volta. Se i dati non sono cambiati da allora, il server rimanda indietro lo speciale codice di stato <abbr>HTTP</abbr> <code>304</code>, per indicare che &#8220;questi dati non sono cambiati dall&#8217;ultima volta che li avete richiesti&#8221;. Potete verificare questo comportamento dalla riga di comando usando <a href=http://curl.haxx.se/>curl</a>:
+<p>Quando richiedete gli stessi dati una seconda (o terza, o quarta) volta, potete spedire insieme alla vostra richiesta un&#8217;intestazione <code>If-Modified-Since</code> contenente la data che avete ottenuto dal server l&#8217;ultima volta. Se i dati sono cambiati da allora, il server ignora l&#8217;intestazione <code>If-Modified-Since</code> e vi restituisce semplicemente i nuovi dati con un codice di stato <code>200</code>. Ma se i dati <em>non</em> sono cambiati, il server rimanda indietro lo speciale codice di stato <abbr>HTTP</abbr> <code>304</code> per indicare che &#8220;questi dati non sono cambiati dall&#8217;ultima volta che li avete richiesti&#8221;. Potete verificare questo comportamento dalla riga di comando usando <a href=http://curl.haxx.se/>curl</a>:
 
 <pre class='nd screen'>
 <samp class=p>you@localhost:~$ </samp><kbd>curl -I <mark>-H "If-Modified-Since: Fri, 22 Aug 2008 04:28:16 GMT"</mark> http://wearehugh.com/m.jpg</kbd>
@@ -117,7 +117,7 @@ Cache-Control: max-age=31536000, public</samp></pre>
 
 <p>Le librerie <abbr>HTTP</abbr> incluse in Python non supportano il controllo della modifica più recente, ma <code>httplib2</code> lo fa.
 
-<h3 id=etags>Gli ETag</h3>
+<h3 id=etags>Il controllo degli ETag</h3>
 
 <p>Gli ETag sono un modo alternativo per effettuare il <a href=#last-modified>controllo della modifica più recente</a>. Con gli ETag, il server spedisce un codice hash in un&#8217;intestazione <code>ETag</code> insieme ai dati che avete richiesto. (Decidere come determinare esattamente questo hash è interamente compito del server. L&#8217;unico requisito è che l&#8217;hash cambi quando i dati cambiano.) Quell&#8217;immagine di sfondo riferita da <code>diveintomark.org</code> aveva un&#8217;intestazione <code>ETag</code>.
 
@@ -150,7 +150,7 @@ ETag: "3075-ddc8d800"
 Expires: Mon, 31 May 2010 18:04:39 GMT
 Cache-Control: max-age=31536000, public</samp></pre>
 <ol>
-<li>Gli ETag vengono comunemente racchiusi tra virgolette, ma <em>le virgolette sono parte del valore</em>. Non sono delimitatori, perché l&#8217;unico delimitatore nell&#8217;intestazione <code>ETag</code> è il carattere di due punti tra <code>ETag</code> e <code>"3075-ddc8d800"</code>. Questo significa che dovete rimandare le virgolette al server nell&#8217;intestazione <code>If-None-Match</code>.
+<li>Gli ETag vengono comunemente racchiusi tra virgolette, ma <em>le virgolette sono parte del valore</em>. Questo significa che dovete rimandare le virgolette al server nell&#8217;intestazione <code>If-None-Match</code>.
 </ol>
 
 <p>Le librerie <abbr>HTTP</abbr> incluse in Python non supportano gli ETag, ma <code>httplib2</code> lo fa.
@@ -159,7 +159,7 @@ Cache-Control: max-age=31536000, public</samp></pre>
 
 <p>Quando parlate di servizi web <abbr>HTTP</abbr>, state quasi certamente parlando di spostare dati basati su testo avanti e indietro attraverso la rete. Forse i dati sono in formato <abbr>XML</abbr>, forse sono in formato <abbr>JSON</abbr>, forse sono solo <a href=stringhe.html#boring-stuff title='il testo semplice non esiste'>testo semplice</a>. A prescindere dal formato, il testo si comprime bene. Il feed di esempio nel <a href=xml.html>capitolo su  XML</a> è di 3070 byte, ma sarebbe di 941 byte dopo una compressione effettuata tramite gzip, esattamente il 30% della dimensione originale!
 
-<p><abbr>HTTP</abbr> supporta diversi algoritmi di compressione. I due tipi più comuni sono <a href=http://www.ietf.org/rfc/rfc1952.txt>gzip</a> e <a href=http://www.ietf.org/rfc/rfc1951.txt>deflate</a>. Quando richiedete una risorsa via <abbr>HTTP</abbr>, potete chiedere al server di mandarvela in formato compresso includendo nella vostra richiesta un&#8217;intestazione <code>Accept-encoding</code> che elenchi quali algoritmi di compressione supportate. Se il server supporta uno qualsiasi degli stessi algoritmi, vi risponderà inviando i dati compressi (insieme a un&#8217;intestazione <code>Content-encoding</code> che vi dice quale algoritmo ha usato). Poi sta a voi decomprimere i dati.
+<p><abbr>HTTP</abbr> supporta <a href=http://www.iana.org/assignments/http-parameters>diversi algoritmi di compressione</a>. I due tipi più comuni sono <a href=http://www.ietf.org/rfc/rfc1952.txt>gzip</a> e <a href=http://www.ietf.org/rfc/rfc1951.txt>deflate</a>. Quando richiedete una risorsa via <abbr>HTTP</abbr>, potete chiedere al server di mandarvela in formato compresso includendo nella vostra richiesta un&#8217;intestazione <code>Accept-encoding</code> che elenchi quali algoritmi di compressione supportate. Se il server supporta uno qualsiasi degli stessi algoritmi, vi risponderà inviando i dati compressi (insieme a un&#8217;intestazione <code>Content-encoding</code> che vi dice quale algoritmo ha usato). Poi sta a voi decomprimere i dati.
 
 <p>Le librerie <abbr>HTTP</abbr> incluse in Python non supportano la compressione, ma <code>httplib2</code> lo fa.
 
@@ -592,7 +592,7 @@ user-agent: Python-httplib2/$Rev: 259 $'
 
 <aside>&#8220;Facciamo musica di entrambi i generi, country E western.&#8221;</aside>
 
-<p><abbr>HTTP</abbr> supporta <a href=#compression>due tipi di compressione</a>. <code>httplib2</code> li supporta entrambi.
+<p><abbr>HTTP</abbr> supporta <a href=#compression>diversi tipi di compressione</a>; i due tipi più comuni sono gzip e deflate. <code>httplib2</code> li supporta entrambi.
 
 <pre class=screen>
 <samp class=p>>>> </samp><kbd class=pp>response, content = h.request('http://diveintopython3.org/')</kbd>
