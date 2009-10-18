@@ -5,6 +5,9 @@ die () {
   exit 1
 }
 
+# Let's start by removing by-products from the latest build
+rm -rf build
+
 echo "started build"
 
 # build table of contents
@@ -166,6 +169,3 @@ lcd d
 put .htaccess
 bye
 EOF
-
-# ...and finally clean everything by removing build directory
-rm -rf build
