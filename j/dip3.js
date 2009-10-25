@@ -117,53 +117,54 @@ function showTOC() {
 }
 
 $(document).ready(function() {
-	hideTOC();
+    hideTOC();
     prettyPrint();
     
     /* on-hover permalink markers on each section header */
-	$('*:header[id]').each(function() {
-		$('<a class=hl>#</a>').
-		    attr('href', '#' + this.id).
-		    appendTo(this);
-	    });
+    $('*:header[id]').each(function() {
+	$('<a class=hl>#</a>').
+	    attr('href', '#' + this.id).
+	    appendTo(this);
+    });
 	
-	/* "hide", "open in new window", and (optionally) "download" widgets on code & screen blocks */
-	$("pre > code").each(function(i) {
-		var pre = $(this.parentNode);
-		if (pre.parents("table").length === 0) {
-		    pre.addClass("code");
-		}
-	    });
-	$("pre.code:not(.nd), pre.screen:not(.nd)").each(function(i) {
-		/* give each code block a unique ID */
-		this.id = "autopre" + i;
+    /* "hide", "open in new window", and (optionally) "download" widgets on code & screen blocks */
+    $("pre > code").each(function(i) {
+	var pre = $(this.parentNode);
+	if (pre.parents("table").length === 0) {
+	    pre.addClass("code");
+	}
+    });
+    $("pre.code:not(.nd), pre.screen:not(.nd)").each(function(i) {
+	/* give each code block a unique ID */
+	this.id = "autopre" + i;
 
         /* wrap code block in a div and insert widget block */
-		$(this).wrapInner('<div class=b></div>');
-		$(this).prepend('<div class=w>[<a class=toggle href="javascript:toggleCodeBlock(\'' + this.id + '\')">' + HS.visible + '</a>] [<a href="javascript:plainTextOnClick(\'' + this.id + '\')">apri in una nuova finestra</a>]</div>');
+	$(this).wrapInner('<div class=b></div>');
+	$(this).prepend('<div class=w>[<a class=toggle href="javascript:toggleCodeBlock(\'' + this.id + '\')">' + HS.visible + '</a>] [<a href="javascript:plainTextOnClick(\'' + this.id + '\')">apri in una nuova finestra</a>]</div>');
 		
         /* move download link into widget block */
-		$(this).prev("p.d").each(function(i) {
-			$(this).next("pre").find("div.w").append(" " + $(this).html());
-			this.parentNode.removeChild(this);
-		    });
+	$(this).prev("p.d").each(function(i) {
+	    $(this).next("pre").find("div.w").append(" " + $(this).html());
+	    this.parentNode.removeChild(this);
+	});
 
-		/* create skip links */
-		var postelm = $(this).next().get(0);
-		var postid = postelm.id || ("postautopre" + i);
-		postelm.id = postid;
-		$(this).before('<p class=skip><a href=#' + postid + '>salta questo listato di codice</a>');
-	    });
+	/* create skip links */
+	var postelm = $(this).next().get(0);
+	var postid = postelm.id || ("postautopre" + i);
+	postelm.id = postid;
+	$(this).before('<p class=skip><a href=#' + postid + '>salta questo listato di codice</a>');
+    });
 	
-	/* make skip links disappear until you tab to them */
-	$(".skip a").blur(function() {
-		$(this).css({'position':'absolute','left':'0px','top':'-500px','width':'1px','height':'1px','overflow':'hidden'});
-	    });
-	$(".skip a").blur();
-	$(".skip a").focus(function() {
-		$(this).css({'position':'static','width':'auto','height':'auto'});
-	    });
-	
+    /* make skip links disappear until you tab to them */
+    $(".skip a").blur(function() {
+	$(this).css({'position':'absolute','left':'0px','top':'-500px','width':'1px','height':'1px','overflow':'hidden'});
+    });
+    $(".skip a").blur();
+    $(".skip a").focus(function() {
+        $(this).css({'position':'static','width':'auto','height':'auto'});
+    });
+
+    if (!$.browser.msie) {	
 	/* synchronized highlighting on callouts and their associated lines within code & screen blocks */
 	var hip = {'background-color':'#eee','cursor':'default'};
 	var unhip = {'background-color':'inherit','cursor':'inherit'};
@@ -200,22 +201,23 @@ $(document).ready(function() {
 			    }, 0);
 		    });
 	    });
+    }
 
     /* match <dfn> terms with incoming search keywords and jump to the containing section */
-	var searchTerms = getSearchTerms();
-	$("dfn").each(function() {
-		var dfn = $(this);
-		var dfnTerm = dfn.text().toLowerCase();
-		if ($.inArray(dfnTerm, searchTerms) != -1) {
-		    var section = dfn.parents("p,table,ul,ol,blockquote").prevAll("*:header").get(0);
-		    if (section) {
-			window.setTimeout(function() {document.location.hash = section.id;}, 0);
-			return false;
-		    }
-		}
-	    });
+    var searchTerms = getSearchTerms();
+    $("dfn").each(function() {
+	var dfn = $(this);
+	var dfnTerm = dfn.text().toLowerCase();
+	if ($.inArray(dfnTerm, searchTerms) != -1) {
+	    var section = dfn.parents("p,table,ul,ol,blockquote").prevAll("*:header").get(0);
+	    if (section) {
+		window.setTimeout(function() {document.location.hash = section.id;}, 0);
+		return false;
+	    }
+	}
+    });
 
-    }); /* document.ready */
+}); /* document.ready */
 
 function toggleCodeBlock(id) {
     $("#" + id).find("div.b").toggle();

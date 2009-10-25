@@ -42,6 +42,7 @@ htmldir=build/"$htmlbasedir"
 mkdir -p "$htmldir"
 cp *.html "$htmldir"/
 cp dip3.css "$htmldir"/
+cp README.txt "$htmldir"/LEGGIMI.txt
 mkdir "$htmldir"/i
 cp i/*.png "$htmldir"/i/
 mkdir "$htmldir"/j
@@ -70,12 +71,9 @@ echo "Redirect /dip3-it/d/diveintopython3-it-pdf-latest.zip http://gpiancastelli
 mv "$pdfdir" "$pdfdir".pdf.bak
 mv build/single.html build/single.html.bak
 
-# Not linting JavaScript myself; trust Mark on this one
-#echo "linting JS"
+# No JavaScript linting; just trust Mark on this one.
 #
-#[ -n "$(which js 2>/dev/null)" ] || die "SpiderMonkey (js or js.exe) not found"
-#js_lint_results=`js j/jslint.js < build/j/dip3.js 2>/dev/null`
-#[ "$js_lint_results" = "jslint: No problems found." ] || die "$js_lint_results"
+# No per-page dates; they don't really make much sense for translations.
 
 echo "minimizing HTML"
 # minimize HTML (NB: this script is quite fragile and relies on knowledge of how I write HTML)

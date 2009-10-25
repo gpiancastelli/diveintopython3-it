@@ -668,7 +668,7 @@ class FieldStorage:
 </table>
 
 <blockquote class=note>
-<p><span class=u>&#x261E;</span>Se definite un metodo <code>__lt__()</code> ma non definite un metodo <code>__gt__()</code>, Python userà il metodo <code>__lt__()</code> con gli operandi invertiti. Tuttavia, Python non combinerà i metodi. Per esempio, se definite un metodo <code>__lt__()</code> e un metodo <code>__eq__()</code> e provate a verificare se <code>x &lt;= y</code>, Python non invocherà <code>__lt__()</code> e <code>__eq()__</code> in sequenza, ma invocherà soltanto il metodo <code>__le__()</code>.
+<p><span class=u>&#x261E;</span>Se definite un metodo <code>__lt__()</code> ma non definite un metodo <code>__gt__()</code>, Python userà il metodo <code>__lt__()</code> con gli operandi invertiti. Tuttavia, Python non combinerà i metodi. Per esempio, se definite un metodo <code>__lt__()</code> e un metodo <code>__eq__()</code> e provate a verificare se <code>x &lt;= y</code>, Python non invocherà <code>__lt__()</code> e <code>__eq__()</code> in sequenza, ma invocherà soltanto il metodo <code>__le__()</code>.
 </blockquote>
 
 <h2 id=pickle>Classi che possono essere serializzate</h2>
@@ -728,7 +728,7 @@ class FieldStorage:
 <tr><th>
 <td>fare qualcosa di speciale quando uscite da un blocco <code>with</code>
 <td><code class=pp>with x:</code>
-<td><a href=http://www.python.org/doc/3.1/reference/datamodel.html#object.__exit__><code>x.<dfn>__exit__</dfn>()</code></a>
+<td><a href=http://www.python.org/doc/3.1/reference/datamodel.html#object.__exit__><code>x.<dfn>__exit__</dfn>(<var>exc_type</var>, <var>exc_value</var>, <var>traceback</var>)</code></a>
 </table>
 
 <p>Ecco come funziona l&#8217;idioma <code>with <var>file</var></code>.
