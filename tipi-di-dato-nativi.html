@@ -713,7 +713,7 @@ KeyError: 21</samp></pre>
   File "&lt;stdin>", line 1, in &lt;module>
 KeyError: 'pop from an empty set'</samp></pre>
 <ol>
-<li>Il metodo <code>pop()</code> rimuove un singolo valore da un insieme e restituisce quel valore. Tuttavia, dato che gli insiemi non sono ordinati, non c&#8217;è nessun &#8220;ultimo&#8221; valore in un insieme, quindi non c&#8217;è alcun modo di controllare quale sia il valore che viene rimosso. Il processo è essenzialmente casuale.
+<li>Il metodo <code>pop()</code> rimuove un singolo valore da un insieme e restituisce quel valore. Tuttavia, dato che gli insiemi non sono ordinati, non c&#8217;è nessun &#8220;ultimo&#8221; valore in un insieme, quindi non c&#8217;è alcun modo di controllare quale sia il valore che viene rimosso. Il processo è completamente arbitrario.
 <li>Il metodo <code>clear()</code> rimuove <em>tutti</em> i valori dall&#8217;insieme, lasciandovi con un insieme vuoto. Questo è equivalente a <code>a_set = set()</code>, che avrebbe creato un nuovo insieme vuoto e sovrascritto il precedente valore della variabile <var>a_set</var>.
 <li>Il tentativo di invocare <code>pop()</code> per rimuovere un valore da un insieme vuoto solleverà un&#8217;eccezione di tipo <code>KeyError</code>.
 </ol>
