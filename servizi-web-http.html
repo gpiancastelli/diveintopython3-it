@@ -161,6 +161,10 @@ Cache-Control: max-age=31536000, public</samp></pre>
 
 <p><abbr>HTTP</abbr> supporta <a href=http://www.iana.org/assignments/http-parameters>diversi algoritmi di compressione</a>. I due tipi più comuni sono <a href=http://www.ietf.org/rfc/rfc1952.txt>gzip</a> e <a href=http://www.ietf.org/rfc/rfc1951.txt>deflate</a>. Quando richiedete una risorsa via <abbr>HTTP</abbr>, potete chiedere al server di mandarvela in formato compresso includendo nella vostra richiesta un&#8217;intestazione <code>Accept-encoding</code> che elenchi quali algoritmi di compressione supportate. Se il server supporta uno qualsiasi degli stessi algoritmi, vi risponderà inviando i dati compressi (insieme a un&#8217;intestazione <code>Content-encoding</code> che vi dice quale algoritmo ha usato). Poi sta a voi decomprimere i dati.
 
+<blockquote class=note>
+<p><span class=u>&#x261E;</span>Suggerimento importante per gli sviluppatori lato server: assicuratevi che la versione compressa di una risorsa abbia un <a href=#etags>Etag</a> differente rispetto alla versione non compressa. Altrimenti, i proxy di cache si confonderanno e potrebbero servire la versione compressa a client che non sono in grado di gestirla. Leggete la discussione sul <a href="https://issues.apache.org/bugzilla/show_bug.cgi?id=39727">bug 39727 di Apache</a> per maggiori dettagli su questo sottile problema.
+</blockquote>
+
 <p>Le librerie <abbr>HTTP</abbr> incluse in Python non supportano la compressione, ma <code>httplib2</code> lo fa.
 
 <h3 id=redirects>Le redirezioni</h3>

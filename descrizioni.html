@@ -327,6 +327,16 @@ body{counter-reset:h1 3}
 <samp class=p>>>> </samp><kbd class=pp>{value:key for key, value in a_dict.items()}</kbd>
 <samp class=pp>{1: 'a', 2: 'b', 3: 'c'}</samp></pre>
 
+<p>Naturalmente, questo funziona solo se i valori del dizionario sono immutabili, come stringhe o tuple. Se provate a farlo con un dizionario che contiene liste, il trucco fallirà in maniera piuttosto vistosa.
+
+<pre class=screen>
+<samp class=p>>>> </samp><kbd class=pp>a_dict = {'a': [1, 2, 3], 'b': 4, 'c': 5}</kbd>
+<samp class=p>>>> </samp><kbd class=pp>{value:key for key, value in a_dict.items()}</kbd>
+<samp class=traceback>Traceback (most recent call last):
+  File "&lt;stdin>", line 1, in &lt;module>
+  File "&lt;stdin>", line 1, in &lt;dictcomp>
+TypeError: unhashable type: 'list'</samp></pre>
+
 <p class=a>&#x2042;
 
 <h2 id=setcomprehension>Descrizioni di insieme</h2>
