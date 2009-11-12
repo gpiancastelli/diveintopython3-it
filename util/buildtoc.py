@@ -17,13 +17,14 @@ for filename in chapters:
 with open('index.html', encoding="utf-8") as f: data = f.read()
 short_toc = data.split('<!-- toc -->')[1].split('<!-- /toc -->')[0]
 
-full_toc = ['<!-- toc -->', '<ol start=-1>']
+full_toc = ['<!-- toc -->', '<ol start=-2>']
 chapter_id = ''
 for line in short_toc.splitlines():
     if not line.count('<li') or not line.count('<a href'): continue
     chapter_id = line.split('<a href=', 1)[1].split('.', 1)[0]
     line = re.sub(' id=.*?>', '>', line)
     line = line.replace('<li>', '<li id={0}>'.format(chapter_id))
+    line = re.sub(r'(</a>\s+)(.*)', r'\1<span>\2</span>', line)
     full_toc.append(line)
     section_number = 0
     previous_section_level = section_level = 1

@@ -5,9 +5,10 @@
 <style>
 h1:before{content:''}
 ol,ul{font-weight:bold}
-li ol{font-weight:normal}
-#convertire-codice-verso-python-3-con-2to3,#nomi-dei-metodi-speciali,#dove-proseguire-da-qui{list-style:none;margin:0 0 0 -2em}
+li ol, ol span{font-weight:normal}
+#prefazione,#convertire-codice-verso-python-3-con-2to3,#nomi-dei-metodi-speciali,#dove-proseguire-da-qui{list-style:none;margin:0 0 0 -2em}
 #convertire-codice-verso-python-3-con-2to3 > ol,#nomi-dei-metodi-speciali > ol,#dove-proseguire-da-qui > ol{margin:0;padding:0 0 0 4.5em}
+#prefazione:before{content:''}
 #convertire-codice-verso-python-3-con-2to3:before{content:'A. \00a0 \00a0'}
 #nomi-dei-metodi-speciali:before{content:'B. \00a0 \00a0'}
 #dove-proseguire-da-qui:before{content:'C. \00a0 \00a0'}
@@ -19,7 +20,8 @@ li ol{font-weight:normal}
 <p>Voi siete qui: <a href=index.html>Inizio</a> <span class=u>&#8227;</span> Immersione in Python 3 <span class=u>&#8227;</span>
 <h1>Indice</h1>
 <!-- toc -->
-<ol start=-1>
+<ol start=-2>
+<li id=prefazione><a href=prefazione.html>Prefazione</a> <span>di Jesse Noller</span>
 <li id=novità><a href=novità.html>Cosa c&#8217;è di nuovo in &#8220;Immersione in Python 3&#8221;</a>
 <ol>
 <li><a href=novità.html#divingin><i>alias</i> &#8220;il livello meno&#8221;</a>
