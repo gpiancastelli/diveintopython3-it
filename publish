@@ -12,7 +12,7 @@ echo "started build"
 
 # build table of contents
 # Well, not really, since it mostly won't change anymore now
-#python3 util/buildtoc.py
+#python3.1 util/buildtoc.py
 
 revision=`hg tip | grep changeset|cut -d":" -f2|cut -d" " -f4`
 today=`date +"%Y-%m-%d"`
@@ -33,7 +33,7 @@ cp -R esempi build/
 
 echo "validating HTML"
 for f in *.html; do
-  python3 util/validate.py "$f" > /dev/null || die "Failed to validate $f"
+  python3.1 util/validate.py "$f" > /dev/null || die "Failed to validate $f"
 done
 
 echo "building HTML distribution"
@@ -56,7 +56,7 @@ echo "Redirect /dip3-it/d/diveintopython3-it-html-latest.zip http://gpiancastell
 mv "$htmldir" "$htmldir".html.bak
 
 echo "building PDF distribution"
-python3 util/flatten.py # outputs to build/single.html
+python3.1 util/flatten.py # outputs to build/single.html
 pdfbasedir="$htmlbasedir"
 pdfdir="$htmldir"
 mkdir -p "$pdfdir"
@@ -79,7 +79,7 @@ echo "minimizing HTML"
 # minimize HTML (NB: this script is quite fragile and relies on knowledge of how I write HTML)
 # Yeah, I'll try and do it anyway, since I didn't really changed the original HTML structure
 for f in *.html; do
-  python3 util/htmlminimizer.py "$f" build/"$f" || die "Failed to minimize $f"
+  python3.1 util/htmlminimizer.py "$f" build/"$f" || die "Failed to minimize $f"
 done
 
 # build sitemap
@@ -87,8 +87,8 @@ ls build/*.html | sed -e "s|build/|http://gpiancastelli.altervista.org/dip3-it/|
 
 # minimize JS and CSS
 echo "minimizing JS"
-java -jar util/compiler.jar build/j/prettify.js > build/j/prettify.min.js && \
-    java -jar util/compiler.jar build/j/dip3.js > build/j/dip3.min.js || die "Failed to minimize JS"
+java -jar util/compiler.jar -js build/j/prettify.js > build/j/prettify.min.js && \
+    java -jar util/compiler.jar -js build/j/dip3.js > build/j/dip3.min.js || die "Failed to minimize JS"
 
 # combine jQuery and our script
 echo "combining JS"
