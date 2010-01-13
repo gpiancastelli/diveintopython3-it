@@ -216,7 +216,7 @@ def build_match_and_apply_functions(pattern, search, replace):
 <ol>
 <li><code>build_match_and_apply_functions()</code> è una funzione che costruisce dinamicamente altre funzioni. Accetta in ingresso <var>pattern</var>, <var>search</var> e <var>replace</var>, poi definisce una funzione <code>matches_rule()</code> che chiama <code>re.search()</code> con il <var>pattern</var> che è stato passato alla funzione <code>build_match_and_apply_functions()</code> e con la parola <var>word</var> che è stata passata alla funzione <code>matches_rule()</code> che state costruendo. Whoa.
 <li>La funzione di sostituzione viene costruita allo stesso modo. Accetta un parametro e chiama <code>re.sub()</code> utilizzando sia i parametri <var>search</var> e <var>replace</var> che sono stati passati alla funzione <code>build_match_and_apply_functions()</code> sia la parola <var>word</var> che è stata passata alla funzione <code>apply_rule()</code> stessa. Questa tecnica di usare i valori di parametri esterni all&#8217;interno di una funzione dinamica è chiamata <em>chiusura</em>. State essenzialmente definendo delle costanti nell&#8217;ambito della funzione di sostituzione che state costruendo; quest&#8217;ultima accetta un parametro (<var>word</var>), ma poi agisce su quello più altri due valori (<var>search</var> e <var>replace</var>) che sono stati impostati nel momento in cui la funzione di sostituzione è stata definita.
-<li>Infine, la funzione <code>build_match_and_apply_functions()</code> restituisce una tupla di due valori: le due funzioni che avete appena creato. Le costanti definite in quelle funzioni (<var>pattern</var> nell&#8217;ambito di <code>match_rule()</code>, <var>search</var> e <var>replace</var> nell&#8217;ambito di <code>apply_rule()</code>) mantengono il loro valore in quelle funzioni persino dopo che <code>build_match_and_apply_functions()</code> le ha restituite. Questo è davvero fantastico.
+<li>Infine, la funzione <code>build_match_and_apply_functions()</code> restituisce una tupla di due valori: le due funzioni che avete appena creato. Le costanti definite in quelle funzioni (<var>pattern</var> nell&#8217;ambito di <code>matches_rule()</code>, <var>search</var> e <var>replace</var> nell&#8217;ambito di <code>apply_rule()</code>) mantengono il loro valore in quelle funzioni persino dopo che <code>build_match_and_apply_functions()</code> le ha restituite. Questo è davvero fantastico.
 </ol>
 
 <p>Se questa tecnica vi risulta incredibilmente confusa (e dovrebbe, è roba strana), potrebbe diventare più chiara nel momento in cui vedete come si usa.
@@ -413,8 +413,8 @@ def plural(noun, rules_filename='plural5-rules.txt'):
 
 <p class=v><a rel=prev href=espressioni-regolari.html title='indietro a &#8220;Espressioni regolari&#8221;'><span class=u>&#x261C;</span></a> <a rel=next href=iteratori.html title='avanti a &#8220;Classi &amp; iteratori&#8221;'><span class=u>&#x261E;</span></a>
 
-<p class=c>&copy; 2001&ndash;9 <a href=informazioni-sul-libro.html>Mark Pilgrim</a><br>
-&copy; 2009 <a href=informazioni-sulla-traduzione.html>Giulio Piancastelli</a> per la traduzione italiana
+<p class=c>&copy; 2001&ndash;10 <a href=informazioni-sul-libro.html>Mark Pilgrim</a><br>
+&copy; 2009&ndash;10 <a href=informazioni-sulla-traduzione.html>Giulio Piancastelli</a> per la traduzione italiana
 <script src=j/jquery.js></script>
 <script src=j/prettify.js></script>
 <script src=j/dip3.js></script>

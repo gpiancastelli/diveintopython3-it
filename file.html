@@ -7,7 +7,7 @@
 body{counter-reset:h1 11}
 mark{display:inline}
 </style>
-<link rel=stylesheet type=text/css media='only screen and (max-device-width: 480px)' href=mobile.css>
+<link rel=stylesheet media='only screen and (max-device-width: 480px)' href=mobile.css>
 <link rel=stylesheet media=print href=print.css>
 <meta name=viewport content='initial-scale=1.0'>
 <form action=http://www.google.com/cse><div><input type=hidden name=cx value=014021643941856155761:l5eihuescdw><input type=hidden name=ie value=UTF-8>&nbsp;<input type=search name=q size=25 placeholder="powered by Google&trade;">&nbsp;<input type=submit name=sa value=Search></div></form>
@@ -310,7 +310,7 @@ ValueError: zero length field name in format</samp></pre>
 <li>Cominciate baldanzosamente creando il nuovo file <code>test.log</code> (oppure sovrascrivendo il file esistente) e aprendo il file per la scrittura. Usare il parametro <code>mode='w'</code> significa aprire il file in scrittura. Sì, questo è tanto pericoloso quanto sembra. Spero che non vi interessassero i contenuti precedenti di quel file (se c&#8217;erano) perché quei dati ora sono scomparsi.
 <li>Potete aggiungere dati al file appena aperto con il metodo <code>write()</code> dell&#8217;oggetto stream restituito dalla funzione <code>open()</code>. Dopo che il blocco <code>with</code> si è concluso, Python chiude automaticamente il file.
 <li>&Egrave; stato così divertente, facciamolo ancora. Ma questa volta con <code>mode='a'</code>, per aggiungere i dati in coda al file invece di sovrascriverlo. Questa modalità non danneggerà <em>mai</em> i contenuti esistenti del file.
-<li>Il file <code>test.log</code> ora contiene sia la riga originale che avete scritto sia la seconda riga che avete aggiunto. Notate anche che i ritorni a capo non sono inclusi. Dato che entrambe le volte non li avete scritti esplicitamente sul file, il file non li contiene. Potete scrivere un ritorno a capo usando il carattere <code>'\n'</code>. Dato che non lo avete fatto, tutto quello che avete scritto sul file è finito su un&#8217;unica riga.
+<li>Il file <code>test.log</code> ora contiene sia la riga originale che avete scritto sia la seconda riga che avete aggiunto. Notate anche che i caratteri di ritorno a capo e di fine riga non sono inclusi. Dato che entrambe le volte non li avete scritti esplicitamente sul file, il file non li contiene. Potete scrivere un carattere di ritorno a capo usando <code>'\r'</code> e/o un carattere di fine riga usando <code>'\n'</code>. Dato che non avete fatto né l&#8217;una né l&#8217;altra cosa, tutto quello che avete scritto sul file è finito su un&#8217;unica riga.
 </ol>
 
 <h3 id=encoding-again>La codifica di carattere, ancora una volta</h3>
@@ -600,8 +600,8 @@ print('C')</code></pre>
 
 <p class=v><a href=refactoring.html rel=prev title='indietro a &#8220;Refactoring&#8221;'><span class=u>&#x261C;</span></a> <a href=xml.html rel=next title='avanti a &#8220;XML&#8221;'><span class=u>&#x261E;</span></a>
 
-<p class=c>&copy; 2001&ndash;9 <a href=about.html>Mark Pilgrim</a><br>
-&copy; 2009 <a href=informazioni-sulla-traduzione.html>Giulio Piancastelli</a> per la traduzione italiana
+<p class=c>&copy; 2001&ndash;10 <a href=about.html>Mark Pilgrim</a><br>
+&copy; 2009&ndash;10 <a href=informazioni-sulla-traduzione.html>Giulio Piancastelli</a> per la traduzione italiana
 <script src=j/jquery.js></script>
 <script src=j/prettify.js></script>
 <script src=j/dip3.js></script>
