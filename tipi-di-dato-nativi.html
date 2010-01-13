@@ -132,7 +132,7 @@ ZeroDivisionError: int division or modulo by zero</samp></pre>
 <ol>
 <li>L&#8217;operatore <code>/</code> esegue la divisione in virgola mobile. Restituisce un <code>float</code> anche quando il numeratore e il denominatore sono entrambi numeri di tipo <code>int</code>.
 <li>L&#8217;operatore <code>//</code> esegue un tipo strambo di divisione tra interi. Quando il risultato è positivo, potete immaginarla come un troncamento (non un arrotondamento) a 0 decimali, ma fate attenzione.
-<li>Quando eseguite la divisione intera tra numeri negativi, l&#8217;operatore <code>//</code> arrotonda &#8220;per eccesso&#8221; verso l&#8217;intero più vicino. Matematicamente parlando, l&#8217;arrotondamento è &#8220;per difetto&#8221;, dato che <code>&minus;6</code> è inferiore a <code>&minus;5</code>, ma se vi attendete un troncamento a <code>&minus;5</code> potreste essere indotti in errore.
+<li>Quando eseguite la divisione intera tra numeri negativi, l&#8217;operatore <code>//</code> arrotonda &#8220;per eccesso&#8221; verso l&#8217;intero più vicino. Matematicamente parlando, l&#8217;arrotondamento è &#8220;per difetto&#8221; dato che <code>&minus;6</code> è inferiore a <code>&minus;5</code>, ma se vi aspettate un troncamento a <code>&minus;5</code> potreste essere indotti in errore.
 <li>L&#8217;operatore <code>//</code> non restituisce sempre un intero. Se il numeratore o il denominatore sono di tipo <code>float</code>, effettuerà un arrontondamento all&#8217;intero più vicino, ma l&#8217;effettivo valore di ritorno sarà un <code>float</code>.
 <li>L&#8217;operatore <code>**</code> significa &#8220;elevato alla potenza di&#8221;. <code>11<sup>2</sup></code> vale <code>121</code>.
 <li>L&#8217;operatore <code>%</code> dà il resto dopo aver effettuato una divisione di tipo intero. <code>11</code> diviso per <code>2</code> vale <code>5</code> con il resto di <code>1</code>, quindi il risultato in questo caso è <code>1</code>.
@@ -565,7 +565,7 @@ AttributeError: 'tuple' object has no attribute 'remove'</samp>
 
 <h2 id=sets>Insiemi</h2>
 
-<p>Un <dfn>insieme</dfn> è un &#8220;gruppo&#8221; non ordinato di valori unici. Un singolo insieme può contenere valori di qualsiasi tipo di dato. Una volta che avete due insiemi, potete effettuare le classiche operazioni sugli insiemi come l&#8217;unione, l&#8217;intersezione e la differenza tra insiemi.
+<p>Un <dfn>insieme</dfn> è un &#8220;gruppo&#8221; non ordinato di valori unici. Un singolo insieme può contenere valori di qualsiasi tipo di dato immutabile. Una volta che avete due insiemi, potete effettuare le classiche operazioni sugli insiemi come l&#8217;unione, l&#8217;intersezione e la differenza tra insiemi.
 
 <h3 id=creating-a-set>Creare un insieme</h3>
 
@@ -958,8 +958,8 @@ KeyError: 'db.diveintopython3.org'</samp></pre>
 <li><a href=http://www.python.org/dev/peps/pep-0238/><abbr>PEP</abbr> 238: Modificare l&#8217;operatore di divisione</a>
 </ul>
 <p class=v><a href=il-vostro-primo-programma-python.html rel=prev title='indietro a &#8220;Il vostro primo programma Python&#8221;'><span class=u>&#x261C;</span></a> <a href=descrizioni.html rel=next title='avanti a &#8220;Descrizioni&#8221;'><span class=u>&#x261E;</span></a>
-<p class=c>&copy; 2001&ndash;9 <a href=informazioni-sul-libro.html>Mark Pilgrim</a><br>
-&copy; 2009 <a href=informazioni-sulla-traduzione.html>Giulio Piancastelli</a> per la traduzione italiana
+<p class=c>&copy; 2001&ndash;10 <a href=informazioni-sul-libro.html>Mark Pilgrim</a><br>
+&copy; 2009&ndash;10 <a href=informazioni-sulla-traduzione.html>Giulio Piancastelli</a> per la traduzione italiana
 <script src=j/jquery.js></script>
 <script src=j/prettify.js></script>
 <script src=j/dip3.js></script>
