@@ -39,7 +39,7 @@ strumenti:
 
 - Python 2.6 e PyQuery (che necessita di lxml)
 - Python 3
-- Java (per YUI Compressor)
+- Java (per YUI Compressor / Google Compiler)
 - Prince XML (http://www.princexml.com)
 - Mercurial
 - vari comandi Unix come cat, sed, zip, &c.
