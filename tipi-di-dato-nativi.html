@@ -339,8 +339,8 @@ ValueError: list.index(x): x not in list</samp></pre>
 <ol>
 
 <li>Come potreste aspettarvi, il metodo <code>count()</code> restituisce il numero di occorrenze di uno specifico valore in una lista.
-<li>Nel caso tutto quello che vogliate sapere sia se un valore è presente nella lista oppure no, l&#8217;operatore <code>in</code> è leggermente più veloce rispetto al metodo <code>count()</code>. L&#8217;operatore <code>in</code> restituisce sempre <code>True</code> o <code>False</code>, senza dirvi dove si trova il valore.
-<li>Se avete bisogno di sapere esattamente dove si trova un valore nella lista, chiamate il metodo <code>index()</code>. Per default cercherà nell&#8217;intera lista, anche se potete specificare come secondo argomento l&#8217;indice (a partire da 0) da cui cominciare, e come terzo argomento persino l&#8217;indice (a partire da 0) in cui terminare la ricerca.
+<li>Nel caso tutto quello che vogliate sapere sia se un valore è presente nella lista oppure no, l&#8217;operatore <code>in</code> è leggermente più veloce rispetto al metodo <code>count()</code>. L&#8217;operatore <code>in</code> restituisce sempre <code>True</code> o <code>False</code>, senza dirvi quante volte il valore compare nella lista.
+<li>Né l&#8217;operatore <code>in</code> né il metodo <code>count()</code> vi diranno <em>dove</em> si trova il valore. Se avete bisogno di questa informazione, chiamate il metodo <code>index()</code>. Per default questo metodo cercherà nell&#8217;intera lista, anche se potete specificare come secondo argomento opzionale l&#8217;indice (a partire da 0) da cui cominciare, e come terzo argomento opzionale persino l&#8217;indice (a partire da 0) in cui terminare la ricerca.
 <li>Il metodo <code>index()</code> trova la <em>prima</em> occorrenza di un valore nella lista. In questo caso, <code>'nuovo'</code> appare due volte nella lista, in <code>a_list[2]</code> e <code>a_list[4]</code>, ma il metodo <code>index()</code> restituirà solamente l&#8217;indice della prima occorrenza.
 <li>Come <em>non</em> vi sareste aspettati, se il valore non viene trovato nella lista il metodo <code>index()</code> solleverà un&#8217;eccezione.
 </ol>
