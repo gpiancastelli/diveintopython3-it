@@ -345,7 +345,7 @@ AttributeError: 'NoneType' object has no attribute 'groups'</samp></pre>
 <a><samp class=p>>>> </samp><kbd class=pp>phonePattern.search('800-555-1212')</kbd>                <span class=u>&#x2464;</span></a>
 <samp class=p>>>> </samp></pre>
 <ol>
-<li>Tenetevi stretto il vostro cappello. State trovando una corrispondenza con l&#8217;inizio della stringa, poi con un gruppo di tre cifre, poi con <code>\D+</code>. Cosa diavolo è quello? Ebbene, <code>\D</code> corrisponde a qualsiasi carattere <em>tranne</em> una cifra numerica, e <code>+</code> significa &#8220;1 o più&#8221;. Così <code>\D+</code> corrisponde a uno o più caratteri che non sono cifre. Questo è ciò che usate al posto di un trattino letterale per provare a trovare una corrispondenza con separatori differenti.
+<li>Allacciatevi le cinture. State trovando una corrispondenza con l&#8217;inizio della stringa, poi con un gruppo di tre cifre, poi con <code>\D+</code>. Cosa diavolo è quello? Ebbene, <code>\D</code> corrisponde a qualsiasi carattere <em>tranne</em> una cifra numerica, e <code>+</code> significa &#8220;1 o più&#8221;. Così <code>\D+</code> corrisponde a uno o più caratteri che non sono cifre. Questo è ciò che usate al posto di un trattino letterale per provare a trovare una corrispondenza con separatori differenti.
 <li>Usare <code>\D+</code> invece di <code>-</code> significa che ora potete trovare una corrispondenza con numeri le cui parti sono separate da spazi invece che da trattini.
 <li>Naturalmente, i numeri telefonici separati da trattini funzionano ancora.
 <li>Sfortunatamente, questa non è ancora la risposta finale, perché presume che ci sia sempre un separatore. E se il numero telefonico fosse introdotto senza nessuno spazio o trattino?
