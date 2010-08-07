@@ -1172,7 +1172,7 @@ except:
 
 <h2 id=sys_exc><code>sys.exc_type</code>, <code>sys.exc_value</code>, <code>sys.exc_traceback</code></h2>
 
-<p>Python 2 aveva tre variabili nel modulo <code>sys</code> alle quali potevate accedere durante la gestione di un&#8217;eccezione: <code>sys.exc_type</code>, <code>sys.exc_value</code>, <code>sys.exc_traceback</code>. (In realtà, esse risalgono a Python 1.) Fin da Python 1.5 queste variabili sono state deprecate a favore di <code>sys.exc_info</code>, che è una tupla contenente tutti e tre i valori. In Python 3 queste singole variabili sono infine sparite, perciò dovete usare <code>sys.exc_info</code>.
+<p>Python 2 aveva tre variabili nel modulo <code>sys</code> alle quali potevate accedere durante la gestione di un&#8217;eccezione: <code>sys.exc_type</code>, <code>sys.exc_value</code>, <code>sys.exc_traceback</code>. (In realtà, esse risalgono a Python 1.) Fin da Python 1.5 queste variabili sono state deprecate a favore di <code>sys.exc_info()</code>, una funzione che restituisce una tupla contenente tutti e tre i valori. In Python 3 queste singole variabili sono infine sparite, perciò dovete usare la funzione <code>sys.exc_info()</code>.
 
 <table>
 <tr><th>Note
