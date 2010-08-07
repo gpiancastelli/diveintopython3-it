@@ -788,7 +788,7 @@ except:
 <ol>
 <li>Nel caso più semplice, lo script <code>2to3</code> convertirà semplicemente <code>xrange()</code> in <code>range()</code>.
 <li>Se il vostro programma in Python 2 usava <code>range()</code>, lo script <code>2to3</code> non sa se avete bisogno di una lista o se un iteratore potrebbe bastare. Pecca per eccesso di prudenza e converte il valore di ritorno in una lista chiamando la funzione <code>list()</code>.
-<li>Se la funzione <code>xrange()</code> si trova in una descrizione di lista, non c&#8217;è bisogno di convertire il risultato in una lista, perché la descrizione di lista lavora altrettanto bene con un iteratore.
+<li>Se la funzione <code>xrange()</code> si trova in una descrizione di lista, lo script <code>2to3</code> è abbastanza scaltro da <em>non</em> racchiudere la funzione <code>range()</code> in una invocazione a <code>list()</code>. La descrizione di lista lavora altrettanto bene con l&#8217;iteratore restituito dalla funzione <code>range()</code>.
 <li>Similmente, un ciclo <code>for</code> lavora altrettanto bene con un iteratore, quindi non c&#8217;è bisogno di cambiare nulla qui.
 <li>Anche la funzione <code>sum()</code> lavora altrettanto bene con un iteratore, quindi <code>2to3</code> non effettua alcun cambiamento neanche qui. Come per <a href=#dict>i metodi dei dizionari che restituiscono viste invece di liste</a>, questo si applica a <code>min()</code>, <code>max()</code>, <code>sum()</code>, <code>list()</code>, <code>tuple()</code>, <code>set()</code>, <code>sorted()</code>, <code>any()</code> e <code>all()</code>.
 </ol>
