@@ -389,9 +389,9 @@ AttributeError: 'NoneType' object has no attribute 'groups'</samp></pre>
 <a><samp class=p>>>> </samp><kbd class=pp>phonePattern = re.compile(r'(\d{3})\D*(\d{3})\D*(\d{4})\D*(\d*)$')</kbd>  <span class=u>&#x2460;</span></a>
 <a><samp class=p>>>> </samp><kbd class=pp>phonePattern.search('work 1-(800) 555.1212 #1234').groups()</kbd>         <span class=u>&#x2461;</span></a>
 <samp class=pp>('800', '555', '1212', '1234')</samp>
-<a><samp class=p>>>> </samp><kbd class=pp>phonePattern.search('800-555-1212')</kbd>                                 <span class=u>&#x2462;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>phonePattern.search('800-555-1212').groups()</kbd>                        <span class=u>&#x2462;</span></a>
 <samp class=pp>('800', '555', '1212', '')</samp>
-<a><samp class=p>>>> </samp><kbd class=pp>phonePattern.search('80055512121234')</kbd>                               <span class=u>&#x2463;</span></a>
+<a><samp class=p>>>> </samp><kbd class=pp>phonePattern.search('80055512121234').groups()</kbd>                      <span class=u>&#x2463;</span></a>
 <samp class=pp>('800', '555', '1212', '1234')</samp></pre>
 <ol>
 <li>Notate la mancanza di <code>^</code> in questa espressione regolare. Non state più trovando una corrispondenza con l&#8217;inizio della stringa. Non c&#8217;è niente che dica che avete bisogno di trovare una corrispondenza tra l&#8217;intera stringa in ingresso e la vostra espressione regolare. Il riconoscitore di espressioni regolari si sobbarcherà il duro lavoro necessario a capire quando la stringa in ingresso comincia a corrispondere e proseguirà da lì.
