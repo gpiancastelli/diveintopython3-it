@@ -224,7 +224,7 @@ body{counter-reset:h1 5}
 <li>Questo trova una corrispondenza con l&#8217;inizio della stringa, poi con la prima <code>M</code> opzionale, poi con <code>CM</code>, poi con la <code>L</code> opzionale e con tutti e tre i caratteri <code>X</code> opzionali, poi con la fine della stringa. <code>MCMLXXX</code> è la rappresentazione di <code>1980</code> come numero romano.
 <li>Questo trova una corrispondenza con l&#8217;inizio della stringa, poi con la prima <code>M</code> opzionale, poi con <code>CM</code>, poi con la <code>L</code> opzionale e con tutti e tre i caratteri <code>X</code> opzionali, ma poi <em>fallisce la corrispondenza</em> con la fine della stringa perché c&#8217;è ancora una <code>X</code> di cui dar conto. Quindi l&#8217;intero pattern non corrisponde e la funzione restituisce <code>None</code>. <code>MCMLXXXX</code> non è un numero romano valido.
 </ol>
-<aside>(A|B) corrisponde al pattern A oppure al pattern B.</aside>
+<aside>(A|B) corrisponde al pattern A oppure al pattern B, ma non a entrambi.</aside>
 <p>L&#8217;espressione per le unità segue lo stesso schema. Vi risparmierò i dettagli e vi mostrerò il risultato finale.
 <pre class='nd screen'>
 <samp class=p>>>> </samp><kbd class=pp>pattern = '^M?M?M?(CM|CD|D?C?C?C?)(XC|XL|L?X?X?X?)(IX|IV|V?I?I?I?)$'</kbd>
@@ -437,7 +437,7 @@ AttributeError: 'NoneType' object has no attribute 'groups'</samp></pre>
 <li><code>x*</code> corrisponde a <code>x</code> zero o più volte;
 <li><code>x+</code> corrisponde a <code>x</code> una o più volte;
 <li><code>x{n,m}</code> corrisponde a un carattere <code>x</code> almeno <code>n</code> volte, ma non più di <code>m</code> volte;
-<li><code>(a|b|c)</code> corrisponde ad <code>a</code> o <code>b</code> o <code>c</code>;
+<li><code>(a|b|c)</code> corrisponde esattamente a uno tra <code>a</code>, <code>b</code>, o <code>c</code>;
 <li><code>(x)</code> in generale è un <em>gruppo di memorizzazione</em>. Potete ottenere il valore di ciò che vi corrisponde usando il metodo <code>groups()</code> dell&#8217;oggetto restituito da <code>re.search()</code>.
 </ul>
 <p>Le espressioni regolari sono estremamente potenti, ma non sono la soluzione corretta per tutti i problemi. Dovreste imparare a conoscerle abbastanza da sapere quando sono appropriate, quando risolveranno i vostri problemi, e quando causeranno più problemi di quelli che risolvono.
