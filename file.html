@@ -209,7 +209,7 @@ ValueError: I/O operation on closed file.</samp>
 
 <p>Gli oggetti stream hanno un metodo <code>close()</code> esplicito, ma cosa succede se il vostro codice ha un bug e si blocca prima che possiate chiamare <code>close()</code>? Quel file potrebbe teoricamente rimanere aperto per un tempo molto più lungo del necessario. Mentre state effettuando il debug sul vostro computer locale questo non è un grande problema, ma su un server di produzione forse lo è.
 
-<p>Python 2 aveva una soluzione per questo: il blocco <code>try..finally</code>. Questo funziona ancora in Python 3, e potreste vederlo nel codice di altre persone o in codice più vecchio che è stato <a href=caso-di-studio-convertire-chardet-verso-python-3.html>convertito verso Python 3</a>. Ma Python 2.5 ha introdotto una soluzione più pulita, che ora è la soluzione preferita in Python 3: l&#8217;istruzione <code>with</code>.
+<p>Python 2 aveva una soluzione per questo: il blocco <code>try..finally</code>. Questo funziona ancora in Python 3, e potreste vederlo nel codice di altre persone o in codice più vecchio che è stato <a href=caso-di-studio-convertire-chardet-verso-python-3.html>convertito verso Python 3</a>. Ma Python 2.6 ha introdotto una soluzione più pulita, che ora è la soluzione preferita in Python 3: l&#8217;istruzione <code>with</code>.
 
 <pre class='nd pp'><code>with open('esempi/chinese.txt', encoding='utf-8') as a_file:
     a_file.seek(21)
