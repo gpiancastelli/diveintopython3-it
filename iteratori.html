@@ -176,7 +176,7 @@ Tutti e tre i metodi di classe <code>__init__</code>, <code>__iter__</code> e <c
         self.a, self.b = self.b, self.a + self.b
 <a>        return fib                                <span class=u>&#x2465;</span></a></code></pre>
 <ol>
-<li>Per costruire un iteratore partendo da zero, <code>fib</code> deve essere una classe, non una funzione.
+<li>Per costruire un iteratore partendo da zero, <code>Fib</code> deve essere una classe, non una funzione.
 <li>&#8220;Invocare&#8221; <code>Fib(max)</code> vuol dire in realtà creare un&#8217;istanza di questa classe e chiamare il suo metodo <code>__init__()</code> con <var>max</var>. Il metodo <code>__init__()</code> salva il valore massimo come una variabile di istanza in modo che altri metodi possano usarlo più tardi.
 <li>Il metodo <code>__iter__()</code> viene invocato ogni volta che qualcuno chiama <code>iter(fib)</code>. (Come vedrete fra un minuto, un ciclo <code>for</code> chiama questo metodo automaticamente, ma potete chiamarlo anche voi manualmente.) Dopo aver eseguito l&#8217;inizializzazione che prepara l&#8217;iterazione (in questo caso, impostando i valori di <code>self.a</code> e <code>self.b</code>, i nostri due contatori), il metodo <code>__iter__()</code> può restituire qualsiasi oggetto che implementi un metodo <code>__next__()</code>. In questo caso (e nella maggior parte dei casi) <code>__iter__()</code> restituisce semplicemente <var>self</var>, dato che questa classe implementa il proprio metodo <code>__next__()</code>.
 <li>Il metodo <code>__next__()</code> viene invocato ogni volta che qualcuno chiama <code>next()</code> su un iteratore di un&#8217;istanza di una classe. Questo avrà più senso fra un minuto.
